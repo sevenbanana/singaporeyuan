@@ -1,0 +1,90 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-sans: 'Noto Sans SC', 'PingFang SC', system-ui, sans-serif;
+}
+
+@layer base {
+  html { scroll-behavior: smooth; }
+  body {
+    @apply bg-cream text-ink font-sans antialiased;
+    background-image: radial-gradient(circle at 15% 0%, rgba(232, 213, 168, 0.35), transparent 45%),
+                      radial-gradient(circle at 85% 100%, rgba(232, 213, 168, 0.25), transparent 40%);
+    background-attachment: fixed;
+    text-rendering: optimizeLegibility;
+  }
+  ::selection { @apply bg-gold/30 text-navy; }
+}
+
+@layer components {
+  .container-wide { @apply mx-auto w-full max-w-content px-6 md:px-10; }
+
+  .eyebrow {
+    @apply inline-block text-xs font-semibold uppercase tracking-widest2 text-gold-deep;
+  }
+
+  .rule-gold { @apply h-px w-12 bg-gold; }
+
+  /* 卡片:圆角 + 淡金描边 + 柔和阴影 */
+  .card {
+    @apply rounded-2xl border border-gold/25 bg-sand-50/80 shadow-card backdrop-blur-sm
+           transition-all duration-500;
+  }
+  .card-hover:hover {
+    @apply -translate-y-1.5 border-gold/50 shadow-cardHover;
+  }
+
+  /* 深蓝标签(像参考图那种) */
+  .tag-navy {
+    @apply inline-flex items-center gap-2 rounded-xl bg-navy px-5 py-2.5 text-sm font-bold text-cream;
+  }
+  .tag-gold {
+    @apply inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-gold-deep to-gold px-5 py-2.5 text-sm font-bold text-white;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl bg-navy px-7 py-3.5
+           text-sm font-semibold tracking-wide text-cream transition-all duration-300
+           hover:bg-navy-deep hover:shadow-lg hover:shadow-navy/25 hover:-translate-y-0.5
+           focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold;
+  }
+  .btn-gold {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-gold-deep to-gold px-7 py-3.5
+           text-sm font-semibold tracking-wide text-white transition-all duration-300
+           hover:shadow-gold hover:-translate-y-0.5
+           focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy;
+  }
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl border border-navy/25 px-7 py-3.5
+           text-sm font-semibold tracking-wide text-navy transition-all duration-300
+           hover:border-gold hover:bg-gold/5 hover:text-gold-deep hover:-translate-y-0.5
+           focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold;
+  }
+
+  .section-title {
+    @apply text-3xl font-bold leading-tight text-navy md:text-4xl;
+  }
+
+  /* 滚动入场:默认隐藏,加 .in 后浮现 */
+  .reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+                transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .reveal.in { opacity: 1; transform: translateY(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .reveal { opacity: 1 !important; transform: none !important; }
+}
