@@ -25,9 +25,11 @@ export default async function ServicesPage({
 
 function Services() {
   const t = useTranslations('services');
-  const core = t.raw('core') as { name: string; desc: string }[];
+  const core = t.raw('core') as { name: string; question: string; desc: string }[];
   const strategic = t.raw('strategic') as { name: string; desc: string }[];
   const diff = t.raw('diff') as { name: string; desc: string }[];
+  const fitYes = t.raw('fitYes') as string[];
+  const fitNo = t.raw('fitNo') as string[];
 
   return (
     <>
@@ -55,12 +57,53 @@ function Services() {
               className="rounded-sm border border-navy/10 bg-white p-8 transition-colors hover:border-gold/50"
             >
               <span className="font-serif text-sm text-gold-deep">0{i + 1}</span>
-              <h3 className="mt-2 font-serif text-xl font-semibold text-navy">
-                {c.name}
+              <h3 className="mt-2 font-serif text-lg font-semibold text-navy md:text-xl">
+                {c.question}
               </h3>
+              <p className="mt-2 text-xs font-semibold uppercase tracking-wide text-gold-deep">
+                {c.name}
+              </p>
               <p className="mt-3 text-sm leading-relaxed text-mist">{c.desc}</p>
             </div>
           ))}
+        </div>
+      </section>
+
+      {/* Fit / not fit */}
+      <section className="bg-cream">
+        <div className="container-wide border-t border-navy/10 py-20 md:py-24">
+          <h2 className="section-title">{t('fitTitle')}</h2>
+          <p className="mt-4 max-w-2xl text-base leading-relaxed text-mist">
+            {t('fitIntro')}
+          </p>
+          <div className="mt-10 grid gap-6 md:grid-cols-2">
+            <div className="rounded-sm border border-gold/40 bg-white p-8">
+              <p className="font-serif text-lg font-semibold text-navy">
+                {t('fitYesTitle')}
+              </p>
+              <ul className="mt-5 space-y-3">
+                {fitYes.map((s, i) => (
+                  <li key={i} className="flex gap-3 text-sm leading-relaxed text-navy/80">
+                    <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rotate-45 bg-gold" />
+                    {s}
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="rounded-sm border border-navy/10 bg-white p-8">
+              <p className="font-serif text-lg font-semibold text-navy">
+                {t('fitNoTitle')}
+              </p>
+              <ul className="mt-5 space-y-3">
+                {fitNo.map((s, i) => (
+                  <li key={i} className="flex gap-3 text-sm leading-relaxed text-mist">
+                    <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full border border-mist/50" />
+                    {s}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -103,6 +146,9 @@ function Services() {
             </div>
           ))}
         </div>
+        <p className="mt-12 border-t border-navy/10 pt-6 text-xs leading-relaxed text-mist">
+          {t('complianceNote')}
+        </p>
       </section>
 
       {/* CTA */}

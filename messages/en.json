@@ -6,19 +6,21 @@
     "cases": "Case Studies",
     "consult": "Get in Touch",
     "brand": "Yuan Yuan SG",
-    "langSwitch": "中文"
+    "langSwitch": "中文",
+    "ctaWechat": "Add WeChat",
+    "ctaBook": "Book a chat"
   },
   "home": {
-    "heroTagline": "Make protection clear, and arrange the future, steadily.",
-    "heroName": "Yuan Yuan",
-    "heroRole": "AIA Wealth Manager | Family Protection & Retirement Cash Flow",
-    "heroCreds": "MAS-Licensed Financial Adviser · Insurance & Retirement Education",
-    "heroBody": "I'm a financial adviser who came from a background in design and product. Today I share knowledge about Singapore insurance, savings, retirement and family protection on Xiaohongshu and WeChat Channels.\n\nI'm not one to push for a sale. I'd rather make the complex products, fine print and cash flows genuinely clear — so that the people who truly need cover can choose with full understanding.\n\nEvery family's income, responsibilities, risk appetite and goals are different. My job isn't to get you to buy more, but to help you see clearly: what must come first, what can wait, and what you simply don't need.",
-    "heroCtaPrimary": "Book a planning chat",
-    "heroCtaSecondary": "See how I plan",
+    "heroBadge": "AIA Wealth Manager · RNF: YY-300823216",
+    "heroTitle": "Making Singapore insurance, retirement cash flow and family protection genuinely clear.",
+    "heroSubtitle": "I'm Yuan Yuan, an AIA Wealth Manager in Singapore.\nI help families and business owners living in Singapore make sense of medical, critical illness, life, savings, retirement and legacy planning.",
+    "heroBody": "I won't pitch a product on day one.\nIn our first conversation, I'd rather help you see clearly: whether your existing cover is enough, where the real risks are, what to prioritise — and what can simply wait.",
+    "heroName": "Yuan Yuan · Singapore",
+    "heroCtaPrimary": "Book a protection review",
+    "heroCtaSecondary": "See real planning cases",
     "statsTitle": "Let the numbers speak",
-    "statsSubtitle": "Figures as of June 2026 — verifiable on AIA's official profile",
-    "statsVerify": "Verify on AIA",
+    "statsSubtitle": "Source: AIA official adviser profile · figures as of June 2026",
+    "statsVerify": "View my AIA adviser profile",
     "stats": [
       {
         "value": "67",
@@ -33,21 +35,22 @@
         "label": "Claims approved"
       },
       {
-        "value": "SGD 20.9M",
+        "value": "S$215.4K",
+        "label": "Claims paid out"
+      },
+      {
+        "value": "S$20.9M",
         "label": "Death coverage"
       },
       {
-        "value": "SGD 14.1M",
+        "value": "S$14.1M",
         "label": "Critical illness coverage"
-      },
-      {
-        "value": "SGD 215.4K",
-        "label": "Claims paid out"
       }
     ],
-    "statsQuote": "What I care about was never just closing a policy — it's standing with you through every step of a claim, the moment you truly need it.",
-    "servicesTitle": "What I can do for you",
-    "servicesIntro": "Comprehensive planning across every stage of a family's life — from protection to legacy.",
+    "statsQuote": "What I care about was never just arranging a policy — it's standing with you through every step of a claim, the moment you truly need it.",
+    "statsFootnote": "Claims approved and coverage figures follow AIA's official reporting basis.",
+    "servicesTitle": "What I can help you solve",
+    "servicesIntro": "Across every stage of a family's life — from protection to legacy — I help you see each step clearly and set the right priorities.",
     "servicesLink": "View all services",
     "casesTitle": "Real planning, real considerations",
     "casesIntro": "Every plan begins with a real family's specific needs. Below are a few anonymised case studies.",
@@ -65,12 +68,14 @@
     "metaTitle": "About",
     "eyebrow": "About",
     "title": "Yuan Yuan",
-    "subtitle": "Yuan Yuan SG · Building wealth with you, steadily",
-    "intro": "I'm Yuan Yuan, an AIA Wealth Manager in Singapore and an MDRT member. Licensed in 2024, in under two years I've planned insurance and finances for families from Singapore, Malaysia, Australia, Turkey and beyond. Their backgrounds differ, but their hope is the same: to put down roots here and live with peace of mind. I believe wealth isn't built overnight, but through the right plan — year after year.",
+    "subtitle": "Yuan Yuan SG · Make protection clear, arrange the future steadily",
+    "quickTitle": "Me in 30 seconds",
+    "quickBody": "I'm Yuan Yuan, an AIA Wealth Manager in Singapore, with a Master's from NTU and a past career in product design at Great Eastern and Grab.\n\nHaving worked hands-on on insurance apps, online claims and customer experience, I care about one thing more than most advisers: whether clients truly understand the cover they've bought.\n\nToday I focus on helping families in Singapore make sense of medical, critical illness, life, retirement cash flow and legacy planning.",
+    "intro": "I'm Yuan Yuan, an AIA Wealth Manager in Singapore and an MDRT member. Licensed in 2024, in under two years I've planned insurance and finances for families from Singapore, Malaysia, Australia, Turkey and beyond. Their backgrounds differ, but their hope is the same: to put down roots here and live with peace of mind. I believe wealth isn't built overnight, but through the right plan — making protection solid, step by step, and arranging the future steadily.",
     "section1Title": "From product design to wealth management",
     "section1Body": "I didn't start out in this field.\n\nAfter graduating from Beijing University of Posts and Telecommunications in 2013, I came to Singapore for a Master's in Digital Media Technology at NTU. For nearly a decade after, I worked as a product designer —\n\nAt DeNA, a leading Japanese mobile game company, I ran planning and operations for a Marvel game, coordinating across Tokyo, Singapore, Hanoi and North America. At Great Eastern, Singapore's largest insurer, I led a six-person UX team in redesigning the official app and online claims system for 2.5 million policyholders. Later I joined the Southeast Asian super-app Grab, leading design for the GrabFood merchant platform and GrabExpress.\n\nThrough all of it, I kept one habit: no matter how busy, I always made time to document and reflect. It's what let me see my own path clearly at every turning point.",
     "section2Title": "Why I moved into insurance",
-    "section2Body": "If you've seen my résumé, this might surprise you: why would someone with nearly a decade in product design — at DeNA, Great Eastern, Grab — turn to insurance?\n\nIt starts with a prejudice.\n\nBefore entering this field, I knew nothing about insurance and was, frankly, biased against it — I thought of it as a sales pitch, a favour, a tangle of fine print. Then, during my years at Great Eastern, I designed the company's customer app and online claims system, walked through the entire journey from application to claim, and personally interviewed hundreds of policyholders, agents and claims staff.\n\nI saw the industry as it really is: many people buy insurance yet never understand what they're actually covered for; many practitioners favour marketing over service, acquisition over after-care — once a policy is sold, the client can't find them again. Behind that mess lies countless families' misunderstanding of, and disappointment with, the word \"protection.\"\n\nIn 2023, returning from maternity leave at Grab, my department was dissolved. Rather than rush to the next job, I used the pause to seriously consider what I wanted. A seasoned career coach, after getting to know me, suggested something unexpected: become a wealth adviser. She said I was gentle, methodical, numbers-sensitive and logical — exactly the foundation this work needs.\n\nIn that moment I felt a strange sense of destiny: wasn't I once exactly the person who was biased against insurance? If even I could be won over by genuinely professional, genuinely client-first service, couldn't I become that kind of adviser too — and change how more people see this industry?\n\nSo I chose AIA, and a team whose client-first philosophy matched my own. My approach is simple: no cold pitching, no pestering friends. When I'm not with clients, I spend my time sharing real, useful knowledge on social media, and let the people who need me come to me. Earning clients this way means I have to be genuinely good — that's the only way to be seen and trusted.\n\nAnd it works — in my first year, on word of mouth and referrals alone, I earned MDRT membership.",
+    "section2Body": "If you've seen my résumé, this might surprise you: why would someone with nearly a decade in product design — at DeNA, Great Eastern, Grab — turn to insurance?\n\nIt starts with a prejudice.\n\nBefore entering this field, I knew nothing about insurance and was, frankly, biased against it — I thought of it as a favour, a tangle of fine print. Then, during my years at Great Eastern, I designed the company's customer app and online claims system, walked through the entire journey from application to claim, and personally interviewed hundreds of policyholders, agents and claims staff.\n\nI saw the industry as it really is: many people buy insurance yet never understand what they're actually covered for; many practitioners favour marketing over service, acquisition over after-care — once a policy is sold, the client can't find them again. Behind that mess lies countless families' misunderstanding of, and disappointment with, the word \"protection.\"\n\nIn 2023, returning from maternity leave at Grab, my department was dissolved. Rather than rush to the next job, I used the pause to seriously consider what I wanted. A seasoned career coach, after getting to know me, suggested something unexpected: become a wealth adviser. She said I was gentle, methodical, numbers-sensitive and logical — exactly the foundation this work needs.\n\nIn that moment I felt a strange sense of destiny: wasn't I once exactly the person who was biased against insurance? If even I could be won over by genuinely professional, genuinely client-first service, couldn't I become that kind of adviser too — and change how more people see this industry?\n\nSo I chose AIA, and a team whose client-first philosophy matched my own. My approach is simple: review first, then talk solutions, and never pester friends. When I'm not with clients, I spend my time sharing real, useful knowledge on social media, and let the people who need me come to me. Earning clients this way means I have to be genuinely good — that's the only way to be seen and trusted.\n\nAnd it works — in my first year, on word of mouth and referrals alone, I earned MDRT membership.",
     "section3Title": "Building a reputation through professionalism and care",
     "section3Body": "My approach is simple: move forward in small, solid steps.\n\nI'm not chasing speed. I'm chasing the day when, years from now, a client mentioned in passing can say with conviction: \"Oh, Yuan Yuan — she's a trustworthy, dependable adviser who really knows her stuff.\"",
     "mediaTitle": "On taking content seriously",
@@ -80,12 +85,30 @@
     "mediaFollowers": "6,000+ followers across platforms · Content sells nothing — just plain sense, myth-busting, and real cases",
     "credsTitle": "Credentials",
     "creds": [
-      "MDRT Member (2026)",
-      "AIA MDC Platinum (2026)",
-      "WMI Certified Wealth Adviser (CAWA)",
-      "AIA High Net Worth Wealth Management Elite Team",
-      "2025 Rising Champion Team",
-      "AIA Prestige Wealth Manager (RNF: YY-300823216)"
+      {
+        "name": "MDRT Member (2026)",
+        "desc": "Professional recognition in the global life-insurance and financial-advisory profession."
+      },
+      {
+        "name": "AIA MDC Platinum (2026)",
+        "desc": "AIA's internal recognition of outstanding adviser performance."
+      },
+      {
+        "name": "WMI Certified Wealth Adviser (CAWA)",
+        "desc": "Structured training in wealth management, succession and risk planning for high-net-worth clients."
+      },
+      {
+        "name": "AIA Prestige Wealth Manager",
+        "desc": "AIA's high-net-worth wealth management adviser track."
+      },
+      {
+        "name": "AIA High Net Worth Wealth Management Elite Team",
+        "desc": "A team focused on serving high-net-worth families."
+      },
+      {
+        "name": "2025 Rising Champion Team",
+        "desc": "Recognition of the team's performance for the year."
+      }
     ],
     "eduTitle": "Education",
     "edu": [
@@ -97,25 +120,46 @@
     "metaTitle": "Services",
     "eyebrow": "Services",
     "title": "Comprehensive insurance and financial planning for families living in Singapore",
-    "intro": "Every family is different. I don't do off-the-shelf product pitches. I start from your real needs — helping you think through what you want to protect, what you hope to achieve, and what worries you — and only then talk about how to put it together.",
-    "coreTitle": "Core services",
+    "intro": "Every family is different. I prefer to review first and talk solutions later: starting from your real needs, helping you think through what you want to protect, what you hope to achieve, and what worries you — and only then talk about how to put it together.",
+    "coreTitle": "What I can help you solve",
     "core": [
       {
         "name": "Education & Retirement Planning",
+        "question": "Wondering how much to save each year so neither your child's university nor your own retirement catches you off guard?",
         "desc": "Long-term, steady arrangements for your children's education and your own retirement, so every milestone ahead is well supported."
       },
       {
         "name": "Asset Allocation",
+        "question": "Have some spare cash you don't want to gamble away — but don't want sitting idle in the bank either?",
         "desc": "A holistic view of your portfolio, shaped around your goals and risk appetite, so your wealth sits well at every life stage."
       },
       {
         "name": "Critical Illness & Life Protection",
+        "question": "If illness or lost income hit, who covers the mortgage, the kids and your parents?",
         "desc": "A line of defence for you and your family against illness and the unexpected, cushioning the impact of uncertainty."
       },
       {
         "name": "Family Protection",
+        "question": "Everyone in the family has some cover — but is it enough overall, with no gaps or overlaps?",
         "desc": "From medical to income, a connected protection system for the whole family — not a scatter of standalone policies."
       }
+    ],
+    "fitTitle": "When does it make sense to talk to me?",
+    "fitIntro": "I don't turn people away — but I do hope we're a good fit. These two columns may help you decide.",
+    "fitYesTitle": "When I'm likely a good fit",
+    "fitYes": [
+      "You live and work in Singapore and want to review your family's protection systematically",
+      "You have company group cover but aren't sure what happens after you leave",
+      "You have children and want to weigh education funding alongside your parents' retirement",
+      "Your income is comfortable, but you've never planned your cash flow systematically",
+      "You already have insurance, but want someone to review whether it still makes sense"
+    ],
+    "fitNoTitle": "When I may not be the right fit",
+    "fitNo": [
+      "You only want to compare the lowest price",
+      "You'd rather skip the needs analysis and just buy a specific product",
+      "You expect short-term windfalls or guaranteed high returns",
+      "You'd rather not spend time understanding terms, risks and cash flow"
     ],
     "strategicTitle": "Strategic partnerships",
     "strategicIntro": "For cross-border and legacy needs, I work with specialist partners to offer extended services:",
@@ -141,12 +185,12 @@
         "desc": "Coordinating cross-border status and assets"
       }
     ],
-    "strategicNote": "Some services are delivered together with licensed specialist partners; specific arrangements are subject to assessment.",
+    "strategicNote": "Some services are delivered together with licensed specialist partners; specific arrangements are subject to assessment. Matters involving wills, trusts, tax and residency planning will be advised on by the relevant licensed or professional institutions.",
     "diffTitle": "What I offer is more than a policy",
     "diff": [
       {
         "name": "Needs-first",
-        "desc": "I understand your situation before proposing anything — never selling for the sake of a sale."
+        "desc": "I understand your situation before proposing anything. If something suits you, I'll explain it clearly; if you don't need it, I'll tell you directly."
       },
       {
         "name": "Long-term care",
@@ -161,6 +205,7 @@
         "desc": "With my design background, I make the complex clear — so you truly understand your own protection."
       }
     ],
+    "complianceNote": "The content of this site is for reference only and does not constitute any investment, insurance, legal or tax advice. Insurance products involve terms and risks, and some returns are non-guaranteed. The insurer's official documents and relevant professional advice prevail.",
     "ctaTitle": "Want to talk through your situation?",
     "ctaBody": "Whether you're new to Singapore and building your family's first layer of protection, or already covered and want a neutral second opinion, I'd be glad to talk.",
     "ctaBtn": "Get in Touch"
@@ -175,63 +220,71 @@
     "disclaimer": "What suits one person may not suit you. Every family is different, and specific arrangements can only be determined after a full needs analysis.",
     "list": [
       {
-        "tag": "New to the workforce · Laying the foundation",
-        "title": "A single 25-year-old, newly arrived in Singapore",
-        "profile": "25, single, EP holder, newly joined a local tech firm, annual income around S$9***. On her own in Singapore, parents back home, no dependants.",
-        "existing": "Company group medical (basic, lapses on leaving), no personal policies.",
-        "risk": "Conservative. Few savings so far; her main concern is \"not letting one illness or accident derail everything.\"",
-        "needs": "Cover the most basic health and accident risks on a limited budget, without tying up too much cash flow.",
-        "advice": "MoneySense is clear for this stage (19–29): build an emergency fund first, then spend no more than 15% of income on protection. I mapped out three foundational layers: (1) an Integrated Shield Plan — the bedrock, portable and lifelong, around 2*** a year; (2) personal accident cover — excellent value for an active young adult, just 2*** a year; (3) early critical-illness cover — locking in around S$10**** while young and rates are low, around 2*** a year. I recommended no savings or investment products at this stage — for her, the smartest \"investment\" is locking in health cover at a low rate while young."
+        "tag": "New to the workforce · Is group cover enough?",
+        "title": "New to Singapore with only company group cover — do I really need personal insurance?",
+        "profile": "28, EP holder, newly joined a tech firm in Singapore, single, parents back home. Annual income around S$90,000, with some savings but an emergency fund that's still thin.",
+        "existing": "Only company group medical and accident cover, which lapses on leaving or changing jobs; no personal policies.",
+        "worry": "Afraid that a serious illness or accident would not only interrupt income, but also take away the group cover along with the job.",
+        "notAdvice": "I didn't start by recommending savings or investment products. At this stage his emergency fund was thin and personal protection was nearly blank, so chasing long-term returns wouldn't pay off.",
+        "firstAdvice": "First, on a budget under 15% of income, build three foundational layers: (1) a personal Integrated Shield Plan — portable and lifelong, unaffected by job changes; (2) personal accident cover; (3) an early critical-illness policy locked in while young and rates are low.",
+        "whyOrder": "Company group cover is \"borrowed protection\" — almost nothing truly belongs to him. While he's young and healthy and rates are low, covering high-impact risks like medical and critical illness matters more than rushing into investments — and costs less.",
+        "outcome": "On a manageable budget, he now has a first layer of protection that's truly his own, in place even if he changes jobs or leaves the company. Investing can wait until his emergency fund and cash flow are steadier."
       },
       {
-        "tag": "Rising responsibility · Protecting the home and each other",
-        "title": "Newlyweds who just bought a home (30)",
-        "profile": "Both 30 — one PR, one citizen, dual income, household income around S$18****. Newly married, just bought a home with a mortgage of about S$60****.",
-        "existing": "Each has hospitalisation and accident cover (arranged before marriage); no critical illness, no life cover.",
-        "risk": "Conservative. Their biggest worry: \"if one of us goes down, can we keep the house?\"",
-        "needs": "Ensure that if one passes away or falls seriously ill, the mortgage won't crush the other; close the critical-illness gap.",
-        "advice": "The foundation was in place; the gap was in \"family responsibility.\" By MAS rules of thumb — death/TPD cover around 9× annual income, critical illness around 4× — I added two pieces: (1) mortgage-reducing term assurance — purpose-built to offset mortgage risk, covering the outstanding balance and reducing alongside it, one each, around 2*** a year; should the worst happen, the payout clears the mortgage directly; (2) critical-illness cover — around S$20**** each, so that if one falls ill, there's money to replace income and cover recovery. Total premiums kept within 15% of household income."
+        "tag": "Newlyweds with a mortgage · Protecting the home",
+        "title": "We bought a home and took on a mortgage — if one of us is hit, can the other hold on?",
+        "profile": "Both in their early 30s, dual income, one PR and one citizen. Just bought a home with a sizeable mortgage; no children yet.",
+        "existing": "Each has hospitalisation and accident cover from before marriage, but no critical illness or life cover.",
+        "worry": "Their biggest fear: \"if one of us goes down, can the other carry the mortgage alone, or would we be forced to sell?\"",
+        "notAdvice": "I didn't suggest adding large savings or investment plans right away. Their biggest risk wasn't \"money not growing fast enough\" — it was \"family responsibility suddenly falling on one person.\"",
+        "firstAdvice": "Close two gaps first: (1) a mortgage-reducing term assurance covering the outstanding balance, one each, so that if one passes away or is totally disabled, the payout clears the mortgage directly; (2) critical-illness cover each, so that if one falls ill there's money to replace income and cover recovery. Total premiums kept within 15% of household income.",
+        "whyOrder": "The mortgage is the heaviest fixed responsibility at this stage and must be hedged first. Cover the worst case with relatively low premiums before talking about savings and growth — the order can't be reversed.",
+        "outcome": "Now, whichever partner is affected, the home is safe and the other won't be crushed by the mortgage. With the foundation secured, they began a long-term savings plan with peace of mind."
       },
       {
-        "tag": "A new life · A first layer of protection and a future",
-        "title": "A family welcoming a newborn (33)",
-        "profile": "Parents around 33, settled in Singapore, household income around S$20****. Baby just born; the parents' own cover is fairly complete, and focus has shifted to the child.",
-        "existing": "Both parents have hospitalisation, accident and critical-illness cover; the child has none yet.",
-        "risk": "Conservative, willing to plan long-term for the child.",
-        "needs": "Basic health cover for the newborn; a long-term, steady plan for the child's future education fund.",
-        "advice": "For newborns, earlier is better — simpler underwriting and lower rates. Two steps: First (priority), the baby's basic health cover — child hospitalisation around 2***, child accident around 2***, and optionally child critical illness locking in around S$10**** at a lifelong low rate. Second (the core goal), a long-term education savings plan — for the funding needs around age 18, contributing around 2*** a year to provide a relatively certain cash flow when it's needed (non-guaranteed portions per the policy illustration). One thing I stressed: the child's cover matters, but make sure the parents' own cover is sufficient first — parents are the child's biggest \"policy.\" That's the order MoneySense consistently emphasises."
+        "tag": "Family with a child · Getting the order right",
+        "title": "Now that we have a baby — insure the child first, or shore up the parents' cover?",
+        "profile": "Parents in their 30s, settled in Singapore, upper-middle household income. Baby just born; relatives are keen to set up insurance and an education fund for the child quickly.",
+        "existing": "Both parents have hospitalisation cover, but critical-illness and life cover are still short relative to family responsibilities; the child has no policy yet.",
+        "worry": "They worry about the child's health and future education fund, while sensing that \"the adults are the ones who actually earn\" — but unsure how to set priorities.",
+        "notAdvice": "I didn't suggest piling insurance or a large education fund onto the child first. The child's biggest protection is the parents themselves; investing heavily in the child while the adults have gaps puts the cart before the horse.",
+        "firstAdvice": "Three steps in order: (1) first shore up the parents' (especially the main earner's) critical-illness and life cover; (2) then set up basic hospitalisation and accident cover for the child, while early-life underwriting is simple and rates low; (3) finally, once the first two are solid, start a long-term, steady education savings plan for the child.",
+        "whyOrder": "If the family's main earner is hit, it's the child's life and education that suffer most. Fortify the \"adults\" line of defence first, and the child's protection and education fund will truly have something to rest on. This is the order MoneySense consistently emphasises.",
+        "outcome": "With the parents' gaps closed, they set up hospitalisation, accident and a long-term education plan for the child with confidence — clear on the role and priority of every piece."
       },
       {
-        "tag": "Stability first · Turning idle funds into a flexible arrangement",
-        "title": "A risk-averse 40-year-old executive · USD savings plan",
-        "profile": "40, senior executive at a major firm, stable career, peak earning years. Married, one or two children, ageing parents. Around US$50**** available to plan — funds not needed in the short term.",
-        "existing": "Company group medical, basic hospitalisation, some life/critical-illness cover, basic accident cover.",
-        "risk": "Low. Not chasing short-term swings; values certainty and the ability to access funds when needed.",
-        "needs": "A long-term, stable future cash flow; stability with future flexibility; if his career pace changes, an arrangement he can start early; and the ability to pass wealth to family.",
-        "advice": "His protection layer was complete; the need was clear — not to chase returns, but to find a steady, flexible, inheritable home for idle USD. I designed a single-premium USD savings plan: a one-time contribution of US$50****, paid once; income drawdown can begin from year 5 or year 15 depending on future needs (around US$2*** a year if early, around US$4*** if later); cover to age 100, with un-withdrawn amounts continuing to accumulate; whatever isn't used can pass to family as a death benefit. What suits him most is that it's reversible: access it early if needed, or let it keep growing if not. Note: drawdown figures are based on the insurer's illustrative rates, for illustration only, not guaranteed returns — the official policy document prevails."
-      },
-      {
-        "tag": "Offence and defence · Growth with a safety net",
-        "title": "A 42-year-old executive open to investing, who also wants a family safety net · Par fund + IUL",
-        "profile": "42, senior executive, peak earning years, financially literate. Married with children, significant family responsibilities. Has meaningful savings and is open to long-term assets.",
-        "existing": "Complete health cover (hospitalisation, critical illness, accident); some life cover, but still short relative to family responsibilities.",
-        "risk": "Moderate — accepts reasonable investment volatility, provided \"the family's safety net comes first.\"",
-        "needs": "Part of the funds to grow long-term and beat inflation; part to provide high-leverage death cover for the family; growth and protection working in tandem.",
-        "advice": "A two-tool combination with clear roles: (1) a participating (par) fund / savings plan — the steady core, relatively smooth growth, suited to mid-to-long-term funds, around 2*** a year; (2) an Indexed Universal Life (IUL) policy — high-leverage protection plus cash-value growth, turning a manageable outlay into around US$1***** of death cover so that, should the worst happen, the family's life and the children's education aren't disrupted; cash value is index-linked with a floor, participating in upside while protected on the downside, and can be accessed later via policy loans. Why a combination rather than a single product? The par fund handles \"steady,\" the IUL handles \"protection plus flexible growth\" — matching his offence-and-defence goals exactly. Note: par-fund dividends and cash-value growth are non-guaranteed, depending on the insurer's actual performance — not guaranteed returns; the official policy document prevails."
+        "tag": "High-income family · Retirement cash flow & USD savings",
+        "title": "40, comfortable income — how should I design retirement cash flow and USD savings?",
+        "profile": "Early 40s, senior manager, stable career at peak earning years. Married with children, ageing parents, health and critical-illness cover already fairly complete. Has funds not needed in the short term, wanting both steady growth and preparation for retirement and legacy.",
+        "existing": "Complete medical, critical-illness, accident and some life cover; but no clear long-term cash-flow and wealth-succession arrangement.",
+        "worry": "Two concerns: that income may stop after retirement and lower his living standard; and that idle cash is slowly eroded by inflation — yet he doesn't want too much investment volatility.",
+        "notAdvice": "I didn't suggest putting all the money into high-volatility investments to \"chase a high return.\" His goal is certainty and flexibility, not a gamble.",
+        "firstAdvice": "With protection already complete, design a steady mid-to-long-term savings / participating plan as the core of retirement cash flow: income can be drawn from an agreed term as needed, un-withdrawn amounts keep accumulating, and unused value can pass to family as a death benefit. If there's a need for USD exposure, a USD savings plan can diversify single-currency risk.",
+        "whyOrder": "What he lacks at this stage isn't protection, but a \"certain, flexible, inheritable\" long-term cash-flow arrangement. Lock in the retirement floor with steady tools first, then consider a smaller portion for flexible growth — \"steady\" before \"offence.\"",
+        "outcome": "He has a relatively certain, reversible cash flow for retirement: start it early if needed, or let the funds keep growing if not, with unused value left to family. Note: dividends and drawdown figures are non-guaranteed; the insurer's official documents and illustrations prevail."
       }
     ],
     "labelProfile": "Client profile",
-    "labelExisting": "Existing cover",
-    "labelRisk": "Risk appetite",
-    "labelNeeds": "Core needs",
-    "labelAdvice": "My recommendation",
-    "footerDisclaimer": "These case studies are anonymised and shared only to illustrate the planning approach. They do not constitute specific advice or an offer to anyone. Insurance and financial products involve terms, charges and risks, and some returns are non-guaranteed, depending on the insurer's actual performance. What suited these clients may not suit you. Any arrangement should be determined through a full needs analysis based on your own circumstances. Specific product details, sums assured and premiums are per the insurer's official documents."
+    "labelExisting": "Current cover",
+    "labelWorry": "Their biggest worry",
+    "labelNotAdvice": "What I did NOT recommend",
+    "labelFirstAdvice": "What I suggested first",
+    "labelWhyOrder": "Why this order",
+    "labelOutcome": "What the client ended up with",
+    "footerDisclaimer": "The content of this site is for reference only and does not constitute any investment, insurance, legal or tax advice. Insurance products involve terms and risks, and some returns are non-guaranteed, depending on the insurer's actual performance. These case studies are anonymised and shared only to illustrate the planning approach; what suited these clients may not suit you. Any arrangement should be determined through a full needs analysis based on your own circumstances. Matters involving wills, trusts, tax and residency planning will be advised on by the relevant licensed or professional institutions. The insurer's official documents and relevant professional advice prevail."
   },
   "consult": {
     "metaTitle": "Get in Touch",
     "eyebrow": "Get in Touch",
     "title": "Tell me about your situation",
-    "intro": "Whether you're new to Singapore and building your family's first layer of protection, or already covered and want an objective second opinion, do fill in the short form below. I'll be in touch as soon as I receive it. The first conversation is entirely free, with no sales pitch — I'll start by helping you and your family make sense of your existing coverage.",
+    "intro": "Whether you're new to Singapore and building your family's first layer of protection, or already covered and want an objective second opinion, do fill in the short form below. I'll be in touch as soon as I receive it. The first conversation is entirely free and not aimed at closing a deal — I'll start by helping you and your family make sense of your existing coverage, gaps and cash flow.",
+    "processTitle": "What happens after you submit?",
+    "processSteps": [
+      "I'll first reach out by WeChat or email to briefly confirm your needs.",
+      "The first conversation usually takes 20–30 minutes, focused on understanding your family situation, existing cover and goals.",
+      "If you already have policies, you don't need to organise them perfectly — photos or screenshots are fine.",
+      "The first conversation will never ask you to decide on the spot."
+    ],
     "fName": "What should I call you?",
     "fNamePh": "Name or nickname is fine",
     "fContact": "How best to reach you",
@@ -266,16 +319,17 @@
     "success": "Thank you — I've received your enquiry and will be in touch soon 🙏",
     "errorRequired": "Please complete the required fields and tick the consent box.",
     "altContactTitle": "Prefer not to use the form? Reach me directly",
+    "qrCaption": "Scan to add me on WeChat — please note: \"website enquiry\"",
     "required": "required"
   },
   "testimonials": {
     "clients": [
       {
-        "quote": "I first reached out to Yuan Yuan because I'd just started working and knew nothing about insurance. She didn't rush to sell me anything — she walked me through my company's group cover and what I actually needed, and told me what to get now versus what could wait. That no-pressure approach is exactly why I trust her.",
+        "quote": "I first reached out to Yuan Yuan because I'd just started working and knew nothing about insurance. She didn't rush to sell me anything — she walked me through my company's group cover and what I actually needed, and told me what to get now versus what could wait. That clear, no-rush approach is exactly why I trust her.",
         "author": "Mr C · 25 · Tech"
       },
       {
-        "quote": "After buying our home we worried about the mortgage risk, but dreaded being sold a pile of things we didn't need. Yuan Yuan worked it out clearly, filled only the real gap, and kept the premiums sensible. Professional and genuine — I've referred several friends.",
+        "quote": "After buying our home we worried about the mortgage risk, but dreaded being talked into a pile of things we didn't need. Yuan Yuan worked it out clearly, filled only the real gap, and kept the premiums sensible. Professional and genuine — I've referred several friends.",
         "author": "Ms L · 30 · Newlywed"
       },
       {
@@ -293,7 +347,7 @@
     ]
   },
   "footer": {
-    "tagline": "Building wealth with you, steadily",
+    "tagline": "Make protection clear, and arrange the future, steadily.",
     "contactTitle": "Contact",
     "wechat": "WeChat: singaporeyuan",
     "email": "Email: yuanyuan@aia.com.sg",
@@ -301,7 +355,7 @@
     "xhs": "Xiaohongshu: @Yuan Yuan SG",
     "org": "AIA Singapore × Voyage Wealth",
     "rnf": "RNF: YY-300823216",
-    "disclaimer": "The content of this site is for reference only and does not constitute investment or insurance advice. Insurance products involve terms and risks, and some returns are non-guaranteed. The insurer's official documents prevail.",
+    "disclaimer": "The content of this site is for reference only and does not constitute any investment, insurance, legal or tax advice. Insurance products involve terms and risks, and some returns are non-guaranteed. The insurer's official documents and relevant professional advice prevail.",
     "rights": "© 2026 Yuan Yuan. All rights reserved."
   }
 }

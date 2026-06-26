@@ -187,4 +187,5 @@ export const IconQuote = (p: SVGProps<SVGSVGElement>) => (
 export const caseIcons = [IconSeedling, IconHome, IconBaby, IconStable, IconGrowth];
 export const coreIcons = [IconEducation, IconAllocation, IconShieldHeart, IconFamily];
 export const strategicIcons = [IconGlobe, IconDocument, IconBuilding, IconVoyage, IconIdentity];
-export const statIcons = [IconUsers, IconPolicy, IconCheck, IconShield, IconShieldHeart, IconMoney];
+// 顺序与 messages stats 数组一致:服务家庭 / 承保保单 / 理赔获批 / 已赔付金额 / 身故保障 / 重疾保障
+export const statIcons = [IconUsers, IconPolicy, IconCheck, IconMoney, IconShield, IconShieldHeart];

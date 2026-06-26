@@ -8,9 +8,11 @@ type Case = {
   title: string;
   profile: string;
   existing: string;
-  risk: string;
-  needs: string;
-  advice: string;
+  worry: string;
+  notAdvice: string;
+  firstAdvice: string;
+  whyOrder: string;
+  outcome: string;
 };
 
 export default function CaseList() {
@@ -21,9 +23,10 @@ export default function CaseList() {
   const rows = (c: Case) => [
     { label: t('labelProfile'), value: c.profile },
     { label: t('labelExisting'), value: c.existing },
-    { label: t('labelRisk'), value: c.risk },
-    { label: t('labelNeeds'), value: c.needs },
-    { label: t('labelAdvice'), value: c.advice },
+    { label: t('labelWorry'), value: c.worry },
+    { label: t('labelFirstAdvice'), value: c.firstAdvice },
+    { label: t('labelWhyOrder'), value: c.whyOrder },
+    { label: t('labelOutcome'), value: c.outcome },
   ];
 
   return (
@@ -68,10 +71,36 @@ export default function CaseList() {
             {isOpen && (
               <div className="border-t border-navy/10 px-6 py-6">
                 <dl className="space-y-5">
-                  {rows(c).map((r, j) => (
+                  {/* 客户画像 / 当前配置 / 最担心的问题 */}
+                  {rows(c).slice(0, 3).map((r, j) => (
                     <div
                       key={j}
-                      className="grid gap-1.5 md:grid-cols-[120px_1fr] md:gap-6"
+                      className="grid gap-1.5 md:grid-cols-[140px_1fr] md:gap-6"
+                    >
+                      <dt className="text-xs font-semibold uppercase tracking-wide text-gold-deep">
+                        {r.label}
+                      </dt>
+                      <dd className="text-sm leading-relaxed text-navy/80">
+                        {r.value}
+                      </dd>
+                    </div>
+                  ))}
+
+                  {/* 我没有建议什么 —— 重点突出,体现先做需求分析 */}
+                  <div className="grid gap-1.5 rounded-sm border-l-2 border-gold bg-cream/60 px-5 py-4 md:grid-cols-[140px_1fr] md:gap-6">
+                    <dt className="text-xs font-semibold uppercase tracking-wide text-gold-deep">
+                      {t('labelNotAdvice')}
+                    </dt>
+                    <dd className="text-sm leading-relaxed text-navy/80">
+                      {c.notAdvice}
+                    </dd>
+                  </div>
+
+                  {/* 我建议先做什么 / 为什么这样排序 / 客户最后得到的结果 */}
+                  {rows(c).slice(3).map((r, j) => (
+                    <div
+                      key={j}
+                      className="grid gap-1.5 md:grid-cols-[140px_1fr] md:gap-6"
                     >
                       <dt className="text-xs font-semibold uppercase tracking-wide text-gold-deep">
                         {r.label}

@@ -21,7 +21,7 @@ function Home() {
   const t = useTranslations('home');
   const stats = t.raw('stats') as { value: string; label: string }[];
   const services = useTranslations('services');
-  const core = services.raw('core') as { name: string; desc: string }[];
+  const core = services.raw('core') as { name: string; question: string; desc: string }[];
   const cases = useTranslations('cases');
   const caseList = cases.raw('list') as { tag: string; title: string }[];
 
@@ -34,34 +34,36 @@ function Home() {
         <div aria-hidden className="pointer-events-none absolute left-1/2 top-32 h-2.5 w-2.5 rounded-full bg-gold/50 animate-float" />
         <div aria-hidden className="pointer-events-none absolute right-1/4 bottom-20 h-2 w-2 rounded-full bg-gold/40 animate-float" style={{ animationDelay: '1.5s' }} />
 
-        <div className="container-wide relative grid items-center gap-8 py-14 md:grid-cols-[1.15fr_0.85fr] md:py-20">
-          <div>
+        <div className="container-wide relative grid items-end gap-8 pt-14 md:grid-cols-[1.15fr_0.85fr] md:pt-20">
+          <div className="pb-14 md:pb-20">
             <div className="animate-fade-up">
-              <span className="tag-navy text-xs">{t('heroCreds')}</span>
+              <span className="tag-navy text-xs">{t('heroBadge')}</span>
             </div>
-            <h1 className="mt-6 animate-fade-up text-5xl font-black leading-[1.1] text-navy md:text-6xl" style={{ animationDelay: '60ms' }}>
-              {t('heroName')}
+            <h1 className="mt-6 animate-fade-up text-3xl font-black leading-[1.25] text-navy md:text-4xl lg:text-[2.75rem]" style={{ animationDelay: '60ms' }}>
+              {t('heroTitle')}
             </h1>
-            <p className="mt-4 animate-fade-up text-base font-medium text-gold-deep md:text-lg" style={{ animationDelay: '120ms' }}>
-              {t('heroRole')}
-            </p>
-            <div className="my-6 rule-gold animate-fade-up" style={{ animationDelay: '160ms' }} />
-            <div className="max-w-xl animate-fade-up space-y-3 text-[15px] leading-[1.85] text-ink/80" style={{ animationDelay: '200ms' }}>
-              {t('heroBody').split('\n\n').map((p, i) => (
+            <div className="mt-5 max-w-xl animate-fade-up space-y-1 text-base font-medium leading-[1.7] text-gold-deep md:text-lg" style={{ animationDelay: '120ms' }}>
+              {t('heroSubtitle').split('\n').map((p, i) => (
                 <p key={i}>{p}</p>
               ))}
             </div>
-            <p className="mt-7 animate-fade-up text-xl font-bold text-gold-deep md:text-2xl" style={{ animationDelay: '260ms' }}>
-              {t('heroTagline')}
+            <div className="my-6 rule-gold animate-fade-up" style={{ animationDelay: '160ms' }} />
+            <div className="max-w-xl animate-fade-up space-y-2 text-[15px] leading-[1.85] text-ink/80" style={{ animationDelay: '200ms' }}>
+              {t('heroBody').split('\n').map((p, i) => (
+                <p key={i}>{p}</p>
+              ))}
+            </div>
+            <p className="mt-7 animate-fade-up text-lg font-bold text-navy md:text-xl" style={{ animationDelay: '260ms' }}>
+              {t('heroName')}
             </p>
-            <div className="mt-8 flex flex-wrap gap-4 animate-fade-up" style={{ animationDelay: '320ms' }}>
+            <div className="mt-7 flex flex-wrap gap-4 animate-fade-up" style={{ animationDelay: '320ms' }}>
               <Link href="/consult" className="btn-gold">{t('heroCtaPrimary')}</Link>
-              <Link href="/about" className="btn-ghost">{t('heroCtaSecondary')}</Link>
+              <Link href="/cases" className="btn-ghost">{t('heroCtaSecondary')}</Link>
             </div>
           </div>
 
-          {/* 透明照片,无框,缩小 */}
-          <div className="relative flex justify-center md:justify-end">
+          {/* 透明照片,无框;底部与下方数据模块无缝衔接 */}
+          <div className="relative flex justify-center self-end md:justify-end">
             <div aria-hidden className="absolute bottom-0 left-1/2 h-[72%] w-[70%] -translate-x-1/2 rounded-full bg-gradient-to-t from-gold/15 to-transparent blur-2xl" />
             <Image
               src="/portrait.png"
@@ -69,14 +71,14 @@ function Home() {
               width={576}
               height={1500}
               priority
-              className="relative z-10 h-auto w-[200px] animate-fade-in object-contain md:w-[270px] lg:w-[300px]"
+              className="relative z-10 block h-auto w-[230px] animate-fade-in object-contain align-bottom md:w-[300px] lg:w-[340px]"
             />
           </div>
         </div>
       </section>
 
       {/* ===== STATS BAND ===== */}
-      <section className="relative">
+      <section className="relative -mt-px">
         <div className="container-wide">
           <Reveal className="card overflow-hidden">
             <div className="bg-gradient-to-br from-navy to-navy-deep px-8 py-12 md:px-12">
@@ -106,6 +108,7 @@ function Home() {
               >
                 {t('statsVerify')} →
               </a>
+              <p className="mt-6 text-[11px] leading-relaxed text-cream/40">{t('statsFootnote')}</p>
             </div>
           </Reveal>
         </div>
@@ -130,7 +133,8 @@ function Home() {
                     </div>
                     <span className="text-2xl font-black text-gold/40">0{i + 1}</span>
                   </div>
-                  <h3 className="mt-5 text-lg font-bold text-navy">{c.name}</h3>
+                  <span className="mt-5 block text-xs font-semibold uppercase tracking-wide text-gold-deep">{c.name}</span>
+                  <h3 className="mt-2 text-base font-bold leading-snug text-navy">{c.question}</h3>
                   <p className="mt-3 text-sm leading-relaxed text-mist">{c.desc}</p>
                 </div>
               </Reveal>

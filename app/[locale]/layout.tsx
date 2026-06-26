@@ -4,6 +4,7 @@ import { notFound } from 'next/navigation';
 import { routing } from '@/lib/routing';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import MobileCta from '@/components/MobileCta';
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
@@ -30,8 +31,9 @@ export default async function LocaleLayout({
       <body>
         <NextIntlClientProvider messages={messages}>
           <Navbar />
-          <main>{children}</main>
+          <main className="pb-16 md:pb-0">{children}</main>
           <Footer />
+          <MobileCta />
         </NextIntlClientProvider>
       </body>
     </html>

@@ -39,7 +39,7 @@ function Para({ text }: { text: string }) {
 function About() {
   const t = useTranslations('about');
   const home = useTranslations('home');
-  const creds = t.raw('creds') as string[];
+  const creds = t.raw('creds') as { name: string; desc: string }[];
   const edu = t.raw('edu') as string[];
 
   return (
@@ -59,8 +59,20 @@ function About() {
         </div>
       </section>
 
+      {/* 30-second intro */}
+      <section className="container-wide max-w-3xl pt-16 md:pt-20">
+        <div className="card p-8 md:p-10">
+          <span className="eyebrow">{t('quickTitle')}</span>
+          <div className="mt-4 space-y-3 text-base leading-[1.9] text-navy/80">
+            {t('quickBody').split('\n\n').map((p, i) => (
+              <p key={i}>{p}</p>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Story sections */}
-      <article className="container-wide max-w-3xl py-20 md:py-24">
+      <article className="container-wide max-w-3xl py-16 md:py-20">
         <section>
           <h2 className="section-title">{t('section1Title')}</h2>
           <div className="mt-6">
@@ -106,11 +118,14 @@ function About() {
         <div className="container-wide grid gap-12 py-16 md:grid-cols-2">
           <div>
             <span className="eyebrow text-gold">{t('credsTitle')}</span>
-            <ul className="mt-6 space-y-3">
+            <ul className="mt-6 space-y-5">
               {creds.map((c, i) => (
-                <li key={i} className="flex gap-3 text-sm text-cream/85">
+                <li key={i} className="flex gap-3">
                   <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-gold" />
-                  {c}
+                  <div>
+                    <p className="text-sm font-medium text-cream">{c.name}</p>
+                    <p className="mt-1 text-xs leading-relaxed text-cream/60">{c.desc}</p>
+                  </div>
                 </li>
               ))}
             </ul>
