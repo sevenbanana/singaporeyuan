@@ -1,19 +1,44 @@
 'use client';
 
-import { useForm, ValidationError } from '@formspree/react';
+import { FormEvent, useState } from 'react';
 import { useTranslations } from 'next-intl';
 
 export default function ConsultForm() {
   const t = useTranslations('consult');
-  const [state, handleSubmit] = useForm('xnjkpqrz');
+  const [status, setStatus] = useState<'idle' | 'submitting' | 'succeeded' | 'failed'>('idle');
 
   const identityOptions = t.raw('identityOptions') as string[];
   const interestOptions = t.raw('interestOptions') as string[];
 
-  if (state.succeeded) {
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    setStatus('submitting');
+
+    const form = event.currentTarget;
+    const formData = new FormData(form);
+
+    try {
+      const response = await fetch('https://formspree.io/f/xnjkpqrz', {
+        method: 'POST',
+        body: formData,
+        headers: { Accept: 'application/json' },
+      });
+
+      if (!response.ok) {
+        throw new Error('Form submission failed');
+      }
+
+      form.reset();
+      setStatus('succeeded');
+    } catch {
+      setStatus('failed');
+    }
+  }
+
+  if (status === 'succeeded') {
     return (
       <div className="rounded-sm border border-gold/40 bg-gold-pale/40 p-10 text-center">
-        <p className="font-serif text-xl text-navy">{t('success')}</p>
+        <p className="text-xl text-navy">{t('success')}</p>
       </div>
     );
   }
@@ -68,7 +93,6 @@ export default function ConsultForm() {
             className={inputCls.replace('mt-2 ', '')}
           />
         </div>
-        <ValidationError field="email" errors={state.errors} className="mt-1 text-xs text-red-600" />
       </div>
 
       {/* Identity */}
@@ -146,11 +170,17 @@ export default function ConsultForm() {
       {/* Submit */}
       <button
         type="submit"
-        disabled={state.submitting}
+        disabled={status === 'submitting'}
         className="btn-primary w-full disabled:opacity-60 sm:w-auto"
       >
-        {state.submitting ? t('submitting') : t('submit')}
+        {status === 'submitting' ? t('submitting') : t('submit')}
       </button>
+
+      {status === 'failed' && (
+        <p className="text-sm text-red-600">
+          {t('submitError', { default: '提交失败,请稍后再试。' })}
+        </p>
+      )}
     </form>
   );
 }

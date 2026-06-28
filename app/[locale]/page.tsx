@@ -1,4 +1,4 @@
-import { useTranslations } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
 import { setRequestLocale } from 'next-intl/server';
 import Image from 'next/image';
 import { Link } from '@/lib/routing';
@@ -6,7 +6,10 @@ import Testimonials from '@/components/Testimonials';
 import Reveal from '@/components/Reveal';
 import CountUp from '@/components/CountUp';
 import Typewriter from '@/components/Typewriter';
-import { coreIcons, caseIcons, statIcons } from '@/components/icons';
+import { coreIcons, caseIconBySlug, statIcons } from '@/components/icons';
+import { caseOrder, isRich } from '@/lib/caseDetails';
+import NavyDecor from '@/components/NavyDecor';
+import ServiceFlow from '@/components/ServiceFlow';
 
 export default async function HomePage({
   params,
@@ -20,13 +23,16 @@ export default async function HomePage({
 
 function Home() {
   const t = useTranslations('home');
+  const locale = useLocale();
   const stats = t.raw('stats') as { value: string; label: string }[];
   const roles = t.raw('heroRoles') as string[];
-  const flow = t.raw('flowSteps') as { t: string; d: string }[];
   const services = useTranslations('services');
   const core = services.raw('core') as { name: string; question: string; desc: string }[];
   const cases = useTranslations('cases');
-  const caseList = cases.raw('list') as { tag: string; title: string }[];
+  const caseList = cases.raw('list') as { slug: string; tag: string; title: string }[];
+  const orderedCases = caseOrder
+    .map((slug) => caseList.find((c) => c.slug === slug))
+    .filter(Boolean) as { slug: string; tag: string; title: string }[];
 
   return (
     <>
@@ -37,13 +43,16 @@ function Home() {
         <div aria-hidden className="pointer-events-none absolute left-1/2 top-32 h-2.5 w-2.5 rounded-full bg-gold/50 animate-float" />
         <div aria-hidden className="pointer-events-none absolute right-1/4 bottom-20 h-2 w-2 rounded-full bg-gold/40 animate-float" style={{ animationDelay: '1.5s' }} />
 
-        <div className="container-wide relative grid items-end gap-8 pt-12 md:grid-cols-[1.15fr_0.85fr] md:pt-16">
-          <div className="pb-14 md:pb-20">
-            <p className="animate-fade-up text-sm font-medium tracking-wide text-gold-deep">
+        <div className="container-wide relative grid items-end gap-8 pt-10 md:grid-cols-[1.05fr_0.95fr] md:pt-14">
+          <div className="self-center pb-10 md:pb-16">
+            <p className="animate-fade-up text-xs font-semibold uppercase tracking-[0.25em] text-gold-deep">
               {t('heroGreeting')}
             </p>
-            <h1 className="mt-4 animate-fade-up text-4xl font-black leading-[1.15] text-navy md:text-5xl" style={{ animationDelay: '60ms' }}>
-              {t('heroName')}
+            <h1 className="mt-4 flex flex-wrap items-baseline gap-x-3 gap-y-1 animate-fade-up leading-[1.05]" style={{ animationDelay: '60ms' }}>
+              <span className="text-4xl font-black text-navy md:text-5xl">{t('heroNameLead')}</span>
+              <span className={`font-script text-6xl leading-none md:text-7xl ${locale === 'zh' ? 'text-gold/80' : 'text-gold-deep'}`}>
+                {t('heroNameScript')}
+              </span>
             </h1>
             <p className="mt-4 flex min-h-[1.6em] flex-wrap items-center gap-x-2 animate-fade-up text-xl font-bold md:text-2xl" style={{ animationDelay: '120ms' }}>
               <span className="text-ink/70">{t('heroTyperPrefix')}</span>
@@ -51,103 +60,117 @@ function Home() {
                 <Typewriter words={roles} />
               </span>
             </p>
-            <div className="my-6 rule-gold animate-fade-up" style={{ animationDelay: '160ms' }} />
-            <div className="max-w-xl animate-fade-up space-y-3 text-[15px] leading-[1.85] text-ink/80" style={{ animationDelay: '200ms' }}>
-              {t('heroBody').split('\n').map((p, i) => (
-                <p key={i}>{p}</p>
-              ))}
-            </div>
-            <div className="mt-7 animate-fade-up" style={{ animationDelay: '260ms' }}>
-              <span className="tag-navy text-xs">{t('heroBadge')}</span>
-            </div>
-            <div className="mt-7 flex flex-wrap gap-4 animate-fade-up" style={{ animationDelay: '320ms' }}>
-              <Link href="/consult" className="btn-gold">{t('heroCtaPrimary')}</Link>
+            <p className="mt-6 max-w-xl animate-fade-up text-[15px] leading-[1.85] text-ink/75" style={{ animationDelay: '200ms' }}>
+              {t('heroBody').split('\n')[0]}
+            </p>
+            <blockquote className="mt-5 max-w-xl animate-fade-up border-l-2 border-gold pl-4 text-[15px] leading-[1.85] text-mist" style={{ animationDelay: '240ms' }}>
+              {t('heroBody').split('\n')[1]}
+            </blockquote>
+            <div className="mt-8 flex flex-wrap gap-4 animate-fade-up" style={{ animationDelay: '320ms' }}>
+              <Link href="/consult" className="btn-primary">{t('heroCtaPrimary')}</Link>
               <Link href="/cases" className="btn-ghost">{t('heroCtaSecondary')}</Link>
             </div>
           </div>
 
-          {/* 透明照片,无框;底部与下方数据模块无缝衔接 */}
-          <div className="relative flex justify-center self-end md:justify-end">
-            <div aria-hidden className="absolute bottom-0 left-1/2 h-[72%] w-[70%] -translate-x-1/2 rounded-full bg-gradient-to-t from-gold/15 to-transparent blur-2xl" />
-            <Image
-              src="/portrait.png"
-              alt="袁媛 Yuan Yuan"
-              width={576}
-              height={1500}
-              priority
-              className="relative z-10 block h-auto w-[230px] animate-fade-in object-contain align-bottom md:w-[300px] lg:w-[340px]"
-            />
+          {/* 照片 + 装饰背景(沙色拱形 + 金色细环同心叠放,整体收纳在固定画框内) */}
+          <div className="relative self-end">
+            <div className="relative mx-auto h-[500px] w-[340px] sm:h-[580px] sm:w-[400px] md:ml-auto md:mr-0 md:h-[650px] md:w-[470px]">
+              {/* 沙色圆形底盘(主背景,偏左下) */}
+              <div aria-hidden className="absolute left-[44%] top-[60%] h-[300px] w-[300px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-sand-300/80 sm:h-[360px] sm:w-[360px] md:h-[440px] md:w-[440px]" />
+              {/* 金色细圆环(偏上偏右,与圆盘随意交叠) */}
+              <div aria-hidden className="absolute left-[64%] top-[40%] h-[260px] w-[260px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-gold/45 sm:h-[320px] sm:w-[320px] md:h-[380px] md:w-[380px]" />
+              {/* 小轨道环装饰(呼应 logo) */}
+              <div aria-hidden className="absolute left-[10%] top-[14%] h-10 w-10 rounded-full border border-gold/40 md:h-12 md:w-12" />
+              {/* 照片(按高度撑满画框,宽度自适应) */}
+              <Image
+                src="/portrait.png"
+                alt="袁媛 Yuan Yuan"
+                width={576}
+                height={1500}
+                priority
+                className="absolute bottom-0 left-1/2 z-10 h-full w-auto -translate-x-1/2 animate-fade-in object-contain"
+              />
+            </div>
           </div>
         </div>
       </section>
 
-      {/* ===== STATS BAND ===== */}
-      <section className="relative -mt-px">
-        <div className="container-wide">
-          <Reveal className="card overflow-hidden">
-            <div className="bg-gradient-to-br from-navy to-navy-deep px-8 py-12 md:px-12">
-              <div className="flex flex-col items-start justify-between gap-2 md:flex-row md:items-end">
-                <span className="eyebrow text-gold-light">{t('statsTitle')}</span>
-                <p className="text-xs text-cream/50">{t('statsSubtitle')}</p>
-              </div>
-              <div className="mt-8 grid grid-cols-2 gap-x-6 gap-y-10 md:grid-cols-4">
-                {stats.map((s, i) => {
-                  const Icon = statIcons[i];
-                  return (
-                    <div key={i} className="border-l-2 border-gold/40 pl-4">
-                      <Icon className="mb-2.5 text-gold/70" width={22} height={22} />
-                      <CountUp value={s.value} className="block text-2xl font-black text-gold-light md:text-3xl" />
-                      <div className="mt-1.5 text-xs text-cream/70">{s.label}</div>
-                    </div>
-                  );
-                })}
-              </div>
-              <blockquote className="mt-10 max-w-3xl border-l-2 border-gold pl-6 text-lg font-medium leading-relaxed text-cream/90 md:text-xl">
-                {t('statsQuote')}
-              </blockquote>
-              <a
-                href="https://www.aia.com.sg/en/agent-profile?cd=011&q=xc30d04090302eb8995342ca4c27664d23e01af37e1139368b1aea5f309e9d5bfa053d0c1cc1febeeea7adf2034fec7870ed3f4c16ad675b3ec334bc074c2d3a9f137dd3f18152a6bdab5835e53955f"
-                target="_blank" rel="noopener noreferrer"
-                className="mt-6 inline-flex items-center gap-2 text-sm font-medium text-gold-light transition-colors hover:text-gold"
-              >
-                {t('statsVerify')} →
-              </a>
-              <p className="mt-6 text-[11px] leading-relaxed text-cream/40">{t('statsFootnote')}</p>
+      {/* ===== STATS BAND(全宽蓝色底,左右无限延伸 + 圆形纹理)===== */}
+      <section className="relative -mt-px overflow-hidden bg-gradient-to-br from-navy to-navy-deep">
+        <NavyDecor />
+        <div className="container-wide relative py-14 md:py-16">
+          <Reveal>
+            <div className="flex flex-col items-start justify-between gap-2 md:flex-row md:items-end">
+              <span className="eyebrow text-gold-light">{t('statsTitle')}</span>
+              <p className="text-xs text-cream/50">{t('statsSubtitle')}</p>
             </div>
+            <div className="mt-8 grid grid-cols-2 gap-x-6 gap-y-10 md:grid-cols-4">
+              {stats.map((s, i) => {
+                const Icon = statIcons[i];
+                return (
+                  <div key={i} className="border-l-2 border-gold/40 pl-4">
+                    <Icon className="mb-2.5 text-gold/70" width={22} height={22} />
+                    <CountUp value={s.value} className="block text-2xl font-black text-gold-light md:text-3xl" />
+                    <div className="mt-1.5 text-xs text-cream/70">{s.label}</div>
+                  </div>
+                );
+              })}
+            </div>
+            <blockquote className="mt-10 max-w-3xl border-l-2 border-gold pl-6 text-lg font-medium leading-relaxed text-cream/90 md:text-xl">
+              {t('statsQuote').split('\n').map((line, i) => (
+                <span key={i} className="block">{line}</span>
+              ))}
+            </blockquote>
+            <a
+              href="https://www.aia.com.sg/en/agent-profile?cd=011&q=xc30d04090302eb8995342ca4c27664d23e01af37e1139368b1aea5f309e9d5bfa053d0c1cc1febeeea7adf2034fec7870ed3f4c16ad675b3ec334bc074c2d3a9f137dd3f18152a6bdab5835e53955f"
+              target="_blank" rel="noopener noreferrer"
+              className="mt-6 inline-flex items-center gap-2 text-sm font-medium text-gold-light transition-colors hover:text-gold"
+            >
+              {t('statsVerify')} →
+            </a>
+            <p className="mt-6 text-[11px] leading-relaxed text-cream/40">{t('statsFootnote')}</p>
           </Reveal>
         </div>
       </section>
 
-      {/* ===== SERVICES PREVIEW ===== */}
+      {/* ===== SERVICES PREVIEW(左右版式 + 右侧时间轴)===== */}
       <section className="container-wide py-20 md:py-28">
-        <Reveal className="max-w-2xl">
-          <span className="eyebrow">{services('eyebrow')}</span>
-          <h2 className="section-title mt-4">{t('servicesTitle')}</h2>
-          <p className="mt-4 text-base leading-relaxed text-mist">{t('servicesIntro')}</p>
-        </Reveal>
-        <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-          {core.slice(0, 4).map((c, i) => {
-            const Icon = coreIcons[i];
-            return (
-              <Reveal key={i} delay={i * 90}>
-                <div className="card card-hover h-full p-7">
-                  <div className="flex items-center justify-between">
-                    <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gold/10 text-gold-deep">
-                      <Icon />
+        <div className="grid gap-12 md:grid-cols-[0.85fr_1.15fr] lg:gap-16">
+          {/* 左:标题与说明 */}
+          <Reveal className="md:sticky md:top-28 md:self-start">
+            <span className="eyebrow">{services('eyebrow')}</span>
+            <h2 className="section-title mt-4">{t('servicesTitle')}</h2>
+            <p className="mt-4 max-w-md text-base leading-relaxed text-mist">{t('servicesIntro')}</p>
+            <Link href="/services" className="btn-ghost mt-8 inline-flex">{t('servicesLink')} →</Link>
+          </Reveal>
+
+          {/* 右:6 项纵向时间轴 */}
+          <Reveal className="relative">
+            <div aria-hidden className="absolute left-[21px] top-4 bottom-4 w-px bg-gold/30" />
+            <ul className="space-y-5">
+              {core.map((c, i) => {
+                const Icon = coreIcons[i];
+                return (
+                  <li key={i} className="relative flex items-start gap-5">
+                    <span className="z-10 mt-1 flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-gold/40 bg-cream text-sm font-bold text-gold-deep">
+                      {('0' + (i + 1)).slice(-2)}
+                    </span>
+                    <div className="card card-hover flex flex-1 items-start gap-4 p-5 text-left">
+                      <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-gold/10 text-gold-deep">
+                        <Icon width={20} height={20} />
+                      </div>
+                      <div className="min-w-0">
+                        <span className="block text-base font-bold text-gold-deep">{c.name}</span>
+                        <h3 className="mt-1.5 text-base font-bold leading-snug text-navy">{c.question}</h3>
+                        <p className="mt-1.5 text-sm leading-relaxed text-mist">{c.desc}</p>
+                      </div>
                     </div>
-                    <span className="text-2xl font-black text-gold/40">0{i + 1}</span>
-                  </div>
-                  <span className="mt-5 block text-xs font-semibold uppercase tracking-wide text-gold-deep">{c.name}</span>
-                  <h3 className="mt-2 text-base font-bold leading-snug text-navy">{c.question}</h3>
-                  <p className="mt-3 text-sm leading-relaxed text-mist">{c.desc}</p>
-                </div>
-              </Reveal>
-            );
-          })}
+                  </li>
+                );
+              })}
+            </ul>
+          </Reveal>
         </div>
-        <Reveal className="mt-10">
-          <Link href="/services" className="btn-ghost">{t('servicesLink')} →</Link>
-        </Reveal>
       </section>
 
       {/* ===== CASES PREVIEW ===== */}
@@ -158,58 +181,52 @@ function Home() {
             <h2 className="section-title mt-4">{t('casesTitle')}</h2>
             <p className="mt-4 text-base leading-relaxed text-mist">{t('casesIntro')}</p>
           </Reveal>
-          <div className="mt-12 grid gap-6 md:grid-cols-3">
-            {caseList.slice(0, 3).map((c, i) => {
-              const Icon = caseIcons[i];
+          <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {orderedCases.map((c, i) => {
+              const Icon = caseIconBySlug[c.slug];
+              const cls = 'card card-hover group block h-full p-7';
+              const inner = (
+                <>
+                  <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-navy/5 text-navy transition-colors group-hover:bg-gold/15 group-hover:text-gold-deep">
+                    {Icon ? <Icon /> : null}
+                  </div>
+                  <span className="mt-5 block text-xs font-semibold uppercase tracking-wide text-gold-deep">{c.tag}</span>
+                  <h3 className="mt-2 text-lg font-bold leading-snug text-navy transition-colors group-hover:text-gold-deep">{c.title}</h3>
+                  <span className="mt-4 inline-block text-sm text-gold-deep opacity-0 transition-opacity group-hover:opacity-100">查看案例 →</span>
+                </>
+              );
               return (
-                <Reveal key={i} delay={i * 100}>
-                  <Link href="/cases" className="card card-hover group block h-full p-7">
-                    <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-navy/5 text-navy transition-colors group-hover:bg-gold/15 group-hover:text-gold-deep">
-                      <Icon />
-                    </div>
-                    <span className="mt-5 block text-xs font-semibold uppercase tracking-wide text-gold-deep">{c.tag}</span>
-                    <h3 className="mt-2 text-lg font-bold leading-snug text-navy transition-colors group-hover:text-gold-deep">{c.title}</h3>
-                    <span className="mt-4 inline-block text-sm text-gold-deep opacity-0 transition-opacity group-hover:opacity-100">展开查看 →</span>
-                  </Link>
+                <Reveal key={c.slug} delay={(i % 3) * 100}>
+                  {isRich(c.slug) ? (
+                    <a href={`/cases/${c.slug}.html`} className={cls}>{inner}</a>
+                  ) : (
+                    <Link href={`/cases/${c.slug}`} className={cls}>{inner}</Link>
+                  )}
                 </Reveal>
               );
             })}
           </div>
-          <Reveal className="mt-10">
-            <Link href="/cases" className="btn-ghost">{t('casesLink')} →</Link>
-          </Reveal>
         </div>
       </section>
 
-      {/* ===== SERVICE FLOW (6 steps) ===== */}
+      {/* ===== SERVICE FLOW(横向时间轴,交互式)===== */}
       <section className="bg-cream">
         <div className="container-wide border-t border-gold/15 py-20 md:py-28">
           <Reveal className="max-w-2xl">
             <h2 className="section-title">{t('flowTitle')}</h2>
             <p className="mt-4 text-base leading-relaxed text-mist">{t('flowIntro')}</p>
           </Reveal>
-          <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {flow.map((s, i) => (
-              <Reveal key={i} delay={i * 80}>
-                <div className="card h-full p-7">
-                  <div className="flex items-center gap-3">
-                    <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-navy text-sm font-bold text-cream">
-                      {('0' + (i + 1)).slice(-2)}
-                    </span>
-                    <h3 className="text-lg font-bold text-navy">{s.t}</h3>
-                  </div>
-                  <p className="mt-4 text-sm leading-relaxed text-mist">{s.d}</p>
-                </div>
-              </Reveal>
-            ))}
-          </div>
+          <Reveal className="mt-14">
+            <ServiceFlow />
+          </Reveal>
         </div>
       </section>
 
       {/* ===== TESTIMONIALS ===== */}
       <section className="container-wide py-20 md:py-28">
         <Reveal className="max-w-2xl">
-          <span className="eyebrow">{t('testimonialsTitle')}</span>
+          <span className="eyebrow">{t('tabClients')}</span>
+          <h2 className="section-title mt-4">{t('testimonialsTitle')}</h2>
           <p className="mt-4 text-base leading-relaxed text-mist">{t('testimonialsIntro')}</p>
         </Reveal>
         <Reveal className="mt-12">
@@ -221,12 +238,14 @@ function Home() {
       <section className="container-wide pb-24">
         <Reveal>
           <div className="card relative overflow-hidden">
-            <div aria-hidden className="absolute -right-16 -top-16 h-48 w-48 rounded-full border border-gold/20" />
-            <div className="relative bg-gradient-to-br from-navy to-navy-deep px-8 py-16 text-center md:px-12 md:py-20">
-              <h2 className="mx-auto max-w-2xl text-3xl font-bold leading-tight text-cream md:text-4xl">{t('contactTitle')}</h2>
-              <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-cream/80">{t('contactIntro')}</p>
-              <div className="mt-9">
-                <Link href="/consult" className="btn-gold">{t('contactCta')}</Link>
+            <div className="relative overflow-hidden bg-gradient-to-br from-navy to-navy-deep px-8 py-16 text-center md:px-12 md:py-20">
+              <NavyDecor />
+              <div className="relative">
+                <h2 className="mx-auto max-w-2xl text-3xl font-bold leading-tight text-cream md:text-4xl">{t('contactTitle')}</h2>
+                <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-cream/80">{t('contactIntro')}</p>
+                <div className="mt-9">
+                  <Link href="/consult" className="btn-gold">{t('contactCta')}</Link>
+                </div>
               </div>
             </div>
           </div>

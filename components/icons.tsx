@@ -184,9 +184,19 @@ export const IconQuote = (p: SVGProps<SVGSVGElement>) => (
   </svg>
 );
 
+// 服务流程 6 步:建立信任 / 收集信息 / 需求分析 / 方案设计 / 协助投保 / 终身服务
+export const flowIcons = [IconUsers, IconDocument, IconAllocation, IconPolicy, IconShield, IconShieldHeart];
 export const caseIcons = [IconSeedling, IconHome, IconBaby, IconStable, IconGrowth];
-// 顺序与 services.core 一致:家庭保障 / 重疾人寿 / 被动收入 / 资产传承 / 企业保险
-export const coreIcons = [IconFamily, IconShieldHeart, IconGrowth, IconDocument, IconBuilding];
+export const caseIconBySlug: Record<string, (p: SVGProps<SVGSVGElement>) => JSX.Element> = {
+  'ep-group': IconSeedling,
+  'passive-income': IconStable,
+  'exec-retirement': IconGrowth,
+  'biz-employee': IconBuilding,
+  'newlywed-mortgage': IconHome,
+  'family-kids': IconBaby,
+};
+// 顺序与 services.core 一致:家庭保障 / 重疾人寿 / 被动收入 / 资产传承 / 企业保险 / 保单年检
+export const coreIcons = [IconFamily, IconShieldHeart, IconGrowth, IconDocument, IconBuilding, IconPolicy];
 export const strategicIcons = [IconGlobe, IconDocument, IconBuilding, IconVoyage, IconIdentity];
 // 顺序与 home.stats 数组一致:服务家庭 / 理赔获批 / 已赔付金额 / 人寿保障
 export const statIcons = [IconUsers, IconCheck, IconMoney, IconShield];

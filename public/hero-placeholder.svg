@@ -1,0 +1,35 @@
+<svg width="1600" height="1000" viewBox="0 0 1600 1000" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#F3EADB"/>
+      <stop offset="0.55" stop-color="#E8DcC6"/>
+      <stop offset="1" stop-color="#DFD0B6"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0.72" cy="0.42" r="0.5">
+      <stop offset="0" stop-color="#D4B483" stop-opacity="0.55"/>
+      <stop offset="1" stop-color="#D4B483" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1600" height="1000" fill="url(#bg)"/>
+  <rect width="1600" height="1000" fill="url(#glow)"/>
+  <!-- 大金色细环 -->
+  <circle cx="1120" cy="430" r="300" fill="none" stroke="#C9A86A" stroke-opacity="0.45" stroke-width="2"/>
+  <circle cx="1120" cy="430" r="300" fill="#C9A86A" fill-opacity="0.10"/>
+  <!-- 错位小环 -->
+  <circle cx="900" cy="250" r="70" fill="none" stroke="#C9A86A" stroke-opacity="0.5" stroke-width="2"/>
+  <!-- 深蓝点缀 -->
+  <circle cx="1290" cy="300" r="10" fill="#1B2A4A" fill-opacity="0.5"/>
+  <circle cx="980" cy="640" r="6" fill="#C9A86A"/>
+  <!-- 极简地平线 / 城市意象(低调) -->
+  <g stroke="#1B2A4A" stroke-opacity="0.10" stroke-width="2">
+    <line x1="0" y1="780" x2="1600" y2="780"/>
+  </g>
+  <g fill="#1B2A4A" fill-opacity="0.06">
+    <rect x="980" y="640" width="44" height="140"/>
+    <rect x="1040" y="600" width="56" height="180"/>
+    <rect x="1112" y="670" width="40" height="110"/>
+    <rect x="1168" y="560" width="64" height="220"/>
+    <rect x="1248" y="660" width="48" height="120"/>
+    <rect x="1312" y="700" width="40" height="80"/>
+  </g>
+</svg>

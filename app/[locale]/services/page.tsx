@@ -2,6 +2,9 @@ import { useTranslations } from 'next-intl';
 import { setRequestLocale, getTranslations } from 'next-intl/server';
 import type { Metadata } from 'next';
 import { Link } from '@/lib/routing';
+import PageHero, { ContentLayer } from '@/components/PageHero';
+import NavyDecor from '@/components/NavyDecor';
+import { IconShield } from '@/components/icons';
 
 export async function generateMetadata({
   params,
@@ -33,20 +36,14 @@ function Services() {
 
   return (
     <>
-      {/* Header */}
-      <section className="bg-navy text-cream">
-        <div className="container-wide py-20 md:py-24">
-          <span className="eyebrow text-gold">{t('eyebrow')}</span>
-          <h1 className="mt-4 max-w-3xl font-serif text-3xl font-semibold leading-tight md:text-4xl">
-            {t('title')}
-          </h1>
-          <div className="my-7 rule-gold" />
-          <p className="max-w-3xl text-base leading-[1.9] text-cream/85">
-            {t('intro')}
-          </p>
-        </div>
-      </section>
+      <PageHero
+        eyebrow={t('eyebrow')}
+        title={t('title')}
+        subtitle={t('intro')}
+        accent={<IconShield width="100%" height="100%" />}
+      />
 
+      <ContentLayer>
       {/* Core */}
       <section className="container-wide py-20 md:py-24">
         <h2 className="section-title">{t('coreTitle')}</h2>
@@ -56,8 +53,8 @@ function Services() {
               key={i}
               className="rounded-sm border border-navy/10 bg-white p-8 transition-colors hover:border-gold/50"
             >
-              <span className="font-serif text-sm text-gold-deep">0{i + 1}</span>
-              <h3 className="mt-2 font-serif text-lg font-semibold text-navy md:text-xl">
+              <span className="text-sm text-gold-deep">0{i + 1}</span>
+              <h3 className="mt-2 text-lg font-semibold text-navy md:text-xl">
                 {c.question}
               </h3>
               <p className="mt-2 text-xs font-semibold uppercase tracking-wide text-gold-deep">
@@ -78,7 +75,7 @@ function Services() {
           </p>
           <div className="mt-10 grid gap-6 md:grid-cols-2">
             <div className="rounded-sm border border-gold/40 bg-white p-8">
-              <p className="font-serif text-lg font-semibold text-navy">
+              <p className="text-lg font-semibold text-navy">
                 {t('fitYesTitle')}
               </p>
               <ul className="mt-5 space-y-3">
@@ -91,7 +88,7 @@ function Services() {
               </ul>
             </div>
             <div className="rounded-sm border border-navy/10 bg-white p-8">
-              <p className="font-serif text-lg font-semibold text-navy">
+              <p className="text-lg font-semibold text-navy">
                 {t('fitNoTitle')}
               </p>
               <ul className="mt-5 space-y-3">
@@ -120,7 +117,7 @@ function Services() {
                 key={i}
                 className="flex flex-col gap-1 py-5 md:flex-row md:items-baseline md:gap-8"
               >
-                <h3 className="font-serif text-lg font-semibold text-navy md:w-48 md:shrink-0">
+                <h3 className="text-lg font-semibold text-navy md:w-48 md:shrink-0">
                   {s.name}
                 </h3>
                 <p className="text-sm leading-relaxed text-mist">{s.desc}</p>
@@ -139,7 +136,7 @@ function Services() {
         <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
           {diff.map((d, i) => (
             <div key={i} className="border-t-2 border-gold/40 pt-5">
-              <h3 className="font-serif text-base font-semibold text-navy">
+              <h3 className="text-base font-semibold text-navy">
                 {d.name}
               </h3>
               <p className="mt-2 text-sm leading-relaxed text-mist">{d.desc}</p>
@@ -151,22 +148,24 @@ function Services() {
         </p>
       </section>
 
-      {/* CTA */}
-      <section className="bg-navy text-cream">
-        <div className="container-wide py-20 text-center">
-          <h2 className="mx-auto max-w-2xl font-serif text-3xl font-semibold leading-tight">
+      {/* CTA(深蓝底 + 圆形纹理)*/}
+      <section className="relative mt-4 overflow-hidden bg-navy text-cream">
+        <NavyDecor />
+        <div className="container-wide relative py-20 text-center md:py-24">
+          <h2 className="mx-auto max-w-2xl text-3xl font-bold leading-tight md:text-4xl">
             {t('ctaTitle')}
           </h2>
           <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-cream/80">
             {t('ctaBody')}
           </p>
           <div className="mt-9">
-            <Link href="/consult" className="btn-primary bg-gold text-navy hover:bg-gold-light">
+            <Link href="/consult" className="btn-gold">
               {t('ctaBtn')}
             </Link>
           </div>
         </div>
       </section>
+      </ContentLayer>
     </>
   );
 }

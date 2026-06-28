@@ -4,6 +4,8 @@ import { useTranslations } from 'next-intl';
 import ConsultForm from '@/components/ConsultForm';
 import WeChatQR from '@/components/WeChatQR';
 import Faq from '@/components/Faq';
+import PageHero, { ContentLayer } from '@/components/PageHero';
+import { IconQuote } from '@/components/icons';
 
 export async function generateMetadata({
   params,
@@ -32,25 +34,20 @@ function Consult() {
 
   return (
     <>
-      <section className="bg-navy text-cream">
-        <div className="container-wide py-20 md:py-24">
-          <span className="eyebrow text-gold">{t('eyebrow')}</span>
-          <h1 className="mt-4 font-serif text-4xl font-semibold md:text-5xl">
-            {t('title')}
-          </h1>
-          <div className="my-7 rule-gold" />
-          <p className="max-w-3xl text-base leading-[1.9] text-cream/85">
-            {t('intro')}
-          </p>
-        </div>
-      </section>
+      <PageHero
+        eyebrow={t('eyebrow')}
+        title={t('title')}
+        subtitle={t('intro')}
+        accent={<IconQuote width="100%" height="100%" />}
+      />
 
-      <section className="container-wide grid gap-12 py-16 md:grid-cols-[1.2fr_0.8fr] md:py-20">
+      <ContentLayer>
+      <section className="container-wide grid gap-12 py-14 md:grid-cols-[1.2fr_0.8fr] md:py-20">
         {/* Form */}
         <div>
           {/* 提交后会发生什么 */}
           <div className="mb-10 rounded-sm border border-gold/30 bg-gold/5 p-6 md:p-8">
-            <h2 className="font-serif text-lg font-semibold text-navy">
+            <h2 className="text-lg font-semibold text-navy">
               {t('processTitle')}
             </h2>
             <ol className="mt-5 space-y-4">
@@ -70,7 +67,7 @@ function Consult() {
 
         {/* Alt contact */}
         <aside className="md:border-l md:border-navy/10 md:pl-12">
-          <h2 className="font-serif text-lg font-semibold text-navy">
+          <h2 className="text-lg font-semibold text-navy">
             {t('altContactTitle')}
           </h2>
           <ul className="mt-5 space-y-3 text-sm text-navy/80">
@@ -116,6 +113,7 @@ function Consult() {
           </div>
         </div>
       </section>
+      </ContentLayer>
     </>
   );
 }

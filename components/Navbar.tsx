@@ -21,8 +21,9 @@ export default function Navbar() {
   const links = [
     { href: '/', label: t('home') },
     { href: '/about', label: t('about') },
-    { href: '/services', label: t('services') },
     { href: '/cases', label: t('cases') },
+    { href: '/services', label: t('services') },
+    { href: '/tools', label: t('tools') },
     { href: '/consult', label: t('consult') },
   ] as const;
 
@@ -37,11 +38,9 @@ export default function Navbar() {
       }`}
     >
       <nav className="container-wide flex h-16 items-center justify-between md:h-20">
-        <Link
-          href="/"
-          className="text-lg font-bold tracking-wide text-navy md:text-xl"
-        >
-          {t('brand')}
+        <Link href="/" aria-label={t('brand')} className="flex items-center">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src={locale === 'en' ? '/logo-en.svg' : '/logo.svg'} alt={t('brand')} className="h-8 w-auto md:h-9" />
         </Link>
 
         <div className="hidden items-center gap-8 md:flex">
