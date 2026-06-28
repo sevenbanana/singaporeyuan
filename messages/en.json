@@ -11,13 +11,20 @@
     "ctaBook": "Book a chat"
   },
   "home": {
+    "heroGreeting": "Welcome · Hello 👋🏻",
+    "heroName": "I'm Yuan Yuan",
+    "heroTyperPrefix": "Your",
+    "heroRoles": [
+      "Family Financial Adviser",
+      "High-Net-Worth Wealth Manager",
+      "Personal-Finance Educator",
+      "Yuan Yuan SG"
+    ],
+    "heroBody": "I've worked in insurance and financial planning in Singapore for over 6 years. I see things from the client's side — understanding your family, life stage and long-term goals to help you find what genuinely fits.\nI believe in the long game, and that good financial planning should make you feel more secure and more free. With professionalism, patience and long-term companionship, I'd like to plan life alongside you — growing richer, day by day.",
     "heroBadge": "AIA Wealth Manager · RNF: YY-300823216",
-    "heroTitle": "Making Singapore insurance, retirement cash flow and family protection genuinely clear.",
-    "heroSubtitle": "I'm Yuan Yuan, an AIA Wealth Manager in Singapore.\nI help families and business owners living in Singapore make sense of medical, critical illness, life, savings, retirement and legacy planning.",
-    "heroBody": "I won't pitch a product on day one.\nIn our first conversation, I'd rather help you see clearly: whether your existing cover is enough, where the real risks are, what to prioritise — and what can simply wait.",
-    "heroName": "Yuan Yuan · Singapore",
-    "heroCtaPrimary": "Book a protection review",
-    "heroCtaSecondary": "See real planning cases",
+    "heroPortraitCaption": "Yuan Yuan · Wealth Adviser",
+    "heroCtaPrimary": "Book a consultation",
+    "heroCtaSecondary": "Case studies",
     "statsTitle": "Let the numbers speak",
     "statsSubtitle": "Source: AIA official adviser profile · figures as of June 2026",
     "statsVerify": "View my AIA adviser profile",
@@ -25,10 +32,6 @@
       {
         "value": "67",
         "label": "Families served"
-      },
-      {
-        "value": "180",
-        "label": "Policies in force"
       },
       {
         "value": "254",
@@ -40,15 +43,39 @@
       },
       {
         "value": "S$20.9M",
-        "label": "Death coverage"
-      },
-      {
-        "value": "S$14.1M",
-        "label": "Critical illness coverage"
+        "label": "Life coverage"
       }
     ],
     "statsQuote": "What I care about was never just arranging a policy — it's standing with you through every step of a claim, the moment you truly need it.",
     "statsFootnote": "Claims approved and coverage figures follow AIA's official reporting basis.",
+    "flowTitle": "The 6 things I'll do for you",
+    "flowIntro": "A clear process, transparent service, a two-way choice. Every step is explained — we only move on once you're satisfied.",
+    "flowSteps": [
+      {
+        "t": "Build trust",
+        "d": "It starts with getting to know each other. I'll briefly introduce my professional background and answer the family-protection or retirement questions on your mind. Only with mutual understanding can real trust — and a long-term relationship — begin."
+      },
+      {
+        "t": "Gather information",
+        "d": "Every family's finances are different, so protection can't be one-size-fits-all. I'll help you complete a detailed family finance questionnaire: income and expenses, savings and investments, loans and debts, existing cover, family goals and a comfortable budget range."
+      },
+      {
+        "t": "Needs analysis",
+        "d": "Owning many policies doesn't mean owning the right ones. I'll lay out your cover types, sums assured, terms and total premiums in charts, review the gaps, and — together with your life stage and values — identify the cover you genuinely need."
+      },
+      {
+        "t": "Design & explain",
+        "d": "You won't get a pile of product documents and jargon, but 2–3 tailored options for your family, explained in plain language with diagrams. In person or by video, I encourage questions — we only continue once you're satisfied."
+      },
+      {
+        "t": "Help you apply",
+        "d": "Once you decide, I'll walk you through the application step by step: filling and submitting documents, health declarations, and reading the contract terms and exclusions. If there's loading or an exclusion, I'll help with communication and appeals — declare cleanly, claim with peace of mind."
+      },
+      {
+        "t": "Lifelong service",
+        "d": "Signing isn't the end of the service — it's the start of a long-term one. I review your policies each year to keep pace with life changes, help update beneficiaries, address and payment methods, and stay with you through key moments: a new baby, schooling, buying a home, preparing for retirement. If a claim arises, I'll help coordinate it as fast as I can."
+      }
+    ],
     "servicesTitle": "What I can help you solve",
     "servicesIntro": "Across every stage of a family's life — from protection to legacy — I help you see each step clearly and set the right priorities.",
     "servicesLink": "View all services",
@@ -71,7 +98,25 @@
     "subtitle": "Yuan Yuan SG · Make protection clear, arrange the future steadily",
     "quickTitle": "Me in 30 seconds",
     "quickBody": "I'm Yuan Yuan, an AIA Wealth Manager in Singapore, with a Master's from NTU and a past career in product design at Great Eastern and Grab.\n\nHaving worked hands-on on insurance apps, online claims and customer experience, I care about one thing more than most advisers: whether clients truly understand the cover they've bought.\n\nToday I focus on helping families in Singapore make sense of medical, critical illness, life, retirement cash flow and legacy planning.",
-    "intro": "I'm Yuan Yuan, an AIA Wealth Manager in Singapore and an MDRT member. Licensed in 2024, in under two years I've planned insurance and finances for families from Singapore, Malaysia, Australia, Turkey and beyond. Their backgrounds differ, but their hope is the same: to put down roots here and live with peace of mind. I believe wealth isn't built overnight, but through the right plan — making protection solid, step by step, and arranging the future steadily.",
+    "quickStats": [
+      {
+        "value": "6 yrs+",
+        "label": "In insurance & finance"
+      },
+      {
+        "value": "13 yrs",
+        "label": "Settled in Singapore"
+      },
+      {
+        "value": "MDRT",
+        "label": "Achieved year one"
+      },
+      {
+        "value": "6,000+",
+        "label": "Followers"
+      }
+    ],
+    "intro": "I'm Yuan Yuan, an AIA Wealth Manager in Singapore and an MDRT member. I've worked in insurance and finance in Singapore for over 6 years — from helping design an insurer's app and online claims system at the country's largest insurer, to planning insurance and finances for families myself today. I've served families from Singapore, Malaysia, Australia, Turkey and beyond. Their backgrounds differ, but their hope is the same: to put down roots here and live with peace of mind. I believe wealth isn't built overnight, but through the right plan — making protection solid, step by step, and arranging the future steadily.",
     "section1Title": "From product design to wealth management",
     "section1Body": "I didn't start out in this field.\n\nAfter graduating from Beijing University of Posts and Telecommunications in 2013, I came to Singapore for a Master's in Digital Media Technology at NTU. For nearly a decade after, I worked as a product designer —\n\nAt DeNA, a leading Japanese mobile game company, I ran planning and operations for a Marvel game, coordinating across Tokyo, Singapore, Hanoi and North America. At Great Eastern, Singapore's largest insurer, I led a six-person UX team in redesigning the official app and online claims system for 2.5 million policyholders. Later I joined the Southeast Asian super-app Grab, leading design for the GrabFood merchant platform and GrabExpress.\n\nThrough all of it, I kept one habit: no matter how busy, I always made time to document and reflect. It's what let me see my own path clearly at every turning point.",
     "section2Title": "Why I moved into insurance",
@@ -124,24 +169,29 @@
     "coreTitle": "What I can help you solve",
     "core": [
       {
-        "name": "Education & Retirement Planning",
-        "question": "Wondering how much to save each year so neither your child's university nor your own retirement catches you off guard?",
-        "desc": "Long-term, steady arrangements for your children's education and your own retirement, so every milestone ahead is well supported."
-      },
-      {
-        "name": "Asset Allocation",
-        "question": "Have some spare cash you don't want to gamble away — but don't want sitting idle in the bank either?",
-        "desc": "A holistic view of your portfolio, shaped around your goals and risk appetite, so your wealth sits well at every life stage."
-      },
-      {
-        "name": "Critical Illness & Life Protection",
-        "question": "If illness or lost income hit, who covers the mortgage, the kids and your parents?",
-        "desc": "A line of defence for you and your family against illness and the unexpected, cushioning the impact of uncertainty."
-      },
-      {
         "name": "Family Protection",
         "question": "Everyone in the family has some cover — but is it enough overall, with no gaps or overlaps?",
-        "desc": "From medical to income, a connected protection system for the whole family — not a scatter of standalone policies."
+        "desc": "Medical, accident and hospitalisation — securing the family's everyday risk floor and turning scattered policies into one connected system."
+      },
+      {
+        "name": "Critical Illness & Life",
+        "question": "If illness or lost income hit, who covers the mortgage, the kids and your parents?",
+        "desc": "Critical-illness and life cover, leaving your family a certain source of support in the face of illness and the unexpected."
+      },
+      {
+        "name": "Passive Income",
+        "question": "Have spare cash you don't want to gamble away or leave idle in the bank — and want steady cash flow?",
+        "desc": "Long-term savings, investments and annuities that turn idle cash into predictable cash flow, well-placed for every life stage."
+      },
+      {
+        "name": "Wealth Succession",
+        "question": "Want your assets passed to the next generation in an orderly way, your wishes honoured, with less friction?",
+        "desc": "Using insurance structures for designated succession, so wealth passes across generations smoothly, to the right people."
+      },
+      {
+        "name": "Business Insurance",
+        "question": "As a business owner, want to set up medical and liability cover for yourself and your staff?",
+        "desc": "For business owners and employees, building medical, commercial and liability cover — factoring in the people and liability risks of running a business."
       }
     ],
     "fitTitle": "When does it make sense to talk to me?",
@@ -262,6 +312,17 @@
         "firstAdvice": "With protection already complete, design a steady mid-to-long-term savings / participating plan as the core of retirement cash flow: income can be drawn from an agreed term as needed, un-withdrawn amounts keep accumulating, and unused value can pass to family as a death benefit. If there's a need for USD exposure, a USD savings plan can diversify single-currency risk.",
         "whyOrder": "What he lacks at this stage isn't protection, but a \"certain, flexible, inheritable\" long-term cash-flow arrangement. Lock in the retirement floor with steady tools first, then consider a smaller portion for flexible growth — \"steady\" before \"offence.\"",
         "outcome": "He has a relatively certain, reversible cash flow for retirement: start it early if needed, or let the funds keep growing if not, with unused value left to family. Note: dividends and drawdown figures are non-guaranteed; the insurer's official documents and illustrations prevail."
+      },
+      {
+        "tag": "Asset-heavy in property · Passive income",
+        "title": "Plenty of property, but the stock market is exhausting — how do I get steady passive income?",
+        "profile": "A family in their 40s with 3 investment properties, CPF maxed out, and cash flow coming mainly from rent. Not interested in the stock market and with no energy to watch it, they want a low-maintenance, steady passive income — and more time for the family.",
+        "existing": "Assets heavily concentrated in property and CPF; basic protection is largely complete, but liquid assets and tools that generate steady cash flow are limited.",
+        "worry": "Worried that assets are over-concentrated in property with poor liquidity; yet wary of diving into the stock market, which is draining and stressful and eats into quality of life.",
+        "notAdvice": "I didn't suggest buying more property, nor high-volatility investments that need constant watching. What he lacked wasn't more assets, but \"low-maintenance, steady cash flow he can hold in hand.\"",
+        "firstAdvice": "With protection already complete, allocate part of the liquid funds to a steady participating savings / fund to build a relatively smooth mid-to-long-term cash flow; at the same time, moderately reduce reliance on a single property market so the overall asset mix is more balanced.",
+        "whyOrder": "His core wish is to \"give time back to the family.\" Solving cash flow and over-concentration with low-maintenance tools matters more than adding yet another asset that needs hands-on management.",
+        "outcome": "Without adding management burden, he gained a relatively steady source of cash flow, and his assets are no longer over-bet on a single market. Note: dividends are non-guaranteed, depending on the insurer's actual performance; the official policy document prevails."
       }
     ],
     "labelProfile": "Client profile",
@@ -320,7 +381,80 @@
     "errorRequired": "Please complete the required fields and tick the consent box.",
     "altContactTitle": "Prefer not to use the form? Reach me directly",
     "qrCaption": "Scan to add me on WeChat — please note: \"website enquiry\"",
-    "required": "required"
+    "whatsapp": "WhatsApp: +65 8375 0190",
+    "required": "required",
+    "faqTitle": "You might be wondering",
+    "faqIntro": "Grouped by topic — start with what matters most to you. For some questions I've also made detailed write-ups or videos on Xiaohongshu and WeChat Channels.",
+    "faqCategories": [
+      {
+        "name": "Planning & process",
+        "items": [
+          {
+            "q": "What does the first consultation cover? Do I need to prepare documents?",
+            "a": "We'll start from the questions you care about most and get to know each other. You don't need to prepare complex documents in advance — just bring any existing policies and I'll help you make sense of them."
+          },
+          {
+            "q": "What is your service process?",
+            "a": "Six steps in full: build trust → gather information → needs analysis → design the plan → help you apply → lifelong service. I've made a visual guide breaking down each step, available on my Xiaohongshu profile."
+          },
+          {
+            "q": "What if I'm not happy with the plan?",
+            "a": "If you're not happy, we keep refining until you genuinely agree. We only move to the next step once you're satisfied — it's a two-way choice."
+          }
+        ]
+      },
+      {
+        "name": "Protection & medical",
+        "items": [
+          {
+            "q": "Given Singapore's risks, is my cover enough?",
+            "a": "I've recorded a video on the common protection gaps for families in Singapore, explained with local medical and accident scenarios — available on WeChat Channels."
+          },
+          {
+            "q": "How should critical illness and medical insurance work together?",
+            "a": "I've put together a visual guide with a real budget example showing how critical illness and medical complement each other, so you avoid overlapping cover and wasted money."
+          },
+          {
+            "q": "What should I watch out for in health declarations?",
+            "a": "Incorrect declarations can affect future claims. I'll use my experience to help you get the key wording right — truthful and to your benefit. Declare cleanly, claim with peace of mind."
+          }
+        ]
+      },
+      {
+        "name": "Retirement & legacy",
+        "items": [
+          {
+            "q": "I want to start planning for retirement — where do I begin?",
+            "a": "I have a video specifically on designing retirement cash flow, working backwards from your goal to how much to set aside each month — available on WeChat Channels."
+          },
+          {
+            "q": "I hold USD assets — should I worry about estate tax?",
+            "a": "Non-US persons holding US-situated assets may face estate-tax exposure. I've made a write-up on common scenarios and feasible insurance structures; specifics still defer to professional tax and legal advice."
+          },
+          {
+            "q": "How is insurance used for wealth succession?",
+            "a": "Insurance can designate beneficiaries and bypass parts of the process, making it a common long-term succession tool. The structure should be designed around your family; matters involving wills and trusts will be advised on by the relevant licensed or professional institutions."
+          }
+        ]
+      },
+      {
+        "name": "New residents / EP",
+        "items": [
+          {
+            "q": "Just got my EP — what cover should I set up first?",
+            "a": "I've put together a visual guide to protection priorities for a new resident's first year, from medical and accident to income replacement, explained stage by stage."
+          },
+          {
+            "q": "Is it worth opening an SRS retirement account?",
+            "a": "I've recorded a video on the tax advantages of SRS and who it suits, and noted the change to the statutory withdrawal age from July 2026."
+          },
+          {
+            "q": "Will CRS / tax reporting affect me?",
+            "a": "EP holders have corresponding reporting obligations. I'll flag the points to note; for specific tax advice I'll also point you to a qualified tax professional."
+          }
+        ]
+      }
+    ]
   },
   "testimonials": {
     "clients": [
@@ -350,6 +484,7 @@
     "tagline": "Make protection clear, and arrange the future, steadily.",
     "contactTitle": "Contact",
     "wechat": "WeChat: singaporeyuan",
+    "whatsapp": "WhatsApp: +65 8375 0190",
     "email": "Email: yuanyuan@aia.com.sg",
     "phone": "Phone: +65 8375 0190",
     "xhs": "Xiaohongshu: @Yuan Yuan SG",

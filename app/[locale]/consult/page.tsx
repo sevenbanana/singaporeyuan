@@ -3,6 +3,7 @@ import type { Metadata } from 'next';
 import { useTranslations } from 'next-intl';
 import ConsultForm from '@/components/ConsultForm';
 import WeChatQR from '@/components/WeChatQR';
+import Faq from '@/components/Faq';
 
 export async function generateMetadata({
   params,
@@ -75,6 +76,17 @@ function Consult() {
           <ul className="mt-5 space-y-3 text-sm text-navy/80">
             <li>💬 {f('wechat')}</li>
             <li>
+              📲{' '}
+              <a
+                href="https://wa.me/6583750190"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="transition-colors hover:text-gold-deep"
+              >
+                {f('whatsapp')}
+              </a>
+            </li>
+            <li>
               📧{' '}
               <a
                 href="mailto:yuanyuan@aia.com.sg"
@@ -90,6 +102,19 @@ function Consult() {
           {/* QR code */}
           <WeChatQR caption={t('qrCaption')} />
         </aside>
+      </section>
+
+      {/* FAQ */}
+      <section className="bg-cream">
+        <div className="container-wide border-t border-navy/10 py-16 md:py-20">
+          <h2 className="section-title">{t('faqTitle')}</h2>
+          <p className="mt-4 max-w-2xl text-base leading-relaxed text-mist">
+            {t('faqIntro')}
+          </p>
+          <div className="mt-10 max-w-3xl">
+            <Faq />
+          </div>
+        </div>
       </section>
     </>
   );

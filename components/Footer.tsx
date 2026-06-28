@@ -26,6 +26,11 @@ export default function Footer() {
             <ul className="mt-4 space-y-2 text-sm text-navy/80">
               <li>{t('wechat')}</li>
               <li>
+                <a href="https://wa.me/6583750190" target="_blank" rel="noopener noreferrer" className="transition-colors hover:text-gold-deep">
+                  {t('whatsapp')}
+                </a>
+              </li>
+              <li>
                 <a href="mailto:yuanyuan@aia.com.sg" className="transition-colors hover:text-gold-deep">
                   {t('email')}
                 </a>

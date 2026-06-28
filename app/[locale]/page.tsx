@@ -5,6 +5,7 @@ import { Link } from '@/lib/routing';
 import Testimonials from '@/components/Testimonials';
 import Reveal from '@/components/Reveal';
 import CountUp from '@/components/CountUp';
+import Typewriter from '@/components/Typewriter';
 import { coreIcons, caseIcons, statIcons } from '@/components/icons';
 
 export default async function HomePage({
@@ -20,6 +21,8 @@ export default async function HomePage({
 function Home() {
   const t = useTranslations('home');
   const stats = t.raw('stats') as { value: string; label: string }[];
+  const roles = t.raw('heroRoles') as string[];
+  const flow = t.raw('flowSteps') as { t: string; d: string }[];
   const services = useTranslations('services');
   const core = services.raw('core') as { name: string; question: string; desc: string }[];
   const cases = useTranslations('cases');
@@ -34,28 +37,29 @@ function Home() {
         <div aria-hidden className="pointer-events-none absolute left-1/2 top-32 h-2.5 w-2.5 rounded-full bg-gold/50 animate-float" />
         <div aria-hidden className="pointer-events-none absolute right-1/4 bottom-20 h-2 w-2 rounded-full bg-gold/40 animate-float" style={{ animationDelay: '1.5s' }} />
 
-        <div className="container-wide relative grid items-end gap-8 pt-14 md:grid-cols-[1.15fr_0.85fr] md:pt-20">
+        <div className="container-wide relative grid items-end gap-8 pt-12 md:grid-cols-[1.15fr_0.85fr] md:pt-16">
           <div className="pb-14 md:pb-20">
-            <div className="animate-fade-up">
-              <span className="tag-navy text-xs">{t('heroBadge')}</span>
-            </div>
-            <h1 className="mt-6 animate-fade-up text-3xl font-black leading-[1.25] text-navy md:text-4xl lg:text-[2.75rem]" style={{ animationDelay: '60ms' }}>
-              {t('heroTitle')}
+            <p className="animate-fade-up text-sm font-medium tracking-wide text-gold-deep">
+              {t('heroGreeting')}
+            </p>
+            <h1 className="mt-4 animate-fade-up text-4xl font-black leading-[1.15] text-navy md:text-5xl" style={{ animationDelay: '60ms' }}>
+              {t('heroName')}
             </h1>
-            <div className="mt-5 max-w-xl animate-fade-up space-y-1 text-base font-medium leading-[1.7] text-gold-deep md:text-lg" style={{ animationDelay: '120ms' }}>
-              {t('heroSubtitle').split('\n').map((p, i) => (
-                <p key={i}>{p}</p>
-              ))}
-            </div>
+            <p className="mt-4 flex min-h-[1.6em] flex-wrap items-center gap-x-2 animate-fade-up text-xl font-bold md:text-2xl" style={{ animationDelay: '120ms' }}>
+              <span className="text-ink/70">{t('heroTyperPrefix')}</span>
+              <span className="text-gold-deep">
+                <Typewriter words={roles} />
+              </span>
+            </p>
             <div className="my-6 rule-gold animate-fade-up" style={{ animationDelay: '160ms' }} />
-            <div className="max-w-xl animate-fade-up space-y-2 text-[15px] leading-[1.85] text-ink/80" style={{ animationDelay: '200ms' }}>
+            <div className="max-w-xl animate-fade-up space-y-3 text-[15px] leading-[1.85] text-ink/80" style={{ animationDelay: '200ms' }}>
               {t('heroBody').split('\n').map((p, i) => (
                 <p key={i}>{p}</p>
               ))}
             </div>
-            <p className="mt-7 animate-fade-up text-lg font-bold text-navy md:text-xl" style={{ animationDelay: '260ms' }}>
-              {t('heroName')}
-            </p>
+            <div className="mt-7 animate-fade-up" style={{ animationDelay: '260ms' }}>
+              <span className="tag-navy text-xs">{t('heroBadge')}</span>
+            </div>
             <div className="mt-7 flex flex-wrap gap-4 animate-fade-up" style={{ animationDelay: '320ms' }}>
               <Link href="/consult" className="btn-gold">{t('heroCtaPrimary')}</Link>
               <Link href="/cases" className="btn-ghost">{t('heroCtaSecondary')}</Link>
@@ -86,7 +90,7 @@ function Home() {
                 <span className="eyebrow text-gold-light">{t('statsTitle')}</span>
                 <p className="text-xs text-cream/50">{t('statsSubtitle')}</p>
               </div>
-              <div className="mt-8 grid grid-cols-2 gap-x-6 gap-y-10 md:grid-cols-3 lg:grid-cols-6">
+              <div className="mt-8 grid grid-cols-2 gap-x-6 gap-y-10 md:grid-cols-4">
                 {stats.map((s, i) => {
                   const Icon = statIcons[i];
                   return (
@@ -122,7 +126,7 @@ function Home() {
           <p className="mt-4 text-base leading-relaxed text-mist">{t('servicesIntro')}</p>
         </Reveal>
         <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-          {core.map((c, i) => {
+          {core.slice(0, 4).map((c, i) => {
             const Icon = coreIcons[i];
             return (
               <Reveal key={i} delay={i * 90}>
@@ -174,6 +178,31 @@ function Home() {
           <Reveal className="mt-10">
             <Link href="/cases" className="btn-ghost">{t('casesLink')} →</Link>
           </Reveal>
+        </div>
+      </section>
+
+      {/* ===== SERVICE FLOW (6 steps) ===== */}
+      <section className="bg-cream">
+        <div className="container-wide border-t border-gold/15 py-20 md:py-28">
+          <Reveal className="max-w-2xl">
+            <h2 className="section-title">{t('flowTitle')}</h2>
+            <p className="mt-4 text-base leading-relaxed text-mist">{t('flowIntro')}</p>
+          </Reveal>
+          <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {flow.map((s, i) => (
+              <Reveal key={i} delay={i * 80}>
+                <div className="card h-full p-7">
+                  <div className="flex items-center gap-3">
+                    <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-navy text-sm font-bold text-cream">
+                      {('0' + (i + 1)).slice(-2)}
+                    </span>
+                    <h3 className="text-lg font-bold text-navy">{s.t}</h3>
+                  </div>
+                  <p className="mt-4 text-sm leading-relaxed text-mist">{s.d}</p>
+                </div>
+              </Reveal>
+            ))}
+          </div>
         </div>
       </section>
 

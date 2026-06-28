@@ -185,7 +185,8 @@ export const IconQuote = (p: SVGProps<SVGSVGElement>) => (
 );
 
 export const caseIcons = [IconSeedling, IconHome, IconBaby, IconStable, IconGrowth];
-export const coreIcons = [IconEducation, IconAllocation, IconShieldHeart, IconFamily];
+// 顺序与 services.core 一致:家庭保障 / 重疾人寿 / 被动收入 / 资产传承 / 企业保险
+export const coreIcons = [IconFamily, IconShieldHeart, IconGrowth, IconDocument, IconBuilding];
 export const strategicIcons = [IconGlobe, IconDocument, IconBuilding, IconVoyage, IconIdentity];
-// 顺序与 messages stats 数组一致:服务家庭 / 承保保单 / 理赔获批 / 已赔付金额 / 身故保障 / 重疾保障
-export const statIcons = [IconUsers, IconPolicy, IconCheck, IconMoney, IconShield, IconShieldHeart];
+// 顺序与 home.stats 数组一致:服务家庭 / 理赔获批 / 已赔付金额 / 人寿保障
+export const statIcons = [IconUsers, IconCheck, IconMoney, IconShield];

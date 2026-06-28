@@ -41,6 +41,7 @@ function About() {
   const home = useTranslations('home');
   const creds = t.raw('creds') as { name: string; desc: string }[];
   const edu = t.raw('edu') as string[];
+  const quickStats = t.raw('quickStats') as { value: string; label: string }[];
 
   return (
     <>
@@ -66,6 +67,14 @@ function About() {
           <div className="mt-4 space-y-3 text-base leading-[1.9] text-navy/80">
             {t('quickBody').split('\n\n').map((p, i) => (
               <p key={i}>{p}</p>
+            ))}
+          </div>
+          <div className="mt-8 grid grid-cols-2 gap-x-6 gap-y-6 border-t border-gold/20 pt-7 sm:grid-cols-4">
+            {quickStats.map((s, i) => (
+              <div key={i}>
+                <p className="text-2xl font-black text-gold-deep md:text-3xl">{s.value}</p>
+                <p className="mt-1 text-xs text-mist">{s.label}</p>
+              </div>
             ))}
           </div>
         </div>

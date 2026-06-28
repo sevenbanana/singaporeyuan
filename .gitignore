@@ -6,3 +6,5 @@ out
 *.tsbuildinfo
 next-env.d.ts
 .vercel
+public/portrait copy.png
+public/portrait-crop.png
