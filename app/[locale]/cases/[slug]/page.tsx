@@ -5,6 +5,13 @@ import { Link } from '@/lib/routing';
 import { routing } from '@/lib/routing';
 import { caseOrder, isRich, richCover } from '@/lib/caseDetails';
 import Watermark from '@/components/Watermark';
+import Reveal from '@/components/Reveal';
+import EpGroupCase from '@/components/cases/EpGroupCase';
+
+// 拥有专属富文本正文的案例(其余走通用分区卡片版式)
+const bespokeBodies: Record<string, () => JSX.Element> = {
+  'ep-group': EpGroupCase,
+};
 
 type Case = {
   slug: string;
@@ -60,13 +67,14 @@ export default async function CaseDetailPage({
   const lead = cover?.lead ?? c.profile;
   const pills = cover?.pills ?? [];
 
-  const standardRows = [
+  const blocks: { label: string; value: string; tone?: 'gold' | 'navy'; list?: boolean }[] = [
     { label: t('labelProfile'), value: c.profile },
     { label: t('labelExisting'), value: c.existing },
     { label: t('labelWorry'), value: c.worry },
-    { label: t('labelFirstAdvice'), value: c.firstAdvice },
+    { label: t('labelNotAdvice'), value: c.notAdvice, tone: 'gold' },
+    { label: t('labelFirstAdvice'), value: c.firstAdvice, list: true },
     { label: t('labelWhyOrder'), value: c.whyOrder },
-    { label: t('labelOutcome'), value: c.outcome },
+    { label: t('labelOutcome'), value: c.outcome, tone: 'navy' },
   ];
 
   return (
@@ -99,33 +107,50 @@ export default async function CaseDetailPage({
         </div>
       </section>
 
-      {/* BODY */}
+      {/* BODY — 专属富文本 或 通用分区卡片 */}
       <article className="container-wide max-w-3xl">
-        <div className="py-14">
-          <dl className="space-y-6">
-            {standardRows.slice(0, 3).map((r, i) => (
-              <div key={i} className="grid gap-1.5 md:grid-cols-[140px_1fr] md:gap-6">
-                <dt className="text-xs font-semibold uppercase tracking-wide text-gold-deep">{r.label}</dt>
-                <dd className="text-[15px] leading-[1.85] text-navy/80">{r.value}</dd>
+        {(() => {
+          const Bespoke = bespokeBodies[slug];
+          return Bespoke ? <Bespoke /> : null;
+        })()}
+        {!bespokeBodies[slug] && blocks.map((b, i) => (
+          <Reveal key={i}>
+            <section className="border-b border-navy/10 py-12 md:py-14">
+              <span className="text-xs font-extrabold tracking-[0.18em] text-gold-deep">
+                {('0' + (i + 1)).slice(-2)}
+              </span>
+              <h2 className="mt-2 text-2xl font-black leading-snug text-navy md:text-3xl">
+                {b.label}
+              </h2>
+              <div
+                className={`mt-5 rounded-2xl p-6 text-[15px] leading-[1.95] md:p-7 ${
+                  b.tone === 'gold'
+                    ? 'border-l-2 border-gold bg-gold/5 text-navy/85'
+                    : b.tone === 'navy'
+                    ? 'bg-gradient-to-br from-navy to-navy-deep text-cream/90'
+                    : 'border border-navy/10 bg-white text-navy/80'
+                }`}
+              >
+                {b.list && /[①②③④⑤]/.test(b.value) ? (
+                  <ul className="space-y-3">
+                    {b.value
+                      .split(/(?=[①②③④⑤])/)
+                      .map((it) => it.trim())
+                      .filter(Boolean)
+                      .map((it, j) => (
+                        <li key={j}>{it}</li>
+                      ))}
+                  </ul>
+                ) : (
+                  b.value
+                )}
               </div>
-            ))}
-            <div className="grid gap-1.5 rounded-2xl border-l-2 border-gold bg-cream/60 px-5 py-5 md:grid-cols-[140px_1fr] md:gap-6">
-              <dt className="text-xs font-semibold uppercase tracking-wide text-gold-deep">{t('labelNotAdvice')}</dt>
-              <dd className="text-[15px] leading-[1.85] text-navy/80">{c.notAdvice}</dd>
-            </div>
-            {standardRows.slice(3).map((r, i) => (
-              <div key={i} className="grid gap-1.5 md:grid-cols-[140px_1fr] md:gap-6">
-                <dt className="text-xs font-semibold uppercase tracking-wide text-gold-deep">{r.label}</dt>
-                <dd className="text-[15px] leading-[1.85] text-navy/80">{r.value}</dd>
-              </div>
-            ))}
-          </dl>
-        </div>
+            </section>
+          </Reveal>
+        ))}
 
         {/* 重要说明 */}
-        <p className="border-t border-navy/10 py-10 text-xs leading-relaxed text-mist">
-          {t('footerDisclaimer')}
-        </p>
+        <p className="py-10 text-xs leading-relaxed text-mist">{t('footerDisclaimer')}</p>
       </article>
 
       {/* CTA */}

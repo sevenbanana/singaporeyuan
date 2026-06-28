@@ -20,6 +20,12 @@ export function isRich(slug: string) {
 type CoverMeta = { eyebrow: string; kicker: string; lead: string; pills: string[] };
 
 export const richCover: Record<string, CoverMeta> = {
+  'ep-group': {
+    eyebrow: 'CASE · 初入职场 · 公司团险够不够',
+    kicker: '客户案例 · 仅供方案说明',
+    lead: '刚来新加坡、刚入职,只有公司团体保险。我没有急着谈理财,而是先用很小的预算,补上三层「跟人走、不随工作失效」的个人基础保障——把万一生病、意外的风险先兜住。',
+    pills: ['👤 28 岁 · EP 持有者', '年收入约 S$90,000', '只有公司团险', '预算 < 收入 15%'],
+  },
   'passive-income': {
     eyebrow: 'CASE · 被动收入与资产再平衡',
     kicker: '客户案例 · 仅供方案说明',
