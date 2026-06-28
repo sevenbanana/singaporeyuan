@@ -39,13 +39,13 @@ function Row({
   href?: string;
 }) {
   const content = (
-    <span className="inline-flex items-center gap-2.5">
+    <span className="inline-flex items-center gap-2.5 leading-6">
       <span className="text-gold-deep">{icon}</span>
       <span>{label}</span>
     </span>
   );
   return (
-    <li>
+    <li className="leading-6">
       {href ? (
         <a
           href={href}
@@ -74,7 +74,7 @@ export default function Footer() {
           <div>
             <p className="text-xl font-bold text-navy">{nav('brand')}</p>
             <p className="mt-3 text-sm text-gold-deep">{t('tagline')}</p>
-            <p className="mt-6 text-xs leading-relaxed text-mist">
+            <p className="mt-6 text-sm leading-relaxed text-navy/70">
               {t('credline')}
               <br />
               {t('rnf')}
@@ -86,7 +86,7 @@ export default function Footer() {
             <p className="text-xs font-semibold uppercase tracking-widest2 text-gold-deep">
               {t('contactTitle')}
             </p>
-            <ul className="mt-4 space-y-3 text-sm">
+            <ul className="mt-4 space-y-2 text-sm">
               <WechatPopup />
               <Row icon={<IconWhats />} label="+65 8375 0190" href="https://wa.me/6583750190" />
               <Row icon={<IconMail />} label="yuanyuan@aia.com.sg" href="mailto:yuanyuan@aia.com.sg" />
@@ -98,7 +98,7 @@ export default function Footer() {
             <p className="text-xs font-semibold uppercase tracking-widest2 text-gold-deep">
               {t('followTitle')}
             </p>
-            <ul className="mt-4 space-y-3 text-sm">
+            <ul className="mt-4 space-y-2 text-sm">
               <Row icon={<IconBook />} label="小红书 · 新加坡小圆姐" href="https://xhslink.com/m/9KS9V4ytFmj" />
               <Row icon={<IconBook />} label="小红书 · 图文笔记" href="https://xhslink.com/m/2eFS3jpJutg" />
               <Row icon={<IconLinkedIn />} label="LinkedIn" href="https://www.linkedin.com/in/singaporeyuan/" />
@@ -112,11 +112,11 @@ export default function Footer() {
               {nav('brand')}
             </p>
             <ul className="mt-4 space-y-2 text-sm text-navy/80">
-              <li><Link href="/about" className="transition-colors hover:text-gold-deep">{nav('about')}</Link></li>
-              <li><Link href="/cases" className="transition-colors hover:text-gold-deep">{nav('cases')}</Link></li>
-              <li><Link href="/services" className="transition-colors hover:text-gold-deep">{nav('services')}</Link></li>
-              <li><Link href="/tools" className="transition-colors hover:text-gold-deep">{nav('tools')}</Link></li>
-              <li><Link href="/consult" className="transition-colors hover:text-gold-deep">{nav('consult')}</Link></li>
+              <li className="leading-6"><Link href="/about" className="transition-colors hover:text-gold-deep">{nav('about')}</Link></li>
+              <li className="leading-6"><Link href="/cases" className="transition-colors hover:text-gold-deep">{nav('cases')}</Link></li>
+              <li className="leading-6"><Link href="/services" className="transition-colors hover:text-gold-deep">{nav('services')}</Link></li>
+              <li className="leading-6"><Link href="/tools" className="transition-colors hover:text-gold-deep">{nav('tools')}</Link></li>
+              <li className="leading-6"><Link href="/consult" className="transition-colors hover:text-gold-deep">{nav('consult')}</Link></li>
             </ul>
           </div>
         </div>

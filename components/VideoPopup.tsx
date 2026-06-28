@@ -14,12 +14,12 @@ export default function VideoPopup() {
   }, [open]);
 
   return (
-    <li>
+    <li className="leading-6">
       <button
         onClick={() => setOpen(true)}
         className="text-navy/80 transition-colors hover:text-gold-deep"
       >
-        <span className="inline-flex items-center gap-2.5">
+        <span className="inline-flex items-center gap-2.5 leading-6">
           <span className="text-gold-deep">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
               <rect x="2" y="6" width="20" height="12" rx="3" />
