@@ -50,7 +50,7 @@ function Home() {
             </p>
             <h1 className="mt-4 flex flex-wrap items-baseline gap-x-3 gap-y-1 animate-fade-up leading-[1.05]" style={{ animationDelay: '60ms' }}>
               <span className="text-4xl font-black text-navy md:text-5xl">{t('heroNameLead')}</span>
-              <span className={`font-script text-6xl leading-none md:text-7xl ${locale === 'zh' ? 'text-gold/80' : 'text-gold-deep'}`}>
+              <span className={`font-avenir text-4xl font-medium leading-none md:text-5xl ${locale === 'zh' ? 'text-gold/80' : 'text-gold-deep'}`}>
                 {t('heroNameScript')}
               </span>
             </h1>

@@ -31,6 +31,7 @@
   .rule-gold { @apply h-px w-12 bg-gold; }
 
   .font-script { font-family: 'Moon Dance', cursive; }
+  .font-avenir { font-family: 'Avenir Next', 'Avenir', 'Helvetica Neue', ui-sans-serif, system-ui, sans-serif; }
 
   /* 卡片:圆角 + 淡金描边 + 柔和阴影 */
   .card {
