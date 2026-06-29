@@ -9,7 +9,7 @@ import Typewriter from '@/components/Typewriter';
 import { coreIcons, statIcons } from '@/components/icons';
 import NavyDecor from '@/components/NavyDecor';
 import ServiceFlow from '@/components/ServiceFlow';
-import HomeCases from '@/components/HomeCases';
+import CaseJourney from '@/components/CaseJourney';
 
 export default async function HomePage({
   params,
@@ -178,7 +178,7 @@ function Home() {
             <p className="mt-4 text-base leading-relaxed text-mist">{t('casesIntro')}</p>
           </Reveal>
           <Reveal className="mt-12">
-            <HomeCases />
+            <CaseJourney />
           </Reveal>
         </div>
       </section>

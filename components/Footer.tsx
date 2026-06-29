@@ -115,7 +115,7 @@ export default function Footer() {
               <li className="leading-6"><Link href="/about" className="transition-colors hover:text-gold-deep">{nav('about')}</Link></li>
               <li className="leading-6"><Link href="/cases" className="transition-colors hover:text-gold-deep">{nav('cases')}</Link></li>
               <li className="leading-6"><Link href="/services" className="transition-colors hover:text-gold-deep">{nav('services')}</Link></li>
-              <li className="leading-6"><Link href="/tools" className="transition-colors hover:text-gold-deep">{nav('tools')}</Link></li>
+              {/* 小工具暂隐藏:开发完成后恢复 <li className="leading-6"><Link href="/tools" className="transition-colors hover:text-gold-deep">{nav('tools')}</Link></li> */}
               <li className="leading-6"><Link href="/consult" className="transition-colors hover:text-gold-deep">{nav('consult')}</Link></li>
             </ul>
           </div>

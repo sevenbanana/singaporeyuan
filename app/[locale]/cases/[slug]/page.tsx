@@ -38,6 +38,16 @@ function Title({ title, hi }: { title: string; hi?: string }) {
   );
 }
 
+// 咖啡杯小图标(带热气)
+const CupGlyph = ({ size = 15 }: { size?: number }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M4 9h12v4.5A4.5 4.5 0 0 1 11.5 18h-3A4.5 4.5 0 0 1 4 13.5z" />
+    <path d="M16 10h2.2a2.4 2.4 0 0 1 0 4.8H16" />
+    <path d="M7.5 2.5c-.9 1.1-.9 2.2 0 3.3M11.5 2.5c-.9 1.1-.9 2.2 0 3.3" />
+    <path d="M4 21h13" />
+  </svg>
+);
+
 export default async function CaseDetailPage({
   params,
 }: {
@@ -113,18 +123,20 @@ export default async function CaseDetailPage({
           <section className="py-14 md:py-16">
             <span className="text-xs font-extrabold tracking-[0.18em] text-gold-deep">01 / 客户画像</span>
             <h2 className="mt-2 text-2xl font-black leading-snug text-navy md:text-3xl">先看清他的处境</h2>
-            <div className="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+            <div className="mt-6 grid gap-5 sm:grid-cols-2">
               {c.profile.map((card, i) => (
-                <div key={i} className="card h-full p-6">
-                  <div className="flex items-center gap-2.5">
-                    <span className="text-xl">{card.icon}</span>
-                    <h3 className="font-bold text-navy">{card.title}</h3>
+                <div key={i} className="card h-full p-6 md:p-7">
+                  <div className="flex items-center gap-3">
+                    <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-gold/10 text-lg ring-1 ring-gold/20">
+                      {card.icon}
+                    </span>
+                    <h3 className="text-base font-bold text-navy">{card.title}</h3>
                   </div>
-                  <ul className="mt-4 space-y-2.5 text-sm leading-relaxed text-navy/75">
+                  <ul className="mt-5 space-y-3 text-[15px] leading-7 text-navy/75">
                     {card.items.map((it, j) => (
-                      <li key={j} className="flex gap-2">
-                        <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-gold" />
-                        {it}
+                      <li key={j} className="flex gap-2.5">
+                        <span className="mt-[0.65rem] h-1.5 w-1.5 shrink-0 rounded-full bg-gold" />
+                        <span>{it}</span>
                       </li>
                     ))}
                   </ul>
@@ -253,23 +265,49 @@ export default async function CaseDetailPage({
         </section>
       </article>
 
-      {/* ===== CTA ===== */}
+      {/* ===== CTA · 咖啡主题 ===== */}
       <section className="container-wide pb-24">
-        <div className="card relative overflow-hidden">
-          <div className="relative bg-gradient-to-br from-navy to-navy-deep px-8 py-14 text-center md:px-12 md:py-16">
-            <h2 className="mx-auto max-w-xl text-2xl font-bold leading-tight text-cream md:text-3xl">
-              {en ? 'Your situation deserves its own version' : '你的情况也很特别，方案应该为你量身定制'}
+        <div className="relative overflow-hidden rounded-3xl border border-gold/30 bg-gradient-to-br from-[#f8efe2] via-[#f1e2cd] to-[#e9d6bb] px-8 py-14 text-center shadow-card md:px-12 md:py-16">
+          {/* 大咖啡杯线条装饰 */}
+          <svg
+            aria-hidden
+            viewBox="0 0 120 120"
+            className="pointer-events-none absolute -bottom-6 -right-3 h-48 w-48 text-[#a9763f]/[0.13]"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="3"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            <path d="M26 50h52v20a18 18 0 0 1-18 18H44a18 18 0 0 1-18-18z" />
+            <path d="M78 54h9a12 12 0 0 1 0 24h-9" />
+            <path d="M42 28c-3 4-3 8 0 12M58 24c-3 4-3 8 0 12M74 28c-3 4-3 8 0 12" />
+            <path d="M22 98h62" />
+          </svg>
+          {/* 咖啡豆点缀 */}
+          <svg aria-hidden viewBox="0 0 24 24" className="pointer-events-none absolute left-8 top-9 h-7 w-7 -rotate-12 text-[#a9763f]/15" fill="currentColor">
+            <ellipse cx="12" cy="12" rx="6" ry="9" />
+          </svg>
+
+          <div className="relative">
+            <h2 className="mx-auto max-w-xl text-2xl font-black leading-tight text-[#43301f] md:text-3xl">
+              {en ? 'Your situation deserves its own plan' : '你的情况也很特别，方案应该为你量身定制'}
             </h2>
-            <p className="mx-auto mt-4 max-w-lg text-base leading-relaxed text-cream/80">
+            <p className="mx-auto mt-4 max-w-lg text-base leading-relaxed text-[#6b5240]">
               {en
-                ? 'Every family is different. The first conversation is free — let’s start from what matters most to you.'
-                : '聊一聊你的现状和目标，看看我们能不能一起规划更安心的未来。第一次沟通是免费的。'}
+                ? 'Let’s sit down over coffee and talk through your goals — and see if we can plan a calmer future together. The first chat is always free.'
+                : '不妨约杯咖啡，聊聊你的现状和目标，看看能不能一起，规划一个更安心的未来。第一次沟通是免费的。'}
             </p>
-            <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
+
+            <div className="mt-8 flex flex-wrap items-center justify-center gap-5">
               <Link href="/consult" className="btn-gold">
+                <CupGlyph />
                 {en ? 'Book a free chat' : '预约免费咨询'}
               </Link>
-              <Link href={`/cases/${next.slug}`} className="text-sm font-medium text-gold-light transition-colors hover:text-gold">
+              <Link
+                href={`/cases/${next.slug}`}
+                className="text-sm font-medium text-[#8a6438] transition-colors hover:text-gold-deep"
+              >
                 {en ? 'Next case' : '下一个案例'} · {next.mapLabel} →
               </Link>
             </div>

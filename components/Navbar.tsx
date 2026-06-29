@@ -23,7 +23,8 @@ export default function Navbar() {
     { href: '/about', label: t('about') },
     { href: '/cases', label: t('cases') },
     { href: '/services', label: t('services') },
-    { href: '/tools', label: t('tools') },
+    // 小工具暂隐藏:开发完成后取消下一行注释即可上线
+    // { href: '/tools', label: t('tools') },
     { href: '/consult', label: t('consult') },
   ] as const;
 
