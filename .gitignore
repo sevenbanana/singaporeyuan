@@ -9,3 +9,6 @@ next-env.d.ts
 public/portrait copy.png
 public/portrait-crop.png
 .pnpm-store
+
+# 本地工具配置
+.claude/

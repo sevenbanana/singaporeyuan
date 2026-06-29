@@ -6,10 +6,10 @@ import Testimonials from '@/components/Testimonials';
 import Reveal from '@/components/Reveal';
 import CountUp from '@/components/CountUp';
 import Typewriter from '@/components/Typewriter';
-import { coreIcons, caseIconBySlug, statIcons } from '@/components/icons';
-import { caseOrder, isRich } from '@/lib/caseDetails';
+import { coreIcons, statIcons } from '@/components/icons';
 import NavyDecor from '@/components/NavyDecor';
 import ServiceFlow from '@/components/ServiceFlow';
+import HomeCases from '@/components/HomeCases';
 
 export default async function HomePage({
   params,
@@ -29,10 +29,6 @@ function Home() {
   const services = useTranslations('services');
   const core = services.raw('core') as { name: string; question: string; desc: string }[];
   const cases = useTranslations('cases');
-  const caseList = cases.raw('list') as { slug: string; tag: string; title: string }[];
-  const orderedCases = caseOrder
-    .map((slug) => caseList.find((c) => c.slug === slug))
-    .filter(Boolean) as { slug: string; tag: string; title: string }[];
 
   return (
     <>
@@ -181,31 +177,9 @@ function Home() {
             <h2 className="section-title mt-4">{t('casesTitle')}</h2>
             <p className="mt-4 text-base leading-relaxed text-mist">{t('casesIntro')}</p>
           </Reveal>
-          <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {orderedCases.map((c, i) => {
-              const Icon = caseIconBySlug[c.slug];
-              const cls = 'card card-hover group block h-full p-7';
-              const inner = (
-                <>
-                  <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-navy/5 text-navy transition-colors group-hover:bg-gold/15 group-hover:text-gold-deep">
-                    {Icon ? <Icon /> : null}
-                  </div>
-                  <span className="mt-5 block text-xs font-semibold uppercase tracking-wide text-gold-deep">{c.tag}</span>
-                  <h3 className="mt-2 text-lg font-bold leading-snug text-navy transition-colors group-hover:text-gold-deep">{c.title}</h3>
-                  <span className="mt-4 inline-block text-sm text-gold-deep opacity-0 transition-opacity group-hover:opacity-100">查看案例 →</span>
-                </>
-              );
-              return (
-                <Reveal key={c.slug} delay={(i % 3) * 100}>
-                  {isRich(c.slug) ? (
-                    <a href={`/cases/${c.slug}.html`} className={cls}>{inner}</a>
-                  ) : (
-                    <Link href={`/cases/${c.slug}`} className={cls}>{inner}</Link>
-                  )}
-                </Reveal>
-              );
-            })}
-          </div>
+          <Reveal className="mt-12">
+            <HomeCases />
+          </Reveal>
         </div>
       </section>
 

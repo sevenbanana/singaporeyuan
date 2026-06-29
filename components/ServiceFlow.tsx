@@ -31,6 +31,8 @@ export default function ServiceFlow() {
           return (
             <button
               key={i}
+              onMouseEnter={() => setActive(i)}
+              onFocus={() => setActive(i)}
               onClick={() => setActive(i)}
               aria-pressed={on}
               className="group relative flex flex-col items-center text-center outline-none"

@@ -194,6 +194,7 @@ export const caseIconBySlug: Record<string, (p: SVGProps<SVGSVGElement>) => JSX.
   'biz-employee': IconBuilding,
   'newlywed-mortgage': IconHome,
   'family-kids': IconBaby,
+  'early-retire': IconStable,
 };
 // 顺序与 services.core 一致:家庭保障 / 重疾人寿 / 被动收入 / 资产传承 / 企业保险 / 保单年检
 export const coreIcons = [IconFamily, IconShieldHeart, IconGrowth, IconDocument, IconBuilding, IconPolicy];

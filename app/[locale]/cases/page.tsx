@@ -1,10 +1,9 @@
 import { setRequestLocale, getTranslations } from 'next-intl/server';
 import type { Metadata } from 'next';
 import { useTranslations } from 'next-intl';
-import { Link } from '@/lib/routing';
-import { caseOrder, isRich } from '@/lib/caseDetails';
-import { caseIconBySlug, IconGrowth } from '@/components/icons';
+import { IconGrowth } from '@/components/icons';
 import PageHero, { ContentLayer } from '@/components/PageHero';
+import CaseJourney from '@/components/CaseJourney';
 
 export async function generateMetadata({
   params,
@@ -28,10 +27,6 @@ export default async function CasesPage({
 
 function Cases() {
   const t = useTranslations('cases');
-  const list = t.raw('list') as { slug: string; tag: string; title: string }[];
-  const ordered = caseOrder
-    .map((slug) => list.find((c) => c.slug === slug))
-    .filter(Boolean) as { slug: string; tag: string; title: string }[];
 
   return (
     <>
@@ -60,33 +55,7 @@ function Cases() {
         </section>
 
         <section className="container-wide py-14 md:py-20">
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {ordered.map((c) => {
-              const Icon = caseIconBySlug[c.slug];
-              const cls = 'card card-hover group block h-full p-7';
-              const inner = (
-                <>
-                  <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-navy/5 text-navy transition-colors group-hover:bg-gold/15 group-hover:text-gold-deep">
-                    {Icon ? <Icon /> : null}
-                  </div>
-                  <span className="mt-5 block text-xs font-semibold uppercase tracking-wide text-gold-deep">
-                    {c.tag}
-                  </span>
-                  <h3 className="mt-2 text-lg font-bold leading-snug text-navy transition-colors group-hover:text-gold-deep">
-                    {c.title}
-                  </h3>
-                  <span className="mt-4 inline-block text-sm text-gold-deep opacity-0 transition-opacity group-hover:opacity-100">
-                    查看案例 →
-                  </span>
-                </>
-              );
-              return isRich(c.slug) ? (
-                <a key={c.slug} href={`/cases/${c.slug}.html`} className={cls}>{inner}</a>
-              ) : (
-                <Link key={c.slug} href={`/cases/${c.slug}`} className={cls}>{inner}</Link>
-              );
-            })}
-          </div>
+          <CaseJourney />
         </section>
 
         <section className="container-wide border-t border-navy/10 py-12">
