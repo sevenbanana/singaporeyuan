@@ -4,7 +4,7 @@ import Image from 'next/image';
 import { setRequestLocale } from 'next-intl/server';
 import { Link } from '@/lib/routing';
 import { routing } from '@/lib/routing';
-import { CASES, getCase, DISCLAIMERS, HEX_AXES } from '@/lib/cases';
+import { CASES, getCase, getCases, getHexAxes, getDisclaimers } from '@/lib/cases';
 import CaseHexagon from '@/components/CaseHexagon';
 import Watermark from '@/components/Watermark';
 import Reveal from '@/components/Reveal';
@@ -20,10 +20,10 @@ export async function generateMetadata({
 }: {
   params: Promise<{ locale: string; slug: string }>;
 }): Promise<Metadata> {
-  const { slug } = await params;
-  const c = getCase(slug);
+  const { locale, slug } = await params;
+  const c = getCase(slug, locale);
   if (!c) return {};
-  return { title: `${c.mapLabel} · ${c.theme} | 新加坡小圆姐` };
+  return { title: `${c.mapLabel} · ${c.theme}` };
 }
 
 function Title({ title, hi }: { title: string; hi?: string }) {
@@ -63,17 +63,20 @@ export default async function CaseDetailPage({
   };
   if (HTML_CASE[slug]) redirect(HTML_CASE[slug]);
 
-  const c = getCase(slug);
+  const c = getCase(slug, locale);
   if (!c) notFound();
 
   const en = locale === 'en';
-  const idx = CASES.findIndex((x) => x.slug === c.slug);
+  const cases = getCases(locale);
+  const hexAxes = getHexAxes(locale);
+  const disclaimers = getDisclaimers(locale);
+  const idx = cases.findIndex((x) => x.slug === c.slug);
   const n = idx + 1;
-  const next = CASES[(idx + 1) % CASES.length];
+  const next = cases[(idx + 1) % cases.length];
 
   return (
     <>
-      <Watermark text="新加坡小圆姐 · 客户案例 · 仅供方案说明" />
+      <Watermark text={en ? 'Yuan Yuan SG · Client case · Illustration only' : '新加坡小圆姐 · 客户案例 · 仅供方案说明'} />
 
       {/* ===== COVER ===== */}
       <section className="relative overflow-hidden bg-gradient-to-br from-navy-deep to-navy-700 text-cream">
@@ -121,8 +124,8 @@ export default async function CaseDetailPage({
         {/* ===== 01 客户画像 ===== */}
         <Reveal>
           <section className="py-14 md:py-16">
-            <span className="text-xs font-extrabold tracking-[0.18em] text-gold-deep">01 / 客户画像</span>
-            <h2 className="mt-2 text-2xl font-black leading-snug text-navy md:text-3xl">先看清他的处境</h2>
+            <span className="text-xs font-extrabold tracking-[0.18em] text-gold-deep">{en ? '01 / Client profile' : '01 / 客户画像'}</span>
+            <h2 className="mt-2 text-2xl font-black leading-snug text-navy md:text-3xl">{en ? 'First, understand the situation' : '先看清他的处境'}</h2>
             <div className="mt-6 grid gap-5 sm:grid-cols-2">
               {c.profile.map((card, i) => (
                 <div key={i} className="card h-full p-6 md:p-7">
@@ -149,7 +152,7 @@ export default async function CaseDetailPage({
         {/* ===== 保障六边形（位于客户画像下方）===== */}
         <Reveal>
           <section className="border-t border-navy/10 py-14 md:py-16">
-            <span className="text-xs font-extrabold tracking-[0.18em] text-gold-deep">保障六边形</span>
+            <span className="text-xs font-extrabold tracking-[0.18em] text-gold-deep">{en ? 'Protection hexagon' : '保障六边形'}</span>
             <h2 className="mt-2 text-2xl font-black leading-snug text-navy md:text-3xl">{c.hexAfterLabel}</h2>
             <div className="mt-7 grid items-center gap-10 md:grid-cols-[300px_1fr]">
               <CaseHexagon
@@ -157,12 +160,16 @@ export default async function CaseDetailPage({
                 after={c.hexAfter}
                 beforeLabel={c.hexBeforeLabel}
                 afterLabel={c.hexAfterLabel}
+                axes={hexAxes}
+                ariaLabel={en ? 'Protection hexagon: before and after' : '保障六边形：配置前后对比'}
               />
               <div>
                 <p className="text-[15px] leading-[1.95] text-navy/80">{c.hexNote}</p>
                 <div className="mt-6 flex flex-wrap gap-2 text-xs">
-                  {HEX_AXES.map((axis, i) => {
+                  {hexAxes.map((axis, i) => {
                     const lv = c.hexAfter[i];
+                    const status =
+                      lv >= 3 ? (en ? 'Strong' : '充足') : lv === 2 ? (en ? 'Basic' : '基础') : lv === 1 ? (en ? 'Started' : '起步') : en ? 'To add' : '待补';
                     return (
                       <span
                         key={axis}
@@ -170,7 +177,7 @@ export default async function CaseDetailPage({
                           lv >= 2 ? 'bg-gold/15 text-gold-deep' : lv === 1 ? 'bg-sand-200 text-mist' : 'bg-navy/5 text-mist/60'
                         }`}
                       >
-                        {axis} {lv >= 3 ? '充足' : lv === 2 ? '基础' : lv === 1 ? '起步' : '待补'}
+                        {axis} {status}
                       </span>
                     );
                   })}
@@ -183,7 +190,7 @@ export default async function CaseDetailPage({
         {/* ===== 02 需求分析 ===== */}
         <Reveal>
           <section className="border-t border-navy/10 py-14 md:py-16">
-            <span className="text-xs font-extrabold tracking-[0.18em] text-gold-deep">02 / 需求分析</span>
+            <span className="text-xs font-extrabold tracking-[0.18em] text-gold-deep">{en ? '02 / Needs analysis' : '02 / 需求分析'}</span>
             <h2 className="mt-2 max-w-2xl text-2xl font-black leading-snug text-navy md:text-3xl">{c.analysisTitle}</h2>
             <div className="mt-6 max-w-3xl space-y-4 text-[15px] leading-[1.95] text-navy/80">
               {c.analysis.map((p, i) => (
@@ -252,9 +259,9 @@ export default async function CaseDetailPage({
         {/* ===== 重要说明 ===== */}
         <section className="border-t border-navy/10 py-10">
           <div className="rounded-2xl border border-navy/10 bg-white/60 p-6">
-            <div className="text-sm font-semibold text-navy">⚖️ 重要说明</div>
+            <div className="text-sm font-semibold text-navy">{en ? '⚖️ Important notes' : '⚖️ 重要说明'}</div>
             <ul className="mt-3 space-y-2 text-xs leading-relaxed text-mist">
-              {DISCLAIMERS.map((d, i) => (
+              {disclaimers.map((d, i) => (
                 <li key={i} className="flex gap-2">
                   <span className="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-gold/60" />
                   {d}

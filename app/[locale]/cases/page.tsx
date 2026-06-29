@@ -1,6 +1,6 @@
 import { setRequestLocale, getTranslations } from 'next-intl/server';
 import type { Metadata } from 'next';
-import { useTranslations } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
 import { IconGrowth, IconShield } from '@/components/icons';
 import PageHero, { ContentLayer } from '@/components/PageHero';
 import CaseJourney from '@/components/CaseJourney';
@@ -27,6 +27,7 @@ export default async function CasesPage({
 
 function Cases() {
   const t = useTranslations('cases');
+  const locale = useLocale();
 
   return (
     <>
@@ -68,7 +69,7 @@ function Cases() {
         </section>
 
         <section className="container-wide py-14 md:py-20">
-          <CaseJourney />
+          <CaseJourney locale={locale} />
         </section>
 
         <section className="container-wide border-t border-navy/10 py-12">

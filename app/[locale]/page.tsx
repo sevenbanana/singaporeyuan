@@ -178,7 +178,7 @@ function Home() {
             <p className="mt-4 text-base leading-relaxed text-mist">{t('casesIntro')}</p>
           </Reveal>
           <Reveal className="mt-12">
-            <CaseJourney />
+            <CaseJourney locale={locale} />
           </Reveal>
         </div>
       </section>

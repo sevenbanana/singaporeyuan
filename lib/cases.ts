@@ -4,6 +4,8 @@
 
 // 保障六边形的 6 个维度，按围绕六边形的顺序排列：
 // 住院 / 意外 / 重疾 相邻（基础地基），人寿 / 重残 / 残护 随人生阶段补全。
+import { CASES_EN, HEX_AXES_EN, DISCLAIMERS_EN } from './casesEn';
+
 export const HEX_AXES = ['住院', '意外', '重疾', '人寿', '重残', '残护'] as const;
 export type HexAxis = (typeof HEX_AXES)[number];
 
@@ -402,6 +404,18 @@ export const DISCLAIMERS: string[] = [
   '本案例遵循 MAS MoneySense 基础财务规划原则——先保障、后增值，量入为出。',
 ];
 
-export function getCase(slug: string): CaseDetail | undefined {
-  return CASES.find((c) => c.slug === slug);
+export function getCases(locale?: string): CaseDetail[] {
+  return locale === 'en' ? CASES_EN : CASES;
+}
+
+export function getCase(slug: string, locale?: string): CaseDetail | undefined {
+  return getCases(locale).find((c) => c.slug === slug);
+}
+
+export function getHexAxes(locale?: string): readonly string[] {
+  return locale === 'en' ? HEX_AXES_EN : HEX_AXES;
+}
+
+export function getDisclaimers(locale?: string): string[] {
+  return locale === 'en' ? DISCLAIMERS_EN : DISCLAIMERS;
 }

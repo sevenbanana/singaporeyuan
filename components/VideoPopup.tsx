@@ -1,10 +1,12 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { useLocale } from 'next-intl';
 
 export default function VideoPopup() {
   const [open, setOpen] = useState(false);
   const [failed, setFailed] = useState(false);
+  const en = useLocale() === 'en';
 
   useEffect(() => {
     if (!open) return;
@@ -26,7 +28,7 @@ export default function VideoPopup() {
               <path d="M10 9.5l5 2.5-5 2.5z" />
             </svg>
           </span>
-          <span>视频号</span>
+          <span>{en ? 'WeChat Channels' : '视频号'}</span>
         </span>
       </button>
 

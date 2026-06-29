@@ -30,17 +30,21 @@ export default function CaseHexagon({
   after,
   beforeLabel = '配置前',
   afterLabel = '配置后',
+  axes = HEX_AXES,
+  ariaLabel = '保障六边形：配置前后对比',
   className = '',
 }: {
   before: HexLevels;
   after: HexLevels;
   beforeLabel?: string;
   afterLabel?: string;
+  axes?: readonly string[];
+  ariaLabel?: string;
   className?: string;
 }) {
   return (
     <div className={className}>
-      <svg viewBox={`0 0 ${SIZE} ${SIZE}`} className="mx-auto block w-full max-w-[300px]" role="img" aria-label="保障六边形：配置前后对比">
+      <svg viewBox={`0 0 ${SIZE} ${SIZE}`} className="mx-auto block w-full max-w-[300px]" role="img" aria-label={ariaLabel}>
         {/* 背景网格环 */}
         {Array.from({ length: LEVELS }, (_, l) => (
           <polygon key={l} points={ring(l + 1)} fill="none" stroke="#1a2744" strokeOpacity={0.08} strokeWidth={1} />
@@ -63,7 +67,7 @@ export default function CaseHexagon({
         })}
 
         {/* 维度标签 */}
-        {HEX_AXES.map((axis, i) => {
+        {axes.map((axis, i) => {
           const [x, y] = point(i, 3.52);
           const anchor = Math.abs(x - C) < 4 ? 'middle' : x > C ? 'start' : 'end';
           return (
