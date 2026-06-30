@@ -100,8 +100,13 @@ export default function Footer() {
               {t('followTitle')}
             </p>
             <ul className="mt-4 space-y-2 text-sm">
-              <Row icon={<IconBook />} label={en ? 'Xiaohongshu · @SingaporeYuan' : '小红书 · 新加坡小圆姐'} href="https://xhslink.com/m/9KS9V4ytFmj" />
-              <Row icon={<IconBook />} label={en ? 'Xiaohongshu · Notes' : '小红书 · 图文笔记'} href="https://xhslink.com/m/2eFS3jpJutg" />
+              {/* 小红书仅中文版显示(无英文小红书账号) */}
+              {!en && (
+                <>
+                  <Row icon={<IconBook />} label="小红书 · 新加坡小圆姐" href="https://xhslink.com/m/9KS9V4ytFmj" />
+                  <Row icon={<IconBook />} label="小红书 · 图文笔记" href="https://xhslink.com/m/2eFS3jpJutg" />
+                </>
+              )}
               <Row icon={<IconLinkedIn />} label="LinkedIn" href="https://www.linkedin.com/in/singaporeyuan/" />
               <VideoPopup />
             </ul>

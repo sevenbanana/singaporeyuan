@@ -1,6 +1,6 @@
 import { setRequestLocale, getTranslations } from 'next-intl/server';
 import type { Metadata } from 'next';
-import { useTranslations } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
 import ConsultForm from '@/components/ConsultForm';
 import WeChatQR from '@/components/WeChatQR';
 import Faq from '@/components/Faq';
@@ -65,6 +65,7 @@ export default async function ConsultPage({
 function Consult() {
   const t = useTranslations('consult');
   const f = useTranslations('footer');
+  const en = useLocale() === 'en';
   const processSteps = t.raw('processSteps') as string[];
 
   return (
@@ -107,7 +108,7 @@ function Consult() {
           </h2>
 
           <div className="mt-6 divide-y divide-navy/[0.07] rounded-sm border border-navy/10 bg-white/55">
-            {CONTACTS.map(({ key, href, external, Icon }) => {
+            {CONTACTS.filter((ct) => !(en && ct.key === 'xhs')).map(({ key, href, external, Icon }) => {
               const raw = f(key);
               const ci = raw.search(/[:：]/);
               const label = ci >= 0 ? raw.slice(0, ci) : '';

@@ -1,4 +1,4 @@
-import { useTranslations } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
 import { setRequestLocale } from 'next-intl/server';
 import type { Metadata } from 'next';
 import { getTranslations } from 'next-intl/server';
@@ -41,6 +41,7 @@ function Para({ text }: { text: string }) {
 
 function About() {
   const t = useTranslations('about');
+  const en = useLocale() === 'en';
   const home = useTranslations('home');
   const creds = t.raw('creds') as { name: string; desc: string }[];
   const edu = t.raw('edu') as string[];
@@ -116,7 +117,7 @@ function About() {
             {t('mediaBody')}
           </p>
           <ul className="mt-6 space-y-2 text-sm text-navy/70">
-            <li>📕 {t('mediaXhs')}</li>
+            {!en && <li>📕 {t('mediaXhs')}</li>}
             <li>📺 {t('mediaWx')}</li>
           </ul>
           <p className="mt-4 text-sm text-gold-deep">{t('mediaFollowers')}</p>
