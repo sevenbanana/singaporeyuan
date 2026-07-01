@@ -6,6 +6,7 @@ import { Link } from '@/lib/routing';
 import PageHero, { ContentLayer } from '@/components/PageHero';
 import NavyDecor from '@/components/NavyDecor';
 import { IconUsers } from '@/components/icons';
+import { rich } from '@/lib/rich';
 
 export async function generateMetadata({
   params,
@@ -32,7 +33,7 @@ function Para({ text }: { text: string }) {
     <>
       {text.split('\n\n').map((p, i) => (
         <p key={i} className="mt-4 text-base leading-[1.9] text-navy/80 first:mt-0">
-          {p}
+          {rich(p)}
         </p>
       ))}
     </>

@@ -2,6 +2,7 @@
 
 import { useRef, useState } from 'react';
 import { useTranslations } from 'next-intl';
+import { rich } from '@/lib/rich';
 
 export default function Testimonials() {
   const t = useTranslations('home');
@@ -70,7 +71,7 @@ export default function Testimonials() {
               className="card flex w-[80%] shrink-0 snap-start flex-col p-7 sm:w-[340px]"
             >
               <span aria-hidden className="text-4xl font-black leading-none text-gold/40">&ldquo;</span>
-              <blockquote className="mt-2 flex-1 text-sm leading-relaxed text-ink/80">{c.quote}</blockquote>
+              <blockquote className="mt-2 flex-1 text-sm leading-relaxed text-ink/80">{rich(c.quote)}</blockquote>
               <figcaption className="mt-5 text-xs font-medium tracking-wide text-gold-deep">{c.author}</figcaption>
             </figure>
           ))}

@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { Link } from '@/lib/routing';
 import { getCases } from '@/lib/cases';
 import { IconShield, IconHome, IconBaby, IconGrowth, IconMoney } from '@/components/icons';
+import { rich } from '@/lib/rich';
 
 const IconBriefcase = (p: { width?: number; height?: number }) => (
   <svg width={p.width} height={p.height} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
@@ -139,10 +140,10 @@ export default function CaseJourney({ locale = 'zh' }: { locale?: string }) {
                   <div className="mt-3 h-0.5 w-10 rounded-full bg-gold/60" />
 
                   <h3 className="mt-3 text-lg font-bold leading-snug text-navy transition-colors group-hover:text-gold-deep">
-                    {c.title}
+                    {rich(c.title)}
                   </h3>
 
-                  {cc?.lead && <p className="mt-2.5 text-sm leading-relaxed text-mist">{cc.lead[lang]}</p>}
+                  {cc?.lead && <p className="mt-2.5 text-sm leading-relaxed text-mist">{rich(cc.lead[lang])}</p>}
 
                   {cc?.pills && (
                     <div className="mt-4 flex flex-wrap gap-2">

@@ -8,6 +8,8 @@ import { CASES, getCase, getCases, getHexAxes, getDisclaimers } from '@/lib/case
 import CaseHexagon from '@/components/CaseHexagon';
 import Watermark from '@/components/Watermark';
 import Reveal from '@/components/Reveal';
+import RetirementPlans from '@/components/RetirementPlans';
+import { rich } from '@/lib/rich';
 
 export function generateStaticParams() {
   return routing.locales.flatMap((locale) =>
@@ -27,13 +29,13 @@ export async function generateMetadata({
 }
 
 function Title({ title, hi }: { title: string; hi?: string }) {
-  if (!hi || !title.includes(hi)) return <>{title}</>;
+  if (!hi || !title.includes(hi)) return <>{rich(title, true)}</>;
   const [pre, post] = title.split(hi);
   return (
     <>
-      {pre}
+      {rich(pre, true)}
       <b className="text-gold-light">{hi}</b>
-      {post}
+      {rich(post, true)}
     </>
   );
 }
@@ -48,6 +50,23 @@ const CupGlyph = ({ size = 15 }: { size?: number }) => (
   </svg>
 );
 
+// 方案里三份保险的图标:意外 / 住院 / 重疾
+function PlanIcon({ i }: { i: number }) {
+  const p = {
+    width: 22,
+    height: 22,
+    viewBox: '0 0 24 24',
+    fill: 'none',
+    stroke: 'currentColor',
+    strokeWidth: 1.7,
+    strokeLinecap: 'round' as const,
+    strokeLinejoin: 'round' as const,
+  };
+  if (i === 0) return <svg {...p}><path d="M12 3l7 3v5c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3z" /><path d="M12 8v4M12 15v.5" /></svg>;
+  if (i === 1) return <svg {...p}><path d="M4 21V7l8-4 8 4v14" /><path d="M2 21h20" /><path d="M12 10v5M9.5 12.5h5" /></svg>;
+  return <svg {...p}><path d="M20.8 8.6a5 5 0 0 0-8.8-3 5 5 0 0 0-8.8 3c0 4 5.5 8 8.8 10.4 3.3-2.4 8.8-6.4 8.8-10.4z" /><path d="M3.5 12h3l1.5-3 2.5 5 1.5-3h4" /></svg>;
+}
+
 export default async function CaseDetailPage({
   params,
 }: {
@@ -59,7 +78,6 @@ export default async function CaseDetailPage({
   // 这两个案例保留手作的图表 HTML 版本(/public/cases/*.html)
   const HTML_CASE: Record<string, string> = {
     'usd-retirement': '/cases/exec-retirement.html',
-    'business-owner': '/cases/passive-income.html',
   };
   if (HTML_CASE[slug]) redirect(HTML_CASE[slug]);
 
@@ -92,7 +110,7 @@ export default async function CaseDetailPage({
             <h1 className="mt-4 text-3xl font-black leading-[1.25] md:text-[2.6rem]">
               <Title title={c.title} hi={c.titleHi} />
             </h1>
-            <p className="mt-5 max-w-2xl text-[15px] leading-[1.85] text-cream/80">{c.lead}</p>
+            <p className="mt-5 max-w-2xl text-[15px] leading-[1.85] text-cream/80">{rich(c.lead, true)}</p>
             <div className="mt-7 flex flex-wrap gap-2.5">
               {c.pills.map((p, i) => (
                 <span
@@ -133,13 +151,13 @@ export default async function CaseDetailPage({
                     <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-gold/10 text-lg ring-1 ring-gold/20">
                       {card.icon}
                     </span>
-                    <h3 className="text-base font-bold text-navy">{card.title}</h3>
+                    <h3 className="text-base font-bold text-navy">{rich(card.title)}</h3>
                   </div>
                   <ul className="mt-5 space-y-3 text-[15px] leading-7 text-navy/75">
                     {card.items.map((it, j) => (
                       <li key={j} className="flex gap-2.5">
                         <span className="mt-[0.65rem] h-1.5 w-1.5 shrink-0 rounded-full bg-gold" />
-                        <span>{it}</span>
+                        <span>{rich(it)}</span>
                       </li>
                     ))}
                   </ul>
@@ -164,7 +182,7 @@ export default async function CaseDetailPage({
                 ariaLabel={en ? 'Protection hexagon: before and after' : '保障六边形：配置前后对比'}
               />
               <div>
-                <p className="text-[15px] leading-[1.95] text-navy/80">{c.hexNote}</p>
+                <p className="text-[15px] leading-[1.95] text-navy/80">{rich(c.hexNote)}</p>
                 <div className="mt-6 flex flex-wrap gap-2 text-xs">
                   {hexAxes.map((axis, i) => {
                     const lv = c.hexAfter[i];
@@ -191,15 +209,15 @@ export default async function CaseDetailPage({
         <Reveal>
           <section className="border-t border-navy/10 py-14 md:py-16">
             <span className="text-xs font-extrabold tracking-[0.18em] text-gold-deep">{en ? '02 / Needs analysis' : '02 / 需求分析'}</span>
-            <h2 className="mt-2 max-w-2xl text-2xl font-black leading-snug text-navy md:text-3xl">{c.analysisTitle}</h2>
+            <h2 className="mt-2 max-w-2xl text-2xl font-black leading-snug text-navy md:text-3xl">{rich(c.analysisTitle)}</h2>
             <div className="mt-6 max-w-3xl space-y-4 text-[15px] leading-[1.95] text-navy/80">
               {c.analysis.map((p, i) => (
-                <p key={i}>{p}</p>
+                <p key={i}>{rich(p)}</p>
               ))}
             </div>
             {c.quote && (
               <blockquote className="mt-8 max-w-3xl border-l-2 border-gold bg-gold/5 py-4 pl-6 pr-4 text-lg font-medium leading-relaxed text-navy">
-                {c.quote}
+                {rich(c.quote)}
               </blockquote>
             )}
           </section>
@@ -209,8 +227,8 @@ export default async function CaseDetailPage({
         <Reveal>
           <section className="border-t border-navy/10 py-14 md:py-16">
             <span className="text-xs font-extrabold tracking-[0.18em] text-gold-deep">{c.solutionEyebrow}</span>
-            <h2 className="mt-2 max-w-2xl text-2xl font-black leading-snug text-navy md:text-3xl">{c.solutionTitle}</h2>
-            <p className="mt-4 max-w-3xl text-base leading-relaxed text-mist">{c.solutionLead}</p>
+            <h2 className="mt-2 max-w-2xl text-2xl font-black leading-snug text-navy md:text-3xl">{rich(c.solutionTitle)}</h2>
+            <p className="mt-4 max-w-3xl text-base leading-relaxed text-mist">{rich(c.solutionLead)}</p>
 
             <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
               {c.meta.map((m, i) => (
@@ -222,7 +240,53 @@ export default async function CaseDetailPage({
               ))}
             </div>
 
-            {c.table && (
+            {/* 45 企业主:分红/增值基金两方案(时间轴 + 柱状图)*/}
+            {c.slug === 'business-owner' && <RetirementPlans locale={locale} />}
+
+            {/* 详细保障方案:浅色卡片(保额 + 详细内容)*/}
+            {c.plans && (
+              <div className="mt-6 space-y-5">
+                {c.plans.map((plan, i) => (
+                  <div
+                    key={i}
+                    className="rounded-3xl border border-gold/20 bg-white p-6 shadow-card transition-shadow hover:shadow-cardHover md:p-7"
+                  >
+                    <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+                      <div className="flex items-start gap-3.5">
+                        <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-gold/20 to-gold/5 text-gold-deep ring-1 ring-gold/25">
+                          <PlanIcon i={i} />
+                        </span>
+                        <div className="min-w-0">
+                          <div className="text-[11px] font-semibold uppercase tracking-wide text-gold-deep/80">{plan.no}</div>
+                          <h4 className="mt-0.5 text-base font-bold leading-snug text-navy">{plan.name}</h4>
+                          <p className="mt-1 text-xs leading-relaxed text-mist">{plan.tagline}</p>
+                        </div>
+                      </div>
+                      <div className="shrink-0 rounded-2xl bg-gold/[0.07] px-4 py-2.5 text-left sm:text-right">
+                        <div className="text-[10px] font-medium uppercase tracking-wide text-mist">{plan.sumLabel}</div>
+                        <div className="text-xl font-black leading-tight text-gold-deep">{plan.sum}</div>
+                        <div className="mt-0.5 text-[11px] text-mist">{plan.price}</div>
+                      </div>
+                    </div>
+                    <ul className="mt-5 grid gap-x-6 gap-y-3.5 border-t border-gold/15 pt-5 sm:grid-cols-2">
+                      {plan.benefits.map((bn, j) => (
+                        <li key={j} className="flex gap-2.5">
+                          <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-gold/12 text-gold-deep">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12.5l4.5 4.5L19 6.5" /></svg>
+                          </span>
+                          <div className="min-w-0">
+                            <p className="text-sm font-bold text-navy">{rich(bn.b)}</p>
+                            <p className="mt-0.5 text-xs leading-relaxed text-mist">{rich(bn.s)}</p>
+                          </div>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
+              </div>
+            )}
+
+            {!c.plans && c.table && (
               <div className="mt-8 overflow-hidden rounded-2xl border border-navy/10">
                 <table className="w-full text-left text-sm">
                   <thead className="bg-navy text-cream">
