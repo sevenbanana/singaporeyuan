@@ -143,19 +143,19 @@ function Home() {
           {/* 右:6 项纵向时间轴 */}
           <Reveal className="relative">
             <div aria-hidden className="absolute left-[21px] top-4 bottom-4 w-px bg-gold/30" />
-            <ul className="space-y-5">
+            <ul className="space-y-9">
               {core.map((c, i) => {
                 const Icon = coreIcons[i];
                 return (
                   <li key={i} className="relative flex items-start gap-5">
-                    <span className="z-10 mt-1 flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-gold/40 bg-cream text-sm font-bold text-gold-deep">
+                    <span className="z-10 mt-0.5 flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-gold/40 bg-cream text-sm font-bold text-gold-deep">
                       {('0' + (i + 1)).slice(-2)}
                     </span>
-                    <div className="card card-hover flex flex-1 items-start gap-4 p-5 text-left">
-                      <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-gold/10 text-gold-deep">
+                    <div className="flex flex-1 items-start gap-4 text-left">
+                      <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-gold/10 text-gold-deep ring-1 ring-gold/15">
                         <Icon width={20} height={20} />
                       </div>
-                      <div className="min-w-0">
+                      <div className="min-w-0 pt-0.5">
                         <span className="block text-base font-bold text-gold-deep">{c.name}</span>
                         <h3 className="mt-1.5 text-base font-bold leading-snug text-navy">{c.question}</h3>
                         <p className="mt-1.5 text-sm leading-relaxed text-mist">{c.desc}</p>

@@ -33,6 +33,23 @@ const IconBook = () => (
   <svg {...ico}><path d="M4 5.5A2 2 0 0 1 6 4h5v15H6a2 2 0 0 0-2 1.5z" /><path d="M20 5.5A2 2 0 0 0 18 4h-5v15h5a2 2 0 0 1 2 1.5z" /></svg>
 );
 
+function StepIcon({ i }: { i: number }) {
+  const p = {
+    width: 18,
+    height: 18,
+    viewBox: '0 0 24 24',
+    fill: 'none',
+    stroke: 'currentColor',
+    strokeWidth: 1.7,
+    strokeLinecap: 'round' as const,
+    strokeLinejoin: 'round' as const,
+  };
+  if (i === 0) return <svg {...p}><path d="M21 11.5a8.4 8.4 0 0 1-8.5 8.4 8.5 8.5 0 0 1-3.8-.9L3 21l1.9-5.7a8.4 8.4 0 0 1-.9-3.8A8.5 8.5 0 0 1 12.5 3 8.48 8.48 0 0 1 21 11.5z" /></svg>;
+  if (i === 1) return <svg {...p}><circle cx="12" cy="12" r="9" /><path d="M12 7v5l3 2" /></svg>;
+  if (i === 2) return <svg {...p}><path d="M6 3h8l4 4v14H6z" /><path d="M14 3v4h4" /><path d="M9 13h6M9 16.5h4" /></svg>;
+  return <svg {...p}><circle cx="12" cy="12" r="9" /><path d="M8.5 12l2.5 2.5 4.5-5" /></svg>;
+}
+
 type Contact = { key: string; href?: string; external?: boolean; Icon: () => JSX.Element };
 const CONTACTS: Contact[] = [
   { key: 'wechat', Icon: IconChat },
@@ -81,21 +98,19 @@ function Consult() {
       <section className="container-wide grid gap-12 py-14 md:grid-cols-[1.2fr_0.8fr] md:py-20">
         {/* Form */}
         <div>
-          {/* 提交后会发生什么 */}
-          <div className="mb-10 rounded-sm border border-gold/30 bg-gold/5 p-6 md:p-8">
-            <h2 className="text-lg font-semibold text-navy">
-              {t('processTitle')}
-            </h2>
-            <ol className="mt-5 space-y-4">
+          {/* 提交后会发生什么 —— 图标化步骤 */}
+          <div className="mb-10 rounded-2xl border border-gold/25 bg-gradient-to-br from-sand-50 to-cream p-6 md:p-7">
+            <h2 className="text-lg font-bold text-navy">{t('processTitle')}</h2>
+            <ul className="mt-5 space-y-4">
               {processSteps.map((s, i) => (
-                <li key={i} className="flex gap-3.5 text-sm leading-relaxed text-navy/80">
-                  <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-navy text-xs font-semibold text-cream">
-                    {i + 1}
+                <li key={i} className="flex gap-3.5">
+                  <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-gold/12 text-gold-deep ring-1 ring-gold/20">
+                    <StepIcon i={i} />
                   </span>
-                  <span className="pt-0.5">{s}</span>
+                  <span className="pt-1.5 text-sm leading-relaxed text-navy/80">{s}</span>
                 </li>
               ))}
-            </ol>
+            </ul>
           </div>
 
           <ConsultForm />
