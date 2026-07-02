@@ -23,7 +23,7 @@
       "Personal-Finance Educator",
       "Yuan Yuan SG"
     ],
-    "heroBody": "I've worked in Singapore's insurance industry for over 6 years. I see things from the client's side — understanding your family, life stage and long-term goals to help you find what genuinely fits.\nI believe in the long game, and that good financial planning should make you feel more secure and more free. With professionalism, patience and long-term companionship, I'd like to plan life alongside you — growing richer, day by day.",
+    "heroBody": "I've worked in Singapore's insurance industry for over 6 years. I see things from the client's side, understanding your family, life stage and long-term goals to help you find what genuinely fits.\nI believe in the long game, and that good financial planning should make you feel more secure and more free. With professionalism, patience and long-term companionship, I'd like to plan life alongside you, growing richer, day by day.",
     "heroBadge": "Asset Allocation Adviser · RNF: YY-300823216",
     "heroPortraitCaption": "Yuan Yuan · Asset Allocation Adviser",
     "heroCtaPrimary": "Book a consultation",
@@ -49,10 +49,10 @@
         "label": "Life coverage"
       }
     ],
-    "statsQuote": "Signing isn't the end of the service — it's the start of the journey together;\nthe moment you truly need it, I'm with you through every step: claims, payouts and long-term planning.",
+    "statsQuote": "Signing isn't the end of the service, it's the start of the journey together;\nthe moment you truly need it, I'm with you through every step: claims, payouts and long-term planning.",
     "statsFootnote": "Claims approved and coverage figures follow AIA's official reporting basis.",
     "flowTitle": "The 6 things I'll do for you",
-    "flowIntro": "A clear process, transparent service, a two-way choice. Every step is explained — we only move on once you're satisfied.",
+    "flowIntro": "A clear process, transparent service, a two-way choice. Every step is explained, we only move on once you're satisfied.",
     "flowSteps": [
       {
         "t": "Build trust",
@@ -71,12 +71,12 @@
       },
       {
         "t": "Design & explain",
-        "d": "2–3 tailored options, explained in plain language — continue only when you're happy.",
+        "d": "2–3 tailored options, explained in plain language, continue only when you're happy.",
         "deliver": "Tailored plans (2–3 options)"
       },
       {
         "t": "Help you apply",
-        "d": "Application, health declaration and terms — declare cleanly, claim with ease.",
+        "d": "Application, health declaration and terms, declare cleanly, claim with ease.",
         "deliver": "Application & health-declaration support"
       },
       {
@@ -86,7 +86,7 @@
       }
     ],
     "servicesTitle": "What I can help you solve",
-    "servicesIntro": "Across every stage of a family's life — from protection to legacy — I help you see each step clearly and set the right priorities.",
+    "servicesIntro": "Across every stage of a family's life, from protection to legacy, I help you see each step clearly and set the right priorities.",
     "servicesLink": "View all services",
     "casesTitle": "Real planning, real considerations",
     "casesIntro": "Every plan begins with a real family's specific needs. Below are a few anonymised case studies.",
@@ -97,7 +97,7 @@
     "tabPeers": "Peer recommendations",
     "peersPlaceholder": "Peer recommendations coming soon.",
     "contactTitle": "Want to talk through your situation?",
-    "contactIntro": "The first conversation is always free. I'll start by helping you and your family make sense of your existing coverage — objectively.",
+    "contactIntro": "The first conversation is always free. I'll start by helping you and your family make sense of your existing coverage, objectively.",
     "contactCta": "Fill in the enquiry form",
     "flowDeliverLabel": "Deliverable"
   },
@@ -126,18 +126,18 @@
         "label": "Followers"
       }
     ],
-    "intro": "I'm Yuan Yuan, an asset allocation adviser in Singapore and an MDRT member. I've worked in insurance and finance in Singapore for over 6 years — from helping design an insurer's app and online claims system at the country's largest insurer, to planning insurance and finances for families myself today. I've served families from Singapore, Malaysia, Australia, Turkey and beyond. Their backgrounds differ, but their hope is the same: to put down roots here and live with peace of mind. I believe wealth isn't built overnight, but through the right plan — making protection solid, step by step, and arranging the future steadily.",
+    "intro": "I'm Yuan Yuan, an asset allocation adviser in Singapore and an MDRT member. I've worked in insurance and finance in Singapore for over 6 years, from helping design an insurer's app and online claims system at the country's largest insurer, to planning insurance and finances for families myself today. I've served families from Singapore, Malaysia, Australia, Turkey and beyond. Their backgrounds differ, but their hope is the same: to put down roots here and live with peace of mind. I believe wealth isn't built overnight, but through the right plan, making protection solid, step by step, and arranging the future steadily.",
     "section1Title": "From product design to wealth management",
-    "section1Body": "I didn't start out in this field.\n\nAfter graduating from Beijing University of Posts and Telecommunications in 2013, I came to Singapore for a Master's in Digital Media Technology at NTU. For nearly a decade after, I worked as a product designer —\n\nAt DeNA, a leading Japanese mobile game company, I ran planning and operations for a Marvel game, coordinating across Tokyo, Singapore, Hanoi and North America. At Great Eastern, Singapore's largest insurer, I led a six-person UX team in redesigning the official app and online claims system for 2.5 million policyholders. Later I joined the Southeast Asian super-app Grab, leading design for the GrabFood merchant platform and GrabExpress.\n\nThrough all of it, I kept one habit: no matter how busy, I always made time to document and reflect. It's what let me see my own path clearly at every turning point.",
+    "section1Body": "I didn't start out in this field.\n\nAfter graduating from Beijing University of Posts and Telecommunications in 2013, I came to Singapore for a Master's in Digital Media Technology at NTU. For nearly a decade after, I worked as a product designer, \n\nAt DeNA, a leading Japanese mobile game company, I ran planning and operations for a Marvel game, coordinating across Tokyo, Singapore, Hanoi and North America. At Great Eastern, Singapore's largest insurer, I led a six-person UX team in redesigning the official app and online claims system for 2.5 million policyholders. Later I joined the Southeast Asian super-app Grab, leading design for the GrabFood merchant platform and GrabExpress.\n\nThrough all of it, I kept one habit: no matter how busy, I always made time to document and reflect. It's what let me see my own path clearly at every turning point.",
     "section2Title": "Why I moved into insurance",
-    "section2Body": "If you've seen my résumé, this might surprise you: why would someone with nearly a decade in product design — at DeNA, Great Eastern, Grab — turn to insurance?\n\nIt starts with a prejudice.\n\nBefore entering this field, I knew nothing about insurance and was, frankly, biased against it — I thought of it as a favour, a tangle of fine print. Then, during my years at Great Eastern, I designed the company's customer app and online claims system, walked through the entire journey from application to claim, and personally interviewed hundreds of policyholders, agents and claims staff.\n\nI saw the industry as it really is: many people buy insurance yet never understand what they're actually covered for; many practitioners favour marketing over service, acquisition over after-care — once a policy is sold, the client can't find them again. Behind that mess lies countless families' misunderstanding of, and disappointment with, the word \"protection.\"\n\nIn 2023, returning from maternity leave at Grab, my department was dissolved. Rather than rush to the next job, I used the pause to seriously consider what I wanted. A seasoned career coach, after getting to know me, suggested something unexpected: become a wealth adviser. She said I was gentle, methodical, numbers-sensitive and logical — exactly the foundation this work needs.\n\nIn that moment I felt a strange sense of destiny: wasn't I once exactly the person who was biased against insurance? If even I could be won over by genuinely professional, genuinely client-first service, couldn't I become that kind of adviser too — and change how more people see this industry?\n\nSo I chose AIA, and a team whose client-first philosophy matched my own. My approach is simple: review first, then talk solutions, and never pester friends. When I'm not with clients, I spend my time sharing real, useful knowledge on social media, and let the people who need me come to me. Earning clients this way means I have to be genuinely good — that's the only way to be seen and trusted.\n\nAnd it works — in my first year, on word of mouth and referrals alone, I earned MDRT membership.",
+    "section2Body": "If you've seen my résumé, this might surprise you: why would someone with nearly a decade in product design, at DeNA, Great Eastern, Grab, turn to insurance?\n\nIt starts with a prejudice.\n\nBefore entering this field, I knew nothing about insurance and was, frankly, biased against it, I thought of it as a favour, a tangle of fine print. Then, during my years at Great Eastern, I designed the company's customer app and online claims system, walked through the entire journey from application to claim, and personally interviewed hundreds of policyholders, agents and claims staff.\n\nI saw the industry as it really is: many people buy insurance yet never understand what they're actually covered for; many practitioners favour marketing over service, acquisition over after-care, once a policy is sold, the client can't find them again. Behind that mess lies countless families' misunderstanding of, and disappointment with, the word \"protection.\"\n\nIn 2023, returning from maternity leave at Grab, my department was dissolved. Rather than rush to the next job, I used the pause to seriously consider what I wanted. A seasoned career coach, after getting to know me, suggested something unexpected: become a wealth adviser. She said I was gentle, methodical, numbers-sensitive and logical, exactly the foundation this work needs.\n\nIn that moment I felt a strange sense of destiny: wasn't I once exactly the person who was biased against insurance? If even I could be won over by genuinely professional, genuinely client-first service, couldn't I become that kind of adviser too, and change how more people see this industry?\n\nSo I chose AIA, and a team whose client-first philosophy matched my own. My approach is simple: review first, then talk solutions, and never pester friends. When I'm not with clients, I spend my time sharing real, useful knowledge on social media, and let the people who need me come to me. Earning clients this way means I have to be genuinely good, that's the only way to be seen and trusted.\n\nAnd it works, in my first year, on word of mouth and referrals alone, I earned MDRT membership.",
     "section3Title": "Building a reputation through professionalism and care",
-    "section3Body": "My approach is simple: move forward in small, solid steps.\n\nI'm not chasing speed. I'm chasing the day when, years from now, a client mentioned in passing can say with conviction: \"Oh, Yuan Yuan — she's a trustworthy, dependable adviser who really knows her stuff.\"",
+    "section3Body": "My approach is simple: move forward in small, solid steps.\n\nI'm not chasing speed. I'm chasing the day when, years from now, a client mentioned in passing can say with conviction: \"Oh, Yuan Yuan, she's a trustworthy, dependable adviser who really knows her stuff.\"",
     "mediaTitle": "On taking content seriously",
-    "mediaBody": "I don't like to intrude — but I'm far from passive. When I'm not with clients, I do one thing: take the complex, easily-misunderstood parts of insurance and finance, and explain them in plain language anyone can follow.",
+    "mediaBody": "I don't like to intrude, but I'm far from passive. When I'm not with clients, I do one thing: take the complex, easily-misunderstood parts of insurance and finance, and explain them in plain language anyone can follow.",
     "mediaXhs": "Xiaohongshu @Yuan Yuan SG",
     "mediaWx": "WeChat Channels @Yuan Yuan SG",
-    "mediaFollowers": "6,000+ followers across platforms · Content sells nothing — just plain sense, myth-busting, and real cases",
+    "mediaFollowers": "6,000+ followers across platforms · Content sells nothing, just plain sense, myth-busting, and real cases",
     "credsTitle": "Credentials",
     "creds": [
       {
@@ -175,18 +175,18 @@
     "metaTitle": "Services",
     "eyebrow": "Services",
     "title": "The right protection and planning for your family",
-    "intro": "Review first, advise later — starting from your real needs, we get the protection clear, step by step.",
+    "intro": "Review first, advise later, starting from your real needs, we get the protection clear, step by step.",
     "coreTitle": "What I can help you solve",
     "core": [
       {
         "name": "Family Protection",
-        "question": "Everyone's got some cover — but is it enough, with no overlaps?",
-        "desc": "Medical, accident and hospitalisation — your family's risk floor."
+        "question": "Everyone's got some cover, but is it enough, with no overlaps?",
+        "desc": "Medical, accident and hospitalisation, your family's risk floor."
       },
       {
         "name": "Critical Illness & Life",
         "question": "If illness or lost income hits, what about your family?",
-        "desc": "Critical-illness and life cover — certain support for loved ones."
+        "desc": "Critical-illness and life cover, certain support for loved ones."
       },
       {
         "name": "Passive Income",
@@ -210,7 +210,7 @@
       }
     ],
     "fitTitle": "When does it make sense to talk to me?",
-    "fitIntro": "I don't turn people away — but I do hope we're a good fit. These two columns may help you decide.",
+    "fitIntro": "I don't turn people away, but I do hope we're a good fit. These two columns may help you decide.",
     "fitYesTitle": "When I'm likely a good fit",
     "fitYes": [
       "You live and work in Singapore and want to review your family's protection systematically",
@@ -267,7 +267,7 @@
       },
       {
         "name": "Designer's clarity",
-        "desc": "With my design background, I make the complex clear — so you truly understand your own protection."
+        "desc": "With my design background, I make the complex clear, so you truly understand your own protection."
       }
     ],
     "complianceNote": "The content of this site is for reference only and does not constitute any investment, insurance, legal or tax advice. Insurance products involve terms and risks, and some returns are non-guaranteed. The insurer's official documents and relevant professional advice prevail.",
@@ -280,63 +280,63 @@
     "eyebrow": "Case Studies",
     "title": "Real planning, real considerations",
     "intro": "Behind every plan is a real family's cash flow, protection gaps and long-term goals.",
-    "msNote": "Every plan I make follows the basic financial-planning principles of MoneySense, by the Monetary Authority of Singapore (MAS) — protection first, then growth, always within your means.",
+    "msNote": "Every plan I make follows the basic financial-planning principles of MoneySense, by the Monetary Authority of Singapore (MAS), protection first, then growth, always within your means.",
     "msLink": "MAS MoneySense · Financial Planning Guide",
     "disclaimer": "What suits one person may not suit you. Every family is different, and specific arrangements can only be determined after a full needs analysis.",
     "list": [
       {
         "slug": "ep-group",
         "tag": "New to the workforce · Is group cover enough?",
-        "title": "New to Singapore with only company group cover — do I really need personal insurance?",
+        "title": "New to Singapore with only company group cover, do I really need personal insurance?",
         "profile": "28, EP holder, newly joined a tech firm in Singapore, single, parents back home. Annual income around S$90,000, with some savings but an emergency fund that's still thin.",
         "existing": "Only company group medical and accident cover, which lapses on leaving or changing jobs; no personal policies.",
         "worry": "Afraid that a serious illness or accident would not only interrupt income, but also take away the group cover along with the job.",
         "notAdvice": "I didn't start by recommending savings or investment products. At this stage his emergency fund was thin and personal protection was nearly blank, so chasing long-term returns wouldn't pay off.",
-        "firstAdvice": "First, on a budget under 15% of income, build three foundational layers: (1) a personal Integrated Shield Plan — portable and lifelong, unaffected by job changes; (2) personal accident cover; (3) an early critical-illness policy locked in while young and rates are low.",
-        "whyOrder": "Company group cover is \"borrowed protection\" — almost nothing truly belongs to him. While he's young and healthy and rates are low, covering high-impact risks like medical and critical illness matters more than rushing into investments — and costs less.",
+        "firstAdvice": "First, on a budget under 15% of income, build three foundational layers: (1) a personal Integrated Shield Plan, portable and lifelong, unaffected by job changes; (2) personal accident cover; (3) an early critical-illness policy locked in while young and rates are low.",
+        "whyOrder": "Company group cover is \"borrowed protection\", almost nothing truly belongs to him. While he's young and healthy and rates are low, covering high-impact risks like medical and critical illness matters more than rushing into investments, and costs less.",
         "outcome": "On a manageable budget, he now has a first layer of protection that's truly his own, in place even if he changes jobs or leaves the company. Investing can wait until his emergency fund and cash flow are steadier."
       },
       {
         "slug": "newlywed-mortgage",
         "tag": "Newlyweds with a mortgage · Protecting the home",
-        "title": "We bought a home and took on a mortgage — if one of us is hit, can the other hold on?",
+        "title": "We bought a home and took on a mortgage, if one of us is hit, can the other hold on?",
         "profile": "Both in their early 30s, dual income, one PR and one citizen. Just bought a home with a sizeable mortgage; no children yet.",
         "existing": "Each has hospitalisation and accident cover from before marriage, but no critical illness or life cover.",
         "worry": "Their biggest fear: \"if one of us goes down, can the other carry the mortgage alone, or would we be forced to sell?\"",
-        "notAdvice": "I didn't suggest adding large savings or investment plans right away. Their biggest risk wasn't \"money not growing fast enough\" — it was \"family responsibility suddenly falling on one person.\"",
+        "notAdvice": "I didn't suggest adding large savings or investment plans right away. Their biggest risk wasn't \"money not growing fast enough\", it was \"family responsibility suddenly falling on one person.\"",
         "firstAdvice": "Close two gaps first: (1) a mortgage-reducing term assurance covering the outstanding balance, one each, so that if one passes away or is totally disabled, the payout clears the mortgage directly; (2) critical-illness cover each, so that if one falls ill there's money to replace income and cover recovery. Total premiums kept within 15% of household income.",
-        "whyOrder": "The mortgage is the heaviest fixed responsibility at this stage and must be hedged first. Cover the worst case with relatively low premiums before talking about savings and growth — the order can't be reversed.",
+        "whyOrder": "The mortgage is the heaviest fixed responsibility at this stage and must be hedged first. Cover the worst case with relatively low premiums before talking about savings and growth, the order can't be reversed.",
         "outcome": "Now, whichever partner is affected, the home is safe and the other won't be crushed by the mortgage. With the foundation secured, they began a long-term savings plan with peace of mind."
       },
       {
         "slug": "family-kids",
         "tag": "Family with a child · Getting the order right",
-        "title": "Now that we have a baby — insure the child first, or shore up the parents' cover?",
+        "title": "Now that we have a baby, insure the child first, or shore up the parents' cover?",
         "profile": "Parents in their 30s, settled in Singapore, upper-middle household income. Baby just born; relatives are keen to set up insurance and an education fund for the child quickly.",
         "existing": "Both parents have hospitalisation cover, but critical-illness and life cover are still short relative to family responsibilities; the child has no policy yet.",
-        "worry": "They worry about the child's health and future education fund, while sensing that \"the adults are the ones who actually earn\" — but unsure how to set priorities.",
+        "worry": "They worry about the child's health and future education fund, while sensing that \"the adults are the ones who actually earn\", but unsure how to set priorities.",
         "notAdvice": "I didn't suggest piling insurance or a large education fund onto the child first. The child's biggest protection is the parents themselves; investing heavily in the child while the adults have gaps puts the cart before the horse.",
         "firstAdvice": "Three steps in order: (1) first shore up the parents' (especially the main earner's) critical-illness and life cover; (2) then set up basic hospitalisation and accident cover for the child, while early-life underwriting is simple and rates low; (3) finally, once the first two are solid, start a long-term, steady education savings plan for the child.",
         "whyOrder": "If the family's main earner is hit, it's the child's life and education that suffer most. Fortify the \"adults\" line of defence first, and the child's protection and education fund will truly have something to rest on. This is the order MoneySense consistently emphasises.",
-        "outcome": "With the parents' gaps closed, they set up hospitalisation, accident and a long-term education plan for the child with confidence — clear on the role and priority of every piece."
+        "outcome": "With the parents' gaps closed, they set up hospitalisation, accident and a long-term education plan for the child with confidence, clear on the role and priority of every piece."
       },
       {
         "slug": "exec-retirement",
         "tag": "High-income family · Retirement cash flow & USD savings",
-        "title": "40, comfortable income — how should I design retirement cash flow and USD savings?",
+        "title": "40, comfortable income, how should I design retirement cash flow and USD savings?",
         "profile": "Early 40s, senior manager, stable career at peak earning years. Married with children, ageing parents, health and critical-illness cover already fairly complete. Has funds not needed in the short term, wanting both steady growth and preparation for retirement and legacy.",
         "existing": "Complete medical, critical-illness, accident and some life cover; but no clear long-term cash-flow and wealth-succession arrangement.",
-        "worry": "Two concerns: that income may stop after retirement and lower his living standard; and that idle cash is slowly eroded by inflation — yet he doesn't want too much investment volatility.",
+        "worry": "Two concerns: that income may stop after retirement and lower his living standard; and that idle cash is slowly eroded by inflation, yet he doesn't want too much investment volatility.",
         "notAdvice": "I didn't suggest putting all the money into high-volatility investments to \"chase a high return.\" His goal is certainty and flexibility, not a gamble.",
         "firstAdvice": "With protection already complete, design a steady mid-to-long-term savings / participating plan as the core of retirement cash flow: income can be drawn from an agreed term as needed, un-withdrawn amounts keep accumulating, and unused value can pass to family as a death benefit. If there's a need for USD exposure, a USD savings plan can diversify single-currency risk.",
-        "whyOrder": "What he lacks at this stage isn't protection, but a \"certain, flexible, inheritable\" long-term cash-flow arrangement. Lock in the retirement floor with steady tools first, then consider a smaller portion for flexible growth — \"steady\" before \"offence.\"",
+        "whyOrder": "What he lacks at this stage isn't protection, but a \"certain, flexible, inheritable\" long-term cash-flow arrangement. Lock in the retirement floor with steady tools first, then consider a smaller portion for flexible growth, \"steady\" before \"offence.\"",
         "outcome": "He has a relatively certain, reversible cash flow for retirement: start it early if needed, or let the funds keep growing if not, with unused value left to family. Note: dividends and drawdown figures are non-guaranteed; the insurer's official documents and illustrations prevail."
       },
       {
         "slug": "passive-income",
         "tag": "Asset-heavy in property · Passive income",
-        "title": "Plenty of property, but the stock market is exhausting — how do I get steady passive income?",
-        "profile": "A family in their 40s with 3 investment properties, CPF maxed out, and cash flow coming mainly from rent. Not interested in the stock market and with no energy to watch it, they want a low-maintenance, steady passive income — and more time for the family.",
+        "title": "Plenty of property, but the stock market is exhausting, how do I get steady passive income?",
+        "profile": "A family in their 40s with 3 investment properties, CPF maxed out, and cash flow coming mainly from rent. Not interested in the stock market and with no energy to watch it, they want a low-maintenance, steady passive income, and more time for the family.",
         "existing": "Assets heavily concentrated in property and CPF; basic protection is largely complete, but liquid assets and tools that generate steady cash flow are limited.",
         "worry": "Worried that assets are over-concentrated in property with poor liquidity; yet wary of diving into the stock market, which is draining and stressful and eats into quality of life.",
         "notAdvice": "I didn't suggest buying more property, nor high-volatility investments that need constant watching. What he lacked wasn't more assets, but \"low-maintenance, steady cash flow he can hold in hand.\"",
@@ -350,22 +350,22 @@
         "title": "What do business owners in Singapore usually provide for their staff?",
         "profile": "A business owner running an SME in Singapore with a team of a dozen-plus. They want to protect key staff and strengthen retention, while also clarifying their own personal and family cover as the boss.",
         "existing": "No systematic staff-protection arrangement at the company level; the owner has basic personal policies, but they aren't connected to business liability or key-person risk.",
-        "worry": "Worried about losing key staff, and that if a core person — or the owner — is hit, both the business and the family would suffer.",
+        "worry": "Worried about losing key staff, and that if a core person, or the owner, is hit, both the business and the family would suffer.",
         "notAdvice": "I didn't suggest putting everyone on the top tier of cover right away, nor did I lump staff benefits together with the owner's personal protection. Distinguishing \"what the company should bear vs. what the individual should\" matters more than piling on benefits.",
-        "firstAdvice": "Two layers: (1) staff — build basic group medical / group accident benefits within budget, protecting employees while boosting hiring and retention; (2) the owner — review key-person (Keyman) cover, shareholder / partnership arrangements, and personal & family protection, so business liability and family responsibility are each covered.",
+        "firstAdvice": "Two layers: (1) staff, build basic group medical / group accident benefits within budget, protecting employees while boosting hiring and retention; (2) the owner, review key-person (Keyman) cover, shareholder / partnership arrangements, and personal & family protection, so business liability and family responsibility are each covered.",
         "whyOrder": "Staff benefits address \"team stability and appeal\"; key-person and shareholder arrangements address \"whether the company can hold together if it loses a core person.\" Secure the most fragile personal risks in the business first, then decide how generous the benefits should be.",
         "outcome": "The company now has staff cover matched to budget that can be upgraded over time; as the boss, his personal, family and business responsibilities are each clarified. Note: the actual plan depends on the company structure and budget, confirmed with the relevant professional advice."
       },
       {
         "slug": "early-retire",
         "tag": "Early retirement · Cash-flow design",
-        "title": "I want to retire comfortably before 50 — how should I arrange my income now?",
+        "title": "I want to retire comfortably before 50, how should I arrange my income now?",
         "profile": "35, a well-paid professional / dual-income household, aiming to be work-optional before 50. A regular saver, but most of the money sits in current and fixed deposits, with no clear retirement cash-flow plan.",
         "existing": "Basic medical and accident cover in place; investments are scattered; no long-term tool designed specifically for early retirement.",
         "worry": "Worried that at the current pace 50 may not be enough; and that after retiring there won't be steady cash flow, lowering her standard of living.",
         "notAdvice": "I didn't suggest pouring everything into high-volatility assets to \"get rich fast,\" nor squeezing today's life to over-save. Early retirement runs on predictable cash flow, not a bet on returns.",
         "firstAdvice": "(1) Set the goal: how much annual cash flow she wants at 50, working back to how much to contribute each year; (2) build a steady mid-to-long-term savings / participating plan as a cash-flow base drawable from 50; (3) shore up critical-illness and medical first, so one illness doesn't derail the plan; (4) allocate remaining investable funds for growth by risk appetite.",
-        "whyOrder": "Early retirement's biggest risks are \"an accident along the way\" and \"uncertain cash flow.\" Secure protection and build the retirement cash-flow base first, then talk growth — the order can't be reversed.",
+        "whyOrder": "Early retirement's biggest risks are \"an accident along the way\" and \"uncertain cash flow.\" Secure protection and build the retirement cash-flow base first, then talk growth, the order can't be reversed.",
         "outcome": "She now has a clear \"cash-flow target at 50 + yearly contribution\" roadmap, a retirement base starting to build, and protection gaps closed. Note: dividends and drawdown are non-guaranteed; the insurer's official documents and illustrations prevail."
       }
     ],
@@ -387,13 +387,13 @@
     "processSteps": [
       "I'll first reach out by WeChat or email to briefly confirm your needs.",
       "The first conversation usually takes 20–30 minutes, focused on understanding your family situation, existing cover and goals.",
-      "If you already have policies, you don't need to organise them perfectly — photos or screenshots are fine.",
+      "If you already have policies, you don't need to organise them perfectly, photos or screenshots are fine.",
       "The first conversation will never ask you to decide on the spot."
     ],
     "fName": "What should I call you?",
     "fNamePh": "Name or nickname is fine",
     "fContact": "How best to reach you",
-    "fContactNote": "WeChat or email — at least one",
+    "fContactNote": "WeChat or email, at least one",
     "fWechat": "WeChat",
     "fEmail": "Email",
     "fPhone": "Phone (optional)",
@@ -413,37 +413,37 @@
       "Retirement",
       "Wealth growth",
       "Legacy (wills / trusts)",
-      "Not sure yet — let's talk"
+      "Not sure yet, let's talk"
     ],
     "fMessage": "Anything you'd like to share first",
-    "fMessagePh": "Your situation, your questions, or anything you'd like me to know — write it here.",
+    "fMessagePh": "Your situation, your questions, or anything you'd like me to know, write it here.",
     "consentText": "I have read and agree to the personal data notice below.",
     "consentDetail": "The personal data I provide (including my name, contact details and the content I submit) will be used solely to respond to this enquiry and to provide related financial advisory services. It will be kept securely and will not be used for other purposes or disclosed to third parties without my consent. I may withdraw consent at any time, or request access to, correction of, or deletion of my personal data.",
     "submit": "Send enquiry",
     "submitting": "Sending…",
-    "success": "Thank you — I've received your enquiry and will be in touch soon 🙏",
+    "success": "Thank you, I've received your enquiry and will be in touch soon 🙏",
     "errorRequired": "Please complete the required fields and tick the consent box.",
     "altContactTitle": "Prefer not to use the form? Reach me directly",
-    "qrCaption": "Scan to add me on WeChat — please note: \"website enquiry\"",
+    "qrCaption": "Scan to add me on WeChat, please note: \"website enquiry\"",
     "whatsapp": "WhatsApp: +65 8375 0190",
     "required": "required",
     "faqTitle": "You might be wondering",
-    "faqIntro": "Grouped by topic — start with what matters most to you. For some questions I've also made detailed write-ups or videos on my social channels.",
+    "faqIntro": "Grouped by topic, start with what matters most to you. For some questions I've also made detailed write-ups or videos on my social channels.",
     "faqCategories": [
       {
         "name": "Planning & process",
         "items": [
           {
             "q": "What does the first consultation cover? Do I need to prepare documents?",
-            "a": "We'll start from the questions you care about most and get to know each other. You don't need to prepare complex documents in advance — just bring any existing policies and I'll help you make sense of them."
+            "a": "We'll start from the questions you care about most and get to know each other. You don't need to prepare complex documents in advance, just bring any existing policies and I'll help you make sense of them."
           },
           {
             "q": "What is your service process?",
-            "a": "Six steps in full: build trust → gather information → needs analysis → design the plan → help you apply → lifelong service. I've made a visual guide breaking down each step — just ask and I'll be happy to share it."
+            "a": "Six steps in full: build trust → gather information → needs analysis → design the plan → help you apply → lifelong service. I've made a visual guide breaking down each step, just ask and I'll be happy to share it."
           },
           {
             "q": "What if I'm not happy with the plan?",
-            "a": "If you're not happy, we keep refining until you genuinely agree. We only move to the next step once you're satisfied — it's a two-way choice."
+            "a": "If you're not happy, we keep refining until you genuinely agree. We only move to the next step once you're satisfied, it's a two-way choice."
           }
         ]
       },
@@ -452,7 +452,7 @@
         "items": [
           {
             "q": "Given Singapore's risks, is my cover enough?",
-            "a": "I've recorded a video on the common protection gaps for families in Singapore, explained with local medical and accident scenarios — available on WeChat Channels."
+            "a": "I've recorded a video on the common protection gaps for families in Singapore, explained with local medical and accident scenarios, available on WeChat Channels."
           },
           {
             "q": "How should critical illness and medical insurance work together?",
@@ -460,7 +460,7 @@
           },
           {
             "q": "What should I watch out for in health declarations?",
-            "a": "Incorrect declarations can affect future claims. I'll use my experience to help you get the key wording right — truthful and to your benefit. Declare cleanly, claim with peace of mind."
+            "a": "Incorrect declarations can affect future claims. I'll use my experience to help you get the key wording right, truthful and to your benefit. Declare cleanly, claim with peace of mind."
           }
         ]
       },
@@ -468,11 +468,11 @@
         "name": "Retirement & legacy",
         "items": [
           {
-            "q": "I want to start planning for retirement — where do I begin?",
-            "a": "I have a video specifically on designing retirement cash flow, working backwards from your goal to how much to set aside each month — available on WeChat Channels."
+            "q": "I want to start planning for retirement, where do I begin?",
+            "a": "I have a video specifically on designing retirement cash flow, working backwards from your goal to how much to set aside each month, available on WeChat Channels."
           },
           {
-            "q": "I hold USD assets — should I worry about estate tax?",
+            "q": "I hold USD assets, should I worry about estate tax?",
             "a": "Non-US persons holding US-situated assets may face estate-tax exposure. I've made a write-up on common scenarios and feasible insurance structures; specifics still defer to professional tax and legal advice."
           },
           {
@@ -485,7 +485,7 @@
         "name": "New residents / EP",
         "items": [
           {
-            "q": "Just got my EP — what cover should I set up first?",
+            "q": "Just got my EP, what cover should I set up first?",
             "a": "I've put together a visual guide to protection priorities for a new resident's first year, from medical and accident to income replacement, explained stage by stage."
           },
           {
@@ -503,11 +503,11 @@
   "testimonials": {
     "clients": [
       {
-        "quote": "I first reached out to Yuan Yuan because I'd just started working and knew nothing about insurance. She didn't rush to sell me anything — she walked me through my company's group cover and what I actually needed, and told me what to get now versus what could wait. That clear, no-rush approach is exactly why I trust her.",
+        "quote": "I first reached out to Yuan Yuan because I'd just started working and knew nothing about insurance. She didn't rush to sell me anything, she walked me through my company's group cover and what I actually needed, and told me what to get now versus what could wait. That clear, no-rush approach is exactly why I trust her.",
         "author": "Mr C · 25 · Tech"
       },
       {
-        "quote": "After buying our home we worried about the mortgage risk, but dreaded being talked into a pile of things we didn't need. Yuan Yuan worked it out clearly, filled only the real gap, and kept the premiums sensible. Professional and genuine — I've referred several friends.",
+        "quote": "After buying our home we worried about the mortgage risk, but dreaded being talked into a pile of things we didn't need. Yuan Yuan worked it out clearly, filled only the real gap, and kept the premiums sensible. Professional and genuine, I've referred several friends.",
         "author": "Ms L · 30 · Newlywed"
       },
       {
@@ -515,7 +515,7 @@
         "author": "Mr & Mrs W · 33 · New parents"
       },
       {
-        "quote": "As someone who didn't grow up here, I knew nothing about finance or insurance in Singapore. Yuan Yuan's patience and professionalism put me at ease — she always breaks complex plans into logic I can follow, and always thinks from my side.",
+        "quote": "As someone who didn't grow up here, I knew nothing about finance or insurance in Singapore. Yuan Yuan's patience and professionalism put me at ease, she always breaks complex plans into logic I can follow, and always thinks from my side.",
         "author": "Mr K · from Australia · Business owner"
       },
       {
@@ -525,7 +525,7 @@
     ],
     "peers": [
       {
-        "quote": "Having managed Yuan Yuan directly, I can confidently attest to her talent. One of her greatest strengths is her speed of design — quick iterations that turn product concepts into intuitive, pixel-perfect interfaces. Her humility and empathy make her an invaluable asset to any team.",
+        "quote": "Having managed Yuan Yuan directly, I can confidently attest to her talent. One of her greatest strengths is her speed of design, quick iterations that turn product concepts into intuitive, pixel-perfect interfaces. Her humility and empathy make her an invaluable asset to any team.",
         "author": "T. R. · Senior Design Manager, Careem Pay"
       },
       {
@@ -533,7 +533,7 @@
         "author": "T. L. · Principal Product Designer, Grab"
       },
       {
-        "quote": "As her manager, I was impressed by her proactive approach and design thinking. Across challenging GrabExpress projects she kept a consistent rhythm of alignment — her adaptability and dedication drove their success.",
+        "quote": "As her manager, I was impressed by her proactive approach and design thinking. Across challenging GrabExpress projects she kept a consistent rhythm of alignment, her adaptability and dedication drove their success.",
         "author": "P. M. · Manager, Grab"
       },
       {
@@ -545,15 +545,15 @@
         "author": "S. L. · Product Designer"
       },
       {
-        "quote": "A well-rounded, insight-driven designer and storyteller who turns complex ideas into user-centric designs. A strong collaborator with an agile mindset — and a great team player.",
+        "quote": "A well-rounded, insight-driven designer and storyteller who turns complex ideas into user-centric designs. A strong collaborator with an agile mindset, and a great team player.",
         "author": "W. C. · Senior Product Designer, Grab"
       },
       {
-        "quote": "As the PM in her team — she understands differential user problems quickly and runs multiple projects in parallel. Her work reflects deep empathy and creativity. Any team would be lucky to have her as a design lead!",
+        "quote": "As the PM in her team, she understands differential user problems quickly and runs multiple projects in parallel. Her work reflects deep empathy and creativity. Any team would be lucky to have her as a design lead!",
         "author": "Y. S. · Product Manager"
       },
       {
-        "quote": "The humility and hunger she brought every day helped the team iterate until the design was just right. An excellent collaborator, quick executor and deep thinker — I'd work with her again!",
+        "quote": "The humility and hunger she brought every day helped the team iterate until the design was just right. An excellent collaborator, quick executor and deep thinker, I'd work with her again!",
         "author": "S. M. · Colleague, Grab"
       }
     ],
@@ -561,7 +561,7 @@
     "portfolioLink": "View my design portfolio"
   },
   "footer": {
-    "tagline": "With expertise and patience — growing richer with you, day by day",
+    "tagline": "With expertise and patience, growing richer with you, day by day",
     "contactTitle": "Contact",
     "wechat": "WeChat: singaporeyuan",
     "whatsapp": "WhatsApp: +65 8375 0190",

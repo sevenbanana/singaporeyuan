@@ -34,7 +34,7 @@ const cards: Card[] = [
     tag: { zh: '公司团险 · 个人保障', en: 'Group cover · Personal' },
     q: {
       zh: '刚来新加坡,只有公司团险,个人保障到底要不要买?',
-      en: 'New to Singapore with only company cover — do I need personal insurance?',
+      en: 'New to Singapore with only company cover, do I need personal insurance?',
     },
   },
   {
@@ -46,7 +46,7 @@ const cards: Card[] = [
     tag: { zh: '房贷责任 · 家庭保障', en: 'Mortgage · Family cover' },
     q: {
       zh: '买了房、有了房贷,万一一方出事,另一方扛得住吗?',
-      en: 'With a home and mortgage — if one of us is hit, can the other cope?',
+      en: 'With a home and mortgage, if one of us is hit, can the other cope?',
     },
   },
   {
@@ -58,7 +58,7 @@ const cards: Card[] = [
     tag: { zh: '有娃家庭 · 优先级安排', en: 'With a child · Priorities' },
     q: {
       zh: '有了宝宝后,先给孩子买保险,还是先补大人的保障?',
-      en: 'After the baby — insure the child first, or shore up the parents?',
+      en: 'After the baby, insure the child first, or shore up the parents?',
     },
   },
   {
@@ -70,7 +70,7 @@ const cards: Card[] = [
     tag: { zh: '50 岁退休 · 现金流设计', en: 'Retire at 50 · Cash flow' },
     q: {
       zh: '想在 50 岁前从容退休,现在的收入该怎么安排?',
-      en: 'To retire comfortably before 50 — how should I arrange my income now?',
+      en: 'To retire comfortably before 50, how should I arrange my income now?',
     },
   },
   {
@@ -82,7 +82,7 @@ const cards: Card[] = [
     tag: { zh: '美元储备 · 退休现金流', en: 'USD savings · Retirement' },
     q: {
       zh: '收入不错,也有美元储备,退休现金流该怎么设计?',
-      en: 'Good income and USD savings — how to design retirement cash flow?',
+      en: 'Good income and USD savings, how to design retirement cash flow?',
     },
   },
   {
@@ -94,7 +94,7 @@ const cards: Card[] = [
     tag: { zh: '被动收入 · 资产配置', en: 'Passive income · Allocation' },
     q: {
       zh: '资产不少,但如何规划更稳定的被动收入?',
-      en: 'Plenty of assets — how to build steadier passive income?',
+      en: 'Plenty of assets, how to build steadier passive income?',
     },
   },
 ];

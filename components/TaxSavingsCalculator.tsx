@@ -96,7 +96,7 @@ const copy = {
     cpfSelf: 'CPF cash top-up · self',
     cpfFamily: 'CPF cash top-up · family',
     srs: 'SRS contribution',
-    cpfForeignNote: 'Foreigners are usually not CPF members and cannot claim CPF cash top-up relief — but SRS is available (with a higher cap).',
+    cpfForeignNote: 'Foreigners are usually not CPF members and cannot claim CPF cash top-up relief, but SRS is available (with a higher cap).',
     results: 'Results',
     saveBig: 'Estimated tax saved',
     savePct: 'Savings ratio',
@@ -115,7 +115,7 @@ const copy = {
     faqSrsTitle: 'SRS FAQ',
     faqCpfTitle: 'CPF FAQ',
     disclaimer:
-      'For education and rough estimates only — not tax, investment, or insurance advice. Rates follow Singapore resident income tax (YA2024 onwards); actual relief is also affected by the S$80,000 personal relief cap, family eligibility and CPF account status. IRAS, CPF Board and your own situation prevail.',
+      'For education and rough estimates only, not tax, investment, or insurance advice. Rates follow Singapore resident income tax (YA2024 onwards); actual relief is also affected by the S$80,000 personal relief cap, family eligibility and CPF account status. IRAS, CPF Board and your own situation prevail.',
     srsFaqs: [
       ['How much can I put into SRS each year?', 'Citizens/PRs: up to S$15,300. Foreigners: up to S$35,700.'],
       ['How does SRS save tax?', "The amount you contribute reduces that year's chargeable income, so you pay less tax."],
@@ -123,7 +123,7 @@ const copy = {
       ['Can the money be invested?', 'Yes. SRS funds can be invested (funds, shares, insurance, etc.) to grow while tax-deferred.'],
     ],
     cpfFaqs: [
-      ['How much can CPF cash top-up save?', 'Up to S$8,000 relief for yourself, plus up to S$8,000 for eligible family — up to S$16,000 total.'],
+      ['How much can CPF cash top-up save?', 'Up to S$8,000 relief for yourself, plus up to S$8,000 for eligible family, up to S$16,000 total.'],
       ['Which family members qualify?', 'Commonly parents, spouse, grandparents and siblings, subject to CPF income/age conditions.'],
       ['Do CPF transfers qualify?', 'No. Relief generally applies to cash top-ups, not account-to-account transfers.'],
       ['Why might actual savings be lower?', 'The S$80,000 relief cap, recipient balances and age, and matching grants (MRSS) can reduce eligible relief.'],

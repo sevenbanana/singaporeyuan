@@ -249,7 +249,7 @@ export default function RetirementPlans({ locale = 'zh' }: { locale?: string }):
 
       <p className="mt-4 text-xs leading-relaxed text-mist">
         {en
-          ? 'Illustrative scenario for the “grow first / draw first” retirement logic only — not a guarantee of returns. Dividends are non-guaranteed; account values, payout, fees and switching are subject to the insurer’s official BI, product summary, fund performance and policy terms.'
+          ? 'Illustrative scenario for the “grow first / draw first” retirement logic only, not a guarantee of returns. Dividends are non-guaranteed; account values, payout, fees and switching are subject to the insurer’s official BI, product summary, fund performance and policy terms.'
           : '以上为「先成长 / 先领取」退休逻辑的情景测算，不构成保证收益承诺。分红为非保证部分；实际账户价值、派发、费用与转换以保险公司正式 BI、产品摘要、基金表现及保单条款为准。'}
       </p>
     </div>

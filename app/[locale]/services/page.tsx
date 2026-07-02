@@ -65,7 +65,7 @@ function Services() {
       />
 
       <ContentLayer>
-        {/* ===== 1a. 我能帮你解决什么 —— 图标 + 内容 ===== */}
+        {/* ===== 1a. 我能帮你解决什么, 图标 + 内容 ===== */}
         <section className="container-wide py-16 md:py-24">
           <h2 className="section-title">{t('coreTitle')}</h2>
           <div className="mt-12 grid gap-x-12 gap-y-10 sm:grid-cols-2">
@@ -87,7 +87,7 @@ function Services() {
           </div>
         </section>
 
-        {/* ===== 1b. 战略合作 —— 图标 + 内容 ===== */}
+        {/* ===== 1b. 战略合作, 图标 + 内容 ===== */}
         <section className="container-wide border-t border-navy/10 py-16 md:py-24">
           <h2 className="section-title">{t('strategicTitle')}</h2>
           <p className="mt-4 max-w-2xl text-base leading-relaxed text-mist">{t('strategicIntro')}</p>
@@ -110,7 +110,7 @@ function Services() {
           <p className="mt-8 text-xs leading-relaxed text-mist">{t('strategicNote')}</p>
         </section>
 
-        {/* ===== 2. 适合 / 不适合 —— 浅绿 / 浅粉 ===== */}
+        {/* ===== 2. 适合 / 不适合, 浅绿 / 浅粉 ===== */}
         <section className="container-wide border-t border-navy/10 py-16 md:py-24">
           <h2 className="section-title">{t('fitTitle')}</h2>
           <p className="mt-4 max-w-2xl text-base leading-relaxed text-mist">{t('fitIntro')}</p>

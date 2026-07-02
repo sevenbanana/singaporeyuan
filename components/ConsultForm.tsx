@@ -102,7 +102,7 @@ export default function ConsultForm() {
         </label>
         <select id="identity" name="identity" className={inputCls} defaultValue="">
           <option value="" disabled>
-            —
+           , 
           </option>
           {identityOptions.map((o, i) => (
             <option key={i} value={o}>

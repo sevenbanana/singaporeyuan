@@ -98,7 +98,7 @@ function Consult() {
       <section className="container-wide grid gap-12 py-14 md:grid-cols-[1.2fr_0.8fr] md:py-20">
         {/* Form */}
         <div>
-          {/* 提交后会发生什么 —— 图标化步骤 */}
+          {/* 提交后会发生什么, 图标化步骤 */}
           <div className="mb-10 rounded-2xl border border-gold/25 bg-gradient-to-br from-sand-50 to-cream p-6 md:p-7">
             <h2 className="text-lg font-bold text-navy">{t('processTitle')}</h2>
             <ul className="mt-5 space-y-4">

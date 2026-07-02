@@ -366,7 +366,7 @@ export default async function CaseDetailPage({
             </h2>
             <p className="mx-auto mt-4 max-w-lg text-base leading-relaxed text-[#6b5240]">
               {en
-                ? 'Let’s sit down over coffee and talk through your goals — and see if we can plan a calmer future together. The first chat is always free.'
+                ? 'Let’s sit down over coffee and talk through your goals, and see if we can plan a calmer future together. The first chat is always free.'
                 : '不妨约杯咖啡，聊聊你的现状和目标，看看能不能一起，规划一个更安心的未来。第一次沟通是免费的。'}
             </p>
 

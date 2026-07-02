@@ -20,32 +20,32 @@ type CardL = { zh: string; en: string };
 const cardContent: Record<string, { lead: CardL; pills: { zh: string[]; en: string[] }; icon: ReactNode }> = {
   'first-job': {
     lead: {
-      zh: '收入刚起步、储蓄还薄,最怕一场病或意外打乱节奏——先用小预算把健康和意外的底兜住。',
-      en: 'Good income but thin savings — one illness or accident could throw things off. Secure the health and accident baseline first, on a small budget.',
+      zh: '收入刚起步、储蓄还薄,最怕一场病或意外打乱节奏，先用小预算把健康和意外的底兜住。',
+      en: 'Good income but thin savings, one illness or accident could throw things off. Secure the health and accident baseline first, on a small budget.',
     },
     pills: { zh: ['基础保障', '预算友好', '安心起步'], en: ['Basic cover', 'Budget-friendly', 'A safe start'] },
     icon: <IconShield width={20} height={20} />,
   },
   'new-home': {
     lead: {
-      zh: '新婚、刚扛起房贷,最怕一方出事另一方扛不住——用定期寿险锁住房贷责任,补上双方重疾。',
-      en: 'Newly married with a fresh mortgage — if one falls, the other shouldn’t be crushed. Lock the mortgage with term life and top up CI for both.',
+      zh: '新婚、刚扛起房贷,最怕一方出事另一方扛不住，用定期寿险锁住房贷责任,补上双方重疾。',
+      en: 'Newly married with a fresh mortgage, if one falls, the other shouldn’t be crushed. Lock the mortgage with term life and top up CI for both.',
     },
     pills: { zh: ['房贷责任', '夫妻互保', '守住的家'], en: ['Mortgage duty', 'Cover each other', 'Keep the home'] },
     icon: <IconHome width={20} height={20} />,
   },
   'new-parents': {
     lead: {
-      zh: '有了孩子,保障顺序更要排对——先补好经济支柱大人的重疾与人寿,再为孩子搭基础与教育金。',
-      en: 'With a child, the order matters most — shore up the breadwinner parents’ CI and life first, then build the child’s basics and education fund.',
+      zh: '有了孩子,保障顺序更要排对，先补好经济支柱大人的重疾与人寿,再为孩子搭基础与教育金。',
+      en: 'With a child, the order matters most, shore up the breadwinner parents’ CI and life first, then build the child’s basics and education fund.',
     },
     pills: { zh: ['先保大人', '孩子基础', '教育金'], en: ['Parents first', 'Child basics', 'Education fund'] },
     icon: <IconBaby width={20} height={20} />,
   },
   'wealth-growth': {
     lead: {
-      zh: '保障已经齐了,接下来是增值——用稳健储蓄搭一条到 50 岁可领取的现金流,顺带把税省下来。',
-      en: 'Protection is complete; now it’s growth — steady savings to build a cash flow drawable at 50, while trimming the tax bill along the way.',
+      zh: '保障已经齐了,接下来是增值，用稳健储蓄搭一条到 50 岁可领取的现金流,顺带把税省下来。',
+      en: 'Protection is complete; now it’s growth, steady savings to build a cash flow drawable at 50, while trimming the tax bill along the way.',
     },
     pills: { zh: ['先保后增', '节税增值', '提前退休'], en: ['Protect then grow', 'Tax-smart growth', 'Early retirement'] },
     icon: <IconGrowth width={20} height={20} />,
@@ -53,15 +53,15 @@ const cardContent: Record<string, { lead: CardL; pills: { zh: string[]; en: stri
   'usd-retirement': {
     lead: {
       zh: '手握一笔暂时用不上的美元,与其追短期波动,不如换一份按年领取、保至百岁的稳定现金流。',
-      en: 'Holding idle USD with no short-term use — rather than chasing swings, turn it into steady cash flow drawn yearly and covered to 100.',
+      en: 'Holding idle USD with no short-term use, rather than chasing swings, turn it into steady cash flow drawn yearly and covered to 100.',
     },
     pills: { zh: ['美元储备', '稳定现金流', '保至百岁'], en: ['USD reserve', 'Steady cash flow', 'Covered to 100'] },
     icon: <IconMoney width={20} height={20} />,
   },
   'business-owner': {
     lead: {
-      zh: '公司与家庭的钱先分账,再用稳健现金流兜底、补人寿做传承——进可攻、退可守。',
-      en: 'Separate company and family money first, then a steady cash-flow floor and life cover for legacy — ready for offence or defence.',
+      zh: '公司与家庭的钱先分账,再用稳健现金流兜底、补人寿做传承，进可攻、退可守。',
+      en: 'Separate company and family money first, then a steady cash-flow floor and life cover for legacy, ready for offence or defence.',
     },
     pills: { zh: ['公私分账', '稳健兜底', '资产传承'], en: ['Split the books', 'Steady floor', 'Legacy'] },
     icon: <IconBriefcase width={20} height={20} />,
@@ -178,7 +178,7 @@ export default function CaseJourney({ locale = 'zh' }: { locale?: string }) {
           +
         </span>
         <p className="ml-28 pt-2 text-sm text-mist md:ml-0 md:pt-16 md:text-center">
-          {en ? 'Life goes on — and the case library grows with it…' : '人生还在继续，案例库也会随之生长……'}
+          {en ? 'Life goes on, and the case library grows with it…' : '人生还在继续，案例库也会随之生长……'}
         </p>
       </div>
     </div>

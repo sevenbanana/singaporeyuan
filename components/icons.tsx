@@ -1,4 +1,4 @@
-// 金色线条矢量图标库 —— 统一 stroke 风格,继承 currentColor
+// 金色线条矢量图标库, 统一 stroke 风格,继承 currentColor
 import type { SVGProps } from 'react';
 
 const base = (props: SVGProps<SVGSVGElement>) => ({

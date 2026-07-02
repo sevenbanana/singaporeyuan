@@ -28,8 +28,8 @@ export default async function ToolsPage({
         title={en ? 'CPF / SRS Tax-Saving Calculator' : 'CPF / SRS 省税计算器'}
         subtitle={
           en
-            ? 'See how much CPF cash top-ups and SRS contributions could save you in tax — based on Singapore’s latest resident tax rates.'
-            : '输入应纳税收入与 CPF / SRS 充值金额,立即看充值前后税额、省多少税、省税比例 —— 依据新加坡最新居民个税税率。'
+            ? 'See how much CPF cash top-ups and SRS contributions could save you in tax, based on Singapore’s latest resident tax rates.'
+            : '输入应纳税收入与 CPF / SRS 充值金额,立即看充值前后税额、省多少税、省税比例, 依据新加坡最新居民个税税率。'
         }
         accent={
           <svg viewBox="0 0 24 24" className="h-full w-full" fill="none" stroke="currentColor" strokeWidth="1.1" strokeLinecap="round" strokeLinejoin="round">
