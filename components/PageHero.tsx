@@ -26,7 +26,7 @@ export default function PageHero({
         <div className="max-w-[600px]">
           <p className="eyebrow animate-fade-up">{eyebrow}</p>
           <h1
-            className="mt-5 animate-fade-up text-4xl font-black leading-[1.3] text-navy md:text-5xl"
+            className="mt-5 animate-fade-up text-4xl font-black leading-[1.4] text-navy md:text-5xl md:leading-[1.4]"
             style={{ animationDelay: '80ms' }}
           >
             {title}

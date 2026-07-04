@@ -97,7 +97,7 @@ export default async function CaseDetailPage({
       <Watermark text={en ? 'Yuan Yuan SG · Client case · Illustration only' : '新加坡小圆姐 · 客户案例 · 仅供方案说明'} />
 
       {/* ===== COVER ===== */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-navy-deep to-navy-700 text-cream">
+      <section className="relative overflow-hidden bg-gradient-to-br from-[#4b3620] to-[#2e2012] text-cream">
         <div aria-hidden className="pointer-events-none absolute -right-20 -top-24 h-80 w-80 rounded-full border border-gold/30" />
         <div aria-hidden className="pointer-events-none absolute right-10 top-10 h-40 w-40 rounded-full border border-gold/15" />
         <div className="container-wide relative grid items-end gap-8 py-14 md:grid-cols-[1fr_auto] md:py-20">
@@ -116,7 +116,7 @@ export default async function CaseDetailPage({
                 <span
                   key={i}
                   className={`rounded-full px-4 py-1.5 text-xs ${
-                    i === 0 ? 'bg-gold font-semibold text-navy' : 'border border-gold/45 text-gold-light'
+                    i === 0 ? 'bg-gold font-semibold text-[#2e2012]' : 'border border-gold/45 text-gold-light'
                   }`}
                 >
                   {p}
@@ -138,206 +138,234 @@ export default async function CaseDetailPage({
         </div>
       </section>
 
-      <article className="container-wide max-w-4xl">
-        {/* ===== 01 客户画像 ===== */}
-        <Reveal>
-          <section className="py-14 md:py-16">
-            <span className="text-xs font-extrabold tracking-[0.18em] text-gold-deep">{en ? '01 / Client profile' : '01 / 客户画像'}</span>
-            <h2 className="mt-2 text-2xl font-black leading-snug text-navy md:text-3xl">{en ? 'First, understand the situation' : '先看清他的处境'}</h2>
-            <div className="mt-6 grid gap-5 sm:grid-cols-2">
-              {c.profile.map((card, i) => (
-                <div key={i} className="card h-full p-6 md:p-7">
-                  <div className="flex items-center gap-3">
-                    <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-gold/10 text-lg ring-1 ring-gold/20">
-                      {card.icon}
-                    </span>
-                    <h3 className="text-base font-bold text-navy">{rich(card.title)}</h3>
-                  </div>
-                  <ul className="mt-5 space-y-3 text-[15px] leading-7 text-navy/75">
-                    {card.items.map((it, j) => (
-                      <li key={j} className="flex gap-2.5">
-                        <span className="mt-[0.65rem] h-1.5 w-1.5 shrink-0 rounded-full bg-gold" />
-                        <span>{rich(it)}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              ))}
-            </div>
-          </section>
-        </Reveal>
+      {/* ===== A4 报告:与 banner 无缝衔接,像从打印机吐出的方案书 ===== */}
+      <div className="container-wide">
+        <article className="report-sheet mx-auto max-w-4xl">
+          {/* 右上角圆形装饰 */}
+          <div aria-hidden className="pointer-events-none absolute -right-20 -top-20 h-56 w-56 rounded-full bg-navy/[0.07]" />
+          <div aria-hidden className="pointer-events-none absolute -right-7 -top-7 h-32 w-32 rounded-full bg-gold/15" />
+          <div aria-hidden className="pointer-events-none absolute right-24 top-16 h-2.5 w-2.5 rounded-full bg-gold/50" />
+          {/* 内层细金线,呼应报告封面的双线金边 */}
+          <div aria-hidden className="pointer-events-none absolute inset-x-2 bottom-2 top-0 rounded-b-[14px] border border-t-0 border-gold/25" />
 
-        {/* ===== 保障六边形（位于客户画像下方）===== */}
-        <Reveal>
-          <section className="border-t border-navy/10 py-14 md:py-16">
-            <span className="text-xs font-extrabold tracking-[0.18em] text-gold-deep">{en ? 'Protection hexagon' : '保障六边形'}</span>
-            <h2 className="mt-2 text-2xl font-black leading-snug text-navy md:text-3xl">{c.hexAfterLabel}</h2>
-            <div className="mt-7 grid items-center gap-10 md:grid-cols-[300px_1fr]">
-              <CaseHexagon
-                before={c.hexBefore}
-                after={c.hexAfter}
-                beforeLabel={c.hexBeforeLabel}
-                afterLabel={c.hexAfterLabel}
-                axes={hexAxes}
-                ariaLabel={en ? 'Protection hexagon: before and after' : '保障六边形：配置前后对比'}
-              />
-              <div>
-                <p className="text-[15px] leading-[1.95] text-navy/80">{rich(c.hexNote)}</p>
-                <div className="mt-6 flex flex-wrap gap-2 text-xs">
-                  {hexAxes.map((axis, i) => {
-                    const lv = c.hexAfter[i];
-                    const status =
-                      lv >= 3 ? (en ? 'Strong' : '充足') : lv === 2 ? (en ? 'Basic' : '基础') : lv === 1 ? (en ? 'Started' : '起步') : en ? 'To add' : '待补';
-                    return (
-                      <span
-                        key={axis}
-                        className={`rounded-lg px-3 py-1.5 font-medium ${
-                          lv >= 2 ? 'bg-gold/15 text-gold-deep' : lv === 1 ? 'bg-sand-200 text-mist' : 'bg-navy/5 text-mist/60'
-                        }`}
-                      >
-                        {axis} {status}
-                      </span>
-                    );
-                  })}
-                </div>
+          {/* ===== 01 客户画像(含保障六边形)===== */}
+          <Reveal>
+            <section className="report-panel">
+              <div className="report-eyebrow">
+                <span className="report-mark">✦</span> {en ? '01 · CLIENT PROFILE' : '01 · 客户画像'}
               </div>
-            </div>
-          </section>
-        </Reveal>
-
-        {/* ===== 02 需求分析 ===== */}
-        <Reveal>
-          <section className="border-t border-navy/10 py-14 md:py-16">
-            <span className="text-xs font-extrabold tracking-[0.18em] text-gold-deep">{en ? '02 / Needs analysis' : '02 / 需求分析'}</span>
-            <h2 className="mt-2 max-w-2xl text-2xl font-black leading-snug text-navy md:text-3xl">{rich(c.analysisTitle)}</h2>
-            <div className="mt-6 max-w-3xl space-y-4 text-[15px] leading-[1.95] text-navy/80">
-              {c.analysis.map((p, i) => (
-                <p key={i}>{rich(p)}</p>
-              ))}
-            </div>
-            {c.quote && (
-              <blockquote className="mt-8 max-w-3xl border-l-2 border-gold bg-gold/5 py-4 pl-6 pr-4 text-lg font-medium leading-relaxed text-navy">
-                {rich(c.quote)}
-              </blockquote>
-            )}
-          </section>
-        </Reveal>
-
-        {/* ===== 03 方案 ===== */}
-        <Reveal>
-          <section className="border-t border-navy/10 py-14 md:py-16">
-            <span className="text-xs font-extrabold tracking-[0.18em] text-gold-deep">{c.solutionEyebrow}</span>
-            <h2 className="mt-2 max-w-2xl text-2xl font-black leading-snug text-navy md:text-3xl">{rich(c.solutionTitle)}</h2>
-            <p className="mt-4 max-w-3xl text-base leading-relaxed text-mist">{rich(c.solutionLead)}</p>
-
-            <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-              {c.meta.map((m, i) => (
-                <div key={i} className="rounded-2xl border border-gold/25 bg-gradient-to-br from-sand-50 to-cream p-6">
-                  <div className="text-xs font-semibold uppercase tracking-wide text-gold-deep">{m.label}</div>
-                  <div className="mt-2 text-2xl font-black text-navy">{m.value}</div>
-                  {m.sub && <div className="mt-1.5 text-xs text-mist">{m.sub}</div>}
-                </div>
-              ))}
-            </div>
-
-            {/* 45 企业主:分红/增值基金两方案(时间轴 + 柱状图)*/}
-            {c.slug === 'business-owner' && <RetirementPlans locale={locale} />}
-
-            {/* 详细保障方案:浅色卡片(保额 + 详细内容)*/}
-            {c.plans && (
-              <div className="mt-6 space-y-5">
-                {c.plans.map((plan, i) => (
-                  <div
-                    key={i}
-                    className="rounded-3xl border border-gold/20 bg-white p-6 shadow-card transition-shadow hover:shadow-cardHover md:p-7"
-                  >
-                    <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
-                      <div className="flex items-start gap-3.5">
-                        <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-gold/20 to-gold/5 text-gold-deep ring-1 ring-gold/25">
-                          <PlanIcon i={i} />
-                        </span>
-                        <div className="min-w-0">
-                          <div className="text-[11px] font-semibold uppercase tracking-wide text-gold-deep/80">{plan.no}</div>
-                          <h4 className="mt-0.5 text-base font-bold leading-snug text-navy">{plan.name}</h4>
-                          <p className="mt-1 text-xs leading-relaxed text-mist">{plan.tagline}</p>
-                        </div>
-                      </div>
-                      <div className="shrink-0 rounded-2xl bg-gold/[0.07] px-4 py-2.5 text-left sm:text-right">
-                        <div className="text-[10px] font-medium uppercase tracking-wide text-mist">{plan.sumLabel}</div>
-                        <div className="text-xl font-black leading-tight text-gold-deep">{plan.sum}</div>
-                        <div className="mt-0.5 text-[11px] text-mist">{plan.price}</div>
-                      </div>
+              <h2 className="report-headline mt-2.5">{en ? 'First, understand the situation' : '先看清他的处境'}</h2>
+              <div className="mt-5 grid gap-3 sm:grid-cols-2">
+                {c.profile.map((card, i) => (
+                  <div key={i} className="report-mini h-full">
+                    <div className="flex items-center gap-2">
+                      <span className="text-lg">{card.icon}</span>
+                      <h4 className="text-sm font-extrabold text-navy">{rich(card.title)}</h4>
                     </div>
-                    <ul className="mt-5 grid gap-x-6 gap-y-3.5 border-t border-gold/15 pt-5 sm:grid-cols-2">
-                      {plan.benefits.map((bn, j) => (
-                        <li key={j} className="flex gap-2.5">
-                          <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-gold/12 text-gold-deep">
-                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12.5l4.5 4.5L19 6.5" /></svg>
-                          </span>
-                          <div className="min-w-0">
-                            <p className="text-sm font-bold text-navy">{rich(bn.b)}</p>
-                            <p className="mt-0.5 text-xs leading-relaxed text-mist">{rich(bn.s)}</p>
-                          </div>
+                    <ul className="report-body mt-3 space-y-2">
+                      {card.items.map((it, j) => (
+                        <li key={j} className="flex gap-2">
+                          <span className="mt-[7px] h-1.5 w-1.5 shrink-0 rounded-full bg-gold" />
+                          <span>{rich(it)}</span>
                         </li>
                       ))}
                     </ul>
                   </div>
                 ))}
               </div>
-            )}
 
-            {!c.plans && c.table && (
-              <div className="mt-8 overflow-hidden rounded-2xl border border-navy/10">
-                <table className="w-full text-left text-sm">
-                  <thead className="bg-navy text-cream">
-                    <tr>
-                      {c.table.head.map((h, i) => (
-                        <th key={i} className="px-5 py-3.5 font-semibold">{h}</th>
-                      ))}
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {c.table.rows.map((row, i) => (
-                      <tr key={i} className={i % 2 ? 'bg-sand-50/60' : 'bg-white'}>
-                        {row.map((cell, j) => (
-                          <td key={j} className={`px-5 py-3.5 text-navy/80 ${j === 0 ? 'font-medium text-navy' : ''}`}>{cell}</td>
+              {/* 保障六边形 */}
+              <div className="report-divider" />
+              <h3 className="report-subhead">
+                {en ? 'Protection hexagon' : '保障六边形'} · {c.hexAfterLabel}
+              </h3>
+              <div className="mt-5 grid items-center gap-8 md:grid-cols-[280px_1fr]">
+                <CaseHexagon
+                  before={c.hexBefore}
+                  after={c.hexAfter}
+                  beforeLabel={c.hexBeforeLabel}
+                  afterLabel={c.hexAfterLabel}
+                  axes={hexAxes}
+                  ariaLabel={en ? 'Protection hexagon: before and after' : '保障六边形：配置前后对比'}
+                />
+                <div>
+                  <p className="report-body">{rich(c.hexNote)}</p>
+                  <div className="mt-5 flex flex-wrap gap-2 text-xs">
+                    {hexAxes.map((axis, i) => {
+                      const lv = c.hexAfter[i];
+                      const status =
+                        lv >= 3 ? (en ? 'Strong' : '充足') : lv === 2 ? (en ? 'Basic' : '基础') : lv === 1 ? (en ? 'Started' : '起步') : en ? 'To add' : '待补';
+                      return (
+                        <span
+                          key={axis}
+                          className={`rounded-full px-3 py-1.5 font-bold ${
+                            lv >= 2
+                              ? 'border border-[#ecdfc0] bg-[#fbf0d3] text-gold-deep'
+                              : lv === 1
+                                ? 'bg-sand-200 text-mist'
+                                : 'bg-navy/5 text-mist/60'
+                          }`}
+                        >
+                          {axis} {status}
+                        </span>
+                      );
+                    })}
+                  </div>
+                </div>
+              </div>
+            </section>
+          </Reveal>
+
+          {/* ===== 02 需求分析 ===== */}
+          <Reveal>
+            <section className="report-panel mt-5">
+              <div className="report-eyebrow">
+                <span className="report-mark">◈</span> {en ? '02 · NEEDS ANALYSIS' : '02 · 需求分析'}
+              </div>
+              <h2 className="report-headline mt-2.5 max-w-2xl">{rich(c.analysisTitle)}</h2>
+              <div className="report-body mt-4 max-w-3xl space-y-3">
+                {c.analysis.map((p, i) => (
+                  <p key={i}>{rich(p)}</p>
+                ))}
+              </div>
+              {c.quote && (
+                <blockquote className="report-summary mt-5 max-w-3xl text-sm font-bold leading-relaxed text-navy">
+                  {rich(c.quote)}
+                </blockquote>
+              )}
+            </section>
+          </Reveal>
+
+          {/* ===== 03 方案 ===== */}
+          <Reveal>
+            <section className="report-panel mt-5">
+              <div className="report-eyebrow">
+                <span className="report-mark">✚</span> {en ? '03 · THE PLAN' : '03 · 规划方案'}
+              </div>
+              <h2 className="report-headline mt-2.5 max-w-2xl">{rich(c.solutionTitle)}</h2>
+              <div className="mt-3.5">
+                <span className="report-chip">
+                  {c.solutionEyebrow.split('·').slice(1).join('·').trim() || c.solutionEyebrow}
+                </span>
+              </div>
+              <p className="report-body mt-3.5 max-w-3xl">{rich(c.solutionLead)}</p>
+
+              {/* 数据卡:beige 为主,最后一项(合计/结论)用深一档的棕金变体 */}
+              <div className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+                {c.meta.map((m, i) => {
+                  const last = i === c.meta.length - 1;
+                  return (
+                    <div key={i} className={`report-stat ${last ? 'report-stat--strong' : ''}`}>
+                      <div className="text-xs text-[#8a7d5f]">{m.label}</div>
+                      <div className={`mt-1.5 text-xl font-extrabold leading-tight ${last ? 'text-[#6b4f1d]' : 'text-gold-deep'}`}>
+                        {m.value}
+                      </div>
+                      {m.sub && <div className="mt-1 text-[11px] leading-snug text-[#8a7d5f]">{m.sub}</div>}
+                    </div>
+                  );
+                })}
+              </div>
+
+              {/* 45 企业主:分红/增值基金两方案(时间轴 + 柱状图)*/}
+              {c.slug === 'business-owner' && <RetirementPlans locale={locale} />}
+
+              {/* 详细保障方案清单 */}
+              {c.plans && (
+                <div className="mt-5 space-y-4">
+                  {c.plans.map((plan, i) => (
+                    <div key={i} className="report-mini p-5 md:p-6">
+                      <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+                        <div className="flex items-start gap-3">
+                          <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-gold/40 bg-gold/15 text-gold-deep">
+                            <PlanIcon i={i} />
+                          </span>
+                          <div className="min-w-0">
+                            <span className="inline-block rounded-lg bg-gold-deep px-3 py-1 text-[11px] font-extrabold tracking-wide text-white">{plan.no}</span>
+                            <h4 className="mt-2 text-base font-extrabold leading-snug text-navy">{plan.name}</h4>
+                            <p className="report-note mt-1">{plan.tagline}</p>
+                          </div>
+                        </div>
+                        <div className="report-stat shrink-0 px-5">
+                          <div className="text-xs text-[#8a7d5f]">{plan.sumLabel}</div>
+                          <div className="mt-1 text-xl font-extrabold leading-tight text-gold-deep">{plan.sum}</div>
+                          <div className="mt-0.5 text-[11px] text-[#8a7d5f]">{plan.price}</div>
+                        </div>
+                      </div>
+                      <ul className="mt-4 grid gap-x-6 gap-y-3 border-t border-[#eeddb4] pt-4 sm:grid-cols-2">
+                        {plan.benefits.map((bn, j) => (
+                          <li key={j} className="flex gap-2.5">
+                            <span className="mt-[7px] h-1.5 w-1.5 shrink-0 rounded-full bg-gold" />
+                            <div className="min-w-0">
+                              <p className="text-sm font-bold text-navy">{rich(bn.b)}</p>
+                              <p className="report-note mt-0.5">{rich(bn.s)}</p>
+                            </div>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  ))}
+                </div>
+              )}
+
+              {!c.plans && c.table && (
+                <div className="mt-5 overflow-x-auto">
+                  <table className="report-table">
+                    <thead>
+                      <tr>
+                        {c.table.head.map((h, i) => (
+                          <th key={i}>{h}</th>
                         ))}
                       </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            )}
-
-            <div className="mt-8 grid gap-4 sm:grid-cols-3">
-              {c.dataChips.map((d, i) => (
-                <div key={i} className="rounded-2xl bg-gradient-to-br from-navy to-navy-deep px-6 py-5 text-cream">
-                  <div className="text-xs text-cream/60">{d.label}</div>
-                  <div className="mt-1.5 text-lg font-bold text-gold-light">{d.value}</div>
+                    </thead>
+                    <tbody>
+                      {c.table.rows.map((row, i) => (
+                        <tr key={i}>
+                          {row.map((cell, j) => (
+                            <td key={j}>{cell}</td>
+                          ))}
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
                 </div>
-              ))}
-            </div>
-          </section>
-        </Reveal>
+              )}
 
-        {/* ===== 重要说明 ===== */}
-        <section className="border-t border-navy/10 py-10">
-          <div className="rounded-2xl border border-navy/10 bg-white/60 p-6">
-            <div className="text-sm font-semibold text-navy">{en ? '⚖️ Important notes' : '⚖️ 重要说明'}</div>
-            <ul className="mt-3 space-y-2 text-xs leading-relaxed text-mist">
+              {/* 数据摘要卡 */}
+              <div className="mt-5 grid gap-3 sm:grid-cols-3">
+                {c.dataChips.map((d, i) => (
+                  <div key={i} className="report-summary">
+                    <div className="text-xs text-[#8a7d5f]">{d.label}</div>
+                    <div className="mt-1 text-base font-extrabold text-gold-deep">{d.value}</div>
+                  </div>
+                ))}
+              </div>
+            </section>
+          </Reveal>
+
+          <div className="report-divider" />
+
+          {/* ===== 重要说明 ===== */}
+          <section className="relative">
+            <h3 className="report-subhead text-sm">{en ? '⚖️ Important notes' : '⚖️ 重要说明'}</h3>
+            <ul className="mt-3 space-y-1.5">
               {disclaimers.map((d, i) => (
-                <li key={i} className="flex gap-2">
-                  <span className="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-gold/60" />
+                <li key={i} className="report-notice flex gap-2">
+                  <span className="mt-[7px] h-1 w-1 shrink-0 rounded-full bg-gold/60" />
                   {d}
                 </li>
               ))}
             </ul>
+          </section>
+
+          {/* ===== 报告落款 ===== */}
+          <div className="mt-9 text-center text-xs tracking-[0.2em] text-[#8a7d5f]">
+            {en ? 'Yuan Yuan SG · Growing richer with you, day by day' : '新加坡小圆姐 · 用专业和耐心，陪你一起日富一日'}
           </div>
-        </section>
-      </article>
+        </article>
+      </div>
 
       {/* ===== CTA · 咖啡主题 ===== */}
-      <section className="container-wide pb-24">
+      <section className="container-wide mt-14 pb-24 md:mt-16">
         <div className="relative overflow-hidden rounded-3xl border border-gold/30 bg-gradient-to-br from-[#f8efe2] via-[#f1e2cd] to-[#e9d6bb] px-8 py-14 text-center shadow-card md:px-12 md:py-16">
           {/* 大咖啡杯线条装饰 */}
           <svg

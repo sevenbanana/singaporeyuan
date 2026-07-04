@@ -73,6 +73,67 @@
     @apply text-3xl font-bold leading-tight text-navy md:text-4xl;
   }
 
+  /* ===== 案例详情「A4 报告」框架:淡米色纸面 + 金边,像从 banner 打印出来的方案书 ===== */
+  /* 纸面:顶部直角贴住 banner,左右下金边 + 圆角 */
+  .report-sheet {
+    @apply relative overflow-hidden rounded-b-[20px] border border-t-0 border-gold/50 bg-[#fdf8ec] px-5 py-9 shadow-card sm:px-8 md:px-12 md:py-12;
+  }
+  /* 面板(01/02/03 每节一块) */
+  .report-panel {
+    @apply relative rounded-xl border border-[#eeddb4] bg-white/60 p-5 md:p-7;
+  }
+  /* 面板标题层级(全页统一,三级):
+     eyebrow(小·金棕引导标签)→ headline(大·面板主标题)→ subhead(中·面板内子块标题) */
+  .report-eyebrow {
+    @apply flex items-center gap-2 text-[13px] font-extrabold tracking-[0.14em] text-gold-deep;
+  }
+  .report-mark { @apply shrink-0 text-gold; }
+  .report-headline {
+    @apply text-xl font-extrabold leading-snug text-navy md:text-[1.35rem];
+  }
+  .report-subhead {
+    @apply text-base font-extrabold leading-snug text-navy;
+  }
+  /* 迷你卡:画像卡 / 说明卡 */
+  .report-mini {
+    @apply rounded-xl border border-[#eeddb4] bg-[#fffdf6] p-4;
+  }
+  /* 胶囊标签 */
+  .report-chip {
+    @apply rounded-full border border-[#ecdfc0] bg-[#fbf0d3] px-3.5 py-1.5 text-xs font-bold text-navy;
+  }
+  /* 数据卡:beige(金调,默认)与 strong(深一档棕金,用于合计/结论) */
+  .report-stat {
+    @apply flex flex-col justify-center rounded-xl border border-[#ecd9a8] bg-[#fdf3dc] px-4 py-4 text-center;
+  }
+  .report-stat--strong {
+    @apply border-[#ddc088] bg-[#f3e7c5];
+  }
+  /* 摘要卡(结论/亮点) */
+  .report-summary {
+    @apply rounded-xl border border-[#e5c98a] bg-[#fbeccb] px-5 py-4;
+  }
+  /* 表格 */
+  .report-table {
+    @apply w-full border-separate border-spacing-0 overflow-hidden rounded-xl border border-[#ecdfc0] bg-[#fffdf6] text-sm;
+  }
+  .report-table thead th {
+    @apply border-b border-[#ecdfc0] bg-[#f5eeda] px-4 py-3 text-center font-extrabold text-[#4a4433];
+  }
+  .report-table thead th:first-child { @apply text-left; }
+  .report-table tbody td {
+    @apply border-b border-[#f0e5c8] px-4 py-3 text-center text-[#54503f];
+  }
+  .report-table tbody tr:last-child td { @apply border-b-0; }
+  .report-table tbody td:first-child { @apply text-left font-semibold text-[#4a3a20]; }
+  /* 正文两档:report-body(阅读文案)/ report-note(微注·提示·免责) */
+  .report-body { @apply text-sm leading-[1.9] text-[#54503f]; }
+  .report-note { @apply text-xs leading-relaxed text-[#8a7d5f]; }
+  /* 分隔线 / 注释 */
+  .report-divider { @apply my-7 h-px bg-[#eeddb4]; }
+  .report-caption { @apply mt-3 text-xs leading-relaxed text-[#8a7d5f]; }
+  .report-notice { @apply text-xs leading-relaxed text-[#8a7d5f]; }
+
   /* 滚动入场:默认隐藏,加 .in 后浮现 */
   .reveal {
     opacity: 0;

@@ -148,18 +148,13 @@ function Home() {
                 const Icon = coreIcons[i];
                 return (
                   <li key={i} className="relative flex items-start gap-5">
-                    <span className="z-10 mt-0.5 flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-gold/40 bg-cream text-sm font-bold text-gold-deep">
-                      {('0' + (i + 1)).slice(-2)}
+                    <span className="z-10 mt-0.5 flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-gold/40 bg-cream text-gold-deep">
+                      <Icon width={20} height={20} />
                     </span>
-                    <div className="flex flex-1 items-start gap-4 text-left">
-                      <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-gold/10 text-gold-deep ring-1 ring-gold/15">
-                        <Icon width={20} height={20} />
-                      </div>
-                      <div className="min-w-0 pt-0.5">
-                        <span className="block text-base font-bold text-gold-deep">{c.name}</span>
-                        <h3 className="mt-1.5 text-base font-bold leading-snug text-navy">{c.question}</h3>
-                        <p className="mt-1.5 text-sm leading-relaxed text-mist">{c.desc}</p>
-                      </div>
+                    <div className="min-w-0 pt-0.5">
+                      <span className="block text-base font-bold text-gold-deep">{c.name}</span>
+                      <h3 className="mt-1.5 text-base font-bold leading-snug text-navy">{c.question}</h3>
+                      <p className="mt-1.5 text-sm leading-relaxed text-mist">{c.desc}</p>
                     </div>
                   </li>
                 );
