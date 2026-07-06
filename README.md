@@ -41,6 +41,24 @@ npm run dev
 
 ---
 
+## 全站密码保护(可随时开关)
+
+网站自带密码门功能,由 Vercel 环境变量 `SITE_PASSWORD` 控制:
+
+**开启密码:**
+1. 登录 vercel.com → 进入项目 → Settings → Environment Variables。
+2. 新增变量:Name 填 `SITE_PASSWORD`,Value 填你想要的密码,环境勾选 Production(或全选)。
+3. 点 Save,然后到 Deployments 页,对最新一次部署点 ⋯ → Redeploy。
+4. 生效后,访客打开任何页面都会先看到密码输入页,输对后 30 天内不用再输。
+
+**修改密码:** 在同一处编辑 `SITE_PASSWORD` 的值,再 Redeploy 即可(所有人需重新输入新密码)。
+
+**取消密码(网站公开):** 删除 `SITE_PASSWORD` 这个变量,再 Redeploy。
+
+⚠️ 没有设置 `SITE_PASSWORD` 时,网站是公开状态,任何人都能访问。
+
+---
+
 ## 表单说明
 
 咨询表单已接入你的 Formspree(form ID: `xnjkpqrz`)。
