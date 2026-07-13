@@ -23,8 +23,8 @@ export default function Navbar() {
     { href: '/about', label: t('about') },
     { href: '/cases', label: t('cases') },
     { href: '/services', label: t('services') },
-    // 小工具暂隐藏:开发完成后取消下一行注释即可上线
-    // { href: '/tools', label: t('tools') },
+    // 小工具与文章统一收进资源中心,/tools 由资源中心内的卡片进入
+    { href: '/resources', label: t('resources') },
     { href: '/consult', label: t('consult') },
   ] as const;
 
