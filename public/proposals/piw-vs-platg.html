@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>20万美元稳健配置 · 两种打开方式</title>
+<style>
+:root{
+  --navy:#1B2A4A;
+  --navy-soft:#2E4068;
+  --navy-tint:#EEF1F7;
+  --gold:#C9A86A;
+  --gold-deep:#A8874C;
+  --gold-tint:#F7F1E4;
+  --ivory:#FBFAF7;
+  --ink:#22293A;
+  --muted:#6B7280;
+  --line:#E4E2DB;
+}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth}
+body{
+  font-family:-apple-system,"PingFang SC","Hiragino Sans GB","Noto Sans SC","Microsoft YaHei",sans-serif;
+  background:var(--ivory);color:var(--ink);line-height:1.7;font-size:15px;
+}
+.wrap{max-width:820px;margin:0 auto;padding:0 16px 64px}
+.serif{font-family:"Songti SC","Noto Serif SC",Georgia,serif}
+
+/* ---------- header ---------- */
+header{
+  background:linear-gradient(160deg,var(--navy) 0%,#24365C 60%,#2C4270 100%);
+  color:#fff;padding:44px 16px 40px;position:relative;overflow:hidden;
+}
+header::after{content:"";position:absolute;right:-70px;top:-70px;width:260px;height:260px;border-radius:50%;border:1px solid rgba(201,168,106,.35)}
+header::before{content:"";position:absolute;right:-30px;top:-30px;width:170px;height:170px;border-radius:50%;border:1px solid rgba(201,168,106,.5)}
+.hd-in{max-width:820px;margin:0 auto;position:relative;z-index:1}
+.eyebrow{font-size:12px;letter-spacing:.3em;color:var(--gold);margin-bottom:12px}
+h1{font-size:27px;font-weight:600;line-height:1.45;letter-spacing:.02em}
+h1 em{font-style:normal;color:var(--gold)}
+.hd-sub{margin-top:12px;font-size:14px;color:rgba(255,255,255,.82)}
+.hd-meta{margin-top:16px;font-size:13px;color:rgba(255,255,255,.68);display:flex;flex-wrap:wrap;gap:6px 18px}
+.hd-rate{margin-top:14px;display:inline-block;font-size:12px;color:rgba(255,255,255,.8);background:rgba(201,168,106,.16);border:1px solid rgba(201,168,106,.4);border-radius:20px;padding:5px 14px}
+
+/* ---------- sections ---------- */
+section{margin-top:46px}
+.sec-eyebrow{font-size:12px;letter-spacing:.28em;color:var(--gold-deep);margin-bottom:6px}
+.sec-title{font-size:20px;font-weight:600;color:var(--navy);margin-bottom:4px}
+.sec-sub{font-size:13px;color:var(--muted);margin-bottom:18px}
+
+/* ---------- plan cards ---------- */
+.cards{display:grid;gap:16px}
+@media(min-width:640px){.cards{grid-template-columns:1fr 1fr}}
+.pcard{background:#fff;border:1px solid var(--line);border-radius:16px;padding:22px 20px;border-top:4px solid var(--pc)}
+.pcard .tag{display:inline-block;font-size:11px;letter-spacing:.1em;color:var(--pc);border:1px solid var(--pc);border-radius:20px;padding:2px 10px;margin-bottom:10px}
+.pcard h3{font-size:17px;color:var(--navy);line-height:1.4}
+.pcard .sub{font-size:12px;color:var(--muted);margin:2px 0 14px}
+.krow{display:flex;justify-content:space-between;align-items:baseline;padding:7px 0;border-top:1px dashed var(--line);gap:8px}
+.krow .k{font-size:12px;color:var(--muted);flex-shrink:0}
+.krow .v{font-size:14px;font-weight:600;color:var(--navy);text-align:right}
+.krow .v small{font-weight:400;color:var(--muted);font-size:11px;display:block}
+.v.gold{color:var(--gold-deep)}
+
+/* ---------- ownership note ---------- */
+.ownernote{margin-top:16px;background:var(--gold-tint);border:1px solid #EADFC6;border-radius:14px;padding:16px 18px}
+.ownernote h4{font-size:14px;color:var(--gold-deep);margin-bottom:8px;display:flex;align-items:center;gap:8px}
+.ownernote p{font-size:13px;color:#3B4358;line-height:1.75}
+.ownernote .why{margin-top:10px;display:grid;gap:8px}
+@media(min-width:640px){.ownernote .why{grid-template-columns:1fr 1fr 1fr}}
+.wtile{background:#fff;border:1px solid #EADFC6;border-radius:10px;padding:11px 12px}
+.wtile b{display:flex;align-items:center;gap:6px;font-size:12.5px;color:var(--navy);margin-bottom:3px}
+.wtile span{font-size:12px;color:var(--muted);line-height:1.6}
+
+/* ---------- horizontal timeline ---------- */
+.tl-wrap{background:#fff;border:1px solid var(--line);border-radius:18px;padding:20px 8px 18px;overflow-x:auto;-webkit-overflow-scrolling:touch}
+.tl-side{display:flex;align-items:center;gap:6px;font-size:12.5px;font-weight:600;padding:2px 14px 8px}
+.tl-side.piw{color:var(--navy)}
+.tl-side.pg{color:var(--gold-deep)}
+.tl-grid{display:grid;grid-auto-flow:column;gap:0;min-width:760px;grid-auto-columns:1fr}
+.tl-col{display:flex;flex-direction:column;align-items:stretch;padding:0 6px}
+.tl-top{min-height:128px;display:flex;flex-direction:column;justify-content:flex-end;padding-bottom:10px}
+.tl-bot{min-height:128px;display:flex;flex-direction:column;justify-content:flex-start;padding-top:30px}
+.tl-card{border-radius:11px;padding:10px 11px;font-size:12px;line-height:1.5}
+.tl-card.piw{background:#F3F5FA;border:1px solid #D6DDEA}
+.tl-card.pg{background:var(--gold-tint);border:1px solid #EADFC6}
+.tl-card .lab{font-size:10.5px;color:var(--muted);margin-bottom:1px}
+.tl-card .val{font-size:14px;font-weight:700;color:var(--navy);line-height:1.15}
+.tl-card.pg .val{color:var(--gold-deep)}
+.tl-card .ext{font-size:10.5px;color:var(--muted);margin-top:4px;display:block;line-height:1.5}
+.tl-card .yq{display:inline-block;font-size:10px;font-weight:700;color:var(--gold-deep);background:#fff;border:1px solid #EADFC6;border-radius:9px;padding:0 6px;margin-top:5px}
+.tl-card.piw .yq{color:var(--navy);border-color:#D6DDEA}
+.tl-bar{display:flex;height:6px;border-radius:4px;overflow:hidden;margin:7px 0 4px;background:#EDEBE4}
+.tl-bar i{display:block;height:100%}
+.tl-split{display:flex;justify-content:space-between;font-size:10.5px;font-variant-numeric:tabular-nums;gap:6px}
+.tl-split .a{font-weight:600}
+.tl-split .b{font-weight:600}
+.tl-card.piw .tl-split .a{color:#1B2A4A}.tl-card.piw .tl-split .b{color:#7C8DB0}
+.tl-card.pg .tl-split .a{color:#A8874C}.tl-card.pg .tl-split .b{color:#C2A968}
+.tl-legend{display:flex;flex-wrap:wrap;gap:6px 16px;padding:0 14px 12px;font-size:11px;color:var(--muted)}
+.tl-legend b{display:inline-flex;align-items:center;gap:5px;font-weight:500;color:var(--navy-soft)}
+.tl-legend i{width:16px;height:8px;border-radius:2px;display:inline-block}
+.tl-sched{font-weight:400;color:var(--muted);font-size:11px}
+.tl-axis{position:relative;height:56px;display:flex;align-items:center;justify-content:center}
+.tl-col .tl-axis::before{content:"";position:absolute;left:0;right:0;top:50%;height:2px;background:var(--line)}
+.tl-col:first-child .tl-axis::before{left:50%}
+.tl-col:last-child .tl-axis::before{right:50%}
+.tl-node{position:relative;z-index:1;width:16px;height:16px;border-radius:50%;background:#fff;border:3px solid var(--gold-deep)}
+.tl-node.start{background:var(--navy);border-color:var(--navy)}
+.tl-node.end{background:var(--gold-deep)}
+.tl-tick{position:absolute;top:calc(50% + 15px);left:50%;transform:translateX(-50%);text-align:center;white-space:nowrap}
+.tl-tick .yr{font-size:13.5px;font-weight:700;color:var(--navy);line-height:1.1}
+.tl-tick .ag{font-size:11px;color:var(--muted)}
+.tl-hint{font-size:11.5px;color:var(--muted);padding:10px 14px 0;line-height:1.7}
+
+/* ---------- comparison table ---------- */
+.tbl-scroll{overflow-x:auto;border:1px solid var(--line);border-radius:14px;background:#fff;-webkit-overflow-scrolling:touch}
+table{width:100%;border-collapse:collapse;min-width:520px}
+th,td{padding:12px 12px;font-size:13px;text-align:left;vertical-align:top}
+thead th{background:var(--navy);color:#fff;font-weight:500;font-size:13px;white-space:nowrap}
+tbody tr:nth-child(even){background:var(--navy-tint)}
+tbody td:first-child{font-weight:600;color:var(--navy);white-space:nowrap}
+td .n{font-weight:600;color:var(--navy)}
+td .s{display:block;font-size:11px;color:var(--muted);line-height:1.5;margin-top:2px}
+.hi{color:var(--gold-deep);font-weight:700}
+
+/* ---------- chart ---------- */
+.chart-card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:18px 14px}
+.chart-tools{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:12px}
+.chk{display:flex;align-items:center;gap:6px;font-size:13px;color:var(--navy-soft);cursor:pointer;user-select:none}
+.chk input{accent-color:var(--gold-deep);width:16px;height:16px}
+.chart-note{font-size:12px;color:var(--muted);margin-top:10px;line-height:1.6}
+
+/* ---------- foldable table ---------- */
+details.fold{margin-top:14px;border:1px solid var(--line);border-radius:14px;background:#fff;overflow:hidden}
+details.fold>summary{list-style:none;cursor:pointer;padding:14px 16px;font-size:13.5px;font-weight:600;color:var(--navy);display:flex;align-items:center;gap:8px;background:var(--navy-tint)}
+details.fold>summary::-webkit-details-marker{display:none}
+details.fold>summary .chev{transition:transform .2s;color:var(--gold-deep)}
+details.fold[open]>summary .chev{transform:rotate(90deg)}
+#svTable{min-width:640px}
+#svTable td{text-align:right;font-variant-numeric:tabular-nums;font-size:12.5px}
+#svTable td:first-child{text-align:left}
+#svTable th{font-size:12px}
+#svTable .grp{color:var(--muted);font-size:11px;font-weight:400}
+#svTable td.piwv{background:rgba(27,42,74,.03)}
+#svTable td.pgv{background:rgba(201,168,106,.07)}
+#svTable tr.mile td{font-weight:700}
+.sv-foot{font-size:11.5px;color:var(--muted);line-height:1.7;padding:12px 16px}
+
+/* ---------- split feature ---------- */
+.split-card{background:linear-gradient(150deg,var(--navy) 0%,#243660 100%);border-radius:18px;padding:26px 20px;color:#fff;position:relative;overflow:hidden}
+.split-card h3{color:var(--gold);font-size:18px;margin-bottom:6px;display:flex;align-items:center;gap:9px}
+.split-card p{font-size:13.5px;color:rgba(255,255,255,.85);margin-bottom:14px}
+.split-grid{display:grid;gap:10px;position:relative;z-index:1}
+@media(min-width:560px){.split-grid{grid-template-columns:1fr 1fr}}
+.split-item{background:rgba(255,255,255,.07);border:1px solid rgba(201,168,106,.3);border-radius:12px;padding:13px 14px}
+.split-item b{display:flex;align-items:center;gap:7px;color:var(--gold);font-size:13px;margin-bottom:4px}
+.split-item span{font-size:12.5px;color:rgba(255,255,255,.82);line-height:1.6;display:block}
+
+/* ---------- summary chips ---------- */
+.sd{display:grid;gap:14px}
+@media(min-width:640px){.sd{grid-template-columns:1fr 1fr}}
+.sd-card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px}
+.sd-card h4{font-size:14px;color:var(--navy);margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.sd-list{list-style:none}
+.sd-list li{font-size:13px;color:#3B4358;padding-left:26px;position:relative;margin-bottom:11px;line-height:1.6}
+.sd-list li:last-child{margin-bottom:0}
+.sd-list li svg{position:absolute;left:0;top:1px;width:17px;height:17px}
+.sd-list li b{color:var(--navy)}
+
+/* ---------- fit ---------- */
+.fit{display:grid;gap:14px}
+@media(min-width:640px){.fit{grid-template-columns:1fr 1fr}}
+.fcard{background:#fff;border:1px solid var(--line);border-left:4px solid var(--pc);border-radius:12px;padding:18px}
+.fcard h4{color:var(--navy);font-size:15px;margin-bottom:4px;display:flex;align-items:center;gap:8px}
+.fcard .role{color:var(--pc);font-size:12px;font-weight:500;margin-bottom:12px}
+.fcard ul{list-style:none}
+.fcard li{font-size:13px;color:#3B4358;padding-left:24px;position:relative;margin-bottom:9px;line-height:1.6}
+.fcard li svg{position:absolute;left:0;top:1px;width:16px;height:16px}
+.oneliner{margin-top:18px;font-size:13.5px;color:#3B4358;background:var(--gold-tint);border:1px solid #EADFC6;border-radius:12px;padding:15px 16px;display:flex;gap:11px;align-items:flex-start}
+.oneliner svg{flex-shrink:0;width:20px;height:20px;margin-top:1px}
+.oneliner b{color:var(--gold-deep)}
+
+.disc{background:var(--navy-tint);border-radius:14px;padding:18px;font-size:12px;color:var(--muted);line-height:1.8}
+.disc b{color:var(--navy-soft)}
+
+/* ---------- site footer (与主站统一) ---------- */
+.site-footer{margin-top:56px;border-top:1px solid rgba(201,165,92,.25);background:#f5efe1}
+.site-footer a{color:inherit;text-decoration:none;transition:color .2s}
+.site-footer a:hover{color:#a8843f}
+.sf-in{max-width:820px;margin:0 auto;padding:44px 20px 32px}
+.sf-grid{display:grid;gap:28px}
+@media(min-width:560px){.sf-grid{grid-template-columns:1fr 1fr}}
+@media(min-width:820px){.sf-grid{grid-template-columns:1.2fr 1fr 1fr 1fr}}
+.sf-brand{font-size:18px;font-weight:700;color:#1a2744}
+.sf-tag{margin-top:6px;font-size:13px;color:#a8843f}
+.sf-org{margin-top:14px;font-size:11.5px;line-height:1.8;color:#7a7264}
+.sf-h{font-size:11px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:#a8843f}
+.sf-list{list-style:none;margin-top:12px}
+.sf-list li{font-size:13px;color:rgba(26,39,68,.8);margin-bottom:7px}
+.sf-bottom{margin-top:32px;border-top:1px solid rgba(201,165,92,.25);padding-top:20px;font-size:11.5px;line-height:1.8;color:#7a7264}
+.sf-rights{margin-top:10px}
+
+/* ---------- password gate ---------- */
+body.locked{overflow:hidden}
+body.locked>*:not(#pwGate){visibility:hidden}
+#pwGate{position:fixed;inset:0;z-index:99;display:none;align-items:center;justify-content:center;background:linear-gradient(160deg,#1B2A4A 0%,#24365C 60%,#2C4270 100%);padding:24px;visibility:visible}
+body.locked #pwGate{display:flex}
+.pw-card{width:100%;max-width:360px;background:#fff;border-radius:18px;padding:34px 28px;text-align:center;box-shadow:0 24px 64px rgba(0,0,0,.35)}
+.pw-brand{font-size:11px;letter-spacing:.22em;color:var(--gold-deep);margin-bottom:14px}
+.pw-card h2{font-size:19px;color:var(--navy);margin-bottom:6px}
+.pw-card p{font-size:13px;color:var(--muted);margin-bottom:18px}
+#pwForm{display:flex;gap:8px}
+#pwInput{flex:1;min-width:0;border:1px solid var(--line);border-radius:10px;padding:11px 12px;font-size:15px;text-align:center;letter-spacing:.12em;outline:none;font-family:inherit}
+#pwInput:focus{border-color:var(--gold-deep)}
+#pwForm button{border:0;background:var(--navy);color:#fff;border-radius:10px;padding:11px 18px;font-size:14px;cursor:pointer;font-family:inherit}
+.pw-err{display:none;margin-top:12px;font-size:12px;color:#B4433A}
+.pw-err.show{display:block}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body class="locked">
+
+<div id="pwGate">
+  <div class="pw-card">
+    <div class="pw-brand">新加坡小圆姐 · SINGAPOREYUAN</div>
+    <h2 class="serif">此页面为定制方案</h2>
+    <p>请输入访问密码查看</p>
+    <form id="pwForm">
+      <input id="pwInput" type="password" inputmode="numeric" autocomplete="off" placeholder="访问密码">
+      <button type="submit">进入</button>
+    </form>
+    <div class="pw-err" id="pwErr">密码不正确，请重试</div>
+  </div>
+</div>
+<script>
+(function(){
+  var HASH="029baf44d2031e3d0c2ff8efb4439d57b74dcb9d3add6fb4a99c34eec23ff0ea", KEY="sy_proposal_auth";
+  function sha(s){return crypto.subtle.digest("SHA-256",new TextEncoder().encode(s)).then(function(b){
+    return Array.prototype.map.call(new Uint8Array(b),function(x){return x.toString(16).padStart(2,"0")}).join("");
+  })}
+  try{ if(sessionStorage.getItem(KEY)===HASH){ document.body.classList.remove("locked"); } }catch(e){}
+  document.getElementById("pwForm").addEventListener("submit",function(e){
+    e.preventDefault();
+    var v=document.getElementById("pwInput").value.trim();
+    sha(v).then(function(h){
+      if(h===HASH){
+        try{sessionStorage.setItem(KEY,HASH);}catch(e){}
+        document.body.classList.remove("locked");
+        window.scrollTo(0,0);
+      }else{
+        document.getElementById("pwErr").classList.add("show");
+        document.getElementById("pwInput").select();
+      }
+    });
+  });
+})();
+</script>
+
+<header>
+  <div class="hd-in">
+    <div class="eyebrow">WEALTH PLANNING PROPOSAL</div>
+    <h1 class="serif">20万美元的两种稳健打开方式<br><em>储蓄传承</em>，或 <em>终身年金</em></h1>
+    <div class="hd-sub">同样是AIA美元分红储蓄。一个让钱安静长大、随取随用，一个让钱按月发到孩子120岁。</div>
+    <div class="hd-meta">
+      <span>为师姐定制</span>
+      <span>2026年7月16日</span>
+      <span>AIA Singapore</span>
+    </div>
+    <div class="hd-rate">本页只用较高档演示（储蓄传承 6.25% · 终身年金 5.00%）</div>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <!-- plan cards -->
+  <section>
+    <div class="sec-eyebrow">AT A GLANCE</div>
+    <div class="sec-title serif">同样稳健，两种性格</div>
+    <div class="sec-sub">都是20万美元、都有保证打底。区别在于钱以什么方式回到手上。</div>
+    <div class="cards">
+
+      <div class="pcard" style="--pc:var(--navy)">
+        <span class="tag">方案一 · 储蓄传承</span>
+        <h3>复利美元储蓄传承</h3>
+        <div class="sub">AIA Platinum Infinite Wealth (II) · 分红储蓄寿险 · 单笔 US$200,000 · 被保人为孩子（12岁）</div>
+        <div class="krow"><span class="k">现金流方式</span><span class="v">按需提取<small>第5年起可部分退保，金额和时点自定</small></span></div>
+        <div class="krow"><span class="k">保证回本</span><span class="v gold">第7年末<small>保证退保值达US$200,000（不提取时）</small></span></div>
+        <div class="krow"><span class="k">退保值翻倍</span><span class="v">约第17年（29岁）<small>不提取口径</small></span></div>
+        <div class="krow"><span class="k">保单期限</span><span class="v">最长300年<small>可拆分、可换被保人，能跨代持有</small></span></div>
+      </div>
+
+      <div class="pcard" style="--pc:var(--gold-deep)">
+        <span class="tag">方案二 · 终身年金</span>
+        <h3>美元终身年金</h3>
+        <div class="sub">AIA Platinum Gift for Life Plus · 分红传承寿险 · 单笔 US$200,001 · 被保人为孩子（12岁）</div>
+        <div class="krow"><span class="k">现金流方式</span><span class="v gold">按月自动发放<small>第4年起每年约US$8,208到手，一直发到孩子120岁</small></span></div>
+        <div class="krow"><span class="k">保证月入息</span><span class="v">US$300/月<small>每年US$3,600写进合同，其余为非保证分红</small></span></div>
+        <div class="krow"><span class="k">保证退保值上限</span><span class="v">US$163,601<small>价值主要以每月入息的形式派出</small></span></div>
+        <div class="krow"><span class="k">满期</span><span class="v">孩子120岁<small>第108个保单年度期满收尾</small></span></div>
+      </div>
+
+    </div>
+
+    <div class="ownernote">
+      <h4>
+        <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="#A8874C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8z"/><path d="M3 21v-1a6 6 0 0 1 6-6"/><path d="M16 11h6M19 8v6"/></svg>
+        关于被保人：两份都可以买在孩子名下，也可以买在大人名下
+      </h4>
+      <p>这两份计划书都以孩子（12岁）为被保人来演示。同样的保费，也可以改成以师姐本人为被保人，只是数字会随投保年龄不同而变化。把这类终身型的美元分红储蓄放在孩子名下，通常有三点好处：</p>
+      <div class="why">
+        <div class="wtile"><b><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="#1B2A4A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M2 12h20"/></svg>复利跑得更久</b><span>孩子年纪小，钱在保单里滚存的时间更长，长期总值的差距会被时间放大。</span></div>
+        <div class="wtile"><b><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="#1B2A4A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>保障成本更低</b><span>年纪越小，寿险成本越低，同样保费能留更多在增值上。</span></div>
+        <div class="wtile"><b><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="#1B2A4A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8M2 7h20v5H2zM12 22V7"/></svg>方便传承</b><span>孩子作为被保人，将来直接由孩子接手继续持有，是天然的代际安排。</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- horizontal timeline (withdrawal scenario) -->
+  <section>
+    <div class="sec-eyebrow">SIDE BY SIDE</div>
+    <div class="sec-title serif">同样每年取钱，剩下的价值差多少</div>
+    <div class="sec-sub">两边每年到手的钱差不多。看的是同样取钱之后，保单里还剩多少、总价值涨到哪，以及保本之后累计到这一年的年化收益。</div>
+    <div class="tl-wrap">
+      <div class="tl-side piw">
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="#1B2A4A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 7-7"/><path d="M14 8h6v6"/></svg>
+        方案一 · 储蓄传承　<span class="tl-sched">按需提取：第5至14年每年取 $6,000，第15年起每年取 $8,208（约 $684/月）</span>
+      </div>
+      <div class="tl-legend">
+        <b><i style="background:#1B2A4A"></i>深色 = 退保价值（留在保单里继续复利）</b>
+        <b><i style="background:#7C8DB0"></i>浅色 = 累计到手（已经取现）</b>
+        <b>总价值 = 两者相加　·　年化 = 保本后至该年的内部收益率</b>
+      </div>
+      <div class="tl-grid" id="tlGrid"></div>
+      <div class="tl-side pg">
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="#A8874C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+        方案二 · 终身年金　<span class="tl-sched">每月发放：第4年起每年 $8,208（约 $684/月）</span>
+      </div>
+      <div class="tl-hint">两边每年取出的钱差不多，但储蓄传承保单里剩下的部分继续复利，总价值和年化收益都越往后拉得越开。</div>
+    </div>
+  </section>
+
+  <!-- core comparison -->
+  <section>
+    <div class="sec-eyebrow">CORE COMPARISON</div>
+    <div class="sec-title serif">关键指标对比</div>
+    <div class="tbl-scroll">
+      <table>
+        <thead><tr><th style="width:120px">指标</th><th>方案一 · 储蓄传承</th><th>方案二 · 终身年金</th></tr></thead>
+        <tbody>
+          <tr>
+            <td>每年现金流</td>
+            <td><span class="n">自定（示例第5年起取）</span><span class="s">示例：第5至14年每年US$6,000，第15年起每年US$8,208；不需要就不取</span></td>
+            <td><span class="n gold">约US$8,208（第4年起）</span><span class="s">每月US$300是保证，其余为非保证分红，落袋为安</span></td>
+          </tr>
+          <tr>
+            <td>演示年化回报</td>
+            <td><span class="n hi">5.43% p.a.</span><span class="s">计划书口径：不提取、孩子65岁退保的Illustrated Yield（复利）</span></td>
+            <td><span class="n">约4% p.a.（单利）</span><span class="s">现金每年全部取出，按单利算：US$8,208 ÷ US$200,001 约等于每年4%</span></td>
+          </tr>
+          <tr>
+            <td>满期年化</td>
+            <td><span class="n hi">约5.6% p.a.</span><span class="s">按提取方案持有到演示满期（孩子100岁）的内部收益率</span></td>
+            <td><span class="n">约4.3% p.a.</span><span class="s">按月领取并持有到期满（孩子120岁）的内部收益率</span></td>
+          </tr>
+          <tr>
+            <td>保证回本</td>
+            <td><span class="n hi">第7年末</span><span class="s">保证退保值达到已缴保费的100%，与市场表现无关</span></td>
+            <td><span class="n">靠入息累计</span><span class="s">纯保证退保值上限US$163,601，要连同保证月入息一起算才回本</span></td>
+          </tr>
+          <tr>
+            <td>价值走向</td>
+            <td><span class="n">留在保单里复利</span><span class="s">取出之外的钱继续滚，退保值和总价值长期越走越高</span></td>
+            <td><span class="n">以派发为主</span><span class="s">价值按月发到手，退保值长期维持在较低水平</span></td>
+          </tr>
+          <tr>
+            <td>期限 / 传承</td>
+            <td><span class="n">最长300年</span><span class="s">可换被保人、可拆分，能跨两三代持有</span></td>
+            <td><span class="n">至孩子120岁</span><span class="s">美元版不可更换被保人；传承靠转让保单和身故金</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- total value chart -->
+  <section>
+    <div class="sec-eyebrow">TOTAL VALUE</div>
+    <div class="sec-title serif">保单总价值成长曲线</div>
+    <div class="sec-sub">口径：当年退保价值 + 累计已取到手的现金，单位美元。横轴为孩子年龄。鼠标或手指停在任一年龄，可看到两份保单当年的总价值。</div>
+    <div class="chart-card">
+      <div class="chart-tools">
+        <label class="chk"><input type="checkbox" checked data-line="0"><span style="color:var(--navy)">■</span> 储蓄传承（提取方案）</label>
+        <label class="chk"><input type="checkbox" checked data-line="1"><span style="color:var(--gold-deep)">■</span> 终身年金（月月发放）</label>
+      </div>
+      <canvas id="growthChart"></canvas>
+      <div class="chart-note">两条线都已把取到手的现金加回来，是把两份保单放在同一口径下比较。储蓄传承计划书演示到孩子100岁，之后仍可由孩子接手继续持有；终身年金发到孩子120岁期满。</div>
+    </div>
+
+    <details class="fold">
+      <summary><span class="chev">▶</span> 展开逐年明细表（数据与上图一致）</summary>
+      <div class="tbl-scroll">
+        <table id="svTable">
+          <thead>
+            <tr>
+              <th rowspan="2">保单年 / 孩子年龄</th>
+              <th colspan="3" style="text-align:center">方案一 · 储蓄传承（提取方案）</th>
+              <th colspan="3" style="text-align:center">方案二 · 终身年金（月月发放）</th>
+            </tr>
+            <tr>
+              <th class="grp" style="text-align:right">总价值</th><th class="grp" style="text-align:right">退保价值</th><th class="grp" style="text-align:right">累计到手</th>
+              <th class="grp" style="text-align:right">总价值</th><th class="grp" style="text-align:right">退保价值</th><th class="grp" style="text-align:right">累计到手</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+      <div class="sv-foot">
+        单位美元，取自两份官方计划书的较高档演示。储蓄传承采用计划书的提取方案（第5至14年每年取US$6,000，第15年起每年取US$8,208）；终身年金为每月自动发放，累计到手按每年US$8,208计（保证US$3,600加非保证分红US$4,608）。“总价值”=退保价值+累计到手。储蓄传承演示到第88年（孩子100岁）为止，此后由孩子接手续持；终身年金在第108年（孩子120岁）期满。
+      </div>
+    </details>
+  </section>
+
+  <!-- PIW split -->
+  <section>
+    <div class="split-card">
+      <h3 class="serif">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#C9A86A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M20 4 8.12 15.88M14.47 14.48 20 20M8.12 8.12 12 12"/></svg>
+        储蓄传承的独门功夫：一张会分身的保单
+      </h3>
+      <p>它更像一个可以分割的家庭美元资产池，而不只是一份储蓄险。这是两个方案里最不可替代的部分。</p>
+      <div class="split-grid">
+        <div class="split-item"><b><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="#C9A86A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 14l3-3 3 3 5-6"/></svg>逐年裂变，没有总数上限</b><span>保单满3年后可申请拆分：每份保单每个保单年度可拆1次、每次最多拆4份，拆出来的新保单同样拥有拆分权。</span></div>
+        <div class="split-item"><b><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="#C9A86A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM17 11a4 4 0 1 0 0-8M2 21v-1a6 6 0 0 1 6-6M16 14a6 6 0 0 1 6 6v1"/></svg>各归其主</b><span>拆出的保单可分别指定新的持有人和被保人，两个孩子各一份、自己留一份养老，比例自定。</span></div>
+        <div class="split-item"><b><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="#C9A86A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 1l4 4-4 4M3 11V9a4 4 0 0 1 4-4h14M7 23l-4-4 4-4M21 13v2a4 4 0 0 1-4 4H3"/></svg>接力不中断</b><span>可多次更换被保人、可设第二被保人，保单期最长300年，不因某一代人身故而被迫终止，价值继续滚存。</span></div>
+        <div class="split-item"><b><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="#C9A86A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>提取自主</b><span>不设固定派发，需要时部分退保即可，不需要就让复利安静工作。</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- similarities & differences -->
+  <section>
+    <div class="sec-eyebrow">SUMMARY</div>
+    <div class="sec-title serif">两份配置的同与不同</div>
+    <div class="sd">
+      <div class="sd-card">
+        <h4>
+          <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="#A8874C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+          相同点
+        </h4>
+        <ul class="sd-list">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="#1B2A4A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>都是AIA承保的美元分红储蓄寿险，同一个分红基金体系，受新加坡SDIC保障。</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="#1B2A4A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4M12 18v4M4.9 4.9l2.8 2.8M16.3 16.3l2.8 2.8M2 12h4M18 12h4"/></svg>都免体检、单笔缴清，都有保证利益打底加上非保证红利增值。</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="#1B2A4A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h4l3 8 4-16 3 8h4"/></svg>都含身故保障（不低于101%已缴保费），早期退保都可能亏损，本质都是用时间换确定性。</li>
+        </ul>
+      </div>
+      <div class="sd-card">
+        <h4>
+          <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="#A8874C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h3M16 3h3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-3M12 3v18"/></svg>
+          不同点
+        </h4>
+        <ul class="sd-list">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="#A8874C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg><b>钱怎么回来：</b>储蓄传承不发钱、按需自取，取剩的继续复利；终身年金第4年起按月发，含保证部分。</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="#A8874C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 6v6l4 2"/><circle cx="12" cy="12" r="9"/></svg><b>时间线终点：</b>终身年金到孩子120岁收尾；储蓄传承可拆分、可换被保人，能一直传下去。</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="#A8874C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg><b>确定性侧重：</b>储蓄传承赢在第7年纯保证回本；终身年金赢在每月US$300写进合同、终身兑现。</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- fit -->
+  <section>
+    <div class="sec-eyebrow">WHO FITS WHAT</div>
+    <div class="sec-title serif">分别适合什么情况</div>
+    <div class="fit">
+      <div class="fcard" style="--pc:var(--navy)">
+        <h4>
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#1B2A4A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 7-7"/><path d="M14 8h6v6"/></svg>
+          方案一 · 储蓄传承
+        </h4>
+        <div class="role">这笔钱的下一站是孩子</div>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="#1B2A4A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>短期用不到这20万，想给孩子留一个能拆、能换名、能传代的美元资产池。</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="#1B2A4A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>在意纯保证也能回本这条底线（第7年末100%），又想留住长期复利的空间。</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="#1B2A4A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>提取节奏想自己掌握，可以第5年起按需取，也可以一分不动滚到下一代。</li>
+        </ul>
+      </div>
+      <div class="fcard" style="--pc:var(--gold-deep)">
+        <h4>
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#A8874C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+          方案二 · 终身年金
+        </h4>
+        <div class="role">要一笔看得见的终身收入</div>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="#A8874C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>希望第4年起每年自动到账，其中US$3,600写进合同保证，不用做任何决定。</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="#A8874C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>把它当美元终身收租，发到孩子120岁，人不在了还有101%保费打底的身故金。</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="#A8874C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>能接受长期退保值弹性小于储蓄传承，按月到账的确定感本身就是它卖的东西。</li>
+        </ul>
+      </div>
+    </div>
+    <div class="oneliner">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#A8874C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+      <span><b>一句话：</b>这两份不是二选一，而是“现在的现金流”和“未来的资产池”两个账户。很多家庭的答案是各配一半：终身年金负责按月发钱，储蓄传承负责在后台安静复利、将来拆给孩子。一静一动，刚好互补。</span>
+    </div>
+  </section>
+
+  <!-- disclaimer -->
+  <section>
+    <div class="disc">
+      <b>重要说明：</b>本页为个人整理的对比参考，不构成保险合同的一部分，也不构成投资建议。页面只采用两份官方计划书的较高档演示利率（方案一储蓄传承 PIW 6.25%；方案二终身年金 Plat G 5.00%），演示利率不代表回报的上限或下限，实际以保险公司每年公布的分红为准，非保证部分在某些情况下可能为零。储蓄传承的提取方案（第5至14年每年US$6,000、第15年起每年US$8,208）取自官方Partial Withdrawal Supplementary Illustration；总价值口径为退保价值加累计已提取金额。终身年金的年化回报按单利估算（每年到手约US$8,208 ÷ 保费US$200,001 约等于4%），因为现金每年全部派出、并未留在保单里复利。储蓄传承第7年保证回本以年缴模式、无欠款、无部分退保为条件，提取会相应降低保单价值。保单拆分、更换被保人等操作须符合保险公司届时的条款并获批准。提前退保成本较高，退保所得可能少于已缴保费。详细条款、除外责任及完整数据以政策合同及官方Policy Illustration为准。购买前可通过 www.comparefirst.sg 比较市面产品。
+    </div>
+  </section>
+
+</div>
+
+<footer class="site-footer">
+  <div class="sf-in">
+    <div class="sf-grid">
+      <div>
+        <p class="sf-brand">新加坡小圆姐</p>
+        <p class="sf-tag">用专业和耐心，陪你一起日富一日</p>
+        <p class="sf-org">新加坡资产配置顾问<br>RNF：YY-300823216</p>
+      </div>
+      <div>
+        <p class="sf-h">联系方式</p>
+        <ul class="sf-list">
+          <li>微信：singaporeyuan</li>
+          <li><a href="https://wa.me/6583750190" target="_blank" rel="noopener noreferrer">WhatsApp：+65 8375 0190</a></li>
+          <li><a href="mailto:yuanyuan@aia.com.sg">邮箱：yuanyuan@aia.com.sg</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="sf-h">关注我</p>
+        <ul class="sf-list">
+          <li><a href="https://xhslink.com/m/9KS9V4ytFmj" target="_blank" rel="noopener noreferrer">小红书 · 新加坡小圆姐</a></li>
+          <li><a href="https://xhslink.com/m/2eFS3jpJutg" target="_blank" rel="noopener noreferrer">小红书 · 图文笔记</a></li>
+          <li><a href="https://www.linkedin.com/in/singaporeyuan/" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="sf-h">新加坡小圆姐</p>
+        <ul class="sf-list">
+          <li><a href="/zh/about">关于我</a></li>
+          <li><a href="/zh/cases">规划案例</a></li>
+          <li><a href="/zh/services">业务范围</a></li>
+          <li><a href="/zh/resources">资源中心</a></li>
+          <li><a href="/zh/consult">预约咨询</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="sf-bottom">
+      <p>本网站内容仅供参考，不构成任何投资、保险、法律或税务建议。保险产品涉及条款与风险，部分收益为非保证。具体以保险公司正式文件及相关专业意见为准。</p>
+      <p class="sf-rights">© 2026 袁媛 Yuan Yuan. 版权所有。</p>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<script>
+/* ===== data: high demo rate only (PIW 6.25%, Plat G 5.00%) ===== */
+/* Policy year N -> child age = N + 12. */
+
+/* PIW partial-withdrawal scenario (6.25%): [totalValue, cumWithdraw, surrenderAfter] */
+const PIWWD = {
+ 1:[161584,0,161584],2:[169200,0,169200],3:[178544,0,178544],4:[188381,0,188381],
+ 5:[198178,6000,192178],6:[209045,12000,197045],7:[230911,18000,212911],8:[243598,24000,219598],9:[257988,30000,227988],10:[277671,36000,241671],
+ 11:[289971,42000,247971],12:[302621,48000,254621],13:[316564,54000,262564],14:[331404,60000,271404],15:[346801,68208,278593],
+ 16:[363077,76416,286661],17:[379840,84624,295216],18:[397572,92832,304740],19:[416092,101040,315052],20:[436984,109248,327736],
+ 21:[453546,117456,336090],22:[470902,125664,345238],23:[489107,133872,355235],24:[507347,142080,365267],25:[526204,150288,375916],
+ 26:[545720,158496,387224],27:[565293,166704,398589],28:[585109,174912,410197],29:[605668,183120,422548],30:[634662,191328,443334],
+ 35:[780497,232368,548129],40:[966416,273408,693008],45:[1198619,314448,884171],50:[1515683,355488,1160195],55:[1905314,396528,1508786],
+ 60:[2430631,437568,1993063],65:[3095352,478608,2616744],70:[4008950,519648,3489302],75:[5219304,560688,4658616],80:[6841680,601728,6239952],
+ 85:[9872748,642768,9229980],88:[12228881,667392,11561489]
+};
+/* Plat G total surrender value (5.00%) */
+const PGTSV = {
+ 1:160901,2:161801,3:162701,4:171809,5:174209,6:176309,7:178709,8:181109,9:183509,10:186509,
+ 11:188909,12:191309,13:193709,14:196109,15:198209,16:200609,17:203009,18:205409,19:207809,20:209909,
+ 21:210809,22:212309,23:214109,24:216509,25:219209,26:221609,27:225509,28:230009,29:235409,30:241409,
+ 35:257609,40:283109,45:312809,50:348509,55:395609,60:457409,65:537509,70:641309,75:774209,80:943409,
+ 85:1158509,88:1313909,95:1772309,100:2201609,105:2738909,108:3123509
+};
+const pgCash  = n => n>=4 ? 8208*(n-3) : 0;                 // cumulative cash paid out
+const pgSV    = n => PGTSV[n]!=null ? PGTSV[n] : null;
+const pgTotal = n => PGTSV[n]!=null ? PGTSV[n]+pgCash(n) : null;
+
+const fmt  = n => "$"+Math.round(n).toLocaleString("en-US");
+const cage = y => y+12;
+
+/* ---- internal rate of return (annualised, if surrendered at year N) ---- */
+function irr(cf){
+  let r=0.05;
+  for(let i=0;i<120;i++){
+    let f=0,df=0;
+    for(let t=0;t<cf.length;t++){ f+=cf[t]/Math.pow(1+r,t); df+=-t*cf[t]/Math.pow(1+r,t+1); }
+    const nr=r-f/df; if(!isFinite(nr))break; if(Math.abs(nr-r)<1e-8){r=nr;break;} r=nr;
+  }
+  return r;
+}
+function piwIRR(N){ const cf=[-200000]; for(let t=1;t<=N;t++){ cf.push((t>=5&&t<=14)?6000:(t>=15?8208:0)); } cf[N]+=PIWWD[N][2]; return irr(cf); }
+function pgIRR(N){ const cf=[-200001]; for(let t=1;t<=N;t++){ cf.push(t>=4?8208:0); } cf[N]+=PGTSV[N]; return irr(cf); }
+const pct = r => (r*100).toFixed(1)+"%";
+
+/* ---- timeline ---- */
+const TL = [
+  {y:0,  label:"投保 · 12岁", node:"start"},
+  {y:15, label:"孩子27岁",    node:""},
+  {y:30, label:"孩子42岁",    node:""},
+  {y:50, label:"孩子62岁",    node:""},
+  {y:70, label:"孩子82岁",    node:""},
+  {y:88, label:"孩子100岁",   node:"end"}
+];
+function card(cls,total,surr,cash,yieldPct){
+  const a=Math.max(4,Math.round(surr/total*100)), b=100-a;
+  return '<div class="tl-card '+cls+'">'
+    +'<div class="val">'+fmt(total)+'</div>'
+    +'<span class="yq">年化 '+yieldPct+'</span>'
+    +'<div class="tl-bar"><i class="a" style="width:'+a+'%;background:'+(cls==="piw"?"#1B2A4A":"#A8874C")+'"></i>'
+      +'<i class="b" style="width:'+b+'%;background:'+(cls==="piw"?"#9FB0CE":"#E3D3AC")+'"></i></div>'
+    +'<div class="tl-split"><span class="a">'+fmt(surr)+'</span><span class="b">'+fmt(cash)+'</span></div>'
+    +'</div>';
+}
+function renderTimeline(){
+  const g=document.getElementById("tlGrid"); g.innerHTML="";
+  TL.forEach(m=>{
+    const col=document.createElement("div"); col.className="tl-col";
+    let piwHtml, pgHtml;
+    if(m.y===0){
+      piwHtml='<div class="tl-card piw"><div class="lab">单笔投入</div><div class="val">'+fmt(200000)+'</div></div>';
+      pgHtml ='<div class="tl-card pg"><div class="lab">单笔投入</div><div class="val">'+fmt(200001)+'</div></div>';
+    }else{
+      const p=PIWWD[m.y];
+      piwHtml=card("piw",p[0],p[2],p[1],pct(piwIRR(m.y)));
+      pgHtml =card("pg",pgTotal(m.y),pgSV(m.y),pgCash(m.y),pct(pgIRR(m.y)));
+    }
+    col.innerHTML =
+      '<div class="tl-top">'+piwHtml+'</div>'+
+      '<div class="tl-axis"><div class="tl-node '+m.node+'"></div>'+
+        '<div class="tl-tick"><div class="yr">第'+m.y+'年</div><div class="ag">'+m.label+'</div></div></div>'+
+      '<div class="tl-bot">'+pgHtml+'</div>';
+    g.appendChild(col);
+  });
+}
+
+/* ---- foldable year table ---- */
+const SV_YEARS=[];
+for(let y=1;y<=30;y++) SV_YEARS.push(y);
+[35,40,45,50,55,60,65,70,75,80,85,88,95,100,105,108].forEach(y=>SV_YEARS.push(y));
+function renderTable(){
+  const tb=document.querySelector("#svTable tbody"); tb.innerHTML="";
+  SV_YEARS.forEach(y=>{
+    const tr=document.createElement("tr");
+    if(y===7||y===88||y===108) tr.className="mile";
+    const p=PIWWD[y];
+    let pc1,pc2,pc3;
+    if(p){ pc1=fmt(p[0]); pc2=fmt(p[2]); pc3=fmt(p[1]); }
+    else { pc1='<span style="color:var(--muted)">续持</span>'; pc2='·'; pc3='·'; }
+    const gt=pgTotal(y);
+    const gc1=gt!=null?fmt(gt):'·', gc2=pgSV(y)!=null?fmt(pgSV(y)):'·', gc3=fmt(pgCash(y));
+    tr.innerHTML="<td>第"+y+"年 · "+cage(y)+"岁</td>"
+      +'<td class="piwv">'+pc1+'</td><td class="piwv">'+pc2+'</td><td class="piwv">'+pc3+'</td>'
+      +'<td class="pgv">'+gc1+'</td><td class="pgv">'+gc2+'</td><td class="pgv">'+gc3+'</td>';
+    tb.appendChild(tr);
+  });
+}
+
+/* ---- chart: total value, interactive ---- */
+const CH_YEARS=[1,5,10,15,20,25,30,35,40,45,50,55,60,65,70,75,80,85,88,95,100,105,108];
+let chart;
+function renderChart(){
+  const labels=CH_YEARS.map(y=>cage(y)+"岁");
+  const piw=CH_YEARS.map(y=>PIWWD[y]?PIWWD[y][0]:null);
+  const pg =CH_YEARS.map(y=>pgTotal(y));
+  chart=new Chart(document.getElementById("growthChart"),{
+    type:"line",
+    data:{labels:labels,datasets:[
+      {label:"储蓄传承（提取方案）",data:piw,borderColor:"#1B2A4A",backgroundColor:"#1B2A4A",tension:.35,borderWidth:2.5,pointRadius:2,pointHoverRadius:5,spanGaps:false},
+      {label:"终身年金（月月发放）",data:pg,borderColor:"#A8874C",backgroundColor:"#A8874C",tension:.35,borderWidth:2.5,pointRadius:2,pointHoverRadius:5}
+    ]},
+    options:{
+      responsive:true,maintainAspectRatio:false,
+      interaction:{mode:"index",intersect:false},
+      plugins:{
+        legend:{display:false},
+        tooltip:{backgroundColor:"#1B2A4A",padding:12,cornerRadius:10,titleFont:{size:13},bodyFont:{size:12.5},
+          callbacks:{
+            title:items=>"孩子 "+items[0].label+" · 保单总价值",
+            label:c=>c.parsed.y==null?null:" "+c.dataset.label+"：US$"+Math.round(c.parsed.y).toLocaleString()
+          }
+        }
+      },
+      scales:{
+        x:{grid:{display:false},ticks:{color:"#6B7280",font:{size:11},maxRotation:0,autoSkip:true}},
+        y:{grid:{color:"#EEECE5"},ticks:{color:"#6B7280",font:{size:11},callback:v=>v>=1000000?(v/1000000)+"M":(v/1000)+"k"}}
+      }
+    }
+  });
+}
+
+document.querySelectorAll(".chk input").forEach(c=>{
+  c.addEventListener("change",()=>{chart.setDatasetVisibility(+c.dataset.line,c.checked);chart.update();});
+});
+
+/* set canvas height */
+(function(){
+  const cv=document.getElementById("growthChart");
+  const wrapDiv=document.createElement("div");
+  wrapDiv.style.height="340px"; wrapDiv.style.position="relative";
+  cv.parentNode.insertBefore(wrapDiv,cv); wrapDiv.appendChild(cv);
+})();
+
+renderTimeline();
+renderTable();
+renderChart();
+</script>
+</body>
+</html>
