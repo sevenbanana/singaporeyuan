@@ -2,6 +2,7 @@ import { setRequestLocale } from 'next-intl/server';
 import type { Metadata } from 'next';
 import PageHero, { ContentLayer } from '@/components/PageHero';
 import TaxSavingsCalculator from '@/components/TaxSavingsCalculator';
+import Watermark from '@/components/Watermark';
 
 export async function generateMetadata({
   params,
@@ -23,6 +24,7 @@ export default async function ToolsPage({
 
   return (
     <>
+      <Watermark text={en ? 'Yuan Yuan SG · Tools · For reference only' : '新加坡小圆姐 · 小工具 · 仅供参考'} />
       <PageHero
         eyebrow={en ? 'Tools' : '小工具'}
         title={en ? 'CPF / SRS Tax-Saving Calculator' : 'CPF / SRS 省税计算器'}

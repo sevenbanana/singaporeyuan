@@ -557,6 +557,9 @@ footer{padding:14px 0 56px}
   *{animation:none!important;transition:none!important}
   html{scroll-behavior:auto}
 }
+/* ---------- watermark (与案例页同款) ---------- */
+#wm{position:fixed;inset:0;z-index:9999;pointer-events:none;overflow:hidden;opacity:.0325}
+#wm .row{position:absolute;white-space:nowrap;font-size:20px;color:var(--navy);font-weight:500;letter-spacing:.06em;transform:rotate(-24deg);transform-origin:left center}
 </style>
 </head>
 <body>
@@ -1133,6 +1136,14 @@ function acc(head){
   document.querySelectorAll('.sec-head,.card,.tip,.cost,.tri,.acc,.cmp,.alert-card,.cta').forEach(function(el){
     el.classList.add('rv');io.observe(el);
   });
+})();
+</script>
+<div id="wm" aria-hidden="true"></div>
+<script>
+(function(){
+  var text="新加坡小圆姐　　　singaporeyuan　　　仅供参考　　　　　　";
+  var wm=document.getElementById('wm');var unit=text.repeat(6);
+  for(var i=0;i<16;i++){var d=document.createElement('div');d.className='row';d.textContent=unit;d.style.top=(i*110-120)+'px';d.style.left='-200px';wm.appendChild(d);}
 })();
 </script>
 </body>

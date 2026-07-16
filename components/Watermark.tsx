@@ -8,7 +8,7 @@ export default function Watermark({ text }: { text: string }) {
   return (
     <div
       aria-hidden
-      className="pointer-events-none fixed inset-0 z-30 select-none overflow-hidden opacity-[0.025]"
+      className="pointer-events-none fixed inset-0 z-30 select-none overflow-hidden opacity-[0.0325]"
     >
       {rows.map((_, i) => (
         <div
