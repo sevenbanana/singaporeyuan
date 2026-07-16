@@ -427,6 +427,18 @@ section{padding:64px 0 12px}
 }
 .cost .c-note{font-size:12px;color:var(--gold-deep)}
 
+/* ---------- hospital bills ---------- */
+.bill-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;background:var(--cream);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow)}
+.bill-tbl{width:100%;border-collapse:collapse;min-width:600px}
+.bill-tbl th{background:var(--navy);color:#fff;font-size:13px;font-weight:500;text-align:left;padding:12px 14px;white-space:nowrap}
+.bill-tbl th small{display:block;font-size:11px;color:rgba(255,255,255,.65);font-weight:400;margin-top:2px}
+.bill-tbl td{padding:12px 14px;font-size:13.5px;color:var(--ink);border-top:1px solid var(--line);font-variant-numeric:tabular-nums;white-space:nowrap}
+.bill-tbl td small{display:block;font-size:11.5px;color:#8A93A0;margin-top:1px;font-weight:400}
+.bill-tbl td:first-child{font-weight:700;color:var(--navy)}
+.bill-tbl tr:nth-child(even) td{background:var(--sand)}
+.bill-tbl td.pv{color:var(--gold-deep);font-weight:700;font-family:'Noto Serif SC',serif;font-size:15px}
+.bill-note{font-size:12px;color:#8A93A0;line-height:1.9;margin-top:12px}
+
 /* ---------- tips ---------- */
 .tip{
   display:flex;gap:16px;background:var(--cream);
@@ -621,6 +633,7 @@ footer{padding:14px 0 56px}
     <a href="#emergency"><svg class="ic"><use href="#i-siren"/></svg>急诊</a>
     <a href="#more"><svg class="ic"><use href="#i-leaf"/></svg>中医与康复</a>
     <a href="#cost"><svg class="ic"><use href="#i-coins"/></svg>费用一览</a>
+    <a href="#bills"><svg class="ic"><use href="#i-dollar"/></svg>住院账单</a>
     <a href="#claims"><svg class="ic"><use href="#i-shield"/></svg>理赔贴士</a>
   </div>
 </nav>
@@ -988,12 +1001,51 @@ footer{padding:14px 0 56px}
   </div>
 </section>
 
+<!-- ================= HOSPITAL BILLS ================= -->
+<section id="bills">
+  <div class="sec-head">
+    <div class="sec-badge"><svg class="ic"><use href="#i-dollar"/></svg></div>
+    <div>
+      <div class="sec-num">07 · HOSPITAL BILLS</div>
+      <h2>住院账单，公立和私立差多少</h2>
+      <p>拿六种常见的大病手术做参照，公立用卫生部公布的实际账单中位数，私立用市场常见的整体治疗费用量级，放在一起，帮你对"万一住院要花多少"有个数量级的概念。</p>
+    </div>
+  </div>
+
+  <div class="bill-scroll">
+    <table class="bill-tbl">
+      <thead>
+        <tr>
+          <th>常见病种 / 手术</th>
+          <th>公立 · 补贴后<small>B2/C 病房 · 公民</small></th>
+          <th>公立 · 无补贴<small>A 级病房</small></th>
+          <th>私立 · 整体参考<small>含疗程的常见量级</small></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>肠癌早期<small>结肠切除手术</small></td><td>约 S$6,300</td><td>约 S$24,000</td><td class="pv">约 S$140,000</td></tr>
+        <tr><td>甲状腺癌<small>甲状腺全切手术</small></td><td>约 S$3,500</td><td>约 S$15,400</td><td class="pv">约 S$120,000</td></tr>
+        <tr><td>心脏支架<small>单支血管 PCI</small></td><td>约 S$4,900</td><td>约 S$18,300</td><td class="pv">约 S$100,000</td></tr>
+        <tr><td>心脏搭桥<small>冠状动脉搭桥 CABG</small></td><td>约 S$10,800</td><td>约 S$43,600</td><td class="pv">约 S$200,000</td></tr>
+        <tr><td>中风<small>住院治疗</small></td><td>约 S$2,100</td><td>约 S$7,300</td><td class="pv">约 S$100,000</td></tr>
+        <tr><td>白内障<small>白内障手术</small></td><td>约 S$1,000</td><td>约 S$4,600</td><td class="pv">约 S$20,000</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="bill-note">公立两列取自卫生部（MOH）公布的2023年实际账单中位数（公民、含GST、政府补贴后、保险报销前），口径为单次住院或手术账单：肠癌对应结肠切除、甲状腺癌对应全切手术、心脏支架对应单支血管PCI、中风对应无严重并发症的住院、白内障对应单眼日间手术。私立一列为整体治疗费用的常见参考量级，可能包含检查、手术、住院和后续疗程，口径比单次账单更宽，仅供对照；实际花费因病情、方案和医生而异。</p>
+
+  <div class="card" style="background:var(--gold-soft);border-color:#DEC998;margin-top:14px">
+    <h3 style="color:var(--gold-deep)"><svg class="ic"><use href="#i-shield"/></svg>这张表想说的事</h3>
+    <p>公立的补贴价确实能兜底，代价是排队和病房条件；想要私立的速度、指定医生和单人病房，账单就是另一个量级。这正是住院险的意义：生病时按病情选医院，而不是按存款选医院。</p>
+  </div>
+</section>
+
 <!-- ================= CLAIMS ================= -->
 <section id="claims">
   <div class="sec-head">
     <div class="sec-badge"><svg class="ic"><use href="#i-shield"/></svg></div>
     <div>
-      <div class="sec-num">07 · INSURANCE</div>
+      <div class="sec-num">08 · INSURANCE</div>
       <h2>理赔顺利的七个习惯</h2>
       <p>作为顾问，这是我在无数次理赔跟进里总结出来的经验。养成这些习惯，报销会顺利很多。</p>
     </div>
