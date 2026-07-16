@@ -157,6 +157,17 @@ details.fold[open]>summary .chev{transform:rotate(90deg)}
 #svTable tr.mile td{font-weight:700}
 .sv-foot{font-size:11.5px;color:var(--muted);line-height:1.7;padding:12px 16px}
 
+/* ---------- risk check ---------- */
+.risk-flag{background:#FBF0EC;border:1px solid #EBD6CC;border-radius:14px;padding:16px 18px;margin-top:16px}
+.risk-flag h4{color:#A8523C;font-size:14px;margin-bottom:6px;display:flex;gap:8px;align-items:center}
+.risk-flag p{font-size:13px;color:#3B4358;line-height:1.8}
+.risk-flag b{color:#A8523C}
+.risk-list{list-style:none;margin-top:14px;background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 18px}
+.risk-list li{font-size:13px;color:#3B4358;padding-left:18px;position:relative;margin-bottom:8px;line-height:1.7}
+.risk-list li:last-child{margin-bottom:0}
+.risk-list li::before{content:"";position:absolute;left:2px;top:9px;width:7px;height:7px;border-radius:2px;background:var(--gold)}
+.risk-src{font-size:11.5px;color:var(--muted);margin-top:10px;line-height:1.7}
+
 /* ---------- split feature ---------- */
 .split-card{background:linear-gradient(150deg,var(--navy) 0%,#243660 100%);border-radius:18px;padding:26px 20px;color:#fff;position:relative;overflow:hidden}
 .split-card h3{color:var(--gold);font-size:18px;margin-bottom:6px;display:flex;align-items:center;gap:9px}
@@ -216,6 +227,7 @@ details.fold[open]>summary .chev{transform:rotate(90deg)}
 </head>
 <body>
 
+
 <header>
   <div class="hd-in">
     <div>
@@ -263,7 +275,7 @@ details.fold[open]>summary .chev{transform:rotate(90deg)}
         <div class="krow"><span class="k">现金流方式</span><span class="v">按需提取<small>第5年起可部分退保，金额和时点自定</small></span></div>
         <div class="krow"><span class="k">保证回本</span><span class="v gold">第7年末<small>保证退保值达US$200,000（不提取时）</small></span></div>
         <div class="krow"><span class="k">退保值翻倍</span><span class="v">约第17年（29岁）<small>不提取口径</small></span></div>
-        <div class="krow"><span class="k">满期年化</span><span class="v gold">约5.6% p.a.<small>按提取方案持有到孩子100岁（演示满期）的内部收益率</small></span></div>
+        <div class="krow"><span class="k">满期年化</span><span class="v gold">5.6% / 2.6% / 1.1%<small>依次为较高档、较低档、纯保证。高低档按提取方案持有到孩子100岁的内部收益率（较低档下保单约第58年耗尽，详见文末风险预估）；纯保证为不提取持有到第88年</small></span></div>
         <div class="krow"><span class="k">保单期限</span><span class="v">最长300年<small>可拆分、可换被保人，能跨代持有</small></span></div>
       </div>
 
@@ -274,7 +286,7 @@ details.fold[open]>summary .chev{transform:rotate(90deg)}
         <div class="krow"><span class="k">现金流方式</span><span class="v gold">按月自动发放<small>第4年起自动到账，一直发到孩子120岁</small></span></div>
         <div class="krow"><span class="k">预期每月被动收入</span><span class="v gold">约US$684/月<small>即每年约US$8,208，其中US$300/月为合同保证</small></span></div>
         <div class="krow"><span class="k">保证月入息</span><span class="v">US$300/月<small>每年US$3,600写进合同，其余为非保证分红</small></span></div>
-        <div class="krow"><span class="k">满期年化</span><span class="v gold">约4.3% p.a.<small>按月领取并持有到孩子120岁期满的内部收益率</small></span></div>
+        <div class="krow"><span class="k">满期年化</span><span class="v gold">4.3% / 3.1% / 1.6%<small>依次为较高档、较低档、纯保证。按月领取并持有到孩子120岁期满的内部收益率</small></span></div>
         <div class="krow"><span class="k">满期</span><span class="v">孩子120岁<small>第108个保单年度期满收尾；保证退保值上限US$163,601</small></span></div>
       </div>
 
@@ -404,6 +416,52 @@ details.fold[open]>summary .chev{transform:rotate(90deg)}
     </details>
   </section>
 
+  <!-- risk check -->
+  <section>
+    <div class="sec-eyebrow">RISK CHECK</div>
+    <div class="sec-title serif">风险预估：如果分红不及预期</div>
+    <div class="sec-sub">前文的数字用的是较高档演示（储蓄传承 6.25% · 终身年金 5.00%）。这里把官方计划书的较低档演示和纯保证口径摆出来——红利不保证，实际结果可能落在两档之间，也可能更低。</div>
+
+    <div class="cards">
+      <div class="pcard" style="--pc:var(--navy)">
+        <span class="tag">方案一 · 储蓄传承</span>
+        <h3>较低档 4.25% 与保证口径</h3>
+        <div class="sub">同一份官方计划书的较低档演示（前文为较高档 6.25%）</div>
+        <div class="krow"><span class="k">65岁退保年化</span><span class="v">3.17% p.a.<small>较高档为 5.43%（计划书 Illustrated Yield 口径）</small></span></div>
+        <div class="krow"><span class="k">同样提取 · 第30年退保值</span><span class="v">$141,009<small>较高档为 $443,334</small></span></div>
+        <div class="krow"><span class="k">同样提取 · 第50年退保值</span><span class="v">$58,897<small>较高档为 $1,160,195</small></span></div>
+        <div class="krow"><span class="k">纯保证底线</span><span class="v gold">第7年末100%回本<small>不提取时；第1年退保仅保证 $160,000（约80%保费）</small></span></div>
+      </div>
+
+      <div class="pcard" style="--pc:var(--gold-deep)">
+        <span class="tag">方案二 · 终身年金</span>
+        <h3>较低档 3.50% 与保证口径</h3>
+        <div class="sub">同一份官方计划书的较低档演示（前文为较高档 5.00%）</div>
+        <div class="krow"><span class="k">每年到手</span><span class="v">约 $5,443（$454/月）<small>较高档 $8,208（$684/月）；纯保证 $3,600（$300/月）</small></span></div>
+        <div class="krow"><span class="k">65岁退保年化</span><span class="v">2.66% p.a.<small>较高档为 4.10%</small></span></div>
+        <div class="krow"><span class="k">满期总值（孩子120岁）</span><span class="v">约 $1,347,564<small>较高档约 $3,123,509（含历年入息）</small></span></div>
+        <div class="krow"><span class="k">纯保证口径</span><span class="v gold">约第14年回本<small>保证退保值上限 $163,601 + 每年 $3,600 保证息票累计</small></span></div>
+      </div>
+    </div>
+
+    <div class="risk-flag">
+      <h4>
+        <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="#A8523C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><path d="M12 9v4M12 17h.01"/></svg>
+        最需要知道的一个情景
+      </h4>
+      <p>储蓄传承若长期只达到较低档（4.25%），又坚持按演示计划取钱（第5至14年每年$6,000、第15年起每年$8,208），官方补充演示显示保单价值会逐年消耗，<b>约在第59年（孩子71岁）归零</b>——此前累计已取现约US$42万，是本金的两倍多，不算亏钱，但"留给下一代"的部分就没有了。应对方式也简单：提取本来就是灵活的，分红不及预期的年份少取或不取，保单就能继续滚存。</p>
+    </div>
+
+    <ul class="risk-list">
+      <li>红利与演示价值均为非保证，两档演示利率不代表回报的上限或下限；终期红利占比较高，某些情况下可能为零。</li>
+      <li>提前退保（部分或全部）可能拿回少于已缴保费——两份保单第1年的保证退保值都只有约80%保费，越早退保损失越大。</li>
+      <li>保单以美元计价，以新元衡量的收益会随汇率波动；长期还需考虑通胀对购买力的影响。</li>
+      <li>终身年金不领出的入息若留存公司滚存，滚存利率非保证（计划书演示为2.00%至3.25%）。</li>
+      <li>两份保单均由 AIA Singapore 承保，受新加坡保单持有人保障计划（SDIC）保障。</li>
+    </ul>
+    <p class="risk-src">本板块的较低档与保证数字取自两份官方 Policy Illustration 及 Product Summary（2026年6月版），与前文较高档数据同源、同一提取口径。</p>
+  </section>
+
   <!-- PIW split -->
   <section>
     <div class="split-card">
@@ -490,7 +548,7 @@ details.fold[open]>summary .chev{transform:rotate(90deg)}
   <!-- disclaimer -->
   <section>
     <div class="disc">
-      <b>重要说明：</b>本页为个人整理的对比参考，不构成保险合同的一部分，也不构成投资建议。页面只采用两份官方计划书的较高档演示利率（方案一储蓄传承 PIW 6.25%；方案二终身年金 Plat G 5.00%），演示利率不代表回报的上限或下限，实际以保险公司每年公布的分红为准，非保证部分在某些情况下可能为零。储蓄传承的提取方案（第5至14年每年US$6,000、第15年起每年US$8,208）取自官方Partial Withdrawal Supplementary Illustration；总价值口径为退保价值加累计已提取金额。终身年金的年化回报按单利估算（每年到手约US$8,208 ÷ 保费US$200,001 约等于4%），因为现金每年全部派出、并未留在保单里复利。储蓄传承第7年保证回本以年缴模式、无欠款、无部分退保为条件，提取会相应降低保单价值。保单拆分、更换被保人等操作须符合保险公司届时的条款并获批准。提前退保成本较高，退保所得可能少于已缴保费。详细条款、除外责任及完整数据以政策合同及官方Policy Illustration为准。购买前可通过 www.comparefirst.sg 比较市面产品。
+      <b>重要说明：</b>本页为个人整理的对比参考，不构成保险合同的一部分，也不构成投资建议。页面主体采用两份官方计划书的较高档演示利率（方案一储蓄传承 PIW 6.25%；方案二终身年金 Plat G 5.00%），"风险预估"板块另列较低档演示（4.25%；3.50%）与纯保证口径。演示利率不代表回报的上限或下限，实际以保险公司每年公布的分红为准，非保证部分在某些情况下可能为零。储蓄传承的提取方案（第5至14年每年US$6,000、第15年起每年US$8,208）取自官方Partial Withdrawal Supplementary Illustration；总价值口径为退保价值加累计已提取金额。终身年金的年化回报按单利估算（每年到手约US$8,208 ÷ 保费US$200,001 约等于4%），因为现金每年全部派出、并未留在保单里复利。储蓄传承第7年保证回本以年缴模式、无欠款、无部分退保为条件，提取会相应降低保单价值。保单拆分、更换被保人等操作须符合保险公司届时的条款并获批准。提前退保成本较高，退保所得可能少于已缴保费。详细条款、除外责任及完整数据以政策合同及官方Policy Illustration为准。购买前可通过 www.comparefirst.sg 比较市面产品。
     </div>
   </section>
 
