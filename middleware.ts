@@ -23,6 +23,10 @@ export async function middleware(request: NextRequest) {
 }
 
 export const config = {
-  // 排除密码页本身、验证接口、Next 内部资源和带扩展名的静态文件
-  matcher: ['/((?!password|api/password|_next|.*\\..*).*)'],
+  // 排除密码页本身、验证接口、Next 内部资源和带扩展名的静态文件;
+  // 脱敏案例页虽是静态 .html,但需要站点密码,故单独列入
+  matcher: [
+    '/((?!password|api/password|_next|.*\\..*).*)',
+    '/proposals/piw-vs-platg-case.html',
+  ],
 };
