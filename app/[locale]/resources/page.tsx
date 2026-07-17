@@ -41,6 +41,14 @@ const IconCalc = (
   </svg>
 );
 
+const IconPercent = (
+  <svg {...ic}>
+    <path d="M19 5 5 19" />
+    <circle cx="7.5" cy="7.5" r="2.6" />
+    <circle cx="16.5" cy="16.5" r="2.6" />
+  </svg>
+);
+
 const IconSpark = (
   <svg {...ic}>
     <path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M18.4 5.6l-2.1 2.1M7.7 16.3l-2.1 2.1" />
@@ -80,6 +88,17 @@ export default async function ResourcesPage({
         : '看病去哪里、要花多少钱、保险怎么报,一篇讲清楚。GP与Polyclinic对比、专科两条路、急诊分诊、中医与社区医院、费用速查、理赔七个习惯。',
       icon: IconSteth,
       external: '/guides/healthcare.html',
+      cta: en ? 'Read the guide' : '阅读指南',
+    },
+    {
+      key: 'taxguide',
+      tag: en ? 'Guide' : '省税指南',
+      title: en ? 'Singapore Tax-Saving Guide: 24 Ways' : '新加坡省税指南:24个方法',
+      desc: en
+        ? '16 reliefs, 4 deductions, 2 rebates and 2 fixes — tax brackets, an SRS deep-dive and top-up strategy, all on one page. (In Chinese)'
+        : '16个税务减免、4个扣除、2个退税、2个补救错漏,一篇讲清楚。含最新税率表、SRS专题、CPF/SRS充值策略和工具速查。',
+      icon: IconPercent,
+      external: '/guides/tax-savings.html',
       cta: en ? 'Read the guide' : '阅读指南',
     },
     {
