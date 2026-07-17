@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>新加坡省税指南:24个方法 | 新加坡小圆姐</title>
-<meta name="description" content="写给在新加坡工作生活的朋友的省税指南。16个税务减免、4个扣除、2个退税、2个补救,一篇讲清楚,含税率表、SRS专题和充值策略。">
+<meta name="description" content="写给在新加坡工作生活的朋友的省税指南。24个省税方法做成可展开的卡片,含税率表、SRS专题和CPF/SRS充值策略。">
 <link rel="icon" href="/logo-mark.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -560,6 +560,42 @@ footer{padding:14px 0 56px}
 /* ---------- watermark (与案例页同款) ---------- */
 #wm{position:fixed;inset:0;z-index:9999;pointer-events:none;overflow:hidden;opacity:.0325}
 #wm .row{position:absolute;white-space:nowrap;font-size:20px;color:var(--navy);font-weight:500;letter-spacing:.06em;transform:rotate(-24deg);transform-origin:left center}
+
+/* ---------- tax guide: interactive method cards ---------- */
+.tfold{margin-top:14px;background:var(--cream);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden}
+.tfold>summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:9px;padding:15px 18px;font-size:14px;font-weight:700;color:var(--navy)}
+.tfold>summary::-webkit-details-marker{display:none}
+.tfold>summary .ic{width:17px;height:17px;color:var(--gold-deep)}
+.tfold .tf-chev{margin-left:auto;color:var(--gold-deep);transition:transform .2s;font-size:12px}
+.tfold[open] .tf-chev{transform:rotate(180deg)}
+.filter{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px}
+.filter button{border:1px solid var(--line);background:var(--cream);border-radius:20px;padding:7px 15px;font-size:12.5px;color:var(--navy-soft);cursor:pointer;font-family:inherit;transition:all .15s}
+.filter button.on{background:var(--navy);border-color:var(--navy);color:#fff;font-weight:600}
+.mgrid{display:grid;grid-template-columns:1fr;gap:10px;align-items:start}
+@media(min-width:540px){.mgrid{grid-template-columns:1fr 1fr}}
+@media(min-width:860px){.mgrid{grid-template-columns:1fr 1fr 1fr}}
+.mcard{background:var(--cream);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden}
+.mcard.hot{border-color:#DEC998;background:#FBF7EC}
+.mcard-head{display:block;width:100%;text-align:left;border:0;background:transparent;padding:14px 15px 12px;cursor:pointer;font-family:inherit}
+.m-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:9px}
+.m-ic{width:34px;height:34px;border-radius:10px;background:var(--gold-soft);color:var(--gold-deep);display:flex;align-items:center;justify-content:center}
+.m-ic .ic{width:17px;height:17px}
+.m-cat{font-size:10.5px;font-weight:700;letter-spacing:.06em;border-radius:9px;padding:2px 8px}
+.c-relief{background:#EDF0F6;color:var(--navy-soft)}
+.c-deduct{background:var(--gold-soft);color:var(--gold-deep)}
+.c-rebate{background:var(--green-soft);color:var(--green)}
+.c-fix{background:var(--alert-soft);color:var(--alert)}
+.m-tt{display:block;font-size:14.5px;font-weight:700;color:var(--navy);line-height:1.45}
+.m-tt small{display:block;font-size:10.5px;color:#8A93A0;font-weight:400;margin-top:1px}
+.m-amt{display:block;margin-top:7px;font-family:'Noto Serif SC',serif;font-size:15px;font-weight:700;color:var(--gold-deep);font-variant-numeric:tabular-nums}
+.m-chev{display:block;margin-top:8px;font-size:11px;color:#8A93A0}
+.mcard.open .m-chev{color:var(--gold-deep)}
+.mcard-body{display:none;padding:0 15px 14px;border-top:1px dashed var(--line);margin:0 0}
+.mcard.open .mcard-body{display:block}
+.mcard-body p{font-size:13px;color:var(--ink);line-height:1.8;margin-top:10px}
+.mcard-body .m-tip{font-size:12.5px;color:var(--gold-deep)}
+.mcard-body .m-who{font-size:11.5px;color:#8A93A0}
+
 </style>
 </head>
 <body>
@@ -609,7 +645,7 @@ footer{padding:14px 0 56px}
       <div class="hero-text">
         <span class="eyebrow">Singapore Tax<span class="eyebrow-zh"> · 省税指南</span></span>
         <h1>在新加坡报税<br>这24招帮你<em>合法少交</em></h1>
-        <p class="sub">16个税务减免、4个税务扣除、2个退税、2个补救错漏。我把整理过的《24个省税方法》图文笔记搬成了网页版，报税季前过一遍，别让该省的钱溜走。</p>
+        <p class="sub">16个减免、4个扣除、2个退税、2个补救。点开你用得上的卡片看细节，报税季前过一遍，别让该省的钱溜走。</p>
         <div class="byline">
           <span class="chip"><svg class="ic"><use href="#i-star"/></svg>小圆姐原创整理</span>
           <span class="chip"><svg class="ic"><use href="#i-cal"/></svg>2026报税季适用</span>
@@ -627,10 +663,7 @@ footer{padding:14px 0 56px}
 <nav class="nav" aria-label="页面导航">
   <div class="nav-scroll">
     <a href="#basics"><svg class="ic"><use href="#i-compass"/></svg>交税基本盘</a>
-    <a href="#reliefs"><svg class="ic"><use href="#i-users"/></svg>16个减免</a>
-    <a href="#deductions"><svg class="ic"><use href="#i-memo"/></svg>4个扣除</a>
-    <a href="#rebates"><svg class="ic"><use href="#i-coins"/></svg>2个退税</a>
-    <a href="#fix"><svg class="ic"><use href="#i-clipboard"/></svg>补救错漏</a>
+    <a href="#methods"><svg class="ic"><use href="#i-stack"/></svg>24个方法</a>
     <a href="#srs"><svg class="ic"><use href="#i-globe"/></svg>SRS专题</a>
     <a href="#strategy"><svg class="ic"><use href="#i-star"/></svg>充值策略</a>
     <a href="#taxtools"><svg class="ic"><use href="#i-dollar"/></svg>工具速查</a>
@@ -645,162 +678,243 @@ footer{padding:14px 0 56px}
     <div class="sec-badge"><svg class="ic"><use href="#i-compass"/></svg></div>
     <div>
       <div class="sec-num">01 · HOW IT WORKS</div>
-      <h2>交税的基本盘，三分钟看懂</h2>
-      <p>先弄清楚谁要交、什么时候交、怎么算，后面的24个方法才知道往哪里用。</p>
+      <h2>交税的基本盘，一分钟看懂</h2>
+      <p>公民、PR，以及在新加坡工作或居住超过183天的外国人，按2025年收入在<b>2026年3月1日至4月18日</b>报税。</p>
     </div>
   </div>
 
   <div class="card">
-    <h3><svg class="ic"><use href="#i-users"/></svg>谁需要在新加坡交税</h3>
-    <p>新加坡公民、永久居民（PR），以及在新加坡工作或居住超过183天（或连续工作超过3年）的外国人。按<b>2025年1月1日至12月31日</b>的应纳税收入，在<b>2026年3月1日至4月18日</b>之间报税。</p>
+    <h3><svg class="ic"><use href="#i-memo"/></svg>一条公式</h3>
+    <p><b>收入 − 扣除（无上限）− 减免（封顶$80,000）= 应纳税收入</b> → 按累进税率算税 → 再减退税 = 实际要交的钱。</p>
+    <p style="margin-top:8px;font-size:13.5px;color:var(--gold-deep)">例：收入$200,000，用$20,000扣除+$80,000减免后只按$100,000计税，应缴税从$21,150降到$5,650，再减$200退税——省了七成多。</p>
   </div>
 
-  <div class="card" style="margin-top:14px">
-    <h3><svg class="ic"><use href="#i-memo"/></svg>税是怎么算出来的</h3>
-    <p>一条公式：<b>个人收入 − 税务扣除（Deductions，没有上限）− 税务减免（Reliefs，封顶$80,000）= 应纳税收入</b>，按累进税率算出应缴税，再减去退税（Rebates），就是最终要交的钱。</p>
-    <p style="margin-top:8px;font-size:13.5px;color:var(--gold-deep)">举个例子：收入$200,000，用了$20,000扣除和$80,000减免后，应纳税收入只剩$100,000，应缴税从$21,150直接降到$5,650，再减$200退税，实际交$5,450——省了七成多。</p>
-  </div>
-
-  <div class="bill-scroll" style="margin-top:14px">
-    <table class="bill-tbl">
-      <thead><tr><th>应纳税收入</th><th>边际税率</th><th>该段税额</th><th>累计应缴</th></tr></thead>
-      <tbody>
-        <tr><td>首 $20,000</td><td>0%</td><td>$0</td><td>$0</td></tr>
-        <tr><td>$20,001 – 30,000</td><td>2%</td><td>$200</td><td>$200</td></tr>
-        <tr><td>$30,001 – 40,000</td><td>3.5%</td><td>$350</td><td>$550</td></tr>
-        <tr><td>$40,001 – 80,000</td><td>7%</td><td>$2,800</td><td>$3,350</td></tr>
-        <tr><td>$80,001 – 120,000</td><td>11.5%</td><td>$4,600</td><td>$7,950</td></tr>
-        <tr><td>$120,001 – 160,000</td><td>15%</td><td>$6,000</td><td>$13,950</td></tr>
-        <tr><td>$160,001 – 200,000</td><td>18%</td><td>$7,200</td><td>$21,150</td></tr>
-        <tr><td>$200,001 – 240,000</td><td>19%</td><td>$7,600</td><td>$28,750</td></tr>
-        <tr><td>$240,001 – 280,000</td><td>19.5%</td><td>$7,800</td><td>$36,550</td></tr>
-        <tr><td>$280,001 – 320,000</td><td>20%</td><td>$8,000</td><td>$44,550</td></tr>
-        <tr><td>$320,001 – 500,000</td><td>22%</td><td>$39,600</td><td>$84,150</td></tr>
-        <tr><td>$500,001 – 1,000,000</td><td>23%</td><td>$115,000</td><td>$199,150</td></tr>
-        <tr><td>$1,000,000 以上</td><td class="pv">24%</td><td>—</td><td>—</td></tr>
-      </tbody>
-    </table>
-  </div>
-  <p class="bill-note">2025估税年起适用的居民累进税率（IRAS）。收入越高、边际税率越高——也意味着同样$1的减免，高收入者省得越多。</p>
-
-  <div class="card" style="background:var(--gold-soft);border-color:#DEC998;margin-top:14px">
-    <h3 style="color:var(--gold-deep)"><svg class="ic"><use href="#i-alert"/></svg>2025年起的新变化</h3>
-    <p>外籍家庭帮佣减免（FDW Levy Relief）和进修课程费减免（Course Fees Relief）已取消；个人收入退税调整为60%、封顶$200。以前靠这两项省税的朋友，记得换思路。</p>
-  </div>
+  <details class="tfold">
+    <summary><svg class="ic"><use href="#i-coins"/></svg>展开完整税率表（居民累进税率）<span class="tf-chev">▾</span></summary>
+    <div class="bill-scroll" style="border:0;box-shadow:none">
+      <table class="bill-tbl">
+        <thead><tr><th>应纳税收入</th><th>边际税率</th><th>该段税额</th><th>累计应缴</th></tr></thead>
+        <tbody>
+          <tr><td>首 $20,000</td><td>0%</td><td>$0</td><td>$0</td></tr>
+          <tr><td>$20,001 – 30,000</td><td>2%</td><td>$200</td><td>$200</td></tr>
+          <tr><td>$30,001 – 40,000</td><td>3.5%</td><td>$350</td><td>$550</td></tr>
+          <tr><td>$40,001 – 80,000</td><td>7%</td><td>$2,800</td><td>$3,350</td></tr>
+          <tr><td>$80,001 – 120,000</td><td>11.5%</td><td>$4,600</td><td>$7,950</td></tr>
+          <tr><td>$120,001 – 160,000</td><td>15%</td><td>$6,000</td><td>$13,950</td></tr>
+          <tr><td>$160,001 – 200,000</td><td>18%</td><td>$7,200</td><td>$21,150</td></tr>
+          <tr><td>$200,001 – 240,000</td><td>19%</td><td>$7,600</td><td>$28,750</td></tr>
+          <tr><td>$240,001 – 280,000</td><td>19.5%</td><td>$7,800</td><td>$36,550</td></tr>
+          <tr><td>$280,001 – 320,000</td><td>20%</td><td>$8,000</td><td>$44,550</td></tr>
+          <tr><td>$320,001 – 500,000</td><td>22%</td><td>$39,600</td><td>$84,150</td></tr>
+          <tr><td>$500,001 – 1,000,000</td><td>23%</td><td>$115,000</td><td>$199,150</td></tr>
+          <tr><td>$1,000,000 以上</td><td class="pv">24%</td><td>—</td><td>—</td></tr>
+        </tbody>
+      </table>
+      <p class="bill-note" style="padding:0 4px 12px">收入越高、边际税率越高——同样$1的减免，高收入者省得越多。2025年起：外籍帮佣与课程费减免已取消。</p>
+    </div>
+  </details>
 </section>
 
-<!-- ================= 02 RELIEFS ================= -->
-<section id="reliefs">
+<!-- ================= 02 METHODS ================= -->
+<section id="methods">
   <div class="sec-head">
-    <div class="sec-badge"><svg class="ic"><use href="#i-users"/></svg></div>
+    <div class="sec-badge"><svg class="ic"><use href="#i-stack"/></svg></div>
     <div>
-      <div class="sec-num">02 · 16 TAX RELIEFS</div>
-      <h2>16个税务减免，可叠加、封顶$80,000</h2>
-      <p>减免直接从应纳税收入里扣。很多是IRAS自动计算的，但主动型的几项（CPF充值、SRS、人寿保险）才是省税空间最大的。</p>
+      <div class="sec-num">02 · 24 WAYS</div>
+      <h2>24个省税方法，点卡片看详情</h2>
+      <p>减免可叠加、总额封顶$80,000；扣除没有上限；退税在算完税后直接抵。带 ⭐ 的是主动型、省税空间最大的三项。</p>
     </div>
   </div>
 
-  <div class="tip"><div class="no"><svg class="ic"><use href="#i-check"/></svg><i>1</i></div><div><h4>工作收入减免 Earned Income Relief</h4><p>只要有工作收入就自动享有：55岁以下$1,000、55–59岁$6,000、60岁以上$8,000（残障人士分别为$4,000/$10,000/$12,000）。IRAS自动计算，不用申报。适用：公民/PR/外国人。</p></div></div>
-  <div class="tip"><div class="no"><svg class="ic"><use href="#i-heart"/></svg><i>2</i></div><div><h4>配偶减免 Spouse Relief · $2,000起</h4><p>配偶年收入低于$8,000可减$2,000，残障配偶$5,500。注意：已被你按配偶申报的人，别人就不能再把TA按父母或兄弟姐妹申报。</p></div></div>
-  <div class="tip"><div class="no"><svg class="ic"><use href="#i-card"/></svg><i>3</i></div><div><h4>雇员CPF减免 CPF Relief for Employees</h4><p>你自己缴的那部分强制CPF自动抵税。相关上限：普通工资月顶$7,400、全年工资顶$102,000、CPF年度限额$37,740。和下面第13项的$8,000现金充值减免不冲突。</p></div></div>
-  <div class="tip"><div class="no"><svg class="ic"><use href="#i-clipboard"/></svg><i>4</i></div><div><h4>自雇CPF减免 CPF Relief for Self-Employed</h4><p>自由职业者自己缴CPF（尤其MediSave）也能减税，额度取三者最小：净收入的37%、$37,740、实际缴交额。记得保存缴交证明，报税时填实际金额。</p></div></div>
-  <div class="tip"><div class="no"><svg class="ic"><use href="#i-shield"/></svg><i>5</i></div><div><h4>国民服役减免 NSman (Self) Relief · $1,500–5,000</h4><p>每年有服役或参加NS活动的新加坡男性自动享有，金额依服役情况$1,500–$5,000。</p></div></div>
-  <div class="tip"><div class="no"><svg class="ic"><use href="#i-shield"/></svg><i>6</i></div><div><h4>服役者配偶减免 NSman (Wife) Relief · $750</h4><p>NSman的妻子可减$750，不影响丈夫本人的NSman减免，夫妻都能享。</p></div></div>
-  <div class="tip"><div class="no"><svg class="ic"><use href="#i-shield"/></svg><i>7</i></div><div><h4>服役者父母减免 NSman (Parent) Relief · 每位$750</h4><p>服役者的父母每位可减$750，双亲可分别申报。</p></div></div>
-  <div class="tip"><div class="no"><svg class="ic"><use href="#i-users"/></svg><i>8</i></div><div><h4>父母 / 残障父母减免 Parent Relief · 最高$14,000</h4><p>赡养父母（同住或定期经济支持）：每位同住$9,000、不同住$5,500；残障父母$14,000/$10,000。同一位父母只能由一个子女申报，兄弟姐妹间先商量好。</p></div></div>
-  <div class="tip"><div class="no"><svg class="ic"><use href="#i-users"/></svg><i>9</i></div><div><h4>祖父母照顾者减免 Grandparent Caregiver Relief · $3,000</h4><p>职场妈妈专属：祖父母帮忙照顾16岁以下的孩子（且祖父母自己不在工作），妈妈可减$3,000。</p></div></div>
-  <div class="tip"><div class="no"><svg class="ic"><use href="#i-heart"/></svg><i>10</i></div><div><h4>兄弟姐妹（残障）减免 Sibling (Disability) Relief · 每位$5,500</h4><p>经济上支持残障兄弟姐妹，每位可减$5,500，照顾两位就是$11,000。每位只能由一人申报，且与父母减免不能对同一人重复申。</p></div></div>
-  <div class="tip"><div class="no"><svg class="ic"><use href="#i-users"/></svg><i>11</i></div><div><h4>子女 / 残障子女减免 QCR / HCR · $4,000起</h4><p>每个孩子$4,000（残障子女$7,500），亲生或领养都算。建议由收入高的一方申报更省；与职场妈妈减免同时申报时，系统会自动分配最划算的组合。</p></div></div>
-  <div class="tip"><div class="no"><svg class="ic"><use href="#i-star"/></svg><i>12</i></div><div><h4>职场母亲子女减免 WMCR · 按收入15%–25%</h4><p>妈妈专属（爸爸不能申），孩子须是公民：第1个孩子减收入的15%、第2个20%、第3个起每个25%。例：妈妈年入$80,000有两娃，可减$28,000。与PTR退税可同享（先减WMCR再抵PTR）。</p></div></div>
-  <div class="tip"><div class="no"><svg class="ic"><use href="#i-coins"/></svg><i>13</i></div><div><h4>CPF现金充值减免 CPF Cash Top-up Relief · 最高$16,000 ⭐</h4><p>给自己的SA/MA/RA充值最多减$8,000，再帮家人（父母/配偶等）充值又减$8,000，存入当年立刻生效。注意：家人须是公民或PR；给年收入超过$5,000的配偶充值不减税。充值入口见文末工具速查。适用：公民/PR。</p></div></div>
-  <div class="tip"><div class="no"><svg class="ic"><use href="#i-pill"/></svg><i>14</i></div><div><h4>MediSave自愿缴交减免 Voluntary MediSave Contributions</h4><p>自愿多缴的MediSave同样抵税，IRAS从CPF系统自动获取记录，年底才补缴也算当年。想再多省一点的，可以考虑这项。适用：公民/PR。</p></div></div>
-  <div class="tip"><div class="no"><svg class="ic"><use href="#i-shield"/></svg><i>15</i></div><div><h4>人寿保险减免 Life Insurance Relief · 最高$5,000 ⭐</h4><p>当年CPF缴交少于$5,000的人，可就自己的人寿保险保费（不含健康/意外/附加险）申报，额度为$5,000减去已缴CPF。<b>没有CPF的外籍人士尤其适用</b>——例如CPF只缴了$2,000，人寿保险最多可减$3,000。</p></div></div>
-  <div class="tip"><div class="no"><svg class="ic"><use href="#i-globe"/></svg><i>16</i></div><div><h4>SRS减免 SRS Relief · 最高$35,700 ⭐</h4><p>往SRS账户存钱当年即减：公民/PR每年上限$15,300，<b>外国人$35,700</b>。收益延税、提取只按50%计税，是打工族省税空间最大的一项。详见下方SRS专题。适用：公民/PR/外国人。</p></div></div>
-</section>
+  <div class="filter" id="mFilter">
+    <button class="on" data-cat="all">全部 24</button>
+    <button data-cat="relief">减免 16</button>
+    <button data-cat="deduct">扣除 4</button>
+    <button data-cat="rebate">退税 2</button>
+    <button data-cat="fix">补救 2</button>
+  </div>
 
-<!-- ================= 03 DEDUCTIONS ================= -->
-<section id="deductions">
-  <div class="sec-head">
-    <div class="sec-badge"><svg class="ic"><use href="#i-memo"/></svg></div>
-    <div>
-      <div class="sec-num">03 · 4 TAX DEDUCTIONS</div>
-      <h2>4个税务扣除，没有上限</h2>
-      <p>扣除不占$80,000减免额度，有对应开销就能扣，关键是留好凭证。</p>
+  <div class="mgrid" id="mGrid">
+
+    <div class="mcard" data-cat="relief"><button class="mcard-head" type="button">
+      <span class="m-top"><span class="m-ic"><svg class="ic"><use href="#i-check"/></svg></span><span class="m-cat c-relief">减免</span></span>
+      <span class="m-tt">工作收入减免<small>Earned Income Relief</small></span>
+      <span class="m-amt">自动 · $1,000 起</span><span class="m-chev">展开详情 ▾</span></button>
+      <div class="mcard-body"><p>只要有工作收入（打工、自雇、做生意）就自动享有：55岁以下$1,000、55–59岁$6,000、60岁以上$8,000；残障人士分别为$4,000 / $10,000 / $12,000。</p><p class="m-tip">IRAS自动计算，不用申报。</p><p class="m-who">✔ 公民 · ✔ PR · ✔ 外国人</p></div>
     </div>
-  </div>
 
-  <div class="card">
-    <h3><svg class="ic"><use href="#i-clinic"/></svg>1 · 出租房开销扣除 Rental Expenses</h3>
-    <p>有出租房产的房东二选一：<b>简化方式</b>按总租金15%直接扣，省事不用收据；或按<b>实际开销</b>申报——房贷利息、物业税、房屋保险、维修、中介费、广告费都算，空置期的合理开销也可扣。例：年租金$60,000，实际开销$11,000 &gt; 简化$9,000，选实际更划算（收据要留5年）。</p>
-  </div>
-  <div class="card" style="margin-top:14px">
-    <h3><svg class="ic"><use href="#i-heart"/></svg>2 · 慈善捐款扣除 Donations · 250%</h3>
-    <p>向政府认可的IPC慈善机构捐款，享<b>2.5倍</b>扣除——捐$1,000等于从应税收入里减$2,500。现金、股票、房产、艺术品都可以，捐款时记得提供NRIC/FIN号码。当年用不完的额度可结转5年。</p>
-  </div>
-  <div class="card" style="margin-top:14px">
-    <h3><svg class="ic"><use href="#i-clipboard"/></svg>3 · 自雇经商开销扣除 Business Expenses</h3>
-    <p>自雇、自由职业、个体户和合伙人：赚取收入过程中的合理业务开销全额可扣——办公租金、设备折旧、专业费用、交通、客户应酬（不含私人部分）、专业协会会费等。收入≤$200,000只需填两行报表（收入总额+开销总额）。</p>
-  </div>
-  <div class="card" style="margin-top:14px">
-    <h3><svg class="ic"><use href="#i-clinic"/></svg>4 · 雇员工作开销扣除 Employment Expenses</h3>
-    <p>上班族自己掏钱、公司没报销的工作开销：居家办公的电费网费差额、客户应酬、专业协会会费、公共交通费（不含私家车）。原则：完全用于工作、非私人用途、未被报销、不重复申报，账单收据留好备查。</p>
-  </div>
-</section>
-
-<!-- ================= 04 REBATES ================= -->
-<section id="rebates">
-  <div class="sec-head">
-    <div class="sec-badge"><svg class="ic"><use href="#i-coins"/></svg></div>
-    <div>
-      <div class="sec-num">04 · 2 TAX REBATES</div>
-      <h2>2个退税，算完税再打折</h2>
-      <p>退税是在算出的应缴税额上直接抵扣，全部由IRAS自动处理，不用申请。</p>
+    <div class="mcard" data-cat="relief"><button class="mcard-head" type="button">
+      <span class="m-top"><span class="m-ic"><svg class="ic"><use href="#i-heart"/></svg></span><span class="m-cat c-relief">减免</span></span>
+      <span class="m-tt">配偶减免<small>Spouse Relief</small></span>
+      <span class="m-amt">$2,000 / 残障 $5,500</span><span class="m-chev">展开详情 ▾</span></button>
+      <div class="mcard-body"><p>在经济上支持配偶、且对方年收入低于$8,000（或有残障）就能减。</p><p class="m-tip">已被你按配偶申报的人，别人就不能再把TA按父母或兄弟姐妹申报。</p><p class="m-who">✔ 公民 · ✔ PR · ✔ 外国人</p></div>
     </div>
-  </div>
 
-  <div class="card">
-    <h3><svg class="ic"><use href="#i-dollar"/></svg>1 · 个人收入退税 Personal Income Tax Rebate</h3>
-    <p>政府财政好的年份主动给的"折扣"，不是每年都有，一旦有就人人自动享受。2025估税年为<b>60%、封顶$200</b>。例：应缴税$2,000，60%是$1,200但封顶$200，实际交$1,800。</p>
-  </div>
-  <div class="card" style="margin-top:14px">
-    <h3><svg class="ic"><use href="#i-heart"/></svg>2 · 新生儿父母退税 Parenthood Tax Rebate · 最高每娃$20,000</h3>
-    <p>宝宝是新加坡公民就有：第1个孩子$5,000、第2个$10,000、第3个起每个$20,000——三个孩子合计$35,000退税额。不是现金，而是存在IRAS账户里逐年自动抵税直到用完；父母可自由分配比例。例：应缴税$3,000、有$5,000退税额，当年免税，剩$2,000明年继续用。</p>
-  </div>
-</section>
-
-<!-- ================= 05 FIX ================= -->
-<section id="fix">
-  <div class="sec-head">
-    <div class="sec-badge"><svg class="ic"><use href="#i-clipboard"/></svg></div>
-    <div>
-      <div class="sec-num">05 · CORRECTIONS</div>
-      <h2>报错了、忘报了，还来得及</h2>
-      <p>很多人报完才想起忘了父母减免、捐款没填。两种情况，两条补救路。</p>
+    <div class="mcard" data-cat="relief"><button class="mcard-head" type="button">
+      <span class="m-top"><span class="m-ic"><svg class="ic"><use href="#i-card"/></svg></span><span class="m-cat c-relief">减免</span></span>
+      <span class="m-tt">雇员CPF减免<small>CPF Relief for Employees</small></span>
+      <span class="m-amt">自动 · 按实缴</span><span class="m-chev">展开详情 ▾</span></button>
+      <div class="mcard-body"><p>你自己缴的那部分强制CPF自动抵税。相关上限：普通工资月顶$7,400、全年工资顶$102,000、CPF年度限额$37,740。</p><p class="m-tip">和第13项的$8,000现金充值减免不冲突，可以都拿。</p><p class="m-who">✔ 公民 · ✔ PR · ✔ 外国人</p></div>
     </div>
-  </div>
 
-  <div class="card">
-    <h3><svg class="ic"><use href="#i-memo"/></svg>还没收到税单（NOA）</h3>
-    <p>直接重新申报：登录 myTax Portal → Individuals → File Income Tax Return，把漏掉的减免加进去，再次提交完整版本即可。</p>
-  </div>
-  <div class="card" style="margin-top:14px">
-    <h3><svg class="ic"><use href="#i-clock"/></svg>已经收到税单</h3>
-    <p>用修改税单：myTax Portal → Individuals → Amend Tax Bill，填上要修改的项目。<b>截止时间是收到税单后30天内</b>。改报时把所有资料一起更新，别只改一项；多缴的税IRAS会在30天内退回。</p>
-  </div>
-  <div class="card" style="background:var(--gold-soft);border-color:#DEC998;margin-top:14px">
-    <h3 style="color:var(--gold-deep)"><svg class="ic"><use href="#i-check"/></svg>补申旧年份也可以</h3>
-    <p>2021年及之后的税务年度，有<b>4年</b>时间可以补申。例如忘了2021年的父母减免，最迟2025年12月31日前都能申请。捐款收据、证明文件记得保留。</p>
+    <div class="mcard" data-cat="relief"><button class="mcard-head" type="button">
+      <span class="m-top"><span class="m-ic"><svg class="ic"><use href="#i-clipboard"/></svg></span><span class="m-cat c-relief">减免</span></span>
+      <span class="m-tt">自雇CPF减免<small>CPF Relief for Self-Employed</small></span>
+      <span class="m-amt">最高 $37,740</span><span class="m-chev">展开详情 ▾</span></button>
+      <div class="mcard-body"><p>自由职业者自己缴CPF（尤其MediSave）也能减税，额度取三者最小：净收入的37%、$37,740、实际缴交额。</p><p class="m-tip">保存缴交证明，报税时要填实际金额。</p><p class="m-who">✔ 公民 · ✔ PR · ✔ 外国人</p></div>
+    </div>
+
+    <div class="mcard" data-cat="relief"><button class="mcard-head" type="button">
+      <span class="m-top"><span class="m-ic"><svg class="ic"><use href="#i-shield"/></svg></span><span class="m-cat c-relief">减免</span></span>
+      <span class="m-tt">国民服役减免<small>NSman (Self) Relief</small></span>
+      <span class="m-amt">$1,500 – 5,000</span><span class="m-chev">展开详情 ▾</span></button>
+      <div class="mcard-body"><p>每年有服役或参加NS活动的新加坡男性自动享有，金额依服役情况而定。</p><p class="m-tip">IRAS自动计算，不用申报。</p><p class="m-who">仅 NSman</p></div>
+    </div>
+
+    <div class="mcard" data-cat="relief"><button class="mcard-head" type="button">
+      <span class="m-top"><span class="m-ic"><svg class="ic"><use href="#i-shield"/></svg></span><span class="m-cat c-relief">减免</span></span>
+      <span class="m-tt">服役者配偶减免<small>NSman (Wife) Relief</small></span>
+      <span class="m-amt">$750</span><span class="m-chev">展开详情 ▾</span></button>
+      <div class="mcard-body"><p>NSman的妻子可减$750。</p><p class="m-tip">不影响丈夫本人的NSman减免，夫妻都能享。</p><p class="m-who">NSman 的配偶</p></div>
+    </div>
+
+    <div class="mcard" data-cat="relief"><button class="mcard-head" type="button">
+      <span class="m-top"><span class="m-ic"><svg class="ic"><use href="#i-shield"/></svg></span><span class="m-cat c-relief">减免</span></span>
+      <span class="m-tt">服役者父母减免<small>NSman (Parent) Relief</small></span>
+      <span class="m-amt">每位 $750</span><span class="m-chev">展开详情 ▾</span></button>
+      <div class="mcard-body"><p>服役者的父母每位可减$750。</p><p class="m-tip">双亲可分别申报。</p><p class="m-who">NSman 的父母</p></div>
+    </div>
+
+    <div class="mcard" data-cat="relief"><button class="mcard-head" type="button">
+      <span class="m-top"><span class="m-ic"><svg class="ic"><use href="#i-users"/></svg></span><span class="m-cat c-relief">减免</span></span>
+      <span class="m-tt">父母 / 残障父母减免<small>Parent Relief</small></span>
+      <span class="m-amt">最高 $14,000</span><span class="m-chev">展开详情 ▾</span></button>
+      <div class="mcard-body"><p>赡养父母（同住或定期经济支持）：每位同住$9,000、不同住$5,500；残障父母$14,000 / $10,000。</p><p class="m-tip">同一位父母只能由一个子女申报，兄弟姐妹先商量好。</p><p class="m-who">✔ 公民 · ✔ PR · ✔ 外国人</p></div>
+    </div>
+
+    <div class="mcard" data-cat="relief"><button class="mcard-head" type="button">
+      <span class="m-top"><span class="m-ic"><svg class="ic"><use href="#i-users"/></svg></span><span class="m-cat c-relief">减免</span></span>
+      <span class="m-tt">祖父母照顾者减免<small>Grandparent Caregiver Relief</small></span>
+      <span class="m-amt">$3,000</span><span class="m-chev">展开详情 ▾</span></button>
+      <div class="mcard-body"><p>职场妈妈专属：祖父母帮忙照顾16岁以下的孩子（或残障孩子），妈妈可减$3,000。</p><p class="m-tip">条件：祖父母自己不在工作。</p><p class="m-who">职场妈妈</p></div>
+    </div>
+
+    <div class="mcard" data-cat="relief"><button class="mcard-head" type="button">
+      <span class="m-top"><span class="m-ic"><svg class="ic"><use href="#i-heart"/></svg></span><span class="m-cat c-relief">减免</span></span>
+      <span class="m-tt">兄弟姐妹（残障）减免<small>Sibling (Disability) Relief</small></span>
+      <span class="m-amt">每位 $5,500</span><span class="m-chev">展开详情 ▾</span></button>
+      <div class="mcard-body"><p>经济上支持残障兄弟姐妹，每位可减$5,500，照顾两位就是$11,000。</p><p class="m-tip">每位只能由一人申报；与父母减免不能对同一人重复申。</p><p class="m-who">✔ 公民 · ✔ PR · ✔ 外国人</p></div>
+    </div>
+
+    <div class="mcard" data-cat="relief"><button class="mcard-head" type="button">
+      <span class="m-top"><span class="m-ic"><svg class="ic"><use href="#i-users"/></svg></span><span class="m-cat c-relief">减免</span></span>
+      <span class="m-tt">子女 / 残障子女减免<small>QCR / HCR</small></span>
+      <span class="m-amt">每娃 $4,000 起</span><span class="m-chev">展开详情 ▾</span></button>
+      <div class="mcard-body"><p>每个孩子$4,000（残障子女$7,500），亲生或领养都算。</p><p class="m-tip">建议由收入高的一方申报更省；与WMCR同报时系统自动分配最划算组合；残障可申请Disability Certification拿更高额度。</p><p class="m-who">✔ 公民 · ✔ PR · ✔ 外国人</p></div>
+    </div>
+
+    <div class="mcard" data-cat="relief"><button class="mcard-head" type="button">
+      <span class="m-top"><span class="m-ic"><svg class="ic"><use href="#i-star"/></svg></span><span class="m-cat c-relief">减免</span></span>
+      <span class="m-tt">职场母亲子女减免<small>WMCR</small></span>
+      <span class="m-amt">收入的 15–25%</span><span class="m-chev">展开详情 ▾</span></button>
+      <div class="mcard-body"><p>妈妈专属（爸爸不能申）：第1个孩子减收入的15%、第2个20%、第3个起每个25%，合计不超过收入100%。例：妈妈年入$80,000有两娃，可减$28,000。</p><p class="m-tip">孩子须是公民；与PTR退税可同享（先减WMCR再抵PTR）。</p><p class="m-who">公民孩子的妈妈</p></div>
+    </div>
+
+    <div class="mcard hot" data-cat="relief"><button class="mcard-head" type="button">
+      <span class="m-top"><span class="m-ic"><svg class="ic"><use href="#i-coins"/></svg></span><span class="m-cat c-relief">减免 ⭐</span></span>
+      <span class="m-tt">CPF现金充值减免<small>CPF Cash Top-up Relief</small></span>
+      <span class="m-amt">最高 $16,000</span><span class="m-chev">展开详情 ▾</span></button>
+      <div class="mcard-body"><p>给自己的SA/MA/RA充值最多减$8,000，再帮家人（父母/配偶等）充值又减$8,000，存入当年立刻生效，和$37,740的CPF年度限额不冲突。</p><p class="m-tip">家人须是公民或PR且有CPF账户；给年收入超过$5,000的配偶充值不减税。充值入口见文末工具速查。</p><p class="m-who">✔ 公民 · ✔ PR · ✘ 外国人</p></div>
+    </div>
+
+    <div class="mcard" data-cat="relief"><button class="mcard-head" type="button">
+      <span class="m-top"><span class="m-ic"><svg class="ic"><use href="#i-pill"/></svg></span><span class="m-cat c-relief">减免</span></span>
+      <span class="m-tt">MediSave自愿缴交减免<small>Voluntary MediSave</small></span>
+      <span class="m-amt">自动 · 按实缴</span><span class="m-chev">展开详情 ▾</span></button>
+      <div class="mcard-body"><p>自愿多缴的MediSave同样抵税，IRAS从CPF系统自动获取记录。</p><p class="m-tip">年底才补缴也算当年；想多省一点可以考虑这项。</p><p class="m-who">✔ 公民 · ✔ PR · ✘ 外国人</p></div>
+    </div>
+
+    <div class="mcard hot" data-cat="relief"><button class="mcard-head" type="button">
+      <span class="m-top"><span class="m-ic"><svg class="ic"><use href="#i-shield"/></svg></span><span class="m-cat c-relief">减免 ⭐</span></span>
+      <span class="m-tt">人寿保险减免<small>Life Insurance Relief</small></span>
+      <span class="m-amt">最高 $5,000</span><span class="m-chev">展开详情 ▾</span></button>
+      <div class="mcard-body"><p>当年CPF缴交少于$5,000的人，可就自己的人寿保险保费（不含健康/意外/附加险）申报，额度=$5,000−已缴CPF。例：CPF只缴了$2,000，人寿保险最多可减$3,000。</p><p class="m-tip">没有CPF的外籍人士尤其适用。</p><p class="m-who">✔ 公民 · ✔ PR · ✔ 外国人（CPF缴交&lt;$5,000者）</p></div>
+    </div>
+
+    <div class="mcard hot" data-cat="relief"><button class="mcard-head" type="button">
+      <span class="m-top"><span class="m-ic"><svg class="ic"><use href="#i-globe"/></svg></span><span class="m-cat c-relief">减免 ⭐</span></span>
+      <span class="m-tt">SRS减免<small>SRS Relief</small></span>
+      <span class="m-amt">最高 $35,700</span><span class="m-chev">展开详情 ▾</span></button>
+      <div class="mcard-body"><p>往SRS账户存钱当年即减：公民/PR每年上限$15,300，外国人$35,700。账户内投资收益延税，63岁后提取只按50%计税。</p><p class="m-tip">打工族省税空间最大的一项，详见下方SRS专题。</p><p class="m-who">✔ 公民 · ✔ PR · ✔ 外国人</p></div>
+    </div>
+
+    <div class="mcard" data-cat="deduct"><button class="mcard-head" type="button">
+      <span class="m-top"><span class="m-ic"><svg class="ic"><use href="#i-clinic"/></svg></span><span class="m-cat c-deduct">扣除</span></span>
+      <span class="m-tt">出租房开销扣除<small>Rental Expenses</small></span>
+      <span class="m-amt">15% 或实际开销</span><span class="m-chev">展开详情 ▾</span></button>
+      <div class="mcard-body"><p>房东二选一：简化方式按总租金15%直接扣、不用收据；或按实际开销申报——房贷利息、物业税、房屋保险、维修、中介费、广告费、空置期合理开销都算。</p><p class="m-tip">例：年租金$60,000，实际开销$11,000 &gt; 简化$9,000，选实际更划算（收据留5年）。两者不能混用。</p><p class="m-who">✔ 公民 · ✔ PR · ✔ 外国人</p></div>
+    </div>
+
+    <div class="mcard" data-cat="deduct"><button class="mcard-head" type="button">
+      <span class="m-top"><span class="m-ic"><svg class="ic"><use href="#i-heart"/></svg></span><span class="m-cat c-deduct">扣除</span></span>
+      <span class="m-tt">慈善捐款扣除<small>Donations</small></span>
+      <span class="m-amt">250%</span><span class="m-chev">展开详情 ▾</span></button>
+      <div class="mcard-body"><p>向政府认可的IPC慈善机构捐款享2.5倍扣除——捐$1,000等于从应税收入里减$2,500。现金、股票、房产、艺术品都可以。</p><p class="m-tip">捐款时要提供NRIC/FIN号码；当年用不完的额度可结转5年。</p><p class="m-who">✔ 公民 · ✔ PR · ✔ 外国人</p></div>
+    </div>
+
+    <div class="mcard" data-cat="deduct"><button class="mcard-head" type="button">
+      <span class="m-top"><span class="m-ic"><svg class="ic"><use href="#i-clipboard"/></svg></span><span class="m-cat c-deduct">扣除</span></span>
+      <span class="m-tt">自雇经商开销扣除<small>Business Expenses</small></span>
+      <span class="m-amt">全额</span><span class="m-chev">展开详情 ▾</span></button>
+      <div class="mcard-body"><p>自雇、自由职业、个体户和合伙人：赚取收入的合理业务开销全额可扣——办公租金、设备折旧、专业费用、交通、客户应酬（不含私人部分）、专业协会会费等。</p><p class="m-tip">收入≤$200,000只需填两行报表（收入总额+开销总额）。</p><p class="m-who">✔ 公民 · ✔ PR · ✔ 外国人</p></div>
+    </div>
+
+    <div class="mcard" data-cat="deduct"><button class="mcard-head" type="button">
+      <span class="m-top"><span class="m-ic"><svg class="ic"><use href="#i-clinic"/></svg></span><span class="m-cat c-deduct">扣除</span></span>
+      <span class="m-tt">雇员工作开销扣除<small>Employment Expenses</small></span>
+      <span class="m-amt">实报实扣</span><span class="m-chev">展开详情 ▾</span></button>
+      <div class="mcard-body"><p>上班族自己掏钱、公司没报销的工作开销：居家办公的电费网费差额、客户应酬、专业协会会费、公共交通费（不含私家车）。</p><p class="m-tip">原则：完全用于工作、非私人用途、未被报销、不重复申报；账单收据留好备查。</p><p class="m-who">✔ 公民 · ✔ PR · ✔ 外国人</p></div>
+    </div>
+
+    <div class="mcard" data-cat="rebate"><button class="mcard-head" type="button">
+      <span class="m-top"><span class="m-ic"><svg class="ic"><use href="#i-dollar"/></svg></span><span class="m-cat c-rebate">退税</span></span>
+      <span class="m-tt">个人收入退税<small>Personal Income Tax Rebate</small></span>
+      <span class="m-amt">60% · 封顶 $200</span><span class="m-chev">展开详情 ▾</span></button>
+      <div class="mcard-body"><p>政府财政好的年份主动给的"折扣"，不是每年都有，一旦有就人人自动享受（2025估税年：60%、封顶$200）。</p><p class="m-tip">例：应缴税$2,000，60%是$1,200但封顶$200，实际交$1,800。无需申请。</p><p class="m-who">✔ 公民 · ✔ PR · ✔ 外国人</p></div>
+    </div>
+
+    <div class="mcard" data-cat="rebate"><button class="mcard-head" type="button">
+      <span class="m-top"><span class="m-ic"><svg class="ic"><use href="#i-heart"/></svg></span><span class="m-cat c-rebate">退税</span></span>
+      <span class="m-tt">新生儿父母退税<small>Parenthood Tax Rebate</small></span>
+      <span class="m-amt">每娃最高 $20,000</span><span class="m-chev">展开详情 ▾</span></button>
+      <div class="mcard-body"><p>宝宝是新加坡公民就有：第1个孩子$5,000、第2个$10,000、第3个起每个$20,000——三个孩子合计$35,000退税额。</p><p class="m-tip">不是现金，存在IRAS账户里逐年自动抵税直到用完；父母可自由分配比例。</p><p class="m-who">公民宝宝的父母</p></div>
+    </div>
+
+    <div class="mcard" data-cat="fix"><button class="mcard-head" type="button">
+      <span class="m-top"><span class="m-ic"><svg class="ic"><use href="#i-memo"/></svg></span><span class="m-cat c-fix">补救</span></span>
+      <span class="m-tt">忘了申报，补报<small>Missed claims</small></span>
+      <span class="m-amt">可追溯 4 年</span><span class="m-chev">展开详情 ▾</span></button>
+      <div class="mcard-body"><p>忘了父母减免、捐款没填？还没收到税单（NOA）的话，登录 myTax Portal → File Income Tax Return 重新提交完整版即可。</p><p class="m-tip">2021年及之后的税务年度有4年可补申：例如忘了2021年的父母减免，最迟2025年12月31日前都能申请。留好收据。</p><p class="m-who">✔ 公民 · ✔ PR · ✔ 外国人</p></div>
+    </div>
+
+    <div class="mcard" data-cat="fix"><button class="mcard-head" type="button">
+      <span class="m-top"><span class="m-ic"><svg class="ic"><use href="#i-clock"/></svg></span><span class="m-cat c-fix">补救</span></span>
+      <span class="m-tt">报错了，改税单<small>Amend Tax Bill</small></span>
+      <span class="m-amt">30 天内</span><span class="m-chev">展开详情 ▾</span></button>
+      <div class="mcard-body"><p>已经收到税单才发现填错？myTax Portal → Amend Tax Bill，填上要修改的项目，截止时间是收到税单后30天内。</p><p class="m-tip">改报时把所有资料一起更新，别只改一项；多缴的税IRAS会在30天内退回。</p><p class="m-who">✔ 公民 · ✔ PR · ✔ 外国人</p></div>
+    </div>
+
   </div>
 </section>
 
-<!-- ================= 06 SRS ================= -->
+<!-- ================= 03 SRS ================= -->
 <section id="srs">
   <div class="sec-head">
     <div class="sec-badge"><svg class="ic"><use href="#i-globe"/></svg></div>
     <div>
-      <div class="sec-num">06 · SRS</div>
+      <div class="sec-num">03 · SRS</div>
       <h2>一文读懂SRS，外国人也能用的省税利器</h2>
-      <p>SRS（补充退休计划）本质是一个有存取条件的个人退休账户，公民、PR、外国人都能在 DBS / OCBC / UOB 任一银行开户。</p>
+      <p>有存取条件的个人退休账户，公民、PR、外国人都能在 DBS / OCBC / UOB 任一银行开户。</p>
     </div>
   </div>
 
@@ -812,21 +926,21 @@ footer{padding:14px 0 56px}
   </div>
 
   <div class="card" style="margin-top:14px">
-    <h3><svg class="ic"><use href="#i-star"/></svg>三大好处 + 一个经典案例</h3>
-    <p>①存入当年直接减税；②账户内投资收益延税；③63岁后分10年提取、每次只有50%计税。案例：袁女士63岁时SRS有$400,000，每年取$40,000、应税只算$20,000——若没有其他收入，正好落在免税额内，<b>10年应纳税额$0</b>。</p>
+    <h3><svg class="ic"><use href="#i-star"/></svg>经典案例：$400,000取10年，税$0</h3>
+    <p>袁女士63岁时SRS有$400,000，每年取$40,000、应税只算$20,000——若没有其他收入，正好落在免税额内，10年应纳税额$0。</p>
   </div>
-  <div class="card" style="margin-top:14px">
-    <h3><svg class="ic"><use href="#i-alert"/></svg>三个提醒</h3>
-    <p>①提前取款要交5%罚金、且全额计入当年应税收入（永久残疾/绝症、外国人账户满10年并永久离境等情况可豁免罚金、按50%计税）。②账户现金利息只有0.05%跑不赢通胀，存进去记得投资——本地人常配置股票/REITs/ETF、保险、基金等。③<b>2026年7月前开户（哪怕只放$1）可锁定63岁的提取年龄</b>，晚开户可能随法定退休年龄上调。</p>
+  <div class="card" style="background:var(--gold-soft);border-color:#DEC998;margin-top:14px">
+    <h3 style="color:var(--gold-deep)"><svg class="ic"><use href="#i-alert"/></svg>三个提醒</h3>
+    <p>① 提前取款交5%罚金且全额计税（永久残疾/绝症、外国人满10年永久离境可豁免）。② 账户现金利息仅0.05%，存进去记得投资。③ <b>2026年7月前开户（哪怕只放$1）可锁定63岁提取年龄</b>。</p>
   </div>
 </section>
 
-<!-- ================= 07 STRATEGY ================= -->
+<!-- ================= 04 STRATEGY ================= -->
 <section id="strategy">
   <div class="sec-head">
     <div class="sec-badge"><svg class="ic"><use href="#i-star"/></svg></div>
     <div>
-      <div class="sec-num">07 · STRATEGY</div>
+      <div class="sec-num">04 · STRATEGY</div>
       <h2>CPF和SRS，充多少才划算</h2>
       <p>按收入水平定顺序，再用计算器精确到自己的数字。</p>
     </div>
@@ -841,16 +955,16 @@ footer{padding:14px 0 56px}
 
   <div class="card" style="background:var(--gold-soft);border-color:#DEC998;margin-top:14px">
     <h3 style="color:var(--gold-deep)"><svg class="ic"><use href="#i-alert"/></svg>两个容易踩的坑</h3>
-    <p>①个人税务减免总额封顶$80,000——高收入的职场妈妈用完WMCR后可能已接近上限，再充值CPF/SRS就没有额外省税效果了，充之前先算一下。②给年收入超过$5,000的配偶充CPF是不减税的。</p>
+    <p>① 减免总额封顶$80,000——高收入职场妈妈用完WMCR后可能已接近上限，再充CPF/SRS没有额外省税效果，充之前先算。② 给年收入超过$5,000的配偶充CPF不减税。</p>
   </div>
 </section>
 
-<!-- ================= 08 TOOLS ================= -->
+<!-- ================= 05 TOOLS ================= -->
 <section id="taxtools">
   <div class="sec-head">
     <div class="sec-badge"><svg class="ic"><use href="#i-dollar"/></svg></div>
     <div>
-      <div class="sec-num">08 · TOOLS</div>
+      <div class="sec-num">05 · TOOLS</div>
       <h2>工具速查，算完就动手</h2>
       <p>从估算到充值，四步一条龙。</p>
     </div>
@@ -885,7 +999,7 @@ footer{padding:14px 0 56px}
 
   <div class="card" style="margin-top:14px">
     <h3><svg class="ic"><use href="#i-chat"/></svg>拿不准的，来聊聊</h3>
-    <p>每个家庭的收入结构、减免组合都不一样，尤其是职场妈妈、自雇人士和外籍朋友，最优解常常不是"全充满"。想算清楚自己的情况，<a href="/zh/consult" style="color:var(--gold-deep);font-weight:600">预约我聊一次</a>，或者先用计算器摸个底。</p>
+    <p>职场妈妈、自雇人士和外籍朋友的最优解常常不是"全充满"。想算清楚自己的情况，<a href="/zh/consult" style="color:var(--gold-deep);font-weight:600">预约我聊一次</a>，或者先用计算器摸个底。</p>
   </div>
 </section>
 
@@ -905,6 +1019,26 @@ footer{padding:14px 0 56px}
   var wm=document.getElementById('wm');var unit=text.repeat(6);
   for(var i=0;i<16;i++){var d=document.createElement('div');d.className='row';d.textContent=unit;d.style.top=(i*110-120)+'px';d.style.left='-200px';wm.appendChild(d);}
 })();
+
+/* 卡片展开/收起 */
+document.querySelectorAll('.mcard-head').forEach(function(btn){
+  btn.addEventListener('click',function(){
+    btn.parentElement.classList.toggle('open');
+    btn.querySelector('.m-chev').textContent = btn.parentElement.classList.contains('open') ? '收起 ▴' : '展开详情 ▾';
+  });
+});
+
+/* 分类筛选 */
+document.querySelectorAll('#mFilter button').forEach(function(b){
+  b.addEventListener('click',function(){
+    document.querySelectorAll('#mFilter button').forEach(function(x){x.classList.remove('on')});
+    b.classList.add('on');
+    var cat=b.dataset.cat;
+    document.querySelectorAll('#mGrid .mcard').forEach(function(c){
+      c.style.display=(cat==='all'||c.dataset.cat===cat)?'':'none';
+    });
+  });
+});
 </script>
 
 </body>
