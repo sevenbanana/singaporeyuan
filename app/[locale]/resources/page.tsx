@@ -95,6 +95,98 @@ export default async function ResourcesPage({
     },
   ];
 
+  // CPF 官方工具箱:中文导航,外链直达 cpf.gov.sg
+  const cpfTools: {
+    zh: string;
+    en2: string;
+    desc: string;
+    url: string;
+    hot?: boolean;
+  }[] = [
+    {
+      zh: en ? 'Top up SA / RA (cash top-up)' : '给 SA / RA 充值',
+      en2: 'Retirement Sum Topping-Up',
+      desc: en
+        ? 'Cash top-ups or OA transfers to your own or loved ones’ Special / Retirement Account, with tax relief. “Make a top-up now” inside.'
+        : '退休储蓄充值入口:给自己或家人的特别/退休账户充现金或转OA,可享税务减免。页面内有官方充值按钮。',
+      url: 'https://www.cpf.gov.sg/member/growing-your-savings/saving-more-with-cpf/top-up-to-enjoy-higher-retirement-payouts',
+      hot: true,
+    },
+    {
+      zh: en ? 'Top up MediSave' : '给 MediSave 充值',
+      en2: 'MediSave Top-Up',
+      desc: en
+        ? 'Top up your MediSave for medical expenses and premiums — also with tax relief. “Make a top-up now” inside.'
+        : '保健储蓄充值入口:MA用来付住院险/终身健保保费和医疗开销,充值同样可抵税。页面内有官方充值按钮。',
+      url: 'https://www.cpf.gov.sg/member/growing-your-savings/saving-more-with-cpf/top-up-your-medisave-savings',
+      hot: true,
+    },
+    {
+      zh: en ? 'Monthly payout estimator' : '退休月入估算器',
+      en2: 'Monthly Payout Estimator',
+      desc: en
+        ? 'Estimate your CPF LIFE monthly payouts from age 65.'
+        : '估算 CPF LIFE 65岁起每月能领多少,规划退休现金流的第一步。',
+      url: 'https://www.cpf.gov.sg/member/tools-and-services/calculators/monthly-payout-estimator',
+    },
+    {
+      zh: en ? 'CPF housing usage calculator' : '购房公积金计算器',
+      en2: 'CPF Housing Usage Calculator',
+      desc: en
+        ? 'How much OA you can use for your home and the impact on retirement.'
+        : '算买房能动用多少 OA、要留多少利息,以及对退休储蓄的影响。',
+      url: 'https://www.cpf.gov.sg/member/tools-and-services/calculators/cpf-housing-usage',
+    },
+    {
+      zh: en ? 'Mortgage calculator' : '房贷计算器',
+      en2: 'Mortgage Calculator',
+      desc: en
+        ? 'Estimate monthly instalments and total interest for your home loan.'
+        : '估算房贷月供和总利息,买房前先心里有数。',
+      url: 'https://www.cpf.gov.sg/member/tools-and-services/calculators/mortgage-calculator',
+    },
+    {
+      zh: en ? 'CPF contribution calculator' : 'CPF 缴交计算器',
+      en2: 'CPF Contribution Calculator',
+      desc: en
+        ? 'Employer + employee CPF contributions on your monthly wage.'
+        : '按月薪算雇主+雇员每月各缴多少公积金。',
+      url: 'https://www.cpf.gov.sg/member/tools-and-services/calculators/cpf-contribution-calculator',
+    },
+    {
+      zh: en ? 'Contribution allocation calculator' : '缴交分配计算器',
+      en2: 'Contribution Allocation Calculator',
+      desc: en
+        ? 'See how each contribution splits into OA, SA and MA.'
+        : '看每月缴交的钱怎么分进 OA / SA / MA 三个账户。',
+      url: 'https://www.cpf.gov.sg/member/tools-and-services/calculators/cpf-contribution-allocation-calculator',
+    },
+    {
+      zh: en ? 'Additional Wage ceiling calculator' : '花红缴交顶限计算器',
+      en2: 'Additional Wage Ceiling Calculator',
+      desc: en
+        ? 'How much of your bonus attracts CPF contributions.'
+        : '算年终花红有多少需要缴公积金(AW顶限)。',
+      url: 'https://www.cpf.gov.sg/member/tools-and-services/calculators/additional-wage-ceiling-calculator',
+    },
+    {
+      zh: en ? 'MediSave / MediShield Life claims' : '住院报销估算器',
+      en2: 'MediSave & MediShield Life Claims Calculator',
+      desc: en
+        ? 'Estimate how much of a hospital bill MediSave and MediShield Life can cover.'
+        : '估算一笔住院账单里,保健储蓄和终身健保能报销多少。',
+      url: 'https://www.cpf.gov.sg/member/tools-and-services/calculators/medisave-medishield-life-claims',
+    },
+    {
+      zh: en ? 'Self-employed MediSave calculator' : '自雇人士 MA 缴交计算器',
+      en2: 'Self-Employed MediSave Contribution Calculator',
+      desc: en
+        ? 'MediSave obligations for the self-employed and business owners.'
+        : '自雇或开公司的朋友,算每年要给 MediSave 缴多少。',
+      url: 'https://www.cpf.gov.sg/member/tools-and-services/calculators/self-employed-medisave-contribution-calculator',
+    },
+  ];
+
   return (
     <>
       <PageHero
@@ -158,6 +250,56 @@ export default async function ResourcesPage({
               );
             })}
           </div>
+
+          {/* CPF 官方工具箱 */}
+          <Reveal delay={160}>
+            <div className="mt-16">
+              <p className="eyebrow">{en ? 'CPF Official Tools' : 'CPF 官方工具'}</p>
+              <h2 className="mt-2 text-xl font-black leading-snug text-navy md:text-2xl">
+                {en ? 'CPF toolbox, with a map' : 'CPF 官方工具箱，中文导航'}
+              </h2>
+              <p className="mt-2 max-w-2xl text-sm leading-[1.9] text-mist">
+                {en
+                  ? 'The most useful calculators and top-up entries on cpf.gov.sg — click through to the official CPF platform (Singpass login needed for some).'
+                  : '公积金官网最常用的计算器和充值入口,配上中文说明,点击直达 CPF 官方平台(部分功能需要 Singpass 登录)。'}
+              </p>
+              <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                {cpfTools.map((t) => (
+                  <a
+                    key={t.url}
+                    href={t.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`card card-hover group flex h-full flex-col p-5 no-underline ${
+                      t.hot ? 'border-gold/50 bg-gold/[0.07]' : ''
+                    }`}
+                  >
+                    <div className="flex items-start justify-between gap-3">
+                      <p className="text-[15px] font-bold leading-snug text-navy">{t.zh}</p>
+                      <svg
+                        width="15"
+                        height="15"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        className="mt-0.5 shrink-0 text-gold-deep transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                      >
+                        <path d="M7 17 17 7M9 7h8v8" />
+                      </svg>
+                    </div>
+                    <p className="mt-1 text-[11px] uppercase tracking-wide text-gold-deep">
+                      {t.hot ? (en ? 'Top-up entry · ' : '充值入口 · ') : ''}
+                      {t.en2}
+                    </p>
+                    <p className="mt-2 flex-1 text-[13px] leading-relaxed text-mist">{t.desc}</p>
+                  </a>
+                ))}
+              </div>
+            </div>
+          </Reveal>
 
           {/* 更多内容预告 + 咨询引导 */}
           <Reveal delay={200}>
