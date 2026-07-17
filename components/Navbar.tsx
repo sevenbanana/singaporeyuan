@@ -23,6 +23,7 @@ export default function Navbar() {
     { href: '/about', label: t('about') },
     { href: '/cases', label: t('cases') },
     { href: '/services', label: t('services') },
+    { href: '/corporate', label: t('corporate') },
     // 小工具与文章统一收进资源中心,/tools 由资源中心内的卡片进入
     { href: '/resources', label: t('resources') },
     { href: '/consult', label: t('consult') },

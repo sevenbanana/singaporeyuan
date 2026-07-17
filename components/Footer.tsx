@@ -121,6 +121,7 @@ export default function Footer() {
               <li className="leading-6"><Link href="/about" className="transition-colors hover:text-gold-deep">{nav('about')}</Link></li>
               <li className="leading-6"><Link href="/cases" className="transition-colors hover:text-gold-deep">{nav('cases')}</Link></li>
               <li className="leading-6"><Link href="/services" className="transition-colors hover:text-gold-deep">{nav('services')}</Link></li>
+              <li className="leading-6"><Link href="/corporate" className="transition-colors hover:text-gold-deep">{nav('corporate')}</Link></li>
               <li className="leading-6"><Link href="/resources" className="transition-colors hover:text-gold-deep">{nav('resources')}</Link></li>
               <li className="leading-6"><Link href="/consult" className="transition-colors hover:text-gold-deep">{nav('consult')}</Link></li>
             </ul>
