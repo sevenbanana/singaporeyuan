@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>新加坡省税指南:24个方法 | 新加坡小圆姐</title>
-<meta name="description" content="写给在新加坡工作生活的朋友的省税指南。24个省税方法做成可展开的卡片,含税率表、SRS专题和CPF/SRS充值策略。">
+<meta name="description" content="写给在新加坡工作生活的朋友的省税指南。24个省税方法做成可展开的卡片,含税率表、SRS专题和CPF/SRS充值策略,依据IRAS最新规则。">
 <link rel="icon" href="/logo-mark.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -568,6 +568,14 @@ footer{padding:14px 0 56px}
 .tfold>summary .ic{width:17px;height:17px;color:var(--gold-deep)}
 .tfold .tf-chev{margin-left:auto;color:var(--gold-deep);transition:transform .2s;font-size:12px}
 .tfold[open] .tf-chev{transform:rotate(180deg)}
+.pgrid{display:grid;grid-template-columns:1fr;gap:10px;margin-bottom:22px}
+@media(min-width:720px){.pgrid{grid-template-columns:1fr 1fr}}
+.persona{display:flex;gap:12px;background:var(--cream);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:15px 16px}
+.persona .p-ic{flex-shrink:0;width:38px;height:38px;border-radius:11px;background:var(--navy);color:#fff;display:flex;align-items:center;justify-content:center}
+.persona .p-ic .ic{width:18px;height:18px}
+.persona h4{font-size:14.5px;color:var(--navy);margin-bottom:4px}
+.persona p{font-size:12.5px;color:var(--ink);line-height:1.75}
+.persona p b{color:var(--gold-deep)}
 .filter{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px}
 .filter button{border:1px solid var(--line);background:var(--cream);border-radius:20px;padding:7px 15px;font-size:12.5px;color:var(--navy-soft);cursor:pointer;font-family:inherit;transition:all .15s}
 .filter button.on{background:var(--navy);border-color:var(--navy);color:#fff;font-weight:600}
@@ -589,12 +597,26 @@ footer{padding:14px 0 56px}
 .m-tt small{display:block;font-size:10.5px;color:#8A93A0;font-weight:400;margin-top:1px}
 .m-amt{display:block;margin-top:7px;font-family:'Noto Serif SC',serif;font-size:15px;font-weight:700;color:var(--gold-deep);font-variant-numeric:tabular-nums}
 .m-chev{display:block;margin-top:8px;font-size:11px;color:#8A93A0}
-.mcard.open .m-chev{color:var(--gold-deep)}
-.mcard-body{display:none;padding:0 15px 14px;border-top:1px dashed var(--line);margin:0 0}
-.mcard.open .mcard-body{display:block}
-.mcard-body p{font-size:13px;color:var(--ink);line-height:1.8;margin-top:10px}
-.mcard-body .m-tip{font-size:12.5px;color:var(--gold-deep)}
+.mcard-body{display:none;padding:0 15px 14px;border-top:1px dashed var(--line)}
+.mcard-body p{font-size:13px;color:var(--ink);line-height:1.8;margin-top:12px}
+.mcard-body .m-tip{font-size:12.5px;color:var(--gold-deep);background:var(--gold-soft);border-radius:10px;padding:10px 12px}
 .mcard-body .m-who{font-size:11.5px;color:#8A93A0}
+/* 展开态:占满整行,大卡片布局 */
+.mcard.open{grid-column:1/-1;border-color:var(--navy);box-shadow:0 6px 24px rgba(24,43,69,.12)}
+.mcard.open .m-chev{color:var(--gold-deep)}
+.mcard.open .mcard-body{display:block}
+.mcard.open .mcard-head{display:flex;flex-wrap:wrap;align-items:center;gap:4px 14px;padding:15px 18px 13px}
+.mcard.open .m-top{margin:0;gap:10px;justify-content:flex-start}
+.mcard.open .m-tt{flex:1;min-width:220px}
+.mcard.open .m-tt small{display:inline;margin-left:8px}
+.mcard.open .m-amt{margin:0;font-size:16px}
+.mcard.open .m-chev{margin:0}
+@media(min-width:720px){
+  .mcard.open .mcard-body{display:grid;grid-template-columns:1.7fr 1fr;column-gap:26px;padding:2px 18px 16px}
+  .mcard.open .mcard-body>p:first-of-type{grid-column:1;grid-row:1/span 2}
+  .mcard.open .mcard-body .m-tip{grid-column:2;grid-row:1;align-self:start}
+  .mcard.open .mcard-body .m-who{grid-column:2;grid-row:2;align-self:start}
+}
 
 </style>
 </head>
@@ -726,6 +748,15 @@ footer{padding:14px 0 56px}
     </div>
   </div>
 
+  <div class="pgrid">
+    <div class="persona"><div class="p-ic"><svg class="ic"><use href="#i-card"/></svg></div><div><h4>打工上班族</h4><p>雇员CPF自动帮你减了。主动能做的是两件事：给自己和家人<b>CPF充值最多减$16,000</b>，再存<b>SRS减$15,300</b>——合计最多砍掉$31,300应税收入。年终花红高的，看看AW顶限。</p></div></div>
+    <div class="persona"><div class="p-ic"><svg class="ic"><use href="#i-star"/></svg></div><div><h4>职场妈妈</h4><p>省税天花板最高的人群：<b>WMCR</b>（2024年前出生的娃按收入15–25%，2024年起出生固定$8,000–12,000）+ 子女减免$4,000 + 祖父母照顾$3,000，再叠<b>PTR退税每娃最高$20,000</b>。注意减免总额$80,000封顶。</p></div></div>
+    <div class="persona"><div class="p-ic"><svg class="ic"><use href="#i-clipboard"/></svg></div><div><h4>自雇 / 小老板</h4><p><b>业务开销全额扣除</b>是基本盘，再加自雇CPF最高$37,740、自愿MediSave、SRS $15,300。记得留凭证，收入≤$200,000报表只要填两行。</p></div></div>
+    <div class="persona"><div class="p-ic"><svg class="ic"><use href="#i-globe"/></svg></div><div><h4>外籍人士</h4><p>没有CPF，但有专属组合：<b>SRS每年$35,700</b>（额度是本地人的2.3倍）+ <b>人寿保险最高$5,000</b> + 捐款250%扣除——三样都用上，高收入也能省出五位数。</p></div></div>
+    <div class="persona"><div class="p-ic"><svg class="ic"><use href="#i-clinic"/></svg></div><div><h4>房东</h4><p>租金收入别忘了扣开销：<b>15%简化扣除</b>不用收据，房贷利息高的选实际开销更划算。空置期的合理开销也能扣。</p></div></div>
+    <div class="persona"><div class="p-ic"><svg class="ic"><use href="#i-clock"/></svg></div><div><h4>去年忘了报的人</h4><p>别慌，<b>可以追溯补申4年</b>：还没收到税单就重新提交，收到了就在30天内 Amend Tax Bill。多缴的税30天内退回。</p></div></div>
+  </div>
+
   <div class="filter" id="mFilter">
     <button class="on" data-cat="all">全部 24</button>
     <button data-cat="relief">减免 16</button>
@@ -754,7 +785,7 @@ footer{padding:14px 0 56px}
       <span class="m-top"><span class="m-ic"><svg class="ic"><use href="#i-card"/></svg></span><span class="m-cat c-relief">减免</span></span>
       <span class="m-tt">雇员CPF减免<small>CPF Relief for Employees</small></span>
       <span class="m-amt">自动 · 按实缴</span><span class="m-chev">展开详情 ▾</span></button>
-      <div class="mcard-body"><p>你自己缴的那部分强制CPF自动抵税。相关上限：普通工资月顶$7,400、全年工资顶$102,000、CPF年度限额$37,740。</p><p class="m-tip">和第13项的$8,000现金充值减免不冲突，可以都拿。</p><p class="m-who">✔ 公民 · ✔ PR · ✔ 外国人</p></div>
+      <div class="mcard-body"><p>你自己缴的那部分强制CPF自动抵税。2025年的上限：普通工资月顶$7,400（2026年1月起升至$8,000）、全年工资顶$102,000、CPF年度限额$37,740。</p><p class="m-tip">和第13项的$8,000现金充值减免不冲突，可以都拿。</p><p class="m-who">✔ 公民 · ✔ PR · ✔ 外国人</p></div>
     </div>
 
     <div class="mcard" data-cat="relief"><button class="mcard-head" type="button">
@@ -789,7 +820,7 @@ footer{padding:14px 0 56px}
       <span class="m-top"><span class="m-ic"><svg class="ic"><use href="#i-users"/></svg></span><span class="m-cat c-relief">减免</span></span>
       <span class="m-tt">父母 / 残障父母减免<small>Parent Relief</small></span>
       <span class="m-amt">最高 $14,000</span><span class="m-chev">展开详情 ▾</span></button>
-      <div class="mcard-body"><p>赡养父母（同住或定期经济支持）：每位同住$9,000、不同住$5,500；残障父母$14,000 / $10,000。</p><p class="m-tip">同一位父母只能由一个子女申报，兄弟姐妹先商量好。</p><p class="m-who">✔ 公民 · ✔ PR · ✔ 外国人</p></div>
+      <div class="mcard-body"><p>赡养父母（同住或定期经济支持）：每位同住$9,000、不同住$5,500；残障父母$14,000 / $10,000。条件：父母年收入不超过$8,000（2025估税年起放宽到这个数）。</p><p class="m-tip">同一位父母只能由一个子女申报，兄弟姐妹先商量好。</p><p class="m-who">✔ 公民 · ✔ PR · ✔ 外国人</p></div>
     </div>
 
     <div class="mcard" data-cat="relief"><button class="mcard-head" type="button">
@@ -816,8 +847,8 @@ footer{padding:14px 0 56px}
     <div class="mcard" data-cat="relief"><button class="mcard-head" type="button">
       <span class="m-top"><span class="m-ic"><svg class="ic"><use href="#i-star"/></svg></span><span class="m-cat c-relief">减免</span></span>
       <span class="m-tt">职场母亲子女减免<small>WMCR</small></span>
-      <span class="m-amt">收入的 15–25%</span><span class="m-chev">展开详情 ▾</span></button>
-      <div class="mcard-body"><p>妈妈专属（爸爸不能申）：第1个孩子减收入的15%、第2个20%、第3个起每个25%，合计不超过收入100%。例：妈妈年入$80,000有两娃，可减$28,000。</p><p class="m-tip">孩子须是公民；与PTR退税可同享（先减WMCR再抵PTR）。</p><p class="m-who">公民孩子的妈妈</p></div>
+      <span class="m-amt">最高每娃 $12,000 或收入25%</span><span class="m-chev">展开详情 ▾</span></button>
+      <div class="mcard-body"><p>妈妈专属（爸爸不能申），按孩子出生时间分两种算法：<b>2024年1月1日前</b>出生的，按妈妈收入的15% / 20% / 25%（第1/2/3个起）；<b>2024年起</b>出生或领养的，改为固定额$8,000 / $10,000 / $12,000。两批孩子分别按各自制度算，可并存。例：妈妈年入$80,000，老大2022年生（15%=$12,000）+ 老二2024年生（固定$10,000）= 减$22,000。</p><p class="m-tip">孩子须是公民；与PTR退税可同享（先减WMCR再抵PTR）。收入高的妈妈，2024年前出生的娃按比例减更多。</p><p class="m-who">公民孩子的妈妈</p></div>
     </div>
 
     <div class="mcard hot" data-cat="relief"><button class="mcard-head" type="button">
@@ -845,7 +876,7 @@ footer{padding:14px 0 56px}
       <span class="m-top"><span class="m-ic"><svg class="ic"><use href="#i-globe"/></svg></span><span class="m-cat c-relief">减免 ⭐</span></span>
       <span class="m-tt">SRS减免<small>SRS Relief</small></span>
       <span class="m-amt">最高 $35,700</span><span class="m-chev">展开详情 ▾</span></button>
-      <div class="mcard-body"><p>往SRS账户存钱当年即减：公民/PR每年上限$15,300，外国人$35,700。账户内投资收益延税，63岁后提取只按50%计税。</p><p class="m-tip">打工族省税空间最大的一项，详见下方SRS专题。</p><p class="m-who">✔ 公民 · ✔ PR · ✔ 外国人</p></div>
+      <div class="mcard-body"><p>往SRS账户存钱当年即减：公民/PR每年上限$15,300，外国人$35,700。账户内投资收益延税，到锁定的提取年龄后取出只按50%计税。提取年龄按<b>首次存入时</b>的法定退休年龄终身锁定——2026年7月1日起首次存入的锁定64岁。</p><p class="m-tip">打工族省税空间最大的一项，详见下方SRS专题。</p><p class="m-who">✔ 公民 · ✔ PR · ✔ 外国人</p></div>
     </div>
 
     <div class="mcard" data-cat="deduct"><button class="mcard-head" type="button">
@@ -880,7 +911,7 @@ footer{padding:14px 0 56px}
       <span class="m-top"><span class="m-ic"><svg class="ic"><use href="#i-dollar"/></svg></span><span class="m-cat c-rebate">退税</span></span>
       <span class="m-tt">个人收入退税<small>Personal Income Tax Rebate</small></span>
       <span class="m-amt">60% · 封顶 $200</span><span class="m-chev">展开详情 ▾</span></button>
-      <div class="mcard-body"><p>政府财政好的年份主动给的"折扣"，不是每年都有，一旦有就人人自动享受（2025估税年：60%、封顶$200）。</p><p class="m-tip">例：应缴税$2,000，60%是$1,200但封顶$200，实际交$1,800。无需申请。</p><p class="m-who">✔ 公民 · ✔ PR · ✔ 外国人</p></div>
+      <div class="mcard-body"><p>政府财政好的年份主动给的"折扣"，不是每年都有，一旦有就人人自动享受。最近一次是2025估税年（SG60）：60%、封顶$200；2026估税年是否有，以当年财政预算公布为准。</p><p class="m-tip">例：应缴税$2,000，60%是$1,200但封顶$200，实际交$1,800。无需申请。</p><p class="m-who">✔ 公民 · ✔ PR · ✔ 外国人</p></div>
     </div>
 
     <div class="mcard" data-cat="rebate"><button class="mcard-head" type="button">
@@ -921,17 +952,17 @@ footer{padding:14px 0 56px}
   <div class="cost-grid">
     <div class="cost"><div class="c-ic"><svg class="ic"><use href="#i-dollar"/></svg></div><div class="c-label">年存入上限 · 公民/PR</div><div class="c-val">S$15,300</div><div class="c-note">当年存入当年减税</div></div>
     <div class="cost"><div class="c-ic"><svg class="ic"><use href="#i-globe"/></svg></div><div class="c-label">年存入上限 · 外国人</div><div class="c-val">S$35,700</div><div class="c-note">没有CPF的最佳替代</div></div>
-    <div class="cost"><div class="c-ic"><svg class="ic"><use href="#i-clock"/></svg></div><div class="c-label">法定提取年龄</div><div class="c-val">63岁</div><div class="c-note">首次提取后10年内取完</div></div>
+    <div class="cost"><div class="c-ic"><svg class="ic"><use href="#i-clock"/></svg></div><div class="c-label">锁定的提取年龄</div><div class="c-val">63 / 64岁</div><div class="c-note">按首次存入时点锁定 · 首次提取后10年内取完</div></div>
     <div class="cost"><div class="c-ic"><svg class="ic"><use href="#i-coins"/></svg></div><div class="c-label">提取时计税比例</div><div class="c-val">50%</div><div class="c-note">只有一半计入应税收入</div></div>
   </div>
 
   <div class="card" style="margin-top:14px">
     <h3><svg class="ic"><use href="#i-star"/></svg>经典案例：$400,000取10年，税$0</h3>
-    <p>袁女士63岁时SRS有$400,000，每年取$40,000、应税只算$20,000——若没有其他收入，正好落在免税额内，10年应纳税额$0。</p>
+    <p>袁女士到了锁定的提取年龄时SRS有$400,000，每年取$40,000、应税只算$20,000——若没有其他收入，正好落在免税额内，10年应纳税额$0。</p>
   </div>
   <div class="card" style="background:var(--gold-soft);border-color:#DEC998;margin-top:14px">
-    <h3 style="color:var(--gold-deep)"><svg class="ic"><use href="#i-alert"/></svg>三个提醒</h3>
-    <p>① 提前取款交5%罚金且全额计税（永久残疾/绝症、外国人满10年永久离境可豁免）。② 账户现金利息仅0.05%，存进去记得投资。③ <b>2026年7月前开户（哪怕只放$1）可锁定63岁提取年龄</b>。</p>
+    <h3 style="color:var(--gold-deep)"><svg class="ic"><use href="#i-alert"/></svg>三个提醒（2026年7月起有变化）</h3>
+    <p>① <b>提取年龄按你首次存入时的法定退休年龄终身锁定</b>：2026年6月30日前存过第一笔的锁定63岁；2026年7月1日起首次存入的锁定64岁（法定退休年龄2030年前将升到65）——所以越早放进第一笔钱越好，哪怕只放$1。② 提前取款交5%罚金且全额计税（永久残疾/绝症、外国人满10年永久离境可豁免罚金、按50%计税）。③ 账户现金利息仅0.05%，存进去记得投资。</p>
   </div>
 </section>
 
@@ -1020,11 +1051,21 @@ footer{padding:14px 0 56px}
   for(var i=0;i<16;i++){var d=document.createElement('div');d.className='row';d.textContent=unit;d.style.top=(i*110-120)+'px';d.style.left='-200px';wm.appendChild(d);}
 })();
 
-/* 卡片展开/收起 */
+/* 卡片展开/收起:同时只展开一张,展开的卡占满整行 */
+function setChev(card){
+  card.querySelector('.m-chev').textContent = card.classList.contains('open') ? '收起 ▴' : '展开详情 ▾';
+}
 document.querySelectorAll('.mcard-head').forEach(function(btn){
   btn.addEventListener('click',function(){
-    btn.parentElement.classList.toggle('open');
-    btn.querySelector('.m-chev').textContent = btn.parentElement.classList.contains('open') ? '收起 ▴' : '展开详情 ▾';
+    var card=btn.parentElement, wasOpen=card.classList.contains('open');
+    document.querySelectorAll('.mcard.open').forEach(function(c){c.classList.remove('open');setChev(c);});
+    if(!wasOpen){
+      card.classList.add('open');setChev(card);
+      requestAnimationFrame(function(){
+        var r=card.getBoundingClientRect();
+        if(r.top<70||r.bottom>window.innerHeight) card.scrollIntoView({behavior:'smooth',block:'nearest'});
+      });
+    }
   });
 });
 
