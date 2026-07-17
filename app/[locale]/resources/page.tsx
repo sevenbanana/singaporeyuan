@@ -185,6 +185,14 @@ export default async function ResourcesPage({
         : '自雇或开公司的朋友,算每年要给 MediSave 缴多少。',
       url: 'https://www.cpf.gov.sg/member/tools-and-services/calculators/self-employed-medisave-contribution-calculator',
     },
+    {
+      zh: en ? 'CPF: burning questions answered' : '公积金的十万个为什么',
+      en2: en ? 'Interactive · Lianhe Zaobao' : '互动专题 · 联合早报',
+      desc: en
+        ? 'Lianhe Zaobao’s interactive Q&A on the CPF questions everyone asks — a good companion to the official tools above (in Chinese).'
+        : '联合早报的互动问答专题,把大家最常问的公积金问题用中文一条条讲明白,和上面的官方工具搭配着看。',
+      url: 'https://interactive.zaobao.com.sg/2025/cpf-burning-questions-answered/',
+    },
   ];
 
   return (
