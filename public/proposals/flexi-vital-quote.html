@@ -26,7 +26,15 @@
     display:inline-block;margin-top:18px;background:var(--gold);color:var(--navy);
     font-weight:700;font-size:15px;border-radius:999px;padding:8px 20px;
   }
-  .fine{margin-top:12px;font-size:12px;color:rgba(255,255,255,.55);line-height:1.7}
+  .age-row{margin-top:16px}
+  .age-label{display:block;font-size:12px;color:rgba(255,255,255,.6);margin-bottom:8px}
+  .age-pills{display:flex;flex-wrap:wrap;gap:8px}
+  .age-pill{
+    border:1px solid rgba(255,255,255,.32);background:transparent;color:rgba(255,255,255,.85);
+    border-radius:999px;padding:5px 13px;font-size:13px;cursor:pointer;line-height:1.5;
+  }
+  .age-pill.active{background:var(--gold);border-color:var(--gold);color:var(--navy);font-weight:700}
+  .fine{margin-top:14px;font-size:12px;color:rgba(255,255,255,.55);line-height:1.7}
 
   /* sections */
   h2{font-size:18px;color:var(--navy);margin:34px 0 6px}
@@ -126,8 +134,12 @@
     <div class="eyebrow">AIA Flexi Vital Care Plus</div>
     <h1>团险模块化报价估算器</h1>
     <p class="hd-sub">勾选核心计划与附加保障，实时估算团队年度保费。核心计划至少选择一项，方可添加对应附加计划。</p>
-    <div class="ref-badge">价格以 30 岁男性员工为参考</div>
-    <p class="fine">费率取自 AIA Flexi Vital Care Plus 官方手册 30–34 岁费率段（截至 2025 年 7 月 31 日）；意外险按职业等级 Class 1（室内文职）计算，仓储、驾驶等岗位费率不同；实际保费以 AIA 核保为准。</p>
+    <div class="ref-badge">价格以 <span id="band-label">30–34岁</span> 员工为参考</div>
+    <div class="age-row">
+      <span class="age-label">员工平均年龄段（切换后所有价格同步更新）</span>
+      <div class="age-pills" id="age-pills"></div>
+    </div>
+    <p class="fine">费率取自 AIA Flexi Vital Care Plus 官方手册对应年龄段（截至 2025 年 7 月 31 日），男女费率相同；意外险按职业等级 Class 1（室内文职）计算，仓储、驾驶等岗位费率不同；实际保费以 AIA 核保为准。</p>
   </div>
 </header>
 
@@ -153,7 +165,7 @@
       </ul>
       <div class="opt-label">选择档位（病房等级）</div>
       <div class="pills" id="pills-ghs"></div>
-      <div class="price-row"><span class="p-label">30 岁员工</span><span class="p-val" id="price-ghs"></span></div>
+      <div class="price-row"><span class="p-label"><span class="age-ref"></span>员工</span><span class="p-val" id="price-ghs"></span></div>
     </div>
 
     <div class="card" id="card-gtl">
@@ -171,7 +183,7 @@
       </ul>
       <div class="opt-label">选择档位（身故 / TPD 保额）</div>
       <div class="pills" id="pills-gtl"></div>
-      <div class="price-row"><span class="p-label">30 岁员工</span><span class="p-val" id="price-gtl"></span></div>
+      <div class="price-row"><span class="p-label"><span class="age-ref"></span>员工</span><span class="p-val" id="price-gtl"></span></div>
     </div>
   </div>
 
@@ -197,7 +209,7 @@
       <div class="pills" id="pills-gpsp-copay"></div>
       <div class="opt-label">专科档位（年限额）</div>
       <div class="pills" id="pills-gpsp"></div>
-      <div class="price-row"><span class="p-label">30 岁员工</span><span class="p-val" id="price-gpsp"></span></div>
+      <div class="price-row"><span class="p-label"><span class="age-ref"></span>员工</span><span class="p-val" id="price-gpsp"></span></div>
       <p class="lock-hint">需先开启任一核心计划；与「普通门诊」二选一</p>
     </div>
 
@@ -217,7 +229,7 @@
       </ul>
       <div class="opt-label">自付方式</div>
       <div class="pills" id="pills-gp"></div>
-      <div class="price-row"><span class="p-label">30 岁员工</span><span class="p-val" id="price-gp"></span></div>
+      <div class="price-row"><span class="p-label"><span class="age-ref"></span>员工</span><span class="p-val" id="price-gp"></span></div>
       <p class="lock-hint">需先开启「住院及手术保障」；与「门诊 + 专科」二选一</p>
     </div>
 
@@ -235,8 +247,8 @@
         <li>保额 S$25,000 – S$250,000，与寿险档位联动</li>
       </ul>
       <div class="follow-note" id="gaci-follow"></div>
-      <div class="price-row"><span class="p-label">30 岁员工（增量保费）</span><span class="p-val" id="price-gaci"></span></div>
-      <p class="lock-hint">需先开启「团体定期寿险」，档位自动跟随其档位（AIA 规则）</p>
+      <div class="price-row"><span class="p-label"><span class="age-ref"></span>员工（增量保费）</span><span class="p-val" id="price-gaci"></span></div>
+      <p class="lock-hint" id="gaci-hint">需先开启「团体定期寿险」，档位自动跟随其档位（AIA 规则）</p>
     </div>
 
     <div class="card" id="card-gadd">
@@ -255,7 +267,7 @@
       </ul>
       <div class="opt-label">选择档位（意外身故 / TPD 保额）</div>
       <div class="pills" id="pills-gadd"></div>
-      <div class="price-row"><span class="p-label">30 岁员工 · Class 1</span><span class="p-val" id="price-gadd"></span></div>
+      <div class="price-row"><span class="p-label">各年龄段统一 · Class 1</span><span class="p-val" id="price-gadd"></span></div>
       <p class="lock-hint">需先开启任一核心计划</p>
     </div>
 
@@ -272,16 +284,16 @@
         <li>洗牙、补牙、根管治疗、拔牙等常规项目</li>
         <li>单一费率，无档位；投保须全体员工统一参加（AIA 规则）</li>
       </ul>
-      <div class="price-row"><span class="p-label">30 岁员工</span><span class="p-val" id="price-dental"></span></div>
+      <div class="price-row"><span class="p-label">各年龄段统一费率</span><span class="p-val" id="price-dental"></span></div>
       <p class="lock-hint">需先开启任一核心计划</p>
     </div>
   </div>
 
   <ul class="notes">
     <li>本页面为保费估算工具，非保险合同；所有保障内容以 AIA 保单条款为准，实际保费以 AIA 最终核保为准。</li>
-    <li>费率为 AIA Flexi Vital Care Plus 员工费率，30 岁按 30–34 岁费率段（age last birthday）取值；其他年龄段费率不同，可联系顾问获取全员精确报价。</li>
-    <li>意外险（GADD）按职业等级 Class 1（室内办公 / 文职）计算；涉及仓储、外勤、驾驶等岗位适用 Class 2 / 3 费率。</li>
-    <li>重疾（GACI）档位须与寿险（GTL）档位一致；普通门诊（GP）仅可附加于住院计划；「普通门诊」与「门诊 + 专科」二选一。</li>
+    <li>费率为 AIA Flexi Vital Care Plus 员工费率，按所选年龄段（age last birthday）取值，男女费率相同；团队年龄不一时可按人分段计算，联系顾问获取全员精确报价。</li>
+    <li>意外险（GADD）费率与年龄无关，按职业等级 Class 1（室内办公 / 文职）计算；涉及仓储、外勤、驾驶等岗位适用 Class 2 / 3 费率。</li>
+    <li>重疾（GACI）档位须与寿险（GTL）档位一致，70–74 岁年龄段不可附加；普通门诊（GP）仅可附加于住院计划；「普通门诊」与「门诊 + 专科」二选一。</li>
     <li>牙科计划投保须全体员工参加。团体投保有最低人数要求，本工具按 5 人起算。</li>
   </ul>
   <p class="brand">SingaporeYuan · 团险方案咨询</p>
@@ -304,24 +316,69 @@
 
 <script>
 /*CALC-START*/
+// 费率来源:AIA Flexi Vital Care Plus 官方手册(截至2025-07-31),员工费率,S$/人/年
+// 年龄段顺序:0=29岁及以下,1=30-34,2=35-39,3=40-44,4=45-49,5=50-54,6=55-59,7=60-64,8=65-69,9=70-74
+const BANDS = ['29岁及以下','30–34岁','35–39岁','40–44岁','45–49岁','50–54岁','55–59岁','60–64岁','65–69岁','70–74岁'];
+const SENIOR = 9; // 70-74:门诊类费率不同;重疾不可投保
 const RATES = {
-  gtl:  { prices:[53.50,85.50,128.00,192.00,266.50,532.50],
-          labels:['5万','8万','12万','18万','25万','50万'] },
-  ghs:  { prices:[373.43,475.37,613.63,1192.95],
-          labels:['私立4人房','私立2人房','私立1人房','1人房·高限额'] },
-  gaci: { prices:[43.50,69.50,104.50,156.50,217.00,434.00],
-          labels:['2.5万','4万','6万','9万','12.5万','25万'] },
-  gadd: { prices:[27.25,44.41,66.62,99.92,137.26,275.53],
-          labels:['5万','8万','12万','18万','25万','50万'] },
-  gp:   { prices:{0:256.35, 5:250.30} },
-  gpsp: { prices:{0:[478.39,518.76,619.68,676.20], 5:[472.34,512.71,613.63,670.15]},
-          labels:['S$800','S$1,000','S$1,500','S$2,000'] },
-  dental: { price:395.63 }
+  gtl: { labels:['5万','8万','12万','18万','25万','50万'], prices:[
+    [51.00,81.50,122.00,183.00,254.50,508.50],
+    [53.50,85.50,128.00,192.00,266.50,532.50],
+    [61.00,98.00,146.50,220.00,305.00,610.00],
+    [94.50,151.00,226.50,339.50,471.50,942.50],
+    [127.50,204.00,306.00,459.00,637.50,1275.00],
+    [196.50,314.50,472.00,707.50,982.50,1965.00],
+    [356.50,570.50,856.00,1283.50,1782.50,3565.00],
+    [622.50,996.00,1493.50,2240.50,3111.50,6222.50],
+    [1057.00,1691.00,2536.50,3804.50,5284.00,10567.50],
+    [2313.00,3701.00,5551.50,8327.00,11565.00,23130.00]
+  ]},
+  ghs: { labels:['私立4人房','私立2人房','私立1人房','1人房·高限额'], prices:[
+    [331.04,420.87,541.98,1055.69],
+    [373.43,475.37,613.63,1192.95],
+    [373.43,475.37,613.63,1192.95],
+    [412.79,523.81,675.20,1314.06],
+    [526.84,670.15,862.92,1679.41],
+    [660.06,839.71,1080.92,2104.31],
+    [868.98,1104.13,1423.06,2770.42],
+    [1169.74,1486.64,1915.58,3728.21],
+    [1620.88,2059.90,2654.35,5168.42],
+    [2220.38,2821.89,3637.38,7080.97]
+  ]},
+  // GTL+GACI 合并费率表(手册第12页);重疾增量 = 合并 - GTL。70-74岁 N/A
+  gtlGaci: { labels:['2.5万','4万','6万','9万','12.5万','25万'], prices:[
+    [73.50,117.50,176.00,263.50,366.50,732.00],
+    [97.00,155.00,232.50,348.50,483.50,966.50],
+    [128.00,205.00,306.50,460.00,638.50,1276.50],
+    [218.50,349.50,524.00,785.50,1091.00,2181.50],
+    [341.00,545.00,817.50,1226.50,1703.50,3406.50],
+    [499.00,798.00,1197.50,1795.50,2493.50,4986.50],
+    [840.50,1345.00,2018.00,3026.00,4202.50,8405.00],
+    [1390.50,2224.50,3336.00,5004.00,6950.00,13899.00],
+    [2162.00,3459.00,5188.50,7782.50,10808.50,21616.50],
+    null
+  ]},
+  gadd: { labels:['5万','8万','12万','18万','25万','50万'],
+          prices:[27.25,44.41,66.62,99.92,137.26,275.53] }, // Class 1,与年龄无关
+  gp:   { std:{0:256.35,5:250.30}, senior:{0:282.60,5:275.53} },
+  gpsp: { labels:['S$800','S$1,000','S$1,500','S$2,000'],
+          std:{0:[478.39,518.76,619.68,676.20], 5:[472.34,512.71,613.63,670.15]},
+          senior:{0:[526.84,571.25,683.27,744.84], 5:[519.77,564.18,676.21,737.77]} },
+  dental: { price:395.63 } // 各年龄段统一
 };
 const MIN_COUNT = 5;
+const r2 = n => Math.round(n*100)/100;
+
+function gaciRate(band, plan){
+  const combined = RATES.gtlGaci.prices[band];
+  return combined ? r2(combined[plan] - RATES.gtl.prices[band][plan]) : null;
+}
+function gpRate(band, copay){ return (band===SENIOR?RATES.gp.senior:RATES.gp.std)[copay]; }
+function gpspRate(band, copay, plan){ return (band===SENIOR?RATES.gpsp.senior:RATES.gpsp.std)[copay][plan]; }
 
 function normalize(s){
   if(!s.gtl.on) s.gaci.on = false;
+  if(s.band===SENIOR) s.gaci.on = false;
   if(!s.ghs.on) s.gp.on = false;
   if(!s.gtl.on && !s.ghs.on){ s.gadd.on=false; s.gpsp.on=false; s.dental.on=false; }
   if(s.gp.on && s.gpsp.on) s.gp.on = false;
@@ -330,20 +387,20 @@ function normalize(s){
 }
 function perPerson(s){
   let t = 0;
-  if(s.gtl.on)  t += RATES.gtl.prices[s.gtl.plan];
-  if(s.ghs.on)  t += RATES.ghs.prices[s.ghs.plan];
-  if(s.gaci.on) t += RATES.gaci.prices[s.gtl.plan];
+  if(s.gtl.on)  t += RATES.gtl.prices[s.band][s.gtl.plan];
+  if(s.ghs.on)  t += RATES.ghs.prices[s.band][s.ghs.plan];
+  if(s.gaci.on) t += gaciRate(s.band, s.gtl.plan) || 0;
   if(s.gadd.on) t += RATES.gadd.prices[s.gadd.plan];
-  if(s.gp.on)   t += RATES.gp.prices[s.gp.copay];
-  if(s.gpsp.on) t += RATES.gpsp.prices[s.gpsp.copay][s.gpsp.plan];
+  if(s.gp.on)   t += gpRate(s.band, s.gp.copay);
+  if(s.gpsp.on) t += gpspRate(s.band, s.gpsp.copay, s.gpsp.plan);
   if(s.dental.on) t += RATES.dental.price;
-  return Math.round(t*100)/100;
+  return r2(t);
 }
 /*CALC-END*/
 
-// 默认:住院P1 + 门诊无自付&专科P1
+// 默认:30-34岁 + 住院P1 + 门诊无自付&专科P1
 const state = {
-  count:5,
+  band:1, count:5,
   gtl:{on:false,plan:0}, ghs:{on:true,plan:0},
   gaci:{on:false}, gadd:{on:false,plan:0},
   gp:{on:false,copay:0}, gpsp:{on:true,copay:0,plan:0},
@@ -358,27 +415,32 @@ function pillHtml(mod, i, top, sub, active){
          '<b>'+top+'</b><span>'+sub+'</span></button>';
 }
 function renderPills(){
-  $('pills-gtl').innerHTML = RATES.gtl.prices.map((p,i)=>
+  const b = state.band;
+  $('pills-gtl').innerHTML = RATES.gtl.prices[b].map((p,i)=>
     pillHtml('gtl-plan', i, 'P'+(i+1)+' · '+RATES.gtl.labels[i], fmt(p), state.gtl.plan===i)).join('');
-  $('pills-ghs').innerHTML = RATES.ghs.prices.map((p,i)=>
+  $('pills-ghs').innerHTML = RATES.ghs.prices[b].map((p,i)=>
     pillHtml('ghs-plan', i, 'P'+(i+1)+' · '+RATES.ghs.labels[i], fmt(p), state.ghs.plan===i)).join('');
   $('pills-gadd').innerHTML = RATES.gadd.prices.map((p,i)=>
     pillHtml('gadd-plan', i, 'P'+(i+1)+' · '+RATES.gadd.labels[i], fmt(p), state.gadd.plan===i)).join('');
-  $('pills-gpsp').innerHTML = RATES.gpsp.prices[0].map((p,i)=>
-    pillHtml('gpsp-plan', i, 'P'+(i+1)+' · '+RATES.gpsp.labels[i],
-      fmt(RATES.gpsp.prices[state.gpsp.copay][i]), state.gpsp.plan===i)).join('');
+  $('pills-gpsp').innerHTML = RATES.gpsp.labels.map((lb,i)=>
+    pillHtml('gpsp-plan', i, 'P'+(i+1)+' · '+lb,
+      fmt(gpspRate(b, state.gpsp.copay, i)), state.gpsp.plan===i)).join('');
   $('pills-gpsp-copay').innerHTML =
-    pillHtml('gpsp-copay', 0, '无自付', fmt(RATES.gpsp.prices[0][state.gpsp.plan]), state.gpsp.copay===0) +
-    pillHtml('gpsp-copay', 5, '自付 S$5 / 次', fmt(RATES.gpsp.prices[5][state.gpsp.plan]), state.gpsp.copay===5);
+    pillHtml('gpsp-copay', 0, '无自付', fmt(gpspRate(b,0,state.gpsp.plan)), state.gpsp.copay===0) +
+    pillHtml('gpsp-copay', 5, '自付 S$5 / 次', fmt(gpspRate(b,5,state.gpsp.plan)), state.gpsp.copay===5);
   $('pills-gp').innerHTML =
-    pillHtml('gp-copay', 0, '无自付', fmt(RATES.gp.prices[0]), state.gp.copay===0) +
-    pillHtml('gp-copay', 5, '自付 S$5 / 次', fmt(RATES.gp.prices[5]), state.gp.copay===5);
+    pillHtml('gp-copay', 0, '无自付', fmt(gpRate(b,0)), state.gp.copay===0) +
+    pillHtml('gp-copay', 5, '自付 S$5 / 次', fmt(gpRate(b,5)), state.gp.copay===5);
+  $('age-pills').innerHTML = BANDS.map((lb,i)=>
+    '<button type="button" class="age-pill'+(state.band===i?' active':'')+'" data-band="'+i+'">'+lb+'</button>').join('');
 }
 function render(){
   normalize(state);
   const anyCore = state.gtl.on || state.ghs.on;
+  const b = state.band;
 
-  const lock = { gtl:false, ghs:false, gaci:!state.gtl.on, gp:!state.ghs.on, gpsp:!anyCore, gadd:!anyCore, dental:!anyCore };
+  const lock = { gtl:false, ghs:false, gaci:!state.gtl.on || b===SENIOR,
+                 gp:!state.ghs.on, gpsp:!anyCore, gadd:!anyCore, dental:!anyCore };
   for(const m of ['gtl','ghs','gaci','gadd','gp','gpsp','dental']){
     const card = $('card-'+m);
     card.classList.toggle('locked', lock[m]);
@@ -389,25 +451,35 @@ function render(){
   }
   renderPills();
 
+  $('band-label').textContent = BANDS[b];
+  document.querySelectorAll('.age-ref').forEach(el=>el.textContent = BANDS[b]);
+
   const priceOr = (m, html) => state[m].on ? html+' <em>/人/年</em>' : '—';
-  $('price-gtl').innerHTML  = priceOr('gtl', fmt(RATES.gtl.prices[state.gtl.plan]));
-  $('price-ghs').innerHTML  = priceOr('ghs', fmt(RATES.ghs.prices[state.ghs.plan]));
-  $('price-gaci').innerHTML = priceOr('gaci', '+'+fmt(RATES.gaci.prices[state.gtl.plan]));
+  const gaci = gaciRate(b, state.gtl.plan);
+  $('price-gtl').innerHTML  = priceOr('gtl', fmt(RATES.gtl.prices[b][state.gtl.plan]));
+  $('price-ghs').innerHTML  = priceOr('ghs', fmt(RATES.ghs.prices[b][state.ghs.plan]));
+  $('price-gaci').innerHTML = gaci===null ? '—' : priceOr('gaci', '+'+fmt(gaci));
   $('price-gadd').innerHTML = priceOr('gadd', fmt(RATES.gadd.prices[state.gadd.plan]));
-  $('price-gp').innerHTML   = priceOr('gp', fmt(RATES.gp.prices[state.gp.copay]));
-  $('price-gpsp').innerHTML = priceOr('gpsp', fmt(RATES.gpsp.prices[state.gpsp.copay][state.gpsp.plan]));
+  $('price-gp').innerHTML   = priceOr('gp', fmt(gpRate(b, state.gp.copay)));
+  $('price-gpsp').innerHTML = priceOr('gpsp', fmt(gpspRate(b, state.gpsp.copay, state.gpsp.plan)));
   $('price-dental').innerHTML = priceOr('dental', fmt(RATES.dental.price));
-  $('gaci-follow').textContent = state.gtl.on
-    ? '档位跟随寿险：Plan '+(state.gtl.plan+1)+'（重疾保额 '+RATES.gaci.labels[state.gtl.plan]+'）'
-    : '开启寿险后，档位将自动跟随寿险档位';
+
+  $('gaci-hint').textContent = b===SENIOR
+    ? '70–74 岁年龄段不可附加重疾（AIA 费率表未提供）'
+    : '需先开启「团体定期寿险」，档位自动跟随其档位（AIA 规则）';
+  $('gaci-follow').textContent = b===SENIOR
+    ? '该年龄段不可投保重疾'
+    : (state.gtl.on
+      ? '档位跟随寿险：Plan '+(state.gtl.plan+1)+'（重疾保额 '+RATES.gtlGaci.labels[state.gtl.plan]+'）'
+      : '开启寿险后，档位将自动跟随寿险档位');
 
   const per = perPerson(state);
-  const total = Math.round(per*state.count*100)/100;
+  const total = r2(per*state.count);
   $('count').textContent = state.count;
   $('minus').disabled = state.count <= MIN_COUNT;
   $('per-person').textContent = fmt(per);
   $('total').textContent = fmt(total);
-  $('monthly').textContent = fmt(Math.round(total/12*100)/100);
+  $('monthly').textContent = fmt(r2(total/12));
 }
 
 document.addEventListener('change', e=>{
@@ -419,6 +491,8 @@ document.addEventListener('change', e=>{
   render();
 });
 document.addEventListener('click', e=>{
+  const age = e.target.closest('.age-pill');
+  if(age){ state.band = +age.dataset.band; render(); return; }
   const pill = e.target.closest('.pill');
   if(pill){
     const [mod,kind] = pill.dataset.mod.split('-');
@@ -445,7 +519,7 @@ if(location.search.indexOf('selftest')>-1){
   const clone = () => JSON.parse(JSON.stringify(state));
   const results = [];
   const eq = (name,a,b) => results.push((Math.abs(a-b)<0.005?'PASS':'FAIL('+a+'≠'+b+')')+' '+name);
-  let s = clone(); eq('默认 住院P1+门诊专科P1', perPerson(normalize(s)), 851.82);
+  let s = clone(); eq('默认30-34 住院P1+门诊专科P1', perPerson(normalize(s)), 851.82);
   s = clone(); s.gtl.on=true; eq('加寿险P1', perPerson(normalize(s)), 905.32);
   s = clone(); s.gtl.on=true; s.gtl.plan=1; s.gaci.on=true; eq('重疾跟随寿险P2', perPerson(normalize(s)), 851.82+85.50+69.50);
   s = clone(); s.gaci.on=true; eq('无寿险时重疾被剔除', perPerson(normalize(s)), 851.82);
@@ -454,6 +528,11 @@ if(location.search.indexOf('selftest')>-1){
   s = clone(); s.ghs.on=false; s.gpsp.on=true; eq('无核心时全部附加剔除', perPerson(normalize(s)), 0);
   s = clone(); s.gadd.on=true; s.gadd.plan=5; s.dental.on=true; eq('意外P6+牙科', perPerson(normalize(s)), 851.82+275.53+395.63);
   s = clone(); s.count=3; normalize(s); eq('人数下限5', s.count, 5);
+  s = clone(); s.band=0; eq('29岁及以下 默认组合', perPerson(normalize(s)), 331.04+478.39);
+  s = clone(); s.band=2; s.gtl.on=true; s.gaci.on=true; eq('35-39 重疾增量67', perPerson(normalize(s)), 373.43+478.39+61.00+67.00);
+  s = clone(); s.band=9; s.gtl.on=true; s.gaci.on=true; eq('70-74 重疾强制剔除', perPerson(normalize(s)), 2220.38+526.84+2313.00);
+  s = clone(); s.band=9; s.gpsp.on=false; s.gp.on=true; eq('70-74 GP高费率', perPerson(normalize(s)), 2220.38+282.60);
+  s = clone(); s.band=8; eq('65-69 GPSP仍用标准价', perPerson(normalize(s)), 1620.88+478.39);
   document.title = results.every(r=>r.startsWith('PASS')) ? 'SELFTEST-ALL-PASS' : 'SELFTEST-FAIL';
   console.log(results.join('\n'));
   const div = document.createElement('pre');
