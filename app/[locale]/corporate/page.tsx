@@ -100,7 +100,7 @@ export default async function CorporatePage({
       color: 'navy' as const,
       points: en
         ? [
-            'Start with as few as 5 lives — built for SMEs',
+            'Start with just 5 lives (3 employees + 2 dependants counts) — built for SMEs',
             'Core plans (hospitalisation GHS / term life GTL) + optional outpatient GP & specialist, dental, critical illness and accident riders',
             'Portfolio pricing: individual claims do not directly push up your renewal premium',
             'Cashless panel GP & specialist clinics, plus teleconsultation with medication delivered',
@@ -108,7 +108,7 @@ export default async function CorporatePage({
             'Employees & dependants can voluntarily top up their own coverage',
           ]
         : [
-            '5人起投，为中小企业设计',
+            '5人起投（3员工+2家属也可），为中小企业设计',
             '核心保障（住院GHS / 定期寿险GTL）自由组合，按需加装门诊全科+专科、牙科、重疾、意外附加险',
             '组合定价：个别员工的理赔不会直接推高公司续保保费',
             '合作诊所网络无现金看诊，含远程问诊、药品送上门',
@@ -123,7 +123,7 @@ export default async function CorporatePage({
       color: 'gold' as const,
       points: en
         ? [
-            'Start from just 3 lives (or 2 employees + 1 dependant)',
+            'Start from 4 lives (3 employees + 1 dependant counts)',
             'Five plan tiers with annual limits from S$500k to S$3.5m',
             'Choose coverage area: Asia / Worldwide ex-USA / Worldwide',
             'Cashless hospitalisation globally via guarantee letters; panel outpatient networks across 7 markets',
@@ -132,7 +132,7 @@ export default async function CorporatePage({
             '24/7 dedicated service centre, personal case management and mental health support',
           ]
         : [
-            '3人即可起投（2名员工+1名家属也行）',
+            '4人即可起投（3名员工+1名家属也可）',
             '年度限额五档：50万–350万新元/美元',
             '承保区域三选一：亚洲 / 全球（美国除外）/ 全球',
             '全球住院保函直赔；新加坡等7个市场的门诊网络无现金看诊',
@@ -147,7 +147,7 @@ export default async function CorporatePage({
   const cmp: { k: string; a: string; b: string }[] = en
     ? [
         { k: 'Best for', a: 'SMEs covering all staff', b: 'Executives, expats, global teams' },
-        { k: 'Minimum lives', a: '5', b: '3 (or 2 employees + 1 dependant)' },
+        { k: 'Minimum lives', a: '5 (3 employees + 2 dependants)', b: '4 (3 employees + 1 dependant)' },
         { k: 'Annual limit', a: 'Tiered by module & plan', b: 'S$500k – S$3.5m, five tiers' },
         { k: 'Coverage area', a: 'Worldwide, 24/7', b: 'Asia / WW ex-USA / Worldwide' },
         { k: 'Cashless network', a: 'Panel GP & SP clinics + tele-consult + inpatient pre-auth', b: 'Global inpatient guarantee letters + regional outpatient panels' },
@@ -155,7 +155,7 @@ export default async function CorporatePage({
       ]
     : [
         { k: '适合团队', a: '中小企业全员保障', b: '高管、外籍员工、跨国团队' },
-        { k: '起投人数', a: '5人', b: '3人（2员工+1家属也可）' },
+        { k: '起投人数', a: '5人（3员工+2家属也可）', b: '4人（3员工+1家属也可）' },
         { k: '年度限额', a: '按模块和档位选择', b: '50万–350万新元/美元，五档' },
         { k: '保障范围', a: '全球7×24', b: '亚洲 / 全球除美 / 全球 三选一' },
         { k: '无现金网络', a: '合作诊所+远程问诊+住院预授权', b: '全球住院保函直赔+七地门诊网络' },
@@ -205,8 +205,8 @@ export default async function CorporatePage({
         title={en ? 'Group insurance & employee benefits' : '企业团险与员工福利'}
         subtitle={
           en
-            ? 'From 3-person startups to regional teams: medical coverage employees actually feel, digital claims HR actually likes, and wellness activities your team will talk about.'
-            : '从3人小团队到跨国企业:给员工看得见的医疗保障、让HR省心的数字化理赔,再加一整年说得出口的员工福利活动。'
+            ? 'From 4-person startups to regional teams: medical coverage employees actually feel, digital claims HR actually likes, and wellness activities your team will talk about.'
+            : '从4人小团队到跨国企业:给员工看得见的医疗保障、让HR省心的数字化理赔,再加一整年说得出口的员工福利活动。'
         }
         accent={IconHeart}
       />
