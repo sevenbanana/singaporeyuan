@@ -575,5 +575,71 @@
     "disclaimer": "本网站内容仅供参考,不构成任何投资、保险、法律或税务建议。保险产品涉及条款与风险,部分收益为非保证。具体以保险公司正式文件及相关专业意见为准。",
     "rights": "© 2026 袁媛 Yuan Yuan. 版权所有。",
     "followTitle": "关注我"
+  },
+  "corporateConsult": {
+    "metaTitle": "企业团险咨询",
+    "heroEyebrow": "企业咨询",
+    "heroTitle": "给团队要一份方案",
+    "heroSub": "留下团队的基本情况,1–3个工作日内收到一份可并排对比的定制方案。急的话,直接加微信或WhatsApp更快。",
+    "fCompany": "公司名称",
+    "fCompanyPh": "例如:ABC Pte Ltd",
+    "fName": "联系人姓名",
+    "fNamePh": "怎么称呼您",
+    "fRole": "您的角色",
+    "roleOptions": [
+      "创始人 / 老板",
+      "HR / 行政",
+      "财务",
+      "员工代表",
+      "其他"
+    ],
+    "fContact": "联系方式",
+    "fContactNote": "微信、邮箱或电话,方便哪个留哪个,至少一种",
+    "fWechat": "微信号",
+    "fEmail": "邮箱",
+    "fPhone": "电话",
+    "fTeam": "团队规模(可含家属)",
+    "teamOptions": [
+      "4–9人",
+      "10–29人",
+      "30–99人",
+      "100–299人",
+      "300人以上"
+    ],
+    "fPlans": "感兴趣的方向(可多选)",
+    "plansNote": "不确定就先不选,聊了再说",
+    "plansOptions": [
+      "全员医疗 · Flexi Vital Care Plus",
+      "高端医疗 · Premier International Medical",
+      "定期寿险 / 重疾 / 意外",
+      "WorkWell 员工福利活动",
+      "现有团险复核比价",
+      "还不确定,先聊聊"
+    ],
+    "fCurrent": "现有团险情况",
+    "currentOptions": [
+      "还没有团险",
+      "有,快到期了",
+      "有,想比价优化",
+      "不清楚,要查一下"
+    ],
+    "fMessage": "备注",
+    "fMessagePh": "例如:续保月份、预算范围、外籍员工占比……",
+    "consentText": "我同意通过以上方式被联系,用于本次企业方案咨询。",
+    "consentDetail": "您的信息仅用于本次咨询与方案制作,不会用于其他用途,也不会提供给无关第三方。符合新加坡PDPA要求,您可随时要求删除。",
+    "required": "必填",
+    "submit": "提交,等方案",
+    "submitting": "提交中……",
+    "success": "收到!我会在1个工作日内联系您,定制方案1–3个工作日内送达。",
+    "submitError": "提交失败,请稍后再试,或直接加微信 singaporeyuan。",
+    "sideTitle": "提交后会发生什么",
+    "sideSteps": [
+      "1个工作日内,我先联系您确认团队细节",
+      "1–3个工作日,收到可并排对比的定制方案",
+      "满意再投保——不催单、不打扰"
+    ],
+    "directTitle": "更快的方式",
+    "prepTitle": "可以提前准备(不是必须)",
+    "prepText": "大致人数与年龄结构、预算范围、现有福利文件。都没有也没关系,聊完再补。"
   }
 }

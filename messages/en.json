@@ -575,5 +575,71 @@
     "disclaimer": "The content of this site is for reference only and does not constitute any investment, insurance, legal or tax advice. Insurance products involve terms and risks, and some returns are non-guaranteed. The insurer's official documents and relevant professional advice prevail.",
     "rights": "© 2026 Yuan Yuan. All rights reserved.",
     "followTitle": "Follow"
+  },
+  "corporateConsult": {
+    "metaTitle": "Corporate Enquiry",
+    "heroEyebrow": "Corporate Consult",
+    "heroTitle": "Get a proposal for your team",
+    "heroSub": "Tell me about your team and receive a tailored, side-by-side proposal within 1–3 working days. In a hurry? WhatsApp is faster.",
+    "fCompany": "Company name",
+    "fCompanyPh": "e.g. ABC Pte Ltd",
+    "fName": "Contact person",
+    "fNamePh": "How should I address you",
+    "fRole": "Your role",
+    "roleOptions": [
+      "Founder / Owner",
+      "HR / Admin",
+      "Finance",
+      "Employee representative",
+      "Other"
+    ],
+    "fContact": "Contact",
+    "fContactNote": "WeChat, email or phone — at least one",
+    "fWechat": "WeChat ID",
+    "fEmail": "Email",
+    "fPhone": "Phone",
+    "fTeam": "Team size (dependants can count)",
+    "teamOptions": [
+      "4–9",
+      "10–29",
+      "30–99",
+      "100–299",
+      "300+"
+    ],
+    "fPlans": "Interested in (multi-select)",
+    "plansNote": "Not sure? Leave blank — we can figure it out together",
+    "plansOptions": [
+      "All-staff medical · Flexi Vital Care Plus",
+      "High-end medical · Premier International Medical",
+      "Group term life / CI / accident",
+      "WorkWell employee activities",
+      "Review my current group plan",
+      "Not sure yet — let's talk"
+    ],
+    "fCurrent": "Current group insurance",
+    "currentOptions": [
+      "None yet",
+      "Yes, renewing soon",
+      "Yes, want a comparison",
+      "Not sure"
+    ],
+    "fMessage": "Notes",
+    "fMessagePh": "e.g. renewal month, budget range, share of foreign employees…",
+    "consentText": "I agree to be contacted via the above for this corporate enquiry.",
+    "consentDetail": "Your information is used solely for this enquiry and proposal preparation, never shared with unrelated third parties. PDPA-compliant; deletion on request.",
+    "required": "required",
+    "submit": "Submit & get my proposal",
+    "submitting": "Submitting…",
+    "success": "Received! I will contact you within 1 working day; your tailored proposal follows in 1–3 working days.",
+    "submitError": "Submission failed — please try again, or WhatsApp +65 8375 0190.",
+    "sideTitle": "What happens next",
+    "sideSteps": [
+      "Within 1 working day: I contact you to confirm details",
+      "1–3 working days: tailored side-by-side proposal",
+      "Buy only when satisfied — no chasing, no spam"
+    ],
+    "directTitle": "Faster ways",
+    "prepTitle": "Nice to have (not required)",
+    "prepText": "Rough headcount and age mix, budget range, current benefit documents. None of these? No problem."
   }
 }

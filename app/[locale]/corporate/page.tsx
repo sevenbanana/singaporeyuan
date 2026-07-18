@@ -426,7 +426,7 @@ export default async function CorporatePage({
                 </p>
               </div>
               <Link
-                href="/consult"
+                href="/corporate/consult"
                 className="inline-flex shrink-0 items-center justify-center gap-2 rounded-xl bg-navy px-7 py-3.5 text-sm font-semibold text-white transition-all duration-300 hover:bg-navy-deep"
               >
                 {en ? 'Book a consultation' : '预约企业咨询'}
