@@ -71,6 +71,12 @@
   .pill span{color:var(--muted);font-size:11px}
   .pill.active{border-color:var(--navy);background:var(--navy);color:#fff}
   .pill.active span{color:rgba(255,255,255,.75)}
+  /* 卡片未开启:按钮灰显,避免误以为已计入 */
+  .card.off .pill{border-color:#e3e9ef;background:#f2f5f8;color:#9aa7b4}
+  .card.off .pill span{color:#b0bbc6}
+  .card.off .pill.active{border-color:#b6c2cd;background:#b6c2cd;color:#fff}
+  .card.off .pill.active span{color:rgba(255,255,255,.8)}
+  .card.off .p-val{color:#9aa7b4}
   .follow-note{font-size:12.5px;color:var(--ink);background:var(--soft);border-radius:8px;padding:8px 12px;margin-top:12px}
 
   /* price row */
@@ -377,18 +383,20 @@ function render(){
     const card = $('card-'+m);
     card.classList.toggle('locked', lock[m]);
     card.classList.toggle('on', state[m].on && !lock[m]);
+    card.classList.toggle('off', !state[m].on);
     card.querySelector('input[data-t]').checked = state[m].on;
     card.querySelector('input[data-t]').disabled = lock[m];
   }
   renderPills();
 
-  $('price-gtl').innerHTML  = fmt(RATES.gtl.prices[state.gtl.plan])+' <em>/人/年</em>';
-  $('price-ghs').innerHTML  = fmt(RATES.ghs.prices[state.ghs.plan])+' <em>/人/年</em>';
-  $('price-gaci').innerHTML = '+'+fmt(RATES.gaci.prices[state.gtl.plan])+' <em>/人/年</em>';
-  $('price-gadd').innerHTML = fmt(RATES.gadd.prices[state.gadd.plan])+' <em>/人/年</em>';
-  $('price-gp').innerHTML   = fmt(RATES.gp.prices[state.gp.copay])+' <em>/人/年</em>';
-  $('price-gpsp').innerHTML = fmt(RATES.gpsp.prices[state.gpsp.copay][state.gpsp.plan])+' <em>/人/年</em>';
-  $('price-dental').innerHTML = fmt(RATES.dental.price)+' <em>/人/年</em>';
+  const priceOr = (m, html) => state[m].on ? html+' <em>/人/年</em>' : '—';
+  $('price-gtl').innerHTML  = priceOr('gtl', fmt(RATES.gtl.prices[state.gtl.plan]));
+  $('price-ghs').innerHTML  = priceOr('ghs', fmt(RATES.ghs.prices[state.ghs.plan]));
+  $('price-gaci').innerHTML = priceOr('gaci', '+'+fmt(RATES.gaci.prices[state.gtl.plan]));
+  $('price-gadd').innerHTML = priceOr('gadd', fmt(RATES.gadd.prices[state.gadd.plan]));
+  $('price-gp').innerHTML   = priceOr('gp', fmt(RATES.gp.prices[state.gp.copay]));
+  $('price-gpsp').innerHTML = priceOr('gpsp', fmt(RATES.gpsp.prices[state.gpsp.copay][state.gpsp.plan]));
+  $('price-dental').innerHTML = priceOr('dental', fmt(RATES.dental.price));
   $('gaci-follow').textContent = state.gtl.on
     ? '档位跟随寿险：Plan '+(state.gtl.plan+1)+'（重疾保额 '+RATES.gaci.labels[state.gtl.plan]+'）'
     : '开启寿险后，档位将自动跟随寿险档位';
@@ -414,9 +422,15 @@ document.addEventListener('click', e=>{
   const pill = e.target.closest('.pill');
   if(pill){
     const [mod,kind] = pill.dataset.mod.split('-');
+    if($('card-'+mod).classList.contains('locked')) return;
     const v = +pill.dataset.i;
     if(kind==='plan') state[mod].plan = v;
     else state[mod].copay = v;
+    if(!state[mod].on){            // 点灰色选项 = 顺手开启该卡片
+      state[mod].on = true;
+      if(mod==='gp') state.gpsp.on = false;
+      if(mod==='gpsp') state.gp.on = false;
+    }
     render();
     return;
   }
