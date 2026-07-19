@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AIA Flexi Vital Care Plus · 团险模块化报价估算器</title>
+<title>AIA Flexi Vital Care Plus · 新加坡团险模块化报价估算器</title>
 <style>
   :root{
     --navy:#123154; --navy-2:#244a72; --gold:#c6a15b; --ink:#243447;
@@ -28,12 +28,12 @@
   }
   .age-row{margin-top:16px}
   .age-label{display:block;font-size:12px;color:rgba(255,255,255,.6);margin-bottom:8px}
-  .age-pills{display:flex;flex-wrap:wrap;gap:8px}
-  .age-pill{
-    border:1px solid rgba(255,255,255,.32);background:transparent;color:rgba(255,255,255,.85);
-    border-radius:999px;padding:5px 13px;font-size:13px;cursor:pointer;line-height:1.5;
+  .age-select{
+    appearance:none;-webkit-appearance:none;border:none;outline:none;cursor:pointer;
+    background:#fff url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23123154' stroke-width='2' fill='none'/%3E%3C/svg%3E") no-repeat right 14px center;
+    color:var(--navy);font-size:15px;font-weight:600;font-family:inherit;
+    border-radius:10px;padding:10px 40px 10px 16px;min-width:220px;
   }
-  .age-pill.active{background:var(--gold);border-color:var(--gold);color:var(--navy);font-weight:700}
   .fine{margin-top:14px;font-size:12px;color:rgba(255,255,255,.55);line-height:1.7}
 
   /* sections */
@@ -100,7 +100,22 @@
   /* notes */
   .notes{margin-top:36px;font-size:12px;color:var(--muted);line-height:1.9}
   .notes li{margin-left:18px}
-  .brand{margin:26px 0 10px;font-size:12px;color:var(--muted);text-align:center}
+
+  /* contact */
+  .contact{
+    margin:34px auto 10px;max-width:420px;text-align:center;
+    background:var(--white);border:1px solid var(--line);border-radius:14px;padding:28px 24px;
+  }
+  .avatar{
+    width:88px;height:88px;border-radius:50%;object-fit:cover;object-position:top;
+    border:3px solid var(--gold);display:block;margin:0 auto 12px;
+  }
+  .ct-name{font-size:16px;font-weight:700;color:var(--navy)}
+  .ct-sub{font-size:12px;color:var(--muted);margin-top:2px}
+  .ct-lines{margin-top:14px;font-size:14px;line-height:2.1}
+  .ct-lines a{color:var(--navy-2);text-decoration:none;font-weight:600}
+  .ct-lines a:hover{text-decoration:underline}
+  .ct-lines .lb{color:var(--muted);font-size:12.5px;margin-right:6px}
 
   /* summary bar */
   .bar{
@@ -132,12 +147,23 @@
 <header>
   <div class="wrap">
     <div class="eyebrow">AIA Flexi Vital Care Plus</div>
-    <h1>团险模块化报价估算器</h1>
+    <h1>新加坡团险模块化报价估算器</h1>
     <p class="hd-sub">勾选核心计划与附加保障，实时估算团队年度保费。核心计划至少选择一项，方可添加对应附加计划。</p>
     <div class="ref-badge">价格以 <span id="band-label">30–34岁</span> 员工为参考</div>
     <div class="age-row">
-      <span class="age-label">员工平均年龄段（切换后所有价格同步更新）</span>
-      <div class="age-pills" id="age-pills"></div>
+      <label class="age-label" for="age-select">员工平均年龄段（切换后所有价格同步更新）</label>
+      <select class="age-select" id="age-select">
+        <option value="0">29岁及以下</option>
+        <option value="1" selected>30–34岁</option>
+        <option value="2">35–39岁</option>
+        <option value="3">40–44岁</option>
+        <option value="4">45–49岁</option>
+        <option value="5">50–54岁</option>
+        <option value="6">55–59岁</option>
+        <option value="7">60–64岁</option>
+        <option value="8">65–69岁</option>
+        <option value="9">70–74岁</option>
+      </select>
     </div>
     <p class="fine">费率取自 AIA Flexi Vital Care Plus 官方手册对应年龄段（截至 2025 年 7 月 31 日），男女费率相同；意外险按职业等级 Class 1（室内文职）计算，仓储、驾驶等岗位费率不同；实际保费以 AIA 核保为准。</p>
   </div>
@@ -296,7 +322,16 @@
     <li>重疾（GACI）档位须与寿险（GTL）档位一致，70–74 岁年龄段不可附加；普通门诊（GP）仅可附加于住院计划；「普通门诊」与「门诊 + 专科」二选一。</li>
     <li>牙科计划投保须全体员工参加。团体投保有最低人数要求，本工具按 5 人起算。</li>
   </ul>
-  <p class="brand">SingaporeYuan · 团险方案咨询</p>
+  <div class="contact">
+    <img class="avatar" src="/portrait-crop.png" alt="Yuanyuan">
+    <div class="ct-name">SingaporeYuan</div>
+    <div class="ct-sub">团险方案咨询 · AIA Singapore</div>
+    <div class="ct-lines">
+      <div><span class="lb">WeChat</span>singaporeyuan</div>
+      <div><span class="lb">WhatsApp</span><a href="https://wa.me/6583750190">+65 8375 0190</a></div>
+      <div><span class="lb">Email</span><a href="mailto:yuanyuan@aia.com.sg">yuanyuan@aia.com.sg</a></div>
+    </div>
+  </div>
 </main>
 
 <div class="bar">
@@ -431,8 +466,7 @@ function renderPills(){
   $('pills-gp').innerHTML =
     pillHtml('gp-copay', 0, '无自付', fmt(gpRate(b,0)), state.gp.copay===0) +
     pillHtml('gp-copay', 5, '自付 S$5 / 次', fmt(gpRate(b,5)), state.gp.copay===5);
-  $('age-pills').innerHTML = BANDS.map((lb,i)=>
-    '<button type="button" class="age-pill'+(state.band===i?' active':'')+'" data-band="'+i+'">'+lb+'</button>').join('');
+  $('age-select').value = String(b);
 }
 function render(){
   normalize(state);
@@ -483,6 +517,7 @@ function render(){
 }
 
 document.addEventListener('change', e=>{
+  if(e.target.id==='age-select'){ state.band = +e.target.value; render(); return; }
   const t = e.target.dataset && e.target.dataset.t;
   if(!t) return;
   state[t].on = e.target.checked;
@@ -491,8 +526,6 @@ document.addEventListener('change', e=>{
   render();
 });
 document.addEventListener('click', e=>{
-  const age = e.target.closest('.age-pill');
-  if(age){ state.band = +age.dataset.band; render(); return; }
   const pill = e.target.closest('.pill');
   if(pill){
     const [mod,kind] = pill.dataset.mod.split('-');
