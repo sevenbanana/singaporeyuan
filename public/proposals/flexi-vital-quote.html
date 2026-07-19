@@ -46,9 +46,9 @@
 
   /* step 1: setup */
   .setup{
-    background:var(--white);border:1px solid var(--line);border-radius:14px;
+    background:var(--white);border:1px solid var(--line);border-radius:16px;
     padding:20px 24px;margin-top:-18px;position:relative;z-index:5;
-    box-shadow:0 6px 20px rgba(18,49,84,.08);
+    box-shadow:0 4px 14px rgba(18,49,84,.06);
     display:flex;align-items:center;gap:28px;flex-wrap:wrap;
   }
   .setup .step-tag{
@@ -78,28 +78,27 @@
   .layout{display:grid;grid-template-columns:1fr 300px;gap:24px;align-items:start;margin-top:8px}
   @media(max-width:900px){.layout{grid-template-columns:1fr}}
 
-  h2{font-size:17px;color:var(--navy);margin:28px 0 4px}
+  h2{font-size:17px;color:var(--navy);margin:38px 0 4px}
   h2 .h2-sub{font-size:12.5px;color:var(--muted);font-weight:400;margin-left:10px}
-  .grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:12px}
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:14px;align-items:start}
   @media(max-width:720px){.grid{grid-template-columns:1fr}}
 
   /* card */
   .card{
-    background:var(--white);border:1px solid var(--line);border-radius:14px;padding:20px;
-    position:relative;transition:box-shadow .15s,border-color .15s,background .15s;
-    display:flex;flex-direction:column;
+    background:var(--white);border:1px solid var(--line);border-radius:16px;padding:20px 22px;
+    position:relative;transition:border-color .15s,background .15s;
   }
-  .card.core{background:var(--core-bg);border-color:#b9cde3}
-  .card.on{border-color:var(--green);background:var(--sel-bg);box-shadow:0 4px 16px rgba(47,125,99,.10)}
+  .card.on{border-color:var(--green);background:#fbfdfc}
   .card.locked{opacity:.55}
   .card.locked .switch{pointer-events:none}
   .card-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
   .c-title{font-size:16px;font-weight:700;color:var(--navy)}
-  .c-en{font-size:11.5px;color:var(--muted);margin-top:2px}
+  .c-en{font-size:11.5px;color:var(--muted);margin:10px 0 2px}
   .c-tag{
     display:inline-block;font-size:10.5px;color:var(--gold);border:1px solid var(--gold);
     border-radius:999px;padding:1px 8px;margin-left:6px;vertical-align:1px;white-space:nowrap;
   }
+  .c-tag.opt{color:var(--muted);border-color:var(--line)}
   .added{
     display:none;font-size:11px;color:var(--green);background:rgba(47,125,99,.1);
     border-radius:999px;padding:2px 10px;margin-top:6px;width:fit-content;font-weight:600;
@@ -150,14 +149,13 @@
   .card.off .pill.active{border-color:#b6c2cd;background:#b6c2cd;color:#fff}
   .card.off .pill.active span{color:rgba(255,255,255,.8)}
   .card.off .p-val{color:#9aa7b4}
-  .follow-note{font-size:12px;color:var(--ink);background:rgba(18,49,84,.05);border-radius:8px;padding:7px 11px;margin-top:12px}
+  .follow-note{font-size:12px;color:var(--muted);margin-top:12px}
 
   /* price row */
   .price-row{
     display:flex;justify-content:space-between;align-items:baseline;gap:8px;
-    border-top:1px dashed var(--line);margin-top:auto;padding-top:11px;
+    border-top:1px dashed var(--line);margin-top:14px;padding-top:11px;
   }
-  .price-row{margin-top:14px}
   .p-label{font-size:12px;color:var(--muted)}
   .p-val{font-size:18px;font-weight:800;color:var(--navy);white-space:nowrap}
   .p-val em{font-style:normal;font-size:11.5px;font-weight:400;color:var(--muted)}
@@ -166,8 +164,8 @@
   /* summary aside */
   .aside{position:sticky;top:16px}
   .sum-card{
-    background:var(--white);border:1px solid var(--line);border-radius:14px;padding:20px;
-    box-shadow:0 4px 16px rgba(18,49,84,.06);
+    background:var(--white);border:1px solid var(--line);border-radius:16px;padding:20px 22px;
+    box-shadow:0 1px 6px rgba(18,49,84,.05);
   }
   .sum-title{font-size:14px;font-weight:700;color:var(--navy);margin-bottom:12px}
   .sum-meta{font-size:12.5px;color:var(--muted);display:flex;gap:14px;padding-bottom:10px;border-bottom:1px dashed var(--line)}
@@ -183,7 +181,7 @@
     border-top:1px dashed var(--line);margin-top:8px;padding-top:10px;
   }
   .sum-total .t-label{font-size:12.5px;color:var(--muted)}
-  .sum-total .t-val{font-size:23px;font-weight:800;color:var(--navy)}
+  .sum-total .t-val{font-size:26px;font-weight:800;color:var(--navy)}
   .sum-monthly{font-size:12px;color:var(--muted);text-align:right;margin-top:2px}
   .btn{
     display:block;width:100%;text-align:center;border-radius:10px;cursor:pointer;
@@ -206,29 +204,29 @@
   }
   .toast.show{opacity:.95}
 
-  /* collapsed legal */
-  .legal{margin:30px 0 8px;border:1px solid var(--line);border-radius:12px;background:var(--white)}
+  /* collapsed legal:无边框轻量文本 */
+  .legal{margin:38px 0 8px}
   .legal summary{
-    cursor:pointer;padding:13px 18px;font-size:13px;color:var(--navy);font-weight:600;
-    list-style:none;
+    cursor:pointer;padding:4px 0;font-size:13px;color:var(--navy-2);font-weight:600;
+    list-style:none;width:fit-content;
   }
   .legal summary::-webkit-details-marker{display:none}
-  .legal summary::after{content:"▾";float:right;color:var(--muted)}
-  .legal[open] summary::after{content:"▴"}
-  .notes{margin:0;padding:0 18px 14px;font-size:12px;color:var(--muted);line-height:1.9;list-style:none}
+  .legal summary::after{content:"  ▾";color:var(--muted)}
+  .legal[open] summary::after{content:"  ▴"}
+  .notes{margin:8px 0 0;padding:0;font-size:12px;color:var(--muted);line-height:1.9;list-style:none}
   .notes li{padding-left:14px;position:relative}
   .notes li::before{content:"·";position:absolute;left:2px}
 
   /* contact */
   .contact{
-    max-width:820px;margin:26px auto 90px;display:flex;align-items:center;gap:32px;
-    background:var(--white);border:1px solid var(--line);border-radius:18px;
-    padding:26px 34px;box-shadow:0 2px 10px rgba(18,49,84,.05);
+    max-width:820px;margin:34px auto 90px;display:flex;align-items:center;gap:32px;
+    background:var(--white);border:1px solid var(--line);border-radius:16px;
+    padding:22px 30px;box-shadow:0 1px 6px rgba(18,49,84,.05);
   }
-  @media(min-width:901px){.contact{margin-bottom:30px}}
+  @media(min-width:901px){.contact{margin-bottom:34px}}
   .ct-left{display:flex;align-items:center;gap:16px;flex:none}
   .avatar{
-    width:88px;height:88px;border-radius:50%;object-fit:cover;object-position:center;
+    width:84px;height:84px;border-radius:50%;object-fit:cover;object-position:center;
     border:2px solid var(--gold);flex:none;
   }
   .ct-name{font-size:16px;font-weight:700;color:var(--navy)}
@@ -325,14 +323,13 @@
   <div class="layout">
     <div class="content">
 
-      <h2>第二步 · 核心计划<span class="h2-sub">建议优先配置，至少选择一项（可两项都选）</span></h2>
+      <h2>第二步 · 基础保障<span class="h2-sub">建议优先配置，至少选择一项（可两项都选）</span></h2>
       <div class="grid">
 
         <div class="card core" id="card-ghs">
           <div class="card-head">
             <div>
-              <div class="c-title">住院及手术保障<span class="c-tag">核心 · 建议优先配置</span></div>
-              <div class="c-en">Group Hospitalization &amp; Surgical (GHS) + EMM</div>
+              <div class="c-title">住院及手术保障<span class="c-tag">基础保障</span></div>
               <span class="added">已加入方案</span>
             </div>
             <label class="switch"><input type="checkbox" data-t="ghs"><span class="slider"></span></label>
@@ -340,10 +337,11 @@
           <ul class="feats">
             <li>私立医院病房（等级随档位），ICU 重症监护</li>
             <li>住院杂费、手术费、住院医生巡诊费</li>
-            <li>入院前 / 出院后各 90 天的专科门诊、检验与影像</li>
           </ul>
           <div class="more">
+            <div class="c-en">Group Hospitalization &amp; Surgical (GHS) + EMM</div>
             <ul class="feats">
+              <li>入院前 / 出院后各 90 天的专科门诊、检验与影像</li>
               <li>意外门诊急救（含意外牙科），31 天内治疗费用</li>
               <li>门诊肾透析 / 癌症治疗 S$15,000 / 年（P4 为 S$75,000）</li>
               <li>海外意外住院按限额 150% 赔付（出行不超过 180 天）</li>
@@ -361,8 +359,7 @@
         <div class="card core" id="card-gtl">
           <div class="card-head">
             <div>
-              <div class="c-title">团体定期寿险<span class="c-tag">核心 · 建议优先配置</span></div>
-              <div class="c-en">Group Term Life (GTL)</div>
+              <div class="c-title">团体定期寿险<span class="c-tag">基础保障</span></div>
               <span class="added">已加入方案</span>
             </div>
             <label class="switch"><input type="checkbox" data-t="gtl"><span class="slider"></span></label>
@@ -370,10 +367,11 @@
           <ul class="feats">
             <li>身故 / 完全永久伤残（TPD）/ 末期疾病，一次性赔付保额</li>
             <li>保额 S$50,000 – S$500,000，按档位选择</li>
-            <li>额外 10% 抚恤金，随身故或 TPD 赔付一并给付</li>
           </ul>
           <div class="more">
+            <div class="c-en">Group Term Life (GTL)</div>
             <ul class="feats">
+              <li>额外 10% 抚恤金，随身故或 TPD 赔付一并给付</li>
               <li>末期疾病（TI）：确诊后预期寿命 12 个月内即可一次性给付</li>
               <li>TPD 涵盖完全丧失工作能力、双目失明、双肢缺失等</li>
               <li>保额 S$180,000 以上需 AIA 核保</li>
@@ -387,14 +385,13 @@
         </div>
       </div>
 
-      <h2>第三步 · 附加计划<span class="h2-sub">在已选核心计划的基础上自由加减</span></h2>
+      <h2>第三步 · 可选福利<span class="h2-sub">在已选基础保障上自由加减</span></h2>
       <div class="grid">
 
         <div class="card" id="card-gpsp">
           <div class="card-head">
             <div>
-              <div class="c-title">门诊 + 专科</div>
-              <div class="c-en">Group Outpatient Clinical &amp; Specialist (GP &amp; SP)</div>
+              <div class="c-title">门诊 + 专科<span class="c-tag opt">可选福利</span></div>
               <span class="added">已加入方案</span>
             </div>
             <label class="switch"><input type="checkbox" data-t="gpsp"><span class="slider"></span></label>
@@ -402,10 +399,11 @@
           <ul class="feats">
             <li>含「普通门诊」全部保障</li>
             <li>AIA 网络专科免现金，专科年限额按档位 S$800 – S$2,000</li>
-            <li>诊断影像与检验（含 MRI / CT）享同等年限额</li>
           </ul>
           <div class="more">
+            <div class="c-en">Group Outpatient Clinical &amp; Specialist (GP &amp; SP)</div>
             <ul class="feats">
+              <li>诊断影像与检验（含 MRI / CT）享同等年限额</li>
               <li>物理治疗（需医生转介）</li>
               <li>政府重组医院专科门诊可报销，无需转介信</li>
               <li>儿科远程问诊至多 6 次 / 年（家属投保时适用）</li>
@@ -424,8 +422,7 @@
         <div class="card" id="card-gp">
           <div class="card-head">
             <div>
-              <div class="c-title">普通门诊</div>
-              <div class="c-en">Group Outpatient Clinical (GP)</div>
+              <div class="c-title">普通门诊<span class="c-tag opt">可选福利</span></div>
               <span class="added">已加入方案</span>
             </div>
             <label class="switch"><input type="checkbox" data-t="gp"><span class="slider"></span></label>
@@ -433,10 +430,11 @@
           <ul class="feats">
             <li>AIA 网络诊所看诊 + 药费：无限次、免现金</li>
             <li>网络远程问诊、中医门诊各至多 6 次 / 年</li>
-            <li>政府综合诊所实报实销</li>
           </ul>
           <div class="more">
+            <div class="c-en">Group Outpatient Clinical (GP)</div>
             <ul class="feats">
+              <li>政府综合诊所实报实销</li>
               <li>急诊 A&amp;E 每次上限 S$120</li>
               <li>非网络诊所每次上限 S$30</li>
               <li>海外门诊每次上限 S$100（柔佛非网络诊所除外）</li>
@@ -452,19 +450,19 @@
         <div class="card" id="card-gaci">
           <div class="card-head">
             <div>
-              <div class="c-title">重大疾病</div>
-              <div class="c-en">Group Accelerated Critical Illness (GACI)</div>
+              <div class="c-title">重大疾病<span class="c-tag opt">可选福利</span></div>
               <span class="added">已加入方案</span>
             </div>
             <label class="switch"><input type="checkbox" data-t="gaci"><span class="slider"></span></label>
           </div>
           <ul class="feats">
             <li>覆盖 37 种重大疾病，确诊一次性赔付</li>
-            <li>冠状动脉介入治疗预付 10% 保额（上限 S$25,000）</li>
             <li>保额 S$25,000 – S$250,000，与寿险档位联动</li>
           </ul>
           <div class="more">
+            <div class="c-en">Group Accelerated Critical Illness (GACI)</div>
             <ul class="feats">
+              <li>冠状动脉介入治疗预付 10% 保额（上限 S$25,000）</li>
               <li>赔付全额后重疾保障终止，寿险保额相应调整</li>
               <li>17 岁前显现的先天性疾病等不在保障范围</li>
               <li>员工家属可加保（保额为员工的 50%）</li>
@@ -479,19 +477,19 @@
         <div class="card" id="card-gadd">
           <div class="card-head">
             <div>
-              <div class="c-title">意外身故及伤残</div>
-              <div class="c-en">Group Accidental Death &amp; Dismemberment (GADD)</div>
+              <div class="c-title">意外身故及伤残<span class="c-tag opt">可选福利</span></div>
               <span class="added">已加入方案</span>
             </div>
             <label class="switch"><input type="checkbox" data-t="gadd"><span class="slider"></span></label>
           </div>
           <ul class="feats">
             <li>24 小时全球意外身故 / 意外完全永久伤残保障</li>
-            <li>三度烧伤保障</li>
             <li>抚恤金 S$2,000；子女教育金 S$5,000</li>
           </ul>
           <div class="more">
+            <div class="c-en">Group Accidental Death &amp; Dismemberment (GADD)</div>
             <ul class="feats">
+              <li>三度烧伤保障</li>
               <li>公共交通意外身故额外赔付 10%（上限 S$10,000）</li>
               <li>公共交通意外致昏迷额外赔付 20%（上限 S$20,000）</li>
               <li>TPD 后行动辅助器材报销 95%，上限 S$1,000</li>
@@ -508,8 +506,7 @@
         <div class="card" id="card-dental">
           <div class="card-head">
             <div>
-              <div class="c-title">牙科</div>
-              <div class="c-en">Group Dental</div>
+              <div class="c-title">牙科<span class="c-tag opt">可选福利</span></div>
               <span class="added">已加入方案</span>
             </div>
             <label class="switch"><input type="checkbox" data-t="dental"><span class="slider"></span></label>
@@ -517,10 +514,11 @@
           <ul class="feats">
             <li>AIA 网络牙科检查免现金</li>
             <li>洗牙、补牙、根管治疗、拔牙等常规项目</li>
-            <li>单一费率，无档位；须全体员工统一参加（AIA 规则）</li>
           </ul>
           <div class="more">
+            <div class="c-en">Group Dental</div>
             <ul class="feats">
+              <li>单一费率，无档位；须全体员工统一参加（AIA 规则）</li>
               <li>非网络牙科按价目表定额报销（如根管 S$150–350、拔牙 S$30 起）</li>
               <li>颌骨骨折、口腔肿瘤切除等手术项目亦有定额保障</li>
               <li>可扩展覆盖员工配偶及子女</li>
@@ -548,7 +546,7 @@
         <div class="ct-left">
           <img class="avatar" src="/avatar-round.png" alt="Yuanyuan">
           <div>
-            <div class="ct-name">SingaporeYuan</div>
+            <div class="ct-name">Yuan Yuan</div>
             <div class="ct-sub">团险方案咨询 · AIA Singapore</div>
           </div>
         </div>
