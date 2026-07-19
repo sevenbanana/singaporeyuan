@@ -3,113 +3,207 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AIA Flexi Vital Care Plus · 新加坡团险模块化报价估算器</title>
+<title>5人起，新加坡企业团险预算快速测算</title>
 <style>
   :root{
     --navy:#123154; --navy-2:#244a72; --gold:#c6a15b; --ink:#243447;
     --muted:#6d7b8a; --line:#dce3ea; --soft:#f5f8fb; --white:#fff; --green:#2f7d63;
+    --core-bg:#f3f7fc; --sel-bg:#f4faf7;
   }
   *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
   body{
     font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",Arial,sans-serif;
     background:var(--soft);color:var(--ink);line-height:1.65;font-size:15px;
-    padding-bottom:120px;
   }
-  .wrap{max-width:960px;margin:0 auto;padding:0 16px}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 16px}
 
   /* header */
-  header{background:linear-gradient(150deg,var(--navy) 0%,var(--navy-2) 100%);color:#fff;padding:44px 0 36px}
-  .eyebrow{font-size:11px;letter-spacing:.25em;color:var(--gold);text-transform:uppercase}
-  h1{font-size:clamp(22px,4vw,30px);font-weight:800;margin-top:10px;line-height:1.4}
-  .hd-sub{margin-top:10px;font-size:14px;color:rgba(255,255,255,.75);max-width:640px}
-  .ref-badge{
-    display:inline-block;margin-top:18px;background:var(--gold);color:var(--navy);
-    font-weight:700;font-size:15px;border-radius:999px;padding:8px 20px;
-  }
-  .age-row{margin-top:16px}
-  .age-label{display:block;font-size:12px;color:rgba(255,255,255,.6);margin-bottom:8px}
-  .age-select{
-    appearance:none;-webkit-appearance:none;border:none;outline:none;cursor:pointer;
-    background:#fff url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23123154' stroke-width='2' fill='none'/%3E%3C/svg%3E") no-repeat right 14px center;
-    color:var(--navy);font-size:15px;font-weight:600;font-family:inherit;
-    border-radius:10px;padding:10px 40px 10px 16px;min-width:220px;
-  }
-  .fine{margin-top:14px;font-size:12px;color:rgba(255,255,255,.55);line-height:1.7}
+  header{background:linear-gradient(150deg,var(--navy) 0%,var(--navy-2) 100%);color:#fff;padding:40px 0 32px}
+  .eyebrow{font-size:11px;letter-spacing:.2em;color:var(--gold);text-transform:uppercase}
+  h1{font-size:clamp(21px,3.6vw,29px);font-weight:800;margin-top:10px;line-height:1.45}
+  .hd-sub{margin-top:10px;font-size:14px;color:rgba(255,255,255,.75);max-width:620px}
 
-  /* sections */
-  h2{font-size:18px;color:var(--navy);margin:34px 0 6px}
-  .sec-sub{font-size:13px;color:var(--muted);margin-bottom:16px}
-  .grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  /* step 1: setup */
+  .setup{
+    background:var(--white);border:1px solid var(--line);border-radius:14px;
+    padding:20px 24px;margin-top:-18px;position:relative;z-index:5;
+    box-shadow:0 6px 20px rgba(18,49,84,.08);
+    display:flex;align-items:center;gap:28px;flex-wrap:wrap;
+  }
+  .setup .step-tag{
+    flex:none;font-size:11px;letter-spacing:.12em;color:var(--gold);
+    border:1px solid var(--gold);border-radius:999px;padding:3px 12px;
+  }
+  .fld{display:flex;align-items:center;gap:12px}
+  .fld .f-label{font-size:13px;color:var(--muted);flex:none}
+  .stepper{display:flex;align-items:center;gap:8px}
+  .stepper button{
+    width:30px;height:30px;border-radius:8px;border:1px solid var(--line);
+    background:var(--white);color:var(--navy);font-size:17px;cursor:pointer;line-height:1;
+  }
+  .stepper button:hover{border-color:var(--navy-2)}
+  .stepper button:disabled{opacity:.35;cursor:default}
+  .stepper .cnt{font-size:16px;font-weight:700;min-width:48px;text-align:center;color:var(--navy)}
+  .age-select{
+    appearance:none;-webkit-appearance:none;border:1px solid var(--line);outline:none;cursor:pointer;
+    background:#fff url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23123154' stroke-width='2' fill='none'/%3E%3C/svg%3E") no-repeat right 12px center;
+    color:var(--navy);font-size:14px;font-weight:600;font-family:inherit;
+    border-radius:9px;padding:8px 36px 8px 14px;
+  }
+  .setup-status{flex:1 1 100%;font-size:12.5px;color:var(--muted);margin-top:-4px}
+  .setup-status b{color:var(--navy);font-weight:600}
+
+  /* layout: content + sticky summary */
+  .layout{display:grid;grid-template-columns:1fr 300px;gap:24px;align-items:start;margin-top:8px}
+  @media(max-width:900px){.layout{grid-template-columns:1fr}}
+
+  h2{font-size:17px;color:var(--navy);margin:28px 0 4px}
+  h2 .h2-sub{font-size:12.5px;color:var(--muted);font-weight:400;margin-left:10px}
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:12px}
   @media(max-width:720px){.grid{grid-template-columns:1fr}}
 
   /* card */
   .card{
-    background:var(--white);border:1px solid var(--line);border-radius:14px;padding:22px;
-    position:relative;transition:box-shadow .15s,border-color .15s;
+    background:var(--white);border:1px solid var(--line);border-radius:14px;padding:20px;
+    position:relative;transition:box-shadow .15s,border-color .15s,background .15s;
+    display:flex;flex-direction:column;
   }
-  .card.on{border-color:var(--navy-2);box-shadow:0 6px 22px rgba(18,49,84,.10)}
+  .card.core{background:var(--core-bg);border-color:#b9cde3}
+  .card.on{border-color:var(--green);background:var(--sel-bg);box-shadow:0 4px 16px rgba(47,125,99,.10)}
   .card.locked{opacity:.55}
   .card.locked .switch{pointer-events:none}
   .card-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
-  .c-title{font-size:17px;font-weight:700;color:var(--navy)}
-  .c-en{font-size:12px;color:var(--muted);margin-top:2px}
-  .c-tag{display:inline-block;font-size:11px;color:var(--gold);border:1px solid var(--gold);border-radius:999px;padding:1px 9px;margin-left:6px;vertical-align:1px}
-  .feats{list-style:none;margin:14px 0 4px;font-size:13px;color:var(--ink)}
-  .feats li{padding:3px 0 3px 18px;position:relative}
-  .feats li::before{content:"";position:absolute;left:2px;top:11px;width:7px;height:7px;border-radius:50%;background:var(--gold)}
-  .lock-hint{font-size:12px;color:#b4433a;margin-top:10px;display:none}
+  .c-title{font-size:16px;font-weight:700;color:var(--navy)}
+  .c-en{font-size:11.5px;color:var(--muted);margin-top:2px}
+  .c-tag{
+    display:inline-block;font-size:10.5px;color:var(--gold);border:1px solid var(--gold);
+    border-radius:999px;padding:1px 8px;margin-left:6px;vertical-align:1px;white-space:nowrap;
+  }
+  .added{
+    display:none;font-size:11px;color:var(--green);background:rgba(47,125,99,.1);
+    border-radius:999px;padding:2px 10px;margin-top:6px;width:fit-content;font-weight:600;
+  }
+  .added::before{content:"✓ "}
+  .card.on .added{display:inline-block}
+  .feats{list-style:none;margin:12px 0 2px;font-size:13px;color:var(--ink)}
+  .feats li{padding:2.5px 0 2.5px 17px;position:relative}
+  .feats li::before{content:"";position:absolute;left:2px;top:10.5px;width:6px;height:6px;border-radius:50%;background:var(--gold)}
+  .more{display:none}
+  .card.expanded .more{display:block}
+  .more-toggle{
+    background:none;border:none;padding:0;margin:8px 0 0;cursor:pointer;font-family:inherit;
+    font-size:12.5px;color:var(--navy-2);text-align:left;
+  }
+  .more-toggle:hover{text-decoration:underline}
+  .more-toggle::after{content:" ▾"}
+  .card.expanded .more-toggle::after{content:" ▴"}
+  .lock-hint{font-size:12px;color:#8a6d3b;margin-top:10px;display:none}
+  .lock-hint::before{content:"🔒 "}
   .card.locked .lock-hint{display:block}
 
   /* switch */
-  .switch{position:relative;width:46px;height:26px;flex:none;cursor:pointer}
+  .switch{position:relative;width:44px;height:25px;flex:none;cursor:pointer}
   .switch input{opacity:0;width:0;height:0}
   .slider{position:absolute;inset:0;background:#c9d3dd;border-radius:999px;transition:.15s}
-  .slider::before{content:"";position:absolute;left:3px;top:3px;width:20px;height:20px;border-radius:50%;background:#fff;transition:.15s}
+  .slider::before{content:"";position:absolute;left:3px;top:3px;width:19px;height:19px;border-radius:50%;background:#fff;transition:.15s}
   .switch input:checked + .slider{background:var(--green)}
-  .switch input:checked + .slider::before{transform:translateX(20px)}
+  .switch input:checked + .slider::before{transform:translateX(19px)}
 
-  /* plan pills */
+  /* pills */
   .opt-label{font-size:12px;color:var(--muted);margin:12px 0 6px}
-  .pills{display:flex;flex-wrap:wrap;gap:8px}
+  .pills{display:flex;flex-wrap:wrap;gap:7px}
   .pill{
-    border:1px solid var(--line);background:#fff;border-radius:9px;padding:6px 10px;
-    font-size:12px;cursor:pointer;line-height:1.4;text-align:center;min-width:64px;color:var(--ink);
+    border:1px solid var(--line);background:#fff;border-radius:9px;padding:5px 9px;
+    font-size:12px;cursor:pointer;line-height:1.4;text-align:center;min-width:62px;color:var(--ink);
   }
-  .pill b{display:block;font-size:12.5px}
+  .pill b{display:block;font-size:12px}
   .pill span{color:var(--muted);font-size:11px}
   .pill.active{border-color:var(--navy);background:var(--navy);color:#fff}
   .pill.active span{color:rgba(255,255,255,.75)}
-  /* 卡片未开启:按钮灰显,避免误以为已计入 */
   .card.off .pill{border-color:#e3e9ef;background:#f2f5f8;color:#9aa7b4}
   .card.off .pill span{color:#b0bbc6}
   .card.off .pill.active{border-color:#b6c2cd;background:#b6c2cd;color:#fff}
   .card.off .pill.active span{color:rgba(255,255,255,.8)}
   .card.off .p-val{color:#9aa7b4}
-  .follow-note{font-size:12.5px;color:var(--ink);background:var(--soft);border-radius:8px;padding:8px 12px;margin-top:12px}
+  .follow-note{font-size:12px;color:var(--ink);background:rgba(18,49,84,.05);border-radius:8px;padding:7px 11px;margin-top:12px}
 
   /* price row */
   .price-row{
-    display:flex;justify-content:space-between;align-items:baseline;
-    border-top:1px dashed var(--line);margin-top:16px;padding-top:12px;
+    display:flex;justify-content:space-between;align-items:baseline;gap:8px;
+    border-top:1px dashed var(--line);margin-top:auto;padding-top:11px;
   }
+  .price-row{margin-top:14px}
   .p-label{font-size:12px;color:var(--muted)}
-  .p-val{font-size:19px;font-weight:800;color:var(--navy)}
-  .p-val em{font-style:normal;font-size:12px;font-weight:400;color:var(--muted)}
+  .p-val{font-size:18px;font-weight:800;color:var(--navy);white-space:nowrap}
+  .p-val em{font-style:normal;font-size:11.5px;font-weight:400;color:var(--muted)}
   .card.on .p-val{color:var(--green)}
 
-  /* notes */
-  .notes{margin-top:36px;font-size:12px;color:var(--muted);line-height:1.9}
-  .notes li{margin-left:18px}
-
-  /* contact:横向紧凑联系卡 */
-  .contact{
-    max-width:820px;margin:34px auto 8px;display:flex;align-items:center;gap:32px;
-    background:var(--white);border:1px solid var(--line);border-radius:18px;
-    padding:28px 36px;box-shadow:0 2px 10px rgba(18,49,84,.05);
+  /* summary aside */
+  .aside{position:sticky;top:16px}
+  .sum-card{
+    background:var(--white);border:1px solid var(--line);border-radius:14px;padding:20px;
+    box-shadow:0 4px 16px rgba(18,49,84,.06);
   }
+  .sum-title{font-size:14px;font-weight:700;color:var(--navy);margin-bottom:12px}
+  .sum-meta{font-size:12.5px;color:var(--muted);display:flex;gap:14px;padding-bottom:10px;border-bottom:1px dashed var(--line)}
+  .sum-meta b{color:var(--navy);font-weight:600}
+  .sum-items{list-style:none;margin:10px 0;font-size:12.5px}
+  .sum-items li{display:flex;justify-content:space-between;gap:8px;padding:3px 0;color:var(--ink)}
+  .sum-items li span:last-child{color:var(--navy);font-weight:600;white-space:nowrap}
+  .sum-items .none{color:var(--muted);justify-content:flex-start}
+  .sum-line{display:flex;justify-content:space-between;font-size:12.5px;color:var(--muted);padding:2px 0}
+  .sum-line b{color:var(--navy)}
+  .sum-total{
+    display:flex;justify-content:space-between;align-items:baseline;
+    border-top:1px dashed var(--line);margin-top:8px;padding-top:10px;
+  }
+  .sum-total .t-label{font-size:12.5px;color:var(--muted)}
+  .sum-total .t-val{font-size:23px;font-weight:800;color:var(--navy)}
+  .sum-monthly{font-size:12px;color:var(--muted);text-align:right;margin-top:2px}
+  .btn{
+    display:block;width:100%;text-align:center;border-radius:10px;cursor:pointer;
+    font-family:inherit;font-size:14px;text-decoration:none;
+  }
+  .btn-primary{
+    background:var(--navy);color:#fff;font-weight:700;padding:12px;border:none;margin-top:14px;
+  }
+  .btn-primary:hover{background:var(--navy-2)}
+  .btn-row{display:flex;gap:8px;margin-top:8px}
+  .btn-ghost{
+    flex:1;background:none;border:1px solid var(--line);color:var(--navy-2);
+    font-size:12.5px;padding:8px;font-weight:600;
+  }
+  .btn-ghost:hover{border-color:var(--navy-2)}
+  .toast{
+    position:fixed;left:50%;bottom:96px;transform:translateX(-50%);z-index:99;
+    background:var(--navy);color:#fff;font-size:13px;border-radius:999px;padding:8px 18px;
+    opacity:0;pointer-events:none;transition:opacity .25s;
+  }
+  .toast.show{opacity:.95}
+
+  /* collapsed legal */
+  .legal{margin:30px 0 8px;border:1px solid var(--line);border-radius:12px;background:var(--white)}
+  .legal summary{
+    cursor:pointer;padding:13px 18px;font-size:13px;color:var(--navy);font-weight:600;
+    list-style:none;
+  }
+  .legal summary::-webkit-details-marker{display:none}
+  .legal summary::after{content:"▾";float:right;color:var(--muted)}
+  .legal[open] summary::after{content:"▴"}
+  .notes{margin:0;padding:0 18px 14px;font-size:12px;color:var(--muted);line-height:1.9;list-style:none}
+  .notes li{padding-left:14px;position:relative}
+  .notes li::before{content:"·";position:absolute;left:2px}
+
+  /* contact */
+  .contact{
+    max-width:820px;margin:26px auto 90px;display:flex;align-items:center;gap:32px;
+    background:var(--white);border:1px solid var(--line);border-radius:18px;
+    padding:26px 34px;box-shadow:0 2px 10px rgba(18,49,84,.05);
+  }
+  @media(min-width:901px){.contact{margin-bottom:30px}}
   .ct-left{display:flex;align-items:center;gap:16px;flex:none}
   .avatar{
-    width:92px;height:92px;border-radius:50%;object-fit:cover;object-position:50% 10%;
+    width:88px;height:88px;border-radius:50%;object-fit:cover;object-position:50% 10%;
     border:2px solid var(--gold);flex:none;
   }
   .ct-name{font-size:16px;font-weight:700;color:var(--navy)}
@@ -132,41 +226,59 @@
     .ct-lines{margin-left:0;align-self:stretch}
   }
 
-  /* summary bar */
+  /* mobile bottom bar */
   .bar{
-    position:fixed;left:0;right:0;bottom:0;z-index:50;
+    position:fixed;left:0;right:0;bottom:0;z-index:50;display:none;
     background:var(--navy);color:#fff;box-shadow:0 -8px 24px rgba(18,49,84,.25);
   }
-  .bar-in{max-width:960px;margin:0 auto;padding:12px 16px;display:flex;align-items:center;gap:18px;flex-wrap:wrap}
-  .stepper{display:flex;align-items:center;gap:10px}
-  .stepper button{
-    width:30px;height:30px;border-radius:8px;border:1px solid rgba(255,255,255,.35);
-    background:transparent;color:#fff;font-size:17px;cursor:pointer;line-height:1;
+  @media(max-width:900px){.bar{display:block}}
+  .bar-in{padding:11px 16px;display:flex;align-items:center;gap:14px}
+  .bar .b-total{font-size:11.5px;color:var(--gold)}
+  .bar .b-total b{display:block;font-size:20px;font-weight:800;color:var(--gold);line-height:1.2}
+  .bar .b-per{font-size:11.5px;color:rgba(255,255,255,.65)}
+  .bar .b-per b{display:block;font-size:13px;color:#fff;font-weight:600}
+  .m-toggle{
+    margin-left:auto;background:none;border:1px solid rgba(255,255,255,.4);color:#fff;
+    border-radius:9px;padding:8px 14px;font-size:13px;cursor:pointer;font-family:inherit;flex:none;
   }
-  .stepper button:disabled{opacity:.35;cursor:default}
-  .stepper .cnt{font-size:15px;font-weight:700;min-width:52px;text-align:center}
-  .totals{margin-left:auto;display:flex;align-items:baseline;gap:16px;flex-wrap:wrap}
-  .tot-item{font-size:12px;color:rgba(255,255,255,.65)}
-  .tot-item b{display:block;font-size:14px;color:#fff;font-weight:600}
-  .tot-main{font-size:12px;color:var(--gold)}
-  .tot-main b{display:block;font-size:22px;font-weight:800;color:var(--gold)}
-  @media(max-width:600px){
-    .bar-in{gap:10px;padding:10px 14px}
-    .tot-item.hide-sm{display:none}
-    .tot-main b{font-size:19px}
+  .m-panel{
+    position:fixed;left:0;right:0;bottom:0;z-index:60;display:none;
+    background:var(--white);border-radius:18px 18px 0 0;padding:20px 20px 24px;
+    box-shadow:0 -12px 40px rgba(18,49,84,.3);max-height:75vh;overflow:auto;
   }
+  .m-panel.open{display:block}
+  .m-panel .mp-close{
+    position:absolute;right:14px;top:12px;background:none;border:none;font-size:20px;
+    color:var(--muted);cursor:pointer;line-height:1;padding:4px;
+  }
+  .m-mask{position:fixed;inset:0;background:rgba(18,49,84,.35);z-index:55;display:none}
+  .m-mask.open{display:block}
 </style>
 </head>
 <body>
 
 <header>
   <div class="wrap">
-    <div class="eyebrow">AIA Flexi Vital Care Plus</div>
-    <h1>新加坡团险模块化报价估算器</h1>
-    <p class="hd-sub">勾选核心计划与附加保障，实时估算团队年度保费。核心计划至少选择一项，方可添加对应附加计划。</p>
-    <div class="ref-badge">价格以 <span id="band-label">30–34岁</span> 员工为参考</div>
-    <div class="age-row">
-      <label class="age-label" for="age-select">员工平均年龄段（切换后所有价格同步更新）</label>
+    <div class="eyebrow">AIA Flexi Vital Care Plus · 企业团险</div>
+    <h1>5人起，新加坡企业团险预算快速测算</h1>
+    <p class="hd-sub">根据员工年龄、人数和保障需求，自由搭配住院、门诊、寿险、重疾等保障，快速了解团队年度预算。</p>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <div class="setup">
+    <span class="step-tag">第一步 · 基础信息</span>
+    <div class="fld">
+      <span class="f-label">员工人数</span>
+      <div class="stepper">
+        <button id="minus" aria-label="减少人数">−</button>
+        <span class="cnt"><span id="count">5</span> 人</span>
+        <button id="plus" aria-label="增加人数">＋</button>
+      </div>
+    </div>
+    <div class="fld">
+      <label class="f-label" for="age-select">主要年龄段</label>
       <select class="age-select" id="age-select">
         <option value="0">29岁及以下</option>
         <option value="1" selected>30–34岁</option>
@@ -180,206 +292,303 @@
         <option value="9">70–74岁</option>
       </select>
     </div>
-    <p class="fine">费率取自 AIA Flexi Vital Care Plus 官方手册对应年龄段（截至 2025 年 7 月 31 日），男女费率相同；意外险按职业等级 Class 1（室内文职）计算，仓储、驾驶等岗位费率不同；实际保费以 AIA 核保为准。</p>
-  </div>
-</header>
-
-<main class="wrap">
-  <h2>核心计划</h2>
-  <p class="sec-sub">至少选择一项（可两项都选）</p>
-  <div class="grid">
-
-    <div class="card" id="card-ghs">
-      <div class="card-head">
-        <div>
-          <div class="c-title">住院及手术保障<span class="c-tag">核心</span></div>
-          <div class="c-en">Group Hospitalization &amp; Surgical (GHS) + EMM</div>
-        </div>
-        <label class="switch"><input type="checkbox" data-t="ghs"><span class="slider"></span></label>
-      </div>
-      <ul class="feats">
-        <li>私立医院病房（等级随档位），ICU 重症监护</li>
-        <li>住院杂费、手术费、住院医生巡诊费</li>
-        <li>入院前 / 出院后各 90 天的专科门诊、检验与影像</li>
-        <li>意外门诊急救（含意外牙科）、门诊肾透析 / 癌症治疗</li>
-        <li>Plan 1–3 含 EMM 大额医疗延伸（超额部分续保，10% 共保）</li>
-      </ul>
-      <div class="opt-label">选择档位（病房等级）</div>
-      <div class="pills" id="pills-ghs"></div>
-      <div class="price-row"><span class="p-label"><span class="age-ref"></span>员工</span><span class="p-val" id="price-ghs"></span></div>
-    </div>
-
-    <div class="card" id="card-gtl">
-      <div class="card-head">
-        <div>
-          <div class="c-title">团体定期寿险<span class="c-tag">核心</span></div>
-          <div class="c-en">Group Term Life (GTL)</div>
-        </div>
-        <label class="switch"><input type="checkbox" data-t="gtl"><span class="slider"></span></label>
-      </div>
-      <ul class="feats">
-        <li>身故 / 完全永久伤残（TPD）/ 末期疾病，一次性赔付保额</li>
-        <li>额外 10% 抚恤金，随身故或 TPD 赔付一并给付</li>
-        <li>保额 S$50,000 – S$500,000，按档位选择</li>
-      </ul>
-      <div class="opt-label">选择档位（身故 / TPD 保额）</div>
-      <div class="pills" id="pills-gtl"></div>
-      <div class="price-row"><span class="p-label"><span class="age-ref"></span>员工</span><span class="p-val" id="price-gtl"></span></div>
-    </div>
+    <p class="setup-status">当前按 <b><span id="st-count">5</span> 名、<span id="st-band">30–34岁</span></b> 员工估算，男女费率相同</p>
   </div>
 
-  <h2>附加计划</h2>
-  <p class="sec-sub">在已选核心计划的基础上自由加减</p>
-  <div class="grid">
+  <div class="layout">
+    <div class="content">
 
-    <div class="card" id="card-gpsp">
-      <div class="card-head">
-        <div>
-          <div class="c-title">门诊 + 专科</div>
-          <div class="c-en">Group Outpatient Clinical &amp; Specialist (GP &amp; SP)</div>
+      <h2>第二步 · 核心计划<span class="h2-sub">建议优先配置，至少选择一项（可两项都选）</span></h2>
+      <div class="grid">
+
+        <div class="card core" id="card-ghs">
+          <div class="card-head">
+            <div>
+              <div class="c-title">住院及手术保障<span class="c-tag">核心 · 建议优先配置</span></div>
+              <div class="c-en">Group Hospitalization &amp; Surgical (GHS) + EMM</div>
+              <span class="added">已加入方案</span>
+            </div>
+            <label class="switch"><input type="checkbox" data-t="ghs"><span class="slider"></span></label>
+          </div>
+          <ul class="feats">
+            <li>私立医院病房（等级随档位），ICU 重症监护</li>
+            <li>住院杂费、手术费、住院医生巡诊费</li>
+            <li>入院前 / 出院后各 90 天的专科门诊、检验与影像</li>
+          </ul>
+          <div class="more">
+            <ul class="feats">
+              <li>意外门诊急救（含意外牙科），31 天内治疗费用</li>
+              <li>门诊肾透析 / 癌症治疗 S$15,000 / 年（P4 为 S$75,000）</li>
+              <li>海外意外住院按限额 150% 赔付（出行不超过 180 天）</li>
+              <li>意外流产（含宫外孕）；康复治疗 S$5,000 / 次伤病</li>
+              <li>自然 / 意外身故恤金 S$5,000</li>
+              <li>P1–P3 含 EMM 大额医疗延伸：住院 ≥20 天或大手术时延伸 S$40,000–80,000（10% 共保）</li>
+            </ul>
+          </div>
+          <button type="button" class="more-toggle">查看完整保障范围</button>
+          <div class="opt-label">选择档位（病房等级）</div>
+          <div class="pills" id="pills-ghs"></div>
+          <div class="price-row"><span class="p-label">每位员工</span><span class="p-val" id="price-ghs"></span></div>
         </div>
-        <label class="switch"><input type="checkbox" data-t="gpsp"><span class="slider"></span></label>
-      </div>
-      <ul class="feats">
-        <li>含下方「普通门诊」全部保障</li>
-        <li>AIA 网络专科免现金，专科年限额按档位 S$800 – S$2,000</li>
-        <li>诊断影像与检验（含 MRI / CT）享同等年限额</li>
-        <li>物理治疗；专科项目需医生转介</li>
-      </ul>
-      <div class="opt-label">门诊自付</div>
-      <div class="pills" id="pills-gpsp-copay"></div>
-      <div class="opt-label">专科档位（年限额）</div>
-      <div class="pills" id="pills-gpsp"></div>
-      <div class="price-row"><span class="p-label"><span class="age-ref"></span>员工</span><span class="p-val" id="price-gpsp"></span></div>
-      <p class="lock-hint">需先开启任一核心计划；与「普通门诊」二选一</p>
-    </div>
 
-    <div class="card" id="card-gp">
-      <div class="card-head">
-        <div>
-          <div class="c-title">普通门诊</div>
-          <div class="c-en">Group Outpatient Clinical (GP)</div>
+        <div class="card core" id="card-gtl">
+          <div class="card-head">
+            <div>
+              <div class="c-title">团体定期寿险<span class="c-tag">核心 · 建议优先配置</span></div>
+              <div class="c-en">Group Term Life (GTL)</div>
+              <span class="added">已加入方案</span>
+            </div>
+            <label class="switch"><input type="checkbox" data-t="gtl"><span class="slider"></span></label>
+          </div>
+          <ul class="feats">
+            <li>身故 / 完全永久伤残（TPD）/ 末期疾病，一次性赔付保额</li>
+            <li>保额 S$50,000 – S$500,000，按档位选择</li>
+            <li>额外 10% 抚恤金，随身故或 TPD 赔付一并给付</li>
+          </ul>
+          <div class="more">
+            <ul class="feats">
+              <li>末期疾病（TI）：确诊后预期寿命 12 个月内即可一次性给付</li>
+              <li>TPD 涵盖完全丧失工作能力、双目失明、双肢缺失等</li>
+              <li>保额 S$180,000 以上需 AIA 核保</li>
+              <li>员工家属可加保（保额为员工的 50%）</li>
+            </ul>
+          </div>
+          <button type="button" class="more-toggle">查看完整保障范围</button>
+          <div class="opt-label">选择档位（身故 / TPD 保额）</div>
+          <div class="pills" id="pills-gtl"></div>
+          <div class="price-row"><span class="p-label">每位员工</span><span class="p-val" id="price-gtl"></span></div>
         </div>
-        <label class="switch"><input type="checkbox" data-t="gp"><span class="slider"></span></label>
       </div>
-      <ul class="feats">
-        <li>AIA 网络诊所看诊 + 药费：无限次、免现金</li>
-        <li>网络远程问诊、中医门诊各至多 6 次 / 年</li>
-        <li>政府综合诊所实报实销；急诊 A&amp;E 每次上限 S$120</li>
-        <li>非网络诊所每次上限 S$30，海外门诊每次上限 S$100</li>
-      </ul>
-      <div class="opt-label">自付方式</div>
-      <div class="pills" id="pills-gp"></div>
-      <div class="price-row"><span class="p-label"><span class="age-ref"></span>员工</span><span class="p-val" id="price-gp"></span></div>
-      <p class="lock-hint">需先开启「住院及手术保障」；与「门诊 + 专科」二选一</p>
-    </div>
 
-    <div class="card" id="card-gaci">
-      <div class="card-head">
-        <div>
-          <div class="c-title">重大疾病</div>
-          <div class="c-en">Group Accelerated Critical Illness (GACI)</div>
+      <h2>第三步 · 附加计划<span class="h2-sub">在已选核心计划的基础上自由加减</span></h2>
+      <div class="grid">
+
+        <div class="card" id="card-gpsp">
+          <div class="card-head">
+            <div>
+              <div class="c-title">门诊 + 专科</div>
+              <div class="c-en">Group Outpatient Clinical &amp; Specialist (GP &amp; SP)</div>
+              <span class="added">已加入方案</span>
+            </div>
+            <label class="switch"><input type="checkbox" data-t="gpsp"><span class="slider"></span></label>
+          </div>
+          <ul class="feats">
+            <li>含「普通门诊」全部保障</li>
+            <li>AIA 网络专科免现金，专科年限额按档位 S$800 – S$2,000</li>
+            <li>诊断影像与检验（含 MRI / CT）享同等年限额</li>
+          </ul>
+          <div class="more">
+            <ul class="feats">
+              <li>物理治疗（需医生转介）</li>
+              <li>政府重组医院专科门诊可报销</li>
+              <li>儿科远程问诊至多 6 次 / 年（家属投保时适用）</li>
+              <li>专科、影像项目需注册医生转介</li>
+            </ul>
+          </div>
+          <button type="button" class="more-toggle">查看完整保障范围</button>
+          <div class="opt-label">门诊自付</div>
+          <div class="pills" id="pills-gpsp-copay"></div>
+          <div class="opt-label">专科档位（年限额）</div>
+          <div class="pills" id="pills-gpsp"></div>
+          <div class="price-row"><span class="p-label">每位员工</span><span class="p-val" id="price-gpsp"></span></div>
+          <p class="lock-hint">先开启任一核心计划后可选；与「普通门诊」二选一</p>
         </div>
-        <label class="switch"><input type="checkbox" data-t="gaci"><span class="slider"></span></label>
-      </div>
-      <ul class="feats">
-        <li>覆盖 37 种重大疾病，确诊一次性赔付</li>
-        <li>冠状动脉介入治疗预付 10% 保额（上限 S$25,000）</li>
-        <li>保额 S$25,000 – S$250,000，与寿险档位联动</li>
-      </ul>
-      <div class="follow-note" id="gaci-follow"></div>
-      <div class="price-row"><span class="p-label"><span class="age-ref"></span>员工（增量保费）</span><span class="p-val" id="price-gaci"></span></div>
-      <p class="lock-hint" id="gaci-hint">需先开启「团体定期寿险」，档位自动跟随其档位（AIA 规则）</p>
-    </div>
 
-    <div class="card" id="card-gadd">
-      <div class="card-head">
-        <div>
-          <div class="c-title">意外身故及伤残</div>
-          <div class="c-en">Group Accidental Death &amp; Dismemberment (GADD)</div>
+        <div class="card" id="card-gp">
+          <div class="card-head">
+            <div>
+              <div class="c-title">普通门诊</div>
+              <div class="c-en">Group Outpatient Clinical (GP)</div>
+              <span class="added">已加入方案</span>
+            </div>
+            <label class="switch"><input type="checkbox" data-t="gp"><span class="slider"></span></label>
+          </div>
+          <ul class="feats">
+            <li>AIA 网络诊所看诊 + 药费：无限次、免现金</li>
+            <li>网络远程问诊、中医门诊各至多 6 次 / 年</li>
+            <li>政府综合诊所实报实销</li>
+          </ul>
+          <div class="more">
+            <ul class="feats">
+              <li>急诊 A&amp;E 每次上限 S$120</li>
+              <li>非网络诊所每次上限 S$30</li>
+              <li>海外门诊每次上限 S$100（柔佛非网络诊所除外）</li>
+            </ul>
+          </div>
+          <button type="button" class="more-toggle">查看完整保障范围</button>
+          <div class="opt-label">自付方式</div>
+          <div class="pills" id="pills-gp"></div>
+          <div class="price-row"><span class="p-label">每位员工</span><span class="p-val" id="price-gp"></span></div>
+          <p class="lock-hint">先开启「住院及手术保障」后可选；与「门诊 + 专科」二选一</p>
         </div>
-        <label class="switch"><input type="checkbox" data-t="gadd"><span class="slider"></span></label>
-      </div>
-      <ul class="feats">
-        <li>24 小时全球意外身故 / 意外完全永久伤残保障</li>
-        <li>三度烧伤保障；行动辅助器材报销上限 S$1,000</li>
-        <li>抚恤金 S$2,000；子女教育金 S$5,000</li>
-        <li>公共交通意外额外赔付 10%（上限 S$10,000）</li>
-      </ul>
-      <div class="opt-label">选择档位（意外身故 / TPD 保额）</div>
-      <div class="pills" id="pills-gadd"></div>
-      <div class="price-row"><span class="p-label">各年龄段统一 · Class 1</span><span class="p-val" id="price-gadd"></span></div>
-      <p class="lock-hint">需先开启任一核心计划</p>
-    </div>
 
-    <div class="card" id="card-dental">
-      <div class="card-head">
-        <div>
-          <div class="c-title">牙科</div>
-          <div class="c-en">Group Dental</div>
+        <div class="card" id="card-gaci">
+          <div class="card-head">
+            <div>
+              <div class="c-title">重大疾病</div>
+              <div class="c-en">Group Accelerated Critical Illness (GACI)</div>
+              <span class="added">已加入方案</span>
+            </div>
+            <label class="switch"><input type="checkbox" data-t="gaci"><span class="slider"></span></label>
+          </div>
+          <ul class="feats">
+            <li>覆盖 37 种重大疾病，确诊一次性赔付</li>
+            <li>冠状动脉介入治疗预付 10% 保额（上限 S$25,000）</li>
+            <li>保额 S$25,000 – S$250,000，与寿险档位联动</li>
+          </ul>
+          <div class="more">
+            <ul class="feats">
+              <li>赔付全额后重疾保障终止，寿险保额相应调整</li>
+              <li>17 岁前显现的先天性疾病等不在保障范围</li>
+              <li>员工家属可加保（保额为员工的 50%）</li>
+            </ul>
+          </div>
+          <button type="button" class="more-toggle">查看完整保障范围</button>
+          <div class="follow-note" id="gaci-follow"></div>
+          <div class="price-row"><span class="p-label">增量保费</span><span class="p-val" id="price-gaci"></span></div>
+          <p class="lock-hint" id="gaci-hint">先开启「团体定期寿险」后可选，档位自动跟随（AIA 规则）</p>
         </div>
-        <label class="switch"><input type="checkbox" data-t="dental"><span class="slider"></span></label>
-      </div>
-      <ul class="feats">
-        <li>AIA 网络牙科检查免现金；非网络按价目表定额报销</li>
-        <li>洗牙、补牙、根管治疗、拔牙等常规项目</li>
-        <li>单一费率，无档位；投保须全体员工统一参加（AIA 规则）</li>
-      </ul>
-      <div class="price-row"><span class="p-label">各年龄段统一费率</span><span class="p-val" id="price-dental"></span></div>
-      <p class="lock-hint">需先开启任一核心计划</p>
-    </div>
-  </div>
 
-  <ul class="notes">
-    <li>本页面为保费估算工具，非保险合同；所有保障内容以 AIA 保单条款为准，实际保费以 AIA 最终核保为准。</li>
-    <li>费率为 AIA Flexi Vital Care Plus 员工费率，按所选年龄段（age last birthday）取值，男女费率相同；团队年龄不一时可按人分段计算，联系顾问获取全员精确报价。</li>
-    <li>意外险（GADD）费率与年龄无关，按职业等级 Class 1（室内办公 / 文职）计算；涉及仓储、外勤、驾驶等岗位适用 Class 2 / 3 费率。</li>
-    <li>重疾（GACI）档位须与寿险（GTL）档位一致，70–74 岁年龄段不可附加；普通门诊（GP）仅可附加于住院计划；「普通门诊」与「门诊 + 专科」二选一。</li>
-    <li>牙科计划投保须全体员工参加。团体投保有最低人数要求，本工具按 5 人起算。</li>
-  </ul>
-  <div class="contact">
-    <div class="ct-left">
-      <img class="avatar" src="/portrait.png" alt="Yuanyuan">
-      <div>
-        <div class="ct-name">SingaporeYuan</div>
-        <div class="ct-sub">团险方案咨询 · AIA Singapore</div>
+        <div class="card" id="card-gadd">
+          <div class="card-head">
+            <div>
+              <div class="c-title">意外身故及伤残</div>
+              <div class="c-en">Group Accidental Death &amp; Dismemberment (GADD)</div>
+              <span class="added">已加入方案</span>
+            </div>
+            <label class="switch"><input type="checkbox" data-t="gadd"><span class="slider"></span></label>
+          </div>
+          <ul class="feats">
+            <li>24 小时全球意外身故 / 意外完全永久伤残保障</li>
+            <li>三度烧伤保障</li>
+            <li>抚恤金 S$2,000；子女教育金 S$5,000</li>
+          </ul>
+          <div class="more">
+            <ul class="feats">
+              <li>公共交通意外身故额外赔付 10%（上限 S$10,000）</li>
+              <li>公共交通意外致昏迷额外赔付 20%（上限 S$20,000）</li>
+              <li>TPD 后行动辅助器材报销 95%，上限 S$1,000</li>
+              <li>费率与年龄无关，按职业等级 Class 1 计</li>
+            </ul>
+          </div>
+          <button type="button" class="more-toggle">查看完整保障范围</button>
+          <div class="opt-label">选择档位（意外身故 / TPD 保额）</div>
+          <div class="pills" id="pills-gadd"></div>
+          <div class="price-row"><span class="p-label">增量保费 · Class 1</span><span class="p-val" id="price-gadd"></span></div>
+          <p class="lock-hint">先开启任一核心计划后可选</p>
+        </div>
+
+        <div class="card" id="card-dental">
+          <div class="card-head">
+            <div>
+              <div class="c-title">牙科</div>
+              <div class="c-en">Group Dental</div>
+              <span class="added">已加入方案</span>
+            </div>
+            <label class="switch"><input type="checkbox" data-t="dental"><span class="slider"></span></label>
+          </div>
+          <ul class="feats">
+            <li>AIA 网络牙科检查免现金</li>
+            <li>洗牙、补牙、根管治疗、拔牙等常规项目</li>
+            <li>单一费率，无档位；须全体员工统一参加（AIA 规则）</li>
+          </ul>
+          <div class="more">
+            <ul class="feats">
+              <li>非网络牙科按价目表定额报销（如根管 S$150–350、拔牙 S$30 起）</li>
+              <li>颌骨骨折、口腔肿瘤切除等手术项目亦有定额保障</li>
+              <li>可扩展覆盖员工配偶及子女</li>
+            </ul>
+          </div>
+          <button type="button" class="more-toggle">查看完整保障范围</button>
+          <div class="price-row"><span class="p-label">增量保费 · 各年龄段统一</span><span class="p-val" id="price-dental"></span></div>
+          <p class="lock-hint">先开启任一核心计划后可选</p>
+        </div>
+      </div>
+
+      <details class="legal">
+        <summary>费率版本与重要说明</summary>
+        <ul class="notes">
+          <li>本工具使用的费率版本：2025 年 7 月 31 日版。当前结果仅供预算参考，正式报价将按最新有效费率及员工资料计算。</li>
+          <li>费率为 AIA Flexi Vital Care Plus 员工费率，按所选年龄段（age last birthday）取值，男女费率相同；团队年龄不一时可按人分段计算，联系顾问获取全员精确报价。</li>
+          <li>意外险（GADD）费率与年龄无关，按职业等级 Class 1（室内办公 / 文职）计算；涉及仓储、外勤、驾驶等岗位适用 Class 2 / 3 费率。</li>
+          <li>重疾（GACI）档位须与寿险（GTL）档位一致，70–74 岁年龄段不可附加；普通门诊（GP）仅可附加于住院计划；「普通门诊」与「门诊 + 专科」二选一。</li>
+          <li>牙科计划投保须全体员工参加。团体投保有最低人数要求，本工具按 5 人起算。</li>
+          <li>本页面为保费估算工具，非保险合同；所有保障内容以 AIA 保单条款为准，实际保费与承保以 AIA 最终核保为准。</li>
+        </ul>
+      </details>
+
+      <div class="contact">
+        <div class="ct-left">
+          <img class="avatar" src="/portrait.png" alt="Yuanyuan">
+          <div>
+            <div class="ct-name">SingaporeYuan</div>
+            <div class="ct-sub">团险方案咨询 · AIA Singapore</div>
+          </div>
+        </div>
+        <div class="ct-lines">
+          <button type="button" class="ct-row" id="wechat-copy" title="点击复制微信号">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.5 8.5 0 0 1-8.5 8.5c-1.2 0-2.4-.2-3.4-.7L3 21l1.7-5.1A8.5 8.5 0 1 1 21 11.5z"/></svg>
+            <span class="lb">WeChat</span><span class="val">singaporeyuan</span><span class="copied" id="copied-tip">已复制</span>
+          </button>
+          <a class="ct-row" href="https://wa.me/6583750190">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.6A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 2 .7 2.9a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.2-1.2a2 2 0 0 1 2.1-.5c.9.3 1.9.6 2.9.7a2 2 0 0 1 1.7 2z"/></svg>
+            <span class="lb">WhatsApp</span><span class="val">+65 8375 0190</span>
+          </a>
+          <a class="ct-row" href="mailto:yuanyuan@aia.com.sg">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>
+            <span class="lb">Email</span><span class="val">yuanyuan@aia.com.sg</span>
+          </a>
+        </div>
       </div>
     </div>
-    <div class="ct-lines">
-      <button type="button" class="ct-row" id="wechat-copy" title="点击复制微信号">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.5 8.5 0 0 1-8.5 8.5c-1.2 0-2.4-.2-3.4-.7L3 21l1.7-5.1A8.5 8.5 0 1 1 21 11.5z"/></svg>
-        <span class="lb">WeChat</span><span class="val">singaporeyuan</span><span class="copied" id="copied-tip">已复制</span>
-      </button>
-      <a class="ct-row" href="https://wa.me/6583750190">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.6A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 2 .7 2.9a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.2-1.2a2 2 0 0 1 2.1-.5c.9.3 1.9.6 2.9.7a2 2 0 0 1 1.7 2z"/></svg>
-        <span class="lb">WhatsApp</span><span class="val">+65 8375 0190</span>
-      </a>
-      <a class="ct-row" href="mailto:yuanyuan@aia.com.sg">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>
-        <span class="lb">Email</span><span class="val">yuanyuan@aia.com.sg</span>
-      </a>
-    </div>
+
+    <aside class="aside">
+      <div class="sum-card">
+        <div class="sum-title">报价摘要</div>
+        <div class="sum-meta"><span>员工 <b class="o-count">5</b> 人</span><span>年龄 <b class="o-band">30–34岁</b></span></div>
+        <ul class="sum-items o-items"></ul>
+        <div class="sum-line"><span>每人 / 年</span><b class="o-per"></b></div>
+        <div class="sum-total"><span class="t-label">团队年度总预算</span><span class="t-val o-total"></span></div>
+        <div class="sum-monthly">约合每月 <b class="o-monthly"></b></div>
+        <a class="btn btn-primary" id="btn-quote" href="#" target="_blank" rel="noopener">获取正式报价</a>
+        <div class="btn-row">
+          <button type="button" class="btn btn-ghost" id="btn-save">保存配置</button>
+          <button type="button" class="btn btn-ghost" id="btn-share">分享方案</button>
+        </div>
+      </div>
+    </aside>
   </div>
 </main>
 
-<div class="bar">
-  <div class="bar-in">
-    <div class="stepper">
-      <button id="minus" aria-label="减少人数">−</button>
-      <span class="cnt"><span id="count">5</span> 人</span>
-      <button id="plus" aria-label="增加人数">＋</button>
-    </div>
-    <div class="totals">
-      <div class="tot-item hide-sm">每人 / 年<b id="per-person"></b></div>
-      <div class="tot-item hide-sm">约合每月<b id="monthly"></b></div>
-      <div class="tot-main">团队合计 / 年<b id="total"></b></div>
-    </div>
+<div class="m-mask" id="m-mask"></div>
+<div class="m-panel" id="m-panel">
+  <button type="button" class="mp-close" id="mp-close" aria-label="关闭">✕</button>
+  <div class="sum-title">报价摘要</div>
+  <div class="sum-meta"><span>员工 <b class="o-count">5</b> 人</span><span>年龄 <b class="o-band">30–34岁</b></span></div>
+  <ul class="sum-items o-items"></ul>
+  <div class="sum-line"><span>每人 / 年</span><b class="o-per"></b></div>
+  <div class="sum-total"><span class="t-label">团队年度总预算</span><span class="t-val o-total"></span></div>
+  <div class="sum-monthly">约合每月 <b class="o-monthly"></b></div>
+  <a class="btn btn-primary" id="btn-quote-m" href="#" target="_blank" rel="noopener">获取正式报价</a>
+  <div class="btn-row">
+    <button type="button" class="btn btn-ghost" id="btn-save-m">保存配置</button>
+    <button type="button" class="btn btn-ghost" id="btn-share-m">分享方案</button>
   </div>
 </div>
 
+<div class="bar">
+  <div class="bar-in">
+    <div class="b-total">团队合计 / 年<b class="o-total"></b></div>
+    <div class="b-per">每人 / 年<b class="o-per"></b></div>
+    <button type="button" class="m-toggle" id="m-toggle">明细 ▴</button>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
 <script>
 /*CALC-START*/
-// 费率来源:AIA Flexi Vital Care Plus 官方手册(截至2025-07-31),员工费率,S$/人/年
+// 费率来源:AIA Flexi Vital Care Plus 官方手册(费率版本2025-07-31),员工费率,S$/人/年
 // 年龄段顺序:0=29岁及以下,1=30-34,2=35-39,3=40-44,4=45-49,5=50-54,6=55-59,7=60-64,8=65-69,9=70-74
 const BANDS = ['29岁及以下','30–34岁','35–39岁','40–44岁','45–49岁','50–54岁','55–59岁','60–64岁','65–69岁','70–74岁'];
 const SENIOR = 9; // 70-74:门诊类费率不同;重疾不可投保
@@ -470,8 +679,37 @@ const state = {
   dental:{on:false}
 };
 
+// 从分享链接还原配置 ?cfg=count.band.gtlOn.gtlPlan.ghsOn.ghsPlan.gaci.gadd.gaddPlan.gp.gpCopay.gpsp.gpspCopay.gpspPlan.dental
+(function(){
+  const m = location.search.match(/[?&]cfg=([\d.]+)/);
+  if(!m) return;
+  const v = m[1].split('.').map(Number);
+  if(v.length !== 15 || v.some(isNaN)) return;
+  try{
+    state.count = v[0]; state.band = Math.min(9, Math.max(0, v[1]));
+    state.gtl = {on:!!v[2], plan:Math.min(5, v[3]||0)};
+    state.ghs = {on:!!v[4], plan:Math.min(3, v[5]||0)};
+    state.gaci = {on:!!v[6]};
+    state.gadd = {on:!!v[7], plan:Math.min(5, v[8]||0)};
+    state.gp = {on:!!v[9], copay:v[10]===5?5:0};
+    state.gpsp = {on:!!v[11], copay:v[12]===5?5:0, plan:Math.min(3, v[13]||0)};
+    state.dental = {on:!!v[14]};
+  }catch(_){}
+})();
+
 const $ = id => document.getElementById(id);
 const fmt = n => 'S$' + n.toLocaleString('en-SG',{minimumFractionDigits:2,maximumFractionDigits:2});
+
+function cfgString(){
+  return [state.count, state.band,
+    +state.gtl.on, state.gtl.plan, +state.ghs.on, state.ghs.plan,
+    +state.gaci.on, +state.gadd.on, state.gadd.plan,
+    +state.gp.on, state.gp.copay, +state.gpsp.on, state.gpsp.copay, state.gpsp.plan,
+    +state.dental.on].join('.');
+}
+function shareUrl(){
+  return location.origin + location.pathname + '?cfg=' + cfgString();
+}
 
 function pillHtml(mod, i, top, sub, active){
   return '<button type="button" class="pill'+(active?' active':'')+'" data-mod="'+mod+'" data-i="'+i+'">'+
@@ -496,6 +734,28 @@ function renderPills(){
     pillHtml('gp-copay', 5, '自付 S$5 / 次', fmt(gpRate(b,5)), state.gp.copay===5);
   $('age-select').value = String(b);
 }
+
+function selectedItems(){
+  const b = state.band, items = [];
+  if(state.ghs.on)  items.push(['住院 P'+(state.ghs.plan+1)+' · '+RATES.ghs.labels[state.ghs.plan], RATES.ghs.prices[b][state.ghs.plan]]);
+  if(state.gtl.on)  items.push(['寿险 P'+(state.gtl.plan+1)+' · 保额'+RATES.gtl.labels[state.gtl.plan], RATES.gtl.prices[b][state.gtl.plan]]);
+  if(state.gaci.on) items.push(['重疾 P'+(state.gtl.plan+1)+' · 保额'+RATES.gtlGaci.labels[state.gtl.plan], gaciRate(b, state.gtl.plan)||0]);
+  if(state.gadd.on) items.push(['意外 P'+(state.gadd.plan+1)+' · 保额'+RATES.gadd.labels[state.gadd.plan], RATES.gadd.prices[state.gadd.plan]]);
+  if(state.gp.on)   items.push(['普通门诊 · '+(state.gp.copay===0?'无自付':'自付S$5'), gpRate(b, state.gp.copay)]);
+  if(state.gpsp.on) items.push(['门诊+专科 P'+(state.gpsp.plan+1)+' · '+(state.gpsp.copay===0?'无自付':'自付S$5'), gpspRate(b, state.gpsp.copay, state.gpsp.plan)]);
+  if(state.dental.on) items.push(['牙科', RATES.dental.price]);
+  return items;
+}
+function quoteText(){
+  const items = selectedItems();
+  const lines = items.map(it=>it[0]+'（'+fmt(it[1])+'/人/年）');
+  return '您好，我想获取企业团险正式报价。\n员工人数：'+state.count+' 人\n主要年龄段：'+BANDS[state.band]
+    +'\n意向方案：'+(lines.length?lines.join('；'):'待定')
+    +'\n预算估算：每人 '+fmt(perPerson(state))+'/年，团队合计 '+fmt(r2(perPerson(state)*state.count))+'/年';
+}
+
+const setAll = (cls, txt) => document.querySelectorAll(cls).forEach(el=>el.textContent=txt);
+
 function render(){
   normalize(state);
   const anyCore = state.gtl.on || state.ghs.on;
@@ -513,35 +773,71 @@ function render(){
   }
   renderPills();
 
-  $('band-label').textContent = BANDS[b];
-  document.querySelectorAll('.age-ref').forEach(el=>el.textContent = BANDS[b]);
+  $('st-count').textContent = state.count;
+  $('st-band').textContent = BANDS[b];
+  $('count').textContent = state.count;
+  $('minus').disabled = state.count <= MIN_COUNT;
 
-  const priceOr = (m, html) => state[m].on ? html+' <em>/人/年</em>' : '—';
+  const per = perPerson(state);
+  const total = r2(per*state.count);
+
+  const core = (m, price) => state[m].on ? fmt(price)+' <em>/员工/年</em>' : '—';
+  const rider = (m, price) => state[m].on ? '<em>增加约</em> '+fmt(price)+' <em>/员工/年</em>' : '—';
   const gaci = gaciRate(b, state.gtl.plan);
-  $('price-gtl').innerHTML  = priceOr('gtl', fmt(RATES.gtl.prices[b][state.gtl.plan]));
-  $('price-ghs').innerHTML  = priceOr('ghs', fmt(RATES.ghs.prices[b][state.ghs.plan]));
-  $('price-gaci').innerHTML = gaci===null ? '—' : priceOr('gaci', '+'+fmt(gaci));
-  $('price-gadd').innerHTML = priceOr('gadd', fmt(RATES.gadd.prices[state.gadd.plan]));
-  $('price-gp').innerHTML   = priceOr('gp', fmt(gpRate(b, state.gp.copay)));
-  $('price-gpsp').innerHTML = priceOr('gpsp', fmt(gpspRate(b, state.gpsp.copay, state.gpsp.plan)));
-  $('price-dental').innerHTML = priceOr('dental', fmt(RATES.dental.price));
+  $('price-ghs').innerHTML  = core('ghs', RATES.ghs.prices[b][state.ghs.plan]);
+  $('price-gtl').innerHTML  = core('gtl', RATES.gtl.prices[b][state.gtl.plan]);
+  $('price-gaci').innerHTML = gaci===null ? '—' : rider('gaci', gaci);
+  $('price-gadd').innerHTML = rider('gadd', RATES.gadd.prices[state.gadd.plan]);
+  $('price-gp').innerHTML   = rider('gp', gpRate(b, state.gp.copay));
+  $('price-gpsp').innerHTML = rider('gpsp', gpspRate(b, state.gpsp.copay, state.gpsp.plan));
+  $('price-dental').innerHTML = rider('dental', RATES.dental.price);
 
   $('gaci-hint').textContent = b===SENIOR
     ? '70–74 岁年龄段不可附加重疾（AIA 费率表未提供）'
-    : '需先开启「团体定期寿险」，档位自动跟随其档位（AIA 规则）';
+    : '先开启「团体定期寿险」后可选，档位自动跟随（AIA 规则）';
   $('gaci-follow').textContent = b===SENIOR
     ? '该年龄段不可投保重疾'
     : (state.gtl.on
       ? '档位跟随寿险：Plan '+(state.gtl.plan+1)+'（重疾保额 '+RATES.gtlGaci.labels[state.gtl.plan]+'）'
       : '开启寿险后，档位将自动跟随寿险档位');
 
-  const per = perPerson(state);
-  const total = r2(per*state.count);
-  $('count').textContent = state.count;
-  $('minus').disabled = state.count <= MIN_COUNT;
-  $('per-person').textContent = fmt(per);
-  $('total').textContent = fmt(total);
-  $('monthly').textContent = fmt(r2(total/12));
+  // 摘要(桌面侧栏 + 手机面板 + 底栏共用 class)
+  setAll('.o-count', state.count);
+  document.querySelectorAll('.o-band').forEach(el=>el.textContent=BANDS[b]);
+  setAll('.o-per', fmt(per));
+  setAll('.o-total', fmt(total));
+  setAll('.o-monthly', fmt(r2(total/12)));
+  const items = selectedItems();
+  const itemsHtml = items.length
+    ? items.map(it=>'<li><span>'+it[0]+'</span><span>'+fmt(it[1])+'</span></li>').join('')
+    : '<li class="none">尚未选择保障项目</li>';
+  document.querySelectorAll('.o-items').forEach(el=>el.innerHTML=itemsHtml);
+  const qhref = 'https://wa.me/6583750190?text='+encodeURIComponent(quoteText());
+  $('btn-quote').href = qhref; $('btn-quote-m').href = qhref;
+}
+
+function toast(msg){
+  const t = $('toast');
+  t.textContent = msg; t.classList.add('show');
+  clearTimeout(t._h); t._h = setTimeout(()=>t.classList.remove('show'), 1800);
+}
+function copyText(txt, okMsg){
+  const done = ()=>toast(okMsg);
+  if(navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(txt).then(done).catch(done);
+  }else{
+    const ta = document.createElement('textarea');
+    ta.value = txt; document.body.appendChild(ta); ta.select();
+    document.execCommand('copy'); ta.remove(); done();
+  }
+}
+function doShare(){
+  const url = shareUrl();
+  if(navigator.share){
+    navigator.share({title:document.title, url}).catch(()=>{});
+  }else{
+    copyText(url, '方案链接已复制，可直接发送');
+  }
 }
 
 document.addEventListener('change', e=>{
@@ -554,6 +850,8 @@ document.addEventListener('change', e=>{
   render();
 });
 document.addEventListener('click', e=>{
+  const mt = e.target.closest('.more-toggle');
+  if(mt){ mt.closest('.card').classList.toggle('expanded'); return; }
   const pill = e.target.closest('.pill');
   if(pill){
     const [mod,kind] = pill.dataset.mod.split('-');
@@ -572,6 +870,16 @@ document.addEventListener('click', e=>{
   if(e.target.id==='plus'){ state.count++; render(); }
   if(e.target.id==='minus'){ state.count--; render(); }
 });
+
+// 保存 / 分享
+['btn-save','btn-save-m'].forEach(id=>$(id).addEventListener('click', ()=>copyText(shareUrl(), '配置链接已复制，打开即可还原方案')));
+['btn-share','btn-share-m'].forEach(id=>$(id).addEventListener('click', doShare));
+
+// 手机明细面板
+const openPanel = v => { $('m-panel').classList.toggle('open', v); $('m-mask').classList.toggle('open', v); };
+$('m-toggle').addEventListener('click', ()=>openPanel(true));
+$('mp-close').addEventListener('click', ()=>openPanel(false));
+$('m-mask').addEventListener('click', ()=>openPanel(false));
 
 render();
 
@@ -611,6 +919,7 @@ if(location.search.indexOf('selftest')>-1){
   s = clone(); s.band=9; s.gtl.on=true; s.gaci.on=true; eq('70-74 重疾强制剔除', perPerson(normalize(s)), 2220.38+526.84+2313.00);
   s = clone(); s.band=9; s.gpsp.on=false; s.gp.on=true; eq('70-74 GP高费率', perPerson(normalize(s)), 2220.38+282.60);
   s = clone(); s.band=8; eq('65-69 GPSP仍用标准价', perPerson(normalize(s)), 1620.88+478.39);
+  results.push(cfgString()==='5.1.0.0.1.0.0.0.0.0.0.1.0.0.0' ? 'PASS 配置串编码' : 'FAIL 配置串编码 '+cfgString());
   const de = document.documentElement;
   results.push('INFO scrollW='+de.scrollWidth+' clientW='+de.clientWidth);
   if(de.scrollWidth > de.clientWidth){
