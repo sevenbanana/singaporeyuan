@@ -196,8 +196,8 @@ export const caseIconBySlug: Record<string, (p: SVGProps<SVGSVGElement>) => JSX.
   'family-kids': IconBaby,
   'early-retire': IconStable,
 };
-// 顺序与 services.core 一致:家庭保障 / 重疾人寿 / 被动收入 / 资产传承 / 企业保险 / 保单年检
-export const coreIcons = [IconFamily, IconShieldHeart, IconGrowth, IconDocument, IconBuilding, IconPolicy];
+// 顺序与 services.core 一致:保单年检 / 家庭保障 / 重疾人寿 / 被动收入 / 资产传承 / 企业保险
+export const coreIcons = [IconPolicy, IconFamily, IconShieldHeart, IconGrowth, IconDocument, IconBuilding];
 export const strategicIcons = [IconGlobe, IconDocument, IconBuilding, IconVoyage, IconIdentity];
 // 顺序与 home.stats 数组一致:服务家庭 / 理赔获批 / 已赔付金额 / 人寿保障
 export const statIcons = [IconUsers, IconCheck, IconMoney, IconShield];

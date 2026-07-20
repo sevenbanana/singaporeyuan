@@ -49,7 +49,7 @@ export default async function ServicesPage({
 
 function Services() {
   const t = useTranslations('services');
-  const core = t.raw('core') as { name: string; question: string; desc: string }[];
+  const core = t.raw('core') as { name: string; question: string; desc: string; cta?: string }[];
   const strategic = t.raw('strategic') as { name: string; desc: string }[];
   const diff = t.raw('diff') as { name: string; desc: string }[];
   const fitYes = t.raw('fitYes') as string[];
@@ -80,6 +80,16 @@ function Services() {
                     <h3 className="text-base font-bold text-navy">{c.name}</h3>
                     <p className="mt-1.5 text-[15px] font-semibold leading-snug text-gold-deep">{c.question}</p>
                     <p className="mt-2 text-sm leading-relaxed text-mist">{c.desc}</p>
+                    {c.cta ? (
+                      <a
+                        href="/reports/sample-family-report.html"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="btn-primary mt-4 px-6 py-3"
+                      >
+                        {c.cta} →
+                      </a>
+                    ) : null}
                   </div>
                 </div>
               );

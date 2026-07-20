@@ -181,6 +181,12 @@
     "coreTitle": "What I can help you solve",
     "core": [
       {
+        "name": "Policy Review",
+        "question": "Bought insurance but forgotten what it even covers?",
+        "desc": "A fresh review of existing policies against your life today.",
+        "cta": "View sample report"
+      },
+      {
         "name": "Family Protection",
         "question": "Everyone's got some cover, but is it enough, with no overlaps?",
         "desc": "Medical, accident and hospitalisation, your family's risk floor."
@@ -204,11 +210,6 @@
         "name": "Business Insurance",
         "question": "A business owner protecting yourself and your staff?",
         "desc": "Medical and liability cover for owners and employees."
-      },
-      {
-        "name": "Policy Review",
-        "question": "Bought insurance but forgotten what it even covers?",
-        "desc": "A fresh review of existing policies against your life today."
       }
     ],
     "fitTitle": "When does it make sense to talk to me?",
