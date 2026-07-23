@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<title>儿童住院与意外保障方案 · 案例 | 新加坡小圆姐</title>
+<style>
+:root{
+  --navy:#1B2A4A;
+  --navy-soft:#2E4068;
+  --navy-tint:#EEF1F7;
+  --gold:#C9A86A;
+  --gold-deep:#A8874C;
+  --gold-tint:#F7F1E4;
+  --ivory:#FBFAF7;
+  --ink:#22293A;
+  --muted:#6B7280;
+  --line:#E4E2DB;
+  --green:#1E7A52;
+  --green-tint:#EAF6F0;
+  --red:#B4433A;
+  --red-tint:#FBEFEE;
+}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth}
+body{
+  font-family:-apple-system,"PingFang SC","Hiragino Sans GB","Noto Sans SC","Microsoft YaHei",sans-serif;
+  background:var(--ivory);color:var(--ink);line-height:1.7;font-size:15px;
+}
+.wrap{max-width:860px;margin:0 auto;padding:0 16px 64px}
+.serif{font-family:"Songti SC","Noto Serif SC",Georgia,serif}
+svg{display:block}
+
+/* ---------- header（与主站案例页 banner 同款） ---------- */
+header{
+  background:linear-gradient(135deg,#4b3620 0%,#2e2012 100%);
+  color:#faf7f0;padding:52px 16px 46px;position:relative;overflow:hidden;
+}
+header::after{content:"";position:absolute;right:-80px;top:-96px;width:320px;height:320px;border-radius:50%;border:1px solid rgba(201,165,92,.3)}
+header::before{content:"";position:absolute;right:40px;top:40px;width:160px;height:160px;border-radius:50%;border:1px solid rgba(201,165,92,.15)}
+.hd-in{max-width:860px;margin:0 auto;position:relative;z-index:1;display:grid;grid-template-columns:1fr;gap:24px;align-items:end}
+@media(min-width:700px){.hd-in{grid-template-columns:1fr auto}}
+.hd-tag{font-size:12px;font-weight:600;letter-spacing:.3em;text-transform:uppercase;color:#c9a55c}
+.hd-eyebrow{margin-top:10px;font-size:12px;letter-spacing:.05em;color:rgba(220,192,136,.8)}
+h1{margin-top:14px;font-size:clamp(26px,4.6vw,38px);font-weight:900;line-height:1.35;letter-spacing:.01em}
+h1 em{font-style:normal;color:#dcc088}
+.hd-sub{margin-top:16px;font-size:15px;line-height:1.85;color:rgba(250,247,240,.8);max-width:560px}
+.hd-pills{margin-top:24px;display:flex;flex-wrap:wrap;gap:10px}
+.hd-pill{border-radius:20px;padding:6px 16px;font-size:12px;border:1px solid rgba(201,165,92,.45);color:#dcc088}
+.hd-pill.solid{background:#c9a55c;color:#2e2012;font-weight:600;border-color:#c9a55c}
+.hd-icon{display:none;position:relative;align-self:end;margin-bottom:-8px}
+@media(min-width:700px){.hd-icon{display:block}}
+
+/* ---------- quick nav ---------- */
+.qnav{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
+.qnav a{font-size:12.5px;color:var(--navy-soft);background:#fff;border:1px solid var(--line);border-radius:20px;padding:6px 14px;text-decoration:none;transition:all .2s}
+.qnav a:hover{border-color:var(--gold-deep);color:var(--gold-deep)}
+
+/* ---------- sections ---------- */
+section{margin-top:48px;scroll-margin-top:24px}
+.sec-eyebrow{font-size:12px;letter-spacing:.28em;color:var(--gold-deep);margin-bottom:6px}
+.sec-title{font-size:21px;font-weight:600;color:var(--navy);margin-bottom:4px}
+.sec-sub{font-size:13px;color:var(--muted);margin-bottom:18px;max-width:640px}
+
+/* ---------- plan cards ---------- */
+.cards{display:grid;gap:18px}
+@media(min-width:680px){.cards{grid-template-columns:1fr 1fr}}
+.pcard{background:#fff;border:1px solid var(--line);border-radius:18px;overflow:hidden;border-top:4px solid var(--pc);display:flex;flex-direction:column}
+.pcard.private{--pc:var(--navy)}
+.pcard.public{--pc:var(--gold-deep)}
+.pc-head{padding:22px 22px 18px;border-bottom:1px solid var(--line)}
+.pcard.private .pc-head{background:linear-gradient(150deg,#F2F5FA,#FBFAF7)}
+.pcard.public .pc-head{background:linear-gradient(150deg,#F9F4E8,#FBFAF7)}
+.pc-tag{display:inline-flex;align-items:center;gap:6px;font-size:11.5px;letter-spacing:.08em;font-weight:600;color:var(--pc);border:1px solid var(--pc);border-radius:20px;padding:3px 12px;margin-bottom:12px}
+.pc-head h3{font-size:19px;color:var(--navy);line-height:1.45}
+.pc-prod{margin-top:6px;font-size:12.5px;line-height:1.75;color:var(--muted);min-height:44px}
+.pc-price{margin-top:16px;display:flex;align-items:flex-end;justify-content:space-between;gap:12px}
+.pc-annual{font-size:28px;font-weight:800;color:var(--navy);line-height:1;white-space:nowrap}
+.pc-annual small{font-size:12px;font-weight:500;color:var(--muted)}
+.pc-monthly{text-align:right;font-size:12px;color:var(--muted);line-height:1.5}
+.pc-monthly strong{display:block;color:var(--green);font-size:19px;font-weight:700}
+.pc-pay{margin-top:12px;display:flex;flex-wrap:wrap;gap:8px}
+.pay-chip{display:inline-flex;align-items:center;gap:7px;border-radius:9px;padding:7px 12px;font-size:13px;font-weight:600;line-height:1.4}
+.pay-chip svg{width:15px;height:15px;flex-shrink:0}
+.pay-chip.cash{background:var(--green-tint);color:var(--green)}
+.pay-chip.cpf{background:var(--navy-tint);color:var(--navy-soft)}
+.pc-body{padding:18px 22px 22px;flex:1;display:flex;flex-direction:column}
+.feat{display:grid;grid-template-columns:36px 1fr;gap:12px;padding:11px 0;border-bottom:1px dashed var(--line)}
+.feat:first-child{padding-top:0}
+.feat:last-of-type{border-bottom:0}
+.fico{width:36px;height:36px;border-radius:10px;background:var(--gold-tint);color:var(--gold-deep);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.fico svg{width:19px;height:19px}
+.feat b{display:block;font-size:13.5px;color:var(--navy);margin-bottom:1px}
+.feat p{font-size:13px;color:#3B4358;line-height:1.65}
+.pc-fit{margin-top:auto;padding-top:16px}
+.pc-fit-in{border-radius:12px;padding:13px 15px;font-size:13px;line-height:1.7;display:flex;gap:10px;align-items:flex-start}
+.pcard.private .pc-fit-in{background:var(--navy-tint);color:#31405E}
+.pcard.public .pc-fit-in{background:var(--gold-tint);color:#6D5318}
+.pc-fit-in svg{width:18px;height:18px;flex-shrink:0;margin-top:2px}
+
+/* ---------- oneliner ---------- */
+.oneliner{margin-top:18px;font-size:13.5px;color:#3B4358;background:var(--gold-tint);border:1px solid #EADFC6;border-radius:12px;padding:15px 16px;display:flex;gap:11px;align-items:flex-start;line-height:1.8}
+.oneliner svg{flex-shrink:0;width:20px;height:20px;margin-top:2px;color:var(--gold-deep)}
+.oneliner b{color:var(--gold-deep)}
+
+/* ---------- tables ---------- */
+.tbl-card{background:#fff;border:1px solid var(--line);border-radius:18px;overflow:hidden}
+.tbl-scroll{overflow-x:auto}
+table{width:100%;border-collapse:collapse;min-width:520px}
+th,td{padding:13px 16px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top;font-size:13.5px}
+th{background:var(--navy-tint);color:var(--navy);font-size:12.5px;font-weight:600;white-space:nowrap}
+td.num,th.num{text-align:right;white-space:nowrap}
+tr:last-child td{border-bottom:0}
+tr.total td{background:#FBFAF5;font-weight:700;color:var(--navy)}
+tr.total td.num.hl{color:var(--gold-deep)}
+.row-ic{display:flex;align-items:center;gap:10px}
+.row-ic svg{width:17px;height:17px;color:var(--gold-deep);flex-shrink:0}
+.cash-note{padding:16px 18px;background:#FBFAF5;border-top:1px solid var(--line);font-size:13px;color:#3B4358;line-height:1.8;display:flex;gap:11px;align-items:flex-start}
+.cash-note svg{width:19px;height:19px;flex-shrink:0;margin-top:3px;color:var(--gold-deep)}
+.cash-note b{color:var(--navy)}
+.badge{display:inline-block;border-radius:20px;padding:2px 10px;font-size:11.5px;font-weight:600}
+.badge.p2{background:var(--gold-tint);color:var(--gold-deep)}
+.badge.p3{background:var(--navy-tint);color:var(--navy)}
+tr.payrow td{background:#FDFCF8}
+tr.hlrow td{background:var(--gold-tint)}
+tr.hlrow td.num{font-weight:700;color:var(--navy)}
+.hl-badge{display:inline-block;background:var(--gold-deep);color:#fff;font-size:10.5px;font-weight:700;border-radius:6px;padding:2px 8px;margin-left:8px;letter-spacing:.04em;white-space:nowrap}
+td .sub-line{display:block;font-size:11.5px;color:var(--muted);font-weight:400}
+
+/* ---------- claims ---------- */
+.claims{display:grid;gap:18px}
+@media(min-width:680px){.claims{grid-template-columns:1fr 1fr}}
+.ccard{background:#fff;border:1px solid var(--line);border-radius:18px;padding:20px}
+.ccard-head{display:flex;gap:11px;align-items:center;margin-bottom:4px}
+.ccard-head .fico{width:34px;height:34px}
+.ccard h3{font-size:17px;color:var(--navy)}
+.ccard .scope{font-size:12px;color:var(--muted);margin-bottom:14px}
+.bill{border:1px solid var(--line);border-radius:13px;padding:15px;margin-top:12px}
+.bill-title{display:flex;justify-content:space-between;align-items:center;font-weight:700;color:var(--navy);margin-bottom:10px;font-size:14px}
+.bill-title .amt{font-size:17px}
+.calc{display:grid;grid-template-columns:1fr auto;gap:5px 12px;font-size:13px}
+.calc .k{color:var(--muted)}
+.calc .self,.calc .self+div{font-weight:700;color:var(--red);padding-top:8px;margin-top:4px;border-top:1px dashed var(--line)}
+.calc .claim,.calc .claim+div{font-weight:700;color:var(--green);padding-top:8px;margin-top:4px;border-top:1px dashed var(--line)}
+.split{margin-top:12px}
+.split-bar{display:flex;height:10px;border-radius:6px;overflow:hidden;background:var(--red-tint)}
+.split-bar i{display:block;height:100%}
+.split-bar .s-claim{background:var(--green)}
+.split-bar .s-self{background:var(--red)}
+.split-legend{display:flex;flex-wrap:wrap;gap:4px 16px;margin-top:8px;font-size:11.5px;color:var(--muted)}
+.split-legend .dot{display:inline-block;width:8px;height:8px;border-radius:2px;margin-right:5px;vertical-align:1px}
+.split-legend .dot.claim{background:var(--green)}
+.split-legend .dot.self{background:var(--red)}
+.same-note{background:var(--green-tint);color:#176B48;border-radius:12px;padding:13px 15px;margin-top:14px;font-size:13px;line-height:1.75;display:flex;gap:10px;align-items:flex-start}
+.same-note svg{width:18px;height:18px;flex-shrink:0;margin-top:3px}
+
+/* ---------- footnotes ---------- */
+.disc{background:var(--navy-tint);border-radius:14px;padding:20px 22px;font-size:12.5px;color:var(--muted);line-height:1.9}
+.disc-h{display:flex;align-items:center;gap:9px;color:var(--navy-soft);font-weight:600;font-size:13.5px;margin-bottom:10px}
+.disc-h svg{width:18px;height:18px}
+.disc ul{list-style:none}
+.disc li{padding-left:18px;position:relative;margin-bottom:7px}
+.disc li::before{content:"";position:absolute;left:2px;top:11px;width:5px;height:5px;border-radius:50%;background:var(--gold)}
+
+/* ---------- site footer（与主站统一） ---------- */
+.site-footer{margin-top:56px;border-top:1px solid rgba(201,165,92,.25);background:#f5efe1}
+.site-footer a{color:inherit;text-decoration:none;transition:color .2s}
+.site-footer a:hover{color:#a8843f}
+.sf-in{max-width:860px;margin:0 auto;padding:44px 20px 32px}
+.sf-grid{display:grid;gap:28px}
+@media(min-width:560px){.sf-grid{grid-template-columns:1fr 1fr}}
+@media(min-width:820px){.sf-grid{grid-template-columns:1.2fr 1fr 1fr 1fr}}
+.sf-brand{font-size:18px;font-weight:700;color:#1a2744}
+.sf-tag{margin-top:6px;font-size:13px;color:#a8843f}
+.sf-org{margin-top:14px;font-size:11.5px;line-height:1.8;color:#7a7264}
+.sf-h{font-size:11px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:#a8843f}
+.sf-list{list-style:none;margin-top:12px}
+.sf-list li{font-size:13px;color:rgba(26,39,68,.8);margin-bottom:7px}
+.sf-bottom{margin-top:32px;border-top:1px solid rgba(201,165,92,.25);padding-top:20px;font-size:11.5px;line-height:1.8;color:#7a7264}
+.sf-rights{margin-top:10px}
+
+/* ---------- password gate ---------- */
+body.locked{overflow:hidden}
+body.locked>*:not(#pwGate){visibility:hidden}
+#pwGate{position:fixed;inset:0;z-index:99;display:none;align-items:center;justify-content:center;background:linear-gradient(160deg,#1B2A4A 0%,#24365C 60%,#2C4270 100%);padding:24px;visibility:visible}
+body.locked #pwGate{display:flex}
+.pw-card{width:100%;max-width:360px;background:#fff;border-radius:18px;padding:34px 28px;text-align:center;box-shadow:0 24px 64px rgba(0,0,0,.35)}
+.pw-brand{font-size:11px;letter-spacing:.22em;color:var(--gold-deep);margin-bottom:14px}
+.pw-card h2{font-size:19px;color:var(--navy);margin-bottom:6px}
+.pw-card p{font-size:13px;color:var(--muted);margin-bottom:18px}
+#pwForm{display:flex;gap:8px}
+#pwInput{flex:1;min-width:0;border:1px solid var(--line);border-radius:10px;padding:11px 12px;font-size:15px;text-align:center;letter-spacing:.12em;outline:none;font-family:inherit}
+#pwInput:focus{border-color:var(--gold-deep)}
+#pwForm button{border:0;background:var(--navy);color:#fff;border-radius:10px;padding:11px 18px;font-size:14px;cursor:pointer;font-family:inherit}
+.pw-err{display:none;margin-top:12px;font-size:12px;color:#B4433A}
+.pw-err.show{display:block}
+
+/* ---------- watermark（全站同款） ---------- */
+#wm{position:fixed;inset:0;z-index:9999;pointer-events:none;overflow:hidden;opacity:.0325}
+#wm .row{position:absolute;white-space:nowrap;font-size:20px;color:var(--navy);font-weight:500;letter-spacing:.06em;transform:rotate(-24deg);transform-origin:left center}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+
+@media print{
+  body{background:#fff}
+  .qnav{display:none}
+  section{break-inside:avoid}
+  .site-footer{background:#fff}
+  @page{size:A4;margin:12mm}
+}
+</style>
+</head>
+<body class="locked">
+
+<div id="pwGate">
+  <div class="pw-card">
+    <div class="pw-brand">新加坡小圆姐 · SINGAPOREYUAN</div>
+    <h2 class="serif">此页面为保障方案案例</h2>
+    <p>请输入访问密码查看</p>
+    <form id="pwForm">
+      <input id="pwInput" type="password" autocomplete="off" placeholder="访问密码">
+      <button type="submit">进入</button>
+    </form>
+    <div class="pw-err" id="pwErr">密码不正确，请重试</div>
+  </div>
+</div>
+<script>
+(function(){
+  var HASH="5647cdb5254a24d3a184f9136af8416c1ffb1050fd57c67dc133e588b73fc706", KEY="sy_case_childmed_auth";
+  function sha(s){return crypto.subtle.digest("SHA-256",new TextEncoder().encode(s)).then(function(b){
+    return Array.prototype.map.call(new Uint8Array(b),function(x){return x.toString(16).padStart(2,"0")}).join("");
+  })}
+  try{ if(sessionStorage.getItem(KEY)===HASH){ document.body.classList.remove("locked"); } }catch(e){}
+  document.getElementById("pwForm").addEventListener("submit",function(e){
+    e.preventDefault();
+    var v=document.getElementById("pwInput").value.trim();
+    sha(v).then(function(h){
+      if(h===HASH){
+        try{sessionStorage.setItem(KEY,HASH);}catch(e){}
+        document.body.classList.remove("locked");
+        window.scrollTo(0,0);
+      }else{
+        document.getElementById("pwErr").classList.add("show");
+        document.getElementById("pwInput").select();
+      }
+    });
+  });
+})();
+</script>
+
+<header>
+  <div class="hd-in">
+    <div>
+      <div class="hd-tag">CASE STUDY · CHILD HOSPITALISATION COVER</div>
+      <div class="hd-eyebrow">典型案例 · 儿童住院与意外保障</div>
+      <h1>给 5 岁小朋友的<br><em>住院</em> + <em>意外</em> 保障方案</h1>
+      <div class="hd-sub">两套组合分别对应「私立医院优先」与「公立医院优先」，兼顾大额住院费用、日常意外医疗和住院现金补贴。</div>
+      <div class="hd-pills">
+        <span class="hd-pill solid">示例对象：5岁男孩</span>
+        <span class="hd-pill">AIA Singapore</span>
+        <span class="hd-pill">币种：新币 SGD</span>
+        <span class="hd-pill">保费含现行 GST</span>
+        <span class="hd-pill">报价：2026年7月</span>
+      </div>
+    </div>
+    <div class="hd-icon" aria-hidden="true">
+      <svg width="150" height="150" viewBox="0 0 150 150" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="75" cy="75" r="70" stroke="rgba(220,192,136,.3)"/>
+        <circle cx="75" cy="75" r="56" stroke="rgba(220,192,136,.15)"/>
+        <path d="M75 28 L112 42 V76 C112 103 94 118 75 126 C56 118 38 103 38 76 V42 Z" stroke="#dcc088" stroke-width="2.5" fill="rgba(201,165,92,.08)" stroke-linejoin="round"/>
+        <path d="M75 60 V92 M59 76 H91" stroke="#dcc088" stroke-width="7" stroke-linecap="round"/>
+      </svg>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+
+<nav class="qnav" aria-label="页内导航">
+  <a href="#plans">方案速览</a>
+  <a href="#premium">保费明细</a>
+  <a href="#accident">意外险对比</a>
+  <a href="#claims">报销示例</a>
+  <a href="#notes">重要说明</a>
+</nav>
+
+<!-- ================= 方案速览 ================= -->
+<section id="plans">
+  <div class="sec-eyebrow">PLANS AT A GLANCE</div>
+  <h2 class="sec-title serif">两套方案，一眼看懂</h2>
+  <p class="sec-sub">同样的自付结构，不同的就医范围与预算——先看整体，再看细节。</p>
+
+  <div class="cards">
+    <!-- 私立方案 -->
+    <article class="pcard private">
+      <div class="pc-head">
+        <span class="pc-tag">方案一 · 私立医院优先</span>
+        <h3>私立住院险 + 意外险 Plan 3</h3>
+        <p class="pc-prod">AIA HealthShield Gold Max A + Max VitalHealth Pro A + Cancer Care Pro<br>AIA Star Protector Plus Plan 3</p>
+        <div class="pc-price">
+          <div class="pc-annual">S$1,745.19 <small>/ 年</small></div>
+          <div class="pc-monthly">月均折算<strong>S$145.43</strong></div>
+        </div>
+        <div class="pc-pay">
+          <span class="pay-chip cash"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="12" cy="12" r="2.5"/><path d="M6 12h.01M18 12h.01"/></svg>现金约 S$1,245.19 / 年</span>
+          <span class="pay-chip cpf"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg>CPF MediSave 约 S$500 / 年</span>
+        </div>
+      </div>
+      <div class="pc-body">
+        <div class="feat">
+          <span class="fico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 20v-8a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v8"/><path d="M4 10V6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v4"/><path d="M12 4v6"/><path d="M2 18h20"/></svg></span>
+          <div><b>病房选择</b><p>新加坡私立医院标准单人房及以下，也可使用公立医院。</p></div>
+        </div>
+        <div class="feat">
+          <span class="fico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="8" r="6"/><path d="M18.09 10.37A6 6 0 1 1 10.34 18"/><path d="M7 6h1v4"/><path d="m16.71 13.88.7.71-2.82 2.82"/></svg></span>
+          <div><b>年度限额</b><p>最高 <b style="display:inline">S$2,000,000</b> / 保单年度——符合 AIA 优选医疗网络等条件时（一般为 S$1,000,000）。</p></div>
+        </div>
+        <div class="feat">
+          <span class="fico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg></span>
+          <div><b>前后门诊</b><p>最长住院前后<b style="display:inline">各 13 个月</b>——由 AIA 优选医疗机构安排时（一般各 100 天）。</p></div>
+        </div>
+        <div class="feat">
+          <span class="fico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="5" x2="5" y2="19"/><circle cx="6.5" cy="6.5" r="2.5"/><circle cx="17.5" cy="17.5" r="2.5"/></svg></span>
+          <div><b>自付结构</b><p>住院免赔额 S$3,500 / 保单年度；其后自付 5%，符合条件时 5% 部分每年封顶 S$6,000。</p></div>
+        </div>
+        <div class="feat">
+          <span class="fico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.51 4.04 3 5.5l7 7Z"/></svg></span>
+          <div><b>癌症保障</b><p>附加 Cancer Care Pro，扩展癌症药物与相关治疗保障。</p></div>
+        </div>
+        <div class="feat">
+          <span class="fico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/><path d="m9 12 2 2 4-4"/></svg></span>
+          <div><b>意外保障</b><p>Plan 3：意外医疗、住院现金、伤残烧伤、重大意外长期现金等额度更高。</p></div>
+        </div>
+        <div class="pc-fit">
+          <div class="pc-fit-in">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1a7 7 0 0 1 14 0v1"/></svg>
+            <span>适合重视就医选择、希望能直接使用私立医院，并愿意承担较高保费的家庭。</span>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- 公立方案 -->
+    <article class="pcard public">
+      <div class="pc-head">
+        <span class="pc-tag">方案二 · 公立医院优先</span>
+        <h3>公立住院险 + 意外险 Plan 2</h3>
+        <p class="pc-prod">AIA HealthShield Gold Max B + Max VitalHealth Pro B<br>AIA Star Protector Plus Plan 2</p>
+        <div class="pc-price">
+          <div class="pc-annual">S$722.12 <small>/ 年</small></div>
+          <div class="pc-monthly">月均折算<strong>S$60.18</strong></div>
+        </div>
+        <div class="pc-pay">
+          <span class="pay-chip cash"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="12" cy="12" r="2.5"/><path d="M6 12h.01M18 12h.01"/></svg>现金约 S$402.12 / 年</span>
+          <span class="pay-chip cpf"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg>CPF MediSave 约 S$320 / 年</span>
+        </div>
+      </div>
+      <div class="pc-body">
+        <div class="feat">
+          <span class="fico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 20v-8a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v8"/><path d="M4 10V6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v4"/><path d="M12 4v6"/><path d="M2 18h20"/></svg></span>
+          <div><b>病房选择</b><p>新加坡公立医院 A 级病房及以下，兼顾较好的病房选择与保费控制。</p></div>
+        </div>
+        <div class="feat">
+          <span class="fico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="8" r="6"/><path d="M18.09 10.37A6 6 0 1 1 10.34 18"/><path d="M7 6h1v4"/><path d="m16.71 13.88.7.71-2.82 2.82"/></svg></span>
+          <div><b>年度限额</b><p>最高 <b style="display:inline">S$1,200,000</b> / 保单年度——符合 AIA 优选医疗网络等条件时（一般为 S$1,000,000）。</p></div>
+        </div>
+        <div class="feat">
+          <span class="fico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg></span>
+          <div><b>前后门诊</b><p>公立医院住院前后<b style="display:inline">各 12 个月</b>（若在私立医院治疗，一般为各 100 天）。</p></div>
+        </div>
+        <div class="feat">
+          <span class="fico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="5" x2="5" y2="19"/><circle cx="6.5" cy="6.5" r="2.5"/><circle cx="17.5" cy="17.5" r="2.5"/></svg></span>
+          <div><b>自付结构</b><p>公立 A 级病房住院免赔额 S$3,500 / 保单年度；其后自付 5%，符合条件时 5% 部分每年封顶 S$6,000。</p></div>
+        </div>
+        <div class="feat">
+          <span class="fico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg></span>
+          <div><b>使用提醒</b><p>若选择私立医院住院，住院费用通常会按 70% 比例折算后再计算理赔。</p></div>
+        </div>
+        <div class="feat">
+          <span class="fico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/><path d="m9 12 2 2 4-4"/></svg></span>
+          <div><b>意外保障</b><p>Plan 2：覆盖常见意外医疗、住院现金、伤残烧伤及教育保障，保费更轻。</p></div>
+        </div>
+        <div class="pc-fit">
+          <div class="pc-fit-in">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1a7 7 0 0 1 14 0v1"/></svg>
+            <span>适合认可公立医院医疗体系、希望用较低预算建立完整住院与意外保障的家庭。</span>
+          </div>
+        </div>
+      </div>
+    </article>
+  </div>
+
+  <div class="oneliner">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 22h4M12 2a7 7 0 0 0-4 12.7c.6.5 1 1.4 1 2.3h6c0-.9.4-1.8 1-2.3A7 7 0 0 0 12 2Z"/></svg>
+    <span><b>一句话总结：</b>两套方案的住院自付结构相同（免赔额 S$3,500 + 5% 自付）；主要差别在就医范围、年度限额、前后门诊时长与保费——年保费相差约 <b>S$1,023</b>。</span>
+  </div>
+</section>
+
+<!-- ================= 保费明细 ================= -->
+<section id="premium">
+  <div class="sec-eyebrow">ANNUAL PREMIUM</div>
+  <h2 class="sec-title serif">年保费明细</h2>
+  <p class="sec-sub">月均金额按「年缴总保费 ÷ 12」折算，仅用于家庭预算参考。</p>
+
+  <div class="tbl-card">
+    <div class="tbl-scroll">
+      <table>
+        <thead>
+          <tr>
+            <th>保障项目</th>
+            <th class="num">私立方案</th>
+            <th class="num">公立方案</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="row-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/></svg>基础住院险（含 MediShield Life）</span></td>
+            <td class="num">S$510.00</td>
+            <td class="num">S$320.00</td>
+          </tr>
+          <tr>
+            <td><span class="row-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="18" height="14" rx="2"/><path d="M12 10v6M9 13h6"/><path d="M9 6V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v1"/></svg>住院险附加险 VitalHealth Pro</span></td>
+            <td class="num">S$711.00</td>
+            <td class="num">S$163.00</td>
+          </tr>
+          <tr>
+            <td><span class="row-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.51 4.04 3 5.5l7 7Z"/></svg>Cancer Care Pro</span></td>
+            <td class="num">S$35.50</td>
+            <td class="num"><span style="color:var(--muted);font-weight:400">已含于方案保障结构</span></td>
+          </tr>
+          <tr>
+            <td><span class="row-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="5"/><path d="m8.5 12-2 9 5.5-3 5.5 3-2-9"/></svg>儿童意外险</span></td>
+            <td class="num">Plan 3 · S$488.69</td>
+            <td class="num">Plan 2 · S$239.12</td>
+          </tr>
+          <tr class="total">
+            <td>合计年保费</td>
+            <td class="num hl">S$1,745.19</td>
+            <td class="num hl">S$722.12</td>
+          </tr>
+          <tr class="payrow">
+            <td><span class="row-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="12" cy="12" r="2.5"/><path d="M6 12h.01M18 12h.01"/></svg>其中：现金支付（约）</span></td>
+            <td class="num">S$1,245.19</td>
+            <td class="num">S$402.12</td>
+          </tr>
+          <tr class="payrow">
+            <td><span class="row-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg>其中：CPF MediSave 支付（约）</span></td>
+            <td class="num">S$500.00</td>
+            <td class="num">S$320.00</td>
+          </tr>
+          <tr class="total">
+            <td>月均折算</td>
+            <td class="num">S$145.43</td>
+            <td class="num">S$60.18</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="cash-note">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 7c1.8 1.3 3 3.4 3 5.7 0 1.5-.5 2.9-1.4 4L22 19l-2.8.7A8.5 8.5 0 0 1 13 22c-4.7 0-8.5-3.4-8.5-7.6 0-1 .2-2 .6-2.9"/><circle cx="9" cy="6" r="4"/><path d="M9 4.5v1.8l1.2.7"/></svg>
+      <span><b>关于 CPF MediSave：</b>以上现金 / MediSave 拆分为预估。实际 MediSave 扣款会受账户余额、补贴及 MediShield Life 保费调整影响，以保险公司实际扣款为准。</span>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 意外险对比 ================= -->
+<section id="accident">
+  <div class="sec-eyebrow">ACCIDENT PLANS</div>
+  <h2 class="sec-title serif">儿童意外险重点对比</h2>
+  <p class="sec-sub">AIA Star Protector Plus：Plan 2 预算更轻，Plan 3 额度更高、覆盖更全。</p>
+
+  <div class="tbl-card">
+    <div class="tbl-scroll">
+      <table>
+        <thead>
+          <tr>
+            <th>主要保障</th>
+            <th class="num"><span class="badge p2">Plan 2</span></th>
+            <th class="num"><span class="badge p3">Plan 3</span></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="row-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/><path d="M12 8v4M12 16h.01"/></svg>意外身故、伤残及烧伤</span></td>
+            <td class="num">S$35,000</td>
+            <td class="num">S$100,000</td>
+          </tr>
+          <tr>
+            <td><span class="row-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6 h16 v10 a2 2 0 0 1-2 2 H6 a2 2 0 0 1-2-2 Z"/><path d="M4 11h16"/><circle cx="8" cy="18" r="1.6"/><circle cx="16" cy="18" r="1.6"/></svg>学校活动、交通工具或行人意外额外赔付</span></td>
+            <td class="num">额外最高 S$35,000</td>
+            <td class="num">额外最高 S$100,000</td>
+          </tr>
+          <tr>
+            <td><span class="row-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="12" cy="12" r="2.5"/><path d="M6 12h.01M18 12h.01"/></svg>重大灾难性伤残长期现金</span></td>
+            <td class="num">S$1,000 / 月<span class="sub-line">最长 20 年</span></td>
+            <td class="num">S$1,500 / 月<span class="sub-line">最长 20 年</span></td>
+          </tr>
+          <tr class="hlrow">
+            <td><span class="row-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="18" height="14" rx="2"/><path d="M12 10v6M9 13h6"/><path d="M9 6V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v1"/></svg>意外及疾病医疗费用报销<span class="hl-badge">重点</span></span></td>
+            <td class="num">最高 S$3,000</td>
+            <td class="num">最高 S$5,000</td>
+          </tr>
+          <tr>
+            <td><span class="row-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 20v-8a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v8"/><path d="M4 10V6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v4"/><path d="M12 4v6"/><path d="M2 18h20"/></svg>普通住院现金</span></td>
+            <td class="num">S$50 / 天<span class="sub-line">最长 180 天</span></td>
+            <td class="num">S$100 / 天<span class="sub-line">最长 180 天</span></td>
+          </tr>
+          <tr>
+            <td><span class="row-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>ICU 额外住院现金</span></td>
+            <td class="num">额外 S$50 / 天<span class="sub-line">最长 30 天</span></td>
+            <td class="num">额外 S$100 / 天<span class="sub-line">最长 30 天</span></td>
+          </tr>
+          <tr>
+            <td><span class="row-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 4v10.54a4 4 0 1 1-4 0V4a2 2 0 0 1 4 0Z"/><path d="M12 9v6"/></svg>登革热、手足口病康复金</span></td>
+            <td class="num">S$80</td>
+            <td class="num">S$100</td>
+          </tr>
+          <tr>
+            <td><span class="row-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10 12 5 2 10l10 5 10-5Z"/><path d="M6 12.5V17c0 1.7 2.7 3 6 3s6-1.3 6-3v-4.5"/><path d="M22 10v5"/></svg>教育保障金</span></td>
+            <td class="num">S$17,500</td>
+            <td class="num">S$50,000</td>
+          </tr>
+          <tr class="hlrow">
+            <td><span class="row-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M20 4 8.12 15.88M14.47 14.48 20 20M8.12 8.12 12 12"/></svg>意外整形或重建手术<span class="hl-badge">含美容缝针</span></span></td>
+            <td class="num">最高 S$5,000</td>
+            <td class="num">最高 S$15,000</td>
+          </tr>
+          <tr>
+            <td><span class="row-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="16" cy="4" r="1.5"/><path d="m18 19 1.5-6.5-6 1"/><path d="m5.5 8.5 3-3 5 3-2.5 3.5"/><path d="M13.76 17.5a5 5 0 1 0-6.88-6"/></svg>行动辅助器材</span></td>
+            <td class="num">最高 S$300</td>
+            <td class="num">最高 S$1,000</td>
+          </tr>
+          <tr>
+            <td><span class="row-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2Z"/></svg>海外紧急医疗运送及遗体运返</span></td>
+            <td class="num"><span style="color:var(--muted)">不适用</span></td>
+            <td class="num">最高 S$50,000 / 年</td>
+          </tr>
+          <tr class="total">
+            <td>年保费</td>
+            <td class="num hl">S$239.12</td>
+            <td class="num hl">S$488.69</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="cash-note">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+      <span><b>额度说明：</b>表中保障额度均为单次意外限额，每次意外分别计算；标注 / 天、/ 月、/ 年的项目按相应周期计算，以保单条款为准。</span>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 报销示例 ================= -->
+<section id="claims">
+  <div class="sec-eyebrow">CLAIM EXAMPLES</div>
+  <h2 class="sec-title serif">住院账单报销示例</h2>
+  <p class="sec-sub">以下假设账单全部属于可赔付的合理医疗费用，使用对应等级医院及病房，符合优选医疗网络、预授权或紧急治疗条件，且本保单年度尚未使用免赔额。</p>
+
+  <div class="claims">
+    <!-- 私立 -->
+    <article class="ccard">
+      <div class="ccard-head">
+        <span class="fico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 21V5a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v16"/><path d="M2 21h20"/><path d="M12 7v4M10 9h4"/><path d="M9 21v-4h6v4"/></svg></span>
+        <div>
+          <h3>私立住院险</h3>
+          <div class="scope" style="margin-bottom:0">私立医院标准房 · Gold Max A + VitalHealth Pro A</div>
+        </div>
+      </div>
+
+      <div class="bill">
+        <div class="bill-title"><span>大账单示例</span><span class="amt">S$200,000</span></div>
+        <div class="calc">
+          <div class="k">年度免赔额</div><div>S$3,500</div>
+          <div class="k">免赔额后金额</div><div>S$196,500</div>
+          <div class="k">5% 自付</div><div>S$9,825</div>
+          <div class="k">符合条件后按年封顶</div><div>S$6,000</div>
+          <div class="self">家庭预计自付</div><div>S$9,500</div>
+          <div class="claim">保险预计报销</div><div>S$190,500</div>
+        </div>
+        <div class="split">
+          <div class="split-bar"><i class="s-claim" style="width:95.25%"></i><i class="s-self" style="width:4.75%"></i></div>
+          <div class="split-legend">
+            <span><i class="dot claim"></i>保险报销约 95%</span>
+            <span><i class="dot self"></i>家庭自付约 5%</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="bill">
+        <div class="bill-title"><span>小账单示例</span><span class="amt">S$20,000</span></div>
+        <div class="calc">
+          <div class="k">年度免赔额</div><div>S$3,500</div>
+          <div class="k">免赔额后金额</div><div>S$16,500</div>
+          <div class="k">5% 自付</div><div>S$825</div>
+          <div class="self">家庭预计自付</div><div>S$4,325</div>
+          <div class="claim">保险预计报销</div><div>S$15,675</div>
+        </div>
+        <div class="split">
+          <div class="split-bar"><i class="s-claim" style="width:78.4%"></i><i class="s-self" style="width:21.6%"></i></div>
+          <div class="split-legend">
+            <span><i class="dot claim"></i>保险报销约 78%</span>
+            <span><i class="dot self"></i>家庭自付约 22%</span>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- 公立 -->
+    <article class="ccard">
+      <div class="ccard-head">
+        <span class="fico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 21V5a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v16"/><path d="M2 21h20"/><path d="M12 7v4M10 9h4"/><path d="M9 21v-4h6v4"/></svg></span>
+        <div>
+          <h3>公立住院险</h3>
+          <div class="scope" style="margin-bottom:0">公立医院 A 级病房 · Gold Max B + VitalHealth Pro B</div>
+        </div>
+      </div>
+
+      <div class="bill">
+        <div class="bill-title"><span>大账单示例</span><span class="amt">S$200,000</span></div>
+        <div class="calc">
+          <div class="k">年度免赔额</div><div>S$3,500</div>
+          <div class="k">免赔额后金额</div><div>S$196,500</div>
+          <div class="k">5% 自付</div><div>S$9,825</div>
+          <div class="k">符合条件后按年封顶</div><div>S$6,000</div>
+          <div class="self">家庭预计自付</div><div>S$9,500</div>
+          <div class="claim">保险预计报销</div><div>S$190,500</div>
+        </div>
+        <div class="split">
+          <div class="split-bar"><i class="s-claim" style="width:95.25%"></i><i class="s-self" style="width:4.75%"></i></div>
+          <div class="split-legend">
+            <span><i class="dot claim"></i>保险报销约 95%</span>
+            <span><i class="dot self"></i>家庭自付约 5%</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="bill">
+        <div class="bill-title"><span>小账单示例</span><span class="amt">S$20,000</span></div>
+        <div class="calc">
+          <div class="k">年度免赔额</div><div>S$3,500</div>
+          <div class="k">免赔额后金额</div><div>S$16,500</div>
+          <div class="k">5% 自付</div><div>S$825</div>
+          <div class="self">家庭预计自付</div><div>S$4,325</div>
+          <div class="claim">保险预计报销</div><div>S$15,675</div>
+        </div>
+        <div class="split">
+          <div class="split-bar"><i class="s-claim" style="width:78.4%"></i><i class="s-self" style="width:21.6%"></i></div>
+          <div class="split-legend">
+            <span><i class="dot claim"></i>保险报销约 78%</span>
+            <span><i class="dot self"></i>家庭自付约 22%</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="same-note">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m8.5 12 2.5 2.5 5-5"/></svg>
+        <span>两个方案在各自对应的医院及病房等级内，免赔额与 5% 自付结构相同，因此本示例的报销金额一致。两者主要差别在就医范围、年度限额、前后门诊时间及保费。</span>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ================= 重要说明 ================= -->
+<section id="notes">
+  <div class="disc">
+    <div class="disc-h">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.46 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><path d="M12 9v4M12 17h.01"/></svg>
+      重要说明
+    </div>
+    <ul>
+      <li>报销示例为便于理解的估算，不代表实际理赔承诺。最终赔付以可赔付医疗费用、合理及惯常收费、保单条款、除外责任、医院及医生网络、预授权结果为准。</li>
+      <li>住院免赔额按保单年度累计计算；若同一年度已经支付过部分或全部免赔额，后续账单的实际自付会不同。</li>
+      <li>5% 自付部分只有在符合 AIA 优选医疗机构、取得预授权，或属于符合规定的紧急治疗时，才享有每保单年度 S$6,000 封顶。</li>
+      <li>公立方案若选择私立医院住院，通常会先按 70% 比例折算可赔付费用，家庭自付可能明显增加。</li>
+      <li>保费会随年龄增长，并可能由保险公司调整；以上为当前报价。</li>
+    </ul>
+  </div>
+</section>
+
+</div>
+
+<footer class="site-footer">
+  <div class="sf-in">
+    <div class="sf-grid">
+      <div>
+        <p class="sf-brand">新加坡小圆姐</p>
+        <p class="sf-tag">用专业和耐心，陪你一起日富一日</p>
+        <p class="sf-org">新加坡财富规划经理<br>RNF：YY-300823216</p>
+      </div>
+      <div>
+        <p class="sf-h">联系方式</p>
+        <ul class="sf-list">
+          <li>微信：singaporeyuan</li>
+          <li><a href="https://wa.me/6583750190" target="_blank" rel="noopener noreferrer">WhatsApp：+65 8375 0190</a></li>
+          <li><a href="mailto:yuanyuan@aia.com.sg">邮箱：yuanyuan@aia.com.sg</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="sf-h">关注我</p>
+        <ul class="sf-list">
+          <li><a href="https://xhslink.com/m/9KS9V4ytFmj" target="_blank" rel="noopener noreferrer">小红书 · 新加坡小圆姐</a></li>
+          <li><a href="https://xhslink.com/m/2eFS3jpJutg" target="_blank" rel="noopener noreferrer">小红书 · 图文笔记</a></li>
+          <li><a href="https://www.linkedin.com/in/singaporeyuan/" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="sf-h">新加坡小圆姐</p>
+        <ul class="sf-list">
+          <li><a href="/zh/about">关于我</a></li>
+          <li><a href="/zh/cases">规划案例</a></li>
+          <li><a href="/zh/services">业务范围</a></li>
+          <li><a href="/zh/resources">资源中心</a></li>
+          <li><a href="/zh/consult">预约咨询</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="sf-bottom">
+      <p>本页面为保障方案摘要，仅供沟通参考，不构成任何投资、保险、法律或税务建议。完整保障范围、定义及除外责任以正式保单合同为准。</p>
+      <p class="sf-rights">© 2026 袁媛 Yuan Yuan. 版权所有。</p>
+    </div>
+  </div>
+</footer>
+
+<div id="wm" aria-hidden="true"></div>
+<script>
+(function(){
+  var text="新加坡小圆姐　　　singaporeyuan　　　仅供本人参考　　　　　　";
+  var wm=document.getElementById('wm');var unit=text.repeat(6);
+  for(var i=0;i<16;i++){var d=document.createElement('div');d.className='row';d.textContent=unit;d.style.top=(i*110-120)+'px';d.style.left='-200px';wm.appendChild(d);}
+})();
+</script>
+</body>
+</html>
