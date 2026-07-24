@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<title>夫妻长期护理保障对比 · Singlife vs GE | 新加坡小圆姐</title>
+<style>
+:root{
+  --navy:#1B2A4A;
+  --navy-soft:#2E4068;
+  --navy-tint:#EEF1F7;
+  --gold:#C9A86A;
+  --gold-deep:#A8874C;
+  --gold-tint:#F7F1E4;
+  --ivory:#FBFAF7;
+  --ink:#22293A;
+  --muted:#6B7280;
+  --line:#E4E2DB;
+  --green:#1E7A52;
+  --green-tint:#EAF6F0;
+  --red:#B4433A;
+  --red-tint:#FBEFEE;
+}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth}
+body{
+  font-family:-apple-system,"PingFang SC","Hiragino Sans GB","Noto Sans SC","Microsoft YaHei",sans-serif;
+  background:var(--ivory);color:var(--ink);line-height:1.7;font-size:15px;
+}
+.wrap{max-width:860px;margin:0 auto;padding:0 16px 64px}
+.serif{font-family:"Songti SC","Noto Serif SC",Georgia,serif}
+svg{display:block}
+
+/* ---------- header（与主站案例页 banner 同款） ---------- */
+header{
+  background:linear-gradient(135deg,#4b3620 0%,#2e2012 100%);
+  color:#faf7f0;padding:52px 16px 46px;position:relative;overflow:hidden;
+}
+header::after{content:"";position:absolute;right:-80px;top:-96px;width:320px;height:320px;border-radius:50%;border:1px solid rgba(201,165,92,.3)}
+header::before{content:"";position:absolute;right:40px;top:40px;width:160px;height:160px;border-radius:50%;border:1px solid rgba(201,165,92,.15)}
+.hd-in{max-width:860px;margin:0 auto;position:relative;z-index:1;display:grid;grid-template-columns:1fr;gap:24px;align-items:end}
+@media(min-width:700px){.hd-in{grid-template-columns:1fr auto}}
+.hd-tag{font-size:12px;font-weight:600;letter-spacing:.3em;text-transform:uppercase;color:#c9a55c}
+.hd-eyebrow{margin-top:10px;font-size:12px;letter-spacing:.05em;color:rgba(220,192,136,.8)}
+h1{margin-top:14px;font-size:clamp(26px,4.6vw,38px);font-weight:900;line-height:1.35;letter-spacing:.01em}
+h1 em{font-style:normal;color:#dcc088}
+.hd-sub{margin-top:16px;font-size:15px;line-height:1.85;color:rgba(250,247,240,.8);max-width:560px}
+.hd-pills{margin-top:24px;display:flex;flex-wrap:wrap;gap:10px}
+.hd-pill{border-radius:20px;padding:6px 16px;font-size:12px;border:1px solid rgba(201,165,92,.45);color:#dcc088}
+.hd-pill.solid{background:#c9a55c;color:#2e2012;font-weight:600;border-color:#c9a55c}
+.hd-icon{display:none;position:relative;align-self:end;margin-bottom:-8px}
+@media(min-width:700px){.hd-icon{display:block}}
+
+/* ---------- quick nav ---------- */
+.qnav{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
+.qnav a{font-size:12.5px;color:var(--navy-soft);background:#fff;border:1px solid var(--line);border-radius:20px;padding:6px 14px;text-decoration:none;transition:all .2s}
+.qnav a:hover{border-color:var(--gold-deep);color:var(--gold-deep)}
+
+/* ---------- sections ---------- */
+section{margin-top:48px;scroll-margin-top:24px}
+.sec-eyebrow{font-size:12px;letter-spacing:.28em;color:var(--gold-deep);margin-bottom:6px}
+.sec-title{font-size:21px;font-weight:600;color:var(--navy);margin-bottom:4px}
+.sec-sub{font-size:13px;color:var(--muted);margin-bottom:18px;max-width:640px}
+
+/* ---------- plan cards ---------- */
+.cards{display:grid;gap:18px}
+@media(min-width:680px){.cards{grid-template-columns:1fr 1fr}}
+.pcard{background:#fff;border:1px solid var(--line);border-radius:18px;overflow:hidden;border-top:4px solid var(--pc);display:flex;flex-direction:column}
+.pcard.private{--pc:var(--navy)}
+.pcard.public{--pc:var(--gold-deep)}
+.pc-head{padding:22px 22px 18px;border-bottom:1px solid var(--line)}
+.pcard.private .pc-head{background:linear-gradient(150deg,#F2F5FA,#FBFAF7)}
+.pcard.public .pc-head{background:linear-gradient(150deg,#F9F4E8,#FBFAF7)}
+.pc-tag{display:inline-flex;align-items:center;gap:6px;font-size:11.5px;letter-spacing:.08em;font-weight:600;color:var(--pc);border:1px solid var(--pc);border-radius:20px;padding:3px 12px;margin-bottom:12px}
+.pc-head h3{font-size:19px;color:var(--navy);line-height:1.45}
+.pc-prod{margin-top:6px;font-size:12.5px;line-height:1.75;color:var(--muted);min-height:44px}
+.pc-price{margin-top:16px;display:flex;align-items:flex-end;justify-content:space-between;gap:12px}
+.pc-annual{font-size:28px;font-weight:800;color:var(--navy);line-height:1;white-space:nowrap}
+.pc-annual small{font-size:12px;font-weight:500;color:var(--muted)}
+.pc-monthly{text-align:right;font-size:12px;color:var(--muted);line-height:1.5}
+.pc-monthly strong{display:block;color:var(--green);font-size:19px;font-weight:700}
+.pc-pay{margin-top:12px;display:flex;flex-wrap:wrap;gap:8px}
+.pay-chip{display:inline-flex;align-items:center;gap:7px;border-radius:9px;padding:7px 12px;font-size:13px;font-weight:600;line-height:1.4}
+.pay-chip svg{width:15px;height:15px;flex-shrink:0}
+.pay-chip.cash{background:var(--green-tint);color:var(--green)}
+.pay-chip.cpf{background:var(--navy-tint);color:var(--navy-soft)}
+.pc-body{padding:18px 22px 22px;flex:1;display:flex;flex-direction:column}
+.feat{display:grid;grid-template-columns:36px 1fr;gap:12px;padding:11px 0;border-bottom:1px dashed var(--line)}
+.feat:first-child{padding-top:0}
+.feat:last-of-type{border-bottom:0}
+.fico{width:36px;height:36px;border-radius:10px;background:var(--gold-tint);color:var(--gold-deep);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.fico svg{width:19px;height:19px}
+.feat b{display:block;font-size:13.5px;color:var(--navy);margin-bottom:1px}
+.feat p{font-size:13px;color:#3B4358;line-height:1.65}
+.pc-fit{margin-top:auto;padding-top:16px}
+.pc-fit-in{border-radius:12px;padding:13px 15px;font-size:13px;line-height:1.7;display:flex;gap:10px;align-items:flex-start}
+.pcard.private .pc-fit-in{background:var(--navy-tint);color:#31405E}
+.pcard.public .pc-fit-in{background:var(--gold-tint);color:#6D5318}
+.pc-fit-in svg{width:18px;height:18px;flex-shrink:0;margin-top:2px}
+
+/* ---------- oneliner ---------- */
+.oneliner{margin-top:18px;font-size:13.5px;color:#3B4358;background:var(--gold-tint);border:1px solid #EADFC6;border-radius:12px;padding:15px 16px;display:flex;gap:11px;align-items:flex-start;line-height:1.8}
+.oneliner svg{flex-shrink:0;width:20px;height:20px;margin-top:2px;color:var(--gold-deep)}
+.oneliner b{color:var(--gold-deep)}
+
+/* ---------- tables ---------- */
+.tbl-card{background:#fff;border:1px solid var(--line);border-radius:18px;overflow:hidden}
+.tbl-card+.tbl-card{margin-top:18px}
+.tbl-head{padding:16px 18px 14px;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:10px}
+.tbl-head .fico{width:32px;height:32px}
+.tbl-head b{font-size:15px;color:var(--navy)}
+.tbl-head span{font-size:12px;color:var(--muted)}
+.tbl-scroll{overflow-x:auto}
+table{width:100%;border-collapse:collapse;min-width:520px}
+th,td{padding:13px 16px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top;font-size:13.5px}
+th{background:var(--navy-tint);color:var(--navy);font-size:12.5px;font-weight:600;white-space:nowrap}
+td.num,th.num{text-align:right;white-space:nowrap}
+tr:last-child td{border-bottom:0}
+tr.total td{background:#FBFAF5;font-weight:700;color:var(--navy)}
+tr.hlrow td{background:var(--gold-tint)}
+tr.hlrow td.num{font-weight:700;color:var(--navy)}
+td .sub-line{display:block;font-size:11.5px;color:var(--muted);font-weight:400}
+td .b-navy{color:var(--navy);font-weight:600}
+.cash-note{padding:16px 18px;background:#FBFAF5;border-top:1px solid var(--line);font-size:13px;color:#3B4358;line-height:1.8;display:flex;gap:11px;align-items:flex-start}
+.cash-note svg{width:19px;height:19px;flex-shrink:0;margin-top:3px;color:var(--gold-deep)}
+.cash-note b{color:var(--navy)}
+
+/* ---------- payout bars ---------- */
+.trig{display:grid;gap:18px}
+@media(min-width:680px){.trig{grid-template-columns:1fr 1fr}}
+.tcard{background:#fff;border:1px solid var(--line);border-radius:18px;padding:20px}
+.tcard-head{display:flex;gap:11px;align-items:center;margin-bottom:2px}
+.tcard-head .fico{width:34px;height:34px}
+.tcard h3{font-size:16.5px;color:var(--navy)}
+.tcard .scope{font-size:12px;color:var(--muted);margin-bottom:14px}
+.bar-group{margin-top:14px}
+.bar-group>.bg-title{font-size:13px;font-weight:600;color:var(--navy);margin-bottom:8px}
+.bar-row{display:grid;grid-template-columns:64px 1fr 84px;gap:10px;align-items:center;margin-bottom:7px}
+.bar-row .who{font-size:11.5px;color:var(--muted);white-space:nowrap}
+.bar-track{height:14px;border-radius:7px;background:#F1EFE8;overflow:hidden}
+.bar-track i{display:block;height:100%;border-radius:7px}
+.bar-track i.sl{background:var(--navy-soft)}
+.bar-track i.ge{background:var(--gold)}
+.bar-row .amt{font-size:12.5px;font-weight:700;color:var(--navy);text-align:right;white-space:nowrap}
+.bar-legend{display:flex;flex-wrap:wrap;gap:4px 16px;margin-top:12px;font-size:11.5px;color:var(--muted)}
+.bar-legend .dot{display:inline-block;width:8px;height:8px;border-radius:2px;margin-right:5px;vertical-align:1px}
+.bar-legend .dot.sl{background:var(--navy-soft)}
+.bar-legend .dot.ge{background:var(--gold)}
+.same-note{background:var(--green-tint);color:#176B48;border-radius:12px;padding:13px 15px;margin-top:14px;font-size:13px;line-height:1.75;display:flex;gap:10px;align-items:flex-start}
+.same-note svg{width:18px;height:18px;flex-shrink:0;margin-top:3px}
+
+/* ---------- footnotes ---------- */
+.disc{background:var(--navy-tint);border-radius:14px;padding:20px 22px;font-size:12.5px;color:var(--muted);line-height:1.9}
+.disc-h{display:flex;align-items:center;gap:9px;color:var(--navy-soft);font-weight:600;font-size:13.5px;margin-bottom:10px}
+.disc-h svg{width:18px;height:18px}
+.disc ul{list-style:none}
+.disc li{padding-left:18px;position:relative;margin-bottom:7px}
+.disc li::before{content:"";position:absolute;left:2px;top:11px;width:5px;height:5px;border-radius:50%;background:var(--gold)}
+
+/* ---------- site footer（与主站统一） ---------- */
+.site-footer{margin-top:56px;border-top:1px solid rgba(201,165,92,.25);background:#f5efe1}
+.site-footer a{color:inherit;text-decoration:none;transition:color .2s}
+.site-footer a:hover{color:#a8843f}
+.sf-in{max-width:860px;margin:0 auto;padding:44px 20px 32px}
+.sf-grid{display:grid;gap:28px}
+@media(min-width:560px){.sf-grid{grid-template-columns:1fr 1fr}}
+@media(min-width:820px){.sf-grid{grid-template-columns:1.2fr 1fr 1fr 1fr}}
+.sf-brand{font-size:18px;font-weight:700;color:#1a2744}
+.sf-tag{margin-top:6px;font-size:13px;color:#a8843f}
+.sf-org{margin-top:14px;font-size:11.5px;line-height:1.8;color:#7a7264}
+.sf-h{font-size:11px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:#a8843f}
+.sf-list{list-style:none;margin-top:12px}
+.sf-list li{font-size:13px;color:rgba(26,39,68,.8);margin-bottom:7px}
+.sf-bottom{margin-top:32px;border-top:1px solid rgba(201,165,92,.25);padding-top:20px;font-size:11.5px;line-height:1.8;color:#7a7264}
+.sf-rights{margin-top:10px}
+
+/* ---------- password gate ---------- */
+body.locked{overflow:hidden}
+body.locked>*:not(#pwGate){visibility:hidden}
+#pwGate{position:fixed;inset:0;z-index:99;display:none;align-items:center;justify-content:center;background:linear-gradient(160deg,#1B2A4A 0%,#24365C 60%,#2C4270 100%);padding:24px;visibility:visible}
+body.locked #pwGate{display:flex}
+.pw-card{width:100%;max-width:360px;background:#fff;border-radius:18px;padding:34px 28px;text-align:center;box-shadow:0 24px 64px rgba(0,0,0,.35)}
+.pw-brand{font-size:11px;letter-spacing:.22em;color:var(--gold-deep);margin-bottom:14px}
+.pw-card h2{font-size:19px;color:var(--navy);margin-bottom:6px}
+.pw-card p{font-size:13px;color:var(--muted);margin-bottom:18px}
+#pwForm{display:flex;gap:8px}
+#pwInput{flex:1;min-width:0;border:1px solid var(--line);border-radius:10px;padding:11px 12px;font-size:15px;text-align:center;letter-spacing:.12em;outline:none;font-family:inherit}
+#pwInput:focus{border-color:var(--gold-deep)}
+#pwForm button{border:0;background:var(--navy);color:#fff;border-radius:10px;padding:11px 18px;font-size:14px;cursor:pointer;font-family:inherit}
+.pw-err{display:none;margin-top:12px;font-size:12px;color:#B4433A}
+.pw-err.show{display:block}
+
+/* ---------- watermark（全站同款） ---------- */
+#wm{position:fixed;inset:0;z-index:9999;pointer-events:none;overflow:hidden;opacity:.0325}
+#wm .row{position:absolute;white-space:nowrap;font-size:20px;color:var(--navy);font-weight:500;letter-spacing:.06em;transform:rotate(-24deg);transform-origin:left center}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+
+@media print{
+  body{background:#fff}
+  .qnav{display:none}
+  section{break-inside:avoid}
+  .site-footer{background:#fff}
+  @page{size:A4;margin:12mm}
+}
+</style>
+</head>
+<body class="locked">
+
+<div id="pwGate">
+  <div class="pw-card">
+    <div class="pw-brand">新加坡小圆姐 · SINGAPOREYUAN</div>
+    <h2 class="serif">此页面为保障方案对比</h2>
+    <p>请输入访问密码查看</p>
+    <form id="pwForm">
+      <input id="pwInput" type="password" autocomplete="off" placeholder="访问密码">
+      <button type="submit">进入</button>
+    </form>
+    <div class="pw-err" id="pwErr">密码不正确，请重试</div>
+  </div>
+</div>
+<script>
+(function(){
+  var HASH="5647cdb5254a24d3a184f9136af8416c1ffb1050fd57c67dc133e588b73fc706", KEY="sy_case_careshield_auth";
+  function sha(s){return crypto.subtle.digest("SHA-256",new TextEncoder().encode(s)).then(function(b){
+    return Array.prototype.map.call(new Uint8Array(b),function(x){return x.toString(16).padStart(2,"0")}).join("");
+  })}
+  try{ if(sessionStorage.getItem(KEY)===HASH){ document.body.classList.remove("locked"); } }catch(e){}
+  document.getElementById("pwForm").addEventListener("submit",function(e){
+    e.preventDefault();
+    var v=document.getElementById("pwInput").value.trim();
+    sha(v).then(function(h){
+      if(h===HASH){
+        try{sessionStorage.setItem(KEY,HASH);}catch(e){}
+        document.body.classList.remove("locked");
+        window.scrollTo(0,0);
+      }else{
+        document.getElementById("pwErr").classList.add("show");
+        document.getElementById("pwInput").select();
+      }
+    });
+  });
+})();
+</script>
+
+<header>
+  <div class="hd-in">
+    <div>
+      <div class="hd-tag">COMPARISON · CARESHIELD SUPPLEMENTS</div>
+      <div class="hd-eyebrow">方案对比 · 长期护理附加保障（CareShield Life Supplement）</div>
+      <h1>夫妻二人的长期护理加强计划<br><em>Singlife</em> vs <em>Great Eastern</em></h1>
+      <div class="hd-sub">在政府 CareShield Life 基本月付款之上，为 Mr Zheng 与 Mrs Chen 叠加附加月付款。本页把两家公司的线上报价与保障结构并排列出，客观呈现，方便比较。</div>
+      <div class="hd-pills">
+        <span class="hd-pill solid">Mr Zheng 38岁 · Mrs Chen 37岁</span>
+        <span class="hd-pill">Singlife CareShield Plus</span>
+        <span class="hd-pill">GREAT CareShield</span>
+        <span class="hd-pill">币种：新币 SGD</span>
+        <span class="hd-pill">报价：2026年7月</span>
+      </div>
+    </div>
+    <div class="hd-icon" aria-hidden="true">
+      <svg width="150" height="150" viewBox="0 0 150 150" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="75" cy="75" r="70" stroke="rgba(220,192,136,.3)"/>
+        <circle cx="75" cy="75" r="56" stroke="rgba(220,192,136,.15)"/>
+        <path d="M75 28 L112 42 V76 C112 103 94 118 75 126 C56 118 38 103 38 76 V42 Z" stroke="#dcc088" stroke-width="2.5" fill="rgba(201,165,92,.08)" stroke-linejoin="round"/>
+        <path d="M60 82 C60 74 66 70 75 78 C84 70 90 74 90 82 C90 90 75 100 75 100 C75 100 60 90 60 82 Z" fill="rgba(220,192,136,.9)"/>
+      </svg>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+
+<nav class="qnav" aria-label="页内导航">
+  <a href="#plans">方案速览</a>
+  <a href="#premium">保费对比</a>
+  <a href="#benefits">保障对比</a>
+  <a href="#trigger">理赔触发差异</a>
+  <a href="#notes">重要说明</a>
+</nav>
+
+<!-- ================= 方案速览 ================= -->
+<section id="plans">
+  <div class="sec-eyebrow">PLANS AT A GLANCE</div>
+  <h2 class="sec-title serif">两家方案，一眼看懂</h2>
+  <p class="sec-sub">两份报价折扣后均低于每年 S$600 的 MediSave 上限——两家方案夫妻二人都可以全额用 CPF MediSave 支付，现金支出 S$0。</p>
+
+  <div class="cards">
+    <!-- Singlife -->
+    <article class="pcard private">
+      <div class="pc-head">
+        <span class="pc-tag">方案 A · Singlife</span>
+        <h3>Singlife CareShield Plus</h3>
+        <p class="pc-prod">Mr Zheng：月保障 S$1,100（年保费 S$557.58）<br>Mrs Chen：月保障 S$900（年保费 S$599.19）</p>
+        <div class="pc-price">
+          <div class="pc-annual">S$1,156.77 <small>/ 年 · 夫妻合计</small></div>
+          <div class="pc-monthly">已含 20% 永久折扣<strong>现金 S$0</strong></div>
+        </div>
+        <div class="pc-pay">
+          <span class="pay-chip cpf"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg>全额 CPF MediSave 支付</span>
+          <span class="pay-chip cash"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="12" cy="12" r="2.5"/><path d="M6 12h.01M18 12h.01"/></svg>现金 S$0 / 年</span>
+        </div>
+      </div>
+      <div class="pc-body">
+        <div class="feat">
+          <span class="fico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>
+          <div><b>理赔门槛：1 项 ADL 即全额</b><p>无法执行至少 1 项日常活动（ADL）即可获 100% 月付款*。</p></div>
+        </div>
+        <div class="feat">
+          <span class="fico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M2 12h20"/></svg></span>
+          <div><b>首 12 个月额外付款</b><p>Add-on Benefit：理赔初期每月再多 100% 月保障额，最长 12 个月。</p></div>
+        </div>
+        <div class="feat">
+          <span class="fico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.51 4.04 3 5.5l7 7Z"/></svg></span>
+          <div><b>身故保障 + 免核保加保</b><p>身故付 3 倍最后月付款；人生阶段事件可加保，无需再核保。</p></div>
+        </div>
+        <div class="pc-fit">
+          <div class="pc-fit-in">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+            <span>结构特点：理赔门槛较低（1 项 ADL 即全额），首年现金流更集中。</span>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- GE -->
+    <article class="pcard public">
+      <div class="pc-head">
+        <span class="pc-tag">方案 B · Great Eastern</span>
+        <h3>GREAT CareShield</h3>
+        <p class="pc-prod">Mr Zheng：月保障 S$1,130（年保费 S$587.27）<br>Mrs Chen：月保障 S$880（年保费 S$590.49）</p>
+        <div class="pc-price">
+          <div class="pc-annual">S$1,177.76 <small>/ 年 · 夫妻合计</small></div>
+          <div class="pc-monthly">已含 20% 促销折扣<strong>现金 S$0</strong></div>
+        </div>
+        <div class="pc-pay">
+          <span class="pay-chip cpf"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg>全额 CPF MediSave 支付</span>
+          <span class="pay-chip cash"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="12" cy="12" r="2.5"/><path d="M6 12h.01M18 12h.01"/></svg>现金 S$0 / 年</span>
+        </div>
+      </div>
+      <div class="pc-body">
+        <div class="feat">
+          <span class="fico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></svg></span>
+          <div><b>理赔分两档：50% / 100%</b><p>无法执行 1 项 ADL 付 50% 月付款；2 项及以上付 100%。</p></div>
+        </div>
+        <div class="feat">
+          <span class="fico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
+          <div><b>家属照顾补贴较高</b><p>Dependant care：30% 月保障额，最长 48 个月（≥2 项 ADL 时）。</p></div>
+        </div>
+        <div class="feat">
+          <span class="fico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></span>
+          <div><b>付款期终身</b><p>只要持续无法执行 ADL，月付款可支付至终身；缴费期可选至 67 岁或 95 岁。</p></div>
+        </div>
+        <div class="pc-fit">
+          <div class="pc-fit-in">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+            <span>结构特点：轻度失能（1 项 ADL）先付一半；家属补贴比例更高、年期更长。</span>
+          </div>
+        </div>
+      </div>
+    </article>
+  </div>
+
+  <div class="oneliner">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+    <span>一句话总结：<b>两家夫妻合计年保费相差约 S$21</b>，且都可全额用 MediSave 支付。主要差异在<b>理赔结构</b>——Singlife Plus 在 1 项 ADL 时即付全额、首年另有加倍付款；GE 在 1 项 ADL 时先付 50%，但家属照顾补贴比例更高、付得更久。</span>
+  </div>
+</section>
+
+<!-- ================= 保费对比 ================= -->
+<section id="premium">
+  <div class="sec-eyebrow">PREMIUM COMPARISON</div>
+  <h2 class="sec-title serif">保费对比</h2>
+  <p class="sec-sub">以下均为两家公司报价单显示金额（2026年7月）。注意两家的月保障额与缴费年期不完全相同，比较时请一并考虑。</p>
+
+  <!-- Mr Zheng -->
+  <div class="tbl-card">
+    <div class="tbl-head">
+      <span class="fico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></span>
+      <div><b>Mr Zheng</b> <span>· 38岁 · 男</span></div>
+    </div>
+    <div class="tbl-scroll">
+      <table>
+        <thead><tr><th>项目</th><th>Singlife CareShield Plus</th><th>GREAT CareShield</th></tr></thead>
+        <tbody>
+          <tr><td>每月保障额（附加）</td><td class="num">S$1,100</td><td class="num">S$1,130</td></tr>
+          <tr><td>缴费期</td><td>每年缴至 99 岁¹</td><td>每年缴至 95 岁<span class="sub-line">另有缴至 67 岁档：S$1,089.32/年（未含GST、折扣前）</span></td></tr>
+          <tr><td>年保费（折扣前）</td><td class="num">S$696.98</td><td class="num">S$734.09<span class="sub-line">含GST；未含GST S$673.48</span></td></tr>
+          <tr><td>折扣</td><td>−20%（LTC1 永久折扣）−S$139.40</td><td>−20%（Plan promo）</td></tr>
+          <tr class="hlrow"><td><span class="b-navy">折扣后年保费</span></td><td class="num">S$557.58</td><td class="num">S$587.27</td></tr>
+          <tr><td>MediSave 抵扣后现金支出</td><td class="num" style="color:var(--green);font-weight:700">S$0.00</td><td class="num" style="color:var(--green);font-weight:700">S$0.00</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Mrs Chen -->
+  <div class="tbl-card">
+    <div class="tbl-head">
+      <span class="fico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></span>
+      <div><b>Mrs Chen</b> <span>· 37岁 · 女</span></div>
+    </div>
+    <div class="tbl-scroll">
+      <table>
+        <thead><tr><th>项目</th><th>Singlife CareShield Plus</th><th>GREAT CareShield</th></tr></thead>
+        <tbody>
+          <tr><td>每月保障额（附加）</td><td class="num">S$900</td><td class="num">S$880</td></tr>
+          <tr><td>缴费期</td><td>每年缴至 99 岁¹</td><td>每年缴至 95 岁<span class="sub-line">另有缴至 67 岁档：S$988.24/年（未含GST、折扣前）</span></td></tr>
+          <tr><td>年保费（折扣前）</td><td class="num">S$748.99</td><td class="num">S$738.10<span class="sub-line">含GST；未含GST S$677.16</span></td></tr>
+          <tr><td>折扣</td><td>−20%（LTC1 永久折扣）−S$149.80</td><td>−20%（Plan promo）</td></tr>
+          <tr class="hlrow"><td><span class="b-navy">折扣后年保费</span></td><td class="num">S$599.19</td><td class="num">S$590.49</td></tr>
+          <tr><td>MediSave 抵扣后现金支出</td><td class="num" style="color:var(--green);font-weight:700">S$0.00</td><td class="num" style="color:var(--green);font-weight:700">S$0.00</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- 合计 -->
+  <div class="tbl-card">
+    <div class="tbl-scroll">
+      <table>
+        <thead><tr><th>夫妻合计（折扣后年保费）</th><th class="num">Singlife</th><th class="num">Great Eastern</th></tr></thead>
+        <tbody>
+          <tr><td>Mr Zheng</td><td class="num">S$557.58</td><td class="num">S$587.27</td></tr>
+          <tr><td>Mrs Chen</td><td class="num">S$599.19</td><td class="num">S$590.49</td></tr>
+          <tr class="total"><td>合计 / 年</td><td class="num">S$1,156.77</td><td class="num">S$1,177.76</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="cash-note">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg>
+      <span><b>MediSave 支付：</b>CareShield Life 附加计划保费可用 CPF MediSave 支付，每名被保人每个日历年上限 S$600。两家方案折扣后每人年保费均在 S$600 以内，因此<b>夫妻二人无论选哪家，每年现金支出都是 S$0</b>。</span>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 保障对比 ================= -->
+<section id="benefits">
+  <div class="sec-eyebrow">BENEFITS COMPARISON</div>
+  <h2 class="sec-title serif">保障利益对比</h2>
+  <p class="sec-sub">按两家报价单所列项目并排整理；报价单未列示的项目如实标注，具体以各公司保单条款为准。</p>
+
+  <div class="tbl-card">
+    <div class="tbl-scroll">
+      <table style="min-width:640px">
+        <thead><tr><th style="width:26%">保障项目</th><th>Singlife CareShield Plus</th><th>GREAT CareShield</th></tr></thead>
+        <tbody>
+          <tr>
+            <td>月付款触发条件</td>
+            <td>无法执行 <span class="b-navy">≥1 项 ADL：100%</span> 月付款*</td>
+            <td>≥1 项 ADL：<span class="b-navy">50%</span><br>≥2 项 ADL：<span class="b-navy">100%</span></td>
+          </tr>
+          <tr>
+            <td>每月付款金额</td>
+            <td>Mr S$1,100 · Mrs S$900</td>
+            <td>1 项 ADL：Mr S$565 · Mrs S$440<br>≥2 项 ADL：Mr S$1,130 · Mrs S$880</td>
+          </tr>
+          <tr>
+            <td>付款年期</td>
+            <td>终身（只要持续符合理赔条件）</td>
+            <td>终身（只要持续符合理赔条件）</td>
+          </tr>
+          <tr>
+            <td>一次性付款</td>
+            <td>3 × 月保障额<span class="sub-line">Mr S$3,300 · Mrs S$2,700</span></td>
+            <td>3 × 月保障额（1 项 ADL 起即付）<span class="sub-line">Mr S$3,390 · Mrs S$2,640</span></td>
+          </tr>
+          <tr>
+            <td>额外月付款（理赔初期）</td>
+            <td>+100% 月保障额，最长 12 个月<span class="sub-line">Mr +S$1,100 · Mrs +S$900</span></td>
+            <td>报价摘要未列示</td>
+          </tr>
+          <tr>
+            <td>看护者补贴</td>
+            <td>60% 月保障额 × 最长 12 个月<span class="sub-line">Mr S$660 · Mrs S$540</span></td>
+            <td>60% 月保障额 × 最长 12 个月（≥2 项 ADL）<span class="sub-line">Mr S$678 · Mrs S$528</span></td>
+          </tr>
+          <tr>
+            <td>家属照顾补贴</td>
+            <td>20% 月保障额 × 最长 36 个月<span class="sub-line">Mr S$220 · Mrs S$180</span></td>
+            <td>30% 月保障额 × 最长 48 个月（≥2 项 ADL）<span class="sub-line">Mr S$339 · Mrs S$264</span></td>
+          </tr>
+          <tr>
+            <td>身故保障</td>
+            <td>3 × 最后月付款<span class="sub-line">Mr S$3,300 · Mrs S$2,700</span></td>
+            <td>报价摘要未列示</td>
+          </tr>
+          <tr>
+            <td>保费豁免</td>
+            <td>无法执行 ≥1 项 ADL 即豁免</td>
+            <td>无法执行 ADL 即豁免（1 项起）</td>
+          </tr>
+          <tr>
+            <td>免核保加保选项</td>
+            <td>指定人生阶段事件可提高保障额，无需再核保</td>
+            <td>报价摘要未列示</td>
+          </tr>
+          <tr>
+            <td>等待 / 递延期</td>
+            <td>报价单未列明（以保单条款为准）</td>
+            <td>ADL 评估日后 90 天开始付款</td>
+          </tr>
+          <tr>
+            <td>除外责任（报价单注明）</td>
+            <td>报价单未列明（以保单条款为准）</td>
+            <td>既往病症引致的事件不受保</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="cash-note">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+      <span>「报价摘要未列示」表示该项目未出现在对应报价文件中，<b>不代表该产品一定没有此项利益</b>；投保前请以两家公司的正式产品摘要（Product Summary）与保单条款核实。</span>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 理赔触发差异 ================= -->
+<section id="trigger">
+  <div class="sec-eyebrow">PAYOUT TRIGGER</div>
+  <h2 class="sec-title serif">失能程度不同，每月拿到的钱不同</h2>
+  <p class="sec-sub">ADL（日常活动）共 6 项：洗澡、穿衣、进食、如厕、走动、移位。下图为各情境下的每月基本付款（未含一次性付款、看护/家属补贴及 Singlife 首 12 个月额外付款）。</p>
+
+  <div class="trig">
+    <div class="tcard">
+      <div class="tcard-head">
+        <span class="fico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></span>
+        <h3>无法执行 1 项 ADL（轻度）</h3>
+      </div>
+      <div class="scope">例如：可以自己吃饭走动，但无法自行洗澡</div>
+      <div class="bar-group">
+        <div class="bg-title">Mr Zheng</div>
+        <div class="bar-row"><span class="who">Singlife</span><span class="bar-track"><i class="sl" style="width:97%"></i></span><span class="amt">S$1,100/月</span></div>
+        <div class="bar-row"><span class="who">GE</span><span class="bar-track"><i class="ge" style="width:50%"></i></span><span class="amt">S$565/月</span></div>
+      </div>
+      <div class="bar-group">
+        <div class="bg-title">Mrs Chen</div>
+        <div class="bar-row"><span class="who">Singlife</span><span class="bar-track"><i class="sl" style="width:100%"></i></span><span class="amt">S$900/月</span></div>
+        <div class="bar-row"><span class="who">GE</span><span class="bar-track"><i class="ge" style="width:49%"></i></span><span class="amt">S$440/月</span></div>
+      </div>
+      <div class="bar-legend"><span><span class="dot sl"></span>Singlife CareShield Plus</span><span><span class="dot ge"></span>GREAT CareShield</span></div>
+    </div>
+
+    <div class="tcard">
+      <div class="tcard-head">
+        <span class="fico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
+        <h3>无法执行 2 项及以上 ADL（中重度）</h3>
+      </div>
+      <div class="scope">此时也同时符合政府 CareShield Life 基本付款的理赔条件</div>
+      <div class="bar-group">
+        <div class="bg-title">Mr Zheng</div>
+        <div class="bar-row"><span class="who">Singlife</span><span class="bar-track"><i class="sl" style="width:97%"></i></span><span class="amt">S$1,100/月</span></div>
+        <div class="bar-row"><span class="who">GE</span><span class="bar-track"><i class="ge" style="width:100%"></i></span><span class="amt">S$1,130/月</span></div>
+      </div>
+      <div class="bar-group">
+        <div class="bg-title">Mrs Chen</div>
+        <div class="bar-row"><span class="who">Singlife</span><span class="bar-track"><i class="sl" style="width:100%"></i></span><span class="amt">S$900/月</span></div>
+        <div class="bar-row"><span class="who">GE</span><span class="bar-track"><i class="ge" style="width:98%"></i></span><span class="amt">S$880/月</span></div>
+      </div>
+      <div class="bar-legend"><span><span class="dot sl"></span>Singlife CareShield Plus</span><span><span class="dot ge"></span>GREAT CareShield</span></div>
+    </div>
+  </div>
+
+  <div class="same-note">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+    <span>两家相同之处：月付款都可支付至<b style="color:inherit">终身</b>（只要持续符合条件）、理赔时都<b style="color:inherit">豁免保费</b>、都有 3 倍月保障额的一次性付款、保费都可用 MediSave 支付且现金 S$0。</span>
+  </div>
+</section>
+
+<!-- ================= 重要说明 ================= -->
+<section id="notes">
+  <div class="disc">
+    <div class="disc-h">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.46 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><path d="M12 9v4M12 17h.01"/></svg>
+      重要说明
+    </div>
+    <ul>
+      <li>本页内容整理自 Singlife 与 Great Eastern 两家公司 2026 年 7 月的线上报价页面，仅作客观并排对比，不构成任何一方的推荐或投保建议。</li>
+      <li>* Singlife CareShield Plus 的「1 项 ADL 即 100% 月付款」为该计划（Plus 档）之产品设计；Standard 档为 2 项 ADL 起付。最终定义与理赔条件以保单条款为准。</li>
+      <li>¹ Singlife 报价单载有「缴至 69 岁」与「缴至 99 岁」两档缴费期，本页保费金额对应报价单生成之较长缴费期档；GE 报价为「缴至 95 岁」档。两家缴费年期不同，比较年保费时请留意。</li>
+      <li>两家可选的月保障额档位不同（Mr：S$1,100 vs S$1,130；Mrs：S$900 vs S$880），保费并非在完全相同保障额基础上的比较。</li>
+      <li>GE 报价单显示保费含 GST（另列未含 GST 金额）；Singlife 报价单未单独列示 GST。本页均按报价单最终显示金额呈现。</li>
+      <li>20% 折扣分别受两家公司促销条款（T&amp;Cs）约束；Singlife 报价单注明为 LTC1 永久折扣，GE 报价单注明为 Plan promo。</li>
+      <li>投保附加计划（Supplement）者不符合政府 Additional Premium Support（APS）资格；若目前正领取 APS，请先与我确认再投保。</li>
+      <li>看护者补贴、家属照顾补贴、额外月付款等附加利益的具体理赔条件（包括所需 ADL 项数）以各公司保单条款为准。</li>
+      <li>保费为报价当日之金额，保险公司保留调整权利；既往病症的承保以核保结果为准。</li>
+    </ul>
+  </div>
+</section>
+
+</div>
+
+<footer class="site-footer">
+  <div class="sf-in">
+    <div class="sf-grid">
+      <div>
+        <p class="sf-brand">新加坡小圆姐</p>
+        <p class="sf-tag">用专业和耐心，陪你一起日富一日</p>
+        <p class="sf-org">新加坡财富规划经理<br>RNF：YY-300823216</p>
+      </div>
+      <div>
+        <p class="sf-h">联系方式</p>
+        <ul class="sf-list">
+          <li>微信：singaporeyuan</li>
+          <li><a href="https://wa.me/6583750190" target="_blank" rel="noopener noreferrer">WhatsApp：+65 8375 0190</a></li>
+          <li><a href="mailto:yuanyuan@aia.com.sg">邮箱：yuanyuan@aia.com.sg</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="sf-h">关注我</p>
+        <ul class="sf-list">
+          <li><a href="https://xhslink.com/m/9KS9V4ytFmj" target="_blank" rel="noopener noreferrer">小红书 · 新加坡小圆姐</a></li>
+          <li><a href="https://xhslink.com/m/2eFS3jpJutg" target="_blank" rel="noopener noreferrer">小红书 · 图文笔记</a></li>
+          <li><a href="https://www.linkedin.com/in/singaporeyuan/" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="sf-h">新加坡小圆姐</p>
+        <ul class="sf-list">
+          <li><a href="/zh/about">关于我</a></li>
+          <li><a href="/zh/cases">规划案例</a></li>
+          <li><a href="/zh/services">业务范围</a></li>
+          <li><a href="/zh/resources">资源中心</a></li>
+          <li><a href="/zh/consult">预约咨询</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="sf-bottom">
+      <p>本页面为保障方案对比摘要，仅供沟通参考，不构成任何投资、保险、法律或税务建议。完整保障范围、定义及除外责任以正式保单合同为准。</p>
+      <p class="sf-rights">© 2026 袁媛 Yuan Yuan. 版权所有。</p>
+    </div>
+  </div>
+</footer>
+
+<div id="wm" aria-hidden="true"></div>
+<script>
+(function(){
+  var text="新加坡小圆姐　　　singaporeyuan　　　仅供本人参考　　　　　　";
+  var wm=document.getElementById('wm');var unit=text.repeat(6);
+  for(var i=0;i<16;i++){var d=document.createElement('div');d.className='row';d.textContent=unit;d.style.top=(i*110-120)+'px';d.style.left='-200px';wm.appendChild(d);}
+})();
+</script>
+</body>
+</html>
