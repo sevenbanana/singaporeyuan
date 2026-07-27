@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<title>家庭财产保险三档方案对比 · 案例 | 新加坡小圆姐</title>
+<style>
+:root{
+  --navy:#1B2A4A;
+  --navy-soft:#2E4068;
+  --navy-tint:#EEF1F7;
+  --gold:#C9A86A;
+  --gold-deep:#A8874C;
+  --gold-tint:#F7F1E4;
+  --ivory:#FBFAF7;
+  --ink:#22293A;
+  --muted:#6B7280;
+  --line:#E4E2DB;
+  --green:#1E7A52;
+  --green-tint:#EAF6F0;
+  --red:#B4433A;
+  --red-tint:#FBEFEE;
+}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth}
+body{
+  font-family:-apple-system,"PingFang SC","Hiragino Sans GB","Noto Sans SC","Microsoft YaHei",sans-serif;
+  background:var(--ivory);color:var(--ink);line-height:1.7;font-size:15px;
+}
+.wrap{max-width:860px;margin:0 auto;padding:0 16px 64px}
+.serif{font-family:"Songti SC","Noto Serif SC",Georgia,serif}
+svg{display:block}
+
+/* ---------- header（与主站案例页 banner 同款） ---------- */
+header{
+  background:linear-gradient(135deg,#4b3620 0%,#2e2012 100%);
+  color:#faf7f0;padding:52px 16px 46px;position:relative;overflow:hidden;
+}
+header::after{content:"";position:absolute;right:-80px;top:-96px;width:320px;height:320px;border-radius:50%;border:1px solid rgba(201,165,92,.3)}
+header::before{content:"";position:absolute;right:40px;top:40px;width:160px;height:160px;border-radius:50%;border:1px solid rgba(201,165,92,.15)}
+.hd-in{max-width:860px;margin:0 auto;position:relative;z-index:1;display:grid;grid-template-columns:1fr;gap:24px;align-items:end}
+@media(min-width:700px){.hd-in{grid-template-columns:1fr auto}}
+.hd-tag{font-size:12px;font-weight:600;letter-spacing:.3em;text-transform:uppercase;color:#c9a55c}
+.hd-eyebrow{margin-top:10px;font-size:12px;letter-spacing:.05em;color:rgba(220,192,136,.8)}
+h1{margin-top:14px;font-size:clamp(26px,4.6vw,38px);font-weight:900;line-height:1.35;letter-spacing:.01em}
+h1 em{font-style:normal;color:#dcc088}
+.hd-sub{margin-top:16px;font-size:15px;line-height:1.85;color:rgba(250,247,240,.8);max-width:560px}
+.hd-pills{margin-top:24px;display:flex;flex-wrap:wrap;gap:10px}
+.hd-pill{border-radius:20px;padding:6px 16px;font-size:12px;border:1px solid rgba(201,165,92,.45);color:#dcc088}
+.hd-pill.solid{background:#c9a55c;color:#2e2012;font-weight:600;border-color:#c9a55c}
+.hd-icon{display:none;position:relative;align-self:end;margin-bottom:-8px}
+@media(min-width:700px){.hd-icon{display:block}}
+
+/* ---------- quick nav ---------- */
+.qnav{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
+.qnav a{font-size:12.5px;color:var(--navy-soft);background:#fff;border:1px solid var(--line);border-radius:20px;padding:6px 14px;text-decoration:none;transition:all .2s}
+.qnav a:hover{border-color:var(--gold-deep);color:var(--gold-deep)}
+
+/* ---------- sections ---------- */
+section{margin-top:48px;scroll-margin-top:24px}
+.sec-eyebrow{font-size:12px;letter-spacing:.28em;color:var(--gold-deep);margin-bottom:6px}
+.sec-title{font-size:21px;font-weight:600;color:var(--navy);margin-bottom:4px}
+.sec-sub{font-size:13px;color:var(--muted);margin-bottom:18px;max-width:640px}
+
+/* ---------- tier cards ---------- */
+.tiers{display:grid;gap:16px}
+@media(min-width:680px){.tiers{grid-template-columns:1fr 1fr 1fr}}
+.tcard{background:#fff;border:1px solid var(--line);border-radius:18px;padding:22px 20px;display:flex;flex-direction:column;position:relative;border-top:4px solid var(--navy)}
+.tcard.hl{border:2px solid var(--gold-deep);border-top:4px solid var(--gold-deep);background:linear-gradient(165deg,#FDFBF5,#fff 55%)}
+.t-badge{position:absolute;top:-12px;left:20px;background:var(--gold-deep);color:#fff;font-size:11px;font-weight:700;letter-spacing:.06em;border-radius:20px;padding:3px 12px}
+.t-en{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+.t-name{font-size:19px;font-weight:700;color:var(--navy);margin:4px 0 12px}
+.tcard.hl .t-name{color:var(--gold-deep)}
+.t-price{font-size:27px;font-weight:800;color:var(--navy);line-height:1;white-space:nowrap}
+.t-price small{font-size:12px;font-weight:500;color:var(--muted)}
+.t-gst{margin-top:7px;font-size:12px;color:var(--muted)}
+.t-month{margin-top:14px;padding-top:12px;border-top:1px dashed var(--line);font-size:12px;color:var(--muted)}
+.t-month strong{color:var(--green);font-size:15px;margin-left:4px}
+
+/* ---------- tables ---------- */
+.tbl-card{background:#fff;border:1px solid var(--line);border-radius:18px;overflow:hidden}
+.tbl-scroll{overflow-x:auto}
+table{width:100%;border-collapse:collapse;min-width:560px}
+th,td{padding:13px 16px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top;font-size:13.5px}
+th{background:var(--navy-tint);color:var(--navy);font-size:12.5px;font-weight:600;white-space:nowrap}
+td.num,th.num{text-align:center;white-space:nowrap}
+tr:last-child td{border-bottom:0}
+td.hlc,th.hlc{background:var(--gold-tint);font-weight:700;color:var(--navy)}
+th.hlc{color:var(--gold-deep)}
+td .sub-line{display:block;font-size:11.5px;color:var(--muted);font-weight:400;line-height:1.6;margin-top:2px}
+td b.item{color:var(--navy);font-size:13.5px}
+.cash-note{padding:16px 18px;background:#FBFAF5;border-top:1px solid var(--line);font-size:13px;color:#3B4358;line-height:1.8;display:flex;gap:11px;align-items:flex-start}
+.cash-note svg{width:19px;height:19px;flex-shrink:0;margin-top:3px;color:var(--gold-deep)}
+.cash-note b{color:var(--navy)}
+
+/* ---------- common coverage grid ---------- */
+.covs{display:grid;gap:12px}
+@media(min-width:560px){.covs{grid-template-columns:1fr 1fr}}
+.cov{background:#fff;border:1px solid var(--line);border-radius:14px;padding:15px 16px;display:grid;grid-template-columns:38px 1fr;gap:12px;align-items:center}
+.cov .fico{width:38px;height:38px;border-radius:10px;background:var(--gold-tint);color:var(--gold-deep);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.cov .fico svg{width:20px;height:20px}
+.cov b{display:block;font-size:13.5px;color:var(--navy);line-height:1.5}
+.cov .amt{font-size:16px;font-weight:800;color:var(--gold-deep);line-height:1.5}
+
+/* ---------- fine print ---------- */
+.fineprint{margin-top:14px;background:#fff;border:1px dashed var(--line);border-radius:12px;padding:16px 18px;font-size:12px;color:var(--muted);line-height:1.9}
+.fineprint .fp-h{font-size:12.5px;font-weight:600;color:var(--navy-soft);margin-bottom:6px}
+.fineprint p{margin-bottom:8px}
+.fineprint p:last-child{margin-bottom:0}
+.fineprint b{color:var(--navy-soft);font-weight:600}
+.fineprint ul{list-style:none;margin:2px 0 8px}
+.fineprint li{padding-left:14px;position:relative;margin-bottom:3px}
+.fineprint li::before{content:"";position:absolute;left:2px;top:10px;width:4px;height:4px;border-radius:50%;background:var(--gold)}
+.fineprint a{color:var(--gold-deep);text-decoration:underline;text-underline-offset:2px}
+
+/* ---------- pick cards ---------- */
+.picks{display:grid;gap:14px}
+@media(min-width:680px){.picks{grid-template-columns:1fr 1fr 1fr}}
+.pick{background:#fff;border:1px solid var(--line);border-radius:16px;padding:18px;border-top:3px solid var(--navy)}
+.pick.hl{border-color:var(--gold-deep);border-top-color:var(--gold-deep);background:linear-gradient(165deg,#FDFBF5,#fff 55%)}
+.pick .p-tag{display:inline-block;font-size:11.5px;letter-spacing:.08em;font-weight:600;color:var(--navy);border:1px solid var(--navy);border-radius:20px;padding:2px 11px;margin-bottom:10px}
+.pick.hl .p-tag{color:var(--gold-deep);border-color:var(--gold-deep)}
+.pick h3{font-size:15.5px;color:var(--navy);margin-bottom:6px}
+.pick p{font-size:13px;color:#3B4358;line-height:1.75}
+.pick p b{color:var(--gold-deep)}
+
+/* ---------- footnotes ---------- */
+.disc{background:var(--navy-tint);border-radius:14px;padding:20px 22px;font-size:12.5px;color:var(--muted);line-height:1.9}
+.disc-h{display:flex;align-items:center;gap:9px;color:var(--navy-soft);font-weight:600;font-size:13.5px;margin-bottom:10px}
+.disc-h svg{width:18px;height:18px}
+.disc ul{list-style:none}
+.disc li{padding-left:18px;position:relative;margin-bottom:7px}
+.disc li::before{content:"";position:absolute;left:2px;top:11px;width:5px;height:5px;border-radius:50%;background:var(--gold)}
+
+/* ---------- site footer（与主站统一） ---------- */
+.site-footer{margin-top:56px;border-top:1px solid rgba(201,165,92,.25);background:#f5efe1}
+.site-footer a{color:inherit;text-decoration:none;transition:color .2s}
+.site-footer a:hover{color:#a8843f}
+.sf-in{max-width:860px;margin:0 auto;padding:44px 20px 32px}
+.sf-grid{display:grid;gap:28px}
+@media(min-width:560px){.sf-grid{grid-template-columns:1fr 1fr}}
+@media(min-width:820px){.sf-grid{grid-template-columns:1.2fr 1fr 1fr 1fr}}
+.sf-brand{font-size:18px;font-weight:700;color:#1a2744}
+.sf-tag{margin-top:6px;font-size:13px;color:#a8843f}
+.sf-org{margin-top:14px;font-size:11.5px;line-height:1.8;color:#7a7264}
+.sf-h{font-size:11px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:#a8843f}
+.sf-list{list-style:none;margin-top:12px}
+.sf-list li{font-size:13px;color:rgba(26,39,68,.8);margin-bottom:7px}
+.sf-bottom{margin-top:32px;border-top:1px solid rgba(201,165,92,.25);padding-top:20px;font-size:11.5px;line-height:1.8;color:#7a7264}
+.sf-rights{margin-top:10px}
+
+/* ---------- password gate ---------- */
+body.locked{overflow:hidden}
+body.locked>*:not(#pwGate){visibility:hidden}
+#pwGate{position:fixed;inset:0;z-index:99;display:none;align-items:center;justify-content:center;background:linear-gradient(160deg,#1B2A4A 0%,#24365C 60%,#2C4270 100%);padding:24px;visibility:visible}
+body.locked #pwGate{display:flex}
+.pw-card{width:100%;max-width:360px;background:#fff;border-radius:18px;padding:34px 28px;text-align:center;box-shadow:0 24px 64px rgba(0,0,0,.35)}
+.pw-brand{font-size:11px;letter-spacing:.22em;color:var(--gold-deep);margin-bottom:14px}
+.pw-card h2{font-size:19px;color:var(--navy);margin-bottom:6px}
+.pw-card p{font-size:13px;color:var(--muted);margin-bottom:18px}
+#pwForm{display:flex;gap:8px}
+#pwInput{flex:1;min-width:0;border:1px solid var(--line);border-radius:10px;padding:11px 12px;font-size:15px;text-align:center;letter-spacing:.12em;outline:none;font-family:inherit}
+#pwInput:focus{border-color:var(--gold-deep)}
+#pwForm button{border:0;background:var(--navy);color:#fff;border-radius:10px;padding:11px 18px;font-size:14px;cursor:pointer;font-family:inherit}
+.pw-err{display:none;margin-top:12px;font-size:12px;color:#B4433A}
+.pw-err.show{display:block}
+
+/* ---------- watermark（全站同款） ---------- */
+#wm{position:fixed;inset:0;z-index:9999;pointer-events:none;overflow:hidden;opacity:.0325}
+#wm .row{position:absolute;white-space:nowrap;font-size:20px;color:var(--navy);font-weight:500;letter-spacing:.06em;transform:rotate(-24deg);transform-origin:left center}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+
+@media print{
+  body{background:#fff}
+  .qnav{display:none}
+  section{break-inside:avoid}
+  .site-footer{background:#fff}
+  @page{size:A4;margin:12mm}
+}
+</style>
+</head>
+<body class="locked">
+
+<div id="pwGate">
+  <div class="pw-card">
+    <div class="pw-brand">新加坡小圆姐 · SINGAPOREYUAN</div>
+    <h2 class="serif">此页面为保障方案案例</h2>
+    <p>请输入访问密码查看</p>
+    <form id="pwForm">
+      <input id="pwInput" type="password" autocomplete="off" placeholder="访问密码">
+      <button type="submit">进入</button>
+    </form>
+    <div class="pw-err" id="pwErr">密码不正确，请重试</div>
+  </div>
+</div>
+<script>
+(function(){
+  var HASH="5647cdb5254a24d3a184f9136af8416c1ffb1050fd57c67dc133e588b73fc706", KEY="sy_case_homecare_auth";
+  function sha(s){return crypto.subtle.digest("SHA-256",new TextEncoder().encode(s)).then(function(b){
+    return Array.prototype.map.call(new Uint8Array(b),function(x){return x.toString(16).padStart(2,"0")}).join("");
+  })}
+  try{ if(sessionStorage.getItem(KEY)===HASH){ document.body.classList.remove("locked"); } }catch(e){}
+  document.getElementById("pwForm").addEventListener("submit",function(e){
+    e.preventDefault();
+    var v=document.getElementById("pwInput").value.trim();
+    sha(v).then(function(h){
+      if(h===HASH){
+        try{sessionStorage.setItem(KEY,HASH);}catch(e){}
+        document.body.classList.remove("locked");
+        window.scrollTo(0,0);
+      }else{
+        document.getElementById("pwErr").classList.add("show");
+        document.getElementById("pwInput").select();
+      }
+    });
+  });
+})();
+</script>
+
+<header>
+  <div class="hd-in">
+    <div>
+      <div class="hd-tag">AIA ELITE HOMECARE · HOME INSURANCE</div>
+      <div class="hd-eyebrow">典型案例 · 家庭财产保险</div>
+      <h1>家庭财产保险<br><em>三档方案</em>对比</h1>
+      <div class="hd-sub">主要保障房屋装修、室内财物、临时住宿及第三方责任——三档额度逐级提升，按装修与财物价值选择即可。</div>
+      <div class="hd-pills">
+        <span class="hd-pill solid">AIA Elite HomeCare</span>
+        <span class="hd-pill">AIA Singapore</span>
+        <span class="hd-pill">币种：新币 SGD</span>
+        <span class="hd-pill">保费含 9% GST</span>
+        <span class="hd-pill">报价：2026年7月</span>
+      </div>
+    </div>
+    <div class="hd-icon" aria-hidden="true">
+      <svg width="150" height="150" viewBox="0 0 150 150" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="75" cy="75" r="70" stroke="rgba(220,192,136,.3)"/>
+        <circle cx="75" cy="75" r="56" stroke="rgba(220,192,136,.15)"/>
+        <path d="M39 74 L75 42 L111 74" stroke="#dcc088" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        <path d="M48 70 V112 H102 V70" stroke="#dcc088" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="rgba(201,165,92,.08)"/>
+        <path d="M66 112 V90 H84 V112" stroke="#dcc088" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+      </svg>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+
+<nav class="qnav" aria-label="页内导航">
+  <a href="#premium">三档保费</a>
+  <a href="#coverage">核心保障</a>
+  <a href="#common">共同保障</a>
+  <a href="#pick">怎么选</a>
+  <a href="#notes">重要说明</a>
+</nav>
+
+<!-- ================= 三档保费 ================= -->
+<section id="premium">
+  <div class="sec-eyebrow">ANNUAL PREMIUM</div>
+  <h2 class="sec-title serif">三档年保费</h2>
+  <p class="sec-sub">同一款产品的三个保障档位，均为年缴，保费已含 9% GST。</p>
+
+  <div class="tiers">
+    <article class="tcard">
+      <div class="t-en">Standard</div>
+      <div class="t-name">标准版</div>
+      <div class="t-price">S$172.31 <small>/ 年</small></div>
+      <div class="t-gst">每年，含 9% GST</div>
+      <div class="t-month">月均折算<strong>S$14.36</strong></div>
+    </article>
+
+    <article class="tcard hl">
+      <span class="t-badge">均衡选择</span>
+      <div class="t-en">Comprehensive</div>
+      <div class="t-name">综合版</div>
+      <div class="t-price">S$235.79 <small>/ 年</small></div>
+      <div class="t-gst">每年，含 9% GST</div>
+      <div class="t-month">月均折算<strong>S$19.65</strong></div>
+    </article>
+
+    <article class="tcard">
+      <div class="t-en">Executive</div>
+      <div class="t-name">尊享版</div>
+      <div class="t-price">S$406.96 <small>/ 年</small></div>
+      <div class="t-gst">每年，含 9% GST</div>
+      <div class="t-month">月均折算<strong>S$33.91</strong></div>
+    </article>
+  </div>
+</section>
+
+<!-- ================= 核心保障 ================= -->
+<section id="coverage">
+  <div class="sec-eyebrow">CORE COVERAGE</div>
+  <h2 class="sec-title serif">核心保障额度</h2>
+  <p class="sec-sub">三档方案的主要差别就在这六项额度——档位越高，装修与财物的保障越充足。</p>
+
+  <div class="tbl-card">
+    <div class="tbl-scroll">
+      <table>
+        <thead>
+          <tr>
+            <th>保障项目</th>
+            <th class="num">标准版</th>
+            <th class="num hlc">综合版</th>
+            <th class="num">尊享版</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><b class="item">房屋及固定装修</b><span class="sub-line">地板、墙面、天花、内置衣柜、厨房橱柜等</span></td>
+            <td class="num">S$80,000</td>
+            <td class="num hlc">S$120,000</td>
+            <td class="num">S$260,000</td>
+          </tr>
+          <tr>
+            <td><b class="item">室内财物</b><span class="sub-line">家具、家电、电视、电脑及个人物品等</span></td>
+            <td class="num">S$16,000</td>
+            <td class="num hlc">S$24,000</td>
+            <td class="num">S$37,000</td>
+          </tr>
+          <tr>
+            <td><b class="item">火灾后租金损失</b></td>
+            <td class="num">S$16,000</td>
+            <td class="num hlc">S$24,000</td>
+            <td class="num">S$52,000</td>
+          </tr>
+          <tr>
+            <td><b class="item">临时住宿费用</b></td>
+            <td class="num">S$3,200</td>
+            <td class="num hlc">S$4,800</td>
+            <td class="num">S$7,400</td>
+          </tr>
+          <tr>
+            <td><b class="item">屋内未列明贵重物品</b></td>
+            <td class="num">S$8,000</td>
+            <td class="num hlc">S$12,000</td>
+            <td class="num">S$18,500</td>
+          </tr>
+          <tr>
+            <td><b class="item">搬家过程中财物损坏</b></td>
+            <td class="num">S$2,400</td>
+            <td class="num hlc">S$3,600</td>
+            <td class="num">S$5,550</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="cash-note">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+      <span><b>提示：</b>房屋及固定装修的额度对应「重建或维修成本」，不是房产市价；估算时可参考当年装修合同金额并预留涨价空间。</span>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 共同保障 ================= -->
+<section id="common">
+  <div class="sec-eyebrow">INCLUDED IN ALL TIERS</div>
+  <h2 class="sec-title serif">三档方案均包含</h2>
+  <p class="sec-sub">以下保障额度在三档方案中基本相同，选哪一档都有。</p>
+
+  <div class="covs">
+    <div class="cov">
+      <span class="fico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/><path d="m9 12 2 2 4-4"/></svg></span>
+      <div><b>全球第三方个人责任</b><div class="amt">S$500,000</div></div>
+    </div>
+    <div class="cov">
+      <span class="fico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h12l4 6-10 13L2 9Z"/><path d="M11 3 8 9l4 13 4-13-3-6"/><path d="M2 9h20"/></svg></span>
+      <div><b>全球个人贵重物品</b><div class="amt">S$2,000</div></div>
+    </div>
+    <div class="cov">
+      <span class="fico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 20h12a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2Z"/><path d="M9 7V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v3"/><path d="M9 20V7M15 20V7"/></svg></span>
+      <div><b>旅行行李损失</b><div class="amt">家庭最高 S$2,000</div></div>
+    </div>
+    <div class="cov">
+      <span class="fico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/><path d="M6 15h4"/></svg></span>
+      <div><b>信用卡或 ATM 卡被盗用</b><div class="amt">S$1,000</div></div>
+    </div>
+    <div class="cov">
+      <span class="fico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10Z"/><path d="M2 12h20"/></svg></span>
+      <div><b>全球意外身故</b><div class="amt">S$20,000</div></div>
+    </div>
+    <div class="cov">
+      <span class="fico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m3 11 9-8 9 8"/><path d="M5 10v10h14V10"/><path d="M12 13v4M10 15h4"/></svg></span>
+      <div><b>家中指定事故意外身故</b><div class="amt">S$40,000</div></div>
+    </div>
+    <div class="cov">
+      <span class="fico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3h8v4a4 4 0 0 1-8 0V3Z"/><path d="M12 11v10M8 21h8"/></svg></span>
+      <div><b>全球意外医疗费用</b><div class="amt">S$250</div></div>
+    </div>
+    <div class="cov">
+      <span class="fico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="7.5" cy="15.5" r="5.5"/><path d="m21 2-9.6 9.6"/><path d="m15.5 7.5 3 3L22 7l-3-3"/></svg></span>
+      <div><b>钥匙及门锁更换</b><div class="amt">S$250</div></div>
+    </div>
+  </div>
+
+  <div class="fineprint">
+    <div class="fp-h">关于「全球第三方个人责任」的补充说明</div>
+    <p>这款产品虽然叫房屋保险，实际是「房屋 + 家庭生活责任」的组合保障，不只赔自己家的损失。第三方个人责任处理的是：因你的房屋或日常行为，导致<b>别人受伤、别人财物受损</b>，且法律上认定需要由你赔偿的情形。比较贴近房屋场景的例子：</p>
+    <ul>
+      <li>家里水管漏水，损坏楼下邻居的天花板、墙面或家具；</li>
+      <li>阳台或窗边物品掉落，砸坏别人的车或造成他人受伤；</li>
+      <li>访客在家中因地面湿滑等情况受伤，最终认定屋主需承担赔偿责任；</li>
+      <li>家庭成员意外损坏别人的财物，符合条款并被认定需依法赔偿。</li>
+    </ul>
+    <p>之所以写「全球」，是因为这项责任保障可能延伸到家外或海外——例如旅行期间意外损坏酒店财物，是否赔偿仍要看正式保单的定义和除外责任。产品说明写的是：当受保人因造成第三方人身伤害或财物损失，而依法需要赔偿时，最高保障 S$500,000。</p>
+    <p>最简单的区分：<b>自己家</b>着火、装修损坏、家具损失，看「房屋及固定装修」与「室内财物」；事故<b>影响到邻居或其他人</b>、需要赔别人，看「全球第三方个人责任」。</p>
+    <p>它也不是「对方开价多少就赔多少」：通常要先确认你是否确实承担法律责任、具体事故是否属于承保范围，律师费用及赔偿处理方式也要看正式保单条款。宣传册只是保障摘要，完整条件和除外责任以 policy contract 为准（参见 <a href="https://www.aia.com.sg/content/dam/sg-wise/en/docs/our-products/en/aia-elitehomecare.pdf" target="_blank" rel="noopener noreferrer">AIA Elite HomeCare 产品说明</a>）。</p>
+  </div>
+</section>
+
+<!-- ================= 怎么选 ================= -->
+<section id="pick">
+  <div class="sec-eyebrow">HOW TO CHOOSE</div>
+  <h2 class="sec-title serif">三档方案怎么选？</h2>
+  <p class="sec-sub">核心只看两个数字：装修花了多少钱、屋内财物值多少钱。</p>
+
+  <div class="picks">
+    <article class="pick">
+      <span class="p-tag">标准版 Standard</span>
+      <h3>基础保障，保费最轻</h3>
+      <p>适合装修较简单、家具家电价值不高，希望以较低保费获得基础家庭保障的住户。</p>
+    </article>
+
+    <article class="pick hl">
+      <span class="p-tag">综合版 Comprehensive</span>
+      <h3>大多数家庭的均衡选择</h3>
+      <p>适合大多数已经装修的 HDB 家庭。相比标准版，每年只增加约 <b>S$63</b>，装修及财物保障额度更充足。</p>
+    </article>
+
+    <article class="pick">
+      <span class="p-tag">尊享版 Executive</span>
+      <h3>高装修成本与私宅家庭</h3>
+      <p>适合装修成本较高、定制木工较多、拥有较多贵重家具家电，或私人住宅家庭。</p>
+    </article>
+  </div>
+</section>
+
+<!-- ================= 重要说明 ================= -->
+<section id="notes">
+  <div class="disc">
+    <div class="disc-h">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.46 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><path d="M12 9v4M12 17h.01"/></svg>
+      重要说明
+    </div>
+    <ul>
+      <li>房屋保障额度主要针对室内装修及固定设施的重建或维修成本，并非房屋的市场价值。</li>
+      <li>部分财物损失索赔可能设有自付额，实际赔付以保单条款约定为准。</li>
+      <li>具体承保范围、除外责任及赔偿条件以正式保单条款和最新报价为准。</li>
+      <li>以上保费为当前报价，保险公司可能不时调整。</li>
+    </ul>
+  </div>
+</section>
+
+</div>
+
+<footer class="site-footer">
+  <div class="sf-in">
+    <div class="sf-grid">
+      <div>
+        <p class="sf-brand">新加坡小圆姐</p>
+        <p class="sf-tag">用专业和耐心，陪你一起日富一日</p>
+        <p class="sf-org">新加坡财富规划经理<br>RNF：YY-300823216</p>
+      </div>
+      <div>
+        <p class="sf-h">联系方式</p>
+        <ul class="sf-list">
+          <li>微信：singaporeyuan</li>
+          <li><a href="https://wa.me/6583750190" target="_blank" rel="noopener noreferrer">WhatsApp：+65 8375 0190</a></li>
+          <li><a href="mailto:yuanyuan@aia.com.sg">邮箱：yuanyuan@aia.com.sg</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="sf-h">关注我</p>
+        <ul class="sf-list">
+          <li><a href="https://xhslink.com/m/9KS9V4ytFmj" target="_blank" rel="noopener noreferrer">小红书 · 新加坡小圆姐</a></li>
+          <li><a href="https://xhslink.com/m/2eFS3jpJutg" target="_blank" rel="noopener noreferrer">小红书 · 图文笔记</a></li>
+          <li><a href="https://www.linkedin.com/in/singaporeyuan/" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="sf-h">新加坡小圆姐</p>
+        <ul class="sf-list">
+          <li><a href="/zh/about">关于我</a></li>
+          <li><a href="/zh/cases">规划案例</a></li>
+          <li><a href="/zh/services">业务范围</a></li>
+          <li><a href="/zh/resources">资源中心</a></li>
+          <li><a href="/zh/consult">预约咨询</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="sf-bottom">
+      <p>本页面为保障方案摘要，仅供沟通参考，不构成任何投资、保险、法律或税务建议。完整保障范围、定义及除外责任以正式保单合同为准。</p>
+      <p class="sf-rights">© 2026 袁媛 Yuan Yuan. 版权所有。</p>
+    </div>
+  </div>
+</footer>
+
+<div id="wm" aria-hidden="true"></div>
+<script>
+(function(){
+  var text="新加坡小圆姐　　　singaporeyuan　　　仅供本人参考　　　　　　";
+  var wm=document.getElementById('wm');var unit=text.repeat(6);
+  for(var i=0;i<16;i++){var d=document.createElement('div');d.className='row';d.textContent=unit;d.style.top=(i*110-120)+'px';d.style.left='-200px';wm.appendChild(d);}
+})();
+</script>
+</body>
+</html>
