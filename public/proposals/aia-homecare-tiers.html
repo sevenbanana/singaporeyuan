@@ -125,6 +125,26 @@ td b.item{color:var(--navy);font-size:13.5px}
 .pick p{font-size:13px;color:#3B4358;line-height:1.75}
 .pick p b{color:var(--gold-deep)}
 
+/* ---------- faq ---------- */
+.faq{display:grid;gap:10px}
+.faq details{background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.faq details[open]{border-color:var(--gold)}
+.faq summary{cursor:pointer;list-style:none;display:flex;gap:11px;align-items:flex-start;padding:15px 18px;font-size:14px;font-weight:600;color:var(--navy);line-height:1.6}
+.faq summary::-webkit-details-marker{display:none}
+.faq .qn{flex-shrink:0;width:23px;height:23px;border-radius:7px;background:var(--gold-tint);color:var(--gold-deep);font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;margin-top:1px}
+.faq .chev{margin-left:auto;flex-shrink:0;width:16px;height:16px;color:var(--muted);transition:transform .2s;margin-top:4px}
+.faq details[open] .chev{transform:rotate(180deg)}
+.faq .fa{padding:0 18px 16px 52px;font-size:13px;color:#3B4358;line-height:1.85}
+.faq .fa p{margin-bottom:8px}
+.faq .fa p:last-child{margin-bottom:0}
+.faq .fa .amt-hl{color:var(--gold-deep);font-weight:700}
+.faq .fa b{color:var(--navy)}
+.faq .fa ul{list-style:none;margin:4px 0 8px}
+.faq .fa li{padding-left:14px;position:relative;margin-bottom:3px}
+.faq .fa li::before{content:"";position:absolute;left:2px;top:11px;width:4px;height:4px;border-radius:50%;background:var(--gold)}
+.faq .fa .mini{font-size:11.5px;color:var(--muted)}
+.faq-src{margin-top:12px;font-size:11.5px;color:var(--muted);line-height:1.8}
+
 /* ---------- footnotes ---------- */
 .disc{background:var(--navy-tint);border-radius:14px;padding:20px 22px;font-size:12.5px;color:var(--muted);line-height:1.9}
 .disc-h{display:flex;align-items:center;gap:9px;color:var(--navy-soft);font-weight:600;font-size:13.5px;margin-bottom:10px}
@@ -252,6 +272,7 @@ body.locked #pwGate{display:flex}
   <a href="#coverage">核心保障</a>
   <a href="#common">共同保障</a>
   <a href="#pick">怎么选</a>
+  <a href="#faq">常见问题</a>
   <a href="#notes">重要说明</a>
 </nav>
 
@@ -434,6 +455,85 @@ body.locked #pwGate{display:flex}
       <p>适合装修成本较高、定制木工较多、拥有较多贵重家具家电，或私人住宅家庭。</p>
     </article>
   </div>
+</section>
+
+<!-- ================= 常见问题 ================= -->
+<section id="faq">
+  <div class="sec-eyebrow">FAQ</div>
+  <h2 class="sec-title serif">常见问题</h2>
+  <p class="sec-sub">客户最常问的六个问题，答案整理自 AIA 官方产品说明与 FAQ。</p>
+
+  <div class="faq">
+
+    <details>
+      <summary><span class="qn">1</span>我家爆水管淹到楼下，第三方责任最高赔多少？<svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></summary>
+      <div class="fa">
+        <p>走「全球第三方个人责任」：当法律认定你需要为第三方的人身伤害或财物损失承担赔偿责任时，最高赔 <span class="amt-hl">S$500,000</span>，三档方案额度相同。</p>
+        <p class="mini">前提是确认你确实承担法律责任、事故属于承保范围——不是对方开价多少就赔多少。</p>
+      </div>
+    </details>
+
+    <details>
+      <summary><span class="qn">2</span>楼上漏水造成我的装修损坏，哪些情况可以赔？<svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></summary>
+      <div class="fa">
+        <p>本保单按「列明事故」承保，其中一项就是<b>水箱、水管或供水装置爆裂或溢出</b>——条款并未限定必须是自己单位的管道。因此楼上突发爆管、水箱溢水淹到你家，损坏的装修（走「房屋」额度）和家具家电（走「室内财物」额度）一般属于可赔事故。</p>
+        <p>但要注意几种不赔或另算的情况：</p>
+        <ul>
+          <li>水管、水箱本身的维修更换费用不在赔付范围；</li>
+          <li>自动喷淋系统漏水造成的损失除外；</li>
+          <li>房屋连续空置超过 60 天期间发生的损失除外；</li>
+          <li>长期缓慢渗漏、防水层老化一般不属于「突发事故」，能否赔以条款认定为准；</li>
+          <li>除火灾外的索赔设自付额：每次 S$100 或索赔金额的 5%，取较高者。</li>
+        </ul>
+        <p class="mini">若责任明确在楼上住户，也可以向对方追偿；对方若有家财险，通常由其保单的第三方责任部分处理。</p>
+      </div>
+    </details>
+
+    <details>
+      <summary><span class="qn">3</span>有没有赔「寻找漏水源」（Trace &amp; Access）的费用？<svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></summary>
+      <div class="fa">
+        <p>官方产品说明和 FAQ 中<b>没有单独列明</b> Trace &amp; Access（开墙开地寻找漏水点）这一保障项目。相关费用能否作为受保损失的一部分处理，以正式保单条款和理赔评估为准。</p>
+        <p class="mini">如果这项保障对你很重要，建议投保前向保险公司书面确认。</p>
+      </div>
+    </details>
+
+    <details>
+      <summary><span class="qn">4</span>装修（Renovation）最高保额是多少？<svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></summary>
+      <div class="fa">
+        <p>装修不单独设项，包含在「房屋 Building」保障内：标准版 <span class="amt-hl">S$80,000</span>、综合版 <span class="amt-hl">S$120,000</span>、尊享版 <span class="amt-hl">S$260,000</span>。</p>
+        <p>条款对「房屋」的定义明确包括：天花、线脚、电线、灯具、地板、墙面、门窗、入墙衣柜、厨房橱柜、大门围栏，以及固定装置和室内装饰。</p>
+        <p class="mini">这是一份 first-loss 保单：即使没有按足额投保，也不设不足额投保罚则，按实际损失在保额内赔付。</p>
+      </div>
+    </details>
+
+    <details>
+      <summary><span class="qn">5</span>Building 和 Renovation 是分开承保的吗？哪些归 MCST / HDB，哪些归我的保单？<svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></summary>
+      <div class="fa">
+        <p>在这款产品里<b>不分开</b>——「房屋 Building」的定义已经涵盖固定装修和室内装饰（见上一问）。</p>
+        <p>和大厦保险的分工大致是：</p>
+        <ul>
+          <li><b>HDB 组屋：</b>强制火险（HDB Fire Insurance Scheme）只保建筑结构和 HDB 原始标准的固定装置；你自己加装的装修、以及全部家具财物，靠这份保单；</li>
+          <li><b>公寓：</b>MCST 依法为整栋楼投保建筑结构和公共区域；单位内你自己做的装修和财物，靠这份保单；</li>
+          <li>两边的具体边界以各自保单条款为准。</li>
+        </ul>
+      </div>
+    </details>
+
+    <details>
+      <summary><span class="qn">6</span>索赔时按重置价值（Replacement Cost）还是折旧价值（Depreciated Value）赔？<svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></summary>
+      <div class="fa">
+        <p>产品摘要<b>没有写明</b>统一按重置还是折旧，实际以保单合同和理赔评估为准。摘要里明确的是这两点：</p>
+        <ul>
+          <li>first-loss 保单：按实际损失在保额内补偿，不设不足额投保罚则；</li>
+          <li>除火灾等少数项目外，每次索赔自付 S$100 或索赔金额的 5%（取较高者）。</li>
+        </ul>
+        <p class="mini">建议保留装修合同、发票和大件财物的购买单据——理赔时需要随索赔表提交。投保前如需确定理赔基础，可要求保险公司书面说明。</p>
+      </div>
+    </details>
+
+  </div>
+
+  <p class="faq-src">以上答案整理自 AIA Elite HomeCare 官方产品册与 FAQ 文件（较早版本），条款可能不时更新，一切以正式保单合同及最新条款为准。</p>
 </section>
 
 <!-- ================= 重要说明 ================= -->
