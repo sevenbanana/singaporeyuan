@@ -20,12 +20,12 @@ export default function Navbar() {
 
   const links = [
     { href: '/', label: t('home') },
+    // 小工具与文章统一收进资源中心,/tools 由资源中心内的卡片进入
+    { href: '/resources', label: t('resources') },
     { href: '/about', label: t('about') },
     { href: '/cases', label: t('cases') },
     { href: '/services', label: t('services') },
     { href: '/corporate', label: t('corporate') },
-    // 小工具与文章统一收进资源中心,/tools 由资源中心内的卡片进入
-    { href: '/resources', label: t('resources') },
     { href: '/consult', label: t('consult') },
   ] as const;
 
@@ -40,12 +40,12 @@ export default function Navbar() {
       }`}
     >
       <nav className="container-wide flex h-16 items-center justify-between md:h-20">
-        <Link href="/" aria-label={t('brand')} className="flex items-center">
+        <Link href="/" aria-label={t('brand')} className="flex shrink-0 items-center">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src={locale === 'en' ? '/logo-en.svg' : '/logo.svg'} alt={t('brand')} className="h-8 w-auto md:h-9" />
         </Link>
 
-        <div className="hidden items-center gap-8 md:flex">
+        <div className="hidden items-center gap-5 lg:flex xl:gap-8">
           {links.map((l) => {
             const active =
               l.href === '/' ? pathname === '/' : pathname.startsWith(l.href);
@@ -53,7 +53,7 @@ export default function Navbar() {
               <Link
                 key={l.href}
                 href={l.href}
-                className={`relative text-sm font-medium tracking-wide transition-colors hover:text-gold-deep ${
+                className={`relative whitespace-nowrap text-sm font-medium tracking-wide transition-colors hover:text-gold-deep ${
                   active ? 'text-gold-deep' : 'text-navy/75'
                 }`}
               >
@@ -75,7 +75,7 @@ export default function Navbar() {
 
         <button
           onClick={() => setOpen(!open)}
-          className="flex h-10 w-10 items-center justify-center md:hidden"
+          className="flex h-10 w-10 items-center justify-center lg:hidden"
           aria-label="Menu"
           aria-expanded={open}
         >
@@ -88,7 +88,7 @@ export default function Navbar() {
       </nav>
 
       {open && (
-        <div className="border-t border-gold/20 bg-cream/95 backdrop-blur-md md:hidden">
+        <div className="border-t border-gold/20 bg-cream/95 backdrop-blur-md lg:hidden">
           <div className="container-wide flex flex-col py-4">
             {links.map((l) => (
               <Link
