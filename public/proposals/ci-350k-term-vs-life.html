@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<title>35万重疾保障方案对比 · 定期 vs 终身 | 新加坡小圆姐</title>
+<style>
+:root{
+  --navy:#1B2A4A;
+  --navy-soft:#2E4068;
+  --navy-tint:#EEF1F7;
+  --gold:#C9A86A;
+  --gold-deep:#A8874C;
+  --gold-tint:#F7F1E4;
+  --ivory:#FBFAF7;
+  --ink:#22293A;
+  --muted:#6B7280;
+  --line:#E4E2DB;
+  --green:#1E7A52;
+  --green-tint:#EAF6F0;
+  --red:#B4433A;
+  --red-tint:#FBEFEE;
+}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth}
+body{
+  font-family:-apple-system,"PingFang SC","Hiragino Sans GB","Noto Sans SC","Microsoft YaHei",sans-serif;
+  background:var(--ivory);color:var(--ink);line-height:1.7;font-size:15px;
+}
+.wrap{max-width:860px;margin:0 auto;padding:0 16px 64px}
+.serif{font-family:"Songti SC","Noto Serif SC",Georgia,serif}
+svg{display:block}
+
+/* ---------- header（与主站案例页 banner 同款） ---------- */
+header{
+  background:linear-gradient(160deg,#1B2A4A 0%,#24365C 60%,#2C4270 100%);
+  color:#faf7f0;padding:52px 16px 46px;position:relative;overflow:hidden;
+}
+header::after{content:"";position:absolute;right:-80px;top:-96px;width:320px;height:320px;border-radius:50%;border:1px solid rgba(201,165,92,.3)}
+header::before{content:"";position:absolute;right:40px;top:40px;width:160px;height:160px;border-radius:50%;border:1px solid rgba(201,165,92,.15)}
+.hd-in{max-width:860px;margin:0 auto;position:relative;z-index:1;display:grid;grid-template-columns:1fr;gap:24px;align-items:end}
+@media(min-width:700px){.hd-in{grid-template-columns:1fr auto}}
+.hd-tag{font-size:12px;font-weight:600;letter-spacing:.3em;text-transform:uppercase;color:#c9a55c}
+.hd-eyebrow{margin-top:10px;font-size:12px;letter-spacing:.05em;color:rgba(220,192,136,.8)}
+h1{margin-top:14px;font-size:clamp(26px,4.6vw,38px);font-weight:900;line-height:1.35;letter-spacing:.01em}
+h1 em{font-style:normal;color:#dcc088}
+.hd-sub{margin-top:16px;font-size:15px;line-height:1.85;color:rgba(250,247,240,.8);max-width:560px}
+.hd-pills{margin-top:24px;display:flex;flex-wrap:wrap;gap:10px}
+.hd-pill{border-radius:20px;padding:6px 16px;font-size:12px;border:1px solid rgba(201,165,92,.45);color:#dcc088}
+.hd-pill.solid{background:#c9a55c;color:#1B2A4A;font-weight:600;border-color:#c9a55c}
+.hd-icon{display:none;position:relative;align-self:end;margin-bottom:-8px}
+@media(min-width:700px){.hd-icon{display:block}}
+
+/* ---------- quick nav ---------- */
+.qnav{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
+.qnav a{font-size:12.5px;color:var(--navy-soft);background:#fff;border:1px solid var(--line);border-radius:20px;padding:6px 14px;text-decoration:none;transition:all .2s}
+.qnav a:hover{border-color:var(--gold-deep);color:var(--gold-deep)}
+
+/* ---------- sections ---------- */
+section{margin-top:48px;scroll-margin-top:24px}
+.sec-eyebrow{font-size:12px;letter-spacing:.28em;color:var(--gold-deep);margin-bottom:6px}
+.sec-title{font-size:21px;font-weight:600;color:var(--navy);margin-bottom:4px}
+.sec-sub{font-size:13px;color:var(--muted);margin-bottom:18px;max-width:640px}
+
+/* ---------- plan cards ---------- */
+.cards{display:grid;gap:18px}
+@media(min-width:680px){.cards{grid-template-columns:1fr 1fr}}
+.pcard{background:#fff;border:1px solid var(--line);border-radius:18px;overflow:hidden;border-top:4px solid var(--pc);display:flex;flex-direction:column}
+.pcard.private{--pc:var(--navy)}
+.pcard.public{--pc:var(--gold-deep)}
+.pc-head{padding:22px 22px 18px;border-bottom:1px solid var(--line)}
+.pcard.private .pc-head{background:linear-gradient(150deg,#F2F5FA,#FBFAF7)}
+.pcard.public .pc-head{background:linear-gradient(150deg,#F9F4E8,#FBFAF7)}
+.pc-tag{display:inline-flex;align-items:center;gap:6px;font-size:11.5px;letter-spacing:.08em;font-weight:600;color:var(--pc);border:1px solid var(--pc);border-radius:20px;padding:3px 12px;margin-bottom:12px}
+.pc-head h3{font-size:19px;color:var(--navy);line-height:1.45}
+.pc-prod{margin-top:6px;font-size:12.5px;line-height:1.75;color:var(--muted);min-height:44px}
+.pc-price{margin-top:16px;display:flex;align-items:flex-end;justify-content:space-between;gap:12px}
+.pc-annual{font-size:28px;font-weight:800;color:var(--navy);line-height:1;white-space:nowrap}
+.pc-annual small{font-size:12px;font-weight:500;color:var(--muted)}
+.pc-monthly{text-align:right;font-size:12px;color:var(--muted);line-height:1.5}
+.pc-monthly strong{display:block;color:var(--green);font-size:19px;font-weight:700}
+.pc-pay{margin-top:12px;display:flex;flex-wrap:wrap;gap:8px}
+.pay-chip{display:inline-flex;align-items:center;gap:7px;border-radius:9px;padding:7px 12px;font-size:13px;font-weight:600;line-height:1.4}
+.pay-chip svg{width:15px;height:15px;flex-shrink:0}
+.pay-chip.cash{background:var(--green-tint);color:var(--green)}
+.pay-chip.cpf{background:var(--navy-tint);color:var(--navy-soft)}
+.pc-body{padding:18px 22px 22px;flex:1;display:flex;flex-direction:column}
+.feat{display:grid;grid-template-columns:36px 1fr;gap:12px;padding:11px 0;border-bottom:1px dashed var(--line)}
+.feat:first-child{padding-top:0}
+.feat:last-of-type{border-bottom:0}
+.fico{width:36px;height:36px;border-radius:10px;background:var(--gold-tint);color:var(--gold-deep);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.fico svg{width:19px;height:19px}
+.feat b{display:block;font-size:13.5px;color:var(--navy);margin-bottom:1px}
+.feat p{font-size:13px;color:#3B4358;line-height:1.65}
+.pc-fit{margin-top:auto;padding-top:16px}
+.pc-fit-in{border-radius:12px;padding:13px 15px;font-size:13px;line-height:1.7;display:flex;gap:10px;align-items:flex-start}
+.pcard.private .pc-fit-in{background:var(--navy-tint);color:#31405E}
+.pcard.public .pc-fit-in{background:var(--gold-tint);color:#6D5318}
+.pc-fit-in svg{width:18px;height:18px;flex-shrink:0;margin-top:2px}
+
+/* ---------- oneliner ---------- */
+.oneliner{margin-top:18px;font-size:13.5px;color:#3B4358;background:var(--gold-tint);border:1px solid #EADFC6;border-radius:12px;padding:15px 16px;display:flex;gap:11px;align-items:flex-start;line-height:1.8}
+.oneliner svg{flex-shrink:0;width:20px;height:20px;margin-top:2px;color:var(--gold-deep)}
+.oneliner b{color:var(--gold-deep)}
+
+/* ---------- tables ---------- */
+.tbl-card{background:#fff;border:1px solid var(--line);border-radius:18px;overflow:hidden}
+.tbl-card+.tbl-card{margin-top:18px}
+.tbl-head{padding:16px 18px 14px;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:10px}
+.tbl-head .fico{width:32px;height:32px}
+.tbl-head b{font-size:15px;color:var(--navy)}
+.tbl-head span{font-size:12px;color:var(--muted)}
+.tbl-scroll{overflow-x:auto}
+table{width:100%;border-collapse:collapse;min-width:520px}
+th,td{padding:13px 16px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top;font-size:13.5px}
+th{background:var(--navy-tint);color:var(--navy);font-size:12.5px;font-weight:600;white-space:nowrap}
+td.num,th.num{white-space:nowrap}
+th:nth-child(2){background:#E8EEF7}
+th:nth-child(3){background:#F4EDDA}
+td:nth-child(2){background:#F6F8FC}
+td:nth-child(3){background:#FBF7EC}
+tr:last-child td{border-bottom:0}
+tr.total td{background:#FBFAF5;font-weight:700;color:var(--navy)}
+tr.hlrow td{background:var(--gold-tint)}
+tr.hlrow td.num{font-weight:700;color:var(--navy)}
+td .sub-line{display:block;font-size:11.5px;color:var(--muted);font-weight:400}
+td .b-navy{color:var(--navy);font-weight:600}
+td .b-green{color:var(--green);font-weight:700}
+td .b-red{color:var(--red);font-weight:600}
+.cash-note{padding:16px 18px;background:#FBFAF5;border-top:1px solid var(--line);font-size:13px;color:#3B4358;line-height:1.8;display:flex;gap:11px;align-items:flex-start}
+.cash-note svg{width:19px;height:19px;flex-shrink:0;margin-top:3px;color:var(--gold-deep)}
+.cash-note b{color:var(--navy)}
+
+/* ---------- vitality 单列表格（不用 2/3 列底色） ---------- */
+.vit-tbl table th:nth-child(2),.vit-tbl table th:nth-child(3),.vit-tbl table th:nth-child(4){background:var(--navy-tint)}
+.vit-tbl table td:nth-child(2),.vit-tbl table td:nth-child(3),.vit-tbl table td:nth-child(4){background:transparent}
+
+/* ---------- cash value bars ---------- */
+.trig{display:grid;gap:18px}
+@media(min-width:680px){.trig{grid-template-columns:1fr 1fr 1fr}}
+.tcard{background:#fff;border:1px solid var(--line);border-radius:18px;padding:20px}
+.tcard-head{display:flex;gap:11px;align-items:center;margin-bottom:2px}
+.tcard-head .fico{width:34px;height:34px}
+.tcard h3{font-size:16.5px;color:var(--navy)}
+.tcard .scope{font-size:12px;color:var(--muted);margin-bottom:14px}
+.bar-group{margin-top:14px}
+.bar-group>.bg-title{font-size:13px;font-weight:600;color:var(--navy);margin-bottom:8px}
+.bar-row{display:grid;grid-template-columns:56px 1fr;gap:10px;align-items:center;margin-bottom:10px}
+.bar-row .who{font-size:11.5px;color:var(--muted);white-space:nowrap}
+.bar-track{height:14px;border-radius:7px;background:#F1EFE8;overflow:hidden}
+.bar-track i{display:block;height:100%;border-radius:7px}
+.bar-track i.gt{background:var(--navy-soft)}
+.bar-track i.mid{background:var(--gold)}
+.bar-track i.hi{background:var(--green)}
+.bar-amt{font-size:12.5px;font-weight:700;color:var(--navy);white-space:nowrap;margin-top:3px}
+.bar-amt small{font-weight:400;color:var(--muted)}
+.bar-legend{display:flex;flex-wrap:wrap;gap:4px 16px;margin-top:14px;font-size:11.5px;color:var(--muted)}
+.bar-legend .dot{display:inline-block;width:8px;height:8px;border-radius:2px;margin-right:5px;vertical-align:1px}
+.bar-legend .dot.gt{background:var(--navy-soft)}
+.bar-legend .dot.mid{background:var(--gold)}
+.bar-legend .dot.hi{background:var(--green)}
+.same-note{background:var(--green-tint);color:#176B48;border-radius:12px;padding:13px 15px;margin-top:14px;font-size:13px;line-height:1.75;display:flex;gap:10px;align-items:flex-start}
+.same-note svg{width:18px;height:18px;flex-shrink:0;margin-top:3px}
+.warn-note{background:var(--red-tint);color:#8A3B34;border-radius:12px;padding:13px 15px;margin-top:14px;font-size:13px;line-height:1.75;display:flex;gap:10px;align-items:flex-start}
+.warn-note svg{width:18px;height:18px;flex-shrink:0;margin-top:3px}
+
+/* ---------- footnotes ---------- */
+.disc{background:var(--navy-tint);border-radius:14px;padding:20px 22px;font-size:12.5px;color:var(--muted);line-height:1.9}
+.disc-h{display:flex;align-items:center;gap:9px;color:var(--navy-soft);font-weight:600;font-size:13.5px;margin-bottom:10px}
+.disc-h svg{width:18px;height:18px}
+.disc ul{list-style:none}
+.disc li{padding-left:18px;position:relative;margin-bottom:7px}
+.disc li::before{content:"";position:absolute;left:2px;top:11px;width:5px;height:5px;border-radius:50%;background:var(--gold)}
+
+/* ---------- site footer（与主站统一） ---------- */
+.site-footer{margin-top:56px;border-top:1px solid rgba(201,165,92,.25);background:#f5efe1}
+.site-footer a{color:inherit;text-decoration:none;transition:color .2s}
+.site-footer a:hover{color:#a8843f}
+.sf-in{max-width:860px;margin:0 auto;padding:44px 20px 32px}
+.sf-grid{display:grid;gap:28px}
+@media(min-width:560px){.sf-grid{grid-template-columns:1fr 1fr}}
+@media(min-width:820px){.sf-grid{grid-template-columns:1.2fr 1fr 1fr 1fr}}
+.sf-brand{font-size:18px;font-weight:700;color:#1a2744}
+.sf-tag{margin-top:6px;font-size:13px;color:#a8843f}
+.sf-org{margin-top:14px;font-size:11.5px;line-height:1.8;color:#7a7264}
+.sf-h{font-size:11px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:#a8843f}
+.sf-list{list-style:none;margin-top:12px}
+.sf-list li{font-size:13px;color:rgba(26,39,68,.8);margin-bottom:7px}
+.sf-bottom{margin-top:32px;border-top:1px solid rgba(201,165,92,.25);padding-top:20px;font-size:11.5px;line-height:1.8;color:#7a7264}
+.sf-rights{margin-top:10px}
+
+/* ---------- password gate ---------- */
+body.locked{overflow:hidden}
+body.locked>*:not(#pwGate){visibility:hidden}
+#pwGate{position:fixed;inset:0;z-index:99;display:none;align-items:center;justify-content:center;background:linear-gradient(160deg,#1B2A4A 0%,#24365C 60%,#2C4270 100%);padding:24px;visibility:visible}
+body.locked #pwGate{display:flex}
+.pw-card{width:100%;max-width:360px;background:#fff;border-radius:18px;padding:34px 28px;text-align:center;box-shadow:0 24px 64px rgba(0,0,0,.35)}
+.pw-brand{font-size:11px;letter-spacing:.22em;color:var(--gold-deep);margin-bottom:14px}
+.pw-card h2{font-size:19px;color:var(--navy);margin-bottom:6px}
+.pw-card p{font-size:13px;color:var(--muted);margin-bottom:18px}
+#pwForm{display:flex;gap:8px}
+#pwInput{flex:1;min-width:0;border:1px solid var(--line);border-radius:10px;padding:11px 12px;font-size:15px;text-align:center;letter-spacing:.12em;outline:none;font-family:inherit}
+#pwInput:focus{border-color:var(--gold-deep)}
+#pwForm button{border:0;background:var(--navy);color:#fff;border-radius:10px;padding:11px 18px;font-size:14px;cursor:pointer;font-family:inherit}
+.pw-err{display:none;margin-top:12px;font-size:12px;color:#B4433A}
+.pw-err.show{display:block}
+
+/* ---------- watermark（全站同款） ---------- */
+#wm{position:fixed;inset:0;z-index:9999;pointer-events:none;overflow:hidden;opacity:.0325}
+#wm .row{position:absolute;white-space:nowrap;font-size:20px;color:var(--navy);font-weight:500;letter-spacing:.06em;transform:rotate(-24deg);transform-origin:left center}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+
+@media print{
+  body{background:#fff}
+  .qnav{display:none}
+  section{break-inside:avoid}
+  .site-footer{background:#fff}
+  @page{size:A4;margin:12mm}
+}
+</style>
+</head>
+<body class="locked">
+
+<div id="pwGate">
+  <div class="pw-card">
+    <div class="pw-brand">新加坡小圆姐 · SINGAPOREYUAN</div>
+    <h2 class="serif">此页面为保障方案对比</h2>
+    <p>请输入访问密码查看</p>
+    <form id="pwForm">
+      <input id="pwInput" type="password" autocomplete="off" placeholder="访问密码">
+      <button type="submit">进入</button>
+    </form>
+    <div class="pw-err" id="pwErr">密码不正确，请重试</div>
+  </div>
+</div>
+<script>
+(function(){
+  var HASH="5647cdb5254a24d3a184f9136af8416c1ffb1050fd57c67dc133e588b73fc706", KEY="sy_case_ci350k_auth";
+  function sha(s){return crypto.subtle.digest("SHA-256",new TextEncoder().encode(s)).then(function(b){
+    return Array.prototype.map.call(new Uint8Array(b),function(x){return x.toString(16).padStart(2,"0")}).join("");
+  })}
+  try{ if(sessionStorage.getItem(KEY)===HASH){ document.body.classList.remove("locked"); } }catch(e){}
+  document.getElementById("pwForm").addEventListener("submit",function(e){
+    e.preventDefault();
+    var v=document.getElementById("pwInput").value.trim();
+    sha(v).then(function(h){
+      if(h===HASH){
+        try{sessionStorage.setItem(KEY,HASH);}catch(e){}
+        document.body.classList.remove("locked");
+        window.scrollTo(0,0);
+      }else{
+        document.getElementById("pwErr").classList.add("show");
+        document.getElementById("pwInput").select();
+      }
+    });
+  });
+})();
+</script>
+
+<header>
+  <div class="hd-in">
+    <div>
+      <div class="hd-tag">COMPARISON · CRITICAL ILLNESS S$350,000</div>
+      <div class="hd-eyebrow">方案对比 · 35万新币重疾保障（含早期重疾）</div>
+      <h1>35万重疾保障的两种做法<br><em>定期 Term</em> vs <em>终身 Whole Life</em></h1>
+      <div class="hd-sub">同样是 S$350,000 的重疾 + 早期重疾 + 身故保障，一个走「定期消费型」路线——保费更低、可享 AIA Vitality 保费折扣；一个走「终身储蓄型」路线——缴 20 年保到 100 岁，65 / 84 / 100 岁都有现金价值，没用上保障也能拿回一部分钱。本页把两份 AIA 报价并排列出，客观呈现，方便比较。</div>
+      <div class="hd-pills">
+        <span class="hd-pill solid">Mr Han · 34岁 · 男 · 吸烟体</span>
+        <span class="hd-pill">AIA Secure Flexi Term 30年</span>
+        <span class="hd-pill">AIA Guaranteed Protect Plus (IV)</span>
+        <span class="hd-pill">保额 S$350,000</span>
+        <span class="hd-pill">报价：2026年7月</span>
+      </div>
+    </div>
+    <div class="hd-icon" aria-hidden="true">
+      <svg width="150" height="150" viewBox="0 0 150 150" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="75" cy="75" r="70" stroke="rgba(220,192,136,.3)"/>
+        <circle cx="75" cy="75" r="56" stroke="rgba(220,192,136,.15)"/>
+        <path d="M75 28 L112 42 V76 C112 103 94 118 75 126 C56 118 38 103 38 76 V42 Z" stroke="#dcc088" stroke-width="2.5" fill="rgba(201,165,92,.08)" stroke-linejoin="round"/>
+        <path d="M52 78 H64 L70 64 L78 92 L84 78 H98" stroke="rgba(220,192,136,.9)" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+
+<nav class="qnav" aria-label="页内导航">
+  <a href="#plans">方案速览</a>
+  <a href="#premium">保费对比</a>
+  <a href="#vitality">Vitality 折扣价</a>
+  <a href="#benefits">保障对比</a>
+  <a href="#cashback">65·84·100岁拿回多少</a>
+  <a href="#notes">重要说明</a>
+</nav>
+
+<!-- ================= 方案速览 ================= -->
+<section id="plans">
+  <div class="sec-eyebrow">PLANS AT A GLANCE</div>
+  <h2 class="sec-title serif">两个方案，一眼看懂</h2>
+  <p class="sec-sub">两个方案的重疾保障都是「早期 / 中期 / 重度确诊即赔 100%」的 S$350,000，身故保障同为 S$350,000。核心差别在：保多久、缴多久、以及没发生理赔时钱能不能拿回来。</p>
+
+  <div class="cards">
+    <!-- Term -->
+    <article class="pcard private">
+      <div class="pc-head">
+        <span class="pc-tag">方案 A · 定期 Term</span>
+        <h3>AIA Secure Flexi Term 30年</h3>
+        <p class="pc-prod">基本身故/末期疾病 S$350,000 + 重度重疾附加 S$350,000 + 早期重疾附加 S$350,000 + TPD S$350,000（均为加速给付）</p>
+        <div class="pc-price">
+          <div class="pc-annual">S$4,658.50 <small>/ 年 · 折扣前</small></div>
+          <div class="pc-monthly">Vitality 首年折后<strong>S$4,192.62</strong></div>
+        </div>
+        <div class="pc-pay">
+          <span class="pay-chip cash"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>月缴约 S$405.29</span>
+          <span class="pay-chip cpf"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>缴 30 年 · 保 30 年</span>
+        </div>
+      </div>
+      <div class="pc-body">
+        <div class="feat">
+          <span class="fico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></span>
+          <div><b>同样 35 万，保费更省</b><p>年缴不到终身方案的 7 折；叠加 Vitality 折扣后差距更大，省下的钱可自行投资。</p></div>
+        </div>
+        <div class="feat">
+          <span class="fico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.51 4.04 3 5.5l7 7Z"/></svg></span>
+          <div><b>Vitality 保费折扣</b><p>首年 9 折；续年按健康状态浮动，白金最快第 6 年降到 <b style="display:inline;color:var(--green)">85 折封顶</b>（年缴 S$3,959.73）。</p></div>
+        </div>
+        <div class="feat">
+          <span class="fico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 12h8"/></svg></span>
+          <div><b>纯消费型，无现金价值</b><p>保障到 64 岁为止；30 年内没理赔，退保或期满都是 S$0，65 / 84 / 100 岁拿不回钱。</p></div>
+        </div>
+        <div class="pc-fit">
+          <div class="pc-fit-in">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+            <span>结构特点：把预算全部买成「工作期内的保障杠杆」，适合认同「保险归保险、投资归投资」的做法。</span>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- Whole life -->
+    <article class="pcard public">
+      <div class="pc-head">
+        <span class="pc-tag">方案 B · 终身 Whole Life</span>
+        <h3>AIA Guaranteed Protect Plus (IV)<br>+ Early Critical Protector Life (IV)</h3>
+        <p class="pc-prod">身故保障 S$350,000（65岁前保证）+ 重疾任何阶段 100% 赔付 S$350,000（65岁前保证），65 岁后保障为 S$70,000 + 累积红利，保至 100 岁</p>
+        <div class="pc-price">
+          <div class="pc-annual">S$6,832.00 <small>/ 年 · 缴 20 年</small></div>
+          <div class="pc-monthly">Vitality 送 PowerUp<strong>+S$17,500</strong></div>
+        </div>
+        <div class="pc-pay">
+          <span class="pay-chip cash"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>月缴约 S$594.39</span>
+          <span class="pay-chip cpf"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>缴 20 年 · 保到 100 岁</span>
+        </div>
+      </div>
+      <div class="pc-body">
+        <div class="feat">
+          <span class="fico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 3 7v6c0 5 4 8 9 9 5-1 9-4 9-9V7Z"/></svg></span>
+          <div><b>缴 20 年，保障终身</b><p>54 岁缴清后不再交钱；重疾覆盖早期 42 + 中期 35 + 重度 73 种病况，任何阶段都赔足额。</p></div>
+        </div>
+        <div class="feat">
+          <span class="fico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M2 12h20M5 5l14 14M19 5 5 19"/></svg></span>
+          <div><b>没理赔，钱能拿回一部分</b><p>65 岁现金价值约 S$2.6–4.1 万；84 岁约 S$6.4–10.1 万；100 岁满期保证至少 S$70,000。</p></div>
+        </div>
+        <div class="feat">
+          <span class="fico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m12 2 2.9 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l7.1-1.01Z"/></svg></span>
+          <div><b>Vitality 送 PowerUp Dollar</b><p>投保即送 S$17,500 额外保障（最高可涨至 S$26,250），身故、全额重疾理赔或满期时给付。</p></div>
+        </div>
+        <div class="pc-fit">
+          <div class="pc-fit-in">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+            <span>结构特点：保障 + 强制储蓄二合一，适合想「有事赔 35 万、没事到老拿回一笔钱」、不想 64 岁后裸奔的人。</span>
+          </div>
+        </div>
+      </div>
+    </article>
+  </div>
+
+  <div class="oneliner">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+    <span>一句话总结：<b>每月差约 S$189</b>（S$405 vs S$594）。定期方案 30 年总保费约 S$13.97 万（Vitality 白金全程约 S$12 万），到 64 岁保障结束、一分不退；终身方案 20 年缴清共 S$13.66 万，保到 100 岁，<b>65 / 84 / 100 岁都有钱可拿回</b>——总投入相近，买到的东西完全不同。</span>
+  </div>
+</section>
+
+<!-- ================= 保费对比 ================= -->
+<section id="premium">
+  <div class="sec-eyebrow">PREMIUM COMPARISON</div>
+  <h2 class="sec-title serif">保费对比</h2>
+  <p class="sec-sub">以下均为 AIA 报价单（2026年7月28日）显示金额，被保人 34 岁、男、吸烟体。两个方案的保额同为 S$350,000。</p>
+
+  <div class="tbl-card">
+    <div class="tbl-scroll">
+      <table style="min-width:640px">
+        <thead><tr><th style="width:26%">项目</th><th>方案 A · 定期 Term</th><th>方案 B · 终身 Whole Life</th></tr></thead>
+        <tbody>
+          <tr>
+            <td>计划构成</td>
+            <td>Secure Flexi Term S$941.50<br>重度重疾附加 S$1,669.50<br>早期重疾附加 S$1,946.00<br>TPD 附加 S$101.50</td>
+            <td>GPP (IV) Accumulator S$1,491 + Booster S$1,260<br>ECPL (IV) 重疾附加 S$581 + S$3,500</td>
+          </tr>
+          <tr class="hlrow">
+            <td><span class="b-navy">年缴保费（折扣前）</span></td>
+            <td class="num">S$4,658.50</td>
+            <td class="num">S$6,832.00</td>
+          </tr>
+          <tr>
+            <td>月缴</td>
+            <td class="num">S$405.29</td>
+            <td class="num">S$594.39</td>
+          </tr>
+          <tr>
+            <td>缴费年期</td>
+            <td>30 年（34→64 岁）<span class="sub-line">64 岁后可续保至 101 岁，按届时年龄费率，大幅上升</span></td>
+            <td>20 年（34→54 岁）<span class="sub-line">54 岁后不再缴费，保障延续到 100 岁</span></td>
+          </tr>
+          <tr>
+            <td>Vitality 优惠形式</td>
+            <td><span class="b-green">保费折扣</span>：首年 9 折，续年 85%–100% 浮动<span class="sub-line">详见下方折扣价计算</span></td>
+            <td><span class="b-green">PowerUp Dollar</span>：送 S$17,500 额外保障<span class="sub-line">随健康状态最高涨至 S$26,250，最低降为 0；保费本身无折扣</span></td>
+          </tr>
+          <tr class="total">
+            <td>总保费支出</td>
+            <td class="num">约 S$139,755（无折扣）<span class="sub-line">Vitality 全程白金约 S$119,956</span></td>
+            <td class="num">S$136,640（20 年缴清）</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="cash-note">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+      <span><b>看总账：</b>两个方案 30 年 / 20 年下来的总投入其实很接近（相差不到 S$4,000，若维持 Vitality 高状态定期反而更省约 S$1.7 万）。差别在于：定期的钱是「花掉的保障费」，终身的钱有一部分会以现金价值的形式<b>留在保单里逐年生息</b>。</span>
+    </div>
+  </div>
+</section>
+
+<!-- ================= Vitality 折扣 ================= -->
+<section id="vitality">
+  <div class="sec-eyebrow">AIA VITALITY DISCOUNT</div>
+  <h2 class="sec-title serif">定期方案的 Vitality 折扣价</h2>
+  <p class="sec-sub">方案 A 全部组成部分均为 Vitality 版（(Vit)）。规则：投保即按 95% 收费；此后每个保单周年按上一年健康状态调整——白金 −2%、金 −1%、银 +1%、铜 +2%；下限 85%（85 折封顶）、上限 100%（最差恢复原价，不会加价超过原价）。首年另有一次性 5% 促销折扣。</p>
+
+  <div class="tbl-card vit-tbl">
+    <div class="tbl-head">
+      <span class="fico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></span>
+      <div><b>按「维持白金状态」测算的折后年缴</b> <span>· 原价 S$4,658.50 / 年</span></div>
+    </div>
+    <div class="tbl-scroll">
+      <table>
+        <thead><tr><th>保单年度</th><th>折扣率</th><th class="num">折后年缴</th><th class="num">对比原价每年省</th></tr></thead>
+        <tbody>
+          <tr class="hlrow"><td>第 1 年<span class="sub-line">95% 起步 − 5% 首年促销</span></td><td>90%（9 折）</td><td class="num">S$4,192.62</td><td class="num">S$465.88</td></tr>
+          <tr><td>第 2 年</td><td>93%</td><td class="num">S$4,332.41</td><td class="num">S$326.09</td></tr>
+          <tr><td>第 3 年</td><td>91%</td><td class="num">S$4,239.24</td><td class="num">S$419.26</td></tr>
+          <tr><td>第 4 年</td><td>89%</td><td class="num">S$4,146.07</td><td class="num">S$512.43</td></tr>
+          <tr><td>第 5 年</td><td>87%</td><td class="num">S$4,052.90</td><td class="num">S$605.60</td></tr>
+          <tr class="hlrow"><td>第 6 年起（封顶）</td><td><span class="b-green">85%（85 折）</span></td><td class="num"><span class="b-green">S$3,959.73</span></td><td class="num">S$698.77</td></tr>
+          <tr class="total"><td>30 年合计</td><td>—</td><td class="num">约 S$119,956</td><td class="num">共省约 S$19,799（≈14%）</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="cash-note">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.46 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><path d="M12 9v4M12 17h.01"/></svg>
+      <span><b>如果只维持金状态：</b>每年 −1%，第 11 年才到 85 折，30 年合计约 S$121,121（省约 S$18,634）。若状态跌到银 / 铜，折扣会逐年回吐（+1% / +2%），最差恢复到 100% 原价。折扣是<b>动态的、跟运动挂钩的</b>——上表为理想化测算，不是保证值。</span>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 保障对比 ================= -->
+<section id="benefits">
+  <div class="sec-eyebrow">BENEFITS COMPARISON</div>
+  <h2 class="sec-title serif">保障利益对比</h2>
+  <p class="sec-sub">按两份报价单及产品摘要（Product Summary）并排整理；具体定义与除外责任以保单条款为准。</p>
+
+  <div class="tbl-card">
+    <div class="tbl-scroll">
+      <table style="min-width:640px">
+        <thead><tr><th style="width:26%">保障项目</th><th>方案 A · 定期 Term</th><th>方案 B · 终身 Whole Life</th></tr></thead>
+        <tbody>
+          <tr>
+            <td>重疾保额</td>
+            <td>S$350,000<span class="sub-line">早期 / 中期 / 重度确诊均赔 100%（加速给付）</span></td>
+            <td>S$350,000（65 岁前保证）<span class="sub-line">早期 / 中期 / 重度确诊均赔 100%（加速给付）；65 岁后为 S$70,000 + 累积红利</span></td>
+          </tr>
+          <tr>
+            <td>覆盖病况数</td>
+            <td>重度 43 种（含 LIA 37 种标准定义）<br>早期 32 种 + 中期 29 种</td>
+            <td>重度 73 种 + 早期 42 种 + 中期 35 种<span class="sub-line">另含糖尿病并发症等特殊病况津贴（最多 5 次）</span></td>
+          </tr>
+          <tr>
+            <td>身故 / 末期疾病</td>
+            <td>S$350,000 · 保至 64 岁<span class="sub-line">可续保至 101 岁（费率按届时年龄）</span></td>
+            <td>S$350,000（65 岁前保证）<span class="sub-line">65 岁后为 S$70,000 + 累积红利，保至 100 岁</span></td>
+          </tr>
+          <tr>
+            <td>完全永久残疾 TPD</td>
+            <td>S$350,000（附加，保至 70 岁或保单期满孰早）</td>
+            <td>本报价未含 TPD 附加</td>
+          </tr>
+          <tr>
+            <td>保障年期</td>
+            <td>30 年（至 64 岁）<span class="sub-line">64 岁后续保首段（65–69 岁）年缴约 S$67,760，现行费率、不保证</span></td>
+            <td>至 100 岁<span class="sub-line">100 岁满期自动给付满期利益</span></td>
+          </tr>
+          <tr>
+            <td>现金价值 / 满期利益</td>
+            <td><span class="b-red">无</span>——期满或退保均为 S$0</td>
+            <td><span class="b-green">有</span>——详见下节 65 / 84 / 100 岁数字</td>
+          </tr>
+          <tr>
+            <td>红利参与</td>
+            <td>不参与（非分红保单）</td>
+            <td>参与分红基金（Accumulator 部分）<span class="sub-line">红利非保证；分红基金过去 10 年平均回报 4.9%</span></td>
+          </tr>
+          <tr>
+            <td>Vitality 权益</td>
+            <td>保费折扣 85%–100% 浮动</td>
+            <td>PowerUp Dollar S$17,500（最高 S$26,250）</td>
+          </tr>
+          <tr>
+            <td>费率保证</td>
+            <td>基本计划 30 年内保证；附加险费率不保证；续保费率按届时年龄、不保证</td>
+            <td>基本计划 20 年费率固定；ECPL 附加险费率不保证</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="cash-note">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+      <span>两个方案的重疾赔付都是「加速给付」结构：理赔早期 / 中期 / 重度重疾会相应扣减身故保额。冠状动脉血管成形术（Angioplasty）两方案均只赔保额 10%（上限 S$25,000）、限一次。</span>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 65/84/100 拿回多少 ================= -->
+<section id="cashback">
+  <div class="sec-eyebrow">CASH VALUE AT 65 · 84 · 100</div>
+  <h2 class="sec-title serif">65 / 84 / 100 岁，能拿回多少？</h2>
+  <p class="sec-sub">方案 B（终身）的现金价值来自 AIA 报价单利益演示：「保证」部分白纸黑字写进合同；「演示」部分按分红基金年回报 3.00% 与 4.25% 两档测算，非保证。方案 A（定期）在任何年龄的现金价值均为 S$0。金额下方的百分比为相对 35 万保额的比例。</p>
+
+  <div class="trig">
+    <div class="tcard">
+      <div class="tcard-head">
+        <span class="fico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></span>
+        <h3>65 岁</h3>
+      </div>
+      <div class="scope">保单第 31 年 · 已缴清 11 年</div>
+      <div class="bar-group">
+        <div class="bar-row"><span class="who">保证</span><div><span class="bar-track"><i class="gt" style="width:9%"></i></span><span class="bar-amt">S$14,980 <small>≈4% 保额</small></span></div></div>
+        <div class="bar-row"><span class="who">@3.00%</span><div><span class="bar-track"><i class="mid" style="width:15%"></i></span><span class="bar-amt">S$26,299 <small>≈8% 保额</small></span></div></div>
+        <div class="bar-row"><span class="who">@4.25%</span><div><span class="bar-track"><i class="hi" style="width:23%"></i></span><span class="bar-amt">S$41,268 <small>≈12% 保额</small></span></div></div>
+      </div>
+    </div>
+
+    <div class="tcard">
+      <div class="tcard-head">
+        <span class="fico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></span>
+        <h3>84 岁</h3>
+      </div>
+      <div class="scope">保单第 50 年 · 利益演示表最接近 85 岁的节点</div>
+      <div class="bar-group">
+        <div class="bar-row"><span class="who">保证</span><div><span class="bar-track"><i class="gt" style="width:21%"></i></span><span class="bar-amt">S$37,310 <small>≈11% 保额</small></span></div></div>
+        <div class="bar-row"><span class="who">@3.00%</span><div><span class="bar-track"><i class="mid" style="width:36%"></i></span><span class="bar-amt">S$64,057 <small>≈18% 保额</small></span></div></div>
+        <div class="bar-row"><span class="who">@4.25%</span><div><span class="bar-track"><i class="hi" style="width:56%"></i></span><span class="bar-amt">S$101,288 <small>≈29% 保额</small></span></div></div>
+      </div>
+    </div>
+
+    <div class="tcard">
+      <div class="tcard-head">
+        <span class="fico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 7 9 18l-5-5"/><path d="M22 11 11 22"/></svg></span>
+        <h3>100 岁 · 满期</h3>
+      </div>
+      <div class="scope">保单第 66 年 · 无需退保，自动给付</div>
+      <div class="bar-group">
+        <div class="bar-row"><span class="who">保证</span><div><span class="bar-track"><i class="gt" style="width:39%"></i></span><span class="bar-amt">S$70,000 <small>=20% 保额</small></span></div></div>
+        <div class="bar-row"><span class="who">@3.00%</span><div><span class="bar-track"><i class="mid" style="width:64%"></i></span><span class="bar-amt">S$114,914 <small>≈33% 保额</small></span></div></div>
+        <div class="bar-row"><span class="who">@4.25%</span><div><span class="bar-track"><i class="hi" style="width:100%"></i></span><span class="bar-amt">S$180,219 <small>≈51% 保额</small></span></div></div>
+      </div>
+    </div>
+  </div>
+  <div class="bar-legend" style="margin-top:14px">
+    <span><span class="dot gt"></span>保证现金价值（合同写明）</span>
+    <span><span class="dot mid"></span>演示 @3.00%（非保证）</span>
+    <span><span class="dot hi"></span>演示 @4.25%（非保证）</span>
+  </div>
+
+  <div class="same-note">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+    <span>100 岁满期时另有 Vitality <b style="color:inherit">PowerUp Dollar S$17,500</b>（若维持会员且状态不变）叠加给付；以 @3.00% 演示计，满期合计约 S$132,414，相当于拿回 20 年总保费（S$136,640）的约 97%。</span>
+  </div>
+
+  <div class="warn-note">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.46 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><path d="M12 9v4M12 17h.01"/></svg>
+    <span>注意：65 岁、84 岁的数字是<b style="color:inherit">退保价值</b>——拿钱的前提是终止保单、放弃之后的保障；只有 100 岁是自然满期。若打算 65 岁拿钱，实际相当于「保到 65 岁的储蓄型重疾」，这一点请纳入决策。</span>
+  </div>
+</section>
+
+<!-- ================= 重要说明 ================= -->
+<section id="notes">
+  <div class="disc">
+    <div class="disc-h">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.46 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><path d="M12 9v4M12 17h.01"/></svg>
+      重要说明
+    </div>
+    <ul>
+      <li>本页内容整理自 AIA Singapore 2026 年 7 月 28 日生成的两份正式报价单（Policy Illustration / Product Summary），被保人 34 岁、男、吸烟体、标准体。仅作客观并排对比，不构成投保建议。</li>
+      <li>方案 B 的非保证利益按分红基金演示回报 4.25% 与 3.00% 两档测算。该两档演示利率并非回报上下限，红利以 AIA 每年实际宣派为准；保证部分以保单合同为准。</li>
+      <li>利益演示表以保单年度为节点，最接近 85 岁的节点为保单第 50 年（84 岁），本页「84 岁」即取该行数字；85 岁当年的实际数值介于第 50 与 55 保单年度之间。</li>
+      <li>方案 B 的 S$350,000 身故与重疾保证额（MDB / MCIB）适用于 65 岁生日后首个保单周年日之前；其后保障为 Accumulator 部分 S$70,000 + 累积红利。</li>
+      <li>方案 A 基本计划费率在首 30 年保证；各附加险费率不保证，AIA 可按未来经验调整。64 岁后续保按届时年龄与费率计算（报价单演示：65–69 岁段全套年缴约 S$67,760），续保费率不保证。</li>
+      <li>方案 A 的 Vitality 折扣为动态机制：投保按 95% 收费，其后每年按 Vitality 状态 ±1–2% 调整，区间 85%–100%；首年另含一次性 5% 促销折扣。本页「白金 / 金全程」测算为理想化情境，实际折扣取决于每年健康状态。</li>
+      <li>方案 B 的 PowerUp Dollar 需被保人在投保时注册 AIA Vitality 会员；金额随 Vitality 状态在 S$0–26,250 间浮动，于身故、全额加速理赔或满期时给付。</li>
+      <li>两个方案的早期/中期重疾理赔均设有同病况理赔限额与次数限制；冠状动脉血管成形术只赔 10%（上限 S$25,000）、限一次。具体定义、等待期与除外责任以保单条款为准。</li>
+      <li>提前退保成本很高，退保价值可能为零或低于已缴总保费。方案 A 无任何退保价值；方案 B 首 2 个保单年度退保价值为 S$0。</li>
+      <li>吸烟状态对两个方案的费率影响显著；若日后戒烟满一年，可申请按非吸烟体费率重新核定（以 AIA 当时的规则为准）。</li>
+    </ul>
+  </div>
+</section>
+
+</div>
+
+<footer class="site-footer">
+  <div class="sf-in">
+    <div class="sf-grid">
+      <div>
+        <p class="sf-brand">新加坡小圆姐</p>
+        <p class="sf-tag">用专业和耐心，陪你一起日富一日</p>
+        <p class="sf-org">新加坡财富规划经理<br>RNF：YY-300823216</p>
+      </div>
+      <div>
+        <p class="sf-h">联系方式</p>
+        <ul class="sf-list">
+          <li>微信：singaporeyuan</li>
+          <li><a href="https://wa.me/6583750190" target="_blank" rel="noopener noreferrer">WhatsApp：+65 8375 0190</a></li>
+          <li><a href="mailto:yuanyuan@aia.com.sg">邮箱：yuanyuan@aia.com.sg</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="sf-h">关注我</p>
+        <ul class="sf-list">
+          <li><a href="https://xhslink.com/m/9KS9V4ytFmj" target="_blank" rel="noopener noreferrer">小红书 · 新加坡小圆姐</a></li>
+          <li><a href="https://xhslink.com/m/2eFS3jpJutg" target="_blank" rel="noopener noreferrer">小红书 · 图文笔记</a></li>
+          <li><a href="https://www.linkedin.com/in/singaporeyuan/" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="sf-h">新加坡小圆姐</p>
+        <ul class="sf-list">
+          <li><a href="/zh/about">关于我</a></li>
+          <li><a href="/zh/cases">规划案例</a></li>
+          <li><a href="/zh/services">业务范围</a></li>
+          <li><a href="/zh/resources">资源中心</a></li>
+          <li><a href="/zh/consult">预约咨询</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="sf-bottom">
+      <p>本页面为保障方案对比摘要，仅供沟通参考，不构成任何投资、保险、法律或税务建议。完整保障范围、定义及除外责任以正式保单合同为准。</p>
+      <p class="sf-rights">© 2026 袁媛 Yuan Yuan. 版权所有。</p>
+    </div>
+  </div>
+</footer>
+
+<div id="wm" aria-hidden="true"></div>
+<script>
+(function(){
+  var text="新加坡小圆姐　　　singaporeyuan　　　仅供本人参考　　　　　　";
+  var wm=document.getElementById('wm');var unit=text.repeat(6);
+  for(var i=0;i<16;i++){var d=document.createElement('div');d.className='row';d.textContent=unit;d.style.top=(i*110-120)+'px';d.style.left='-200px';wm.appendChild(d);}
+})();
+</script>
+</body>
+</html>
