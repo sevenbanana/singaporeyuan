@@ -132,10 +132,6 @@ td .b-red{color:var(--red);font-weight:600}
 .cash-note svg{width:19px;height:19px;flex-shrink:0;margin-top:3px;color:var(--gold-deep)}
 .cash-note b{color:var(--navy)}
 
-/* ---------- vitality 单列表格（不用 2/3 列底色） ---------- */
-.vit-tbl table th:nth-child(2),.vit-tbl table th:nth-child(3),.vit-tbl table th:nth-child(4){background:var(--navy-tint)}
-.vit-tbl table td:nth-child(2),.vit-tbl table td:nth-child(3),.vit-tbl table td:nth-child(4){background:transparent}
-
 /* ---------- cash value bars ---------- */
 .trig{display:grid;gap:18px}
 @media(min-width:680px){.trig{grid-template-columns:1fr 1fr 1fr}}
@@ -151,14 +147,12 @@ td .b-red{color:var(--red);font-weight:600}
 .bar-track{height:14px;border-radius:7px;background:#F1EFE8;overflow:hidden}
 .bar-track i{display:block;height:100%;border-radius:7px}
 .bar-track i.gt{background:var(--navy-soft)}
-.bar-track i.mid{background:var(--gold)}
 .bar-track i.hi{background:var(--green)}
 .bar-amt{font-size:12.5px;font-weight:700;color:var(--navy);white-space:nowrap;margin-top:3px}
 .bar-amt small{font-weight:400;color:var(--muted)}
 .bar-legend{display:flex;flex-wrap:wrap;gap:4px 16px;margin-top:14px;font-size:11.5px;color:var(--muted)}
 .bar-legend .dot{display:inline-block;width:8px;height:8px;border-radius:2px;margin-right:5px;vertical-align:1px}
 .bar-legend .dot.gt{background:var(--navy-soft)}
-.bar-legend .dot.mid{background:var(--gold)}
 .bar-legend .dot.hi{background:var(--green)}
 .same-note{background:var(--green-tint);color:#176B48;border-radius:12px;padding:13px 15px;margin-top:14px;font-size:13px;line-height:1.75;display:flex;gap:10px;align-items:flex-start}
 .same-note svg{width:18px;height:18px;flex-shrink:0;margin-top:3px}
@@ -289,7 +283,6 @@ body.locked #pwGate{display:flex}
 <nav class="qnav" aria-label="页内导航">
   <a href="#plans">方案速览</a>
   <a href="#premium">保费对比</a>
-  <a href="#vitality">Vitality 折扣价</a>
   <a href="#benefits">保障对比</a>
   <a href="#cashback">65·84·100岁拿回多少</a>
   <a href="#notes">重要说明</a>
@@ -361,7 +354,7 @@ body.locked #pwGate{display:flex}
         </div>
         <div class="feat">
           <span class="fico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M2 12h20M5 5l14 14M19 5 5 19"/></svg></span>
-          <div><b>没理赔，钱能拿回一部分</b><p>65 岁现金价值约 S$2.6–4.1 万；84 岁约 S$6.4–10.1 万；100 岁满期保证至少 S$70,000。</p></div>
+          <div><b>没理赔，钱能拿回一部分</b><p>65 岁现金价值演示约 S$4.1 万；84 岁约 S$10.1 万；100 岁满期演示约 S$18 万（保证至少 S$70,000）。</p></div>
         </div>
         <div class="feat">
           <span class="fico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m12 2 2.9 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l7.1-1.01Z"/></svg></span>
@@ -415,8 +408,8 @@ body.locked #pwGate{display:flex}
             <td>20 年（34→54 岁）<span class="sub-line">54 岁后不再缴费，保障延续到 100 岁</span></td>
           </tr>
           <tr>
-            <td>Vitality 优惠形式</td>
-            <td><span class="b-green">保费折扣</span>：首年 9 折，续年 85%–100% 浮动<span class="sub-line">详见下方折扣价计算</span></td>
+            <td>Vitality 优惠</td>
+            <td><span class="b-green">保费折扣</span>：首年 9 折 = <span class="b-navy">S$4,192.62</span><span class="sub-line">续年折扣随健康状态每年浮动（85%–100%）：坚持运动维持白金状态，最快第 6 年起 85 折 = S$3,959.73/年，30 年合计约 S$119,956、共省约 S$19,799；不运动则逐年回到原价。折扣非保证。</span></td>
             <td><span class="b-green">PowerUp Dollar</span>：送 S$17,500 额外保障<span class="sub-line">随健康状态最高涨至 S$26,250，最低降为 0；保费本身无折扣</span></td>
           </tr>
           <tr class="total">
@@ -430,38 +423,6 @@ body.locked #pwGate{display:flex}
     <div class="cash-note">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
       <span><b>看总账：</b>两个方案 30 年 / 20 年下来的总投入其实很接近（相差不到 S$4,000，若维持 Vitality 高状态定期反而更省约 S$1.7 万）。差别在于：定期的钱是「花掉的保障费」，终身的钱有一部分会以现金价值的形式<b>留在保单里逐年生息</b>。</span>
-    </div>
-  </div>
-</section>
-
-<!-- ================= Vitality 折扣 ================= -->
-<section id="vitality">
-  <div class="sec-eyebrow">AIA VITALITY DISCOUNT</div>
-  <h2 class="sec-title serif">定期方案的 Vitality 折扣价</h2>
-  <p class="sec-sub">方案 A 全部组成部分均为 Vitality 版（(Vit)）。规则：投保即按 95% 收费；此后每个保单周年按上一年健康状态调整——白金 −2%、金 −1%、银 +1%、铜 +2%；下限 85%（85 折封顶）、上限 100%（最差恢复原价，不会加价超过原价）。首年另有一次性 5% 促销折扣。</p>
-
-  <div class="tbl-card vit-tbl">
-    <div class="tbl-head">
-      <span class="fico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></span>
-      <div><b>按「维持白金状态」测算的折后年缴</b> <span>· 原价 S$4,658.50 / 年</span></div>
-    </div>
-    <div class="tbl-scroll">
-      <table>
-        <thead><tr><th>保单年度</th><th>折扣率</th><th class="num">折后年缴</th><th class="num">对比原价每年省</th></tr></thead>
-        <tbody>
-          <tr class="hlrow"><td>第 1 年<span class="sub-line">95% 起步 − 5% 首年促销</span></td><td>90%（9 折）</td><td class="num">S$4,192.62</td><td class="num">S$465.88</td></tr>
-          <tr><td>第 2 年</td><td>93%</td><td class="num">S$4,332.41</td><td class="num">S$326.09</td></tr>
-          <tr><td>第 3 年</td><td>91%</td><td class="num">S$4,239.24</td><td class="num">S$419.26</td></tr>
-          <tr><td>第 4 年</td><td>89%</td><td class="num">S$4,146.07</td><td class="num">S$512.43</td></tr>
-          <tr><td>第 5 年</td><td>87%</td><td class="num">S$4,052.90</td><td class="num">S$605.60</td></tr>
-          <tr class="hlrow"><td>第 6 年起（封顶）</td><td><span class="b-green">85%（85 折）</span></td><td class="num"><span class="b-green">S$3,959.73</span></td><td class="num">S$698.77</td></tr>
-          <tr class="total"><td>30 年合计</td><td>—</td><td class="num">约 S$119,956</td><td class="num">共省约 S$19,799（≈14%）</td></tr>
-        </tbody>
-      </table>
-    </div>
-    <div class="cash-note">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.46 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><path d="M12 9v4M12 17h.01"/></svg>
-      <span><b>如果只维持金状态：</b>每年 −1%，第 11 年才到 85 折，30 年合计约 S$121,121（省约 S$18,634）。若状态跌到银 / 铜，折扣会逐年回吐（+1% / +2%），最差恢复到 100% 原价。折扣是<b>动态的、跟运动挂钩的</b>——上表为理想化测算，不是保证值。</span>
     </div>
   </div>
 </section>
@@ -495,7 +456,7 @@ body.locked #pwGate{display:flex}
           <tr>
             <td>完全永久残疾 TPD</td>
             <td>S$350,000（附加，保至 70 岁或保单期满孰早）</td>
-            <td>本报价未含 TPD 附加</td>
+            <td>S$350,000（65 岁前保证），保至 70 岁<span class="sub-line">内建于基本计划，TPD 时一次性加速给付身故保额；65–70 岁间为 S$70,000 + 累积红利</span></td>
           </tr>
           <tr>
             <td>保障年期</td>
@@ -517,11 +478,6 @@ body.locked #pwGate{display:flex}
             <td>保费折扣 85%–100% 浮动</td>
             <td>PowerUp Dollar S$17,500（最高 S$26,250）</td>
           </tr>
-          <tr>
-            <td>费率保证</td>
-            <td>基本计划 30 年内保证；附加险费率不保证；续保费率按届时年龄、不保证</td>
-            <td>基本计划 20 年费率固定；ECPL 附加险费率不保证</td>
-          </tr>
         </tbody>
       </table>
     </div>
@@ -536,7 +492,7 @@ body.locked #pwGate{display:flex}
 <section id="cashback">
   <div class="sec-eyebrow">CASH VALUE AT 65 · 84 · 100</div>
   <h2 class="sec-title serif">65 / 84 / 100 岁，能拿回多少？</h2>
-  <p class="sec-sub">方案 B（终身）的现金价值来自 AIA 报价单利益演示：「保证」部分白纸黑字写进合同；「演示」部分按分红基金年回报 3.00% 与 4.25% 两档测算，非保证。方案 A（定期）在任何年龄的现金价值均为 S$0。金额下方的百分比为相对 35 万保额的比例。</p>
+  <p class="sec-sub">方案 B（终身）的现金价值来自 AIA 报价单利益演示：「保证」部分白纸黑字写进合同；「演示」部分按分红基金年回报 4.25% 测算，非保证。方案 A（定期）在任何年龄的现金价值均为 S$0。金额下方的百分比为相对 35 万保额的比例。</p>
 
   <div class="trig">
     <div class="tcard">
@@ -547,8 +503,7 @@ body.locked #pwGate{display:flex}
       <div class="scope">保单第 31 年 · 已缴清 11 年</div>
       <div class="bar-group">
         <div class="bar-row"><span class="who">保证</span><div><span class="bar-track"><i class="gt" style="width:9%"></i></span><span class="bar-amt">S$14,980 <small>≈4% 保额</small></span></div></div>
-        <div class="bar-row"><span class="who">@3.00%</span><div><span class="bar-track"><i class="mid" style="width:15%"></i></span><span class="bar-amt">S$26,299 <small>≈8% 保额</small></span></div></div>
-        <div class="bar-row"><span class="who">@4.25%</span><div><span class="bar-track"><i class="hi" style="width:23%"></i></span><span class="bar-amt">S$41,268 <small>≈12% 保额</small></span></div></div>
+        <div class="bar-row"><span class="who">演示</span><div><span class="bar-track"><i class="hi" style="width:23%"></i></span><span class="bar-amt">S$41,268 <small>≈12% 保额</small></span></div></div>
       </div>
     </div>
 
@@ -560,8 +515,7 @@ body.locked #pwGate{display:flex}
       <div class="scope">保单第 50 年 · 利益演示表最接近 85 岁的节点</div>
       <div class="bar-group">
         <div class="bar-row"><span class="who">保证</span><div><span class="bar-track"><i class="gt" style="width:21%"></i></span><span class="bar-amt">S$37,310 <small>≈11% 保额</small></span></div></div>
-        <div class="bar-row"><span class="who">@3.00%</span><div><span class="bar-track"><i class="mid" style="width:36%"></i></span><span class="bar-amt">S$64,057 <small>≈18% 保额</small></span></div></div>
-        <div class="bar-row"><span class="who">@4.25%</span><div><span class="bar-track"><i class="hi" style="width:56%"></i></span><span class="bar-amt">S$101,288 <small>≈29% 保额</small></span></div></div>
+        <div class="bar-row"><span class="who">演示</span><div><span class="bar-track"><i class="hi" style="width:56%"></i></span><span class="bar-amt">S$101,288 <small>≈29% 保额</small></span></div></div>
       </div>
     </div>
 
@@ -573,20 +527,31 @@ body.locked #pwGate{display:flex}
       <div class="scope">保单第 66 年 · 无需退保，自动给付</div>
       <div class="bar-group">
         <div class="bar-row"><span class="who">保证</span><div><span class="bar-track"><i class="gt" style="width:39%"></i></span><span class="bar-amt">S$70,000 <small>=20% 保额</small></span></div></div>
-        <div class="bar-row"><span class="who">@3.00%</span><div><span class="bar-track"><i class="mid" style="width:64%"></i></span><span class="bar-amt">S$114,914 <small>≈33% 保额</small></span></div></div>
-        <div class="bar-row"><span class="who">@4.25%</span><div><span class="bar-track"><i class="hi" style="width:100%"></i></span><span class="bar-amt">S$180,219 <small>≈51% 保额</small></span></div></div>
+        <div class="bar-row"><span class="who">演示</span><div><span class="bar-track"><i class="hi" style="width:100%"></i></span><span class="bar-amt">S$180,219 <small>≈51% 保额</small></span></div></div>
       </div>
     </div>
   </div>
   <div class="bar-legend" style="margin-top:14px">
     <span><span class="dot gt"></span>保证现金价值（合同写明）</span>
-    <span><span class="dot mid"></span>演示 @3.00%（非保证）</span>
     <span><span class="dot hi"></span>演示 @4.25%（非保证）</span>
   </div>
 
-  <div class="same-note">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
-    <span>100 岁满期时另有 Vitality <b style="color:inherit">PowerUp Dollar S$17,500</b>（若维持会员且状态不变）叠加给付；以 @3.00% 演示计，满期合计约 S$132,414，相当于拿回 20 年总保费（S$136,640）的约 97%。</span>
+  <div class="tbl-card" style="margin-top:18px">
+    <div class="tbl-head">
+      <span class="fico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></span>
+      <div><b>算总账：总保费 − 拿回 = 真正花掉的钱</b> <span>· 方案 B 20 年总保费 S$136,640，拿回按演示 @4.25% 计</span></div>
+    </div>
+    <div class="tbl-scroll">
+      <table>
+        <thead><tr><th>时点</th><th class="num">拿回金额</th><th class="num">总保费 − 拿回</th></tr></thead>
+        <tbody>
+          <tr><td>65 岁退保</td><td class="num">S$41,268</td><td class="num">S$95,372<span class="sub-line">相当于 35 万保障 31 年的净成本</span></td></tr>
+          <tr><td>84 岁退保</td><td class="num">S$101,288</td><td class="num">S$35,352<span class="sub-line">相当于保障 50 年的净成本</span></td></tr>
+          <tr class="hlrow"><td>100 岁满期</td><td class="num">S$180,219</td><td class="num"><span class="b-green">拿回反超 S$43,579</span><span class="sub-line">另有 PowerUp Dollar S$17,500 叠加给付</span></td></tr>
+          <tr><td>对比：方案 A 定期</td><td class="num">S$0</td><td class="num">S$139,755 全部花掉<span class="sub-line">Vitality 白金全程约 S$119,956</span></td></tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 
   <div class="warn-note">
@@ -604,7 +569,7 @@ body.locked #pwGate{display:flex}
     </div>
     <ul>
       <li>本页内容整理自 AIA Singapore 2026 年 7 月 28 日生成的两份正式报价单（Policy Illustration / Product Summary），被保人 34 岁、男、吸烟体、标准体。仅作客观并排对比，不构成投保建议。</li>
-      <li>方案 B 的非保证利益按分红基金演示回报 4.25% 与 3.00% 两档测算。该两档演示利率并非回报上下限，红利以 AIA 每年实际宣派为准；保证部分以保单合同为准。</li>
+      <li>方案 B 的非保证利益（本页「演示」值）按分红基金演示回报 4.25% 测算；报价单另载较保守的 3.00% 档：65 岁 S$26,299、84 岁 S$64,057、100 岁 S$114,914。两档演示利率并非回报上下限，红利以 AIA 每年实际宣派为准；保证部分以保单合同为准。</li>
       <li>利益演示表以保单年度为节点，最接近 85 岁的节点为保单第 50 年（84 岁），本页「84 岁」即取该行数字；85 岁当年的实际数值介于第 50 与 55 保单年度之间。</li>
       <li>方案 B 的 S$350,000 身故与重疾保证额（MDB / MCIB）适用于 65 岁生日后首个保单周年日之前；其后保障为 Accumulator 部分 S$70,000 + 累积红利。</li>
       <li>方案 A 基本计划费率在首 30 年保证；各附加险费率不保证，AIA 可按未来经验调整。64 岁后续保按届时年龄与费率计算（报价单演示：65–69 岁段全套年缴约 S$67,760），续保费率不保证。</li>
