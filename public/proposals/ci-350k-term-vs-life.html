@@ -537,8 +537,8 @@ body.locked #pwGate{display:flex}
 <!-- ================= 病况清单对比 ================= -->
 <section id="conditions">
   <div class="sec-eyebrow">CONDITIONS COVERED</div>
-  <h2 class="sec-title serif">重度重疾病况清单：43 种 vs 73 种</h2>
-  <p class="sec-sub">Term（方案 A）的重度重疾覆盖 43 种病况；GPP / UCC 使用 AIA 新版更长的病况清单，重度共 73 种——Term 的 43 种全部包含在内，多出的 30 种在下方以金色高亮列出。中文名称仅供理解，理赔以保单英文定义为准。</p>
+  <h2 class="sec-title serif">病况清单对比：重度 / 早期 / 中期 / 特殊病况</h2>
+  <p class="sec-sub">GPP / UCC 使用 AIA 新版更长的病况清单，在每个阶段都比 Term 覆盖更多：重度 73 vs 43、早期 42 vs 32、中期 35 vs 29、特殊病况 15 vs 5。Term 覆盖的病况基本全部包含在 GPP / UCC 清单内，各阶段多出的部分在下方以金色高亮列出。中文名称仅供理解，理赔以保单英文定义为准。</p>
 
   <div class="cond-stats">
     <div class="cstat"><b>43 种</b><span>Term 重度重疾</span></div>
@@ -629,9 +629,36 @@ body.locked #pwGate{display:flex}
     </div>
   </details>
 
-  <div class="same-note">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
-    <span>早期 / 中期病况数同样是 GPP / UCC 更多：早期 <b style="color:inherit">42 vs 32</b> 种、中期 <b style="color:inherit">35 vs 29</b> 种；特殊病况津贴也是 <b style="color:inherit">15 vs 5</b> 种，见下方对比。</span>
+  <div class="cond-h" style="margin-top:26px">早期阶段：32 种 vs 42 种 <span class="badge">金色 = 仅 GPP / UCC 有</span></div>
+  <p class="sec-sub" style="margin-bottom:12px">早期阶段两个方案同样都是确诊即赔 100%。GPP / UCC 的早期清单在 Term 基础上多覆盖以下项目，其余早期病况两边均有（完整清单以各自产品摘要为准）：</p>
+  <div class="cond-grid">
+    <div class="cond plus">急性溃疡性结肠炎<em>Acute Ulcerative Colitis</em></div>
+    <div class="cond plus">胆道闭锁（确诊即赔）<em>Biliary Atresia (on diagnosis)</em></div>
+    <div class="cond plus">急性坏死出血性胰腺炎 †<em>Acute Necrohemorrhagic Pancreatitis</em></div>
+    <div class="cond plus">较轻度克雅二氏病<em>Less Severe Creutzfeldt-Jakob Disease</em></div>
+    <div class="cond plus">较轻度感染性心内膜炎<em>Less Severe Infective Endocarditis</em></div>
+    <div class="cond plus">丧失独立生活能力（早期）<em>Loss of Independent Existence (Early Stage)</em></div>
+    <div class="cond plus">早期黑色素瘤<em>Early Melanoma</em></div>
+    <div class="cond plus">胃肠道间质瘤<em>Gastro-Intestinal Stromal Tumours</em></div>
+    <div class="cond plus">重度幼年类风湿关节炎<em>Severe Juvenile Rheumatoid Arthritis</em></div>
+    <div class="cond plus">闭锁综合征<em>Locked-in Syndrome</em></div>
+    <div class="cond plus">较轻度进行性核上性麻痹<em>Less Severe Progressive Supranuclear Palsy</em></div>
+    <div class="cond plus">较轻度克罗恩病<em>Less Severe Crohn's Disease</em></div>
+  </div>
+  <div class="cash-note" style="border-top:0;background:transparent;padding:10px 4px 0">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+    <span>早期癌症方面：两边都覆盖特定器官原位癌、早期前列腺癌、早期甲状腺癌、早期神经内分泌肿瘤、早期膀胱癌、早期慢性淋巴细胞白血病、骨髓恶性肿瘤；GPP / UCC 在此之上再加早期黑色素瘤与胃肠道间质瘤两种。† 急性坏死出血性胰腺炎在 Term 中列为重度病况（同样赔 100%），在 GPP / UCC 中提前至早期阶段即可理赔。</span>
+  </div>
+
+  <div class="cond-h" style="margin-top:26px">中期阶段：29 种 vs 35 种 <span class="badge">金色 = 仅 GPP / UCC 有</span></div>
+  <p class="sec-sub" style="margin-bottom:12px">中期阶段同样确诊即赔 100%。GPP / UCC 比 Term 多覆盖以下 6 项，其余中期病况两边均有：</p>
+  <div class="cond-grid">
+    <div class="cond plus">急性坏死出血性胰腺炎伴胰腺切除<em>Acute Necrohemorrhagic Pancreatitis with Pancreatectomy</em></div>
+    <div class="cond plus">中度克雅二氏病<em>Moderately Severe Creutzfeldt-Jakob Disease</em></div>
+    <div class="cond plus">中度脊髓灰质炎<em>Moderately Severe Poliomyelitis</em></div>
+    <div class="cond plus">轻度细菌性脑膜炎<em>Mild Bacterial Meningitis</em></div>
+    <div class="cond plus">重度艾森曼格综合征（中期）<em>Severe Eisenmenger's Syndrome (Intermediate)</em></div>
+    <div class="cond plus">中重度系统性红斑狼疮伴狼疮性肾炎<em>Moderate Severe Systemic Lupus Erythematosus with Lupus Nephritis</em></div>
   </div>
 
   <div class="cond-h" style="margin-top:26px">特殊病况津贴：5 种 vs 15 种 <span class="badge">额外赔付 · 不扣保额</span></div>
