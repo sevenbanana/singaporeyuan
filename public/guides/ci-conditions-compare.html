@@ -82,6 +82,17 @@ td .na{color:#C9C4B8}
 .gx{background:var(--gold-tint);border-radius:4px;padding:0 5px;color:#6D5318;font-weight:500;box-decoration-break:clone;-webkit-box-decoration-break:clone}
 .note-inline{display:block;font-size:10.5px;color:var(--muted)}
 
+/* ---------- 常见程度徽章与排序 ---------- */
+.tier{display:inline-block;font-size:10px;font-weight:600;border-radius:10px;padding:0 8px;line-height:1.7;margin:3px 0 2px}
+.tier.t1{background:#FBEFEE;color:#B4433A;border:1px solid #F0D5D2}
+.tier.t2{background:var(--gold-tint);color:var(--gold-deep);border:1px solid #EADFC6}
+.tier.t3{background:var(--navy-tint);color:var(--navy-soft);border:1px solid #DCE2EE}
+.tier.t4{background:#fff;color:var(--muted);border:1px solid var(--line)}
+.sort-switch{display:inline-flex;align-items:center;background:#fff;border:1px solid var(--line);border-radius:22px;padding:4px;gap:4px;margin:2px 0 14px}
+.sort-label{font-size:12px;color:var(--muted);padding:0 6px 0 12px}
+.sort-btn{border:0;background:transparent;border-radius:18px;padding:7px 16px;font-size:12.5px;font-weight:600;color:var(--navy-soft);cursor:pointer;font-family:inherit;transition:all .2s}
+.sort-btn.on{background:var(--navy);color:#fff}
+
 /* ---------- special conditions ---------- */
 .cond-grid{display:grid;gap:8px;grid-template-columns:1fr;margin-top:12px}
 @media(min-width:560px){.cond-grid{grid-template-columns:1fr 1fr}}
@@ -160,6 +171,12 @@ th.sp,td.sp2,td.sp3{white-space:normal}
     <span>— 该阶段无受保病况</span>
   </div>
 
+  <div class="sort-switch" role="group" aria-label="排序方式">
+    <span class="sort-label">排序</span>
+    <button type="button" class="sort-btn on" id="sortDef">病况名称</button>
+    <button type="button" class="sort-btn" id="sortFreq">常见程度</button>
+  </div>
+
   <div class="tbl-card">
     <div class="tbl-scroll">
       <table>
@@ -172,85 +189,86 @@ th.sp,td.sp2,td.sp3{white-space:normal}
           </tr>
         </thead>
         <tbody>
-          <tr><td class="fam"><b>1. 后天性脑损伤</b><em>Acquired Brain Damage</em></td><td><span class="na">—</span></td><td><span class="na">—</span></td><td><span class="gx">后天性脑损伤</span></td></tr>
-          <tr><td class="fam"><b>2. 溃疡性结肠炎</b><em>Ulcerative Colitis</em></td><td><span class="gx">急性溃疡性结肠炎</span></td><td><span class="na">—</span></td><td><span class="gx">急性重度溃疡性结肠炎</span></td></tr>
-          <tr><td class="fam"><b>3. 艾迪生病</b><em>Addison Disease / Autoimmune Adrenalitis</em></td><td><span class="na">—</span></td><td><span class="na">—</span></td><td><span class="gx">艾迪生病 / 自身免疫性肾上腺炎</span></td></tr>
-          <tr><td class="fam"><b>4. 肾上腺腺瘤</b><em>Adrenal Adenoma</em></td><td><span class="na">—</span></td><td><span class="na">—</span></td><td><span class="gx">肾上腺腺瘤切除术</span></td></tr>
-          <tr><td class="fam"><b>5. 阿尔茨海默病 / 失智</b><em>Alzheimer's Disease / Severe Dementia</em></td><td>失智症（含阿尔茨海默病）确诊</td><td>中度阿尔茨海默病</td><td>阿尔茨海默病 / 重度失智</td></tr>
-          <tr><td class="fam"><b>6. 冠状动脉血管成形术</b><em>Angioplasty &amp; Other Invasive Treatment</em></td><td><span class="na">—</span></td><td><span class="na">—</span></td><td>冠状动脉血管成形术及其他侵入性治疗 *</td></tr>
-          <tr><td class="fam"><b>7. 良性脑肿瘤</b><em>Benign Brain Tumour</em></td><td>垂体瘤切除术</td><td>垂体瘤切除术（开颅 / 经蝶窦・经鼻入路）</td><td>良性脑肿瘤</td></tr>
-          <tr><td class="fam"><b>8. 胆道闭锁</b><em>Biliary Atresia</em></td><td><span class="gx">胆道闭锁（确诊即赔）</span></td><td><span class="na">—</span></td><td><span class="gx">胆道闭锁接受肝移植</span></td></tr>
-          <tr><td class="fam"><b>9. 失明</b><em>Blindness</em></td><td>单眼不可逆失明</td><td>视神经萎缩伴低视力</td><td>失明（不可逆视力丧失）</td></tr>
-          <tr><td class="fam"><b>10. 脑部手术</b><em>Brain Surgery</em></td><td><span class="na">—</span></td><td><span class="na">—</span></td><td><span class="gx">脑部手术</span></td></tr>
-          <tr><td class="fam"><b>11. 慢性自身免疫性肝炎</b><em>Chronic Auto-Immune Hepatitis</em></td><td><span class="na">—</span></td><td><span class="na">—</span></td><td><span class="gx">慢性自身免疫性肝炎</span></td></tr>
-          <tr><td class="fam"><b>12. 胰腺炎</b><em>Pancreatitis</em></td><td><span class="gx">急性坏死出血性胰腺炎</span><span class="note-inline">Term 将此病况列于重度阶段 †</span></td><td><span class="gx">急性坏死出血性胰腺炎伴胰腺切除</span></td><td><span class="gx">慢性复发性胰腺炎</span><span class="note-inline">Term 重度对应病况：急性坏死出血性胰腺炎 †</span></td></tr>
-          <tr><td class="fam"><b>13. 昏迷</b><em>Coma</em></td><td>昏迷 48 小时</td><td>昏迷 72 小时 ・ 重度癫痫</td><td>昏迷</td></tr>
-          <tr><td class="fam"><b>14. 冠状动脉搭桥</b><em>Coronary Artery By-pass Surgery</em></td><td>微创搭桥 / 冠状动脉斑块切除 / 心肌激光血运重建 / 体外反搏</td><td><span class="na">—</span></td><td>冠状动脉搭桥手术</td></tr>
-          <tr><td class="fam"><b>15. 克雅二氏病</b><em>Creutzfeldt-Jakob Disease</em></td><td><span class="gx">较轻度克雅二氏病</span></td><td><span class="gx">中度克雅二氏病</span></td><td>克雅二氏病</td></tr>
-          <tr><td class="fam"><b>16. 失聪</b><em>Deafness</em></td><td>部分听力丧失 ・ 海绵窦血栓手术</td><td>人工耳蜗植入手术</td><td>失聪（不可逆听力丧失）</td></tr>
-          <tr><td class="fam"><b>17. 埃博拉</b><em>Ebola</em></td><td><span class="na">—</span></td><td><span class="na">—</span></td><td><span class="gx">埃博拉病毒感染</span></td></tr>
-          <tr><td class="fam"><b>18. 象皮病</b><em>Elephantiasis</em></td><td><span class="na">—</span></td><td><span class="na">—</span></td><td>象皮病</td></tr>
-          <tr><td class="fam"><b>19. 肾衰竭</b><em>Kidney Failure</em></td><td>单肾切除术</td><td>慢性肾病</td><td>末期肾衰竭</td></tr>
-          <tr><td class="fam"><b>20. 肝衰竭</b><em>Liver Failure</em></td><td>肝脏手术</td><td>肝硬化</td><td>末期肝衰竭</td></tr>
-          <tr><td class="fam"><b>21. 末期肺病</b><em>End Stage Lung Disease</em></td><td>严重哮喘 ・ 腔静脉滤器植入</td><td>单肺切除术</td><td>末期肺病</td></tr>
-          <tr><td class="fam"><b>22. 暴发性肝炎</b><em>Fulminant Hepatitis</em></td><td>胆道重建手术 ・ 肝炎伴肝硬化</td><td>慢性原发性硬化性胆管炎</td><td>暴发性肝炎</td></tr>
-          <tr><td class="fam"><b>23. 全身性破伤风</b><em>Generalized Tetanus</em></td><td><span class="na">—</span></td><td><span class="na">—</span></td><td><span class="gx">全身性破伤风</span></td></tr>
-          <tr><td class="fam"><b>24. 心肌梗塞</b><em>Heart Attack of Specified Severity</em></td><td>心脏起搏器植入 ・ 心包切除术</td><td>心脏除颤器植入 ・ 早期心肌病</td><td>特定严重程度的心肌梗塞</td></tr>
-          <tr><td class="fam"><b>25. HIV 感染（输血 / 职业）</b><em>HIV</em></td><td>遇袭或职业感染 HIV</td><td>器官移植感染 HIV</td><td>因输血或职业感染的 HIV</td></tr>
-          <tr><td class="fam"><b>26. 帕金森病</b><em>Idiopathic Parkinson's Disease</em></td><td>早期帕金森病</td><td>中度帕金森病</td><td>原发性帕金森病</td></tr>
-          <tr><td class="fam"><b>27. 感染性心内膜炎</b><em>Infective Endocarditis</em></td><td><span class="gx">较轻度感染性心内膜炎</span></td><td><span class="na">—</span></td><td><span class="gx">感染性心内膜炎</span></td></tr>
-          <tr><td class="fam"><b>28. 胰岛素依赖型糖尿病</b><em>Insulin Dependent Diabetes Mellitus</em></td><td><span class="na">—</span></td><td><span class="na">—</span></td><td><span class="gx">胰岛素依赖型糖尿病</span></td></tr>
-          <tr><td class="fam"><b>29. 再生障碍性贫血</b><em>Aplastic Anaemia</em></td><td>可逆性再生障碍性贫血</td><td>骨髓增生异常综合征 / 骨髓纤维化</td><td>不可逆再生障碍性贫血</td></tr>
-          <tr><td class="fam"><b>30. 语言能力丧失</b><em>Loss of Speech</em></td><td>永久（或临时）气管造口</td><td>语言能力丧失（非声带损伤所致）</td><td>不可逆语言能力丧失</td></tr>
-          <tr><td class="fam"><b>31. 青少年亨廷顿病</b><em>Juvenile Huntington Disease</em></td><td><span class="na">—</span></td><td><span class="na">—</span></td><td><span class="gx">青少年亨廷顿病</span></td></tr>
-          <tr><td class="fam"><b>32. 丧失独立生活能力</b><em>Loss of Independent Existence</em></td><td><span class="gx">丧失独立生活能力（早期）</span></td><td><span class="na">—</span></td><td>丧失独立生活能力</td></tr>
-          <tr><td class="fam"><b>33. 严重烧伤</b><em>Major Burns</em></td><td>轻度严重烧伤</td><td>中度严重烧伤</td><td>严重烧伤</td></tr>
-          <tr><td class="fam"><b>34. 重大癌症</b><em>Major Cancer</em></td><td>特定器官原位癌 ・ 早期前列腺癌 ・ 早期甲状腺癌 ・ 早期神经内分泌肿瘤 ・ 早期膀胱癌 ・ 早期慢性淋巴细胞白血病 ・ 骨髓恶性肿瘤 ・ <span class="gx">早期黑色素瘤</span> ・ <span class="gx">胃肠道间质瘤</span></td><td>原位癌经根治性手术治疗</td><td>重大癌症</td></tr>
-          <tr><td class="fam"><b>35. 严重头部创伤</b><em>Major Head Trauma</em></td><td>硬膜下血肿手术 ・ 面部重建手术</td><td>中期严重头部创伤</td><td>严重头部创伤</td></tr>
-          <tr><td class="fam"><b>36. 器官 / 骨髓移植</b><em>Major Organ / Bone Marrow Transplantation</em></td><td>小肠移植 ・ 角膜移植</td><td>主要器官 / 骨髓移植（候补名单）</td><td>主要器官 / 骨髓移植</td></tr>
-          <tr><td class="fam"><b>37. 医疗过程感染 HIV</b><em>Medically Acquired HIV Infection</em></td><td><span class="na">—</span></td><td><span class="na">—</span></td><td><span class="gx">医疗过程感染 HIV</span></td></tr>
-          <tr><td class="fam"><b>38. 髓质囊性病</b><em>Medullary Cystic Disease</em></td><td><span class="na">—</span></td><td><span class="na">—</span></td><td>髓质囊性病</td></tr>
-          <tr><td class="fam"><b>39. 运动神经元病</b><em>Motor Neurone Disease</em></td><td>周围神经病变</td><td>早期运动神经元病</td><td>运动神经元病</td></tr>
-          <tr><td class="fam"><b>40. 臂丛神经多根损伤</b><em>Multiple Root of Brachial Plexus Injury</em></td><td><span class="na">—</span></td><td><span class="na">—</span></td><td><span class="gx">臂丛神经多根损伤</span></td></tr>
-          <tr><td class="fam"><b>41. 多发性硬化症</b><em>Multiple Sclerosis</em></td><td>早期多发性硬化</td><td>轻度多发性硬化</td><td>多发性硬化症</td></tr>
-          <tr><td class="fam"><b>42. 肌营养不良症</b><em>Muscular Dystrophy</em></td><td>脊髓病变或损伤致大小便功能障碍</td><td>中度肌营养不良</td><td>肌营养不良症</td></tr>
-          <tr><td class="fam"><b>43. 坏死性筋膜炎</b><em>Necrotising Fasciitis</em></td><td><span class="na">—</span></td><td><span class="na">—</span></td><td>坏死性筋膜炎</td></tr>
-          <tr><td class="fam"><b>44. 职业感染乙 / 丙型肝炎</b><em>Occupationally Acquired Hepatitis B or C</em></td><td><span class="na">—</span></td><td><span class="na">—</span></td><td><span class="gx">职业感染乙型 / 丙型肝炎</span></td></tr>
-          <tr><td class="fam"><b>45. 心脏瓣膜手术</b><em>Heart Valve Surgery</em></td><td>经皮瓣膜成形术或瓣膜切开术</td><td>经皮瓣膜置换或装置修复</td><td>开心式心脏瓣膜手术</td></tr>
-          <tr><td class="fam"><b>46. 成骨不全症</b><em>Osteogenesis Imperfecta</em></td><td><span class="na">—</span></td><td><span class="na">—</span></td><td><span class="gx">成骨不全症（脆骨病）</span></td></tr>
-          <tr><td class="fam"><b>47. 其他严重冠状动脉疾病</b><em>Other Serious Coronary Artery Disease</em></td><td>早期其他严重冠状动脉疾病</td><td>中期其他严重冠状动脉疾病</td><td>其他严重冠状动脉疾病</td></tr>
-          <tr><td class="fam"><b>48. 瘫痪</b><em>Paralysis</em></td><td>单肢功能丧失</td><td>单肢功能丧失需使用假肢</td><td>瘫痪（不可逆肢体功能丧失）</td></tr>
-          <tr><td class="fam"><b>49. 幼年类风湿关节炎</b><em>Juvenile Rheumatoid Arthritis</em></td><td><span class="gx">重度幼年类风湿关节炎</span></td><td><span class="na">—</span></td><td><span class="gx">持续性重度幼年类风湿关节炎</span></td></tr>
-          <tr><td class="fam"><b>50. 植物人状态</b><em>Persistent Vegetative State</em></td><td><span class="gx">闭锁综合征</span></td><td><span class="na">—</span></td><td>持续性植物人状态</td></tr>
-          <tr><td class="fam"><b>51. 嗜铬细胞瘤</b><em>Pheochromocytoma</em></td><td><span class="na">—</span></td><td><span class="na">—</span></td><td><span class="gx">嗜铬细胞瘤</span></td></tr>
-          <tr><td class="fam"><b>52. 脊髓灰质炎</b><em>Poliomyelitis</em></td><td><span class="na">—</span></td><td><span class="gx">中度脊髓灰质炎</span></td><td>脊髓灰质炎（小儿麻痹症）</td></tr>
-          <tr><td class="fam"><b>53. 原发性肺动脉高压</b><em>Primary Pulmonary Hypertension</em></td><td>早期肺动脉高压</td><td>继发性肺动脉高压</td><td>原发性肺动脉高压</td></tr>
-          <tr><td class="fam"><b>54. 进行性硬皮病</b><em>Progressive Scleroderma</em></td><td>早期进行性硬皮病</td><td>进行性硬皮病伴 CREST 综合征</td><td>进行性硬皮病</td></tr>
-          <tr><td class="fam"><b>55. 进行性核上性麻痹</b><em>Progressive Supranuclear Palsy</em></td><td><span class="gx">较轻度进行性核上性麻痹</span></td><td><span class="na">—</span></td><td>进行性核上性麻痹</td></tr>
-          <tr><td class="fam"><b>56. 狂犬病</b><em>Rabies</em></td><td><span class="na">—</span></td><td><span class="na">—</span></td><td><span class="gx">狂犬病</span></td></tr>
-          <tr><td class="fam"><b>57. 全小肠切除</b><em>Resection of the Whole Small Intestine</em></td><td><span class="na">—</span></td><td><span class="na">—</span></td><td><span class="gx">全小肠切除术（十二指肠、空肠及回肠）</span></td></tr>
-          <tr><td class="fam"><b>58. 细菌性脑膜炎</b><em>Bacterial Meningitis</em></td><td>细菌性脑膜炎（完全康复）</td><td><span class="gx">轻度细菌性脑膜炎</span></td><td>严重细菌性脑膜炎</td></tr>
-          <tr><td class="fam"><b>59. 重度心肌病</b><em>Severe Cardiomyopathy</em></td><td><span class="na">—</span></td><td><span class="na">—</span></td><td><span class="gx">重度心肌病</span></td></tr>
-          <tr><td class="fam"><b>60. 克罗恩病</b><em>Crohn's Disease</em></td><td><span class="gx">较轻度克罗恩病</span></td><td><span class="na">—</span></td><td><span class="gx">重度克罗恩病</span></td></tr>
-          <tr><td class="fam"><b>61. 艾森曼格综合征</b><em>Eisenmenger's Syndrome</em></td><td><span class="na">—</span></td><td><span class="gx">重度艾森曼格综合征（中期）</span></td><td><span class="gx">重度艾森曼格综合征</span></td></tr>
-          <tr><td class="fam"><b>62. 严重脑炎</b><em>Severe Encephalitis</em></td><td>病毒性脑炎（完全康复）</td><td>轻度病毒性脑炎</td><td>严重脑炎</td></tr>
-          <tr><td class="fam"><b>63. 重度血友病</b><em>Severe Haemophilia</em></td><td><span class="na">—</span></td><td><span class="na">—</span></td><td><span class="gx">重度血友病</span></td></tr>
-          <tr><td class="fam"><b>64. 重度重症肌无力</b><em>Severe Myasthenia Gravis</em></td><td><span class="na">—</span></td><td><span class="na">—</span></td><td>重度重症肌无力</td></tr>
-          <tr><td class="fam"><b>65. 重度肺纤维化</b><em>Severe Pulmonary Fibrosis</em></td><td><span class="na">—</span></td><td><span class="na">—</span></td><td><span class="gx">重度肺纤维化</span></td></tr>
-          <tr><td class="fam"><b>66. 中风</b><em>Stroke</em></td><td>脑动脉瘤手术（血管内 / 开颅） ・ 脑分流器植入</td><td>颈动脉手术</td><td>中风伴永久性神经功能障碍</td></tr>
-          <tr><td class="fam"><b>67. 特发性脊柱侧弯</b><em>Idiopathic Scoliosis</em></td><td><span class="na">—</span></td><td><span class="na">—</span></td><td><span class="gx">特发性脊柱侧弯手术</span></td></tr>
-          <tr><td class="fam"><b>68. 主动脉手术</b><em>Surgery to Aorta</em></td><td>大型无症状主动脉瘤</td><td>微创主动脉手术</td><td>主动脉手术</td></tr>
-          <tr><td class="fam"><b>69. 系统性红斑狼疮</b><em>Systemic Lupus Erythematosus</em></td><td>轻度系统性红斑狼疮</td><td><span class="gx">中重度系统性红斑狼疮伴狼疮性肾炎</span></td><td>系统性红斑狼疮伴狼疮性肾炎</td></tr>
-          <tr><td class="fam"><b>70. 末期疾病</b><em>Terminal Illness</em></td><td><span class="na">—</span></td><td><span class="na">—</span></td><td><span class="gx">末期疾病</span><span class="note-inline">Term 由基本计划（身故保障）承保 ‡</span></td></tr>
-          <tr><td class="fam"><b>71. 结核性脑膜炎</b><em>Tuberculosis Meningitis</em></td><td><span class="na">—</span></td><td><span class="na">—</span></td><td><span class="gx">结核性脑膜炎</span></td></tr>
-          <tr><td class="fam"><b>72. 1 型青少年脊髓性肌萎缩</b><em>Type 1 Juvenile Spinal Muscular Atrophy</em></td><td><span class="na">—</span></td><td><span class="na">—</span></td><td><span class="gx">1 型青少年脊髓性肌萎缩</span></td></tr>
-          <tr><td class="fam"><b>73. 威尔逊病</b><em>Wilson's Disease</em></td><td><span class="na">—</span></td><td><span class="na">—</span></td><td><span class="gx">威尔逊病（肝豆状核变性）</span></td></tr>
+          <tr data-fam="1"><td class="fam"><b>1. 后天性脑损伤</b><span class="tier t4">罕见</span><em>Acquired Brain Damage</em></td><td><span class="na">—</span></td><td><span class="na">—</span></td><td><span class="gx">后天性脑损伤</span></td></tr>
+          <tr data-fam="2"><td class="fam"><b>2. 溃疡性结肠炎</b><span class="tier t3">少见</span><em>Ulcerative Colitis</em></td><td><span class="gx">急性溃疡性结肠炎</span></td><td><span class="na">—</span></td><td><span class="gx">急性重度溃疡性结肠炎</span></td></tr>
+          <tr data-fam="3"><td class="fam"><b>3. 艾迪生病</b><span class="tier t4">罕见</span><em>Addison Disease / Autoimmune Adrenalitis</em></td><td><span class="na">—</span></td><td><span class="na">—</span></td><td><span class="gx">艾迪生病 / 自身免疫性肾上腺炎</span></td></tr>
+          <tr data-fam="4"><td class="fam"><b>4. 肾上腺腺瘤</b><span class="tier t4">罕见</span><em>Adrenal Adenoma</em></td><td><span class="na">—</span></td><td><span class="na">—</span></td><td><span class="gx">肾上腺腺瘤切除术</span></td></tr>
+          <tr data-fam="5"><td class="fam"><b>5. 阿尔茨海默病 / 失智</b><span class="tier t2">较常见</span><em>Alzheimer's Disease / Severe Dementia</em></td><td>失智症（含阿尔茨海默病）确诊</td><td>中度阿尔茨海默病</td><td>阿尔茨海默病 / 重度失智</td></tr>
+          <tr data-fam="6"><td class="fam"><b>6. 冠状动脉血管成形术</b><span class="tier t2">较常见</span><em>Angioplasty &amp; Other Invasive Treatment</em></td><td><span class="na">—</span></td><td><span class="na">—</span></td><td>冠状动脉血管成形术及其他侵入性治疗 *</td></tr>
+          <tr data-fam="7"><td class="fam"><b>7. 良性脑肿瘤</b><span class="tier t2">较常见</span><em>Benign Brain Tumour</em></td><td>垂体瘤切除术</td><td>垂体瘤切除术（开颅 / 经蝶窦・经鼻入路）</td><td>良性脑肿瘤</td></tr>
+          <tr data-fam="8"><td class="fam"><b>8. 胆道闭锁</b><span class="tier t4">罕见</span><em>Biliary Atresia</em></td><td><span class="gx">胆道闭锁（确诊即赔）</span></td><td><span class="na">—</span></td><td><span class="gx">胆道闭锁接受肝移植</span></td></tr>
+          <tr data-fam="9"><td class="fam"><b>9. 失明</b><span class="tier t3">少见</span><em>Blindness</em></td><td>单眼不可逆失明</td><td>视神经萎缩伴低视力</td><td>失明（不可逆视力丧失）</td></tr>
+          <tr data-fam="10"><td class="fam"><b>10. 脑部手术</b><span class="tier t3">少见</span><em>Brain Surgery</em></td><td><span class="na">—</span></td><td><span class="na">—</span></td><td><span class="gx">脑部手术</span></td></tr>
+          <tr data-fam="11"><td class="fam"><b>11. 慢性自身免疫性肝炎</b><span class="tier t3">少见</span><em>Chronic Auto-Immune Hepatitis</em></td><td><span class="na">—</span></td><td><span class="na">—</span></td><td><span class="gx">慢性自身免疫性肝炎</span></td></tr>
+          <tr data-fam="12"><td class="fam"><b>12. 胰腺炎</b><span class="tier t3">少见</span><em>Pancreatitis</em></td><td><span class="gx">急性坏死出血性胰腺炎</span><span class="note-inline">Term 将此病况列于重度阶段 †</span></td><td><span class="gx">急性坏死出血性胰腺炎伴胰腺切除</span></td><td><span class="gx">慢性复发性胰腺炎</span><span class="note-inline">Term 重度对应病况：急性坏死出血性胰腺炎 †</span></td></tr>
+          <tr data-fam="13"><td class="fam"><b>13. 昏迷</b><span class="tier t3">少见</span><em>Coma</em></td><td>昏迷 48 小时</td><td>昏迷 72 小时 ・ 重度癫痫</td><td>昏迷</td></tr>
+          <tr data-fam="14"><td class="fam"><b>14. 冠状动脉搭桥</b><span class="tier t2">较常见</span><em>Coronary Artery By-pass Surgery</em></td><td>微创搭桥 / 冠状动脉斑块切除 / 心肌激光血运重建 / 体外反搏</td><td><span class="na">—</span></td><td>冠状动脉搭桥手术</td></tr>
+          <tr data-fam="15"><td class="fam"><b>15. 克雅二氏病</b><span class="tier t4">罕见</span><em>Creutzfeldt-Jakob Disease</em></td><td><span class="gx">较轻度克雅二氏病</span></td><td><span class="gx">中度克雅二氏病</span></td><td>克雅二氏病</td></tr>
+          <tr data-fam="16"><td class="fam"><b>16. 失聪</b><span class="tier t3">少见</span><em>Deafness</em></td><td>部分听力丧失 ・ 海绵窦血栓手术</td><td>人工耳蜗植入手术</td><td>失聪（不可逆听力丧失）</td></tr>
+          <tr data-fam="17"><td class="fam"><b>17. 埃博拉</b><span class="tier t4">罕见</span><em>Ebola</em></td><td><span class="na">—</span></td><td><span class="na">—</span></td><td><span class="gx">埃博拉病毒感染</span></td></tr>
+          <tr data-fam="18"><td class="fam"><b>18. 象皮病</b><span class="tier t4">罕见</span><em>Elephantiasis</em></td><td><span class="na">—</span></td><td><span class="na">—</span></td><td>象皮病</td></tr>
+          <tr data-fam="19"><td class="fam"><b>19. 肾衰竭</b><span class="tier t2">较常见</span><em>Kidney Failure</em></td><td>单肾切除术</td><td>慢性肾病</td><td>末期肾衰竭</td></tr>
+          <tr data-fam="20"><td class="fam"><b>20. 肝衰竭</b><span class="tier t2">较常见</span><em>Liver Failure</em></td><td>肝脏手术</td><td>肝硬化</td><td>末期肝衰竭</td></tr>
+          <tr data-fam="21"><td class="fam"><b>21. 末期肺病</b><span class="tier t2">较常见</span><em>End Stage Lung Disease</em></td><td>严重哮喘 ・ 腔静脉滤器植入</td><td>单肺切除术</td><td>末期肺病</td></tr>
+          <tr data-fam="22"><td class="fam"><b>22. 暴发性肝炎</b><span class="tier t3">少见</span><em>Fulminant Hepatitis</em></td><td>胆道重建手术 ・ 肝炎伴肝硬化</td><td>慢性原发性硬化性胆管炎</td><td>暴发性肝炎</td></tr>
+          <tr data-fam="23"><td class="fam"><b>23. 全身性破伤风</b><span class="tier t4">罕见</span><em>Generalized Tetanus</em></td><td><span class="na">—</span></td><td><span class="na">—</span></td><td><span class="gx">全身性破伤风</span></td></tr>
+          <tr data-fam="24"><td class="fam"><b>24. 心肌梗塞</b><span class="tier t1">极常见</span><em>Heart Attack of Specified Severity</em></td><td>心脏起搏器植入 ・ 心包切除术</td><td>心脏除颤器植入 ・ 早期心肌病</td><td>特定严重程度的心肌梗塞</td></tr>
+          <tr data-fam="25"><td class="fam"><b>25. HIV 感染（输血 / 职业）</b><span class="tier t3">少见</span><em>HIV</em></td><td>遇袭或职业感染 HIV</td><td>器官移植感染 HIV</td><td>因输血或职业感染的 HIV</td></tr>
+          <tr data-fam="26"><td class="fam"><b>26. 帕金森病</b><span class="tier t2">较常见</span><em>Idiopathic Parkinson's Disease</em></td><td>早期帕金森病</td><td>中度帕金森病</td><td>原发性帕金森病</td></tr>
+          <tr data-fam="27"><td class="fam"><b>27. 感染性心内膜炎</b><span class="tier t3">少见</span><em>Infective Endocarditis</em></td><td><span class="gx">较轻度感染性心内膜炎</span></td><td><span class="na">—</span></td><td><span class="gx">感染性心内膜炎</span></td></tr>
+          <tr data-fam="28"><td class="fam"><b>28. 胰岛素依赖型糖尿病</b><span class="tier t3">少见</span><em>Insulin Dependent Diabetes Mellitus</em></td><td><span class="na">—</span></td><td><span class="na">—</span></td><td><span class="gx">胰岛素依赖型糖尿病</span></td></tr>
+          <tr data-fam="29"><td class="fam"><b>29. 再生障碍性贫血</b><span class="tier t3">少见</span><em>Aplastic Anaemia</em></td><td>可逆性再生障碍性贫血</td><td>骨髓增生异常综合征 / 骨髓纤维化</td><td>不可逆再生障碍性贫血</td></tr>
+          <tr data-fam="30"><td class="fam"><b>30. 语言能力丧失</b><span class="tier t3">少见</span><em>Loss of Speech</em></td><td>永久（或临时）气管造口</td><td>语言能力丧失（非声带损伤所致）</td><td>不可逆语言能力丧失</td></tr>
+          <tr data-fam="31"><td class="fam"><b>31. 青少年亨廷顿病</b><span class="tier t4">罕见</span><em>Juvenile Huntington Disease</em></td><td><span class="na">—</span></td><td><span class="na">—</span></td><td><span class="gx">青少年亨廷顿病</span></td></tr>
+          <tr data-fam="32"><td class="fam"><b>32. 丧失独立生活能力</b><span class="tier t3">少见</span><em>Loss of Independent Existence</em></td><td><span class="gx">丧失独立生活能力（早期）</span></td><td><span class="na">—</span></td><td>丧失独立生活能力</td></tr>
+          <tr data-fam="33"><td class="fam"><b>33. 严重烧伤</b><span class="tier t3">少见</span><em>Major Burns</em></td><td>轻度严重烧伤</td><td>中度严重烧伤</td><td>严重烧伤</td></tr>
+          <tr data-fam="34"><td class="fam"><b>34. 重大癌症</b><span class="tier t1">极常见</span><em>Major Cancer</em></td><td>特定器官原位癌 ・ 早期前列腺癌 ・ 早期甲状腺癌 ・ 早期神经内分泌肿瘤 ・ 早期膀胱癌 ・ 早期慢性淋巴细胞白血病 ・ 骨髓恶性肿瘤 ・ <span class="gx">早期黑色素瘤</span> ・ <span class="gx">胃肠道间质瘤</span></td><td>原位癌经根治性手术治疗</td><td>重大癌症</td></tr>
+          <tr data-fam="35"><td class="fam"><b>35. 严重头部创伤</b><span class="tier t3">少见</span><em>Major Head Trauma</em></td><td>硬膜下血肿手术 ・ 面部重建手术</td><td>中期严重头部创伤</td><td>严重头部创伤</td></tr>
+          <tr data-fam="36"><td class="fam"><b>36. 器官 / 骨髓移植</b><span class="tier t2">较常见</span><em>Major Organ / Bone Marrow Transplantation</em></td><td>小肠移植 ・ 角膜移植</td><td>主要器官 / 骨髓移植（候补名单）</td><td>主要器官 / 骨髓移植</td></tr>
+          <tr data-fam="37"><td class="fam"><b>37. 医疗过程感染 HIV</b><span class="tier t4">罕见</span><em>Medically Acquired HIV Infection</em></td><td><span class="na">—</span></td><td><span class="na">—</span></td><td><span class="gx">医疗过程感染 HIV</span></td></tr>
+          <tr data-fam="38"><td class="fam"><b>38. 髓质囊性病</b><span class="tier t4">罕见</span><em>Medullary Cystic Disease</em></td><td><span class="na">—</span></td><td><span class="na">—</span></td><td>髓质囊性病</td></tr>
+          <tr data-fam="39"><td class="fam"><b>39. 运动神经元病</b><span class="tier t3">少见</span><em>Motor Neurone Disease</em></td><td>周围神经病变</td><td>早期运动神经元病</td><td>运动神经元病</td></tr>
+          <tr data-fam="40"><td class="fam"><b>40. 臂丛神经多根损伤</b><span class="tier t4">罕见</span><em>Multiple Root of Brachial Plexus Injury</em></td><td><span class="na">—</span></td><td><span class="na">—</span></td><td><span class="gx">臂丛神经多根损伤</span></td></tr>
+          <tr data-fam="41"><td class="fam"><b>41. 多发性硬化症</b><span class="tier t3">少见</span><em>Multiple Sclerosis</em></td><td>早期多发性硬化</td><td>轻度多发性硬化</td><td>多发性硬化症</td></tr>
+          <tr data-fam="42"><td class="fam"><b>42. 肌营养不良症</b><span class="tier t3">少见</span><em>Muscular Dystrophy</em></td><td>脊髓病变或损伤致大小便功能障碍</td><td>中度肌营养不良</td><td>肌营养不良症</td></tr>
+          <tr data-fam="43"><td class="fam"><b>43. 坏死性筋膜炎</b><span class="tier t3">少见</span><em>Necrotising Fasciitis</em></td><td><span class="na">—</span></td><td><span class="na">—</span></td><td>坏死性筋膜炎</td></tr>
+          <tr data-fam="44"><td class="fam"><b>44. 职业感染乙 / 丙型肝炎</b><span class="tier t4">罕见</span><em>Occupationally Acquired Hepatitis B or C</em></td><td><span class="na">—</span></td><td><span class="na">—</span></td><td><span class="gx">职业感染乙型 / 丙型肝炎</span></td></tr>
+          <tr data-fam="45"><td class="fam"><b>45. 心脏瓣膜手术</b><span class="tier t2">较常见</span><em>Heart Valve Surgery</em></td><td>经皮瓣膜成形术或瓣膜切开术</td><td>经皮瓣膜置换或装置修复</td><td>开心式心脏瓣膜手术</td></tr>
+          <tr data-fam="46"><td class="fam"><b>46. 成骨不全症</b><span class="tier t4">罕见</span><em>Osteogenesis Imperfecta</em></td><td><span class="na">—</span></td><td><span class="na">—</span></td><td><span class="gx">成骨不全症（脆骨病）</span></td></tr>
+          <tr data-fam="47"><td class="fam"><b>47. 其他严重冠状动脉疾病</b><span class="tier t2">较常见</span><em>Other Serious Coronary Artery Disease</em></td><td>早期其他严重冠状动脉疾病</td><td>中期其他严重冠状动脉疾病</td><td>其他严重冠状动脉疾病</td></tr>
+          <tr data-fam="48"><td class="fam"><b>48. 瘫痪</b><span class="tier t3">少见</span><em>Paralysis</em></td><td>单肢功能丧失</td><td>单肢功能丧失需使用假肢</td><td>瘫痪（不可逆肢体功能丧失）</td></tr>
+          <tr data-fam="49"><td class="fam"><b>49. 幼年类风湿关节炎</b><span class="tier t4">罕见</span><em>Juvenile Rheumatoid Arthritis</em></td><td><span class="gx">重度幼年类风湿关节炎</span></td><td><span class="na">—</span></td><td><span class="gx">持续性重度幼年类风湿关节炎</span></td></tr>
+          <tr data-fam="50"><td class="fam"><b>50. 植物人状态</b><span class="tier t3">少见</span><em>Persistent Vegetative State</em></td><td><span class="gx">闭锁综合征</span></td><td><span class="na">—</span></td><td>持续性植物人状态</td></tr>
+          <tr data-fam="51"><td class="fam"><b>51. 嗜铬细胞瘤</b><span class="tier t4">罕见</span><em>Pheochromocytoma</em></td><td><span class="na">—</span></td><td><span class="na">—</span></td><td><span class="gx">嗜铬细胞瘤</span></td></tr>
+          <tr data-fam="52"><td class="fam"><b>52. 脊髓灰质炎</b><span class="tier t4">罕见</span><em>Poliomyelitis</em></td><td><span class="na">—</span></td><td><span class="gx">中度脊髓灰质炎</span></td><td>脊髓灰质炎（小儿麻痹症）</td></tr>
+          <tr data-fam="53"><td class="fam"><b>53. 原发性肺动脉高压</b><span class="tier t3">少见</span><em>Primary Pulmonary Hypertension</em></td><td>早期肺动脉高压</td><td>继发性肺动脉高压</td><td>原发性肺动脉高压</td></tr>
+          <tr data-fam="54"><td class="fam"><b>54. 进行性硬皮病</b><span class="tier t3">少见</span><em>Progressive Scleroderma</em></td><td>早期进行性硬皮病</td><td>进行性硬皮病伴 CREST 综合征</td><td>进行性硬皮病</td></tr>
+          <tr data-fam="55"><td class="fam"><b>55. 进行性核上性麻痹</b><span class="tier t4">罕见</span><em>Progressive Supranuclear Palsy</em></td><td><span class="gx">较轻度进行性核上性麻痹</span></td><td><span class="na">—</span></td><td>进行性核上性麻痹</td></tr>
+          <tr data-fam="56"><td class="fam"><b>56. 狂犬病</b><span class="tier t4">罕见</span><em>Rabies</em></td><td><span class="na">—</span></td><td><span class="na">—</span></td><td><span class="gx">狂犬病</span></td></tr>
+          <tr data-fam="57"><td class="fam"><b>57. 全小肠切除</b><span class="tier t4">罕见</span><em>Resection of the Whole Small Intestine</em></td><td><span class="na">—</span></td><td><span class="na">—</span></td><td><span class="gx">全小肠切除术（十二指肠、空肠及回肠）</span></td></tr>
+          <tr data-fam="58"><td class="fam"><b>58. 细菌性脑膜炎</b><span class="tier t3">少见</span><em>Bacterial Meningitis</em></td><td>细菌性脑膜炎（完全康复）</td><td><span class="gx">轻度细菌性脑膜炎</span></td><td>严重细菌性脑膜炎</td></tr>
+          <tr data-fam="59"><td class="fam"><b>59. 重度心肌病</b><span class="tier t3">少见</span><em>Severe Cardiomyopathy</em></td><td><span class="na">—</span></td><td><span class="na">—</span></td><td><span class="gx">重度心肌病</span></td></tr>
+          <tr data-fam="60"><td class="fam"><b>60. 克罗恩病</b><span class="tier t3">少见</span><em>Crohn's Disease</em></td><td><span class="gx">较轻度克罗恩病</span></td><td><span class="na">—</span></td><td><span class="gx">重度克罗恩病</span></td></tr>
+          <tr data-fam="61"><td class="fam"><b>61. 艾森曼格综合征</b><span class="tier t3">少见</span><em>Eisenmenger's Syndrome</em></td><td><span class="na">—</span></td><td><span class="gx">重度艾森曼格综合征（中期）</span></td><td><span class="gx">重度艾森曼格综合征</span></td></tr>
+          <tr data-fam="62"><td class="fam"><b>62. 严重脑炎</b><span class="tier t3">少见</span><em>Severe Encephalitis</em></td><td>病毒性脑炎（完全康复）</td><td>轻度病毒性脑炎</td><td>严重脑炎</td></tr>
+          <tr data-fam="63"><td class="fam"><b>63. 重度血友病</b><span class="tier t3">少见</span><em>Severe Haemophilia</em></td><td><span class="na">—</span></td><td><span class="na">—</span></td><td><span class="gx">重度血友病</span></td></tr>
+          <tr data-fam="64"><td class="fam"><b>64. 重度重症肌无力</b><span class="tier t3">少见</span><em>Severe Myasthenia Gravis</em></td><td><span class="na">—</span></td><td><span class="na">—</span></td><td>重度重症肌无力</td></tr>
+          <tr data-fam="65"><td class="fam"><b>65. 重度肺纤维化</b><span class="tier t3">少见</span><em>Severe Pulmonary Fibrosis</em></td><td><span class="na">—</span></td><td><span class="na">—</span></td><td><span class="gx">重度肺纤维化</span></td></tr>
+          <tr data-fam="66"><td class="fam"><b>66. 中风</b><span class="tier t1">极常见</span><em>Stroke</em></td><td>脑动脉瘤手术（血管内 / 开颅） ・ 脑分流器植入</td><td>颈动脉手术</td><td>中风伴永久性神经功能障碍</td></tr>
+          <tr data-fam="67"><td class="fam"><b>67. 特发性脊柱侧弯</b><span class="tier t4">罕见</span><em>Idiopathic Scoliosis</em></td><td><span class="na">—</span></td><td><span class="na">—</span></td><td><span class="gx">特发性脊柱侧弯手术</span></td></tr>
+          <tr data-fam="68"><td class="fam"><b>68. 主动脉手术</b><span class="tier t2">较常见</span><em>Surgery to Aorta</em></td><td>大型无症状主动脉瘤</td><td>微创主动脉手术</td><td>主动脉手术</td></tr>
+          <tr data-fam="69"><td class="fam"><b>69. 系统性红斑狼疮</b><span class="tier t3">少见</span><em>Systemic Lupus Erythematosus</em></td><td>轻度系统性红斑狼疮</td><td><span class="gx">中重度系统性红斑狼疮伴狼疮性肾炎</span></td><td>系统性红斑狼疮伴狼疮性肾炎</td></tr>
+          <tr data-fam="70"><td class="fam"><b>70. 末期疾病</b><span class="tier t3">少见</span><em>Terminal Illness</em></td><td><span class="na">—</span></td><td><span class="na">—</span></td><td><span class="gx">末期疾病</span><span class="note-inline">Term 由基本计划（身故保障）承保 ‡</span></td></tr>
+          <tr data-fam="71"><td class="fam"><b>71. 结核性脑膜炎</b><span class="tier t4">罕见</span><em>Tuberculosis Meningitis</em></td><td><span class="na">—</span></td><td><span class="na">—</span></td><td><span class="gx">结核性脑膜炎</span></td></tr>
+          <tr data-fam="72"><td class="fam"><b>72. 1 型青少年脊髓性肌萎缩</b><span class="tier t4">罕见</span><em>Type 1 Juvenile Spinal Muscular Atrophy</em></td><td><span class="na">—</span></td><td><span class="na">—</span></td><td><span class="gx">1 型青少年脊髓性肌萎缩</span></td></tr>
+          <tr data-fam="73"><td class="fam"><b>73. 威尔逊病</b><span class="tier t4">罕见</span><em>Wilson's Disease</em></td><td><span class="na">—</span></td><td><span class="na">—</span></td><td><span class="gx">威尔逊病（肝豆状核变性）</span></td></tr>
         </tbody>
       </table>
     </div>
   </div>
 
   <div class="fnote">
+    「常见程度」为定性分级、仅供参考：依据新加坡人寿保险协会（LIA）及各保险公司历年公开理赔统计——癌症、心肌梗塞、中风三项合计约占重疾理赔九成（极常见），其后为肾衰竭、心脏手术类、神经系统疾病等；「罕见」多为发病率极低的遗传性、感染性或儿童期病况。该分级不基于逐病况的精确发病率数据，也不代表任何个人的患病风险。<br>
     * 冠状动脉血管成形术及其他侵入性治疗：两类产品均只赔保额 10%（上限 S$25,000）、限一次，赔付后相应扣减保额。<br>
     † 胰腺炎家族：Term 在重度阶段承保「急性坏死出血性胰腺炎」；GPP / UCC 将其提前至早期阶段（同样 100% 赔付），重度阶段对应病况为「慢性复发性胰腺炎」，两者定义不同。<br>
     ‡ 末期疾病（预期存活不超过 12 个月）：Term 在基本计划的身故 / 末期疾病保障中承保，并非没有保障，只是不在其重疾附加险清单内。<br>
@@ -348,5 +366,27 @@ th.sp,td.sp2,td.sp3{white-space:normal}
 </section>
 
 </div>
+
+<script>
+(function(){
+  // 常见程度排序:按理赔统计定性分级(极常见→较常见→少见→罕见),同级内按临床相关性排列
+  var ORDER=[34,24,66, 19,14,6,47,45,68,7,5,26,20,21,36, 70,28,13,35,10,9,16,30,48,32,50,41,39,59,53,65,69,29,27,58,62,22,11,12,2,60,33,64,42,61,63,54,25,43, 1,3,4,8,15,17,18,23,31,37,38,40,44,46,49,51,52,55,56,57,67,71,72,73];
+  var tbody=document.querySelector('#master tbody');
+  var bDef=document.getElementById('sortDef'),bFreq=document.getElementById('sortFreq');
+  if(!tbody||!bDef||!bFreq)return;
+  var rows=Array.prototype.slice.call(tbody.querySelectorAll('tr'));
+  function fam(r){return parseInt(r.getAttribute('data-fam'),10)||999}
+  function apply(byFreq){
+    var sorted=rows.slice().sort(byFreq
+      ? function(a,b){return ORDER.indexOf(fam(a))-ORDER.indexOf(fam(b))}
+      : function(a,b){return fam(a)-fam(b)});
+    sorted.forEach(function(r){tbody.appendChild(r)});
+    bDef.classList.toggle('on',!byFreq);
+    bFreq.classList.toggle('on',byFreq);
+  }
+  bDef.addEventListener('click',function(){apply(false)});
+  bFreq.addEventListener('click',function(){apply(true)});
+})();
+</script>
 </body>
 </html>
