@@ -146,6 +146,27 @@ td .b-red{color:var(--red);font-weight:600}
 .mx-tbl table th:nth-child(2),.mx-tbl table th:nth-child(3),.mx-tbl table th:nth-child(4){background:var(--navy-tint)}
 .mx-tbl table td:nth-child(2),.mx-tbl table td:nth-child(3),.mx-tbl table td:nth-child(4){background:transparent}
 
+/* ---------- 病况清单 ---------- */
+.cond-stats{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:18px}
+.cstat{flex:1;min-width:150px;background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px 16px;text-align:center}
+.cstat b{display:block;font-size:24px;font-weight:800;color:var(--navy);line-height:1.2}
+.cstat.plus b{color:var(--gold-deep)}
+.cstat span{font-size:12px;color:var(--muted)}
+.cond-grid{display:grid;gap:8px;grid-template-columns:1fr}
+@media(min-width:560px){.cond-grid{grid-template-columns:1fr 1fr}}
+@media(min-width:820px){.cond-grid{grid-template-columns:1fr 1fr 1fr}}
+.cond{background:#fff;border:1px solid var(--line);border-radius:10px;padding:8px 12px;font-size:12.5px;line-height:1.5;color:var(--ink)}
+.cond em{display:block;font-style:normal;font-size:10.5px;color:var(--muted)}
+.cond.plus{background:var(--gold-tint);border-color:#EADFC6}
+.cond-details{margin-top:16px;background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.cond-details summary{cursor:pointer;padding:14px 18px;font-size:13.5px;font-weight:600;color:var(--navy);list-style:none;display:flex;align-items:center;justify-content:space-between}
+.cond-details summary::-webkit-details-marker{display:none}
+.cond-details summary::after{content:"展开 ▾";font-size:12px;font-weight:400;color:var(--gold-deep)}
+.cond-details[open] summary::after{content:"收起 ▴"}
+.cond-details .cond-grid{padding:0 16px 16px}
+.cond-h{margin:22px 0 10px;font-size:14.5px;font-weight:600;color:var(--navy);display:flex;align-items:center;gap:8px}
+.cond-h .badge{font-size:11px;font-weight:600;border-radius:12px;padding:2px 10px;background:var(--gold-tint);color:var(--gold-deep);border:1px solid #EADFC6}
+
 /* ---------- cash value bars ---------- */
 .trig{display:grid;gap:18px}
 @media(min-width:680px){.trig{grid-template-columns:1fr 1fr 1fr}}
@@ -306,6 +327,7 @@ body.locked #pwGate{display:flex}
   <a href="#plans">方案速览</a>
   <a href="#premium">保费对比</a>
   <a href="#benefits">保障对比</a>
+  <a href="#conditions">病况清单对比</a>
   <a href="#cashback">65·84·100岁拿回多少</a>
   <a href="#matrix">报价矩阵</a>
   <a href="#notes">重要说明</a>
@@ -509,6 +531,112 @@ body.locked #pwGate{display:flex}
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
       <span>两个方案的重疾赔付都是「加速给付」结构：理赔早期 / 中期 / 重度重疾会相应扣减身故保额。冠状动脉血管成形术（Angioplasty）两方案均只赔保额 10%（上限 S$25,000）、限一次。</span>
     </div>
+  </div>
+</section>
+
+<!-- ================= 病况清单对比 ================= -->
+<section id="conditions">
+  <div class="sec-eyebrow">CONDITIONS COVERED</div>
+  <h2 class="sec-title serif">重度重疾病况清单：43 种 vs 73 种</h2>
+  <p class="sec-sub">Term（方案 A）的重度重疾覆盖 43 种病况；GPP / UCC 使用 AIA 新版更长的病况清单，重度共 73 种——Term 的 43 种全部包含在内，多出的 30 种在下方以金色高亮列出。中文名称仅供理解，理赔以保单英文定义为准。</p>
+
+  <div class="cond-stats">
+    <div class="cstat"><b>43 种</b><span>Term 重度重疾</span></div>
+    <div class="cstat"><b>73 种</b><span>GPP / UCC 重度重疾</span></div>
+    <div class="cstat plus"><b>+30 种</b><span>GPP / UCC 多保的病况</span></div>
+  </div>
+
+  <div class="cond-h">GPP / UCC 多保的 30 种重度病况 <span class="badge">Term 不保</span></div>
+  <div class="cond-grid">
+    <div class="cond plus">后天性脑损伤<em>Acquired Brain Damage</em></div>
+    <div class="cond plus">急性重度溃疡性结肠炎<em>Acute Severe Ulcerative Colitis</em></div>
+    <div class="cond plus">艾迪生病 / 自身免疫性肾上腺炎<em>Addison Disease or Autoimmune Adrenalitis</em></div>
+    <div class="cond plus">肾上腺腺瘤切除术<em>Adrenalectomy for Adrenal Adenoma</em></div>
+    <div class="cond plus">胆道闭锁接受肝移植<em>Biliary Atresia having undergone Liver Transplantation</em></div>
+    <div class="cond plus">脑部手术<em>Brain Surgery</em></div>
+    <div class="cond plus">慢性自身免疫性肝炎<em>Chronic Auto-Immune Hepatitis</em></div>
+    <div class="cond plus">埃博拉病毒感染<em>Ebola</em></div>
+    <div class="cond plus">全身性破伤风<em>Generalized Tetanus</em></div>
+    <div class="cond plus">感染性心内膜炎<em>Infective Endocarditis</em></div>
+    <div class="cond plus">胰岛素依赖型糖尿病<em>Insulin Dependent Diabetes Mellitus</em></div>
+    <div class="cond plus">青少年亨廷顿病<em>Juvenile Huntington Disease</em></div>
+    <div class="cond plus">医疗过程中感染 HIV<em>Medically Acquired HIV Infection</em></div>
+    <div class="cond plus">臂丛神经多根损伤<em>Multiple Root of Brachial Plexus Injury</em></div>
+    <div class="cond plus">职业感染乙型 / 丙型肝炎<em>Occupationally Acquired Hepatitis B or C</em></div>
+    <div class="cond plus">成骨不全症（脆骨病）<em>Osteogenesis Imperfecta</em></div>
+    <div class="cond plus">持续性重度幼年类风湿关节炎<em>Persistent Severe Juvenile Rheumatoid Arthritis</em></div>
+    <div class="cond plus">嗜铬细胞瘤<em>Pheochromocytoma</em></div>
+    <div class="cond plus">狂犬病<em>Rabies</em></div>
+    <div class="cond plus">全小肠切除术<em>Resection of the Whole Small Intestine</em></div>
+    <div class="cond plus">重度心肌病<em>Severe Cardiomyopathy</em></div>
+    <div class="cond plus">重度克罗恩病<em>Severe Crohn's Disease</em></div>
+    <div class="cond plus">重度艾森曼格综合征<em>Severe Eisenmenger's Syndrome</em></div>
+    <div class="cond plus">重度血友病<em>Severe Haemophilia</em></div>
+    <div class="cond plus">重度肺纤维化<em>Severe Pulmonary Fibrosis</em></div>
+    <div class="cond plus">特发性脊柱侧弯手术<em>Surgery for Idiopathic Scoliosis</em></div>
+    <div class="cond plus">末期疾病 *<em>Terminal Illness</em></div>
+    <div class="cond plus">结核性脑膜炎<em>Tuberculosis Meningitis</em></div>
+    <div class="cond plus">1 型青少年脊髓性肌萎缩<em>Type 1 Juvenile Spinal Muscular Atrophy</em></div>
+    <div class="cond plus">威尔逊病（肝豆状核变性）<em>Wilson's Disease</em></div>
+  </div>
+
+  <details class="cond-details">
+    <summary>两边都保的 43 种重度病况（含癌症、心梗、中风等 LIA 37 种标准定义大病）</summary>
+    <div class="cond-grid">
+      <div class="cond">重大癌症<em>Major Cancer</em></div>
+      <div class="cond">特定严重程度的心肌梗塞<em>Heart Attack of Specified Severity</em></div>
+      <div class="cond">中风伴永久性神经功能障碍<em>Stroke with Permanent Neurological Deficit</em></div>
+      <div class="cond">末期肾衰竭<em>End Stage Kidney Failure</em></div>
+      <div class="cond">末期肝衰竭<em>End Stage Liver Failure</em></div>
+      <div class="cond">末期肺病<em>End Stage Lung Disease</em></div>
+      <div class="cond">冠状动脉搭桥手术<em>Coronary Artery By-pass Surgery</em></div>
+      <div class="cond">冠状动脉血管成形术及其他侵入性治疗<em>Angioplasty &amp; Other Invasive Treatment for Coronary Artery</em></div>
+      <div class="cond">其他严重冠状动脉疾病<em>Other Serious Coronary Artery Disease</em></div>
+      <div class="cond">开心式心脏瓣膜手术<em>Open-Heart Heart Valve Surgery</em></div>
+      <div class="cond">主动脉手术<em>Surgery to Aorta</em></div>
+      <div class="cond">原发性肺动脉高压<em>Primary Pulmonary Hypertension</em></div>
+      <div class="cond">主要器官 / 骨髓移植<em>Major Organ / Bone Marrow Transplantation</em></div>
+      <div class="cond">阿尔茨海默病 / 重度失智<em>Alzheimer's Disease / Severe Dementia</em></div>
+      <div class="cond">原发性帕金森病<em>Idiopathic Parkinson's Disease</em></div>
+      <div class="cond">运动神经元病<em>Motor Neurone Disease</em></div>
+      <div class="cond">多发性硬化症<em>Multiple Sclerosis</em></div>
+      <div class="cond">良性脑肿瘤<em>Benign Brain Tumour</em></div>
+      <div class="cond">严重头部创伤<em>Major Head Trauma</em></div>
+      <div class="cond">昏迷<em>Coma</em></div>
+      <div class="cond">持续性植物人状态<em>Persistent Vegetative State (Apallic Syndrome)</em></div>
+      <div class="cond">瘫痪（不可逆肢体功能丧失）<em>Paralysis (Irreversible Loss of Use of Limbs)</em></div>
+      <div class="cond">失明（不可逆视力丧失）<em>Blindness (Irreversible Loss of Sight)</em></div>
+      <div class="cond">失聪（不可逆听力丧失）<em>Deafness (Irreversible Loss of Hearing)</em></div>
+      <div class="cond">不可逆语言能力丧失<em>Irreversible Loss of Speech</em></div>
+      <div class="cond">丧失独立生活能力<em>Loss of Independent Existence</em></div>
+      <div class="cond">严重烧伤<em>Major Burns</em></div>
+      <div class="cond">暴发性肝炎<em>Fulminant Hepatitis</em></div>
+      <div class="cond">因输血或职业感染的 HIV<em>HIV Due to Blood Transfusion and Occupationally Acquired HIV</em></div>
+      <div class="cond">不可逆再生障碍性贫血<em>Irreversible Aplastic Anaemia</em></div>
+      <div class="cond">克雅二氏病<em>Creutzfeldt-Jakob Disease</em></div>
+      <div class="cond">肌营养不良症<em>Muscular Dystrophy</em></div>
+      <div class="cond">重度重症肌无力<em>Severe Myasthenia Gravis</em></div>
+      <div class="cond">严重细菌性脑膜炎<em>Severe Bacterial Meningitis</em></div>
+      <div class="cond">严重脑炎<em>Severe Encephalitis</em></div>
+      <div class="cond">脊髓灰质炎（小儿麻痹症）<em>Poliomyelitis</em></div>
+      <div class="cond">进行性硬皮病<em>Progressive Scleroderma</em></div>
+      <div class="cond">进行性核上性麻痹<em>Progressive Supranuclear Palsy</em></div>
+      <div class="cond">系统性红斑狼疮伴狼疮性肾炎<em>Systemic Lupus Erythematosus with Lupus Nephritis</em></div>
+      <div class="cond">坏死性筋膜炎<em>Necrotising Fasciitis</em></div>
+      <div class="cond">象皮病<em>Elephantiasis</em></div>
+      <div class="cond">髓质囊性病<em>Medullary Cystic Disease</em></div>
+      <div class="cond">急性坏死出血性胰腺炎 **<em>Acute Necrohemorrhagic Pancreatitis</em></div>
+    </div>
+  </details>
+
+  <div class="same-note">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+    <span>早期 / 中期病况数同样是 GPP / UCC 更多：早期 <b style="color:inherit">42 vs 32</b> 种、中期 <b style="color:inherit">35 vs 29</b> 种；GPP / UCC 另有 5 种特殊病况津贴（糖尿病并发症、骨质疏松、重度类风湿关节炎、登革出血热、因原位癌 / 恶性病变切除乳房）。</span>
+  </div>
+
+  <div class="cash-note" style="border-top:0;background:transparent;padding:12px 4px 0">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+    <span>* 末期疾病在 Term 方案中由基本计划（身故保障部分）承保，并非没有保障，只是不在其重疾附加险清单内。&nbsp;** 胰腺炎类：GPP / UCC 清单在早期阶段承保「急性坏死出血性胰腺炎」（同样 100% 赔付），重度阶段对应病况为「慢性复发性胰腺炎」，两边均有覆盖、定义略有不同。清单按 ECPL (IV) on GPP (IV) 与 Secure Flexi Term 附加险产品摘要（2025 年 7 月版）整理；UCC 病况范围以其自身产品摘要为准。</span>
   </div>
 </section>
 
