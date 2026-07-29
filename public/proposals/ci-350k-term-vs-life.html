@@ -491,8 +491,8 @@ body.locked #pwGate{display:flex}
           </tr>
           <tr>
             <td>覆盖病况数</td>
-            <td>重度 43 种（含 LIA 37 种标准定义）<br>早期 32 种 + 中期 29 种</td>
-            <td>重度 73 种 + 早期 42 种 + 中期 35 种<span class="sub-line">另含糖尿病并发症等特殊病况津贴（最多 5 次）</span></td>
+            <td>重度 43 种（含 LIA 37 种标准定义）<br>早期 32 种 + 中期 29 种<span class="sub-line">另含 5 种特殊病况津贴（每种 1 次，各上限 S$25,000）</span></td>
+            <td>重度 73 种 + 早期 42 种 + 中期 35 种<span class="sub-line">另含 15 种特殊病况津贴（合计最多 5 次），详见病况清单对比</span></td>
           </tr>
           <tr>
             <td>身故 / 末期疾病</td>
@@ -631,7 +631,70 @@ body.locked #pwGate{display:flex}
 
   <div class="same-note">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
-    <span>早期 / 中期病况数同样是 GPP / UCC 更多：早期 <b style="color:inherit">42 vs 32</b> 种、中期 <b style="color:inherit">35 vs 29</b> 种；GPP / UCC 另有 5 种特殊病况津贴（糖尿病并发症、骨质疏松、重度类风湿关节炎、登革出血热、因原位癌 / 恶性病变切除乳房）。</span>
+    <span>早期 / 中期病况数同样是 GPP / UCC 更多：早期 <b style="color:inherit">42 vs 32</b> 种、中期 <b style="color:inherit">35 vs 29</b> 种；特殊病况津贴也是 <b style="color:inherit">15 vs 5</b> 种，见下方对比。</span>
+  </div>
+
+  <div class="cond-h" style="margin-top:26px">特殊病况津贴：5 种 vs 15 种 <span class="badge">额外赔付 · 不扣保额</span></div>
+  <div class="tbl-card">
+    <div class="tbl-scroll">
+      <table style="min-width:640px">
+        <thead><tr><th style="width:22%">理赔逻辑</th><th>方案 A · Term</th><th>方案 B · GPP（UCC 同框架）</th></tr></thead>
+        <tbody>
+          <tr>
+            <td>覆盖病况</td>
+            <td>5 种</td>
+            <td>15 种<span class="sub-line">含 Term 的全部 5 种</span></td>
+          </tr>
+          <tr>
+            <td>单次赔多少</td>
+            <td>附加险保额的 20%，上限 S$25,000<span class="sub-line">20万 / 35万 两档下均触顶 = 每次 S$25,000</span></td>
+            <td>Accumulator 部分保额的 20%，上限 S$25,000<span class="sub-line">= 每次<span class="v20">S$8,000（20万方案 Accumulator 为 S$40,000）</span><span class="v35">S$14,000（35万方案 Accumulator 为 S$70,000）</span></span></td>
+          </tr>
+          <tr>
+            <td>理赔次数</td>
+            <td>每种病况限 1 次（共 5 种）<span class="sub-line">理论最高合计 5 × S$25,000 = S$125,000</span></td>
+            <td>每种病况限 1 次，<span class="b-navy">合计最多 5 次</span><span class="sub-line">理论最高合计 5 ×<span class="v20">S$8,000 = S$40,000</span><span class="v35">S$14,000 = S$70,000</span></span></td>
+          </tr>
+          <tr>
+            <td>理赔条件</td>
+            <td>85 岁保单周年前确诊 + 确诊后存活 7 天<span class="sub-line">但附加险须仍在保：Term 保到 64 岁，之后需续保才延续</span></td>
+            <td>85 岁保单周年前确诊 + 确诊后存活 7 天<span class="sub-line">保单本身保到 100 岁，特殊病况津贴实际可用到 85 岁</span></td>
+          </tr>
+          <tr>
+            <td>对保额的影响</td>
+            <td><span class="b-green">不扣减</span>重疾 / 身故保额，纯额外赔付</td>
+            <td><span class="b-green">不扣减</span>重疾 / 身故保额，纯额外赔付</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="cash-note">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+      <span><b>一句话讲给客户：</b>特殊病况是「小病慰问金」——查出这些不算重疾的毛病，保险公司额外给一笔小钱，主保额一分不动。Term 单次给得多（每次 2.5 万），但只有 5 种、跟着保单 64 岁结束；GPP / UCC 覆盖 15 种、可用到 85 岁，单次金额较小。</span>
+    </div>
+  </div>
+
+  <div class="cond-h" style="margin-top:22px">15 种特殊病况清单 <span class="badge">金色 = 仅 GPP / UCC 有</span></div>
+  <div class="cond-grid">
+    <div class="cond">糖尿病并发症<em>Diabetic Complications</em></div>
+    <div class="cond">骨质疏松<em>Osteoporosis</em></div>
+    <div class="cond">重度类风湿关节炎<em>Severe Rheumatoid Arthritis</em></div>
+    <div class="cond">登革出血热<em>Dengue Haemorrhagic Fever</em></div>
+    <div class="cond">因原位癌 / 恶性病变切除乳房<em>Mastectomy due to Carcinoma in situ or Malignant Breast Condition</em></div>
+    <div class="cond plus">因癌症切除子宫<em>Hysterectomy due to Cancer</em></div>
+    <div class="cond plus">因癌症切除外阴<em>Vulvectomy due to Cancer</em></div>
+    <div class="cond plus">重度痛风<em>Severe Gout</em></div>
+    <div class="cond plus">需手术的坏死性筋膜炎<em>Necrotising Fasciitis requiring Surgery</em></div>
+    <div class="cond plus">妥瑞氏症（抽动秽语综合征）<em>Tourette Syndrome</em></div>
+    <div class="cond plus">注意力缺陷多动症 ADHD<em>Attention-deficit Hyperactivity Disorder</em></div>
+    <div class="cond plus">自闭症谱系障碍<em>Autism Spectrum Disorder</em></div>
+    <div class="cond plus">读写障碍<em>Dyslexia</em></div>
+    <div class="cond plus">川崎病伴心脏并发症<em>Kawasaki Disease with Heart Complications</em></div>
+    <div class="cond plus">风湿热伴心脏受累<em>Rheumatic Fever with Heart Involvement</em></div>
+  </div>
+  <div class="cash-note" style="border-top:0;background:transparent;padding:10px 4px 0">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+    <span>妥瑞氏症、自闭症、读写障碍、川崎病、风湿热设 90 天等待期，ADHD 设 1 年等待期（自保单生效 / 复效起算）；这几项多为儿童期确诊的病况，主要在为孩子投保时有意义，对成年被保人实际触发概率低。既往已确诊的病况不在保障范围内。</span>
   </div>
 
   <div class="cash-note" style="border-top:0;background:transparent;padding:12px 4px 0">
