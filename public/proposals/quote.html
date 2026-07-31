@@ -289,7 +289,7 @@ body.locked #pwGate{display:flex}
       <div class="bene-in">
         <div class="hplans">
           <div class="hplan" style="--pc:var(--navy)">
-            <h4>私立 A<small>HealthShield Gold Max A ＋ VitalHealth Pro A（可加 Cancer Care Pro）</small></h4>
+            <h4>私立 A（私立医院单人病房）<small>HealthShield Gold Max A ＋ VitalHealth Pro A（可加 Cancer Care Pro）</small></h4>
             <div class="hfeat"><b class="k">病房选择</b>私立医院标准单人房及以下，也可使用公立医院。</div>
             <div class="hfeat"><b class="k">年度限额</b>由 AIA 合作医生治疗最高 <b>S$2,000,000</b> / 保单年度（一般 S$1,000,000）。</div>
             <div class="hfeat"><b class="k">免赔额</b>S$3,500 / 保单年度。</div>
@@ -298,7 +298,7 @@ body.locked #pwGate{display:flex}
             <div class="hfeat"><b class="k">既往症</b>投保前已有疾病一般不保或除外承保，以核保为准。</div>
           </div>
           <div class="hplan" style="--pc:var(--gold-deep)">
-            <h4>公立 B<small>HealthShield Gold Max B ＋ VitalHealth Pro B</small></h4>
+            <h4>公立 B（公立医院单人病房）<small>HealthShield Gold Max B ＋ VitalHealth Pro B</small></h4>
             <div class="hfeat"><b class="k">病房选择</b>公立医院 A 级病房及以下。</div>
             <div class="hfeat"><b class="k">年度限额</b>由 AIA 合作医生治疗最高 <b>S$1,200,000</b> / 保单年度（一般 S$1,000,000）。</div>
             <div class="hfeat"><b class="k">免赔额</b>S$3,500 / 保单年度（A 级病房）。</div>
@@ -307,7 +307,7 @@ body.locked #pwGate{display:flex}
             <div class="hfeat"><b class="k">使用提醒</b>若选择私立医院住院，费用通常按 70% 折算后再计算理赔。</div>
           </div>
           <div class="hplan" style="--pc:#B8A98C">
-            <h4>公立 B Lite<small>HealthShield Gold Max B Lite（仅限公民 / PR，预算之选）</small></h4>
+            <h4>公立 B Lite（公立医院 B1 病房）<small>HealthShield Gold Max B Lite（仅限公民 / PR，预算之选）</small></h4>
             <div class="hfeat"><b class="k">病房选择</b>公立医院 B1 级病房及以下。</div>
             <div class="hfeat"><b class="k">年度限额</b>S$300,000 / 保单年度。</div>
             <div class="hfeat"><b class="k">免赔额</b>S$2,500 / 保单年度（B1 病房）。</div>
@@ -601,7 +601,7 @@ function render(){
     famTotal+=subtotal;famCash+=cash;famCpf+=cpf;
     const prod=paProduct(ps.age);
     const isLocal=ps.res==='local';
-    const planOpts=isLocal?[['A','私立 A'],['B','公立 B'],['BL','公立 B Lite']]:[['A','私立 A'],['B','公立 B']];
+    const planOpts=isLocal?[['A','私立 A（私立医院单人病房）'],['B','公立 B（公立医院单人病房）'],['BL','公立 B Lite（公立医院 B1 病房）']]:[['A','私立 A（私立医院单人病房）'],['B','公立 B（公立医院单人病房）']];
     const paPlans=prod==='adults'?[1,2,3,4]:[1,2,3];
     const el=document.createElement('div'); el.className='member';
     el.innerHTML=`
