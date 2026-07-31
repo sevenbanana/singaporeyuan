@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="noindex">
-<title>家庭保障报价器 · 住院险 + 意外险 | 新加坡小圆姐</title>
+<title>家庭保障方案测算 · 住院险 + 意外险 | 新加坡小圆姐</title>
 <style>
 :root{
   --navy:#1B2A4A; --navy-soft:#2E4068; --navy-tint:#EEF1F7;
@@ -115,6 +115,41 @@ tr.grp td{background:#F4F1E9;color:var(--gold-deep);font-weight:700;font-size:12
 .hl-badge{display:inline-block;background:var(--gold-deep);color:#fff;font-size:10px;font-weight:700;border-radius:6px;padding:1.5px 7px;margin-left:7px;letter-spacing:.04em;white-space:nowrap}
 .bene-note{padding:12px 18px;background:#FBFAF5;border-top:1px solid var(--line);font-size:12px;color:var(--muted);line-height:1.75}
 .bene-note a{color:var(--gold-deep)}
+.bene-in td:first-child,.bene-in th:first-child{min-width:190px}
+
+/* hospital plan cards */
+.hplans{display:grid;gap:14px;padding:16px}
+@media(min-width:800px){.hplans{grid-template-columns:1fr 1fr 1fr}}
+.hplan{border:1px solid var(--line);border-radius:14px;overflow:hidden;border-top:3px solid var(--pc,var(--gold-deep))}
+.hplan h4{padding:11px 14px;background:linear-gradient(150deg,#F2F5FA,#FBFAF7);border-bottom:1px solid var(--line);color:var(--navy);font-size:14.5px}
+.hplan h4 small{display:block;font-weight:400;font-size:11px;color:var(--muted);margin-top:1px;line-height:1.6}
+.hfeat{padding:9px 14px;border-bottom:1px dashed var(--line);font-size:12.5px;line-height:1.7;color:#3B4358}
+.hfeat:last-child{border-bottom:0}
+.hfeat b.k{display:block;color:var(--navy);font-size:12px}
+
+/* claims examples */
+.claims{display:grid;gap:18px}
+@media(min-width:680px){.claims{grid-template-columns:1fr 1fr}}
+.ccard{background:#fff;border:1px solid var(--line);border-radius:16px;padding:18px}
+.ccard h3{font-size:16px;color:var(--navy)}
+.ccard .scope{font-size:12px;color:var(--muted);margin-bottom:10px}
+.bill{border:1px solid var(--line);border-radius:12px;padding:14px;margin-top:12px}
+.bill-title{display:flex;justify-content:space-between;align-items:center;font-weight:700;color:var(--navy);margin-bottom:9px;font-size:13.5px}
+.bill-title .amt{font-size:16px}
+.calc{display:grid;grid-template-columns:1fr auto;gap:4px 12px;font-size:12.5px}
+.calc .k{color:var(--muted)}
+.calc .self,.calc .self+div{font-weight:700;color:var(--red);padding-top:7px;margin-top:3px;border-top:1px dashed var(--line)}
+.calc .claim,.calc .claim+div{font-weight:700;color:var(--green);padding-top:7px;margin-top:3px;border-top:1px dashed var(--line)}
+.split{margin-top:10px}
+.split-bar{display:flex;height:9px;border-radius:6px;overflow:hidden;background:var(--red-tint)}
+.split-bar i{display:block;height:100%}
+.split-bar .s-claim{background:var(--green)}
+.split-bar .s-self{background:var(--red)}
+.split-legend{display:flex;flex-wrap:wrap;gap:3px 14px;margin-top:7px;font-size:11px;color:var(--muted)}
+.split-legend .dot{display:inline-block;width:8px;height:8px;border-radius:2px;margin-right:5px;vertical-align:1px}
+.split-legend .dot.claim{background:var(--green)}
+.split-legend .dot.self{background:var(--red)}
+.same-note{background:var(--green-tint);color:#176B48;border-radius:11px;padding:11px 13px;margin-top:12px;font-size:12.5px;line-height:1.7}
 
 /* family total bar */
 #totbar{position:fixed;left:0;right:0;bottom:0;z-index:50;background:var(--navy);color:#fff;box-shadow:0 -6px 24px rgba(16,42,67,.25)}
@@ -170,7 +205,7 @@ body.locked #pwGate{display:flex}
 <div id="pwGate">
   <div class="pw-card">
     <div class="pw-brand">新加坡小圆姐 · SINGAPOREYUAN</div>
-    <h2 class="serif">家庭保障报价器</h2>
+    <h2 class="serif">家庭保障方案测算</h2>
     <p>请输入访问密码查看</p>
     <form id="pwForm">
       <input id="pwInput" type="password" autocomplete="off" placeholder="访问密码">
@@ -199,7 +234,7 @@ body.locked #pwGate{display:flex}
 <header>
   <div class="hd-in">
     <div class="hd-tag">FAMILY PROTECTION QUOTE</div>
-    <h1>家庭保障报价器<br><em>住院险</em> + <em>意外险</em>，一次算清全家</h1>
+    <h1>家庭保障方案测算<br><em>住院险</em> + <em>意外险</em>，一次算清全家</h1>
     <div class="hd-sub">输入年龄和身份，保障和保费自动算好；金色标注是小圆姐提醒你要注意的地方。</div>
     <div class="hd-pills">
       <span class="hd-pill solid">支持多位家庭成员</span>
@@ -247,7 +282,120 @@ body.locked #pwGate{display:flex}
   <div class="sec-eyebrow">STEP 3 · COVERAGE DETAILS</div>
   <h2 class="sec-title serif">保障内容速查</h2>
   <p class="sec-sub">金色行 = 最常用的理赔项目。完整条款以保单合同为准。</p>
-  <div id="beneTables"></div>
+  <div id="beneTables">
+    <details class="bene" open>
+      <summary><div><div class="bt">住院险对比：私立 A ／ 公立 B ／ 公立 B Lite</div><div class="bs">HealthShield Gold Max + VitalHealth Pro</div></div>
+        <svg class="arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="m6 9 6 6 6-6"/></svg></summary>
+      <div class="bene-in">
+        <div class="hplans">
+          <div class="hplan" style="--pc:var(--navy)">
+            <h4>私立 A<small>HealthShield Gold Max A ＋ VitalHealth Pro A（可加 Cancer Care Pro）</small></h4>
+            <div class="hfeat"><b class="k">病房选择</b>私立医院标准单人房及以下，也可使用公立医院。</div>
+            <div class="hfeat"><b class="k">年度限额</b>由 AIA 合作医生治疗最高 <b>S$2,000,000</b> / 保单年度（一般 S$1,000,000）。</div>
+            <div class="hfeat"><b class="k">免赔额</b>S$3,500 / 保单年度。</div>
+            <div class="hfeat"><b class="k">自付结构</b>基础共同承担 10%；附加 VitalHealth Pro 后自付 5%，符合 AIA 合作医生 / 预授权 / 紧急治疗条件时每年封顶 S$6,000。</div>
+            <div class="hfeat"><b class="k">前后门诊</b>由 AIA 合作医生安排最长住院前后各 13 个月（一般各 100 天）。</div>
+            <div class="hfeat"><b class="k">既往症</b>投保前已有疾病一般不保或除外承保，以核保为准。</div>
+          </div>
+          <div class="hplan" style="--pc:var(--gold-deep)">
+            <h4>公立 B<small>HealthShield Gold Max B ＋ VitalHealth Pro B</small></h4>
+            <div class="hfeat"><b class="k">病房选择</b>公立医院 A 级病房及以下。</div>
+            <div class="hfeat"><b class="k">年度限额</b>由 AIA 合作医生治疗最高 <b>S$1,200,000</b> / 保单年度（一般 S$1,000,000）。</div>
+            <div class="hfeat"><b class="k">免赔额</b>S$3,500 / 保单年度（A 级病房）。</div>
+            <div class="hfeat"><b class="k">自付结构</b>基础共同承担 10%；附加 VitalHealth Pro 后自付 5%，符合条件每年封顶 S$6,000。</div>
+            <div class="hfeat"><b class="k">前后门诊</b>公立医院住院前后各 12 个月（私立一般各 100 天）。</div>
+            <div class="hfeat"><b class="k">使用提醒</b>若选择私立医院住院，费用通常按 70% 折算后再计算理赔。</div>
+          </div>
+          <div class="hplan" style="--pc:#B8A98C">
+            <h4>公立 B Lite<small>HealthShield Gold Max B Lite（仅限公民 / PR，预算之选）</small></h4>
+            <div class="hfeat"><b class="k">病房选择</b>公立医院 B1 级病房及以下。</div>
+            <div class="hfeat"><b class="k">年度限额</b>S$300,000 / 保单年度。</div>
+            <div class="hfeat"><b class="k">免赔额</b>S$2,500 / 保单年度（B1 病房）。</div>
+            <div class="hfeat"><b class="k">自付结构</b>基础共同承担 10%；附加 VitalHealth Pro B Lite 后自付 5%，符合条件每年封顶 S$6,000。</div>
+            <div class="hfeat"><b class="k">使用提醒</b>私立医院按 50%、公立 A 级病房按 80% 折算后再计算理赔。</div>
+            <div class="hfeat"><b class="k">既往症</b>投保前已有疾病一般不保或除外承保，以核保为准。</div>
+          </div>
+        </div>
+        <div class="bene-note">单项理赔均按「限额内合理惯常收费」计算，各单项设有上限；完整条款以保单合同为准。</div>
+      </div>
+    </details>
+  </div>
+</section>
+
+<!-- ============ 理赔案例 ============ -->
+<section id="claimeg">
+  <div class="sec-eyebrow">CLAIM EXAMPLES</div>
+  <h2 class="sec-title serif">住院账单报销示例</h2>
+  <p class="sec-sub">以下假设账单全部属于可赔付的合理医疗费用，使用对应等级医院及病房，符合 AIA 合作医生、预授权或紧急治疗条件，已附加 VitalHealth Pro，且本保单年度尚未使用免赔额。</p>
+  <div class="claims">
+    <article class="ccard">
+      <h3>私立住院险</h3>
+      <div class="scope">私立医院标准房 · Gold Max A + VitalHealth Pro A</div>
+      <div class="bill">
+        <div class="bill-title"><span>大账单示例</span><span class="amt">S$200,000</span></div>
+        <div class="calc">
+          <div class="k">年度免赔额</div><div>S$3,500</div>
+          <div class="k">免赔额后金额</div><div>S$196,500</div>
+          <div class="k">5% 自付</div><div>S$9,825</div>
+          <div class="k">符合条件后按年封顶</div><div>S$6,000</div>
+          <div class="self">家庭预计自付</div><div>S$9,500</div>
+          <div class="claim">保险预计报销</div><div>S$190,500</div>
+        </div>
+        <div class="split">
+          <div class="split-bar"><i class="s-claim" style="width:95.25%"></i><i class="s-self" style="width:4.75%"></i></div>
+          <div class="split-legend"><span><i class="dot claim"></i>保险报销约 95%</span><span><i class="dot self"></i>家庭自付约 5%</span></div>
+        </div>
+      </div>
+      <div class="bill">
+        <div class="bill-title"><span>小账单示例</span><span class="amt">S$20,000</span></div>
+        <div class="calc">
+          <div class="k">年度免赔额</div><div>S$3,500</div>
+          <div class="k">免赔额后金额</div><div>S$16,500</div>
+          <div class="k">5% 自付</div><div>S$825</div>
+          <div class="self">家庭预计自付</div><div>S$4,325</div>
+          <div class="claim">保险预计报销</div><div>S$15,675</div>
+        </div>
+        <div class="split">
+          <div class="split-bar"><i class="s-claim" style="width:78.4%"></i><i class="s-self" style="width:21.6%"></i></div>
+          <div class="split-legend"><span><i class="dot claim"></i>保险报销约 78%</span><span><i class="dot self"></i>家庭自付约 22%</span></div>
+        </div>
+      </div>
+    </article>
+    <article class="ccard">
+      <h3>公立住院险</h3>
+      <div class="scope">公立医院 A 级病房 · Gold Max B + VitalHealth Pro B</div>
+      <div class="bill">
+        <div class="bill-title"><span>大账单示例</span><span class="amt">S$200,000</span></div>
+        <div class="calc">
+          <div class="k">年度免赔额</div><div>S$3,500</div>
+          <div class="k">免赔额后金额</div><div>S$196,500</div>
+          <div class="k">5% 自付</div><div>S$9,825</div>
+          <div class="k">符合条件后按年封顶</div><div>S$6,000</div>
+          <div class="self">家庭预计自付</div><div>S$9,500</div>
+          <div class="claim">保险预计报销</div><div>S$190,500</div>
+        </div>
+        <div class="split">
+          <div class="split-bar"><i class="s-claim" style="width:95.25%"></i><i class="s-self" style="width:4.75%"></i></div>
+          <div class="split-legend"><span><i class="dot claim"></i>保险报销约 95%</span><span><i class="dot self"></i>家庭自付约 5%</span></div>
+        </div>
+      </div>
+      <div class="bill">
+        <div class="bill-title"><span>小账单示例</span><span class="amt">S$20,000</span></div>
+        <div class="calc">
+          <div class="k">年度免赔额</div><div>S$3,500</div>
+          <div class="k">免赔额后金额</div><div>S$16,500</div>
+          <div class="k">5% 自付</div><div>S$825</div>
+          <div class="self">家庭预计自付</div><div>S$4,325</div>
+          <div class="claim">保险预计报销</div><div>S$15,675</div>
+        </div>
+        <div class="split">
+          <div class="split-bar"><i class="s-claim" style="width:78.4%"></i><i class="s-self" style="width:21.6%"></i></div>
+          <div class="split-legend"><span><i class="dot claim"></i>保险报销约 78%</span><span><i class="dot self"></i>家庭自付约 22%</span></div>
+        </div>
+      </div>
+      <div class="same-note">两个方案在各自对应的医院及病房等级内，免赔额与 5% 自付结构相同，因此本示例的报销金额一致。两者主要差别在就医范围、年度限额、前后门诊时间及保费。</div>
+    </article>
+  </div>
 </section>
 
 <!-- ============ 合规声明 ============ -->
@@ -399,7 +547,7 @@ function calcHosp(ps){
     const base=plan==='A'?(dep?b[2]:b[4]):(dep?b[3]:b[5]);
     out.rows.push(['基础住院险（外国人计划）',base]); out.total+=base;
     if(dep){out.cpf+=Math.min(base,mwl);out.cash+=Math.max(base-mwl,0);
-      out.notes.push('受养人保费可由 SC/PR 付款人的 MediSave 支付（上限内），保单持有人须为 SC/PR。');}
+      out.notes.push('直系家属（SC/PR 的配偶、子女等）保费可由 SC/PR 付款人的 MediSave 支付（上限内），保单持有人须为 SC/PR。');}
     else{out.cash+=base;}
     if(ps.h.vhp){
       const v=dep?band(VHP_LOCAL,anb):band(VHP_F_NON,anb);
@@ -462,8 +610,8 @@ function render(){
       <label>年龄 <input type="number" min="0" max="105" value="${ps.age}" data-f="age"></label>
       <select data-f="res">
         <option value="local"${ps.res==='local'?' selected':''}>新加坡公民 / PR</option>
-        <option value="fdep"${ps.res==='fdep'?' selected':''}>外国人 · SC/PR受养人</option>
-        <option value="fnon"${ps.res==='fnon'?' selected':''}>外国人 · 非受养人</option>
+        <option value="fdep"${ps.res==='fdep'?' selected':''}>外国人 · SC/PR直系家属</option>
+        <option value="fnon"${ps.res==='fnon'?' selected':''}>外国人 · 非直系家属</option>
       </select>
       ${people.length>1?'<button class="m-del" data-act="del">✕ 移除</button>':''}
     </div>
@@ -554,7 +702,7 @@ function render(){
     if(pa&&pa.total)seg.push('意外险 '+fmt(pa.total));
     return s+(seg.join(' + ')||'—');
   });
-  const waText='你好小圆姐，我用报价器算了家庭保障方案：\n'+lines.join('\n')+'\n全家合计约 '+fmt(famTotal)+' / 年\n'+shareUrl()+'\n想进一步了解，麻烦你了！';
+  const waText='你好小圆姐，我用保障方案测算工具算了全家方案：\n'+lines.join('\n')+'\n全家合计约 '+fmt(famTotal)+' / 年\n'+shareUrl()+'\n想进一步了解，麻烦你了！';
   document.getElementById('wa-btn').href='https://wa.me/6583750190?text='+encodeURIComponent(waText);
 }
 
@@ -585,16 +733,6 @@ document.getElementById('addbtn').addEventListener('click',()=>{people.push(newP
 
 /* ============ 保障表 ============ */
 const BENE=[
-{id:'hosp',title:'住院险对比：私立 A ／ 公立 B ／ 公立 B Lite',sub:'HealthShield Gold Max + VitalHealth Pro',
- head:['关键条款','私立 A','公立 B','公立 B Lite'],rows:[
- ['病房等级','私立医院标准单人房及以下','公立医院 A 级病房及以下','公立医院 B1 级病房及以下'],
- ['年度限额','一般 S$1,000,000；优选医疗网络最高 <b>S$2,000,000</b>','一般 S$1,000,000；优选医疗网络最高 <b>S$1,200,000</b>','S$300,000'],
- ['免赔额 / 保单年度','S$3,500','S$3,500（A 级病房）','S$2,500（B1 病房）'],
- ['自付结构','基础共同承担 10%；附加 VitalHealth Pro 后自付 5%，符合优选网络 / 预授权 / 紧急治疗条件时每年封顶 S$6,000','同左','同左'],
- ['前后门诊','一般前后各 100 天；优选医疗机构安排最长各 13 个月','公立前后各 12 个月；私立一般各 100 天','以保单条款为准'],
- ['去更高等级医院','—','私立就医按 70% 折算后理赔','私立按 50%、公立 A 级按 80% 折算'],
- ['既往症','投保前已有疾病一般不保或除外承保，以核保为准','同左','同左']],
- note:'表中为主要条款摘要；单项理赔均按「限额内合理惯常收费」计算，各单项设有上限。完整条款以保单合同为准。'},
 {id:'kids',title:'少儿意外险 Star Protector Plus（0–15 岁投保）',sub:'Plan 2 最多人选择 · 金色行最常理赔',
  head:['保障项目','Plan 1','Plan 2','Plan 3'],rows:[
  ['意外身故、伤残及烧伤','S$20,000','S$35,000','S$100,000'],
@@ -605,7 +743,7 @@ const BENE=[
  ['住院现金（意外+疾病，最长180天）','S$30 / 天','S$50 / 天','S$100 / 天'],
  ['ICU 住院现金双倍（最长30天）','额外 S$30 / 天','额外 S$50 / 天','额外 S$100 / 天'],
  ['出院家居护理金','S$100','S$150','S$200'],
- ['登革热 / 手足口康复金','S$50','S$80','S$100'],
+ ['登革热 / 手足口康复金 <span class="hl-badge">最常理赔</span>','S$50','S$80','S$100','hl'],
  ['教育保障金','S$10,000','S$17,500','S$50,000'],
  ['意外整形或重建手术（含美容缝针）','不适用','S$5,000','S$15,000'],
  ['行动辅助器材','不适用','S$300','S$1,000'],
@@ -647,7 +785,7 @@ const BENE=[
 (function(){
   const box=document.getElementById('beneTables');
   BENE.forEach((t,i)=>{
-    const d=document.createElement('details');d.className='bene';if(i===0)d.open=true;
+    const d=document.createElement('details');d.className='bene';
     d.innerHTML=`<summary><div><div class="bt">${t.title}</div><div class="bs">${t.sub}</div></div>
       <svg class="arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="m6 9 6 6 6-6"/></svg></summary>
       <div class="bene-in"><div class="tbl-scroll"><table>
