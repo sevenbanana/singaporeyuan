@@ -106,10 +106,10 @@ export default async function ResourcesPage({
       tag: en ? 'Guide' : 'PR指南',
       title: en ? 'After Your Singapore PR Is Approved' : '新加坡PR落地指南',
       desc: en
-        ? 'From health declaration and ICA formalities to your blue IC, insurance and tax re-planning, REP and NS — with official links for every step. (In Chinese)'
+        ? 'From health declaration and ICA formalities to your blue IC, insurance and tax re-planning, REP and NS — with official links for every step.'
         : '从健康申报、ICA手续到小蓝卡,从换身份到保险与省税重排,再到REP和NS。每一步都配好官方直达入口,照着办就行。',
       icon: IconSpark,
-      external: '/guides/pr-checklist.html',
+      external: en ? '/guides/pr-checklist-en.html' : '/guides/pr-checklist.html',
       cta: en ? 'Read the guide' : '阅读指南',
     },
     {
