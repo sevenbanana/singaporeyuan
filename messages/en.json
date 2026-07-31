@@ -31,11 +31,11 @@
     "heroCtaPrimary": "Book a consultation",
     "heroCtaSecondary": "Case studies",
     "statsTitle": "Let the numbers speak",
-    "statsSubtitle": "Source: AIA official adviser profile · figures as of June 2026",
+    "statsSubtitle": "Source: AIA official adviser profile · figures as of July 2026",
     "statsVerify": "View my AIA adviser profile",
     "stats": [
       {
-        "value": "67",
+        "value": "73",
         "label": "Families served"
       },
       {
@@ -47,7 +47,7 @@
         "label": "Claims paid out"
       },
       {
-        "value": "S$20.9M",
+        "value": "S$22.1M",
         "label": "Life coverage"
       }
     ],
@@ -124,7 +124,7 @@
         "label": "Achieved year one"
       },
       {
-        "value": "6,000+",
+        "value": "10,000+",
         "label": "Followers"
       }
     ],
@@ -139,7 +139,7 @@
     "mediaBody": "I don't like to intrude, but I'm far from passive. When I'm not with clients, I do one thing: take the complex, easily-misunderstood parts of insurance and finance, and explain them in plain language anyone can follow.",
     "mediaXhs": "Xiaohongshu @Yuan Yuan SG",
     "mediaWx": "WeChat Channels @Yuan Yuan SG",
-    "mediaFollowers": "6,000+ followers across platforms · Content sells nothing, just plain sense, myth-busting, and real cases",
+    "mediaFollowers": "10,000+ followers across platforms · Content sells nothing, just plain sense, myth-busting, and real cases",
     "credsTitle": "Credentials",
     "creds": [
       {

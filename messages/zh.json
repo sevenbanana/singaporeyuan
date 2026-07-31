@@ -31,11 +31,11 @@
     "heroCtaPrimary": "预约咨询",
     "heroCtaSecondary": "服务案例",
     "statsTitle": "用数字说话",
-    "statsSubtitle": "数据来源:AIA 官方顾问页面,统计截至 2026 年 6 月",
+    "statsSubtitle": "数据来源:AIA 官方顾问页面,统计截至 2026 年 7 月",
     "statsVerify": "查看我的 AIA 官方顾问页",
     "stats": [
       {
-        "value": "67",
+        "value": "73",
         "label": "服务家庭"
       },
       {
@@ -47,7 +47,7 @@
         "label": "已赔付金额"
       },
       {
-        "value": "S$20.9M",
+        "value": "S$22.1M",
         "label": "人寿保障总额"
       }
     ],
@@ -124,7 +124,7 @@
         "label": "首年达成"
       },
       {
-        "value": "6000+",
+        "value": "10000+",
         "label": "全网粉丝"
       }
     ],
@@ -139,7 +139,7 @@
     "mediaBody": "我不爱打扰别人,但绝不佛系。不见客户的时候,我在做一件事:把保险与理财里那些复杂、容易被误解的东西,用普通人能懂的方式讲清楚。",
     "mediaXhs": "小红书 @新加坡小圆姐",
     "mediaWx": "微信视频号 @新加坡小圆姐",
-    "mediaFollowers": "全网 6000+ 关注 · 内容不卖产品,只讲常识、拆解误区、分享真实案例",
+    "mediaFollowers": "全网 10000+ 关注 · 内容不卖产品,只讲常识、拆解误区、分享真实案例",
     "credsTitle": "专业资历",
     "creds": [
       {
