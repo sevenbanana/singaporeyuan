@@ -694,7 +694,7 @@ function render(){
   });
   document.getElementById('tb-total').textContent=fmt(famTotal);
   document.getElementById('tb-cash').textContent='现金约 '+fmt(famCash);
-  document.getElementById('tb-cpf').textContent='MediSave 约 '+fmt(famCpf);
+  document.getElementById('tb-cpf').textContent=famCpf>0?'MediSave 约 '+fmt(famCpf):'月均折算约 '+fmt(famTotal/12);
   /* WhatsApp */
   const lines=people.map(ps=>{
     const hosp=calcHosp(ps),pa=calcPA(ps);let s=ps.name+'（'+ps.age+'岁）：';const seg=[];
