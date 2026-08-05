@@ -1,0 +1,1374 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>投保与理赔流程 | 新加坡小圆姐</title>
+<meta name="description" content="住院险、意外险的投保与理赔全流程。线上线下两条路径，每一步你要做什么、我来做什么、大概多久，全部摊开写清楚。">
+<link rel="icon" href="/logo-mark.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@500;600;700&family=Noto+Sans+SC:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --sand:#F8F3EA;
+  --cream:#FFFDF8;
+  --gold:#B8934F;
+  --gold-deep:#9A7635;
+  --gold-soft:#EFE3CC;
+  --navy:#182B45;
+  --navy-soft:#3D5270;
+  --ink:#33404F;
+  --line:#E6DCC8;
+  --alert:#A8523C;
+  --alert-soft:#F6E8E2;
+  --green:#5F7A5A;
+  --green-soft:#E9EFE5;
+  --radius:14px;
+  --shadow:0 2px 14px rgba(24,43,69,.07);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:64px}
+body{
+  font-family:'Noto Sans SC',-apple-system,'PingFang SC','Microsoft YaHei',sans-serif;
+  background:var(--sand);
+  color:var(--ink);
+  line-height:1.75;
+  font-size:15.5px;
+}
+h1,h2,h3,.serif{font-family:'Noto Serif SC','Noto Sans SC',serif}
+.wrap{max-width:720px;margin:0 auto;padding:0 20px}
+
+/* ---------- icon system ---------- */
+.ic{
+  width:18px;height:18px;flex:0 0 auto;
+  stroke:currentColor;fill:none;
+  stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;
+  vertical-align:-3px;
+}
+
+/* ---------- hero ---------- */
+.hero{
+  background:linear-gradient(135deg,#FFFDF8 0%,#FAF7F0 45%,#F5EFE1 100%);
+  color:var(--ink);
+  padding:64px 0 0;
+  position:relative;
+  overflow:hidden;
+}
+.hero::after{
+  content:"";
+  position:absolute;right:-8%;top:50%;transform:translateY(-50%);
+  width:440px;height:440px;border-radius:50%;
+  border:1px solid rgba(201,165,92,.3);
+}
+.hero::before{
+  content:"";
+  position:absolute;right:5%;top:50%;transform:translateY(-50%);
+  width:290px;height:290px;border-radius:50%;
+  background:rgba(201,165,92,.07);
+}
+.hero-ring{
+  position:absolute;right:26%;top:15%;
+  width:60px;height:60px;border-radius:50%;
+  border:1px solid rgba(201,165,92,.4);pointer-events:none;
+}
+.hero-dot{
+  position:absolute;right:42%;top:24%;
+  width:9px;height:9px;border-radius:50%;
+  background:rgba(201,165,92,.5);pointer-events:none;
+}
+.hero-dot.b{right:13%;top:auto;bottom:16%;width:7px;height:7px;background:rgba(201,165,92,.4)}
+.hero-path{
+  position:absolute;left:0;right:0;bottom:14px;
+  width:100%;height:46px;opacity:.4;pointer-events:none;
+}
+.hero-path path{
+  stroke:#C9A55C;stroke-width:1.5;fill:none;
+  stroke-linecap:round;stroke-dasharray:7 8;
+}
+.hero-path circle{fill:#C9A55C;opacity:.7}
+.hero-grid{
+  display:flex;align-items:flex-end;gap:10px;
+  position:relative;z-index:2;
+}
+.hero-text{flex:1 1 auto;padding-bottom:96px}
+.hero .eyebrow{
+  display:inline-block;
+  font-size:12px;font-weight:700;letter-spacing:.24em;
+  text-transform:uppercase;
+  color:var(--gold-deep);margin-bottom:18px;
+}
+.hero h1{
+  font-family:'Noto Sans SC',sans-serif;
+  font-size:clamp(29px,7.2vw,43px);font-weight:900;
+  letter-spacing:.02em;line-height:1.4;color:var(--navy);
+}
+.hero h1 em{font-style:normal;color:var(--gold-deep)}
+.hero p.sub{margin-top:18px;color:#7A7264;font-size:15px;line-height:1.95;max-width:30em}
+.hero .byline{
+  margin-top:28px;display:flex;flex-wrap:wrap;align-items:center;gap:9px;
+  font-size:13px;color:var(--navy-soft);
+}
+.hero .byline .chip{
+  display:inline-flex;align-items:center;gap:6px;
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:99px;padding:5px 13px;
+  box-shadow:0 1px 6px rgba(26,39,68,.05);
+}
+.hero .byline .chip .ic{width:13px;height:13px;color:var(--gold-deep)}
+.hero-figure{
+  flex:0 0 168px;width:168px;
+  position:relative;align-self:flex-end;
+  margin-bottom:-2px;
+}
+.hero-figure::before{
+  content:"";position:absolute;
+  left:50%;top:30px;transform:translateX(-50%);
+  width:172px;height:172px;border-radius:50%;
+  border:1.5px solid rgba(201,165,92,.5);
+  background:radial-gradient(circle,rgba(201,165,92,.14),rgba(201,165,92,0) 68%);
+}
+.hero-figure::after{
+  content:"";position:absolute;
+  left:50%;top:44px;transform:translateX(-50%);
+  width:200px;height:200px;border-radius:50%;
+  border:1px dashed rgba(201,165,92,.35);
+}
+.hero-figure img{
+  position:relative;z-index:1;
+  display:block;width:100%;height:auto;
+  filter:drop-shadow(0 10px 24px rgba(26,39,68,.18));
+}
+
+/* ---------- sticky nav ---------- */
+.nav{
+  position:sticky;top:0;z-index:40;
+  background:rgba(255,253,248,.93);
+  backdrop-filter:blur(8px);
+  border-bottom:1px solid var(--line);
+}
+.nav-scroll{
+  display:flex;gap:8px;overflow-x:auto;
+  padding:11px 18px;max-width:720px;margin:0 auto;
+  scrollbar-width:none;
+}
+.nav-scroll::-webkit-scrollbar{display:none}
+.nav a{
+  flex:0 0 auto;white-space:nowrap;
+  display:inline-flex;align-items:center;gap:6px;
+  font-size:13px;color:var(--navy-soft);text-decoration:none;
+  padding:6px 14px 6px 11px;border-radius:99px;border:1px solid var(--line);
+  background:#fff;transition:.2s;
+}
+.nav a .ic{width:14px;height:14px;color:var(--gold-deep);transition:.2s}
+.nav a:active,.nav a:hover{background:var(--navy);color:#F5EFE3;border-color:var(--navy)}
+.nav a:active .ic,.nav a:hover .ic{color:#E2C88F}
+
+/* ---------- promise card (overlapping hero) ---------- */
+.helper{margin:-56px auto 0;position:relative;z-index:5}
+.helper-card{
+  background:var(--cream);
+  border:1px solid var(--line);
+  border-radius:18px;
+  box-shadow:0 10px 34px rgba(24,43,69,.14);
+  padding:30px 26px;
+  position:relative;overflow:hidden;
+}
+.helper-card::after{
+  content:"";position:absolute;top:-46px;right:-46px;
+  width:130px;height:130px;border-radius:50%;
+  border:1px solid var(--gold-soft);pointer-events:none;
+}
+.helper-card .tag{
+  display:inline-flex;align-items:center;gap:7px;
+  font-size:12px;letter-spacing:.2em;color:var(--gold-deep);font-weight:700;
+}
+.helper-card .tag .ic{width:15px;height:15px}
+.helper-card h2{font-size:21px;color:var(--navy);margin:8px 0 5px}
+.helper-card p.lead{font-size:13.5px;color:#6C7683;margin-bottom:22px}
+.promise{
+  display:flex;gap:14px;align-items:flex-start;
+  padding:16px 0;border-top:1px dashed #EFE7D6;
+}
+.promise:first-of-type{border-top:none;padding-top:4px}
+.promise .p-ic{
+  flex:0 0 40px;height:40px;border-radius:12px;
+  background:var(--gold-soft);color:var(--gold-deep);
+  display:flex;align-items:center;justify-content:center;
+}
+.promise .p-ic .ic{width:20px;height:20px}
+.promise h4{font-size:15.5px;color:var(--navy);margin-bottom:5px}
+.promise p{font-size:14px;color:#5A6674;line-height:1.85}
+.promise p b{color:var(--gold-deep)}
+
+/* ---------- sections ---------- */
+section{padding:64px 0 12px}
+.sec-head{display:flex;gap:16px;margin-bottom:30px}
+.sec-badge{
+  flex:0 0 48px;height:48px;border-radius:15px;
+  background:var(--gold-soft);border:1px solid #DEC998;
+  color:var(--gold-deep);
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:var(--shadow);
+}
+.sec-badge .ic{width:24px;height:24px;stroke-width:1.6}
+.sec-num{
+  font-family:'Noto Serif SC',serif;
+  font-size:13px;color:var(--gold-deep);letter-spacing:.24em;font-weight:700;
+}
+.sec-head h2{font-size:clamp(22px,5.5vw,27px);color:var(--navy);margin-top:2px;line-height:1.4}
+.sec-head p{color:#6C7683;font-size:14px;line-height:1.9;margin-top:10px;max-width:34em}
+
+.card{
+  background:var(--cream);border:1px solid var(--line);
+  border-radius:var(--radius);box-shadow:var(--shadow);
+  padding:24px 22px;margin-bottom:16px;
+}
+.card h3{
+  color:var(--navy);font-size:17px;margin-bottom:10px;
+  display:flex;align-items:center;gap:9px;
+}
+.card h3 .ic{width:19px;height:19px;color:var(--gold-deep)}
+.card p{font-size:14.5px;line-height:1.9}
+.card p + p{margin-top:10px}
+
+/* pill list */
+.pills{display:flex;flex-wrap:wrap;gap:9px;margin-top:14px}
+.pill{
+  display:inline-flex;align-items:center;gap:6px;
+  font-size:13px;background:#fff;border:1px solid var(--line);
+  border-radius:99px;padding:5px 13px;color:var(--navy-soft);
+}
+.pill .ic{width:13px;height:13px}
+.pill.gold{background:var(--gold-soft);border-color:#DEC998;color:var(--gold-deep)}
+.pill.red{background:var(--alert-soft);border-color:#E0C2B6;color:var(--alert)}
+.pill.green{background:var(--green-soft);border-color:#BCCDB4;color:var(--green)}
+
+/* ---------- tabs ---------- */
+.tabs{display:flex;gap:10px;margin-bottom:20px}
+.tab-btn{
+  flex:1;padding:12px 8px;border-radius:12px;
+  border:1.5px solid var(--line);background:#fff;
+  font-family:inherit;font-size:14.5px;font-weight:700;color:var(--navy-soft);
+  cursor:pointer;transition:.2s;
+  display:inline-flex;align-items:center;justify-content:center;gap:7px;
+}
+.tab-btn .ic{width:16px;height:16px;color:var(--gold-deep)}
+.tab-btn.active{background:var(--navy);color:#F1E7D2;border-color:var(--navy)}
+.tab-btn.active .ic{color:#E2C88F}
+.tab-panel{display:none}
+.tab-panel.active{display:block;animation:fade .25s ease}
+@keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+/* ---------- journey steps ---------- */
+.jsteps{position:relative;padding-left:36px}
+.jsteps::before{
+  content:"";position:absolute;left:12px;top:14px;bottom:22px;
+  width:1.5px;background:linear-gradient(to bottom,var(--gold) 0%,var(--line) 100%);
+}
+.jstep{position:relative;margin-bottom:16px}
+.jstep::before{
+  content:attr(data-n);
+  position:absolute;left:-36px;top:14px;
+  width:25px;height:25px;border-radius:50%;
+  background:var(--navy);color:#EBDDC0;
+  font-size:12px;font-weight:700;
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Noto Serif SC',serif;
+  box-shadow:0 0 0 4px var(--sand);
+}
+.jbox{
+  background:var(--cream);border:1px solid var(--line);
+  border-radius:var(--radius);box-shadow:var(--shadow);
+  padding:19px 20px;
+}
+.jstep.key .jbox{border-color:#DEC998;background:linear-gradient(160deg,#FFFDF8,#FBF4E6)}
+.jstep.key::before{background:var(--gold-deep)}
+.jhead{display:flex;align-items:flex-start;gap:9px;flex-wrap:wrap}
+.jhead h4{
+  flex:1 1 auto;font-size:16px;color:var(--navy);line-height:1.5;
+  display:flex;align-items:center;gap:8px;min-width:60%;
+}
+.jhead h4 .ic{width:17px;height:17px;color:var(--gold-deep);flex:0 0 17px}
+.jtime{
+  display:inline-flex;align-items:center;gap:5px;flex:0 0 auto;
+  font-size:12px;font-weight:700;color:var(--gold-deep);
+  background:var(--gold-soft);border:1px solid #DEC998;
+  border-radius:99px;padding:3px 11px;white-space:nowrap;
+}
+.jtime .ic{width:12px;height:12px}
+.jbox > p{font-size:14px;color:#5A6674;line-height:1.9;margin-top:10px}
+.jbox > p b{color:var(--navy)}
+.role{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}
+.role .r{border-radius:11px;padding:12px 14px;font-size:13.3px;line-height:1.8}
+.role .r .r-t{
+  display:flex;align-items:center;gap:6px;
+  font-size:11.5px;font-weight:700;letter-spacing:.1em;margin-bottom:5px;
+}
+.role .r .r-t .ic{width:13px;height:13px}
+.role .you{background:#fff;border:1px solid var(--line);color:#5A6674}
+.role .you .r-t{color:var(--navy)}
+.role .me{background:var(--gold-soft);border:1px solid #DEC998;color:#6C5A36}
+.role .me .r-t{color:var(--gold-deep)}
+.jnote{
+  margin-top:12px;font-size:13px;line-height:1.85;color:#6C7683;
+  background:#fff;border:1px dashed var(--line);border-radius:10px;
+  padding:11px 14px;
+}
+.jnote b{color:var(--navy)}
+.jnote.safe{background:var(--green-soft);border-color:#BCCDB4;color:#4C6248}
+.jnote.safe b{color:var(--green)}
+
+/* ---------- compare rows ---------- */
+.cmp{border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;background:var(--cream)}
+.cmp-row{display:grid;grid-template-columns:96px 1fr;border-bottom:1px solid var(--line)}
+.cmp-row:last-child{border-bottom:none}
+.cmp-row .k{
+  background:var(--gold-soft);padding:15px 12px;
+  font-size:13px;font-weight:700;color:var(--gold-deep);
+  display:flex;align-items:center;gap:6px;
+}
+.cmp-row .k .ic{width:14px;height:14px}
+.cmp-row .v{padding:15px 18px;font-size:14px;line-height:1.85}
+.cmp-row .v b{color:var(--navy)}
+
+/* ---------- accordion ---------- */
+.acc{border:1px solid var(--line);border-radius:var(--radius);background:var(--cream);margin-bottom:12px;overflow:hidden}
+.acc-head{
+  width:100%;display:flex;align-items:center;gap:10px;
+  padding:17px 20px;background:none;border:none;cursor:pointer;
+  font-family:inherit;font-size:15px;font-weight:700;color:var(--navy);text-align:left;
+}
+.acc-head .h-ic{width:20px;height:20px;flex:0 0 20px;color:var(--gold-deep)}
+.acc-head .label{flex:1;line-height:1.5}
+.acc-head .chev{
+  width:22px;height:22px;flex:0 0 22px;border-radius:50%;
+  background:var(--gold-soft);color:var(--gold-deep);
+  display:flex;align-items:center;justify-content:center;
+  font-size:13px;transition:transform .25s;
+}
+.acc.open .chev{transform:rotate(180deg)}
+.acc-body{display:none;padding:0 20px 18px;font-size:14px}
+.acc.open .acc-body{display:block;animation:fade .25s ease}
+.acc-body p{font-size:14px;line-height:1.9;color:#5A6674}
+.acc-body p + p{margin-top:10px}
+.acc-body p b{color:var(--navy)}
+.acc-body ul{list-style:none}
+.acc-body li{padding:9px 0 9px 18px;position:relative;border-bottom:1px dashed #EFE7D6;line-height:1.8}
+.acc-body li:last-child{border-bottom:none}
+.acc-body li::before{
+  content:"";position:absolute;left:2px;top:18px;
+  width:6px;height:6px;border-radius:50%;background:var(--gold);
+}
+.acc-body li b{color:var(--navy)}
+.acc-body li span{color:#8A93A0;font-size:12.5px;margin-left:6px}
+
+/* ---------- checklist ---------- */
+.check-grid{display:grid;gap:11px}
+.chk{
+  display:flex;gap:13px;align-items:flex-start;
+  background:var(--cream);border:1px solid var(--line);
+  border-radius:12px;padding:15px 17px;
+}
+.chk .box{
+  flex:0 0 34px;height:34px;border-radius:10px;margin-top:1px;
+  background:var(--gold-soft);color:var(--gold-deep);
+  display:flex;align-items:center;justify-content:center;
+}
+.chk .box .ic{width:18px;height:18px}
+.chk h4{font-size:14.5px;color:var(--navy);margin-bottom:3px}
+.chk p{font-size:13.3px;color:#6C7683;line-height:1.8}
+
+/* ---------- claim phases ---------- */
+.phase{
+  background:var(--cream);border:1px solid var(--line);border-left-width:5px;
+  border-radius:12px;padding:18px 20px;margin-bottom:13px;
+}
+.phase .ph-top{display:flex;align-items:center;gap:11px;margin-bottom:9px;flex-wrap:wrap}
+.phase .ph-badge{
+  flex:0 0 38px;height:38px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  border:1.5px solid;
+}
+.phase .ph-badge .ic{width:19px;height:19px}
+.phase h4{font-size:16px;flex:1 1 auto;line-height:1.4;min-width:50%}
+.phase h4 small{display:block;font-size:12px;font-weight:400;color:#8A93A0;margin-top:2px}
+.phase p{font-size:14px;color:#5A6674;line-height:1.9}
+.phase ul{list-style:none;margin-top:9px}
+.phase li{padding:7px 0 7px 20px;position:relative;font-size:13.8px;line-height:1.8;color:#5A6674}
+.phase li::before{
+  content:"";position:absolute;left:3px;top:15px;
+  width:6px;height:6px;border-radius:50%;background:var(--gold);
+}
+.phase li b{color:var(--navy)}
+.phase.p1{border-left-color:#A8523C}
+.phase.p1 h4{color:#A8523C}
+.phase.p1 .ph-badge{color:#A8523C;border-color:#D9AC9E;background:var(--alert-soft)}
+.phase.p2{border-left-color:#C07A3E}
+.phase.p2 h4{color:#B06E33}
+.phase.p2 .ph-badge{color:#B06E33;border-color:#E0BC94;background:#F7EBDD}
+.phase.p3{border-left-color:#B8934F}
+.phase.p3 h4{color:var(--gold-deep)}
+.phase.p3 .ph-badge{color:var(--gold-deep);border-color:#DEC998;background:var(--gold-soft)}
+.phase.p4{border-left-color:#5F7A5A}
+.phase.p4 h4{color:var(--green)}
+.phase.p4 .ph-badge{color:var(--green);border-color:#BCCDB4;background:var(--green-soft)}
+.phase.p5{border-left-color:var(--navy)}
+.phase.p5 h4{color:var(--navy)}
+.phase.p5 .ph-badge{color:var(--navy);border-color:#B9C4D2;background:#EAEEF4}
+
+.alert-card{
+  background:var(--alert-soft);border:1.5px solid #E0C2B6;
+  border-radius:var(--radius);padding:22px 20px;margin-bottom:20px;
+}
+.alert-card h3{
+  color:var(--alert);font-size:16.5px;margin-bottom:10px;
+  display:flex;align-items:center;gap:9px;
+}
+.alert-card h3 .ic{width:19px;height:19px}
+.alert-card p{font-size:14px;line-height:1.9}
+.alert-card p + p{margin-top:9px}
+.first-call{
+  display:flex;align-items:center;gap:15px;
+  background:#fff;border:1px dashed #E0C2B6;border-radius:12px;
+  padding:14px 17px;margin-top:15px;text-decoration:none;
+}
+.first-call .ring{
+  flex:0 0 44px;height:44px;border-radius:50%;
+  background:var(--alert);color:#FDF6F3;
+  display:flex;align-items:center;justify-content:center;
+}
+.first-call .ring .ic{width:21px;height:21px}
+.first-call .fc-txt{min-width:0}
+.first-call .num{
+  display:block;
+  font-family:'Noto Serif SC',serif;font-size:23px;font-weight:700;
+  color:var(--alert);line-height:1.25;letter-spacing:.03em;
+}
+.first-call .lbl{display:block;font-size:12.5px;color:#8A93A0;line-height:1.6;margin-top:2px}
+
+/* ---------- honest note ---------- */
+.honest{
+  background:linear-gradient(160deg,#F2F5F9,#E9EEF4);
+  border:1px solid #CFD8E4;border-radius:var(--radius);
+  padding:22px 20px;margin-top:16px;
+}
+.honest h3{
+  color:var(--navy);font-size:16.5px;margin-bottom:10px;
+  display:flex;align-items:center;gap:9px;
+}
+.honest h3 .ic{width:19px;height:19px;color:var(--navy-soft)}
+.honest p{font-size:14px;line-height:1.95;color:#4F5B6A}
+.honest p + p{margin-top:10px}
+.honest p b{color:var(--navy)}
+
+/* ---------- CTA ---------- */
+.cta{
+  background:linear-gradient(160deg,var(--navy),#253B5E);
+  border-radius:20px;color:#F1E7D2;
+  padding:42px 26px;margin:60px 0 24px;
+  text-align:center;position:relative;overflow:hidden;
+}
+.cta::before{
+  content:"";position:absolute;top:-70px;right:-70px;
+  width:200px;height:200px;border-radius:50%;
+  border:1px solid rgba(200,166,100,.35);
+}
+.cta::after{
+  content:"";position:absolute;bottom:-90px;left:-60px;
+  width:220px;height:220px;border-radius:50%;
+  border:1px solid rgba(200,166,100,.2);
+}
+.cta .avatar{
+  width:76px;height:76px;border-radius:50%;
+  margin:0 auto 14px;overflow:hidden;
+  border:2px solid #D9B878;
+  box-shadow:0 4px 18px rgba(0,0,0,.3);
+  background:#EDE4D3;position:relative;z-index:1;
+}
+.cta .avatar img{width:100%;height:100%;object-fit:cover;object-position:center;display:block}
+.cta h2{font-size:22px;margin-bottom:10px;position:relative;z-index:1}
+.cta p{font-size:14px;line-height:1.9;color:#C9D2DF;max-width:30em;margin:0 auto 24px;position:relative;z-index:1}
+.cta .contact{
+  display:flex;flex-direction:column;gap:9px;max-width:340px;margin:0 auto;
+  position:relative;z-index:1;
+}
+.cta .contact>a,.cta .contact>span{
+  display:flex;align-items:center;gap:10px;
+  background:rgba(255,255,255,.08);
+  border:1px solid rgba(200,166,100,.4);
+  border-radius:12px;padding:11px 15px;
+  color:#F1E7D2;text-decoration:none;font-size:14px;text-align:left;
+}
+.cta .contact .ic{width:17px;height:17px;color:#E2C88F}
+.cta .contact b{color:#E2C88F;font-weight:700}
+.cta .qr{
+  position:relative;z-index:1;
+  margin:18px auto 0;max-width:340px;
+  background:rgba(255,255,255,.96);
+  border:1px solid rgba(200,166,100,.5);
+  border-radius:14px;padding:14px;
+  display:flex;align-items:center;gap:14px;
+}
+.cta .qr img{width:96px;height:96px;border-radius:8px;display:block;flex:0 0 96px}
+.cta .qr .qr-txt{text-align:left;color:var(--navy)}
+.cta .qr .qr-txt b{display:block;font-size:14.5px;margin-bottom:2px}
+.cta .qr .qr-txt small{font-size:12.5px;color:#6C7683;line-height:1.6;display:block}
+.cta .slogan{margin-top:20px;font-size:13px;color:#AFBCCD;letter-spacing:.08em;position:relative;z-index:1}
+
+/* ---------- related links ---------- */
+.rel{display:grid;gap:11px;margin-top:8px}
+.rel a{
+  display:flex;align-items:center;gap:13px;text-decoration:none;
+  background:var(--cream);border:1px solid var(--line);
+  border-radius:12px;padding:15px 17px;transition:.2s;
+}
+.rel a:hover{border-color:var(--gold);box-shadow:0 3px 12px rgba(24,43,69,.08)}
+.rel a .r-ic{
+  flex:0 0 36px;height:36px;border-radius:10px;
+  background:var(--gold-soft);color:var(--gold-deep);
+  display:flex;align-items:center;justify-content:center;
+}
+.rel a .r-ic .ic{width:19px;height:19px}
+.rel a .r-txt{flex:1}
+.rel a b{display:block;font-size:14.5px;color:var(--navy);margin-bottom:2px}
+.rel a small{font-size:12.8px;color:#8A93A0;line-height:1.7}
+.rel a .go{color:var(--gold-deep)}
+
+/* ---------- footer ---------- */
+footer{padding:14px 0 56px}
+.disclaimer{
+  font-size:12px;color:#95908A;line-height:2;
+  border-top:1px solid var(--line);padding-top:22px;
+}
+
+/* ---------- scroll reveal ---------- */
+@media (prefers-reduced-motion:no-preference){
+  .rv{opacity:0;transform:translateY(14px);transition:opacity .55s ease,transform .55s ease}
+  .rv.in{opacity:1;transform:none}
+}
+
+@media (max-width:560px){
+  .hero-figure{flex-basis:138px;width:138px}
+  .hero-figure::before{width:140px;height:140px;top:26px}
+  .hero-figure::after{width:164px;height:164px;top:38px}
+  .hero-text{padding-bottom:88px}
+  .role{grid-template-columns:1fr}
+}
+@media (max-width:480px){
+  .eyebrow-zh{display:none}
+}
+@media (max-width:420px){
+  .hero .eyebrow{font-size:11px;letter-spacing:.2em}
+  .cmp-row{grid-template-columns:86px 1fr}
+  .hero-figure{flex-basis:118px;width:118px}
+  .hero-figure::before{width:120px;height:120px;top:22px}
+  .hero-figure::after{display:none}
+  .tab-btn{font-size:13.5px;gap:5px}
+  .jsteps{padding-left:30px}
+  .jstep::before{left:-30px}
+}
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+  html{scroll-behavior:auto}
+}
+/* ---------- watermark ---------- */
+#wm{position:fixed;inset:0;z-index:9999;pointer-events:none;overflow:hidden;opacity:.0325}
+#wm .row{position:absolute;white-space:nowrap;font-size:20px;color:var(--navy);font-weight:500;letter-spacing:.06em;transform:rotate(-24deg);transform-origin:left center}
+</style>
+</head>
+<body>
+
+<!-- ================= SVG ICON SPRITE ================= -->
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
+  <symbol id="i-compass" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="m15.5 8.5-2 5-5 2 2-5z"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><path d="m12 3 8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="m8.8 12 2.2 2.2 4.2-4.5"/></symbol>
+  <symbol id="i-cal" viewBox="0 0 24 24"><rect x="4" y="5.5" width="16" height="15" rx="2"/><path d="M4 10.2h16M8.2 3.5v3.6M15.8 3.5v3.6"/></symbol>
+  <symbol id="i-star" viewBox="0 0 24 24"><path d="m12 3.5 2.6 5.4 5.9.8-4.3 4.1 1 5.9-5.2-2.8-5.2 2.8 1-5.9-4.3-4.1 5.9-.8z"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3.4 2"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="m8.3 12.4 2.6 2.6 5-5.6"/></symbol>
+  <symbol id="i-alert" viewBox="0 0 24 24"><path d="M12 3.5 2.8 19.5h18.4z"/><path d="M12 9.8v4.4"/><path d="M12 17.2h.01"/></symbol>
+  <symbol id="i-memo" viewBox="0 0 24 24"><path d="M6 3h9l4 4v14H6z"/><path d="M14.5 3.5V8H19"/><path d="M9.2 13h5.6M9.2 16.5h5.6"/></symbol>
+  <symbol id="i-clipboard" viewBox="0 0 24 24"><path d="M9 4.5H7a2 2 0 0 0-2 2V19a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V6.5a2 2 0 0 0-2-2h-2"/><rect x="9" y="2.8" width="6" height="3.2" rx="1"/><path d="m9 13.5 2.1 2.1 4-4.5"/></symbol>
+  <symbol id="i-hospital" viewBox="0 0 24 24"><path d="M5 21V8h14v13"/><path d="M9 8V4h6v4"/><path d="M12 11.5v4M10 13.5h4"/><path d="M3 21h18"/></symbol>
+  <symbol id="i-doctor" viewBox="0 0 24 24"><circle cx="11" cy="8" r="3.4"/><path d="M4.5 20.5c.5-4 3.3-6 6.5-6s6 2 6.5 6"/><path d="M18.5 3.5v4M16.5 5.5h4"/></symbol>
+  <symbol id="i-steth" viewBox="0 0 24 24"><path d="M5 3H4a1 1 0 0 0-1 1v5a5 5 0 0 0 10 0V4a1 1 0 0 0-1-1h-1"/><path d="M8 14v2.5a5.5 5.5 0 0 0 11 0v-4"/><circle cx="19" cy="10" r="2.4"/></symbol>
+  <symbol id="i-phone" viewBox="0 0 24 24"><path d="M5.5 4H9l1.6 4.3L8.5 10a12.5 12.5 0 0 0 5.5 5.5l1.7-2.1L20 15v3.6A1.6 1.6 0 0 1 18.2 20C10.8 19.2 4.8 13.2 4 5.8A1.6 1.6 0 0 1 5.5 4z"/></symbol>
+  <symbol id="i-chat" viewBox="0 0 24 24"><path d="M21 11.8A8.3 8.3 0 0 1 8.9 19L3.5 20.5 5 15.2A8.3 8.3 0 1 1 21 11.8z"/><path d="M8.5 11.8h.01M12.2 11.8h.01M15.9 11.8h.01"/></symbol>
+  <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3.5 7.5 8.5 5.7 8.5-5.7"/></symbol>
+  <symbol id="i-dollar" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M15 9.3c-.5-.9-1.6-1.4-2.9-1.4-1.7 0-2.9.8-2.9 2.1 0 2.7 5.8 1.4 5.8 4.1 0 1.3-1.3 2.1-3 2.1-1.4 0-2.6-.6-3-1.6"/><path d="M12 6.5v11"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M4.5 12H19"/><path d="m13.8 6.3 5.7 5.7-5.7 5.7"/></symbol>
+  <symbol id="i-hourglass" viewBox="0 0 24 24"><path d="M5.5 2.5h13M5.5 21.5h13"/><path d="M17 21.5v-3.7c0-.5-.2-1-.6-1.4L12 12l-4.4 4.4c-.4.4-.6.9-.6 1.4v3.7"/><path d="M7 2.5v3.7c0 .5.2 1 .6 1.4L12 12l4.4-4.4c.4-.4.6-.9.6-1.4V2.5"/></symbol>
+  <symbol id="i-users" viewBox="0 0 24 24"><circle cx="9" cy="8.5" r="3.1"/><path d="M3.5 20c.4-3.4 2.8-5.2 5.5-5.2s5.1 1.8 5.5 5.2"/><path d="M15.3 5.7a3.1 3.1 0 0 1 0 5.6M17.4 15c2 .7 3.3 2.3 3.6 5"/></symbol>
+  <symbol id="i-heart" viewBox="0 0 24 24"><path d="M12 20.3C7.2 16.5 3.5 13.2 3.5 9.2 3.5 6.4 5.6 4.5 8 4.5c1.6 0 3 .8 4 2.1 1-1.3 2.4-2.1 4-2.1 2.4 0 4.5 1.9 4.5 4.7 0 4-3.7 7.3-8.5 11.1z"/></symbol>
+  <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s-7-5.6-7-11a7 7 0 0 1 14 0c0 5.4-7 11-7 11z"/><circle cx="12" cy="10" r="2.4"/></symbol>
+  <symbol id="i-card" viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="13" rx="2"/><path d="M3 10.5h18"/><path d="M6.8 15.5h4.5"/></symbol>
+  <symbol id="i-stack" viewBox="0 0 24 24"><path d="m12 3.5 8.5 4.7L12 12.9 3.5 8.2z"/><path d="m3.5 12.6 8.5 4.7 8.5-4.7"/><path d="m3.5 16.8 8.5 4.7 8.5-4.7"/></symbol>
+  <symbol id="i-video" viewBox="0 0 24 24"><rect x="3" y="6" width="12.5" height="12" rx="2.2"/><path d="m15.5 10.5 5.2-2.9v8.8l-5.2-2.9z"/></symbol>
+  <symbol id="i-scan" viewBox="0 0 24 24"><path d="M4 8.5V6a2 2 0 0 1 2-2h2.5M15.5 4H18a2 2 0 0 1 2 2v2.5M20 15.5V18a2 2 0 0 1-2 2h-2.5M8.5 20H6a2 2 0 0 1-2-2v-2.5"/><path d="M4.5 12h15"/></symbol>
+  <symbol id="i-pen" viewBox="0 0 24 24"><path d="m14.2 5.3 4.5 4.5"/><path d="M4 20v-4.2L15.7 4.1a1.4 1.4 0 0 1 2 0l2.2 2.2a1.4 1.4 0 0 1 0 2L8.2 20z"/></symbol>
+  <symbol id="i-upload" viewBox="0 0 24 24"><path d="M12 15.5V4"/><path d="m7.6 8.4 4.4-4.4 4.4 4.4"/><path d="M4 14.5v4A1.5 1.5 0 0 0 5.5 20h13a1.5 1.5 0 0 0 1.5-1.5v-4"/></symbol>
+  <symbol id="i-refresh" viewBox="0 0 24 24"><path d="M20 11.5A8 8 0 0 0 6.3 6L4 8.4"/><path d="M4 4v4.5h4.5"/><path d="M4 12.5A8 8 0 0 0 17.7 18l2.3-2.4"/><path d="M20 20v-4.5h-4.5"/></symbol>
+  <symbol id="i-lock" viewBox="0 0 24 24"><rect x="4.5" y="10" width="15" height="10.5" rx="2"/><path d="M8 10V7.6a4 4 0 0 1 8 0V10"/><path d="M12 14v2.6"/></symbol>
+  <symbol id="i-list" viewBox="0 0 24 24"><path d="M9 6.5h11M9 12h11M9 17.5h11"/><path d="M4.5 6.5h.01M4.5 12h.01M4.5 17.5h.01"/></symbol>
+  <symbol id="i-wallet" viewBox="0 0 24 24"><path d="M3.5 8V6.6A1.6 1.6 0 0 1 5.1 5H17"/><rect x="3.5" y="8" width="17" height="11.5" rx="2"/><path d="M20.5 12.2h-3.7a1.8 1.8 0 0 0 0 3.6h3.7"/></symbol>
+  <symbol id="i-home" viewBox="0 0 24 24"><path d="m3.5 11 8.5-7 8.5 7"/><path d="M5.5 10v10h13V10"/><path d="M10 20v-5.3h4V20"/></symbol>
+  <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.6"/><path d="m15.9 15.9 4.1 4.1"/></symbol>
+  <symbol id="i-siren" viewBox="0 0 24 24"><path d="M7 16.5v-4a5 5 0 0 1 10 0v4"/><rect x="4.5" y="16.5" width="15" height="4" rx="1.2"/><path d="M12 3.2v2M5.4 5.8 6.8 7.2M18.6 5.8 17.2 7.2"/></symbol>
+  <symbol id="i-hand" viewBox="0 0 24 24"><path d="M10.5 11V4.9a1.7 1.7 0 1 1 3.4 0V11"/><path d="M13.9 11.4V6.6a1.7 1.7 0 1 1 3.4 0v6.6"/><path d="M7.1 12.2V8.2a1.7 1.7 0 1 1 3.4 0V13"/><path d="M17.3 10.5a1.7 1.7 0 0 1 3.4 0v3.9c0 3.6-2.9 6.6-6.6 6.6h-1.4c-2 0-3.2-.6-4.4-2l-3.6-4.4a1.7 1.7 0 0 1 2.5-2.3l2 1.9"/></symbol>
+  <symbol id="i-chev" viewBox="0 0 24 24"><path d="m7 10 5 5 5-5"/></symbol>
+</svg>
+
+<!-- ================= HERO ================= -->
+<header class="hero">
+  <span class="hero-ring" aria-hidden="true"></span>
+  <span class="hero-dot" aria-hidden="true"></span>
+  <span class="hero-dot b" aria-hidden="true"></span>
+  <svg class="hero-path" viewBox="0 0 720 46" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M0 32 H140 C200 32 200 14 260 14 H420 C480 14 480 32 540 32 H720"/>
+    <circle cx="140" cy="32" r="3.4"/><circle cx="260" cy="14" r="3.4"/>
+    <circle cx="420" cy="14" r="3.4"/><circle cx="540" cy="32" r="3.4"/>
+  </svg>
+  <div class="wrap">
+    <div class="hero-grid">
+      <div class="hero-text">
+        <span class="eyebrow">How We Work<span class="eyebrow-zh"> · 投保与理赔流程</span></span>
+        <h1>从第一次聊<br>到理赔<em>到账</em></h1>
+        <p class="sub">很多人迟迟没动，不是因为不需要，而是不知道接下来会发生什么。这一页把住院险和意外险的每一步都摊开：你要做什么、我来做什么、大概多久、哪一步之前都还可以喊停。</p>
+        <div class="byline">
+          <span class="chip"><svg class="ic"><use href="#i-star"/></svg>新加坡小圆姐 圆圆</span>
+          <span class="chip"><svg class="ic"><use href="#i-shield"/></svg>AIA 财务顾问</span>
+          <span class="chip"><svg class="ic"><use href="#i-cal"/></svg>2026年8月更新</span>
+        </div>
+      </div>
+      <div class="hero-figure" aria-hidden="true">
+        <img src="/portrait.png" alt="">
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ================= NAV ================= -->
+<nav class="nav" aria-label="页面导航">
+  <div class="nav-scroll">
+    <a href="#promise"><svg class="ic"><use href="#i-hand"/></svg>三个前提</a>
+    <a href="#apply"><svg class="ic"><use href="#i-compass"/></svg>投保流程</a>
+    <a href="#prepare"><svg class="ic"><use href="#i-clipboard"/></svg>需要准备</a>
+    <a href="#claim"><svg class="ic"><use href="#i-shield"/></svg>理赔流程</a>
+    <a href="#docs"><svg class="ic"><use href="#i-memo"/></svg>理赔资料</a>
+    <a href="#big"><svg class="ic"><use href="#i-heart"/></svg>大额理赔</a>
+    <a href="#faq"><svg class="ic"><use href="#i-search"/></svg>常见顾虑</a>
+  </div>
+</nav>
+
+<main class="wrap">
+
+<!-- ================= PROMISE ================= -->
+<div class="helper" id="promise">
+  <div class="helper-card">
+    <span class="tag"><svg class="ic"><use href="#i-hand"/></svg>先说清楚三件事</span>
+    <h2>在你往下看之前</h2>
+    <p class="lead">流程本身不复杂。让人犹豫的往往是这三个问题，我先答完，你再决定要不要看下去。</p>
+
+    <div class="promise">
+      <span class="p-ic"><svg class="ic"><use href="#i-refresh"/></svg></span>
+      <div>
+        <h4>方案是拿来改的，不是拿来签的</h4>
+        <p>我不会给你一份「就这样吧」的建议书。保额、预算、缴费年限、要不要附加计划，都可以当场调。我通常会准备两版方案放一起对比，<b>改到你自己觉得舒服为止</b>，再谈下一步。</p>
+      </div>
+    </div>
+
+    <div class="promise">
+      <span class="p-ic"><svg class="ic"><use href="#i-lock"/></svg></span>
+      <div>
+        <h4>每一步都可以停</h4>
+        <p>听完方案不想继续，可以停；填到一半改主意，可以停；回去跟家人商量三个月再说，也完全可以。看方案、拿报价、做需求分析，全程<b>不收费、不产生任何义务</b>。没有「都到这一步了」这种道理。</p>
+      </div>
+    </div>
+
+    <div class="promise">
+      <span class="p-ic"><svg class="ic"><use href="#i-shield"/></svg></span>
+      <div>
+        <h4>签完之后，还有 14 天反悔期</h4>
+        <p>新加坡的人寿与健康类保单一般设有 <b>14 天冷静期（Free-look）</b>：收到保单后改主意，可以申请全额退回已缴保费（具体以保单条款与保险公司规定为准）。这是制度给你的后悔权，不是我给的人情。</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ================= APPLY ================= -->
+<section id="apply">
+  <div class="sec-head">
+    <div class="sec-badge"><svg class="ic"><use href="#i-compass"/></svg></div>
+    <div>
+      <div class="sec-num">01 · APPLICATION</div>
+      <h2>投保流程：两条路，你挑一条</h2>
+      <p>住院险和意外险的投保，可以约见面聊，也可以全程线上办。内容完全一样，只是节奏不同 —— 见面一次谈完，线上可以拆成两次、你有空的时候再继续。</p>
+    </div>
+  </div>
+
+  <div class="tabs" data-panels="t-offline,t-online">
+    <button class="tab-btn active" onclick="tab(this,'t-offline')"><svg class="ic"><use href="#i-home"/></svg>线下 · 约见面</button>
+    <button class="tab-btn" onclick="tab(this,'t-online')"><svg class="ic"><use href="#i-video"/></svg>线上 · 视频办</button>
+  </div>
+
+  <!-- ---------- OFFLINE ---------- -->
+  <div class="tab-panel active" id="t-offline">
+    <div class="jsteps">
+
+      <div class="jstep" data-n="1">
+        <div class="jbox">
+          <div class="jhead">
+            <h4><svg class="ic"><use href="#i-cal"/></svg>约时间和地点</h4>
+            <span class="jtime"><svg class="ic"><use href="#i-clock"/></svg>60–90 分钟</span>
+          </div>
+          <p>你家楼下的咖啡厅、你的办公室、我的办公室都行，哪个方便挑哪个。带孩子的话找个安静点的地方，我们慢慢聊。</p>
+          <div class="role">
+            <div class="r you"><div class="r-t"><svg class="ic"><use href="#i-users"/></svg>你要做的</div>告诉我哪天、哪个时段方便，大概想聊什么。</div>
+            <div class="r me"><div class="r-t"><svg class="ic"><use href="#i-star"/></svg>我来做的</div>确认时间，提前把要聊的内容和你需要带的东西发给你。</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="jstep key" data-n="2">
+        <div class="jbox">
+          <div class="jhead">
+            <h4><svg class="ic"><use href="#i-refresh"/></svg>讲方案，你说哪里要改</h4>
+            <span class="jtime"><svg class="ic"><use href="#i-hourglass"/></svg>不设时限</span>
+          </div>
+          <p>这是整个流程里最重要的一步，也是唯一没有时间表的一步。<b>你什么时候满意，什么时候进下一步。</b></p>
+          <div class="role">
+            <div class="r you"><div class="r-t"><svg class="ic"><use href="#i-users"/></svg>你要做的</div>听、问、提要求。觉得贵就说贵，觉得保额不够就说不够，觉得哪里没听懂就打断我。</div>
+            <div class="r me"><div class="r-t"><svg class="ic"><use href="#i-star"/></svg>我来做的</div>讲清楚住院险和意外险各自管什么、不管什么，按你的实际情况算出真实保费，准备两版方案对比给你看。</div>
+          </div>
+          <div class="jnote"><b>不用当场决定。</b>所有方案我都会给你一份网页版，回去自己慢慢看、给先生太太看、给父母看都行。想改哪里，微信上说一声，我改好再发你。</div>
+        </div>
+      </div>
+
+      <div class="jstep" data-n="3">
+        <div class="jbox">
+          <div class="jhead">
+            <h4><svg class="ic"><use href="#i-scan"/></svg>扫 Singpass，基本信息自动填好</h4>
+            <span class="jtime"><svg class="ic"><use href="#i-clock"/></svg>约 1 分钟</span>
+          </div>
+          <p>手机扫码，在 Singpass 官方授权页面点确认，投保表格里的身份和联系资料就自动带进来了 —— 省得手写，也避免写错字影响后面理赔。</p>
+          <div class="jnote safe"><b>这一步不动你的钱。</b>授权页面会明确列出要调取哪些资料，你可以逐条看完再点确认，不点就调不走。整个过程在 Singpass 官方页面完成，不涉及转账，也不会动你的 CPF 账户。</div>
+        </div>
+      </div>
+
+      <div class="jstep" data-n="4">
+        <div class="jbox">
+          <div class="jhead">
+            <h4><svg class="ic"><use href="#i-wallet"/></svg>第一份问卷：这笔钱你负担得起吗</h4>
+            <span class="jtime"><svg class="ic"><use href="#i-clock"/></svg>约 15 分钟</span>
+          </div>
+          <p>财务需求分析：月收入、月支出、已有保障、可以拿出来的预算。<b>这是新加坡金管局（MAS）规定的必要环节，目的是保护你。</b></p>
+          <div class="jnote">买保险最怕的不是买少了，是三年后交不起而断保 —— 前面交的钱大半打了水漂。这份问卷就是防这个的。如果算下来预算紧张，我会主动建议你把保额或方案往下调，这是我该做的事。</div>
+        </div>
+      </div>
+
+      <div class="jstep" data-n="5">
+        <div class="jbox">
+          <div class="jhead">
+            <h4><svg class="ic"><use href="#i-steth"/></svg>第二份问卷：你和孩子的健康状况</h4>
+            <span class="jtime"><svg class="ic"><use href="#i-clock"/></svg>约 15 分钟</span>
+          </div>
+          <p>慢性病、做过的手术、长期吃的药、体检报告上的异常项，都要如实填。原则很简单：<b>看病时你会告诉医生的事，投保时就要申报。</b></p>
+          <div class="jnote"><b>有病史不等于买不了。</b>常见的四种结果是：正常承保、加费承保、某个部位除外、暂缓一段时间再议。填之前你可以先把情况说给我听，我帮你预判大概会落在哪一种，心里有底再正式递交。</div>
+        </div>
+      </div>
+
+      <div class="jstep" data-n="6">
+        <div class="jbox">
+          <div class="jhead">
+            <h4><svg class="ic"><use href="#i-upload"/></svg>如果需要，补一份报告</h4>
+            <span class="jtime"><svg class="ic"><use href="#i-clock"/></svg>视情况</span>
+          </div>
+          <p>健康问卷里如果有需要说明的情况，核保会要一份对应的检查报告或医生记录。</p>
+          <div class="role">
+            <div class="r you"><div class="r-t"><svg class="ic"><use href="#i-users"/></svg>你要做的</div>照着我给的清单去拿，拍照或 PDF 发我就行。</div>
+            <div class="r me"><div class="r-t"><svg class="ic"><use href="#i-star"/></svg>我来做的</div>明确告诉你要哪一份、去哪里拿、大概几天能拿到 —— 不用你自己猜。</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="jstep key" data-n="7">
+        <div class="jbox">
+          <div class="jhead">
+            <h4><svg class="ic"><use href="#i-pen"/></svg>逐页确认、签字、支付</h4>
+            <span class="jtime"><svg class="ic"><use href="#i-clock"/></svg>约 20 分钟</span>
+          </div>
+          <p>我会把重点条款一条条指给你看：保什么、不保什么、等待期多久、什么情况不赔、以后能不能调整。<b>这些我不会跳过，也不会一句「都是标准条款」带过。</b></p>
+          <div class="role">
+            <div class="r you"><div class="r-t"><svg class="ic"><use href="#i-users"/></svg>你要做的</div>跟着我看一遍，确认没有理解错的地方，然后签字、付第一期保费。</div>
+            <div class="r me"><div class="r-t"><svg class="ic"><use href="#i-star"/></svg>我来做的</div>把除外责任、等待期、理赔条件逐条中文讲清楚，重要的部分我会翻译好另发你一份。</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="jstep" data-n="8">
+        <div class="jbox">
+          <div class="jhead">
+            <h4><svg class="ic"><use href="#i-check"/></svg>保单生效，然后才是长期的事</h4>
+            <span class="jtime"><svg class="ic"><use href="#i-cal"/></svg>每年复盘</span>
+          </div>
+          <p>保单下来后，我会给你一份「这张保单怎么用」的说明：什么情况该找我、理赔要准备什么、每年要检查什么。收到保单起一般有 14 天冷静期。</p>
+          <div class="jnote">之后每年我会主动约你复盘一次 —— 收入变了、生了二胎、换了工作、公司团险没了，保障都该跟着调。<b>签完字不是结束，是开始。</b></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ---------- ONLINE ---------- -->
+  <div class="tab-panel" id="t-online">
+    <div class="jsteps">
+
+      <div class="jstep" data-n="1">
+        <div class="jbox">
+          <div class="jhead">
+            <h4><svg class="ic"><use href="#i-chat"/></svg>先在线上把需求聊明白</h4>
+            <span class="jtime"><svg class="ic"><use href="#i-hourglass"/></svg>你什么时候有空</span>
+          </div>
+          <p>微信、WhatsApp，文字或语音都行。你说说家里的情况和顾虑，我先大致判断需要看哪几类保障 —— 不着急约会议。</p>
+        </div>
+      </div>
+
+      <div class="jstep" data-n="2">
+        <div class="jbox">
+          <div class="jhead">
+            <h4><svg class="ic"><use href="#i-video"/></svg>约一场 Zoom / 腾讯会议</h4>
+            <span class="jtime"><svg class="ic"><use href="#i-clock"/></svg>约 60 分钟</span>
+          </div>
+          <p>我共享屏幕带你看方案，你随时打断提问。先生太太一起听、父母一起听都可以，不用你回头再复述一遍。</p>
+          <div class="jnote">在国内、在出差、在坐月子，都不影响。时区不合适就约晚上或周末，我配合你。</div>
+        </div>
+      </div>
+
+      <div class="jstep key" data-n="3">
+        <div class="jbox">
+          <div class="jhead">
+            <h4><svg class="ic"><use href="#i-refresh"/></svg>两版报价，对着屏幕现场改</h4>
+            <span class="jtime"><svg class="ic"><use href="#i-hourglass"/></svg>不设时限</span>
+          </div>
+          <p>我一般会开两份 quotation 放在一起对比 —— 比如保障档次不同的两版，或者预算不同的两版。<b>你说改哪个数字，我当场改给你看，改到满意为止。</b></p>
+          <div class="jnote"><b>不用当场决定。</b>所有方案都有网页版，会议结束后发给你，你自己什么时候看都行，给家人看也方便。</div>
+        </div>
+      </div>
+
+      <div class="jstep" data-n="4">
+        <div class="jbox">
+          <div class="jhead">
+            <h4><svg class="ic"><use href="#i-scan"/></svg>会议中扫 Singpass</h4>
+            <span class="jtime"><svg class="ic"><use href="#i-clock"/></svg>约 1 分钟</span>
+          </div>
+          <p>手机扫码，在 Singpass 官方授权页面确认，基本信息自动填进投保表格。</p>
+          <div class="jnote safe"><b>这一步不动你的钱。</b>授权页面会列出要调取哪些资料，你逐条看完再点确认。不涉及转账，也不会动你的 CPF 账户。</div>
+        </div>
+      </div>
+
+      <div class="jstep" data-n="5">
+        <div class="jbox">
+          <div class="jhead">
+            <h4><svg class="ic"><use href="#i-wallet"/></svg>两份问卷，我带着你填</h4>
+            <span class="jtime"><svg class="ic"><use href="#i-clock"/></svg>约 30 分钟</span>
+          </div>
+          <p><b>财务需求分析</b>（现金流、预算、已有保障）—— MAS 规定的必要环节，确认这笔保费在你能长期负担的范围内。</p>
+          <p><b>健康问卷</b>（你和孩子的）—— 慢性病、手术史、长期用药如实填。有病史不等于买不了，常见结果是正常承保、加费、某部位除外或暂缓；填之前先跟我说，我帮你预判。</p>
+        </div>
+      </div>
+
+      <div class="jstep" data-n="6">
+        <div class="jbox">
+          <div class="jhead">
+            <h4><svg class="ic"><use href="#i-upload"/></svg>需要的话，上传报告</h4>
+            <span class="jtime"><svg class="ic"><use href="#i-clock"/></svg>视情况</span>
+          </div>
+          <p>手机拍照或 PDF 发我就行。要哪一份、去哪里拿、大概几天能拿到，我会先列清楚给你。</p>
+        </div>
+      </div>
+
+      <div class="jstep key" data-n="7">
+        <div class="jbox">
+          <div class="jhead">
+            <h4><svg class="ic"><use href="#i-pen"/></svg>收到链接，线上逐页 review 并签字</h4>
+            <span class="jtime"><svg class="ic"><use href="#i-clock"/></svg>约 20 分钟</span>
+          </div>
+          <p>保险公司会发一条安全链接到你的手机或邮箱，你自己点开，一页页看完再电子签名。</p>
+          <div class="role">
+            <div class="r you"><div class="r-t"><svg class="ic"><use href="#i-users"/></svg>你要做的</div>看到不懂的地方，截图发我，问清楚了再往下签。不用不好意思问。</div>
+            <div class="r me"><div class="r-t"><svg class="ic"><use href="#i-star"/></svg>我来做的</div>陪着你过一遍，重点条款、等待期、除外责任逐条中文讲清楚。</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="jstep" data-n="8">
+        <div class="jbox">
+          <div class="jhead">
+            <h4><svg class="ic"><use href="#i-check"/></svg>线上支付，保单生效</h4>
+            <span class="jtime"><svg class="ic"><use href="#i-cal"/></svg>每年复盘</span>
+          </div>
+          <p>线上完成首期保费支付，保单生效。同样有 14 天冷静期，同样会收到我那份「这张保单怎么用」的说明，之后每年主动约你复盘一次。</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ---------- online vs offline ---------- -->
+  <div class="card" style="margin-top:22px">
+    <h3><svg class="ic"><use href="#i-stack"/></svg>线上和线下，到底差在哪</h3>
+    <p style="margin-bottom:14px">很多人以为线上办会「简化」掉一些环节 —— 不会的。合规要求的每一步都一样，差的只是形式。</p>
+    <div class="cmp">
+      <div class="cmp-row"><div class="k"><svg class="ic"><use href="#i-check"/></svg>一样的</div><div class="v">方案讲解的深度、<b>方案随便改</b>、财务需求分析、健康问卷、逐页确认、14 天冷静期、每年复盘</div></div>
+      <div class="cmp-row"><div class="k"><svg class="ic"><use href="#i-home"/></svg>线下强在</div><div class="v"><b>一次谈完</b>。当面画图、当面算数、当面签字，一趟解决，适合喜欢面对面把事情定下来的人</div></div>
+      <div class="cmp-row"><div class="k"><svg class="ic"><use href="#i-video"/></svg>线上强在</div><div class="v"><b>可以拆开慢慢来</b>。不在新加坡、时间碎、想拉家人一起听，线上更方便；会议还能录下来回看</div></div>
+      <div class="cmp-row"><div class="k"><svg class="ic"><use href="#i-pen"/></svg>签字方式</div><div class="v">线下当场纸质或平板签；线上收保险公司发来的安全链接，自己点开逐页看、电子签</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PREPARE ================= -->
+<section id="prepare">
+  <div class="sec-head">
+    <div class="sec-badge"><svg class="ic"><use href="#i-clipboard"/></svg></div>
+    <div>
+      <div class="sec-num">02 · CHECKLIST</div>
+      <h2>你需要准备的，就这些</h2>
+      <p>没有的项目也不用紧张 —— 少哪样我们现场想办法，不会因为少一张纸就白跑一趟。</p>
+    </div>
+  </div>
+
+  <div class="check-grid">
+    <div class="chk">
+      <span class="box"><svg class="ic"><use href="#i-scan"/></svg></span>
+      <div><h4>手机上装好 Singpass App</h4><p>能扫码登录就行。这是整个流程里唯一需要你提前准备的「技术活」。</p></div>
+    </div>
+    <div class="chk">
+      <span class="box"><svg class="ic"><use href="#i-card"/></svg></span>
+      <div><h4>身份证件 / 准证</h4><p>NRIC、EP、DP 都可以。孩子的出生证明或身份证一并带上。</p></div>
+    </div>
+    <div class="chk">
+      <span class="box"><svg class="ic"><use href="#i-dollar"/></svg></span>
+      <div><h4>大概的收支数字</h4><p>月收入、月开销、每年在保险上花多少。<b>不用精确到个位</b>，一个大概的范围就够我们做判断。</p></div>
+    </div>
+    <div class="chk">
+      <span class="box"><svg class="ic"><use href="#i-stack"/></svg></span>
+      <div><h4>已有的保单</h4><p>自己买的、公司团险的，有就带上或拍个封面给我。没有整理好也没关系，我可以帮你理。</p></div>
+    </div>
+    <div class="chk">
+      <span class="box"><svg class="ic"><use href="#i-memo"/></svg></span>
+      <div><h4>体检报告 / 病历（如果有）</h4><p>有慢性病、做过手术、体检有异常项的话，把最近的报告翻出来，能省下后面来回补件的时间。</p></div>
+    </div>
+    <div class="chk">
+      <span class="box"><svg class="ic"><use href="#i-wallet"/></svg></span>
+      <div><h4>支付方式</h4><p>信用卡、PayNow 都可以。住院险的主险部分通常可以用 <b>MediSave</b> 支付（有年度提取上限），附加计划和意外险一般需要现金。</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CLAIM ================= -->
+<section id="claim">
+  <div class="sec-head">
+    <div class="sec-badge"><svg class="ic"><use href="#i-shield"/></svg></div>
+    <div>
+      <div class="sec-num">03 · CLAIMS</div>
+      <h2>理赔流程：你只负责看病</h2>
+      <p>买保险的那天不是关键，用得上的那天才是。这套流程我陪客户走过很多次，最要紧的其实是第一步。</p>
+    </div>
+  </div>
+
+  <div class="alert-card">
+    <h3><svg class="ic"><use href="#i-siren"/></svg>第一步永远是：先找我，别先付钱</h3>
+    <p>不用等确诊，不用等住进去。医生说「可能要住院观察」「建议做个手术」的那一刻，就可以给我发消息 —— 哪怕是晚上十一点。</p>
+    <p>因为很多能省钱、能省事的动作，<b>都必须在你住进去之前做</b>：选对医院和病房、提前申请免垫付、跟医生要对的文件。等出院了再来找我，有些事就补不回来了。</p>
+    <a class="first-call" href="https://wa.me/6583750190?text=%E4%BD%A0%E5%A5%BD%E5%B0%8F%E5%9C%86%E5%A7%90%EF%BC%8C%E6%88%91%E7%9C%8B%E4%BA%86%E4%BD%A0%E7%BD%91%E7%AB%99%E7%9A%84%E6%8A%95%E4%BF%9D%E4%B8%8E%E7%90%86%E8%B5%94%E6%B5%81%E7%A8%8B%EF%BC%8C%E6%9C%89%E9%97%AE%E9%A2%98%E6%83%B3%E5%92%A8%E8%AF%A2%E3%80%82">
+      <span class="ring"><svg class="ic"><use href="#i-phone"/></svg></span>
+      <span class="fc-txt">
+        <span class="num">+65 8375 0190</span>
+        <span class="lbl">WhatsApp / 电话 · 我的客户遇到就医情况，随时可以找我</span>
+      </span>
+    </a>
+  </div>
+
+  <div class="phase p1">
+    <div class="ph-top">
+      <span class="ph-badge"><svg class="ic"><use href="#i-phone"/></svg></span>
+      <h4>阶段一 · 就医前<small>这一步最值钱，别跳过</small></h4>
+    </div>
+    <p>一有情况就联系我。我会在电话或微信里帮你把这几件事先弄明白：</p>
+    <ul>
+      <li>你这个情况，<b>保单管不管、管到什么程度</b>，大概会有多少自付</li>
+      <li>去哪一类医院、住哪一等病房在你的保障范围内 —— <b>选错病房可能要自己补一大笔</b></li>
+      <li>要不要提前申请<b>事前授权（Pre-authorisation）</b>，很多情况下能做到出院时不用垫大额</li>
+      <li>见医生时要跟他要什么：诊断 memo、建议住院的理由、相关检查报告</li>
+      <li>哪些问题该当场问医生，哪些细节要写进病历 —— 这些直接影响后面赔不赔得顺</li>
+    </ul>
+  </div>
+
+  <div class="phase p2">
+    <div class="ph-top">
+      <span class="ph-badge"><svg class="ic"><use href="#i-hospital"/></svg></span>
+      <h4>阶段二 · 就医中<small>你专心看病，顺手把东西留好</small></h4>
+    </div>
+    <ul>
+      <li><b>当场跟医生要 memo</b>（诊断说明）。当场要一分钟的事，回头补要跑一趟</li>
+      <li>所有账单、收据、检查报告都留着，随手拍照发我也行</li>
+      <li>遇到「要不要加做这个项目」「这个能不能报」的疑问，<b>当场问我</b>，别自己拿主意</li>
+    </ul>
+  </div>
+
+  <div class="phase p3">
+    <div class="ph-top">
+      <span class="ph-badge"><svg class="ic"><use href="#i-memo"/></svg></span>
+      <h4>阶段三 · 就医后<small>你发文件，我来整理</small></h4>
+    </div>
+    <p>把最终账单（final bill）、医生 memo、出院小结（discharge summary）这些发给我，微信或 WhatsApp 拍照就行，不用扫描、不用整理成 PDF。</p>
+    <p style="margin-top:9px">我来核对齐不齐、有没有缺件 —— <b>缺件是理赔变慢最常见的原因</b>，先在我这一关拦掉。</p>
+  </div>
+
+  <div class="phase p4">
+    <div class="ph-top">
+      <span class="ph-badge"><svg class="ic"><use href="#i-clipboard"/></svg></span>
+      <h4>阶段四 · 我提交，后台审核<small>进度我盯，不用你追</small></h4>
+    </div>
+    <p>由我提交理赔申请。之后审核进度由我跟，保险公司如果要补件，我会先看懂了再来找你 —— <b>不会让你对着一封看不懂的英文邮件发愁。</b></p>
+  </div>
+
+  <div class="phase p5">
+    <div class="ph-top">
+      <span class="ph-badge"><svg class="ic"><use href="#i-dollar"/></svg></span>
+      <h4>阶段五 · 理赔款到账<small>还没完，再看一眼能不能多报一点</small></h4>
+    </div>
+    <p>到账后我会跟你核对金额对不对。如果还有自付部分，<b>可以再拿去公司团险报一次</b> —— 个人险先赔、团险后补，顺序不能反。这一步很多人不知道，白白少拿了一笔。</p>
+  </div>
+</section>
+
+<!-- ================= DOCS ================= -->
+<section id="docs">
+  <div class="sec-head">
+    <div class="sec-badge"><svg class="ic"><use href="#i-memo"/></svg></div>
+    <div>
+      <div class="sec-num">04 · DOCUMENTS</div>
+      <h2>理赔要哪些资料</h2>
+      <p>存下这一页，真到那天不用现找。不同情况要的东西不一样，点开看你需要的那一类就好 —— 当然，到时候我也会重新给你列一份。</p>
+    </div>
+  </div>
+
+  <div class="acc">
+    <button class="acc-head" onclick="acc(this)">
+      <svg class="ic h-ic"><use href="#i-hospital"/></svg>
+      <span class="label">住院 / 手术</span>
+      <span class="chev"><svg class="ic" style="width:14px;height:14px"><use href="#i-chev"/></svg></span>
+    </button>
+    <div class="acc-body">
+      <ul>
+        <li><b>最终账单 Final Bill</b><span>注意不是预估单 estimate，要出院后的正式账单</span></li>
+        <li><b>出院小结 Discharge Summary</b><span>医院出具，写明诊断、治疗过程和住院天数</span></li>
+        <li><b>医生诊断说明 Memo</b><span>写清楚是什么病、为什么需要住院或手术</span></li>
+        <li>相关检查报告<span>影像、化验、病理等，视病情而定</span></li>
+        <li>收据<span>如果你已经先自己付了钱</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="acc">
+    <button class="acc-head" onclick="acc(this)">
+      <svg class="ic h-ic"><use href="#i-alert"/></svg>
+      <span class="label">意外</span>
+      <span class="chev"><svg class="ic" style="width:14px;height:14px"><use href="#i-chev"/></svg></span>
+    </button>
+    <div class="acc-body">
+      <ul>
+        <li><b>医生的诊断 Memo</b><span>关键是要写明伤是意外造成的</span></li>
+        <li>账单与收据<span>门诊、复诊、理疗都算</span></li>
+        <li><b>事故经过说明</b><span>什么时间、什么地点、怎么发生的，越具体越好</span></li>
+        <li>事故报告 / 报警记录<span>涉及交通事故或第三方时需要</span></li>
+        <li>现场照片<span>有就更好，方便还原经过</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="acc">
+    <button class="acc-head" onclick="acc(this)">
+      <svg class="ic h-ic"><use href="#i-heart"/></svg>
+      <span class="label">重疾</span>
+      <span class="chev"><svg class="ic" style="width:14px;height:14px"><use href="#i-chev"/></svg></span>
+    </button>
+    <div class="acc-body">
+      <ul>
+        <li><b>专科医生的确诊报告与诊断书</b><span>重疾理赔看的是诊断是否符合保单定义，这份最关键</span></li>
+        <li>病理 / 影像 / 化验报告<span>比如活检报告、CT/MRI 报告</span></li>
+        <li>首次出现症状的时间与就诊记录<span>核赔时通常会回溯这一点</span></li>
+        <li>既往病历<span>保险公司一般会向就诊过的医疗机构调取</span></li>
+        <li>住院与治疗账单<span>如果同时涉及住院险理赔</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="acc">
+    <button class="acc-head" onclick="acc(this)">
+      <svg class="ic h-ic"><use href="#i-stack"/></svg>
+      <span class="label">个人险赔完，再报公司团险</span>
+      <span class="chev"><svg class="ic" style="width:14px;height:14px"><use href="#i-chev"/></svg></span>
+    </button>
+    <div class="acc-body">
+      <p>顺序很重要：<b>先用个人险赔，剩下的自付部分再交给公司团险</b>。反过来做，有些情况会赔不全。</p>
+      <ul>
+        <li>个人险的理赔结算单 Settlement Letter</li>
+        <li>剩余自付部分的账单</li>
+        <li>公司团险要求的申请表<span>各家不一样，HR 那里能拿到</span></li>
+      </ul>
+      <p>不确定顺序怎么走，先问我一句，别自己先提交。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= BIG CLAIMS ================= -->
+<section id="big">
+  <div class="sec-head">
+    <div class="sec-badge"><svg class="ic"><use href="#i-heart"/></svg></div>
+    <div>
+      <div class="sec-num">05 · MAJOR CLAIMS</div>
+      <h2>大额与重疾理赔</h2>
+      <p>流程和上面完全一样：第一时间联系我 → 我列清单、你准备资料 → 我提交 → 审核 → 到账。差别在于每一步都更细、更慢。</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3><svg class="ic"><use href="#i-hourglass"/></svg>时间上要有心理准备</h3>
+    <p>普通住院理赔资料齐全的话，通常是几个工作日到两三周。<b>大额和重疾理赔往往要一两个月甚至更久</b> —— 因为保险公司通常需要调取既往病历、跟主治医生核实诊断，这些环节本身就慢。</p>
+    <p>我会提前把预期时间告诉你，而不是让你在焦虑里空等。</p>
+  </div>
+
+  <div class="card">
+    <h3><svg class="ic"><use href="#i-hand"/></svg>这种时候，我的角色是替你扛流程</h3>
+    <p>正在治病的人是最没精力处理文件的。这个阶段我会：把要的资料列成清单、逐件核对、直接对接公司的理赔部门追进度、必要时陪你去医院拿文件。</p>
+    <p><b>你负责治病和休息，剩下的交给我。</b></p>
+  </div>
+
+  <div class="honest">
+    <h3><svg class="ic"><use href="#i-search"/></svg>一句实话</h3>
+    <p>我不会跟你保证「一定赔」。能不能赔，取决于保单条款和诊断是否符合定义，这件事不是顾问说了算的，任何跟你打包票的人都不诚实。</p>
+    <p>我能保证的是另外两件事：<b>投保时该申报的我一定提醒你申报</b>，不给将来留雷；<b>理赔时该争取的我一定替你争取到底</b>，需要补充说明、需要跟核赔沟通、需要找医生补一份记录，我去做。你不会一个人对着流程发愁。</p>
+  </div>
+</section>
+
+<!-- ================= FAQ ================= -->
+<section id="faq">
+  <div class="sec-head">
+    <div class="sec-badge"><svg class="ic"><use href="#i-search"/></svg></div>
+    <div>
+      <div class="sec-num">06 · YOUR CONCERNS</div>
+      <h2>大家最常问我的九件事</h2>
+      <p>这些问题问出来一点都不冒犯，反而说明你在认真考虑。我按被问到的频率排了个序。</p>
+    </div>
+  </div>
+
+  <div class="acc">
+    <button class="acc-head" onclick="acc(this)">
+      <svg class="ic h-ic"><use href="#i-hand"/></svg>
+      <span class="label">聊完是不是就得买？</span>
+      <span class="chev"><svg class="ic" style="width:14px;height:14px"><use href="#i-chev"/></svg></span>
+    </button>
+    <div class="acc-body">
+      <p>不是。见面聊、看方案、拿报价、做需求分析，全都<b>不收费、不产生任何义务</b>。买不买、什么时候买、买多少，你说了算。</p>
+      <p>如果聊下来我觉得你现在不需要买、或者手上的保单已经够用了，我会直接说 —— 这对我们双方都省时间。</p>
+    </div>
+  </div>
+
+  <div class="acc">
+    <button class="acc-head" onclick="acc(this)">
+      <svg class="ic h-ic"><use href="#i-clock"/></svg>
+      <span class="label">一共要花我多少时间？</span>
+      <span class="chev"><svg class="ic" style="width:14px;height:14px"><use href="#i-chev"/></svg></span>
+    </button>
+    <div class="acc-body">
+      <p><b>线下：</b>一次 60–90 分钟，从聊需求到签字基本能一趟走完。</p>
+      <p><b>线上：</b>通常拆成两次 —— 第一次半小时聊需求，第二次 60 分钟过方案和办手续。中间隔多久由你决定。</p>
+      <p>如果需要补体检报告，会多等几天，这部分时间取决于医院出报告的速度。</p>
+    </div>
+  </div>
+
+  <div class="acc">
+    <button class="acc-head" onclick="acc(this)">
+      <svg class="ic h-ic"><use href="#i-refresh"/></svg>
+      <span class="label">方案定了还能改吗？</span>
+      <span class="chev"><svg class="ic" style="width:14px;height:14px"><use href="#i-chev"/></svg></span>
+    </button>
+    <div class="acc-body">
+      <p><b>签字前：</b>随便改，改多少次都行，这本来就是我的工作。</p>
+      <p><b>签字后 14 天内：</b>冷静期（Free-look）内改主意，可以申请全额退回已缴保费。</p>
+      <p><b>生效之后：</b>保额、附加计划、缴费方式在多数情况下仍然可以调整，具体看产品规则。我们每年复盘一次，就是为了让保单跟着你的生活走。</p>
+    </div>
+  </div>
+
+  <div class="acc">
+    <button class="acc-head" onclick="acc(this)">
+      <svg class="ic h-ic"><use href="#i-lock"/></svg>
+      <span class="label">扫 Singpass 安全吗？会不会被划钱？</span>
+      <span class="chev"><svg class="ic" style="width:14px;height:14px"><use href="#i-chev"/></svg></span>
+    </button>
+    <div class="acc-body">
+      <p>Singpass 是新加坡政府的官方身份平台，整个授权动作在 Singpass 官方页面完成，我这边看不到你的密码，也碰不到你的账户。</p>
+      <p>授权页面会<b>明确列出这次要调取哪些资料</b>，你可以逐条看完再点确认 —— 不点，一个字都调不走。这一步只用来填投保申请表，<b>不涉及任何转账，也不会动你的 CPF</b>。</p>
+    </div>
+  </div>
+
+  <div class="acc">
+    <button class="acc-head" onclick="acc(this)">
+      <svg class="ic h-ic"><use href="#i-steth"/></svg>
+      <span class="label">我有慢性病 / 做过手术，还能买吗？</span>
+      <span class="chev"><svg class="ic" style="width:14px;height:14px"><use href="#i-chev"/></svg></span>
+    </button>
+    <div class="acc-body">
+      <p>能不能买、以什么条件买，由核保决定。常见的四种结果是：<b>正常承保、加费承保、某个部位除外、暂缓一段时间再议</b>。「直接拒保」远没有大家想的那么常见。</p>
+      <p>你可以先把情况告诉我，我帮你做一次非正式的预判，心里有数再决定要不要正式递交。</p>
+      <p><b>最忌讳的是不申报。</b>省下的那点保费，换来的是将来理赔被拒、甚至保单被撤销 —— 那才是真正的亏。</p>
+    </div>
+  </div>
+
+  <div class="acc">
+    <button class="acc-head" onclick="acc(this)">
+      <svg class="ic h-ic"><use href="#i-shield"/></svg>
+      <span class="label">我的健康和收入资料会给谁看？</span>
+      <span class="chev"><svg class="ic" style="width:14px;height:14px"><use href="#i-chev"/></svg></span>
+    </button>
+    <div class="acc-body">
+      <p>用于投保审核，按新加坡《个人资料保护法》（PDPA）处理，在保险公司的系统内流转。我个人不会拿去做投保之外的任何用途，也不会转给第三方。</p>
+      <p>你随时可以问我「这一项为什么要填」，我有义务解释清楚。</p>
+    </div>
+  </div>
+
+  <div class="acc">
+    <button class="acc-head" onclick="acc(this)">
+      <svg class="ic h-ic"><use href="#i-wallet"/></svg>
+      <span class="label">理赔的时候要我先垫钱吗？</span>
+      <span class="chev"><svg class="ic" style="width:14px;height:14px"><use href="#i-chev"/></svg></span>
+    </button>
+    <div class="acc-body">
+      <p>视情况。公民和 PR 在很多医院有担保额度，账单可以由医院直接对接保险公司；超额、外籍人士、或有既往症除外的情况，一般可以提前申请<b>事前授权（Pre-authorisation）</b>，多数情况下能做到出院时不用垫一大笔。</p>
+      <p>但这些都需要<b>在住院前几个工作日安排</b>。这正是为什么第一步是「先找我」。</p>
+    </div>
+  </div>
+
+  <div class="acc">
+    <button class="acc-head" onclick="acc(this)">
+      <svg class="ic h-ic"><use href="#i-users"/></svg>
+      <span class="label">如果哪天你不做了，我的保单怎么办？</span>
+      <span class="chev"><svg class="ic" style="width:14px;height:14px"><use href="#i-chev"/></svg></span>
+    </button>
+    <div class="acc-body">
+      <p>保单是<b>你和保险公司之间的合约</b>，保障和理赔权益跟顾问在不在没有关系，一分都不会少。</p>
+      <p>顾问的价值在于「有人替你盯着」—— 提醒你复盘、帮你走流程、理赔时替你争取。这是服务，不是保障本身。</p>
+    </div>
+  </div>
+
+  <div class="acc">
+    <button class="acc-head" onclick="acc(this)">
+      <svg class="ic h-ic"><use href="#i-chat"/></svg>
+      <span class="label">我英文不好，看不懂文件怎么办？</span>
+      <span class="chev"><svg class="ic" style="width:14px;height:14px"><use href="#i-chev"/></svg></span>
+    </button>
+    <div class="acc-body">
+      <p>全程中文。方案我用中文讲，重要条款我翻译好另发你一份，理赔的每一封往来邮件我先看懂了再转达给你。</p>
+      <p>你需要做的只是听懂、问清楚、然后决定。<b>看不懂英文，从来不该成为你保障不足的理由。</b></p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= RELATED ================= -->
+<section id="related" style="padding-top:48px">
+  <div class="sec-head">
+    <div class="sec-badge"><svg class="ic"><use href="#i-list"/></svg></div>
+    <div>
+      <div class="sec-num">07 · NEXT</div>
+      <h2>顺手看看这几篇</h2>
+    </div>
+  </div>
+  <div class="rel">
+    <a href="/guides/healthcare.html">
+      <span class="r-ic"><svg class="ic"><use href="#i-steth"/></svg></span>
+      <span class="r-txt"><b>新加坡就医指南</b><small>看病去哪里、要花多少钱、住院账单公立私立差多少，一篇讲清楚</small></span>
+      <svg class="ic go"><use href="#i-arrow"/></svg>
+    </a>
+    <a href="/tools">
+      <span class="r-ic"><svg class="ic"><use href="#i-dollar"/></svg></span>
+      <span class="r-txt"><b>CPF / SRS 省税计算器</b><small>算算充值前后能省多少税，规划预算时用得上</small></span>
+      <svg class="ic go"><use href="#i-arrow"/></svg>
+    </a>
+    <a href="/zh/services">
+      <span class="r-ic"><svg class="ic"><use href="#i-shield"/></svg></span>
+      <span class="r-txt"><b>我能帮你做什么</b><small>保单年检、家庭保障、重疾人寿、被动收入与传承</small></span>
+      <svg class="ic go"><use href="#i-arrow"/></svg>
+    </a>
+  </div>
+</section>
+
+<!-- ================= CTA ================= -->
+<div class="cta">
+  <div class="avatar"><img src="/avatar-round.png" alt="新加坡小圆姐 圆圆"></div>
+  <h2 class="serif">先聊聊也行，不用先想好买什么</h2>
+  <p>不用准备什么，也不用先把问题想清楚。你说说家里的情况，我们一起看看要不要做、什么时候做、做到什么程度。真的不需要，我也会直接告诉你。</p>
+  <div class="contact">
+    <a href="https://wa.me/6583750190?text=%E4%BD%A0%E5%A5%BD%E5%B0%8F%E5%9C%86%E5%A7%90%EF%BC%8C%E6%88%91%E7%9C%8B%E4%BA%86%E4%BD%A0%E7%BD%91%E7%AB%99%E7%9A%84%E6%8A%95%E4%BF%9D%E4%B8%8E%E7%90%86%E8%B5%94%E6%B5%81%E7%A8%8B%EF%BC%8C%E6%9C%89%E9%97%AE%E9%A2%98%E6%83%B3%E5%92%A8%E8%AF%A2%E3%80%82"><svg class="ic"><use href="#i-phone"/></svg><span><b>WhatsApp</b>　+65 8375 0190</span></a>
+    <a href="mailto:yuanyuan@aia.com.sg"><svg class="ic"><use href="#i-mail"/></svg><span><b>邮箱</b>　yuanyuan@aia.com.sg</span></a>
+    <span><svg class="ic"><use href="#i-star"/></svg><span><b>小红书 / 视频号</b>　@新加坡小圆姐</span></span>
+  </div>
+  <div class="qr">
+    <img src="/wechat-qr.png" alt="微信二维码">
+    <div class="qr-txt">
+      <b>扫码加微信</b>
+      <small>微信号 singaporeyuan<br>投保、理赔问题随时问</small>
+    </div>
+  </div>
+  <div class="slogan">用专业和耐心，陪你一起日富一日</div>
+</div>
+
+<footer>
+  <p class="disclaimer">
+    本页描述的是我为客户服务的一般流程，实际步骤可能因产品类型、核保结果及保险公司当时的作业要求而有所不同。文中提及的冷静期、MediSave 使用、事前授权与理赔时效，均以保险公司条款及新加坡相关规定为准。本页内容仅供一般参考，不构成投保建议，也不构成任何理赔结果的承诺；具体保障范围、除外责任与理赔条件请以保单合约为准。更新于2026年8月。<br>
+    袁媛 Yuan Yuan · AIA Singapore 代表 · RNF No. YY-300823216 · © 2026 singaporeyuan.com
+  </p>
+</footer>
+
+</main>
+
+<script>
+function tab(btn,id){
+  var group=btn.parentElement;
+  group.querySelectorAll('.tab-btn').forEach(function(b){b.classList.remove('active')});
+  btn.classList.add('active');
+  (group.getAttribute('data-panels')||'').split(',').forEach(function(p){
+    var el=document.getElementById(p.trim());
+    if(el) el.classList.remove('active');
+  });
+  document.getElementById(id).classList.add('active');
+}
+function acc(head){
+  head.parentElement.classList.toggle('open');
+}
+(function(){
+  if(!('IntersectionObserver' in window))return;
+  if(window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}
+    });
+  },{threshold:.06,rootMargin:'0px 0px -20px 0px'});
+  document.querySelectorAll('.sec-head,.card,.chk,.phase,.acc,.cmp,.alert-card,.honest,.cta,.rel a').forEach(function(el){
+    el.classList.add('rv');io.observe(el);
+  });
+})();
+</script>
+<div id="wm" aria-hidden="true"></div>
+<script>
+(function(){
+  var text="新加坡小圆姐　　　singaporeyuan　　　仅供参考　　　　　　";
+  var wm=document.getElementById('wm');var unit=text.repeat(6);
+  for(var i=0;i<16;i++){var d=document.createElement('div');d.className='row';d.textContent=unit;d.style.left='-200px';d.style.top=(i*110-120)+'px';wm.appendChild(d);}
+})();
+</script>
+</body>
+</html>

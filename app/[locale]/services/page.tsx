@@ -186,6 +186,23 @@ function Services() {
               );
             })}
           </div>
+          {/* 流程透明 · 投保与理赔流程入口 */}
+          <div className="mt-14 flex flex-col items-start gap-6 rounded-2xl border border-gold/35 bg-gold/[0.07] p-7 md:flex-row md:items-center md:justify-between md:p-9">
+            <div className="min-w-0">
+              <p className="eyebrow">{t('journeyEyebrow')}</p>
+              <h3 className="mt-2 text-xl font-black leading-snug text-navy md:text-2xl">
+                {t('journeyTitle')}
+              </h3>
+              <p className="mt-3 max-w-2xl text-sm leading-relaxed text-mist">{t('journeyBody')}</p>
+            </div>
+            <a
+              href="/guides/insurance-journey.html"
+              className="btn-primary shrink-0 px-6 py-3"
+            >
+              {t('journeyBtn')} →
+            </a>
+          </div>
+
           <p className="mt-12 border-t border-navy/10 pt-6 text-xs leading-relaxed text-mist">{t('complianceNote')}</p>
         </section>
 
