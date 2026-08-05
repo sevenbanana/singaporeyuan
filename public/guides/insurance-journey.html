@@ -463,6 +463,43 @@ section{padding:64px 0 12px}
 .honest p + p{margin-top:10px}
 .honest p b{color:var(--navy)}
 
+/* ---------- mutual commitments ---------- */
+.mutual{display:grid;gap:14px;grid-template-columns:1fr 1fr}
+.mu{border-radius:var(--radius);padding:22px 20px;border:1px solid}
+.mu.mine{background:var(--green-soft);border-color:#BCCDB4}
+.mu.yours{background:var(--gold-soft);border-color:#DEC998}
+.mu-top{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.mu-ic{
+  width:34px;height:34px;border-radius:10px;flex:0 0 34px;background:#fff;
+  display:flex;align-items:center;justify-content:center;
+}
+.mu-ic .ic{width:18px;height:18px}
+.mu.mine .mu-ic{color:var(--green)}
+.mu.yours .mu-ic{color:var(--gold-deep)}
+.mu h3{font-size:16.5px;line-height:1.4}
+.mu.mine h3{color:var(--green)}
+.mu.yours h3{color:var(--gold-deep)}
+.mu ul{list-style:none}
+.mu li{
+  position:relative;padding:9px 0 9px 19px;
+  font-size:13.8px;line-height:1.85;
+  border-bottom:1px dashed rgba(24,43,69,.09);
+}
+.mu li:last-child{border-bottom:none}
+.mu li::before{content:"";position:absolute;left:2px;top:17px;width:6px;height:6px;border-radius:50%}
+.mu li b{display:block;margin-bottom:1px}
+.mu.mine li{color:#4C6248}
+.mu.mine li::before{background:var(--green)}
+.mu.yours li{color:#6A5934}
+.mu.yours li::before{background:var(--gold)}
+.mu.yours li b{color:var(--gold-deep)}
+.closing{
+  margin-top:14px;padding:21px 22px;border-radius:var(--radius);
+  background:var(--cream);border:1px solid var(--line);box-shadow:var(--shadow);
+  font-size:14.5px;line-height:1.95;color:#5A6674;
+}
+.closing b{color:var(--navy)}
+
 /* ---------- CTA ---------- */
 .cta{
   background:linear-gradient(160deg,var(--navy),#253B5E);
@@ -515,6 +552,12 @@ section{padding:64px 0 12px}
 .cta .qr .qr-txt{text-align:left;color:var(--navy)}
 .cta .qr .qr-txt b{display:block;font-size:14.5px;margin-bottom:2px}
 .cta .qr .qr-txt small{font-size:12.5px;color:#6C7683;line-height:1.6;display:block}
+.cta .observe{
+  position:relative;z-index:1;
+  max-width:340px;margin:20px auto 0;
+  padding-top:16px;border-top:1px solid rgba(200,166,100,.28);
+  font-size:13.2px;line-height:1.85;color:#AFBCCD;
+}
 .cta .slogan{margin-top:20px;font-size:13px;color:#AFBCCD;letter-spacing:.08em;position:relative;z-index:1}
 
 /* ---------- related links ---------- */
@@ -549,6 +592,9 @@ footer{padding:14px 0 56px}
   .rv.in{opacity:1;transform:none}
 }
 
+@media (max-width:600px){
+  .mutual{grid-template-columns:1fr}
+}
 @media (max-width:560px){
   .hero-figure{flex-basis:138px;width:138px}
   .hero-figure::before{width:140px;height:140px;top:26px}
@@ -659,6 +705,7 @@ footer{padding:14px 0 56px}
     <a href="#docs"><svg class="ic"><use href="#i-memo"/></svg>理赔资料</a>
     <a href="#big"><svg class="ic"><use href="#i-heart"/></svg>大额理赔</a>
     <a href="#faq"><svg class="ic"><use href="#i-search"/></svg>常见顾虑</a>
+    <a href="#howiwork"><svg class="ic"><use href="#i-hand"/></svg>工作方式</a>
   </div>
 </nav>
 
@@ -1175,6 +1222,7 @@ footer{padding:14px 0 56px}
     <div class="acc-body">
       <p>不是。见面、看方案、拿报价、做需求分析都<b>不收费，也不产生任何义务</b>。买不买、什么时候买、买多少，由你决定。</p>
       <p>如果聊下来我判断你现在不需要加保，或者手上的保单已经够用，我会直接说。把不合适的方案卖给你，对我没有任何好处。</p>
+      <p>另一种情况是，你已经决定在别处投保，只想听一份中立的分析。这种我也接，按付费咨询来。</p>
     </div>
   </div>
 
@@ -1278,12 +1326,56 @@ footer{padding:14px 0 56px}
   </div>
 </section>
 
+<!-- ================= HOW I WORK ================= -->
+<section id="howiwork">
+  <div class="sec-head">
+    <div class="sec-badge"><svg class="ic"><use href="#i-hand"/></svg></div>
+    <div>
+      <div class="sec-num">07 · HOW I WORK</div>
+      <h2>合作之前，两件事说在前面</h2>
+      <p>流程是双方的事。左边是我一定会做到的，右边是我希望你也能做到的。都写清楚，我们都省事。</p>
+    </div>
+  </div>
+
+  <div class="mutual">
+    <div class="mu mine">
+      <div class="mu-top">
+        <span class="mu-ic"><svg class="ic"><use href="#i-check"/></svg></span>
+        <h3>我会做到的</h3>
+      </div>
+      <ul>
+        <li>不推销，不打扰，不纠缠。</li>
+        <li>留言咨询，最晚第二天回复。</li>
+        <li>一个月内打算投保的，方案最迟一周给到。</li>
+        <li>产品的好和不好都讲，条款逐条解释，不挑好听的说。</li>
+        <li>别处买的保单，我一样帮你梳理，该说不合适就说不合适。</li>
+        <li>成了我的客户，理赔全程我跟到底。</li>
+      </ul>
+    </div>
+    <div class="mu yours">
+      <div class="mu-top">
+        <span class="mu-ic"><svg class="ic"><use href="#i-users"/></svg></span>
+        <h3>希望你也做到的</h3>
+      </div>
+      <ul>
+        <li><b>说真话。</b>健康状况、家庭情况、真实的收支，如实告诉我。这些我替你守住，但你若有隐瞒，核保和理赔都会出问题，我也没办法给出最有利的安排。</li>
+        <li><b>带上一起做决定的人。</b>保单如果要和先生、太太或者父母商量，最好一开始就一起来。聊完再回去说服家人，多半要推翻重来。</li>
+        <li><b>第二意见，欢迎付费咨询。</b>如果你已经决定在别处投保，只是想听一份中立的分析，我很愿意给。但这是专业判断，不是顺带的人情。</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="closing">
+    保险这件事，说复杂也复杂，说简单也简单。我能做的，是在你需要判断的时候，帮你把它变简单。<b>希望你做的每一个决定，都是清楚的，也是踏实的。</b>
+  </div>
+</section>
+
 <!-- ================= RELATED ================= -->
 <section id="related" style="padding-top:48px">
   <div class="sec-head">
     <div class="sec-badge"><svg class="ic"><use href="#i-list"/></svg></div>
     <div>
-      <div class="sec-num">07 · NEXT</div>
+      <div class="sec-num">08 · NEXT</div>
       <h2>相关内容</h2>
     </div>
   </div>
@@ -1309,7 +1401,7 @@ footer{padding:14px 0 56px}
 <!-- ================= CTA ================= -->
 <div class="cta">
   <div class="avatar"><img src="/avatar-round.png" alt="新加坡小圆姐 圆圆"></div>
-  <h2 class="serif">先聊，再决定</h2>
+  <h2 class="serif">想清楚了再来，也不迟</h2>
   <p>不用先想好要买什么，把家里的情况说清楚就够了。要不要做、什么时候做、做到什么程度，我们一起判断。如果结论是暂时不需要，我也会直接告诉你。</p>
   <div class="contact">
     <a href="https://wa.me/6583750190?text=%E4%BD%A0%E5%A5%BD%E5%B0%8F%E5%9C%86%E5%A7%90%EF%BC%8C%E6%88%91%E7%9C%8B%E4%BA%86%E4%BD%A0%E7%BD%91%E7%AB%99%E7%9A%84%E6%8A%95%E4%BF%9D%E4%B8%8E%E7%90%86%E8%B5%94%E6%B5%81%E7%A8%8B%EF%BC%8C%E6%9C%89%E9%97%AE%E9%A2%98%E6%83%B3%E5%92%A8%E8%AF%A2%E3%80%82"><svg class="ic"><use href="#i-phone"/></svg><span><b>WhatsApp</b>　+65 8375 0190</span></a>
@@ -1323,6 +1415,7 @@ footer{padding:14px 0 56px}
       <small>微信号 singaporeyuan<br>投保、理赔问题随时问</small>
     </div>
   </div>
+  <p class="observe">还不确定要不要找我，可以先去我的小红书和视频号看看，观察一阵子，自己得出判断。</p>
   <div class="slogan">用专业和耐心，陪你一起日富一日</div>
 </div>
 
@@ -1357,7 +1450,7 @@ function acc(head){
       if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}
     });
   },{threshold:.06,rootMargin:'0px 0px -20px 0px'});
-  document.querySelectorAll('.sec-head,.card,.chk,.phase,.acc,.cmp,.alert-card,.honest,.cta,.rel a').forEach(function(el){
+  document.querySelectorAll('.sec-head,.card,.chk,.phase,.acc,.cmp,.alert-card,.honest,.mu,.closing,.cta,.rel a').forEach(function(el){
     el.classList.add('rv');io.observe(el);
   });
 })();
