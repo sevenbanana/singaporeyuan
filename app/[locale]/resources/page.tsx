@@ -56,6 +56,14 @@ const IconSpark = (
   </svg>
 );
 
+const IconRoute = (
+  <svg {...ic}>
+    <circle cx="6" cy="6" r="2.6" />
+    <circle cx="18" cy="18" r="2.6" />
+    <path d="M8.6 6h5.4a3.4 3.4 0 0 1 0 6.8h-4a3.4 3.4 0 0 0 0 6.8h5.4" />
+  </svg>
+);
+
 type Resource = {
   key: string;
   tag: string;
@@ -89,6 +97,17 @@ export default async function ResourcesPage({
       icon: IconSteth,
       external: '/guides/healthcare.html',
       cta: en ? 'Read the guide' : '阅读指南',
+    },
+    {
+      key: 'journey',
+      tag: en ? 'How we work' : '流程说明',
+      title: en ? 'How Applying & Claiming Actually Works' : '投保与理赔的完整流程',
+      desc: en
+        ? 'What actually happens from the first conversation to a claim paid out, online or in person: who does what at each step, how long it takes, and what to prepare. (In Chinese)'
+        : '住院险、意外险的投保和理赔,从第一次沟通到理赔款到账。线上线下两条路径,每一步谁负责什么、需要多久、要准备哪些材料,有既往病史怎么核保、事前授权怎么申请,都写清楚了。',
+      icon: IconRoute,
+      external: '/guides/insurance-journey.html',
+      cta: en ? 'See the full flow' : '看看流程',
     },
     {
       key: 'taxguide',
