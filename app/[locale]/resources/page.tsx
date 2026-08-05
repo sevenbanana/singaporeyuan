@@ -101,10 +101,10 @@ export default async function ResourcesPage({
     {
       key: 'journey',
       tag: en ? 'How we work' : '流程说明',
-      title: en ? 'How Applying & Claiming Actually Works' : '投保与理赔流程，全摊开给你看',
+      title: en ? 'How Applying & Claiming Actually Works' : '投保与理赔的完整流程',
       desc: en
-        ? 'What actually happens from the first chat to a claim paid out — online and in person. Every step spells out what you do, what I do, and how long it takes. (In Chinese)'
-        : '住院险、意外险的投保和理赔，从第一次聊到理赔款到账。线上线下两条路径,每一步你要做什么、我来做什么、大概多久,连「方案能不能改」「扫SingPass安不安全」都写清楚了。',
+        ? 'What actually happens from the first conversation to a claim paid out, online or in person: who does what at each step, how long it takes, and what to prepare. (In Chinese)'
+        : '住院险、意外险的投保和理赔,从第一次沟通到理赔款到账。线上线下两条路径,每一步谁负责什么、需要多久、要准备哪些材料,有既往病史怎么核保、事前授权怎么申请,都写清楚了。',
       icon: IconRoute,
       external: '/guides/insurance-journey.html',
       cta: en ? 'See the full flow' : '看看流程',
