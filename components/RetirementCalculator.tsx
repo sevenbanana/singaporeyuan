@@ -51,6 +51,19 @@ const SERIES = {
   surplus: '#e8d5a8',
 };
 
+/* --------------------------------------------------------------- 样式常量 */
+
+/** 主面板:大圆角 + 大留白 + 很淡的落地阴影 */
+const PANEL =
+  'rounded-[22px] border border-navy/10 bg-[#fffdf9] p-6 shadow-[0_24px_70px_-30px_rgba(26,39,68,0.28)] sm:p-8 md:p-11';
+
+/** 结果区的次级卡片 */
+const SUBCARD = 'rounded-[18px] border border-navy/10 bg-[#fffdf9] p-6 sm:p-7';
+
+/** 小的金色描边按钮,用于「修改资料」这类回跳 */
+const CHIP_BUTTON =
+  'inline-flex shrink-0 items-center gap-1.5 rounded-[9px] border border-gold/45 bg-gold/[0.07] px-3.5 py-2 text-xs font-bold text-gold-deep transition-all duration-200 hover:-translate-y-px hover:border-gold hover:bg-gold/15';
+
 /* ------------------------------------------------------------ 表单的原始值 */
 
 type RawForm = {
@@ -234,36 +247,53 @@ export default function RetirementCalculator() {
   };
 
   return (
-    <div ref={shellRef} className="container-wide py-12 md:py-16">
+    <div ref={shellRef} className="container-wide py-10 md:py-14">
+      {/* 信任行 */}
+      <div className="mb-8 flex flex-wrap items-center justify-center gap-x-3 gap-y-2 text-[12px] text-mist">
+        <span>无需留下联系方式</span>
+        <i aria-hidden className="h-1 w-1 rounded-full bg-gold/60" />
+        <span>数据只在你的浏览器里计算</span>
+        <i aria-hidden className="h-1 w-1 rounded-full bg-gold/60" />
+        <span>约 3 分钟</span>
+      </div>
+
       {/* 步骤条 */}
-      <ol className="mb-8 flex flex-wrap items-center gap-x-3 gap-y-2">
+      <ol className="relative mx-auto mb-9 grid max-w-[680px] grid-cols-3">
+        <span
+          aria-hidden
+          className="absolute left-[16.7%] right-[16.7%] top-[22px] h-px bg-navy/12"
+        />
         {['退休目标', '现有准备', '查看结果'].map((label, i) => {
           const n = i + 1;
           const active = step === n;
           const done = step > n;
           return (
-            <li key={label} className="flex items-center gap-3">
+            <li key={label} className="relative z-10 flex justify-center">
               <button
                 type="button"
                 onClick={() => goto(n)}
-                className={`flex items-center gap-2 rounded-full border px-4 py-2 text-sm font-semibold transition-all ${
-                  active
-                    ? 'border-navy bg-navy text-cream'
-                    : done
-                      ? 'border-gold/50 bg-gold/10 text-gold-deep'
-                      : 'border-navy/15 bg-white text-mist hover:border-gold'
-                }`}
+                aria-current={active ? 'step' : undefined}
+                className="group flex flex-col items-center gap-2.5 px-2"
               >
                 <span
-                  className={`flex h-5 w-5 items-center justify-center rounded-full text-[11px] ${
-                    active ? 'bg-gold text-navy' : done ? 'bg-gold/30 text-gold-deep' : 'bg-navy/10'
+                  className={`grid h-11 w-11 place-items-center rounded-full border text-[13px] font-bold transition-all duration-300 ${
+                    active
+                      ? 'border-gold bg-white text-gold-deep shadow-[0_0_0_5px_rgba(201,165,92,0.13)]'
+                      : done
+                        ? 'border-navy bg-navy text-cream'
+                        : 'border-navy/15 bg-sand-50 text-mist group-hover:border-gold/60'
                   }`}
                 >
                   {done ? '✓' : n}
                 </span>
-                {label}
+                <b
+                  className={`text-[12.5px] font-semibold transition-colors duration-300 ${
+                    active ? 'text-navy' : done ? 'text-gold-deep' : 'text-mist'
+                  }`}
+                >
+                  {label}
+                </b>
               </button>
-              {n < 3 ? <span aria-hidden className="hidden h-px w-6 bg-navy/15 sm:block" /> : null}
             </li>
           );
         })}
@@ -271,27 +301,27 @@ export default function RetirementCalculator() {
 
       {/* ============================================================ 第 1 步 */}
       {step === 1 ? (
-        <div className="card p-6 md:p-8">
-          <div className="flex flex-wrap items-start justify-between gap-4">
+        <div className={PANEL}>
+          <div className="flex flex-wrap items-start justify-between gap-x-8 gap-y-4">
             <div>
               <p className="eyebrow">第 1 步</p>
-              <h2 className="mt-2 text-xl font-black text-navy md:text-2xl">
+              <h2 className="mt-2 text-[26px] font-black leading-[1.25] tracking-[-0.025em] text-navy md:text-[34px]">
                 先定义你想要的退休生活
               </h2>
-              <p className="mt-2 text-sm leading-relaxed text-mist">
+              <p className="mt-2.5 text-sm leading-relaxed text-mist">
                 下面的金额都按<b className="text-navy">今天的购买力</b>填写,更容易判断。
               </p>
             </div>
             <button
               type="button"
               onClick={() => setRaw(SAMPLE)}
-              className="rounded-lg border border-navy/20 px-3 py-1.5 text-xs font-semibold text-navy/70 transition-colors hover:border-gold hover:text-gold-deep"
+              className="shrink-0 whitespace-nowrap border-b border-gold/45 pb-1.5 text-[13px] font-semibold text-gold-deep transition-colors hover:border-gold"
             >
               加载示例
             </button>
           </div>
 
-          <div className="mt-7 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-9 grid gap-x-6 gap-y-5 sm:grid-cols-2 lg:grid-cols-3">
             <NumField
               label="你现在几岁"
               suffix="岁"
@@ -328,12 +358,12 @@ export default function RetirementCalculator() {
             />
           </div>
 
-          <div className="mt-6 rounded-2xl border border-navy/10 bg-sand-50 p-5">
-            <div className="flex flex-wrap items-baseline justify-between gap-2">
-              <span className="text-sm font-bold text-navy">目标生活方式</span>
-              <span className="text-sm font-black text-gold-deep">
+          <div className="mt-7 rounded-2xl border border-navy/[0.09] bg-sand-50 px-6 py-6">
+            <div className="flex flex-wrap items-center justify-between gap-3">
+              <span className="text-xs text-mist">目标生活方式</span>
+              <strong className="text-sm font-bold text-gold-deep">
                 {lifestyleOf(form.monthlyGoal).name}
-              </span>
+              </strong>
             </div>
             <input
               type="range"
@@ -343,25 +373,22 @@ export default function RetirementCalculator() {
               step={500}
               value={clamp(form.monthlyGoal, 2000, 20_000)}
               onChange={(e) => set('monthlyGoal', e.target.value)}
-              className="mt-3 w-full accent-gold-deep"
+              className="my-4 w-full accent-gold-deep"
             />
-            <p className="mt-2 text-xs leading-relaxed text-mist">
+            <p className="text-right text-xs leading-relaxed text-mist">
               {lifestyleOf(form.monthlyGoal).text}
               {form.monthlyGoal > 20_000 ? '(超过滑块范围,以上方输入框为准)' : ''}
             </p>
           </div>
 
-          <div className="mt-5 rounded-2xl border border-gold/30 bg-gold/[0.06] p-5">
-            <p className="text-sm font-bold text-navy">这里填的是今天的购买力</p>
-            <p className="mt-1.5 text-sm leading-[1.9] text-mist">
-              按每年 <b className="text-navy">{assumptions.inflation}%</b> 通胀,今天的{' '}
-              <b className="text-navy">{sgd(form.monthlyGoal)}/月</b>,到{' '}
-              <b className="text-navy">{form.retirementAge} 岁</b>时大约需要{' '}
-              <b className="text-navy">{sgd100(goalAtRetirement)}/月</b> 才买得到同样的生活。
-            </p>
-          </div>
+          <Callout title="这里填的是今天的购买力">
+            按每年 <b className="text-gold-deep">{assumptions.inflation}%</b> 通胀,今天的{' '}
+            <b className="text-navy">{sgd(form.monthlyGoal)}/月</b>,到{' '}
+            <b className="text-navy">{form.retirementAge} 岁</b>时大约需要{' '}
+            <b className="text-navy">{sgd100(goalAtRetirement)}/月</b> 才买得到同样的生活。
+          </Callout>
 
-          <div className="mt-7 flex justify-end">
+          <div className="mt-10 flex justify-end">
             <PrimaryButton onClick={() => goto(2)}>继续填写现有准备 →</PrimaryButton>
           </div>
         </div>
@@ -369,11 +396,13 @@ export default function RetirementCalculator() {
 
       {/* ============================================================ 第 2 步 */}
       {step === 2 ? (
-        <div className="card p-6 md:p-8">
+        <div className={PANEL}>
           <p className="eyebrow">第 2 步</p>
-          <h2 className="mt-2 text-xl font-black text-navy md:text-2xl">现在已经准备了多少</h2>
-          <p className="mt-2 text-sm leading-relaxed text-mist">
-            不确定的先留 0,方向对了再补细节。
+          <h2 className="mt-2 text-[26px] font-black leading-[1.25] tracking-[-0.025em] text-navy md:text-[34px]">
+            现在已经准备了多少
+          </h2>
+          <p className="mt-2.5 text-sm leading-relaxed text-mist">
+            不确定的先留空,方向对了再补细节。
           </p>
 
           {/* 身份 */}
@@ -389,10 +418,10 @@ export default function RetirementCalculator() {
                 key={v}
                 type="button"
                 onClick={() => set('residency', v)}
-                className={`rounded-xl border px-3 py-3 text-sm font-semibold transition-all ${
+                className={`min-h-[52px] rounded-xl border px-3 text-sm font-semibold transition-all duration-200 ${
                   raw.residency === v
-                    ? 'border-navy bg-navy text-cream'
-                    : 'border-navy/15 bg-white text-navy hover:border-gold'
+                    ? 'border-navy bg-navy text-cream shadow-[0_8px_20px_-10px_rgba(26,39,68,0.6)]'
+                    : 'border-navy/15 bg-white text-navy hover:border-gold hover:bg-gold/[0.05]'
                 }`}
               >
                 {label}
@@ -405,7 +434,7 @@ export default function RetirementCalculator() {
             title="投资资产与持续投入"
             note={`不含 CPF、不含 SRS;默认按年化 ${assumptions.preReturn}% 增长`}
           />
-          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="grid gap-x-6 gap-y-5 sm:grid-cols-2 lg:grid-cols-3">
             <NumField
               label="现有投资资产"
               prefix="S$"
@@ -434,7 +463,7 @@ export default function RetirementCalculator() {
             title="SRS 补充退休计划"
             note={`每年供款上限 ${sgd(SRS_CAP[form.residency])};达到提取年龄后不能再供款`}
           />
-          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="grid gap-x-6 gap-y-5 sm:grid-cols-2 lg:grid-cols-3">
             <NumField
               label="现有 SRS 余额"
               prefix="S$"
@@ -458,38 +487,35 @@ export default function RetirementCalculator() {
             />
           </div>
 
-          <div className="mt-5 rounded-2xl border border-gold/40 bg-gold/[0.07] p-5">
-            <p className="text-sm font-bold text-navy">你的 SRS 提取年龄</p>
-            <p className="mt-1.5 text-sm leading-[1.9] text-mist">
-              SRS 的提取年龄<b className="text-navy">锁定在你第一次供款那一年的法定退休年龄</b>,之后不会再变。
-              2022 年 7 月前首次供款 = 62 岁;2022 年 7 月至 2026 年 6 月 = 63 岁;2026 年 7 月起首次供款 = 64 岁。
-              在提取年龄之前取钱,要罚 5% 本金,而且全额计入应税收入 —— 所以本工具默认<b className="text-navy">不做提前提取</b>,
-              达龄之前 SRS 不计入可用退休金。
-            </p>
-            <div className="mt-4 flex flex-wrap gap-2">
+          <Callout title="你的 SRS 提取年龄" tone="strong">
+            SRS 的提取年龄<b className="text-navy">锁定在你第一次供款那一年的法定退休年龄</b>,之后不会再变。
+            2022 年 7 月前首次供款 = 62 岁;2022 年 7 月至 2026 年 6 月 = 63 岁;2026 年 7 月起首次供款 = 64 岁。
+            在提取年龄之前取钱,要罚 5% 本金,而且全额计入应税收入 —— 所以本工具默认
+            <b className="text-navy">不做提前提取</b>,达龄之前 SRS 不计入可用退休金。
+            <span className="mt-4 flex flex-wrap gap-2">
               {SRS_AGES.map((age) => (
                 <button
                   key={age}
                   type="button"
                   onClick={() => set('srsAge', age)}
-                  className={`rounded-xl border px-4 py-2.5 text-sm font-semibold transition-all ${
+                  className={`min-w-[76px] rounded-xl border px-4 py-2.5 text-sm font-semibold transition-all duration-200 ${
                     raw.srsAge === age
-                      ? 'border-navy bg-navy text-cream'
-                      : 'border-navy/15 bg-white text-navy hover:border-gold'
+                      ? 'border-navy bg-navy text-cream shadow-[0_8px_20px_-10px_rgba(26,39,68,0.6)]'
+                      : 'border-navy/15 bg-white text-navy hover:border-gold hover:bg-gold/[0.05]'
                   }`}
                 >
                   {age} 岁
                 </button>
               ))}
-            </div>
-          </div>
+            </span>
+          </Callout>
 
           {/* 退休收入 */}
           <SectionLabel
             title="退休期固定收入"
             note="CPF LIFE、年金、租金等合计,按开始领取时的未来月金额填写"
           />
-          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="grid gap-x-6 gap-y-5 sm:grid-cols-2 lg:grid-cols-3">
             <NumField
               label="预计固定月收入"
               help="不确定 CPF LIFE 能领多少?用官方估算器算一下"
@@ -514,14 +540,14 @@ export default function RetirementCalculator() {
             />
           </div>
 
-          <label className="mt-4 flex cursor-pointer items-start gap-3 rounded-xl border border-navy/10 bg-white p-4">
+          <label className="mt-5 flex cursor-pointer items-start gap-3 rounded-xl border border-navy/10 bg-white p-4 transition-colors hover:border-gold/50">
             <input
               type="checkbox"
               checked={raw.fixedIncomeEscalating}
               onChange={(e) => set('fixedIncomeEscalating', e.target.checked)}
-              className="mt-0.5 h-4 w-4 accent-gold-deep"
+              className="mt-0.5 h-4 w-4 shrink-0 accent-gold-deep"
             />
-            <span className="text-sm leading-relaxed text-mist">
+            <span className="text-[13px] leading-[1.85] text-mist">
               <b className="text-navy">这笔收入每年递增 2%</b>
               (CPF LIFE 递增计划 Escalating Plan)。不勾选则按固定金额发放,
               也就是购买力会被通胀慢慢磨掉 —— CPF LIFE 标准计划就是这样。
@@ -532,17 +558,26 @@ export default function RetirementCalculator() {
             href="https://www.cpf.gov.sg/member/tools-and-services/calculators/monthly-payout-estimator"
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-gold-deep no-underline hover:underline"
+            className="mt-4 inline-flex items-center gap-1.5 border-b border-gold/40 pb-1 text-[13px] font-semibold text-gold-deep no-underline transition-colors hover:border-gold"
           >
             打开 CPF 官方退休月入估算器 ↗
           </a>
 
           {/* 高级 */}
-          <details className="mt-6 rounded-2xl border border-navy/10 bg-sand-50 p-5">
-            <summary className="cursor-pointer text-sm font-bold text-navy">
-              高级假设 <span className="font-normal text-mist">· 已有默认值,不懂可以不改</span>
+          <details className="group mt-8 rounded-[14px] border border-navy/10 bg-sand-50">
+            <summary className="flex cursor-pointer list-none items-center gap-4 px-5 py-4 [&::-webkit-details-marker]:hidden">
+              <span className="text-[13px] font-bold text-navy">高级假设</span>
+              <small className="ml-auto text-[11px] text-mist">已有默认值,不懂可以不改</small>
+              <span
+                aria-hidden
+                className="shrink-0 text-gold-deep transition-transform duration-300 group-open:rotate-45"
+              >
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                  <path d="M12 5v14M5 12h14" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
+                </svg>
+              </span>
             </summary>
-            <div className="mt-5 grid gap-5 sm:grid-cols-2">
+            <div className="grid gap-x-6 gap-y-5 px-5 pb-6 pt-1 sm:grid-cols-2">
               <NumField
                 label="退休后资产回报"
                 help="退休之后配置通常更保守,默认 3%"
@@ -554,21 +589,15 @@ export default function RetirementCalculator() {
           </details>
 
           {notes.length ? (
-            <ul className="mt-5 space-y-1.5 rounded-2xl border border-gold/40 bg-gold/[0.07] p-4 text-xs leading-relaxed text-navy/75">
+            <ul className="mt-5 space-y-1.5 rounded-[13px] border border-gold/40 bg-[#fffaf0] px-5 py-4 text-xs leading-[1.8] text-navy/75">
               {notes.map((n) => (
                 <li key={n}>· {n}</li>
               ))}
             </ul>
           ) : null}
 
-          <div className="mt-7 flex flex-wrap justify-between gap-3">
-            <button
-              type="button"
-              onClick={() => goto(1)}
-              className="rounded-xl border border-navy/20 px-5 py-3 text-sm font-semibold text-navy/75 transition-colors hover:border-gold hover:text-gold-deep"
-            >
-              ← 返回修改目标
-            </button>
+          <div className="mt-10 flex flex-wrap items-center justify-between gap-3">
+            <SecondaryButton onClick={() => goto(1)}>← 返回修改目标</SecondaryButton>
             <PrimaryButton onClick={() => goto(3)}>查看我的测算结果 →</PrimaryButton>
           </div>
         </div>
@@ -576,56 +605,111 @@ export default function RetirementCalculator() {
 
       {/* ============================================================ 第 3 步 */}
       {step === 3 ? (
-        <div className="space-y-6" aria-live="polite">
+        <div className="space-y-5" aria-live="polite">
           {/* 头条 */}
-          <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-navy to-navy-deep p-7 text-cream md:p-9">
+          <div className="relative overflow-hidden rounded-[24px] bg-gradient-to-br from-[#172a4b] to-[#223b64] p-7 text-cream shadow-[0_28px_70px_-32px_rgba(22,42,75,0.75)] sm:p-10 md:p-12">
             <div
               aria-hidden
-              className="pointer-events-none absolute -right-16 -top-16 h-56 w-56 rounded-full border border-gold/20"
+              className="pointer-events-none absolute -right-20 -top-24 h-72 w-72 rounded-full border border-gold/15"
             />
-            <div className="relative flex flex-col gap-7 md:flex-row md:items-center md:justify-between">
+            <div
+              aria-hidden
+              className="pointer-events-none absolute -bottom-28 -left-16 h-64 w-64 rounded-full border border-gold/10"
+            />
+            <div className="relative grid items-center gap-9 md:grid-cols-[1fr_auto]">
               <div className="min-w-0">
                 <p className="eyebrow text-gold-light">你的退休准备度</p>
-                <p className="mt-3 text-sm text-cream/70">基础情景下,预计可以支撑相当于今天</p>
-                <p className="mt-1 text-4xl font-black text-gold-light md:text-5xl">
-                  {sgd100(base.sustainableMonthly)}
-                  <span className="text-xl font-bold text-cream/60"> / 月</span>
+                <p className="mt-3 text-[15px] font-medium text-cream/80">
+                  基础情景下,预计可以支撑相当于今天
                 </p>
-                <p className="mt-3 text-sm leading-relaxed text-cream/70">
+                <p className="mt-1.5 text-[clamp(44px,7vw,72px)] font-black leading-[1.12] tracking-[-0.055em] text-gold-light">
+                  {sgd100(base.sustainableMonthly)}
+                  <span className="ml-1.5 align-middle text-base font-medium tracking-normal text-cream/60">
+                    / 月
+                  </span>
+                </p>
+                <p className="mt-3 max-w-[620px] text-sm leading-[1.75] text-cream/70">
                   不同市场与通胀情景下,合理观察范围约为{' '}
-                  <b className="text-cream">
+                  <b className="font-bold text-cream">
                     {sgd100(spread.low)}–{sgd100(spread.high)}/月
                   </b>
                   。
                 </p>
-                <span className="mt-4 inline-block rounded-full border border-gold/40 px-4 py-1.5 text-xs font-semibold text-gold-light">
-                  {lifestyleOf(base.sustainableMonthly).name} ·{' '}
-                  {lifestyleOf(base.sustainableMonthly).text}
-                </span>
+                <div className="mt-5 flex flex-wrap items-center gap-3">
+                  <span className="inline-flex rounded-full border border-gold-light/40 px-3.5 py-2 text-[11px] font-medium text-[#f0d2a5]">
+                    {lifestyleOf(base.sustainableMonthly).name} ·{' '}
+                    {lifestyleOf(base.sustainableMonthly).text}
+                  </span>
+                  <button
+                    type="button"
+                    onClick={() => goto(1)}
+                    className="inline-flex min-h-[38px] items-center gap-2 rounded-[9px] border border-gold-light/60 bg-white/[0.08] px-3.5 text-xs font-bold text-cream transition-all duration-200 hover:-translate-y-px hover:bg-white/[0.16]"
+                  >
+                    <EditIcon />
+                    重新测算
+                  </button>
+                </div>
               </div>
-              <div className="shrink-0">
+              <div className="shrink-0 justify-self-start md:justify-self-end">
                 <div
-                  className="flex h-36 w-36 items-center justify-center rounded-full md:h-40 md:w-40"
+                  className="grid h-[168px] w-[168px] place-items-center rounded-full p-3 shadow-[inset_0_0_0_1px_rgba(255,255,255,0.09)] md:h-[190px] md:w-[190px]"
                   style={{
-                    background: `conic-gradient(#c9a55c ${ringPct * 3.6}deg, rgba(250,247,240,0.16) 0deg)`,
+                    background: `conic-gradient(#c9a55c ${ringPct * 3.6}deg, rgba(250,247,240,0.14) 0deg)`,
                   }}
                 >
-                  <div className="flex h-[76%] w-[76%] flex-col items-center justify-center rounded-full bg-navy-deep">
-                    <strong className="text-2xl font-black text-gold-light md:text-3xl">
+                  <div className="flex h-full w-full flex-col items-center justify-center rounded-full bg-[#1d3458]">
+                    <strong className="text-[34px] font-black tracking-[-0.04em] text-gold-light md:text-[39px]">
                       {readinessPct}%
                     </strong>
-                    <span className="mt-0.5 text-[11px] text-cream/60">目标达成率</span>
+                    <span className="mt-0.5 text-[11px] text-[#bdc6d3]">目标达成率</span>
                   </div>
                 </div>
               </div>
             </div>
           </div>
 
+          {/* 目标对照 */}
+          <div className={SUBCARD}>
+            <div className="flex flex-wrap items-center justify-between gap-4">
+              <div>
+                <span className="text-[11px] text-mist">目标对照</span>
+                <strong className="mt-0.5 block text-base font-bold text-navy">
+                  目标 {sgd(form.monthlyGoal)}/月
+                </strong>
+              </div>
+              <button type="button" onClick={() => goto(1)} className={CHIP_BUTTON}>
+                <EditIcon />
+                修改资料
+              </button>
+            </div>
+            <div className="relative my-5 h-2.5 rounded-full bg-[#e8e2d8]">
+              <div
+                className="h-full rounded-full bg-gradient-to-r from-[#b58849] to-[#e2bd83] transition-[width] duration-500"
+                style={{ width: `${ringPct}%` }}
+              />
+              <span
+                className="absolute top-1/2 -ml-2 h-[18px] w-[18px] -translate-y-1/2 rounded-full border-4 border-white bg-navy shadow-[0_2px_8px_rgba(0,0,0,0.16)] transition-[left] duration-500"
+                style={{ left: `${ringPct}%` }}
+              />
+            </div>
+            <div className="flex flex-wrap justify-between gap-3 text-[11px] text-mist">
+              <span>当前预计 {sgd100(base.sustainableMonthly)}/月</span>
+              <span className={base.assetGap > 0 ? 'text-gold-deep' : 'font-bold text-navy'}>
+                {base.assetGap > 0
+                  ? `还差约 ${sgd100(Math.max(0, form.monthlyGoal - base.sustainableMonthly))}/月`
+                  : '已达到目标'}
+              </span>
+            </div>
+          </div>
+
           {/* 断档警告 */}
           {base.bridge && (base.bridge.shortfallAge !== null || base.liquidityCost > 20) ? (
-            <div className="rounded-2xl border-2 border-gold bg-gold/[0.09] p-6">
-              <p className="text-base font-black text-navy">
-                ⚠ 提前退休 + SRS 锁定,中间这段会缺现金
+            <div className="rounded-[18px] border border-gold bg-[#fffaf0] p-6 shadow-[0_12px_38px_-20px_rgba(127,89,37,0.45)] sm:p-7">
+              <p className="flex items-center gap-2.5 text-base font-black text-navy">
+                <span className="grid h-6 w-6 shrink-0 place-items-center rounded-full bg-gold text-[13px] text-white">
+                  !
+                </span>
+                提前退休 + SRS 锁定,中间这段会缺现金
               </p>
               <p className="mt-2.5 text-sm leading-[1.95] text-navy/75">
                 你计划 <b>{form.retirementAge} 岁</b>退休,但 SRS 要到{' '}
@@ -660,36 +744,46 @@ export default function RetirementCalculator() {
           ) : null}
 
           {/* 三情景 */}
-          <div className="grid gap-4 md:grid-cols-3">
+          <div className="grid gap-4 sm:grid-cols-3">
             {runs.map((r) => {
               const isBase = r.key === 'base';
               return (
-                <div
+                <article
                   key={r.key}
-                  className={`card p-5 ${isBase ? 'border-gold/50 bg-gold/[0.06]' : ''}`}
+                  className={`relative rounded-[17px] border bg-[#fffdf9] p-6 ${
+                    isBase
+                      ? 'border-gold shadow-[0_12px_38px_-20px_rgba(127,89,37,0.5)]'
+                      : 'border-navy/10'
+                  }`}
                 >
-                  <div className="flex items-baseline justify-between gap-2">
-                    <p className="text-sm font-bold text-navy">{r.name}</p>
-                    {isBase ? <span className="eyebrow">主要参考</span> : null}
-                  </div>
-                  <p className="mt-2 text-2xl font-black text-navy">
+                  {isBase ? (
+                    <span className="absolute right-[18px] top-0 rounded-b-[7px] bg-gold px-2.5 py-1 text-[9px] font-bold tracking-[0.08em] text-white">
+                      主要参考
+                    </span>
+                  ) : null}
+                  <p className="text-[11px] text-mist">{r.name}</p>
+                  <strong className="mt-2 block text-[27px] font-black tracking-[-0.035em] text-navy">
                     {sgd100(r.result.sustainableMonthly)}
-                    <span className="text-sm font-bold text-mist">/月</span>
-                  </p>
-                  <p className="mt-1.5 text-xs leading-relaxed text-mist">{r.note}</p>
-                  <p className="mt-3 text-xs text-mist">
-                    达成率{' '}
-                    <b className="text-gold-deep">{clamp(Math.round(r.result.readiness), 0, 999)}%</b>
-                  </p>
-                </div>
+                    <small className="ml-0.5 text-[11px] font-medium tracking-normal text-mist">
+                      /月
+                    </small>
+                  </strong>
+                  <p className="mb-5 mt-1 min-h-[18px] text-[11px] text-mist">{r.note}</p>
+                  <div className="flex justify-between border-t border-navy/[0.08] pt-3.5 text-[11px] text-mist">
+                    <span>达成率</span>
+                    <b className="text-[13px] font-bold text-gold-deep">
+                      {clamp(Math.round(r.result.readiness), 0, 999)}%
+                    </b>
+                  </div>
+                </article>
               );
             })}
           </div>
 
           {/* 退休后现金流 */}
-          <div className="card p-6 md:p-8">
+          <div className="rounded-[20px] border border-navy/10 bg-[#fffdf9] p-6 sm:p-7 md:p-9">
             <p className="eyebrow">RETIREMENT CASH FLOW · 今日购买力</p>
-            <h3 className="mt-2 text-lg font-black text-navy md:text-xl">
+            <h3 className="mt-2 text-[21px] font-black leading-snug tracking-[-0.02em] text-navy md:text-[25px]">
               退休后每一年,钱从哪里来
             </h3>
             <p className="mt-2 text-sm leading-relaxed text-mist">
@@ -723,9 +817,9 @@ export default function RetirementCalculator() {
           </div>
 
           {/* 组成拆解 */}
-          <div className="card p-6 md:p-8">
+          <div className="rounded-[20px] border border-navy/10 bg-[#fffdf9] p-6 sm:p-7 md:p-9">
             <p className="eyebrow">LIFESTYLE LADDER · 今日购买力 / 月</p>
-            <h3 className="mt-2 text-lg font-black text-navy md:text-xl">
+            <h3 className="mt-2 text-[21px] font-black leading-snug tracking-[-0.02em] text-navy md:text-[25px]">
               这 {sgd100(base.sustainableMonthly)}/月,是谁供出来的
             </h3>
             <LadderChart
@@ -752,9 +846,9 @@ export default function RetirementCalculator() {
           </div>
 
           {/* 积累路径 */}
-          <div className="card p-6 md:p-8">
+          <div className="rounded-[20px] border border-navy/10 bg-[#fffdf9] p-6 sm:p-7 md:p-9">
             <p className="eyebrow">PATH TO RETIREMENT · 未来金额</p>
-            <h3 className="mt-2 text-lg font-black text-navy md:text-xl">从今天到退休日</h3>
+            <h3 className="mt-2 text-[21px] font-black leading-snug tracking-[-0.02em] text-navy md:text-[25px]">从今天到退休日</h3>
             <p className="mt-2 text-sm leading-relaxed text-mist">
               投资年化 {assumptions.preReturn}% · SRS 年化 {assumptions.srsReturn}%
               {base.srsContribYears < base.yearsToRetirement && form.annualSrs > 0 ? (
@@ -824,8 +918,8 @@ export default function RetirementCalculator() {
           </div>
 
           {/* 关键数字 */}
-          <div className="card p-6 md:p-8">
-            <h3 className="text-lg font-black text-navy md:text-xl">关键数字</h3>
+          <div className="rounded-[20px] border border-navy/10 bg-[#fffdf9] p-6 sm:p-7 md:p-9">
+            <h3 className="text-[21px] font-black leading-snug tracking-[-0.02em] text-navy md:text-[25px]">关键数字</h3>
             <div className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
               <Metric label={`${form.retirementAge} 岁时名下资产`} value={compact(base.availableAtRetirement)} />
               <Metric label="其中 SRS(锁到提取年龄)" value={compact(base.srsAtRetirement)} />
@@ -1241,10 +1335,60 @@ function Legend({ items }: { items: [string, string][] }) {
 
 function SectionLabel({ title, note }: { title: string; note: string }) {
   return (
-    <div className="mb-4 mt-8 border-t border-navy/10 pt-6">
-      <p className="text-sm font-black text-navy">{title}</p>
-      <p className="mt-1 text-xs leading-relaxed text-mist">{note}</p>
+    <div className="mb-5 mt-9 flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1 border-t border-navy/[0.09] pt-7">
+      <span className="text-base font-bold text-navy">{title}</span>
+      <p className="text-[11px] leading-relaxed text-mist">{note}</p>
     </div>
+  );
+}
+
+/** 米色底、金色描边的说明块,左侧一个圆形斜体 i */
+function Callout({
+  title,
+  tone = 'soft',
+  children,
+}: {
+  title: string;
+  tone?: 'soft' | 'strong';
+  children: React.ReactNode;
+}) {
+  return (
+    <div
+      className={`mt-5 flex items-start gap-3.5 rounded-[13px] bg-[#fffaf0] px-5 py-4 ${
+        tone === 'strong' ? 'border border-gold/70' : 'border border-gold/35'
+      }`}
+    >
+      <span
+        aria-hidden
+        className="mt-0.5 grid h-[22px] w-[22px] shrink-0 place-items-center rounded-full border border-gold font-serif text-[13px] italic text-gold-deep"
+      >
+        i
+      </span>
+      <div className="min-w-0">
+        <strong className="block text-[13px] font-bold text-navy">{title}</strong>
+        <p className="mt-1 text-[12.5px] leading-[1.8] text-mist">{children}</p>
+      </div>
+    </div>
+  );
+}
+
+function EditIcon() {
+  return (
+    <svg
+      width="14"
+      height="14"
+      viewBox="0 0 20 20"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.7"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden
+      className="shrink-0"
+    >
+      <path d="M4 13.8V16h2.2L15 7.2 12.8 5 4 13.8Z" />
+      <path d="m11.8 6 2.2 2.2" />
+    </svg>
   );
 }
 
@@ -1275,11 +1419,14 @@ function NumField({
   onChange: (v: string) => void;
 }) {
   return (
-    <div>
-      <label className="text-sm font-bold text-navy">{label}</label>
-      {help ? <p className="mt-1 text-xs leading-relaxed text-mist">{help}</p> : null}
-      <div className="mt-2 flex items-center rounded-xl border border-navy/15 bg-white transition-colors focus-within:border-gold">
-        {prefix ? <span className="pl-3.5 text-sm font-bold text-mist">{prefix}</span> : null}
+    <div className="flex min-w-0 flex-col">
+      <label className="text-sm font-semibold text-navy">{label}</label>
+      {/* 固定最小高度,没有说明文字的字段也能和相邻字段对齐 */}
+      <p className="mt-0.5 min-h-[17px] text-[11px] leading-[1.5] text-mist">{help ?? ''}</p>
+      <div className="mt-2 flex min-h-[52px] items-center gap-2 rounded-[11px] border border-navy/15 bg-white px-4 transition-[border-color,box-shadow] duration-150 focus-within:border-gold focus-within:shadow-[0_0_0_4px_rgba(201,165,92,0.13)]">
+        {prefix ? (
+          <span className="shrink-0 text-xs font-medium text-mist">{prefix}</span>
+        ) : null}
         <input
           // 用 text + inputMode 而不是 type=number:
           // 这样才能自己控制选中和前导 0,滚轮也不会误改数值
@@ -1308,9 +1455,11 @@ function NumField({
             if (v === '.') onChange('');
             else if (v.endsWith('.')) onChange(v.slice(0, -1));
           }}
-          className="w-full min-w-0 bg-transparent px-2.5 py-3 text-base font-bold text-navy outline-none placeholder:font-normal placeholder:text-mist/50"
+          className="w-full min-w-0 bg-transparent py-3 text-right text-lg font-bold text-navy outline-none placeholder:font-normal placeholder:text-mist/40"
         />
-        {suffix ? <span className="pr-3.5 text-sm font-bold text-mist">{suffix}</span> : null}
+        {suffix ? (
+          <span className="shrink-0 text-xs font-medium text-mist">{suffix}</span>
+        ) : null}
       </div>
     </div>
   );
@@ -1327,21 +1476,21 @@ function Metric({
 }) {
   return (
     <div
-      className={`rounded-xl border p-4 ${
-        highlight ? 'border-gold/40 bg-gold/5' : 'border-navy/10 bg-white'
+      className={`rounded-[13px] border p-4 ${
+        highlight ? 'border-gold/45 bg-[#fffaf0]' : 'border-navy/[0.09] bg-white'
       }`}
     >
-      <p className="text-xs leading-relaxed text-mist">{label}</p>
-      <p className="mt-1.5 text-lg font-black text-navy">{value}</p>
+      <p className="text-[11px] leading-[1.6] text-mist">{label}</p>
+      <p className="mt-1.5 text-[19px] font-black tracking-[-0.03em] text-navy">{value}</p>
     </div>
   );
 }
 
 function Line({ label, value }: { label: string; value: string }) {
   return (
-    <div className="flex items-center justify-between gap-4 border-b border-navy/10 px-4 py-3 last:border-0">
-      <span className="text-sm text-mist">{label}</span>
-      <span className="text-right text-sm font-bold text-navy">{value}</span>
+    <div className="flex items-center justify-between gap-4 border-b border-navy/[0.08] px-4 py-3.5 last:border-0">
+      <span className="text-[13px] text-mist">{label}</span>
+      <span className="text-right text-[13px] font-bold text-navy">{value}</span>
     </div>
   );
 }
@@ -1358,14 +1507,17 @@ function LeverCard({
   text: string;
 }) {
   return (
-    <div className="card p-6">
-      <p className="eyebrow">{index}</p>
-      <p className="mt-2 text-base font-black text-navy">{title}</p>
+    <div className="flex h-full flex-col rounded-[17px] border border-navy/10 bg-[#fffdf9] p-6">
+      <span className="font-mono text-[11px] font-bold tracking-[0.14em] text-gold">{index}</span>
+      <p className="mt-2.5 text-base font-black text-navy">{title}</p>
       <p className="mt-1.5 text-sm font-bold text-gold-deep">{value}</p>
-      <p className="mt-3 text-sm leading-[1.9] text-mist">{text}</p>
+      <p className="mt-3.5 text-[13px] leading-[1.85] text-mist">{text}</p>
     </div>
   );
 }
+
+const BUTTON_BASE =
+  'inline-flex min-h-[48px] items-center justify-center gap-3 rounded-[10px] px-6 text-[13px] font-bold transition-all duration-200';
 
 function PrimaryButton({
   children,
@@ -1378,7 +1530,25 @@ function PrimaryButton({
     <button
       type="button"
       onClick={onClick}
-      className="rounded-xl bg-navy px-6 py-3.5 text-sm font-bold text-cream transition-all duration-300 hover:bg-navy-700 hover:shadow-cardHover"
+      className={`${BUTTON_BASE} border border-navy bg-navy text-cream hover:-translate-y-px hover:bg-navy-700 hover:shadow-[0_14px_30px_-14px_rgba(26,39,68,0.75)]`}
+    >
+      {children}
+    </button>
+  );
+}
+
+function SecondaryButton({
+  children,
+  onClick,
+}: {
+  children: React.ReactNode;
+  onClick: () => void;
+}) {
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      className={`${BUTTON_BASE} border border-navy/20 bg-transparent text-navy hover:border-gold hover:text-gold-deep`}
     >
       {children}
     </button>
