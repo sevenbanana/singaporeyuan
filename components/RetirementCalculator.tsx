@@ -1248,6 +1248,17 @@ function SectionLabel({ title, note }: { title: string; note: string }) {
   );
 }
 
+/**
+ * 只保留数字和一个小数点,并去掉多余的前导 0。
+ * 「05000」→「5000」;保留输入中途的「2.」和单独的「0」「0.5」。
+ */
+function sanitiseNumeric(input: string): string {
+  let v = input.replace(/[^\d.]/g, '');
+  const dot = v.indexOf('.');
+  if (dot !== -1) v = v.slice(0, dot + 1) + v.slice(dot + 1).replace(/\./g, '');
+  return v.replace(/^0+(?=\d)/, '');
+}
+
 function NumField({
   label,
   help,
@@ -1270,11 +1281,34 @@ function NumField({
       <div className="mt-2 flex items-center rounded-xl border border-navy/15 bg-white transition-colors focus-within:border-gold">
         {prefix ? <span className="pl-3.5 text-sm font-bold text-mist">{prefix}</span> : null}
         <input
-          type="number"
+          // 用 text + inputMode 而不是 type=number:
+          // 这样才能自己控制选中和前导 0,滚轮也不会误改数值
+          type="text"
           inputMode="decimal"
+          autoComplete="off"
+          placeholder="0"
           value={value}
-          onChange={(e) => onChange(e.target.value)}
-          className="w-full min-w-0 bg-transparent px-2.5 py-3 text-base font-bold text-navy outline-none"
+          // 停留在默认值 0 时,聚焦即全选,输入直接顶掉那个 0。
+          // 必须延后一帧:浏览器会在 focus 事件处理完之后才安放光标,
+          // 同步调用 select() 会被它覆盖掉。
+          onFocus={(e) => {
+            const el = e.currentTarget;
+            if (el.value === '0') {
+              requestAnimationFrame(() => {
+                if (document.activeElement === el && el.value === '0') el.select();
+              });
+            }
+          }}
+          onChange={(e) => onChange(sanitiseNumeric(e.target.value))}
+          onBlur={(e) => {
+            // 「2.」「.」这类打字中途的状态,失焦时收拾干净。
+            // 留空不强行填回 0:空着按 0 计算,灰色占位符里已经写着 0,
+            // 比塞一个真的 0 回去再让用户删一次更省事。
+            const v = e.currentTarget.value;
+            if (v === '.') onChange('');
+            else if (v.endsWith('.')) onChange(v.slice(0, -1));
+          }}
+          className="w-full min-w-0 bg-transparent px-2.5 py-3 text-base font-bold text-navy outline-none placeholder:font-normal placeholder:text-mist/50"
         />
         {suffix ? <span className="pr-3.5 text-sm font-bold text-mist">{suffix}</span> : null}
       </div>
