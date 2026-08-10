@@ -259,10 +259,27 @@ export default function RetirementCalculator() {
 
       {/* 步骤条 */}
       <ol className="relative mx-auto mb-9 grid max-w-[680px] grid-cols-3">
-        <span
+        {/*
+          连接三个圆点的轨道。必须套一层普通 div:
+          栅格容器里的绝对定位子元素,百分比宽度会解析成 0
+          (只有同时给 left 和 right 才算得出来),套一层就恢复正常了。
+        */}
+        <div
           aria-hidden
-          className="absolute left-[16.7%] right-[16.7%] top-[22px] h-px bg-navy/12"
-        />
+          className="pointer-events-none absolute inset-x-0 top-[21px] h-[2px]"
+        >
+          {/* 底轨:第 1 个圆心 → 第 3 个圆心(三等分栅格 = 16.667% ~ 83.333%) */}
+          <div className="absolute left-[16.667%] right-[16.667%] h-full rounded-full bg-navy/[0.13]" />
+          {/*
+            已走过的部分。宽度写死成整条轨道,用 scaleX 表示进度。
+            这里刻意不加过渡:页面被浏览器节流时 CSS 过渡会卡在起始值,
+            那样整条金线就直接不显示了 —— 连上线比动画重要。
+          */}
+          <div
+            className="absolute left-[16.667%] h-full w-[66.667%] origin-left rounded-full bg-gold"
+            style={{ transform: `scaleX(${(step - 1) / 2})` }}
+          />
+        </div>
         {['退休目标', '现有准备', '查看结果'].map((label, i) => {
           const n = i + 1;
           const active = step === n;
