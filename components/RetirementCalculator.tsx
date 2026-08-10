@@ -819,6 +819,7 @@ export default function RetirementCalculator() {
                   : ([['浅色底纹 = 投资资产已用完', '#a8843f22']] as [string, string][])),
               ]}
             />
+            <HoverHint />
             <p className="mt-4 text-sm leading-[1.9] text-mist">
               {base.goalRun.ok ? (
                 <>按目标生活费,资金可以支撑到 {form.planningAge} 岁。</>
@@ -849,6 +850,7 @@ export default function RetirementCalculator() {
                 (b) => [b.label, SERIES[b.key as keyof typeof SERIES]] as [string, string],
               )}
             />
+            <p className="mt-3 text-[11px] text-mist">把鼠标移到色块上看每一段的金额与占比(手机上点一下)。</p>
             {form.fixedIncome > 0 ? (
               <p className="mt-5 rounded-xl border border-navy/10 bg-sand-50 p-4 text-sm leading-[1.9] text-mist">
                 <b className="text-navy">为什么固定收入这一段比我填的少?</b>{' '}
@@ -876,7 +878,7 @@ export default function RetirementCalculator() {
                 </>
               ) : null}
             </p>
-            <AccumulationChart data={base.accumulation} />
+            <AccumulationChart data={base.accumulation} srsAge={form.srsAge} />
             <Legend
               items={[
                 ['投资资产', SERIES.invest],
@@ -884,6 +886,7 @@ export default function RetirementCalculator() {
                 ['其他资产(退休当年)', SERIES.other],
               ]}
             />
+            <HoverHint />
             <p className="mt-4 text-sm leading-[1.9] text-mist">
               到 {form.retirementAge} 岁,预计名下资产合计约{' '}
               <b className="text-navy">{compact(base.availableAtRetirement)}</b>,其中 SRS{' '}
@@ -1032,6 +1035,63 @@ export default function RetirementCalculator() {
 
 const CHART_W = 900;
 
+/* ---------------------------------------------------- 图表的悬停信息浮层 */
+
+type TipRow = { label: string; value: string; color?: string; strong?: boolean };
+
+/**
+ * 跟着鼠标位置浮在图表上的明细卡片。
+ * leftPct 是图表宽度上的百分比,夹在 [16,84] 之内保证不会被裁掉。
+ */
+function ChartTooltip({
+  leftPct,
+  title,
+  rows,
+  footer,
+}: {
+  leftPct: number;
+  title: string;
+  rows: TipRow[];
+  footer?: string;
+}) {
+  return (
+    <div
+      className="pointer-events-none absolute top-2 z-10 w-[212px] -translate-x-1/2 rounded-xl border border-navy/15 bg-white/[0.97] p-3 shadow-[0_12px_34px_-12px_rgba(26,39,68,0.4)]"
+      style={{ left: `${clamp(leftPct, 16, 84)}%` }}
+      role="status"
+    >
+      <p className="text-[12px] font-bold text-navy">{title}</p>
+      <div className="mt-2 space-y-1.5">
+        {rows.map((r) => (
+          <div key={r.label} className="flex items-baseline justify-between gap-3 text-[11px]">
+            <span className="flex items-center gap-1.5 text-mist">
+              {r.color ? (
+                <i className="h-2 w-2 shrink-0 rounded-[2px]" style={{ background: r.color }} />
+              ) : null}
+              {r.label}
+            </span>
+            <b className={r.strong ? 'font-black text-navy' : 'font-bold text-navy'}>{r.value}</b>
+          </div>
+        ))}
+      </div>
+      {footer ? (
+        <p className="mt-2 border-t border-navy/10 pt-1.5 text-[10px] leading-snug text-gold-deep">
+          {footer}
+        </p>
+      ) : null}
+    </div>
+  );
+}
+
+/** 图表下方的操作提示 */
+function HoverHint() {
+  return (
+    <p className="mt-3 text-[11px] text-mist">
+      把鼠标移到柱子上看当年明细(手机上点一下)。
+    </p>
+  );
+}
+
 /** 均匀取刻度,并保证末尾那一格不会和前一格挤在一起 */
 function axisTicks(count: number, every: number): number[] {
   const last = count - 1;
@@ -1052,6 +1112,8 @@ function CashflowChart({
   analysis: ReturnType<typeof analyse>;
   inflation: number;
 }) {
+  const [hover, setHover] = useState<number | null>(null);
+
   const H = 300;
   const padL = 62;
   const padR = 16;
@@ -1073,6 +1135,8 @@ function CashflowChart({
       spend,
       fixed,
       srs,
+      srsGross: r.srsGross / defl,
+      srsTax: r.srsTax / defl,
       assets: Math.max(0, spend - income),
       surplus: Math.max(0, income - spend),
       broken: r.liquidEnd < -0.5,
@@ -1089,13 +1153,17 @@ function CashflowChart({
   const ticks = [0, 0.25, 0.5, 0.75, 1].map((f) => f * maxV);
   const labelEvery = Math.ceil(data.length / 12);
 
+  const hovered = hover !== null ? data[hover] : null;
+
   return (
     <div className="mt-6 -mx-2 overflow-x-auto px-2">
+      <div className="relative min-w-[520px]">
       <svg
         viewBox={`0 0 ${CHART_W} ${H}`}
-        className="h-auto w-full min-w-[520px]"
+        className="h-auto w-full"
         role="img"
         aria-label="退休后每年现金来源构成"
+        onPointerLeave={() => setHover(null)}
       >
         {ticks.map((t) => (
           <g key={t}>
@@ -1182,7 +1250,69 @@ function CashflowChart({
             {data[i].age}
           </text>
         ))}
+
+        {/* 悬停:高亮当前这一格 */}
+        {hover !== null ? (
+          <rect
+            x={x(hover)}
+            y={padT}
+            width={bw}
+            height={innerH}
+            fill="#1a2744"
+            opacity={0.07}
+            pointerEvents="none"
+          />
+        ) : null}
+
+        {/* 捕获层:整列都能感应,比细柱子好点中 */}
+        {data.map((d, i) => (
+          <rect
+            key={`hit-${d.age}`}
+            x={x(i)}
+            y={padT}
+            width={bw}
+            height={innerH}
+            fill="transparent"
+            onPointerEnter={() => setHover(i)}
+            onPointerDown={() => setHover(i)}
+          />
+        ))}
       </svg>
+
+      {hovered ? (
+        <ChartTooltip
+          leftPct={((x(hover!) + bw / 2) / CHART_W) * 100}
+          title={`${hovered.age} 岁`}
+          rows={[
+            { label: '当年支出', value: `${sgd100(hovered.spend)}/年`, strong: true },
+            ...(hovered.fixed > 0
+              ? [{ label: '固定收入', value: sgd100(hovered.fixed), color: SERIES.fixed }]
+              : []),
+            ...(hovered.srs > 0
+              ? [
+                  { label: 'SRS 提取(税后)', value: sgd100(hovered.srs), color: SERIES.srs },
+                  { label: '　其中所得税', value: `−${sgd100(hovered.srsTax)}` },
+                ]
+              : []),
+            ...(hovered.assets > 0
+              ? [{ label: '动用投资资产', value: sgd100(hovered.assets), color: SERIES.invest }]
+              : []),
+            ...(hovered.surplus > 0
+              ? [{ label: '当年结余', value: sgd100(hovered.surplus), color: SERIES.surplus }]
+              : []),
+          ]}
+          footer={
+            hovered.broken
+              ? '投资资产已用完,这一年的缺口没有来源'
+              : hovered.srs > 0
+                ? undefined
+                : hovered.age < analysis.srsStartAge
+                  ? `SRS 要到 ${analysis.srsStartAge} 岁才解锁`
+                  : undefined
+          }
+        />
+      ) : null}
+      </div>
     </div>
   );
 }
@@ -1196,6 +1326,8 @@ function LadderChart({
   total: number;
   goal: number;
 }) {
+  const [hover, setHover] = useState<string | null>(null);
+
   const H = 132;
   const padL = 10;
   const padR = 10;
@@ -1203,36 +1335,44 @@ function LadderChart({
   const innerW = CHART_W - padL - padR;
   const w = (v: number) => (v / scaleMax) * innerW;
 
-  let cursor = 0;
   const barY = 46;
   const barH = 42;
   const goalX = padL + w(goal);
 
+  // 先算好每一段的位置,悬停层和浮层都要用
+  let acc = 0;
+  const segments = breakdown
+    .filter((b) => b.value > 0)
+    .map((b) => {
+      const seg = { ...b, x: padL + w(acc), w: w(b.value) };
+      acc += b.value;
+      return seg;
+    });
+  const hovered = segments.find((s) => s.key === hover) ?? null;
+
   return (
     <div className="mt-6 -mx-2 overflow-x-auto px-2">
+      <div className="relative min-w-[420px]">
       <svg
         viewBox={`0 0 ${CHART_W} ${H}`}
-        className="h-auto w-full min-w-[420px]"
+        className="h-auto w-full"
         role="img"
         aria-label="可支撑月支出的来源拆解"
+        onPointerLeave={() => setHover(null)}
       >
         <rect x={padL} y={barY} width={innerW} height={barH} rx="8" fill="#1a27440d" />
-        {breakdown.map((b) => {
-          if (b.value <= 0) return null;
-          const xx = padL + w(cursor);
-          const ww = w(b.value);
-          cursor += b.value;
-          return (
-            <rect
-              key={b.key}
-              x={xx}
-              y={barY}
-              width={ww}
-              height={barH}
-              fill={SERIES[b.key as keyof typeof SERIES]}
-            />
-          );
-        })}
+        {segments.map((s) => (
+          <rect
+            key={s.key}
+            x={s.x}
+            y={hover === s.key ? barY - 4 : barY}
+            width={s.w}
+            height={hover === s.key ? barH + 8 : barH}
+            fill={SERIES[s.key as keyof typeof SERIES]}
+            onPointerEnter={() => setHover(s.key)}
+            onPointerDown={() => setHover(s.key)}
+          />
+        ))}
 
         <text x={padL} y={barY - 12} fontSize="15" fontWeight="700" fill="#1a2744">
           可支撑 {sgd100(total)}/月
@@ -1257,15 +1397,42 @@ function LadderChart({
           目标 {sgd100(goal)}/月
         </text>
       </svg>
+
+      {hovered ? (
+        <ChartTooltip
+          leftPct={((hovered.x + hovered.w / 2) / CHART_W) * 100}
+          title={hovered.label}
+          rows={[
+            {
+              label: '折合今日购买力',
+              value: `${sgd100(hovered.value)}/月`,
+              color: SERIES[hovered.key as keyof typeof SERIES],
+              strong: true,
+            },
+            {
+              label: '占可支撑总额',
+              value: total > 0 ? `${Math.round((hovered.value / total) * 100)}%` : '—',
+            },
+            {
+              label: '占目标生活费',
+              value: goal > 0 ? `${Math.round((hovered.value / goal) * 100)}%` : '—',
+            },
+          ]}
+        />
+      ) : null}
+      </div>
     </div>
   );
 }
 
 function AccumulationChart({
   data,
+  srsAge,
 }: {
   data: { age: number; invest: number; srs: number; other: number }[];
+  srsAge: number;
 }) {
+  const [hover, setHover] = useState<number | null>(null);
   const H = 260;
   const padL = 62;
   const padR = 16;
@@ -1282,13 +1449,17 @@ function AccumulationChart({
   const ticks = [0, 0.25, 0.5, 0.75, 1].map((f) => f * maxV);
   const labelEvery = Math.ceil(data.length / 10);
 
+  const hovered = hover !== null ? data[hover] : null;
+
   return (
     <div className="mt-6 -mx-2 overflow-x-auto px-2">
+      <div className="relative min-w-[520px]">
       <svg
         viewBox={`0 0 ${CHART_W} ${H}`}
-        className="h-auto w-full min-w-[520px]"
+        className="h-auto w-full"
         role="img"
         aria-label="从现在到退休的资产积累路径"
+        onPointerLeave={() => setHover(null)}
       >
         {ticks.map((t) => (
           <g key={t}>
@@ -1330,7 +1501,56 @@ function AccumulationChart({
             {data[i].age}
           </text>
         ))}
+
+        {hover !== null ? (
+          <rect
+            x={x(hover)}
+            y={padT}
+            width={bw}
+            height={innerH}
+            fill="#1a2744"
+            opacity={0.07}
+            pointerEvents="none"
+          />
+        ) : null}
+        {data.map((d, i) => (
+          <rect
+            key={`hit-${d.age}`}
+            x={x(i)}
+            y={padT}
+            width={bw}
+            height={innerH}
+            fill="transparent"
+            onPointerEnter={() => setHover(i)}
+            onPointerDown={() => setHover(i)}
+          />
+        ))}
       </svg>
+
+      {hovered ? (
+        <ChartTooltip
+          leftPct={((x(hover!) + bw / 2) / CHART_W) * 100}
+          title={`${hovered.age} 岁`}
+          rows={[
+            {
+              label: '名下资产合计',
+              value: compact(hovered.invest + hovered.srs + hovered.other),
+              strong: true,
+            },
+            { label: '投资资产', value: compact(hovered.invest), color: SERIES.invest },
+            { label: 'SRS', value: compact(hovered.srs), color: SERIES.srs },
+            ...(hovered.other > 0
+              ? [{ label: '其他资产', value: compact(hovered.other), color: SERIES.other }]
+              : []),
+          ]}
+          footer={
+            hovered.srs > 0 && hovered.age < srsAge
+              ? `这笔 SRS 要到 ${srsAge} 岁才能动`
+              : undefined
+          }
+        />
+      ) : null}
+      </div>
     </div>
   );
 }
