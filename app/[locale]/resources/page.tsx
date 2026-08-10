@@ -64,6 +64,13 @@ const IconRoute = (
   </svg>
 );
 
+const IconClock = (
+  <svg {...ic}>
+    <circle cx="12" cy="12" r="9" />
+    <path d="M12 7v5l3.2 2" />
+  </svg>
+);
+
 type Resource = {
   key: string;
   tag: string;
@@ -141,6 +148,17 @@ export default async function ResourcesPage({
       icon: IconCalc,
       href: '/tools',
       cta: en ? 'Open calculator' : '打开计算器',
+    },
+    {
+      key: 'retirement',
+      tag: en ? 'Tool' : '小工具',
+      title: en ? 'Retirement Readiness Calculator' : '退休自由度测算',
+      desc: en
+        ? 'Put CPF LIFE, SRS and your investments on one timeline. SRS is modelled as locked until your statutory withdrawal age (62 / 63 / 64) and CPF LIFE as starting at 65 — so an early-retirement plan shows the cash-flow gap instead of hiding it. (In Chinese)'
+        : '把 CPF LIFE、SRS 和投资资产放在同一条时间线上,逐年模拟退休后每一笔钱从哪里来。SRS 严格按你的提取年龄(62 / 63 / 64)才解锁,CPF LIFE 按开始领取年龄计入,想提前退休的人能直接看到中间那段现金缺口。',
+      icon: IconClock,
+      href: '/tools/retirement',
+      cta: en ? 'Open calculator' : '开始测算',
     },
   ];
 
