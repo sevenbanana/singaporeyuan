@@ -732,6 +732,17 @@ button.chip{ cursor:pointer; background:#5a2723; border-color:rgba(255,255,255,.
 /* emoji 后面用 flex gap，别靠空格 —— 空格在中文字体栈里会被拉成全角 */
 .kp-who{ display:flex; align-items:center; justify-content:center; gap:8px; }
 .pc-sub{ display:flex; align-items:center; justify-content:center; gap:5px; }
+.voice-warn{
+  margin-top:10px; padding:10px 12px; font-size:12px; line-height:1.8;
+  color:#5a3a00; background:#ffe9b0; border:2px solid #c9a13a;
+}
+.voice-warn b{ color:#7a3d00; }
+.voice-good{
+  display:flex; align-items:center; gap:10px; flex-wrap:wrap;
+  margin-top:10px; padding:10px 12px; font-size:13px;
+  color:#123d16; background:#cdf0cf; border:2px solid #4f9c52;
+}
+.voice-good b{ color:#0c2b0e; }
 
 </style>
 </head>
@@ -887,22 +898,62 @@ button.chip{ cursor:pointer; background:#5a2723; border-color:rgba(255,255,255,.
     ready: false,
     muted: false,
 
-    // 新加坡跟英式拼写/发音，优先挑英音，其次任意英语
-    pick: function () {
+    // 系统自带的玩具音效，绝不能拿来教孩子发音
+    JUNK: /^(albert|bad news|bahh|bells|boing|bubbles|cellos|fred|good news|jester|junior|kathy|organ|ralph|superstar|trinoids|whisper|wobble|zarvox|junior|princess|deranged|hysterical|bruce|agnes)/i,
+
+    // 苹果第一代 compact 语音。能听懂，但就是「机器感」的来源
+    LEGACY: /^(alex|daniel|fiona|karen|moira|rishi|samantha|tessa|victoria|veena)\b/i,
+
+    /**
+     * 给每个声音打分，挑最自然的那个。
+     * 关键是先按「引擎新旧」排，再按口音排 —— 老引擎的英音远不如新引擎的美音好听。
+     */
+    score: function (v) {
+      var n = v.name, s = 0;
+      if (this.JUNK.test(n)) return -1000;
+      if (/premium|enhanced|neural|natural|siri/i.test(n)) s += 100;   // 增强/神经网络语音
+      if (this.LEGACY.test(n)) s -= 8;                                  // 苹果第一代 compact 引擎，机器味最重
+      if (/^Google/i.test(n)) s += 60;                                  // Chrome 自带的云端语音
+      if (/^Microsoft/i.test(n) && /online|natural/i.test(n)) s += 60;
+      if (/en[-_]SG/i.test(v.lang)) s += 30;                            // 新加坡英语最贴他的学校
+      else if (/en[-_]GB/i.test(v.lang)) s += 25;
+      else if (/en[-_]AU/i.test(v.lang)) s += 12;
+      else if (/en[-_]US/i.test(v.lang)) s += 8;
+      else if (/^en/i.test(v.lang)) s += 3;
+      else return -1000;
+      if (!v.localService) s += 5;                                      // 云端的一般是新引擎
+      return s;
+    },
+
+    /** 按分数排好的英语声音列表，设置页直接用它做试听菜单 */
+    list: function () {
+      var self = this;
       var vs = (global.speechSynthesis && speechSynthesis.getVoices()) || [];
-      if (!vs.length) return false;
-      var pref = [
-        function (v) { return /en[-_]GB/i.test(v.lang) && /daniel|serena|kate|arthur|martha/i.test(v.name); },
-        function (v) { return /en[-_]GB/i.test(v.lang); },
-        function (v) { return /en[-_]AU/i.test(v.lang); },
-        function (v) { return /en[-_]US/i.test(v.lang) && /samantha|ava|allison/i.test(v.name); },
-        function (v) { return /^en/i.test(v.lang); }
-      ];
-      for (var i = 0; i < pref.length; i++) {
-        var hit = vs.filter(pref[i])[0];
+      return vs.filter(function (v) { return self.score(v) > -1000; })
+               .sort(function (a, b) { return self.score(b) - self.score(a); });
+    },
+
+    pick: function () {
+      // 用户自己选过就尊重用户的选择，别每次刷新又被覆盖
+      var saved = null;
+      try { saved = localStorage.getItem('englishquest.voice'); } catch (e) {}
+      var ranked = this.list();
+      if (!ranked.length) return false;
+      if (saved) {
+        var hit = ranked.filter(function (v) { return v.name === saved; })[0];
         if (hit) { this.voice = hit; this.ready = true; return true; }
       }
-      return false;
+      this.voice = ranked[0];
+      this.ready = true;
+      return true;
+    },
+
+    use: function (name) {
+      var hit = this.list().filter(function (v) { return v.name === name; })[0];
+      if (!hit) return false;
+      this.voice = hit;
+      try { localStorage.setItem('englishquest.voice', name); } catch (e) {}
+      return true;
     },
 
     init: function () {
@@ -930,7 +981,7 @@ button.chip{ cursor:pointer; background:#5a2723; border-color:rgba(255,255,255,.
       if (this.voice) { u.voice = this.voice; u.lang = this.voice.lang; }
       else { u.lang = 'en-GB'; }
       u.rate = opts.rate != null ? opts.rate : 0.9;
-      u.pitch = opts.pitch != null ? opts.pitch : 1.05;
+      u.pitch = opts.pitch != null ? opts.pitch : 1.0;   // 别改音高，老引擎一移调机器味更重
       u.volume = 1;
       if (opts.onend) u.onend = opts.onend;
       speechSynthesis.speak(u);
@@ -2768,12 +2819,19 @@ EQ.addUnit({
        ================================================================== */
     settings: function () {
       App.setHudMode('home');
-      var voices = (global.speechSynthesis && speechSynthesis.getVoices()) || [];
-      var enVoices = voices.filter(function (v) { return /^en/i.test(v.lang); });
-      var opts = enVoices.map(function (v) {
+      var ranked = TTS.list();
+      var best = ranked[0] ? TTS.score(ranked[0]) : 0;
+      var opts = ranked.map(function (v) {
+        var s = TTS.score(v);
+        var tag = s >= 100 ? '  ⭐ 增强' : (s >= 60 ? '  ✓ 较自然' : '');
         return '<option value="' + esc(v.name) + '"' + (TTS.voice && TTS.voice.name === v.name ? ' selected' : '') +
-               '>' + esc(v.name) + ' (' + esc(v.lang) + ')</option>';
+               '>' + esc(v.name) + ' (' + esc(v.lang) + ')' + tag + '</option>';
       }).join('');
+      // 一个增强语音都没有 = 系统只装了老式 compact 引擎，机器感就是从这来的
+      var noGood = best < 60;
+      // 装了更好的但没用上（比如刚下完增强语音回来），主动提示换过去
+      var cur = TTS.voice ? TTS.score(TTS.voice) : -1;
+      var better = (!noGood && ranked[0] && cur < best) ? ranked[0] : null;
 
       stage.innerHTML =
         this.head('⚙️', '设置', '') +
@@ -2782,7 +2840,17 @@ EQ.addUnit({
             '<div class="row" style="margin-top:10px"><span class="tiny" style="color:#333;width:80px">朗读声音</span>' +
             '<select id="vsel" class="sel">' + (opts || '<option>系统没有英文语音</option>') + '</select>' +
             '<button class="btn sm" data-a="test">试听</button></div>' +
-            '<div class="tiny" style="color:#555;margin-top:8px">新加坡用英式拼写，建议选 en-GB 的声音（Daniel / Serena / Kate）。</div>' +
+            '<div class="tiny" style="color:#555;margin-top:8px">列表已按自然度排好，⭐ 的最好听。新加坡用英式，同等自然度下优先 en-SG / en-GB。</div>' +
+            (noGood
+              ? '<div class="voice-warn">⚠️ 这台设备只装了<b>老式语音引擎</b>，机器感就是从这来的。<br>' +
+                '<b>iPad：</b>设置 → 辅助功能 → 朗读内容 → 声音 → 英语，下载任意带<b>「增强」或「高级」</b>的声音（免费，几十 MB），回来在上面重选。<br>' +
+                '<b>Mac：</b>系统设置 → 辅助功能 → 朗读内容 → 系统声音 → 管理声音，同样下载增强版。<br>' +
+                '下载完回来<b>刷新一下页面</b>，新声音才会出现在上面的列表里。</div>'
+              : '') +
+            (better
+              ? '<div class="voice-good">✨ 发现更自然的声音：<b>' + esc(better.name) + '</b>' +
+                '<button class="btn sm primary" data-a="usebest">换成它</button></div>'
+              : '') +
             '<div class="row" style="margin-top:10px">' +
               '<button class="btn sm ghost" data-a="mute">' + (SFX.muted ? '🔇 音效已关' : '🔊 音效开着') + '</button>' +
             '</div>' +
@@ -2809,10 +2877,16 @@ EQ.addUnit({
 
       var sel = document.getElementById('vsel');
       if (sel) sel.onchange = function () {
-        TTS.voice = enVoices.filter(function (v) { return v.name === sel.value; })[0] || TTS.voice;
+        if (TTS.use(sel.value)) TTS.speak('Good morning, Bufan. Time to wake up!', { rate: 0.9 });
       };
       stage.querySelector('[data-a="test"]').onclick = function () {
-        TTS.speak('Good morning, Bufan. Time to wake up!', { rate: 0.85 });
+        TTS.speak('Good morning, Bufan. Time to wake up!', { rate: 0.9 });
+      };
+      var bestBtn = stage.querySelector('[data-a="usebest"]');
+      if (bestBtn) bestBtn.onclick = function () {
+        TTS.use(better.name); SFX.click();
+        UI.settings();
+        TTS.speak('Good morning, Bufan. Time to wake up!', { rate: 0.9 });
       };
       stage.querySelector('[data-a="mute"]').onclick = function (e) {
         SFX.muted = !SFX.muted; e.target.textContent = SFX.muted ? '🔇 音效已关' : '🔊 音效开着';
