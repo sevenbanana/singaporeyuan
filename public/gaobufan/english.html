@@ -665,20 +665,110 @@ button.chip{ cursor:pointer; background:#5a2723; border-color:rgba(255,255,255,.
 /* 🎧 听写：只有一个大喇叭，什么线索都不给 */
 .dict-clue{ text-align:center; padding:6px 0 4px; }
 
+/* ============================ 开场选玩家 ============================ */
+.sp-pick{ font-size:11px; color:#9c9c9c; margin:26px 0 14px; letter-spacing:.1em; }
+.player-row{ display:flex; gap:16px; justify-content:center; flex-wrap:wrap; }
+.player-card{
+  display:flex; flex-direction:column; align-items:center; gap:8px;
+  width:190px; padding:20px 14px;
+  background:#4a4a4a; color:#fff; cursor:pointer;
+  border:3px solid; border-color:#8a8a8a #232323 #232323 #8a8a8a;
+  box-shadow:0 0 0 3px #000, 0 6px 0 rgba(0,0,0,.45);
+  transition:transform .12s, background .12s;
+}
+.player-card:hover{ background:#5d6b5d; transform:translateY(-3px); }
+.player-card:active{ transform:translateY(2px); box-shadow:0 0 0 3px #000, 0 2px 0 rgba(0,0,0,.45); }
+.player-card.guest{ background:#3f4553; border-color:#767f94 #1c1f27 #1c1f27 #767f94; }
+.player-card.guest:hover{ background:#4d5568; }
+.pc-face{ font-size:48px; line-height:1; filter:drop-shadow(2px 2px 0 rgba(0,0,0,.5)); }
+.pc-name{ font-size:11px; color:#fff; text-shadow:2px 2px 0 #000; }
+.pc-sub{ font-size:11px; color:#d0d0d0; }
+
+/* 数字锁 */
+#keypad{ margin-top:24px; }
+#keypad.shake{ animation:kpShake .4s; }
+@keyframes kpShake{ 0%,100%{transform:none} 20%{transform:translateX(-10px)} 40%{transform:translateX(10px)} 60%{transform:translateX(-6px)} 80%{transform:translateX(6px)} }
+.kp-who{ font-size:14px; color:var(--gold); text-shadow:2px 2px 0 #000; }
+.kp-face{ font-size:20px; vertical-align:middle; }
+.kp-title{ font-size:12px; color:#b5b5b5; margin-top:8px; }
+.kp-dots{ display:flex; gap:12px; justify-content:center; margin:16px 0 6px; }
+.kp-dots i{
+  width:18px; height:18px; background:#1a1a1a;
+  border:2px solid #6a6a6a; display:block;
+}
+.kp-dots i.on{ background:var(--xp); border-color:#3d7a12; box-shadow:0 0 8px rgba(127,252,32,.5); }
+.kp-err{ font-size:12px; color:#e08a83; min-height:18px; opacity:0; transition:opacity .15s; }
+.kp-err.show{ opacity:1; }
+.kp-grid{
+  display:grid; grid-template-columns:repeat(3,72px);
+  gap:10px; justify-content:center; margin-top:10px;
+}
+.kp-key{
+  height:62px; font-size:22px; color:#fff; cursor:pointer;
+  background:#7d7d7d; border:3px solid;
+  border-color:#b5b5b5 #3a3a3a #3a3a3a #b5b5b5;
+  box-shadow:0 0 0 2px #000; text-shadow:2px 2px 0 rgba(0,0,0,.6);
+}
+.kp-key:hover{ background:#8d9a8d; }
+.kp-key:active{ transform:translateY(2px); }
+.kp-key.alt{ background:#5a5a5a; font-size:18px; }
+
+/* HUD 上的玩家名，点一下换人 */
+.chip.who{ cursor:pointer; background:#2f3a2a; border-color:rgba(255,255,255,.25); color:#dff0d0; }
+.chip.who:hover{ background:#3d4c36; }
+
+.pinput{
+  display:block; width:100%; margin-top:8px; padding:10px;
+  font-size:18px; letter-spacing:.4em; text-align:center;
+  background:#000; color:var(--xp); border:2px solid #444;
+}
+
+@media (max-width:520px){
+  .player-card{ width:150px; padding:16px 10px; }
+  .pc-face{ font-size:38px; }
+  .kp-grid{ grid-template-columns:repeat(3,64px); }
+  .kp-key{ height:56px; }
+}
+/* emoji 后面用 flex gap，别靠空格 —— 空格在中文字体栈里会被拉成全角 */
+.kp-who{ display:flex; align-items:center; justify-content:center; gap:8px; }
+.pc-sub{ display:flex; align-items:center; justify-content:center; gap:5px; }
+
 </style>
 </head>
 <body>
 
 <div id="bg"></div>
 
-<!-- 开场页：必须点一下才能解锁 iPad 的语音播放 -->
+<!-- 开场页：选玩家。顺便解锁 iPad 的语音播放（必须由一次用户点击触发） -->
 <div id="splash">
   <div class="sp-inner">
     <div class="sp-logo px">ENGLISH<br>QUEST</div>
-    <div class="sp-sub">Bufan 的英语冒险 · Minecraft Edition</div>
-    <div class="sp-goal">🎯 12 月 31 日之前拿下 1000 个基础词的<b>听 · 说 · 读 · 写</b></div>
-    <button class="btn primary big" id="splash-go">▶  进入世界</button>
-    <div class="sp-tip">每天 30 分钟 · 场景里学句子，句子里学单词</div>
+    <div class="sp-sub">Minecraft Edition</div>
+
+    <div id="pickers">
+      <div class="sp-pick px">选择玩家</div>
+      <div class="player-row">
+        <button class="player-card" data-p="bufan">
+          <span class="pc-face">👦</span>
+          <span class="pc-name px">GAO BUFAN</span>
+          <span class="pc-sub">🔒 需要密码</span>
+        </button>
+        <button class="player-card guest" data-p="guest">
+          <span class="pc-face">🧍</span>
+          <span class="pc-name px">GUEST</span>
+          <span class="pc-sub">访客 · 独立存档</span>
+        </button>
+      </div>
+      <div class="sp-tip">访客的进度单独存，不会动 Bufan 的记录</div>
+    </div>
+
+    <div id="keypad" class="hide">
+      <div class="kp-who"><span class="kp-face">👦</span> GAO BUFAN</div>
+      <div class="kp-title">输入密码</div>
+      <div class="kp-dots" id="kp-dots"></div>
+      <div class="kp-err" id="kp-err">密码不对，再试一次</div>
+      <div class="kp-grid" id="kp-grid"></div>
+    </div>
   </div>
 </div>
 
@@ -926,7 +1016,15 @@ button.chip{ cursor:pointer; background:#5a2723; border-color:rgba(255,255,255,.
 (function (global) {
   'use strict';
 
-  var KEY = 'englishquest.save.v1';
+  // 每个玩家一份独立存档。bufan 沿用原来的 key，老进度不会丢；
+  // 访客写到 .guest，怎么点都碰不到 Bufan 的进度。
+  var KEY_BASE = 'englishquest.save.v1';
+  var PROFILES = {
+    bufan: { name: 'Bufan', face: '👦', label: 'GAO BUFAN', locked: true },
+    guest: { name: 'Guest', face: '🧍', label: 'GUEST', locked: false }
+  };
+  var PIN_KEY = 'englishquest.pin.v1';
+  var DEFAULT_PIN = '1102';
 
   // 艾宾浩斯遗忘曲线 → 复习间隔（天）
   var INTERVAL = [0, 1, 2, 4, 7, 15, 30, 60, 120];
@@ -942,10 +1040,11 @@ button.chip{ cursor:pointer; background:#5a2723; border-color:rgba(255,255,255,.
     return Math.floor((d.getTime() - d.getTimezoneOffset() * 60000) / 86400000);
   }
 
-  function blankSave() {
+  function blankSave(profile) {
     return {
       v: 1,
-      name: 'Bufan',
+      profile: profile || 'bufan',
+      name: (PROFILES[profile] || PROFILES.bufan).name,
       startDay: todayIndex(),
       goalDate: '2026-12-31',
       goalWords: 1000,
@@ -961,17 +1060,28 @@ button.chip{ cursor:pointer; background:#5a2723; border-color:rgba(255,255,255,.
   }
 
   var Save = {
-    data: blankSave(),
+    PROFILES: PROFILES,
+    profile: 'bufan',
+    data: blankSave('bufan'),
 
-    load: function () {
+    /** bufan 用原来的 key，老进度照旧能读到；其他玩家各自加后缀 */
+    key: function () {
+      return this.profile === 'bufan' ? KEY_BASE : KEY_BASE + '.' + this.profile;
+    },
+
+    load: function (profile) {
+      if (profile) this.profile = PROFILES[profile] ? profile : 'bufan';
+      this.data = blankSave(this.profile);
       try {
-        var raw = localStorage.getItem(KEY);
+        var raw = localStorage.getItem(this.key());
         if (raw) {
           var d = JSON.parse(raw);
           if (d && d.v === 1) {
             // 补齐旧存档缺的字段
-            var base = blankSave();
+            var base = blankSave(this.profile);
             for (var k in base) if (!(k in d)) d[k] = base[k];
+            d.profile = this.profile;
+            d.name = base.name;
             this.data = d;
           }
         }
@@ -980,18 +1090,31 @@ button.chip{ cursor:pointer; background:#5a2723; border-color:rgba(255,255,255,.
     },
 
     save: function () {
-      try { localStorage.setItem(KEY, JSON.stringify(this.data)); }
+      try { localStorage.setItem(this.key(), JSON.stringify(this.data)); }
       catch (e) { console.warn('存档写入失败', e); }
     },
 
-    reset: function () { this.data = blankSave(); this.save(); },
+    reset: function () { this.data = blankSave(this.profile); this.save(); },
 
     exportText: function () { return JSON.stringify(this.data); },
 
     importText: function (txt) {
       var d = JSON.parse(txt);
       if (!d || d.v !== 1) throw new Error('存档格式不对');
+      d.profile = this.profile;
+      d.name = (PROFILES[this.profile] || PROFILES.bufan).name;
       this.data = d; this.save();
+    },
+
+    /* ---------------- 开场那道数字锁 ----------------
+       只是前端的一道门闩：拦住随手乱点的人，别当成真的安全措施。
+       密码存在本机，换设备要重新设。 */
+    getPin: function () {
+      try { return localStorage.getItem(PIN_KEY) || DEFAULT_PIN; }
+      catch (e) { return DEFAULT_PIN; }
+    },
+    setPin: function (p) {
+      try { localStorage.setItem(PIN_KEY, String(p)); } catch (e) {}
     }
   };
 
@@ -2664,8 +2787,17 @@ EQ.addUnit({
               '<button class="btn sm ghost" data-a="mute">' + (SFX.muted ? '🔇 音效已关' : '🔊 音效开着') + '</button>' +
             '</div>' +
           '</div>' +
+          '<div class="panel" style="margin-top:12px"><div class="px tiny">玩家</div>' +
+            '<div class="tiny" style="color:#555;margin:8px 0">当前是 <b>' +
+              esc((Save.PROFILES[Save.profile] || Save.PROFILES.bufan).name) + '</b>' +
+              (Save.profile === 'guest' ? ' —— 访客存档，跟 Bufan 的进度完全分开' : '') + '</div>' +
+            '<div class="row wrap">' +
+              '<button class="btn sm" data-a="switch">⇄ 换个玩家</button>' +
+              (Save.profile === 'bufan' ? '<button class="btn sm ghost" data-a="pin">🔒 改密码</button>' : '') +
+            '</div>' +
+          '</div>' +
           '<div class="panel" style="margin-top:12px"><div class="px tiny">存档</div>' +
-            '<div class="tiny" style="color:#555;margin:8px 0">进度存在这台设备的浏览器里。换设备前先导出。</div>' +
+            '<div class="tiny" style="color:#555;margin:8px 0">进度存在这台设备的浏览器里，每个玩家一份。换设备前先导出。</div>' +
             '<div class="row wrap">' +
               '<button class="btn sm" data-a="export">📤 导出存档</button>' +
               '<button class="btn sm" data-a="import">📥 导入存档</button>' +
@@ -2700,8 +2832,29 @@ EQ.addUnit({
           catch (e) { alert('存档格式不对：' + e.message); }
         };
       };
+      stage.querySelector('[data-a="switch"]').onclick = function () { SFX.click(); App.switchProfile(); };
+      var pinBtn = stage.querySelector('[data-a="pin"]');
+      if (pinBtn) pinBtn.onclick = function () {
+        var o = UI.overlay(
+          '<div class="px tiny">改开场密码</div>' +
+          '<div class="tiny muted" style="margin:10px 0">四位数字。只存在这台设备上，换设备要重新设。</div>' +
+          '<input id="pin1" class="pinput" inputmode="numeric" maxlength="4" placeholder="新密码">' +
+          '<input id="pin2" class="pinput" inputmode="numeric" maxlength="4" placeholder="再输一遍">' +
+          '<div class="tiny" id="pinmsg" style="color:#e08a83;min-height:18px;margin-top:8px"></div>' +
+          '<div class="row center" style="margin-top:12px">' +
+            '<button class="btn primary" id="pingo">保存</button>' +
+            '<button class="btn ghost" data-close>取消</button></div>');
+        o.querySelector('#pingo').onclick = function () {
+          var a = o.querySelector('#pin1').value.trim(), b = o.querySelector('#pin2').value.trim();
+          var msg = o.querySelector('#pinmsg');
+          if (!/^\d{4}$/.test(a)) { msg.textContent = '要四位数字'; return; }
+          if (a !== b) { msg.textContent = '两次输的不一样'; return; }
+          Save.setPin(a); o.remove(); UI.toast('🔒', '密码已改', '下次开场用新密码');
+        };
+      };
       stage.querySelector('[data-a="reset"]').onclick = function () {
-        if (confirm('确定清空全部学习进度？这个操作没法撤销。')) { Save.reset(); UI.home(); }
+        var who = (Save.PROFILES[Save.profile] || Save.PROFILES.bufan).name;
+        if (confirm('确定清空 ' + who + ' 的全部学习进度？这个操作没法撤销。')) { Save.reset(); UI.home(); }
       };
       stage.querySelector('[data-a="back"]').onclick = function () { SFX.click(); UI.home(); };
     }
@@ -2762,24 +2915,99 @@ EQ.addUnit({
 
     boot: function () {
       Textures.build();
-      Save.load();
       TTS.init();
       UI.mount(document.getElementById('stage'));
       this.buildHotbar();
       this.splash();
     },
 
-    /** 开场页：iPad Safari 必须靠一次用户点击才能解锁语音 */
+    /** 开场页：选玩家。iPad Safari 也必须靠这一次用户点击才能解锁语音 */
     splash: function () {
       var s = document.getElementById('splash');
-      s.classList.remove('hide');
-      document.getElementById('splash-go').onclick = function () {
-        TTS.unlock(); SFX.unlock(); SFX.click();
-        s.classList.add('gone');
-        setTimeout(function () { s.classList.add('hide'); }, 420);
-        App.setHudMode('home');
-        UI.home();
-      };
+      var pickers = document.getElementById('pickers');
+      var keypad = document.getElementById('keypad');
+      s.classList.remove('hide', 'gone');
+      pickers.classList.remove('hide');
+      keypad.classList.add('hide');
+      TTS.stop();
+
+      s.querySelectorAll('.player-card').forEach(function (b) {
+        b.onclick = function () {
+          SFX.unlock(); SFX.click();
+          if (Save.PROFILES[b.dataset.p].locked) App.askPin(b.dataset.p);
+          else App.enter(b.dataset.p);
+        };
+      });
+    },
+
+    /** 四位数字锁。用大按键而不是输入框 —— iPad 上不弹键盘，四下就进去了 */
+    askPin: function (profile) {
+      var pickers = document.getElementById('pickers');
+      var keypad = document.getElementById('keypad');
+      var dots = document.getElementById('kp-dots');
+      var err = document.getElementById('kp-err');
+      var grid = document.getElementById('kp-grid');
+      var want = Save.getPin();
+      var typed = '';
+
+      pickers.classList.add('hide');
+      keypad.classList.remove('hide');
+      err.classList.remove('show');
+
+      function paintDots() {
+        dots.innerHTML = '';
+        for (var i = 0; i < want.length; i++) {
+          dots.innerHTML += '<i class="' + (i < typed.length ? 'on' : '') + '"></i>';
+        }
+      }
+
+      grid.innerHTML =
+        [1, 2, 3, 4, 5, 6, 7, 8, 9].map(function (n) {
+          return '<button class="kp-key px" data-k="' + n + '">' + n + '</button>';
+        }).join('') +
+        '<button class="kp-key alt" data-k="back">←</button>' +
+        '<button class="kp-key px" data-k="0">0</button>' +
+        '<button class="kp-key alt" data-k="del">⌫</button>';
+
+      grid.querySelectorAll('.kp-key').forEach(function (b) {
+        b.onclick = function () {
+          var k = b.dataset.k;
+          SFX.click();
+          if (k === 'back') { App.splash(); return; }
+          if (k === 'del') { typed = typed.slice(0, -1); err.classList.remove('show'); paintDots(); return; }
+          if (typed.length >= want.length) return;
+          typed += k;
+          paintDots();
+          if (typed.length === want.length) {
+            if (typed === want) { SFX.right(); App.enter(profile); }
+            else {
+              SFX.wrong();
+              err.classList.add('show');
+              keypad.classList.add('shake');
+              setTimeout(function () { keypad.classList.remove('shake'); typed = ''; paintDots(); }, 420);
+            }
+          }
+        };
+      });
+      paintDots();
+    },
+
+    /** 真正进入世界：读这个玩家自己的存档 */
+    enter: function (profile) {
+      var s = document.getElementById('splash');
+      TTS.unlock(); SFX.unlock();
+      Save.load(profile);
+      s.classList.add('gone');
+      setTimeout(function () { s.classList.add('hide'); }, 420);
+      this.setHudMode('home');
+      UI.home();
+    },
+
+    /** 换人：回到选玩家页，当前进度已经随时在存 */
+    switchProfile: function () {
+      TTS.stop();
+      Game.session = null;
+      this.splash();
     },
 
     setHudMode: function (m) {
@@ -2859,8 +3087,11 @@ EQ.addUnit({
         hearts.innerHTML = [0, 1, 2, 3, 4].map(function (i) {
           return '<span class="heart' + (i < st2 ? '' : ' off') + '">🔥</span>';
         }).join('');
-        left.innerHTML = '<span class="chip">🏠 <b>' + (d.name || 'Bufan') + '</b></span>' +
+        var who = Save.PROFILES[Save.profile] || Save.PROFILES.bufan;
+        left.innerHTML = '<button class="chip who" id="whobtn">' + who.face + ' <b>' + who.name + '</b> ⇄</button>' +
                          '<span class="chip">🔥 ' + d.streak + ' 天</span>';
+        var wb = document.getElementById('whobtn');
+        if (wb) wb.onclick = function () { SFX.click(); App.switchProfile(); };
       }
     }
   };
