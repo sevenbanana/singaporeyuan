@@ -1,0 +1,2876 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>English Quest · Bufan 的英语冒险</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="theme-color" content="#1d1b1a">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap">
+<style>
+/* ===== css/mc.css ===== */
+/* ============================================================
+   English Quest — Minecraft UI kit
+   全部视觉零外部素材：贴图由 js/textures.js 用 canvas 生成
+   ============================================================ */
+
+:root{
+  --gui:        #c6c6c6;
+  --gui-lit:    #ffffff;
+  --gui-shade:  #545454;
+  --gui-slot:   #8b8b8b;
+  --gui-slot-d: #373737;
+
+  --ink:        #ffffff;
+  --ink-dim:    #a8a8a8;
+  --ink-dark:   #3f3f3f;
+  --shadow:     rgba(0,0,0,.55);
+
+  --xp:         #7ffc20;
+  --xp-dark:    #4a9c0f;
+  --heart:      #e02f2f;
+  --emerald:    #17dd62;
+  --diamond:    #4aedd9;
+  --gold:       #fcee4b;
+  --redstone:   #ff2e2e;
+  --lapis:      #3f5fc4;
+
+  --ok:         #52d357;
+  --bad:        #e35a4d;
+
+  /* 拉丁字体必须排在 CJK 前，否则英文弯引号会被渲染成全角 */
+  --f-pixel: 'Press Start 2P', 'Courier New', ui-monospace, monospace,
+             'PingFang SC', 'Hiragino Sans GB', sans-serif;
+  --f-read:  'Verdana', 'Trebuchet MS', 'Helvetica Neue', Arial,
+             'PingFang SC', 'Hiragino Sans GB', sans-serif;
+  --f-cjk:   'Helvetica Neue', Arial, 'PingFang SC', 'Hiragino Sans GB', sans-serif;
+}
+
+*{ box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+
+html,body{
+  margin:0; padding:0; height:100%;
+  overflow:hidden;
+  font-family:var(--f-cjk);
+  color:var(--ink);
+  background:#1d1b1a;
+  -webkit-text-size-adjust:100%;
+  -webkit-user-select:none; user-select:none;
+  touch-action:manipulation;
+}
+
+img,canvas{ image-rendering:pixelated; image-rendering:crisp-edges; }
+
+.px{ font-family:var(--f-pixel); letter-spacing:.02em; }
+.sh{ text-shadow:2px 2px 0 var(--shadow); }
+
+/* ---------- 背景：泥土墙（Minecraft 暂停界面同款） ---------- */
+#bg{
+  position:fixed; inset:0; z-index:0;
+  background-image:var(--tex-dirt);
+  background-size:64px 64px;
+  filter:brightness(.42);
+}
+#bg::after{
+  content:''; position:absolute; inset:0;
+  background:radial-gradient(ellipse at 50% 40%, rgba(0,0,0,0) 30%, rgba(0,0,0,.55) 100%);
+}
+
+/* ============================ 布局 ============================ */
+#app{
+  position:relative; z-index:1;
+  height:100%; display:flex; flex-direction:column;
+  max-width:1180px; margin:0 auto;
+  padding:8px 10px 6px;
+}
+
+/* ---------- 顶栏 HUD ---------- */
+.hud{
+  flex:0 0 auto;
+  display:flex; align-items:center; gap:10px;
+  padding:4px 2px 8px;
+}
+.hud-left,.hud-right{ display:flex; align-items:center; gap:8px; flex:0 0 auto; }
+.hud-mid{ flex:1 1 auto; min-width:0; }
+
+.chip{
+  display:inline-flex; align-items:center; gap:6px;
+  padding:6px 10px; font-size:11px; line-height:1;
+  background:rgba(0,0,0,.5);
+  border:2px solid rgba(255,255,255,.18);
+  white-space:nowrap;
+}
+.chip b{ color:var(--gold); }
+
+/* XP 条 */
+.xpwrap{ display:flex; align-items:center; gap:8px; }
+.xplevel{
+  font-family:var(--f-pixel); font-size:16px; color:var(--xp);
+  text-shadow:2px 2px 0 #000, 0 0 6px rgba(127,252,32,.5);
+  min-width:2ch; text-align:center;
+}
+.xpbar{
+  position:relative; flex:1; height:14px;
+  background:#000; border:2px solid #1c1c1c;
+  box-shadow:inset 0 0 0 2px #3a3a3a;
+}
+.xpbar i{
+  display:block; height:100%; width:0%;
+  background:linear-gradient(#a8ff4e,var(--xp) 45%,var(--xp-dark));
+  transition:width .35s cubic-bezier(.2,.9,.3,1);
+}
+.xpbar span{
+  position:absolute; inset:0; display:grid; place-items:center;
+  font-size:9px; font-family:var(--f-pixel);
+  text-shadow:1px 1px 0 #000; pointer-events:none;
+}
+
+.hearts{ display:flex; gap:2px; }
+.heart{ width:18px; height:18px; font-size:15px; line-height:18px; text-align:center; filter:drop-shadow(1px 1px 0 #000); }
+.heart.off{ filter:grayscale(1) brightness(.4); }
+
+/* ---------- 舞台 ---------- */
+#stage{
+  flex:1 1 auto; min-height:0;
+  display:flex; flex-direction:column;
+  position:relative;
+}
+
+/* ---------- 热键栏 ---------- */
+.hotbar{
+  flex:0 0 auto;
+  display:flex; justify-content:center; gap:0;
+  padding:8px 0 2px;
+}
+.slot{
+  position:relative;
+  width:52px; height:52px;
+  background:var(--gui-slot);
+  border:2px solid;
+  border-color:var(--gui-shade) var(--gui-lit) var(--gui-lit) var(--gui-shade);
+  display:grid; place-items:center;
+  font-size:24px; line-height:1;
+  filter:grayscale(1) brightness(.75);
+  transition:filter .18s, transform .18s;
+}
+.slot.done{ filter:none; }
+.slot.done::after{
+  content:'✔'; position:absolute; right:1px; bottom:-1px;
+  font-size:11px; color:var(--xp); text-shadow:1px 1px 0 #000;
+}
+.slot.now{
+  filter:none; transform:translateY(-6px) scale(1.1); z-index:2;
+  outline:3px solid #fff; outline-offset:-1px;
+  box-shadow:0 0 0 3px rgba(0,0,0,.6), 0 0 14px rgba(255,255,255,.35);
+}
+
+/* ============================ 组件 ============================ */
+
+/* 经典 GUI 面板 */
+.panel{
+  background:var(--gui);
+  border:2px solid;
+  border-color:var(--gui-lit) var(--gui-shade) var(--gui-shade) var(--gui-lit);
+  box-shadow:0 0 0 2px #000, 0 6px 0 rgba(0,0,0,.35);
+  color:var(--ink-dark);
+  padding:14px;
+}
+.panel.dark{
+  background:rgba(16,16,16,.86);
+  border-color:#5a5a5a #141414 #141414 #5a5a5a;
+  color:var(--ink);
+}
+.panel-title{
+  font-family:var(--f-pixel); font-size:11px;
+  color:#404040; margin:0 0 10px;
+}
+.panel.dark .panel-title{ color:var(--ink-dim); text-shadow:2px 2px 0 #000; }
+
+/* 按钮 */
+.btn{
+  display:inline-flex; align-items:center; justify-content:center; gap:8px;
+  font-family:var(--f-pixel); font-size:12px; line-height:1.4;
+  color:#fff; text-shadow:2px 2px 0 var(--shadow);
+  background:#6f6f6f;
+  border:2px solid;
+  border-color:#a5a5a5 #2b2b2b #2b2b2b #a5a5a5;
+  box-shadow:0 0 0 2px #000;
+  padding:12px 18px; min-height:44px;
+  cursor:pointer; text-align:center;
+}
+.btn:active{ transform:translateY(2px); border-color:#2b2b2b #a5a5a5 #a5a5a5 #2b2b2b; }
+.btn:hover{ background:#7d8a7d; }
+.btn.primary{ background:#3d8b40; border-color:#6fc873 #1d5220 #1d5220 #6fc873; }
+.btn.primary:hover{ background:#48a44c; }
+.btn.gold{ background:#a8862b; border-color:#e0bc55 #5e4a12 #5e4a12 #e0bc55; }
+.btn.ghost{ background:rgba(0,0,0,.45); border-color:#777 #222 #222 #777; }
+.btn.sm{ font-size:10px; padding:8px 12px; min-height:36px; }
+.btn.wide{ width:100%; }
+.btn[disabled]{ opacity:.45; pointer-events:none; }
+
+/* 木牌 / 标题 */
+.sign{
+  display:inline-block; padding:10px 22px;
+  background-image:var(--tex-plank); background-size:48px 48px;
+  border:3px solid #6b4a25;
+  box-shadow:0 0 0 3px #2e1e0e, 0 6px 0 rgba(0,0,0,.4);
+  font-family:var(--f-pixel); font-size:14px;
+  color:#fff3c4; text-shadow:2px 2px 0 #000;
+}
+
+/* 物品格（词汇 / 选项） */
+.item{
+  position:relative;
+  background:var(--gui-slot);
+  border:2px solid;
+  border-color:var(--gui-shade) var(--gui-lit) var(--gui-lit) var(--gui-shade);
+  box-shadow:inset 0 0 0 2px rgba(0,0,0,.15);
+  padding:10px; cursor:pointer;
+  transition:transform .12s, filter .12s;
+}
+.item:hover{ filter:brightness(1.18); }
+.item:active{ transform:scale(.97); }
+.item.ok{  background:#2f7a33; border-color:#1a4a1d #7fe084 #7fe084 #1a4a1d; }
+.item.bad{ background:#8c2f28; border-color:#4d1512 #e08a83 #e08a83 #4d1512; }
+.item.dim{ opacity:.35; pointer-events:none; }
+
+/* 进度条 */
+.bar{ height:10px; background:#000; border:2px solid #1c1c1c; }
+.bar i{ display:block; height:100%; background:var(--xp); transition:width .3s; }
+
+/* 成就弹窗（Advancement toast） */
+#toasts{ position:fixed; top:10px; right:10px; z-index:90; display:flex; flex-direction:column; gap:8px; }
+.toast{
+  display:flex; align-items:center; gap:12px;
+  min-width:300px; padding:12px 14px;
+  background:#100e17ee;
+  border:2px solid #3a3050;
+  box-shadow:0 0 0 2px #000;
+  animation:toastIn .35s cubic-bezier(.2,1.4,.4,1);
+}
+.toast .ico{ font-size:28px; filter:drop-shadow(2px 2px 0 #000); }
+.toast .tt{ font-family:var(--f-pixel); font-size:9px; color:var(--gold); margin-bottom:6px; }
+.toast .tb{ font-size:13px; color:#fff; }
+@keyframes toastIn{ from{ transform:translateX(120%); opacity:0 } to{ transform:none; opacity:1 } }
+
+/* 浮层 */
+.overlay{
+  position:fixed; inset:0; z-index:80;
+  background:rgba(0,0,0,.72);
+  display:grid; place-items:center; padding:20px;
+}
+.overlay .panel{ max-width:640px; width:100%; max-height:88vh; overflow:auto; }
+
+/* 滚动条 */
+.scroll{ overflow-y:auto; -webkit-overflow-scrolling:touch; }
+.scroll::-webkit-scrollbar{ width:10px; }
+.scroll::-webkit-scrollbar-track{ background:#00000055; }
+.scroll::-webkit-scrollbar-thumb{ background:var(--gui-slot); border:2px solid #000; }
+
+/* 工具 */
+.row{ display:flex; gap:10px; align-items:center; }
+.col{ display:flex; flex-direction:column; gap:10px; }
+.center{ justify-content:center; }
+.grow{ flex:1 1 auto; min-width:0; }
+.wrap{ flex-wrap:wrap; }
+.hide{ display:none !important; }
+.muted{ color:var(--ink-dim); }
+.tiny{ font-size:11px; }
+
+</style>
+<style>
+/* ===== css/quest.css ===== */
+/* ============================================================
+   quest.css — 各个关卡界面
+   目标设备：iPad 横屏 (1180×820)，同时兼容竖屏与手机
+   ============================================================ */
+
+/* ---------------------------- 开场页 ---------------------------- */
+#splash{
+  position:fixed; inset:0; z-index:100;
+  display:grid; place-items:center; text-align:center;
+  background:#0d0c0b;
+  background-image:var(--tex-stone);
+  background-size:96px 96px;
+  transition:opacity .4s;
+}
+#splash::before{ content:''; position:absolute; inset:0; background:rgba(8,8,10,.78); }
+#splash.gone{ opacity:0; pointer-events:none; }
+.sp-inner{ position:relative; padding:20px; }
+.sp-logo{
+  font-size:clamp(28px,6vw,54px); line-height:1.5; color:#fff;
+  text-shadow:4px 4px 0 #2a2a2a, 0 0 24px rgba(120,220,120,.35);
+  letter-spacing:.06em;
+}
+.sp-sub{ margin-top:18px; font-size:15px; color:var(--gold); text-shadow:2px 2px 0 #000; }
+.sp-goal{ margin:22px auto 26px; max-width:520px; font-size:14px; line-height:1.9; color:#dcdcdc; }
+.sp-goal b{ color:var(--xp); }
+.sp-tip{ margin-top:20px; font-size:12px; color:#8b8b8b; }
+.btn.big{ font-size:14px; padding:18px 34px; }
+
+/* ---------------------------- 关卡通用头尾 ---------------------------- */
+#stage{ padding:2px 2px 0; }
+.t-head{
+  flex:0 0 auto;
+  display:flex; align-items:baseline; gap:10px;
+  padding:2px 4px 10px; flex-wrap:wrap;
+}
+.t-ico{ font-size:22px; filter:drop-shadow(2px 2px 0 #000); }
+.t-title{ font-size:13px; color:#fff; text-shadow:2px 2px 0 #000; }
+.t-sub{ font-size:12px; color:#b9b9b9; }
+
+.t-foot{
+  flex:0 0 auto;
+  display:flex; align-items:center; gap:10px; flex-wrap:wrap;
+  padding:12px 2px 4px;
+}
+
+/* 判定反馈条 */
+.fb{
+  display:flex; align-items:center; gap:12px; width:100%;
+  padding:12px 14px;
+  border:2px solid; box-shadow:0 0 0 2px #000;
+  animation:fbIn .22s ease-out;
+}
+.fb.good{ background:#20431f; border-color:#4f8f4c #12290f #12290f #4f8f4c; }
+.fb.bad { background:#4a1f1c; border-color:#9a4a44 #2a0f0d #2a0f0d #9a4a44; }
+.fb-ico{ font-size:26px; }
+.fb-t{ font-size:11px; color:#fff; text-shadow:2px 2px 0 #000; }
+.fb-w{ margin-top:5px; font-size:14px; color:#e6e6e6; }
+.fb-w b{ color:var(--gold); font-size:16px; }
+.fb-s{ color:#bcd7bc; }
+.fb-n{ margin-top:4px; font-size:12px; color:var(--gold); }
+@keyframes fbIn{ from{ transform:translateY(10px); opacity:0 } to{ transform:none; opacity:1 } }
+
+/* ============================ 主页 ============================ */
+.home{ flex:1; padding:6px 4px 10px; text-align:center; }
+.home-title{ margin:6px 0 18px; }
+.home-sub{ margin-top:12px; font-size:13px; color:#c9c9c9; }
+
+.quest-card{ max-width:720px; margin:0 auto; text-align:left; }
+.qc-top{ display:flex; align-items:center; gap:14px; }
+.qc-ico{ font-size:44px; filter:drop-shadow(2px 2px 0 rgba(0,0,0,.35)); }
+.qc-unit{ font-size:9px; color:#666; }
+.qc-name{ font-size:22px; font-weight:700; color:#1f1f1f; margin:4px 0 2px; font-family:var(--f-read); }
+.qc-zh{ font-size:13px; color:#4a4a4a; }
+.qc-meta{ display:flex; gap:8px; flex-wrap:wrap; margin:12px 0 14px; }
+.tag{
+  font-size:11px; padding:5px 9px; color:#fff;
+  border:2px solid rgba(0,0,0,.35); text-shadow:1px 1px 0 rgba(0,0,0,.5);
+}
+.tag.new{ background:#3d8b40; } .tag.rev{ background:#8c4a2f; } .tag.time{ background:#4a5a8c; }
+
+.stat-row{
+  display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+  gap:10px; max-width:720px; margin:16px auto 0;
+}
+.stat{ text-align:center; padding:12px 8px; }
+.s-ico{ font-size:22px; }
+.s-big{ font-size:15px; color:#1f1f1f; margin:6px 0 4px; }
+.s-lab{ font-size:11px; color:#4a4a4a; }
+.s-sub{ font-size:10px; color:#777; margin-top:3px; }
+
+.goal-bar{ max-width:720px; margin:12px auto 0; text-align:left; }
+.goal-bar .px{ color:#444; }
+.home-nav{ margin:18px auto 0; max-width:720px; }
+
+/* ============================ 📖 故事 ============================ */
+.scene-banner{
+  flex:0 0 auto;
+  display:flex; align-items:center; gap:12px; flex-wrap:wrap;
+  padding:10px 14px; margin-bottom:10px;
+  background-image:var(--tex-plank); background-size:56px 56px;
+  border:3px solid #6b4a25; box-shadow:0 0 0 3px #2e1e0e;
+}
+.sb-ico{ font-size:26px; }
+.sb-en{ font-size:19px; font-weight:700; color:#fff8e0; text-shadow:2px 2px 0 #000; font-family:var(--f-read); }
+.sb-zh{ font-size:13px; color:#ffe6a8; }
+
+.story{ flex:1 1 auto; min-height:0; padding:4px 2px; }
+.line{
+  display:flex; align-items:flex-start; gap:10px;
+  padding:10px 12px; margin-bottom:8px;
+  background:rgba(0,0,0,.42);
+  border:2px solid rgba(255,255,255,.10);
+  cursor:pointer; transition:background .15s, border-color .15s;
+}
+.line:hover{ background:rgba(0,0,0,.58); }
+.line.active{ background:#2c3a22; border-color:var(--xp); box-shadow:0 0 0 2px rgba(127,252,32,.25); }
+.line .sp{
+  flex:0 0 auto; min-width:64px; padding-top:2px;
+  font-size:11px; color:var(--gold); text-shadow:1px 1px 0 #000;
+}
+.line .bubble{ flex:1 1 auto; min-width:0; }
+.line .en{ font-family:var(--f-read); font-size:19px; line-height:1.5; color:#fff; text-shadow:2px 2px 0 rgba(0,0,0,.5); }
+.line .zh{ margin-top:5px; font-size:13px; color:#a9c4a9; }
+.line .spk{ flex:0 0 auto; font-size:17px; opacity:.5; }
+.line.active .spk{ opacity:1; }
+
+/* ============================ ⛏️ 挖新词 ============================ */
+.mine-wrap{
+  flex:1 1 auto; min-height:0;
+  display:grid; grid-template-columns:minmax(240px,1fr) minmax(280px,1.3fr);
+  gap:14px; align-content:start;
+}
+.ore-card{ text-align:center; padding:22px 16px; }
+.ore-ico{ font-size:70px; line-height:1; filter:drop-shadow(3px 3px 0 rgba(0,0,0,.5)); }
+.ore-word{
+  margin:16px 0 8px; font-size:26px; color:var(--gold);
+  text-shadow:3px 3px 0 #000; word-break:break-word;
+}
+.ore-pos{ font-size:15px; color:#d8d8d8; }
+.ore-btns{ display:flex; gap:8px; justify-content:center; margin-top:16px; flex-wrap:wrap; }
+
+.ore-sent{ display:flex; flex-direction:column; justify-content:center; }
+.os-label{ font-size:9px; color:#666; }
+.os-en{
+  font-family:var(--f-read); font-size:23px; line-height:1.6;
+  color:#1c1c1c; margin:12px 0;
+}
+.os-en .hl{
+  background:#ffe14d; padding:1px 5px;
+  box-shadow:0 2px 0 #b99a00; color:#2b2200;
+}
+.os-zh{ font-size:14px; color:#555; margin-bottom:14px; }
+.ore-sent .btn{ align-self:flex-start; }
+
+/* ============================ 🎧 听音辨词 ============================ */
+.listen-wrap{ flex:0 0 auto; text-align:center; padding:10px 0 16px; }
+.speaker{
+  width:104px; height:104px; font-size:44px;
+  background:#3d6b8b; color:#fff;
+  border:3px solid; border-color:#7fb0cd #1c3a4d #1c3a4d #7fb0cd;
+  box-shadow:0 0 0 3px #000, 0 6px 0 rgba(0,0,0,.45);
+  cursor:pointer;
+}
+.speaker:active{ transform:translateY(3px); box-shadow:0 0 0 3px #000, 0 3px 0 rgba(0,0,0,.45); }
+
+.opts-4{
+  flex:0 0 auto;
+  display:grid; grid-template-columns:repeat(4,1fr); gap:12px;
+  padding:4px 2px;
+}
+.opts-4.tight{ grid-template-columns:repeat(2,1fr); max-width:760px; margin:0 auto; width:100%; }
+.big-opt{ text-align:center; padding:16px 8px; }
+.o-ico{ font-size:40px; line-height:1.1; }
+.o-zh{ margin-top:8px; font-size:15px; color:#fff; text-shadow:2px 2px 0 rgba(0,0,0,.5); }
+.word-opt{
+  text-align:center; font-size:16px; color:#fff;
+  text-shadow:2px 2px 0 rgba(0,0,0,.55); padding:20px 10px;
+  word-break:break-word;
+}
+
+/* ============================ 📕 读句填词 ============================ */
+.read-wrap{ flex:0 0 auto; text-align:center; padding:26px 18px; margin-bottom:6px; }
+.rw-sent{ font-family:var(--f-read); font-size:27px; line-height:1.7; color:#1c1c1c; }
+.rw-sent .blank{
+  display:inline-block; min-width:110px;
+  border-bottom:4px solid #c0392b; color:transparent;
+}
+.rw-sent .hl{ background:#ffe14d; padding:1px 5px; box-shadow:0 2px 0 #b99a00; }
+.rw-zh{ margin-top:14px; font-size:14px; color:#666; }
+
+/* ============================ 🗣️ 跟读 ============================ */
+.speak-wrap{ flex:0 0 auto; text-align:center; padding:22px 18px; }
+.sw-sp{ font-size:12px; color:#666; }
+.sw-en{ font-family:var(--f-read); font-size:28px; line-height:1.6; color:#1a1a1a; margin:12px 0 8px; }
+.sw-zh{ font-size:14px; color:#666; }
+.sw-result{ margin-top:14px; min-height:24px; }
+.swr-wait{ font-size:13px; color:#666; }
+.swr-said{ font-size:15px; color:#222; }
+.swr-score{ margin-top:6px; font-size:14px; font-weight:700; }
+.swr-score.good{ color:#1e7d2e; } .swr-score.meh{ color:#b3432f; }
+.btn.rec{ animation:pulse .9s infinite; }
+@keyframes pulse{ 50%{ filter:brightness(1.5) } }
+
+/* ============================ 🔨 拼写 ============================ */
+.write-wrap{ flex:1 1 auto; display:flex; flex-direction:column; gap:14px; min-height:0; }
+.ww-clue{ display:flex; align-items:center; gap:14px; }
+.wc-ico{ font-size:42px; }
+.wc-zh{ font-size:17px; font-weight:700; color:#1c1c1c; }
+.wc-sent{ margin-top:6px; font-family:var(--f-read); font-size:17px; color:#3a3a3a; }
+.wc-sent .blank{ display:inline-block; min-width:80px; border-bottom:3px solid #c0392b; color:transparent; }
+
+.wslots{ display:flex; gap:8px; justify-content:center; flex-wrap:wrap; }
+.wslot{
+  width:56px; height:64px; display:grid; place-items:center;
+  font-family:var(--f-pixel); font-size:20px; color:#fff;
+  background:#2a2a2a; border:3px solid;
+  border-color:#111 #5c5c5c #5c5c5c #111;
+  box-shadow:inset 0 -4px 0 rgba(0,0,0,.4);
+  text-shadow:2px 2px 0 #000;
+}
+.wslot.has{ background:#6b4a25; border-color:#8f6a3c #3a2712 #3a2712 #8f6a3c; }
+.wslot.hint{ background:#4a4a1f; }
+.wslot.ok{ background:#2f7a33; border-color:#5fbf63 #17491a #17491a #5fbf63; }
+.wslot.bad{ background:#8c2f28; border-color:#d07a72 #4a1512 #4a1512 #d07a72; }
+
+.wtiles{ display:flex; gap:8px; justify-content:center; flex-wrap:wrap; }
+.tile{
+  width:52px; height:52px; display:grid; place-items:center;
+  font-size:19px; color:#fff; cursor:pointer;
+  background:#7d7d7d; border:3px solid;
+  border-color:#b5b5b5 #3a3a3a #3a3a3a #b5b5b5;
+  box-shadow:0 0 0 2px #000; text-shadow:2px 2px 0 rgba(0,0,0,.6);
+}
+.tile:active{ transform:translateY(2px); }
+.tile.used{ opacity:.22; pointer-events:none; }
+
+/* ============================ 🧰 造句 ============================ */
+.craft-wrap{ flex:1 1 auto; display:flex; flex-direction:column; gap:12px; min-height:0; }
+.cw-goal{ display:flex; align-items:center; gap:12px; flex-wrap:wrap; }
+.cg-lab{ font-size:9px; color:#666; }
+.cg-zh{ flex:1; font-size:19px; color:#1c1c1c; font-weight:700; }
+.cw-line{
+  min-height:76px; display:flex; gap:8px; flex-wrap:wrap; align-content:center;
+  padding:12px; background:rgba(0,0,0,.45);
+  border:3px dashed rgba(255,255,255,.22);
+}
+.cw-empty{ font-size:13px; color:#9a9a9a; }
+.cw-pool{ display:flex; gap:8px; flex-wrap:wrap; padding:4px 0; }
+.wblock{
+  padding:12px 14px; font-family:var(--f-read); font-size:18px; color:#fff;
+  background:#6b8f3d; border:3px solid;
+  border-color:#9dc46b #3a5220 #3a5220 #9dc46b;
+  box-shadow:0 0 0 2px #000; text-shadow:2px 2px 0 rgba(0,0,0,.5);
+  cursor:pointer;
+}
+.wblock.pool{ background:#7d7d7d; border-color:#b5b5b5 #3a3a3a #3a3a3a #b5b5b5; }
+.wblock.used{ opacity:.2; pointer-events:none; }
+.wblock.ok{ background:#2f7a33; border-color:#5fbf63 #17491a #17491a #5fbf63; }
+.wblock.bad{ background:#8c2f28; border-color:#d07a72 #4a1512 #4a1512 #d07a72; }
+.cw-answer{ font-size:15px; color:var(--gold); padding:8px 2px; }
+.cw-answer b{ color:#fff; }
+
+/* ============================ 🏆 结算 ============================ */
+.summary{ flex:1; text-align:center; padding:10px 4px; }
+.summary-sub{ margin:14px 0 18px; font-size:14px; color:#cfcfcf; }
+.summary-grid{
+  display:grid; grid-template-columns:repeat(auto-fit,minmax(120px,1fr));
+  gap:10px; max-width:760px; margin:0 auto;
+}
+.dstat{ padding:14px 8px; }
+.di{ font-size:22px; }
+.db{ font-size:16px; color:var(--gold); margin:6px 0 4px; }
+.dl{ font-size:11px; color:#b5b5b5; }
+.summary > .panel{ max-width:760px; margin-left:auto; margin-right:auto; text-align:left; }
+.miss-row{ display:flex; gap:8px; flex-wrap:wrap; }
+.miss{
+  font-size:14px; padding:5px 10px; color:#fff; background:#8c4a2f;
+  border:2px solid rgba(0,0,0,.35);
+}
+.miss i{ font-style:normal; color:#ffd9a0; font-size:12px; }
+
+/* ============================ 📦 背包 ============================ */
+.bk-grid{
+  flex:1 1 auto; min-height:0;
+  display:grid; grid-template-columns:repeat(auto-fill,minmax(124px,1fr));
+  gap:10px; padding:2px;
+}
+.bk-item{ text-align:center; padding:12px 6px; }
+.bk-item.mastered{ background:#3c6b3f; border-color:#25451f #86c489 #86c489 #25451f; }
+.bk-ico{ font-size:28px; }
+.bk-w{ font-size:12px; color:#fff; margin:8px 0 4px; text-shadow:2px 2px 0 rgba(0,0,0,.6); word-break:break-word; }
+.bk-zh{ font-size:12px; color:#e0e0e0; }
+.bk-sk{ display:flex; gap:3px; justify-content:center; margin-top:8px; }
+.bk-sk .sk{ width:14px; height:6px; background:#000; border:1px solid #444; }
+.bk-sk .s1{ background:#7a5a1a; } .bk-sk .s2{ background:#b8901f; } .bk-sk .s3{ background:var(--xp); }
+.ov-sk{ margin-top:14px; display:grid; grid-template-columns:repeat(2,1fr); gap:8px; }
+.ovsk{ display:flex; align-items:center; gap:6px; font-size:13px; color:#ddd; }
+.ovsk i{ width:18px; height:8px; background:#000; border:1px solid #555; }
+.ovsk i.on{ background:var(--xp); }
+.ta{
+  width:100%; height:140px; margin-top:10px; padding:8px;
+  font-family:ui-monospace,monospace; font-size:11px;
+  background:#000; color:#9f9; border:2px solid #444;
+}
+.sel{
+  flex:1; padding:8px; font-size:13px; background:#fff;
+  border:2px solid; border-color:#555 #fff #fff #555;
+}
+
+/* ============================ 🗺️ 地图 ============================ */
+.mp{ flex:1 1 auto; min-height:0; padding:2px; }
+.mp-unit{ margin-bottom:18px; }
+.mp-h{ font-size:11px; color:#fff; text-shadow:2px 2px 0 #000; margin-bottom:10px; }
+.mp-h .muted{ font-size:10px; }
+.mp-row{ display:grid; grid-template-columns:repeat(auto-fill,minmax(180px,1fr)); gap:10px; }
+.mp-scene{ display:flex; align-items:center; gap:8px; flex-wrap:wrap; cursor:default; }
+.ms-ico{ font-size:22px; }
+.ms-t{ font-size:14px; color:#fff; text-shadow:2px 2px 0 rgba(0,0,0,.5); }
+.ms-z{ font-size:12px; color:#ddd; width:100%; }
+.ms-n{ font-size:11px; color:#ffd9a0; }
+.mp-scene.now{ outline:3px solid var(--gold); outline-offset:-1px; }
+
+/* ============================ 📊 报告 ============================ */
+.cal{ display:grid; grid-template-columns:repeat(14,1fr); gap:4px; margin-top:10px; }
+.cal i{ height:18px; background:#0000002e; border:1px solid #999; }
+.cal i.on{ background:var(--xp); border-color:#3d7a12; }
+.cal i.t{ outline:2px solid #c0392b; }
+.boxes{ display:flex; gap:6px; align-items:flex-end; margin-top:12px; }
+.bx{ flex:1; text-align:center; }
+.bx i{ display:block; background:#4a7ac4; border:1px solid #24406b; }
+.bx span{ display:block; font-size:9px; color:#555; margin-top:4px; }
+.bx em{ display:block; font-size:11px; font-style:normal; color:#222; }
+
+/* ============================ 响应式 ============================ */
+@media (max-width:900px){
+  .mine-wrap{ grid-template-columns:1fr; }
+  .opts-4{ grid-template-columns:repeat(2,1fr); }
+  .line .en{ font-size:17px; }
+  .rw-sent{ font-size:22px; }
+  .sw-en{ font-size:22px; }
+  .os-en{ font-size:20px; }
+}
+@media (max-width:620px){
+  .slot{ width:40px; height:40px; font-size:19px; }
+  .stat-row{ grid-template-columns:repeat(2,1fr); }
+  .wslot{ width:44px; height:52px; font-size:17px; }
+  .tile{ width:44px; height:44px; font-size:16px; }
+  .home-title .sign{ font-size:11px; padding:8px 14px; }
+}
+@media (max-height:560px){
+  .ore-ico{ font-size:48px; } .speaker{ width:76px; height:76px; font-size:32px; }
+}
+
+/* ---------------------------- 垂直居中修正 ---------------------------- */
+.mine-wrap{ align-content:center; }
+.listen-wrap{ margin-top:auto; }
+.read-wrap{ margin-top:auto; }
+.opts-4{ margin-bottom:auto; }
+.speak-wrap{ margin-top:auto; margin-bottom:auto; }
+.write-wrap{ justify-content:center; }
+.craft-wrap{ justify-content:center; }
+button.chip{ cursor:pointer; background:#5a2723; border-color:rgba(255,255,255,.25); color:#ffd7d2; }
+
+/* ---------------------------------------------------------------
+   英文学习内容一律用易读字体（像素字体只留给 UI 装饰和数字）
+   —— 孩子正在建立字母形状认知，像素字会干扰
+   --------------------------------------------------------------- */
+.ore-word,
+.word-opt,
+.wslot, .tile,
+.bk-w{ font-family:var(--f-read) !important; font-weight:700; }
+.ore-word{ font-size:34px; letter-spacing:.01em; }
+.word-opt{ font-size:24px; }
+.wslot{ font-size:26px; }
+.tile{ font-size:24px; }
+.bk-w{ font-size:14px; }
+.opts-4.tight{ margin-bottom:auto; }
+.bk-grid{ align-content:start; align-items:start; }
+.mp-row{ align-items:start; }
+
+/* 🎧 听写：只有一个大喇叭，什么线索都不给 */
+.dict-clue{ text-align:center; padding:6px 0 4px; }
+
+</style>
+</head>
+<body>
+
+<div id="bg"></div>
+
+<!-- 开场页：必须点一下才能解锁 iPad 的语音播放 -->
+<div id="splash">
+  <div class="sp-inner">
+    <div class="sp-logo px">ENGLISH<br>QUEST</div>
+    <div class="sp-sub">Bufan 的英语冒险 · Minecraft Edition</div>
+    <div class="sp-goal">🎯 12 月 31 日之前拿下 1000 个基础词的<b>听 · 说 · 读 · 写</b></div>
+    <button class="btn primary big" id="splash-go">▶  进入世界</button>
+    <div class="sp-tip">每天 30 分钟 · 场景里学句子，句子里学单词</div>
+  </div>
+</div>
+
+<div id="app" data-mode="home">
+  <header class="hud">
+    <div class="hud-left" id="hud-left"></div>
+    <div class="hud-mid xpwrap">
+      <span class="xplevel" id="xplevel">0</span>
+      <div class="xpbar"><i id="xpfill"></i><span id="xptext"></span></div>
+    </div>
+    <div class="hud-right">
+      <div class="hearts" id="hearts"></div>
+      <span class="chip" id="gems">💎 0</span>
+    </div>
+  </header>
+
+  <main id="stage" class="scroll"></main>
+
+  <footer class="hotbar hide"></footer>
+</div>
+
+<div id="toasts"></div>
+
+<script>
+/* ===== js/textures.js ===== */
+/* ============================================================
+   textures.js — 程序化生成 16×16 Minecraft 风格方块贴图
+   零外部图片：全部用 canvas 画出来后转成 dataURL 注入 CSS 变量
+   ============================================================ */
+(function (global) {
+  'use strict';
+
+  // 固定种子的伪随机，保证每次打开贴图长得一样
+  function mulberry32(a) {
+    return function () {
+      a |= 0; a = (a + 0x6D2B79F5) | 0;
+      var t = Math.imul(a ^ (a >>> 15), 1 | a);
+      t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+      return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+    };
+  }
+
+  var PALETTES = {
+    dirt:      ['#8b5f3c', '#7d5535', '#6f4b2e', '#966842', '#5f4127'],
+    grass:     ['#7bb03a', '#6da033', '#84bb41', '#5f8f2c', '#8fc74a'],
+    stone:     ['#7e7e7e', '#727272', '#8a8a8a', '#666666', '#949494'],
+    deepslate: ['#4a4a50', '#41414a', '#535360', '#383840', '#5b5b68'],
+    plank:     ['#b1834c', '#9d7342', '#c08f56', '#8b6437', '#a97c47'],
+    sand:      ['#e0d3a3', '#d6c795', '#eaddb0', '#cbbb87', '#f0e5bd'],
+    obsidian:  ['#17141f', '#1e1a2a', '#120f19', '#241f33', '#0e0c14'],
+    emerald:   ['#17dd62', '#12b851', '#3ef283', '#0e9642', '#5cffa0']
+  };
+
+  function block(kind, seed) {
+    var pal = PALETTES[kind] || PALETTES.stone;
+    var c = document.createElement('canvas');
+    c.width = c.height = 16;
+    var g = c.getContext('2d');
+    var rnd = mulberry32(seed || 1337);
+
+    for (var y = 0; y < 16; y++) {
+      for (var x = 0; x < 16; x++) {
+        g.fillStyle = pal[(rnd() * pal.length) | 0];
+        g.fillRect(x, y, 1, 1);
+      }
+    }
+
+    // 草方块：顶部 4px 覆草，并往下滴几根草根
+    if (kind === 'grass') {
+      var d = mulberry32(99);
+      for (var yy = 0; yy < 16; yy++) {
+        for (var xx = 0; xx < 16; xx++) {
+          if (yy > 3 + Math.floor(d() * 3)) {
+            g.fillStyle = PALETTES.dirt[(d() * 5) | 0];
+            g.fillRect(xx, yy, 1, 1);
+          }
+        }
+      }
+    }
+
+    // 木板：横向纹理线
+    if (kind === 'plank') {
+      g.fillStyle = 'rgba(0,0,0,.35)';
+      [0, 8].forEach(function (y0) { g.fillRect(0, y0, 16, 1); });
+      g.fillStyle = 'rgba(255,255,255,.10)';
+      [1, 9].forEach(function (y0) { g.fillRect(0, y0, 16, 1); });
+    }
+
+    return c.toDataURL('image/png');
+  }
+
+  var Textures = {
+    build: function () {
+      var root = document.documentElement;
+      Object.keys(PALETTES).forEach(function (kind, i) {
+        root.style.setProperty('--tex-' + kind, 'url(' + block(kind, 1000 + i * 77) + ')');
+      });
+    }
+  };
+
+  global.Textures = Textures;
+})(window);
+
+</script>
+<script>
+/* ===== js/audio.js ===== */
+/* ============================================================
+   audio.js — 发音 (Web Speech) + 音效 (WebAudio 合成，无外部音频文件)
+   ============================================================ */
+(function (global) {
+  'use strict';
+
+  /* ---------------------- 发音 TTS ---------------------- */
+  var TTS = {
+    voice: null,
+    ready: false,
+    muted: false,
+
+    // 新加坡跟英式拼写/发音，优先挑英音，其次任意英语
+    pick: function () {
+      var vs = (global.speechSynthesis && speechSynthesis.getVoices()) || [];
+      if (!vs.length) return false;
+      var pref = [
+        function (v) { return /en[-_]GB/i.test(v.lang) && /daniel|serena|kate|arthur|martha/i.test(v.name); },
+        function (v) { return /en[-_]GB/i.test(v.lang); },
+        function (v) { return /en[-_]AU/i.test(v.lang); },
+        function (v) { return /en[-_]US/i.test(v.lang) && /samantha|ava|allison/i.test(v.name); },
+        function (v) { return /^en/i.test(v.lang); }
+      ];
+      for (var i = 0; i < pref.length; i++) {
+        var hit = vs.filter(pref[i])[0];
+        if (hit) { this.voice = hit; this.ready = true; return true; }
+      }
+      return false;
+    },
+
+    init: function () {
+      if (!global.speechSynthesis) return;
+      this.pick();
+      speechSynthesis.onvoiceschanged = this.pick.bind(this);
+    },
+
+    // iPad Safari 要求首次朗读必须由用户手势触发，开场按钮里调一次这个解锁
+    unlock: function () {
+      if (!global.speechSynthesis) return;
+      try {
+        var u = new SpeechSynthesisUtterance(' ');
+        u.volume = 0;
+        speechSynthesis.speak(u);
+      } catch (e) { /* noop */ }
+      this.pick();
+    },
+
+    speak: function (text, opts) {
+      if (this.muted || !global.speechSynthesis || !text) return;
+      opts = opts || {};
+      try { speechSynthesis.cancel(); } catch (e) {}
+      var u = new SpeechSynthesisUtterance(String(text));
+      if (this.voice) { u.voice = this.voice; u.lang = this.voice.lang; }
+      else { u.lang = 'en-GB'; }
+      u.rate = opts.rate != null ? opts.rate : 0.9;
+      u.pitch = opts.pitch != null ? opts.pitch : 1.05;
+      u.volume = 1;
+      if (opts.onend) u.onend = opts.onend;
+      speechSynthesis.speak(u);
+    },
+
+    slow: function (text) { this.speak(text, { rate: 0.55 }); },
+
+    // 逐句朗读一段对话
+    speakSeq: function (lines, opts, done) {
+      var i = 0, self = this;
+      (function next() {
+        if (i >= lines.length) { done && done(); return; }
+        var line = lines[i++];
+        opts && opts.onLine && opts.onLine(i - 1);
+        self.speak(line, { rate: (opts && opts.rate) || 0.88, onend: function () { setTimeout(next, 320); } });
+      })();
+    },
+
+    stop: function () { try { speechSynthesis.cancel(); } catch (e) {} }
+  };
+
+  /* ---------------------- 音效 SFX ---------------------- */
+  var ctx = null;
+  function ac() {
+    if (!ctx) {
+      var C = global.AudioContext || global.webkitAudioContext;
+      if (C) ctx = new C();
+    }
+    if (ctx && ctx.state === 'suspended') ctx.resume();
+    return ctx;
+  }
+
+  function tone(freq, dur, type, vol, slideTo) {
+    var a = ac(); if (!a || SFX.muted) return;
+    var o = a.createOscillator(), g = a.createGain();
+    o.type = type || 'square';
+    o.frequency.setValueAtTime(freq, a.currentTime);
+    if (slideTo) o.frequency.exponentialRampToValueAtTime(slideTo, a.currentTime + dur);
+    g.gain.setValueAtTime(vol == null ? 0.14 : vol, a.currentTime);
+    g.gain.exponentialRampToValueAtTime(0.0001, a.currentTime + dur);
+    o.connect(g); g.connect(a.destination);
+    o.start(); o.stop(a.currentTime + dur + 0.02);
+  }
+
+  function noise(dur, vol) {
+    var a = ac(); if (!a || SFX.muted) return;
+    var n = Math.floor(a.sampleRate * dur);
+    var buf = a.createBuffer(1, n, a.sampleRate);
+    var d = buf.getChannelData(0);
+    for (var i = 0; i < n; i++) d[i] = (Math.random() * 2 - 1) * (1 - i / n);
+    var s = a.createBufferSource(); s.buffer = buf;
+    var g = a.createGain(); g.gain.value = vol == null ? 0.1 : vol;
+    var f = a.createBiquadFilter(); f.type = 'lowpass'; f.frequency.value = 900;
+    s.connect(f); f.connect(g); g.connect(a.destination);
+    s.start();
+  }
+
+  var SFX = {
+    muted: false,
+    unlock: function () { ac(); },
+    click:  function () { tone(520, 0.06, 'square', 0.10); },
+    place:  function () { noise(0.10, 0.12); tone(180, 0.07, 'triangle', 0.08); },
+    mine:   function () { noise(0.14, 0.14); },
+    right:  function () { tone(660, 0.09, 'square', 0.11); setTimeout(function () { tone(880, 0.13, 'square', 0.11); }, 85); },
+    wrong:  function () { tone(200, 0.18, 'sawtooth', 0.10, 110); },
+    levelup:function () { [523, 659, 784, 1047].forEach(function (f, i) { setTimeout(function () { tone(f, 0.16, 'square', 0.12); }, i * 95); }); },
+    orb:    function () { tone(880, 0.07, 'sine', 0.08, 1320); },
+    win:    function () { [392, 523, 659, 784, 1047].forEach(function (f, i) { setTimeout(function () { tone(f, 0.22, 'triangle', 0.13); }, i * 130); }); }
+  };
+
+  global.TTS = TTS;
+  global.SFX = SFX;
+})(window);
+
+</script>
+<script>
+/* ===== js/srs.js ===== */
+/* ============================================================
+   srs.js — 存档 + 艾宾浩斯间隔重复引擎
+   四项技能（听 l / 读 r / 写 w / 说 s）各自独立计熟练度，
+   一个词要四项都过关才算「掌握」，对应「听说读写」目标。
+   ============================================================ */
+(function (global) {
+  'use strict';
+
+  var KEY = 'englishquest.save.v1';
+
+  // 艾宾浩斯遗忘曲线 → 复习间隔（天）
+  var INTERVAL = [0, 1, 2, 4, 7, 15, 30, 60, 120];
+  var MAX_BOX = INTERVAL.length - 1;
+
+  var SKILLS = ['l', 'r', 'w', 's'];   // listen / read / write / speak
+  var SKILL_MAX = 3;
+  var MASTER_BOX = 4;                  // 至少熬过 7 天那一档
+  var MASTER_SKILL = 2;                // 四项技能各到 2 级
+
+  function todayIndex(d) {
+    d = d || new Date();
+    return Math.floor((d.getTime() - d.getTimezoneOffset() * 60000) / 86400000);
+  }
+
+  function blankSave() {
+    return {
+      v: 1,
+      name: 'Bufan',
+      startDay: todayIndex(),
+      goalDate: '2026-12-31',
+      goalWords: 1000,
+      xp: 0, gems: 0,
+      streak: 0, bestStreak: 0,
+      lastDay: null,
+      daysDone: [],
+      cursor: { unit: 1, scene: 0 },   // 下一个要开的场景
+      cards: {},                        // word -> card
+      ach: [],
+      stats: { answers: 0, correct: 0, seconds: 0, sessions: 0 }
+    };
+  }
+
+  var Save = {
+    data: blankSave(),
+
+    load: function () {
+      try {
+        var raw = localStorage.getItem(KEY);
+        if (raw) {
+          var d = JSON.parse(raw);
+          if (d && d.v === 1) {
+            // 补齐旧存档缺的字段
+            var base = blankSave();
+            for (var k in base) if (!(k in d)) d[k] = base[k];
+            this.data = d;
+          }
+        }
+      } catch (e) { console.warn('存档读取失败，已重置', e); }
+      return this.data;
+    },
+
+    save: function () {
+      try { localStorage.setItem(KEY, JSON.stringify(this.data)); }
+      catch (e) { console.warn('存档写入失败', e); }
+    },
+
+    reset: function () { this.data = blankSave(); this.save(); },
+
+    exportText: function () { return JSON.stringify(this.data); },
+
+    importText: function (txt) {
+      var d = JSON.parse(txt);
+      if (!d || d.v !== 1) throw new Error('存档格式不对');
+      this.data = d; this.save();
+    }
+  };
+
+  var SRS = {
+    INTERVAL: INTERVAL,
+    SKILLS: SKILLS,
+    SKILL_MAX: SKILL_MAX,
+    today: todayIndex,
+
+    card: function (word) {
+      var c = Save.data.cards[word];
+      if (!c) {
+        c = { b: 0, due: todayIndex(), sk: { l: 0, r: 0, w: 0, s: 0 }, seen: 0, wrong: 0, first: todayIndex() };
+        Save.data.cards[word] = c;
+      }
+      if (!c.sk) c.sk = { l: 0, r: 0, w: 0, s: 0 };
+      return c;
+    },
+
+    isNew: function (word) { return !Save.data.cards[word]; },
+
+    /**
+     * 记一次作答结果
+     * @param word  单词
+     * @param skill 'l' | 'r' | 'w' | 's'，或者数组 —— 听写同时练「听+写」，朗读同时练「读+说」
+     * @param good  是否答对
+     */
+    grade: function (word, skill, good) {
+      var c = this.card(word);
+      var day = todayIndex();
+      var skills = (skill == null) ? [] : (Object.prototype.toString.call(skill) === '[object Array]' ? skill : [skill]);
+      c.seen++;
+
+      if (good) {
+        skills.forEach(function (s) { if (c.sk[s] != null) c.sk[s] = Math.min(SKILL_MAX, c.sk[s] + 1); });
+        // 只有当前最弱技能也跟上了，盒子才往前推 —— 防止靠单一技能刷过
+        var weakest = this.weakest(c);
+        if (c.sk[weakest] >= Math.min(SKILL_MAX, c.b === 0 ? 1 : Math.ceil(c.b / 2))) {
+          c.b = Math.min(MAX_BOX, c.b + 1);
+        }
+        c.due = day + this.fuzz(INTERVAL[c.b]);
+      } else {
+        c.wrong++;
+        skills.forEach(function (s) { if (c.sk[s] != null) c.sk[s] = Math.max(0, c.sk[s] - 1); });
+        c.b = Math.max(0, c.b - 2);
+        c.due = day;              // 当天重练
+      }
+
+      Save.data.stats.answers++;
+      if (good) Save.data.stats.correct++;
+      return c;
+    },
+
+    /**
+     * 给间隔加 ±15% 的抖动。
+     * 不加的话，同一天学的一批词会永远绑在一起到期 ——
+     * 推演里能看到第 31/61/121 天突然冒出几百题的尖峰，孩子那天就崩了。
+     */
+    fuzz: function (days) {
+      if (days < 4) return days;
+      var d = Math.round(days * (Math.random() * 0.3 - 0.15));
+      return Math.max(2, days + d);
+    },
+
+    weakest: function (c) {
+      var best = 'l', v = 99;
+      SKILLS.forEach(function (s) { if (c.sk[s] < v) { v = c.sk[s]; best = s; } });
+      return best;
+    },
+
+    mastered: function (word) {
+      var c = Save.data.cards[word];
+      if (!c) return false;
+      if (c.b < MASTER_BOX) return false;
+      return SKILLS.every(function (s) { return c.sk[s] >= MASTER_SKILL; });
+    },
+
+    masteredCount: function () {
+      var n = 0, self = this;
+      Object.keys(Save.data.cards).forEach(function (w) { if (self.mastered(w)) n++; });
+      return n;
+    },
+
+    learningCount: function () { return Object.keys(Save.data.cards).length; },
+
+    /** 今天到期该复习的词（按最久没碰的排前面） */
+    due: function (day) {
+      day = day == null ? todayIndex() : day;
+      var out = [];
+      Object.keys(Save.data.cards).forEach(function (w) {
+        var c = Save.data.cards[w];
+        if (c.due <= day) out.push({ word: w, card: c, overdue: day - c.due });
+      });
+      out.sort(function (a, b) { return b.overdue - a.overdue || a.card.b - b.card.b; });
+      return out;
+    },
+
+    /** 距离 12/31 目标的进度 */
+    goal: function () {
+      var d = Save.data;
+      var end = new Date(d.goalDate + 'T23:59:59');
+      var left = Math.max(0, Math.ceil((end - new Date()) / 86400000));
+      var done = this.masteredCount();
+      return {
+        done: done,
+        total: d.goalWords,
+        daysLeft: left,
+        perDay: left > 0 ? Math.max(0, Math.ceil((d.goalWords - done) / left)) : 0,
+        pct: Math.min(100, Math.round(done / d.goalWords * 100))
+      };
+    },
+
+    /** 打卡：更新连续天数 */
+    checkIn: function () {
+      var d = Save.data, day = todayIndex();
+      if (d.lastDay === day) return false;
+      d.streak = (d.lastDay === day - 1) ? d.streak + 1 : 1;
+      d.bestStreak = Math.max(d.bestStreak || 0, d.streak);
+      d.lastDay = day;
+      if (d.daysDone.indexOf(day) < 0) d.daysDone.push(day);
+      d.stats.sessions++;
+      Save.save();
+      return true;
+    }
+  };
+
+  /* ---------------------- 等级 / 经验 ---------------------- */
+  var Level = {
+    // 跟 MC 一样：越往后每级要的经验越多
+    need: function (lv) { return 20 + lv * 8; },
+    info: function (xp) {
+      var lv = 0, rest = xp;
+      while (rest >= this.need(lv)) { rest -= this.need(lv); lv++; }
+      return { level: lv, into: rest, need: this.need(lv), pct: Math.round(rest / this.need(lv) * 100) };
+    },
+    add: function (n) {
+      var before = this.info(Save.data.xp).level;
+      Save.data.xp += n;
+      var after = this.info(Save.data.xp).level;
+      return after > before ? after : 0;   // 返回升到的新等级，没升级返回 0
+    }
+  };
+
+  global.Save = Save;
+  global.SRS = SRS;
+  global.Level = Level;
+})(window);
+
+</script>
+<script>
+/* ===== js/data/registry.js ===== */
+/* ============================================================
+   registry.js — 教材注册表
+   教学法：场景(scene) → 对话(story) → 句子(sentence) → 单词(word)
+   单词永远挂在句子里，句子永远挂在场景里，不做裸词表。
+   ============================================================ */
+(function (global) {
+  'use strict';
+
+  var EQ = {
+    units: [],
+    _byId: {},
+    _byWord: {},
+
+    addUnit: function (u) {
+      u.scenes.forEach(function (s, i) {
+        s.unit = u.id;
+        s.index = i;
+        s.words.forEach(function (w) { w.unit = u.id; w.scene = s.id; });
+      });
+      this.units.push(u);
+      this._byId[u.id] = u;
+      var self = this;
+      u.scenes.forEach(function (s) {
+        s.words.forEach(function (w) { self._byWord[w.w] = w; });
+      });
+    },
+
+    unit: function (id) { return this._byId[id]; },
+    word: function (w) { return this._byWord[w]; },
+
+    scenes: function () {
+      var out = [];
+      this.units.forEach(function (u) { u.scenes.forEach(function (s) { out.push(s); }); });
+      return out;
+    },
+
+    sceneById: function (id) {
+      return this.scenes().filter(function (s) { return s.id === id; })[0] || null;
+    },
+
+    /** 光标指向的场景；跑完全部内容返回 null */
+    sceneAt: function (cursor) {
+      var u = this.unit(cursor.unit);
+      if (!u) return null;
+      return u.scenes[cursor.scene] || null;
+    },
+
+    /** 光标往后推一格 */
+    advance: function (cursor) {
+      var u = this.unit(cursor.unit);
+      if (!u) return cursor;
+      if (cursor.scene + 1 < u.scenes.length) return { unit: cursor.unit, scene: cursor.scene + 1 };
+      var idx = this.units.indexOf(u);
+      if (idx + 1 < this.units.length) return { unit: this.units[idx + 1].id, scene: 0 };
+      return { unit: cursor.unit, scene: cursor.scene };   // 已到最后
+    },
+
+    allWords: function () {
+      var out = [];
+      this.scenes().forEach(function (s) { s.words.forEach(function (w) { out.push(w); }); });
+      return out;
+    },
+
+    /** 已解锁（学过或正在学）的词，用来出干扰项 */
+    unlockedWords: function (cursor) {
+      var out = [], stop = false, self = this;
+      this.units.forEach(function (u) {
+        u.scenes.forEach(function (s) {
+          if (stop) return;
+          out = out.concat(s.words);
+          if (u.id === cursor.unit && s.index === cursor.scene) stop = true;
+        });
+      });
+      return out;
+    },
+
+    totalWords: function () { return this.allWords().length; }
+  };
+
+  global.EQ = EQ;
+})(window);
+
+</script>
+<script>
+/* ===== js/data/u01.js ===== */
+/* 第一章 · 我的家与早晨  |  Home & Morning  |  48 words */
+EQ.addUnit({
+  id: 1,
+  title: 'Home & Morning',
+  titleZh: '第一章 · 我的家与早晨',
+  icon: '🏠',
+  biome: 'plains',
+  scenes: [
+
+    {
+      id: 'u1s1', icon: '🌅',
+      title: 'Wake Up!', titleZh: '起床啦',
+      where: 'At home, 7 o\'clock in the morning', whereZh: '家里，早上七点',
+      story: [
+        { sp: 'Mum',   en: 'Good morning, Bufan! Time to wake up.', zh: '早上好，步凡！该起床了。' },
+        { sp: 'Bufan', en: 'Good morning, Mum. I am still sleepy.', zh: '早上好，妈妈。我还很困。' },
+        { sp: 'Mum',   en: 'Get up now. You have school today.',    zh: '快起来。你今天要上学。' },
+        { sp: 'Bufan', en: 'Okay. I will get out of bed.',          zh: '好的。我这就下床。' },
+        { sp: 'Mum',   en: 'Put on your uniform, please.',          zh: '请把校服穿上。' },
+        { sp: 'Bufan', en: 'I am ready, Mum!',                      zh: '我准备好了，妈妈！' }
+      ],
+      words: [
+        { w: 'morning', pos: 'n',  zh: '早上',   ico: '🌅', s: 'Good morning, Mum!',              sZh: '早上好，妈妈！' },
+        { w: 'wake',    pos: 'v',  zh: '醒来',   ico: '⏰', s: 'I wake up at seven o\'clock.',    sZh: '我七点醒来。' },
+        { w: 'get',     pos: 'v',  zh: '得到；变得', ico: '🙌', s: 'I get out of bed.',            sZh: '我从床上下来。' },
+        { w: 'bed',     pos: 'n',  zh: '床',     ico: '🛏️', s: 'My bed is very soft.',           sZh: '我的床很软。' },
+        { w: 'time',    pos: 'n',  zh: '时间',   ico: '🕖', s: 'It is time to go to school.',    sZh: '该去上学了。' },
+        { w: 'school',  pos: 'n',  zh: '学校',   ico: '🏫', s: 'I go to school every day.',      sZh: '我每天去学校。' },
+        { w: 'ready',   pos: 'adj',zh: '准备好的', ico: '✅', s: 'I am ready for school.',        sZh: '我上学准备好了。' },
+        { w: 'today',   pos: 'n',  zh: '今天',   ico: '📅', s: 'I have school today.',           sZh: '我今天要上学。' }
+      ]
+    },
+
+    {
+      id: 'u1s2', icon: '🪥',
+      title: 'Brush and Wash', titleZh: '刷牙洗脸',
+      where: 'In the bathroom', whereZh: '浴室里',
+      story: [
+        { sp: 'Mum',   en: 'Please brush your teeth first.',        zh: '先去刷牙。' },
+        { sp: 'Bufan', en: 'I am brushing them now.',               zh: '我正在刷。' },
+        { sp: 'Mum',   en: 'Wash your face too.',                   zh: '脸也洗一下。' },
+        { sp: 'Bufan', en: 'Oh! The water is very cold.',           zh: '哎呀！水好冷。' },
+        { sp: 'Mum',   en: 'Now comb your hair, please.',           zh: '现在请梳一下头发。' },
+        { sp: 'Bufan', en: 'My face is clean and my hair is neat.', zh: '我的脸干净了，头发也整齐了。' }
+      ],
+      words: [
+        { w: 'brush', pos: 'v', zh: '刷',   ico: '🪥', s: 'I brush my teeth every morning.', sZh: '我每天早上刷牙。' },
+        { w: 'teeth', pos: 'n', zh: '牙齿', ico: '🦷', s: 'My teeth are white and clean.',   sZh: '我的牙齿又白又干净。' },
+        { w: 'wash',  pos: 'v', zh: '洗',   ico: '🧼', s: 'Wash your hands before you eat.', sZh: '吃饭前先洗手。' },
+        { w: 'face',  pos: 'n', zh: '脸',   ico: '😀', s: 'I wash my face with water.',      sZh: '我用水洗脸。' },
+        { w: 'water', pos: 'n', zh: '水',   ico: '💧', s: 'The water is very cold.',         sZh: '水很冷。' },
+        { w: 'cold',  pos: 'adj',zh: '冷的',ico: '🧊', s: 'It is cold in the morning.',      sZh: '早上很冷。' },
+        { w: 'hair',  pos: 'n', zh: '头发', ico: '💇', s: 'Please comb your hair.',          sZh: '请梳一下头发。' },
+        { w: 'clean', pos: 'adj',zh: '干净的',ico:'✨', s: 'My hands are clean now.',        sZh: '我的手现在干净了。' }
+      ]
+    },
+
+    {
+      id: 'u1s3', icon: '🍞',
+      title: 'Breakfast Time', titleZh: '吃早餐',
+      where: 'At the kitchen table', whereZh: '厨房餐桌旁',
+      story: [
+        { sp: 'Mum',   en: 'What do you want for breakfast?',   zh: '你早餐想吃什么？' },
+        { sp: 'Bufan', en: 'I want bread and milk, please.',    zh: '我想要面包和牛奶。' },
+        { sp: 'Mum',   en: 'Here is your egg. Eat slowly.',     zh: '这是你的鸡蛋。慢慢吃。' },
+        { sp: 'Bufan', en: 'Thank you, Mum. It is very nice.',  zh: '谢谢妈妈。很好吃。' },
+        { sp: 'Mum',   en: 'Drink your milk. Do not be late.',  zh: '把牛奶喝了。别迟到。' },
+        { sp: 'Bufan', en: 'I have finished. May I go now?',    zh: '我吃完了。我可以走了吗？' }
+      ],
+      words: [
+        { w: 'breakfast', pos: 'n', zh: '早餐', ico: '🍳', s: 'I eat breakfast at home.',       sZh: '我在家吃早餐。' },
+        { w: 'want',      pos: 'v', zh: '想要', ico: '🙋', s: 'I want some bread, please.',     sZh: '我想要一些面包。' },
+        { w: 'bread',     pos: 'n', zh: '面包', ico: '🥖', s: 'The bread is warm and soft.',    sZh: '面包又暖又软。' },
+        { w: 'milk',      pos: 'n', zh: '牛奶', ico: '🥛', s: 'Drink your milk, please.',       sZh: '请把你的牛奶喝了。' },
+        { w: 'egg',       pos: 'n', zh: '鸡蛋', ico: '🥚', s: 'I like to eat an egg.',          sZh: '我喜欢吃鸡蛋。' },
+        { w: 'eat',       pos: 'v', zh: '吃',   ico: '🍽️', s: 'We eat breakfast every day.',    sZh: '我们每天吃早餐。' },
+        { w: 'drink',     pos: 'v', zh: '喝',   ico: '🥤', s: 'I drink water when I am hot.',   sZh: '我热的时候喝水。' },
+        { w: 'thank',     pos: 'v', zh: '感谢', ico: '🙏', s: 'Thank you very much, Mum.',      sZh: '非常谢谢你，妈妈。' }
+      ]
+    },
+
+    {
+      id: 'u1s4', icon: '🚪',
+      title: 'My House', titleZh: '我的家',
+      where: 'A small flat in Singapore', whereZh: '新加坡的一间小组屋',
+      story: [
+        { sp: 'Bufan', en: 'This is my house. It is small but nice.',   zh: '这是我家。虽然小但很好。' },
+        { sp: 'Dad',   en: 'Your room is next to the kitchen.',         zh: '你的房间在厨房旁边。' },
+        { sp: 'Bufan', en: 'I have a table, a chair and a lamp.',       zh: '我有一张桌子、一把椅子和一盏灯。' },
+        { sp: 'Dad',   en: 'Please close the door when you sleep.',     zh: '睡觉的时候请把门关上。' },
+        { sp: 'Bufan', en: 'Can I open the window? I like the wind.',   zh: '我能开窗吗？我喜欢风。' },
+        { sp: 'Dad',   en: 'Yes, you can. Now come down for dinner.',   zh: '可以。现在下来吃晚饭。' }
+      ],
+      words: [
+        { w: 'house',  pos: 'n',  zh: '房子',  ico: '🏠', s: 'This is my house.',            sZh: '这是我的房子。' },
+        { w: 'room',   pos: 'n',  zh: '房间',  ico: '🛋️', s: 'My room is small but nice.',   sZh: '我的房间小但很好。' },
+        { w: 'door',   pos: 'n',  zh: '门',    ico: '🚪', s: 'Please close the door.',       sZh: '请把门关上。' },
+        { w: 'window', pos: 'n',  zh: '窗户',  ico: '🪟', s: 'I open the window every day.', sZh: '我每天开窗。' },
+        { w: 'table',  pos: 'n',  zh: '桌子',  ico: '🪵', s: 'The book is on the table.',    sZh: '书在桌子上。' },
+        { w: 'chair',  pos: 'n',  zh: '椅子',  ico: '🪑', s: 'Please sit on the chair.',     sZh: '请坐在椅子上。' },
+        { w: 'open',   pos: 'v',  zh: '打开',  ico: '🔓', s: 'Can I open the window?',       sZh: '我能开窗吗？' },
+        { w: 'close',  pos: 'v',  zh: '关上',  ico: '🔒', s: 'Close the door, please.',      sZh: '请关门。' }
+      ]
+    },
+
+    {
+      id: 'u1s5', icon: '🧹',
+      title: 'Helping at Home', titleZh: '在家帮忙',
+      where: 'In the living room', whereZh: '客厅里',
+      story: [
+        { sp: 'Mum',   en: 'Can you help me, Bufan?',              zh: '步凡，你能帮我吗？' },
+        { sp: 'Bufan', en: 'Yes, Mum. What can I do?',             zh: '好的，妈妈。我能做什么？' },
+        { sp: 'Mum',   en: 'Please put the toys in the box.',      zh: '请把玩具放进盒子里。' },
+        { sp: 'Bufan', en: 'I will tidy my room first.',           zh: '我先整理我的房间。' },
+        { sp: 'Mum',   en: 'Good boy. Now throw the rubbish away.',zh: '好孩子。现在把垃圾扔掉。' },
+        { sp: 'Bufan', en: 'I am happy to help you.',              zh: '我很乐意帮你。' }
+      ],
+      words: [
+        { w: 'help',    pos: 'v',  zh: '帮助', ico: '🤝', s: 'Can you help me, please?',     sZh: '你能帮我一下吗？' },
+        { w: 'can',     pos: 'v',  zh: '能；可以', ico: '💪', s: 'I can do it by myself.',   sZh: '我能自己做。' },
+        { w: 'put',     pos: 'v',  zh: '放',   ico: '📥', s: 'Put the toys in the box.',     sZh: '把玩具放进盒子。' },
+        { w: 'toy',     pos: 'n',  zh: '玩具', ico: '🧸', s: 'I have many toys at home.',    sZh: '我家里有很多玩具。' },
+        { w: 'box',     pos: 'n',  zh: '盒子', ico: '📦', s: 'The box is under the table.',  sZh: '盒子在桌子下面。' },
+        { w: 'tidy',    pos: 'v',  zh: '整理', ico: '🧹', s: 'I tidy my room every day.',    sZh: '我每天整理房间。' },
+        { w: 'rubbish', pos: 'n',  zh: '垃圾', ico: '🗑️', s: 'Please throw the rubbish away.',sZh: '请把垃圾扔掉。' },
+        { w: 'happy',   pos: 'adj',zh: '开心的',ico: '😄', s: 'I am happy to help you.',     sZh: '我很乐意帮你。' }
+      ]
+    },
+
+    {
+      id: 'u1s6', icon: '⛏️',
+      title: 'My First Night', titleZh: '我的第一个夜晚', mc: true,
+      where: 'Minecraft — the Overworld at sunset', whereZh: 'Minecraft 主世界，日落时分',
+      story: [
+        { sp: 'Steve', en: 'The sun is going down. We must build a house.', zh: '太阳要下山了。我们必须盖一座房子。' },
+        { sp: 'Bufan', en: 'I will dig some stone with my pickaxe.',        zh: '我用镐挖一些石头。' },
+        { sp: 'Steve', en: 'Make a door. Do not let the zombie in!',        zh: '做一扇门。别让僵尸进来！' },
+        { sp: 'Bufan', en: 'I have a bed now. Can I sleep?',                zh: '我有床了。我能睡觉吗？' },
+        { sp: 'Steve', en: 'Yes. Sleep well and skip the night.',           zh: '可以。好好睡，跳过夜晚。' },
+        { sp: 'Bufan', en: 'Good night, Steve. See you in the morning!',    zh: '晚安，Steve。早上见！' }
+      ],
+      words: [
+        { w: 'sun',   pos: 'n', zh: '太阳', ico: '☀️', s: 'The sun is going down.',       sZh: '太阳要下山了。' },
+        { w: 'down',  pos: 'adv',zh: '向下',ico: '⬇️', s: 'Please sit down here.',        sZh: '请坐在这里。' },
+        { w: 'build', pos: 'v', zh: '建造', ico: '🏗️', s: 'We build a house with stone.', sZh: '我们用石头盖房子。' },
+        { w: 'dig',   pos: 'v', zh: '挖',   ico: '⛏️', s: 'I dig for stone and coal.',    sZh: '我挖石头和煤。' },
+        { w: 'stone', pos: 'n', zh: '石头', ico: '🪨', s: 'This stone is very hard.',     sZh: '这块石头很硬。' },
+        { w: 'make',  pos: 'v', zh: '做；制作',ico:'🔨', s: 'I want to make a door.',      sZh: '我想做一扇门。' },
+        { w: 'sleep', pos: 'v', zh: '睡觉', ico: '😴', s: 'I sleep in my bed at night.',  sZh: '我晚上在床上睡觉。' },
+        { w: 'night', pos: 'n', zh: '夜晚', ico: '🌙', s: 'Good night. See you tomorrow.',sZh: '晚安。明天见。' }
+      ]
+    }
+
+  ]
+});
+
+</script>
+<script>
+/* ===== js/data/u02.js ===== */
+/* 第二章 · 在学校  |  At School  |  48 words */
+EQ.addUnit({
+  id: 2,
+  title: 'At School',
+  titleZh: '第二章 · 在学校',
+  icon: '🏫',
+  biome: 'plains',
+  scenes: [
+
+    {
+      id: 'u2s1', icon: '🚌',
+      title: 'Going to School', titleZh: '上学路上',
+      where: 'At the bus stop', whereZh: '巴士站',
+      story: [
+        { sp: 'Mum',    en: 'The bus is coming. Hurry up!',           zh: '巴士来了。快点！' },
+        { sp: 'Bufan',  en: 'I have my bag and my water bottle.',     zh: '我带了书包和水瓶。' },
+        { sp: 'Mum',    en: 'Hold my hand. Look left and right.',     zh: '牵着我的手。左右看看。' },
+        { sp: 'Bufan',  en: 'Bye, Mum! See you later.',               zh: '再见妈妈！待会儿见。' },
+        { sp: 'Driver', en: 'Good morning. Please sit down.',         zh: '早上好。请坐下。' },
+        { sp: 'Bufan',  en: 'Thank you, uncle.',                      zh: '谢谢叔叔。' }
+      ],
+      words: [
+        { w: 'bus',    pos: 'n', zh: '巴士',  ico: '🚌', s: 'I go to school by bus.',        sZh: '我坐巴士去上学。' },
+        { w: 'come',   pos: 'v', zh: '来',    ico: '🏃', s: 'The bus is coming now.',        sZh: '巴士现在来了。' },
+        { w: 'bag',    pos: 'n', zh: '书包',  ico: '🎒', s: 'My school bag is very heavy.',  sZh: '我的书包很重。' },
+        { w: 'bottle', pos: 'n', zh: '瓶子',  ico: '🍶', s: 'I bring a water bottle to school.', sZh: '我带水瓶去学校。' },
+        { w: 'hand',   pos: 'n', zh: '手',    ico: '✋', s: 'Please hold my hand.',          sZh: '请牵着我的手。' },
+        { w: 'look',   pos: 'v', zh: '看',    ico: '👀', s: 'Look left and right.',          sZh: '左右看看。' },
+        { w: 'sit',    pos: 'v', zh: '坐',    ico: '💺', s: 'Please sit down here.',         sZh: '请坐这里。' },
+        { w: 'later',  pos: 'adv',zh: '待会儿',ico: '⏳', s: 'See you later, Mum!',          sZh: '待会儿见，妈妈！' }
+      ]
+    },
+
+    {
+      id: 'u2s2', icon: '📚',
+      title: 'In the Classroom', titleZh: '在教室里',
+      where: 'Primary One classroom', whereZh: '小一教室',
+      story: [
+        { sp: 'Teacher', en: 'Good morning, class. Please sit down.',   zh: '同学们早上好。请坐下。' },
+        { sp: 'Class',   en: 'Good morning, Miss Tan.',                 zh: '陈老师早上好。' },
+        { sp: 'Teacher', en: 'Open your book to page ten.',             zh: '把书翻到第十页。' },
+        { sp: 'Bufan',   en: 'Miss, may I borrow a pencil?',            zh: '老师，我能借一支铅笔吗？' },
+        { sp: 'Teacher', en: 'Yes. Write your name on the paper.',      zh: '可以。把你的名字写在纸上。' },
+        { sp: 'Bufan',   en: 'Look! I can read this word now.',         zh: '看！我现在会读这个词了。' }
+      ],
+      words: [
+        { w: 'class',   pos: 'n', zh: '班级；课', ico: '👦', s: 'Our class has thirty children.', sZh: '我们班有三十个孩子。' },
+        { w: 'teacher', pos: 'n', zh: '老师',   ico: '👩‍🏫', s: 'My teacher is very kind.',      sZh: '我的老师很和蔼。' },
+        { w: 'book',    pos: 'n', zh: '书',     ico: '📕', s: 'Open your book, please.',        sZh: '请打开你的书。' },
+        { w: 'page',    pos: 'n', zh: '页',     ico: '📄', s: 'Turn to page ten.',              sZh: '翻到第十页。' },
+        { w: 'pencil',  pos: 'n', zh: '铅笔',   ico: '✏️', s: 'May I borrow a pencil?',         sZh: '我能借支铅笔吗？' },
+        { w: 'write',   pos: 'v', zh: '写',     ico: '✍️', s: 'Write your name on the paper.',  sZh: '把名字写在纸上。' },
+        { w: 'name',    pos: 'n', zh: '名字',   ico: '🏷️', s: 'My name is Gao Bufan.',          sZh: '我叫高步凡。' },
+        { w: 'read',    pos: 'v', zh: '读',     ico: '📖', s: 'I can read this word now.',      sZh: '我现在会读这个词了。' }
+      ]
+    },
+
+    {
+      id: 'u2s3', icon: '🍜',
+      title: 'Recess', titleZh: '课间休息',
+      where: 'The school canteen', whereZh: '学校食堂',
+      story: [
+        { sp: 'Bufan',  en: 'I am hungry. Let us go to the canteen.', zh: '我饿了。我们去食堂吧。' },
+        { sp: 'Friend', en: 'I will buy noodles. What about you?',    zh: '我要买面。你呢？' },
+        { sp: 'Bufan',  en: 'I want rice and chicken, please.',       zh: '我要饭和鸡肉。' },
+        { sp: 'Aunty',  en: 'That is one dollar, boy.',               zh: '一块钱，小朋友。' },
+        { sp: 'Bufan',  en: 'Here you are. Thank you, aunty.',        zh: '给你。谢谢阿姨。' },
+        { sp: 'Friend', en: 'Come. Let us eat together.',             zh: '来。我们一起吃。' }
+      ],
+      words: [
+        { w: 'hungry',   pos: 'adj',zh: '饿的',  ico: '😋', s: 'I am hungry at recess.',        sZh: '课间休息时我饿了。' },
+        { w: 'canteen',  pos: 'n',  zh: '食堂',  ico: '🏪', s: 'We eat in the school canteen.', sZh: '我们在学校食堂吃饭。' },
+        { w: 'buy',      pos: 'v',  zh: '买',    ico: '💰', s: 'I buy noodles at recess.',      sZh: '课间我买面吃。' },
+        { w: 'noodles',  pos: 'n',  zh: '面条',  ico: '🍜', s: 'These noodles are very hot.',   sZh: '这面很烫。' },
+        { w: 'rice',     pos: 'n',  zh: '米饭',  ico: '🍚', s: 'I want rice and chicken.',      sZh: '我要饭和鸡肉。' },
+        { w: 'chicken',  pos: 'n',  zh: '鸡肉',  ico: '🍗', s: 'The chicken rice is delicious.',sZh: '鸡饭很好吃。' },
+        { w: 'dollar',   pos: 'n',  zh: '元',    ico: '💵', s: 'It costs one dollar.',          sZh: '要一块钱。' },
+        { w: 'together', pos: 'adv',zh: '一起',  ico: '👬', s: 'Let us eat together.',          sZh: '我们一起吃吧。' }
+      ]
+    },
+
+    {
+      id: 'u2s4', icon: '⚽',
+      title: 'PE Lesson', titleZh: '体育课',
+      where: 'The school field', whereZh: '学校操场',
+      story: [
+        { sp: 'Teacher', en: 'Line up, everyone. Stand up straight.',  zh: '大家排队。站直。' },
+        { sp: 'Bufan',   en: 'Can we play football today?',            zh: '我们今天能踢足球吗？' },
+        { sp: 'Teacher', en: 'First we run around the field.',         zh: '我们先绕操场跑一圈。' },
+        { sp: 'Bufan',   en: 'Look at me! I can jump very high.',      zh: '看我！我能跳很高。' },
+        { sp: 'Friend',  en: 'I am tired. Let us rest for a while.',   zh: '我累了。我们休息一下。' },
+        { sp: 'Teacher', en: 'Drink some water. Well done, boys.',     zh: '喝点水。做得好，孩子们。' }
+      ],
+      words: [
+        { w: 'stand', pos: 'v',  zh: '站',    ico: '🧍', s: 'Please stand up straight.',    sZh: '请站直。' },
+        { w: 'play',  pos: 'v',  zh: '玩；踢',ico: '⚽', s: 'We play football after school.',sZh: '放学后我们踢足球。' },
+        { w: 'run',   pos: 'v',  zh: '跑',    ico: '🏃', s: 'I run around the field.',      sZh: '我绕着操场跑。' },
+        { w: 'field', pos: 'n',  zh: '操场',  ico: '🌱', s: 'The field is big and green.',  sZh: '操场又大又绿。' },
+        { w: 'jump',  pos: 'v',  zh: '跳',    ico: '🦘', s: 'I can jump very high.',        sZh: '我能跳很高。' },
+        { w: 'tired', pos: 'adj',zh: '累的',  ico: '😮‍💨', s: 'I am tired after the game.',   sZh: '比赛后我累了。' },
+        { w: 'rest',  pos: 'v',  zh: '休息',  ico: '🛋️', s: 'Let us rest for a while.',     sZh: '我们休息一下。' },
+        { w: 'high',  pos: 'adj',zh: '高的',  ico: '🔝', s: 'The wall is very high.',       sZh: '这墙很高。' }
+      ]
+    },
+
+    {
+      id: 'u2s5', icon: '📚',
+      title: 'The Library', titleZh: '图书馆',
+      where: 'The school library', whereZh: '学校图书馆',
+      story: [
+        { sp: 'Bufan',     en: 'I like this book about animals.',      zh: '我喜欢这本关于动物的书。' },
+        { sp: 'Librarian', en: 'You may borrow two books today.',      zh: '你今天可以借两本书。' },
+        { sp: 'Bufan',     en: 'Where do I put my library card?',      zh: '我的图书卡放哪里？' },
+        { sp: 'Librarian', en: 'Right here. Please be quiet inside.',  zh: '就放这里。里面请安静。' },
+        { sp: 'Bufan',     en: 'When must I return the books?',        zh: '我什么时候要还书？' },
+        { sp: 'Librarian', en: 'In two weeks. Enjoy your reading!',    zh: '两周后。阅读愉快！' }
+      ],
+      words: [
+        { w: 'library', pos: 'n',  zh: '图书馆', ico: '📚', s: 'The library is next to the hall.', sZh: '图书馆在礼堂旁边。' },
+        { w: 'borrow',  pos: 'v',  zh: '借',     ico: '🤲', s: 'May I borrow two books?',         sZh: '我能借两本书吗？' },
+        { w: 'two',     pos: 'num',zh: '二',     ico: '2️⃣', s: 'I have two books in my bag.',     sZh: '我书包里有两本书。' },
+        { w: 'where',   pos: 'q',  zh: '哪里',   ico: '❓', s: 'Where is my pencil?',             sZh: '我的铅笔在哪里？' },
+        { w: 'card',    pos: 'n',  zh: '卡片',   ico: '💳', s: 'This is my library card.',        sZh: '这是我的图书卡。' },
+        { w: 'quiet',   pos: 'adj',zh: '安静的', ico: '🤫', s: 'Please be quiet in the library.',  sZh: '在图书馆请安静。' },
+        { w: 'return',  pos: 'v',  zh: '归还',   ico: '↩️', s: 'I must return the book today.',   sZh: '我今天必须还书。' },
+        { w: 'week',    pos: 'n',  zh: '星期',   ico: '📅', s: 'There are seven days in a week.', sZh: '一星期有七天。' }
+      ]
+    },
+
+    {
+      id: 'u2s6', icon: '🧰',
+      title: 'Crafting Class', titleZh: '合成课', mc: true,
+      where: 'Minecraft — beside the crafting table', whereZh: 'Minecraft 工作台旁',
+      story: [
+        { sp: 'Steve', en: 'Today we learn to make a pickaxe.',       zh: '今天我们学做一把镐。' },
+        { sp: 'Bufan', en: 'I need three stones and two sticks.',     zh: '我需要三块石头和两根木棍。' },
+        { sp: 'Steve', en: 'Put them in the crafting table.',         zh: '把它们放进工作台。' },
+        { sp: 'Bufan', en: 'Look! My new pickaxe is done.',           zh: '看！我的新镐做好了。' },
+        { sp: 'Steve', en: 'Now you can mine iron and coal.',         zh: '现在你可以挖铁和煤了。' },
+        { sp: 'Bufan', en: 'Thank you, teacher Steve!',               zh: '谢谢你，Steve 老师！' }
+      ],
+      words: [
+        { w: 'learn', pos: 'v',  zh: '学习', ico: '🧠', s: 'I learn English every day.',   sZh: '我每天学英语。' },
+        { w: 'need',  pos: 'v',  zh: '需要', ico: '🙏', s: 'I need three stones.',         sZh: '我需要三块石头。' },
+        { w: 'three', pos: 'num',zh: '三',   ico: '3️⃣', s: 'I have three sticks here.',    sZh: '我这里有三根木棍。' },
+        { w: 'stick', pos: 'n',  zh: '木棍', ico: '🪵', s: 'A pickaxe needs two sticks.',  sZh: '一把镐需要两根木棍。' },
+        { w: 'new',   pos: 'adj',zh: '新的', ico: '✨', s: 'My new pickaxe is very fast.', sZh: '我的新镐很快。' },
+        { w: 'mine',  pos: 'v',  zh: '开采', ico: '⛏️', s: 'We mine iron and coal.',       sZh: '我们挖铁和煤。' },
+        { w: 'iron',  pos: 'n',  zh: '铁',   ico: '⚙️', s: 'Iron is strong and useful.',   sZh: '铁又硬又有用。' },
+        { w: 'coal',  pos: 'n',  zh: '煤',   ico: '🪨', s: 'We burn coal to make light.',  sZh: '我们烧煤来照明。' }
+      ]
+    }
+
+  ]
+});
+
+</script>
+<script>
+/* ===== js/game.js ===== */
+/* ============================================================
+   game.js — 每日关卡编排
+   一节课 ≈ 30 分钟，固定九个阶段（对应热键栏九格）：
+     📖 故事 → ⛏️ 挖新词 → 🎧 听 → 📖 读 → 🗣️ 说 → 🔨 写 → 🧰 造句 → 👹 Boss复习 → 🏆 结算
+   ============================================================ */
+(function (global) {
+  'use strict';
+
+  var PHASES = [
+    { key: 'story', ico: '📖', name: '场景故事' },
+    { key: 'mine',  ico: '⛏️', name: '挖掘新词' },
+    { key: 'listen',ico: '🎧', name: '听音辨词' },
+    { key: 'read',  ico: '📕', name: '读句填词' },
+    { key: 'speak', ico: '🗣️', name: '开口跟读' },
+    { key: 'write', ico: '🔨', name: '铁砧拼写' },
+    { key: 'craft', ico: '🧰', name: '工作台造句' },
+    { key: 'boss',  ico: '👹', name: 'Boss 复习' },
+    { key: 'done',  ico: '🏆', name: '结算领奖' }
+  ];
+
+  function shuffle(a) {
+    a = a.slice();
+    for (var i = a.length - 1; i > 0; i--) {
+      var j = (Math.random() * (i + 1)) | 0;
+      var t = a[i]; a[i] = a[j]; a[j] = t;
+    }
+    return a;
+  }
+
+  function sample(arr, n, exclude) {
+    var pool = arr.filter(function (x) { return !exclude || exclude.indexOf(x) < 0; });
+    return shuffle(pool).slice(0, n);
+  }
+
+  var Game = {
+    PHASES: PHASES,
+    session: null,
+
+    /** 出干扰项：优先同一章的词，长度接近的排前面 */
+    distractors: function (target, n) {
+      var pool = EQ.unlockedWords(Save.data.cursor).filter(function (w) { return w.w !== target.w; });
+      if (pool.length < n) pool = EQ.allWords().filter(function (w) { return w.w !== target.w; });
+      var same = pool.filter(function (w) { return w.unit === target.unit; });
+      var use = same.length >= n ? same : pool;
+      // 同词性 + 长度接近的更像样
+      use = use.slice().sort(function (a, b) {
+        var sa = (a.pos === target.pos ? 0 : 2) + Math.abs(a.w.length - target.w.length) * 0.3;
+        var sb = (b.pos === target.pos ? 0 : 2) + Math.abs(b.w.length - target.w.length) * 0.3;
+        return sa - sb;
+      }).slice(0, Math.max(n + 4, 8));
+      return sample(use, n);
+    },
+
+    // 一题练哪几项技能。dictate（听写）和 aloud（朗读）一题练两项 ——
+    // 这不是取巧：听写本来就是「听懂 + 写出来」，朗读本来就是「认字 + 读出声」，
+    // 也正好是新加坡小学每周在做的两件事。复习题量因此减半，30 分钟才装得下 1000 词。
+    SKILL_OF: {
+      listen: 'l', read: 'r', write: 'w', speak: 's',
+      dictate: ['l', 'w'], aloud: ['r', 's']
+    },
+
+    task: function (type, word, scene) {
+      var t = { t: type, word: word, skill: this.SKILL_OF[type] || null };
+      if (type === 'listen' || type === 'read') {
+        t.options = shuffle(this.distractors(word, 3).concat([word]));
+      }
+      if (type === 'speak' || type === 'aloud') t.line = this.lineFor(word, scene);
+      return t;
+    },
+
+    /** 跟读用哪一句：优先用故事里含这个词的原句，没有就用词条例句 */
+    lineFor: function (word, scene) {
+      if (scene) {
+        var re = new RegExp('\\b' + word.w + '(?:s|es|ed|ing|d)?\\b', 'i');
+        var hit = scene.story.filter(function (l) { return re.test(l.en); })[0];
+        if (hit) return hit;
+      }
+      return { sp: 'Say it', en: word.s, zh: word.sZh };
+    },
+
+    /**
+     * 组装今天这一节课
+     * @param opts.reviewOnly 忙的时候只清复习，不开新场景
+     */
+    build: function (opts) {
+      opts = opts || {};
+      var cursor = Save.data.cursor;
+      var scene = opts.reviewOnly ? null : EQ.sceneAt(cursor);
+      var isReviewOnly = !scene;                       // 教材学完、或今天主动选了只复习
+      var newWords = scene ? scene.words : [];
+
+      var queue = [];
+      var phase = function (key, items) {
+        items.forEach(function (it) { it.phase = key; queue.push(it); });
+      };
+      var self = this;
+
+      if (scene) {
+        phase('story', [{ t: 'story', scene: scene }]);
+        phase('mine',  shuffle(newWords).map(function (w) { return { t: 'mine', word: w }; }));
+        phase('listen',shuffle(newWords).map(function (w) { return self.task('listen', w); }));
+        phase('read',  shuffle(newWords).map(function (w) { return self.task('read', w); }));
+        // 说：每个新词都要开口一次，句子优先取故事原句
+        // （必须覆盖全部新词，否则「说」这一项永远是 0 级，记忆盒会卡住出不去）
+        phase('speak', shuffle(newWords).map(function (w) { return self.task('speak', w, scene); }));
+        phase('write', shuffle(newWords).map(function (w) { return self.task('write', w); }));
+        phase('craft', shuffle(newWords).slice(0, 4).map(function (w) {
+          return { t: 'craft', word: w, sentence: w.s, sentenceZh: w.sZh };
+        }));
+      }
+
+      // Boss：今天到期的复习词，按最弱技能出题
+      var due = SRS.due().filter(function (d) { return EQ.word(d.word); });
+      var newSet = newWords.map(function (w) { return w.w; });
+      due = due.filter(function (d) { return newSet.indexOf(d.word) < 0; });
+      // 40 是推演出来的临界吞吐量：低于 40 复习积压会滚雪球，
+      // 一批词永远卡在低档出不去，到 12/31 只能掌握两百多词；
+      // 到 40 就能推到九百八，再往上收益很小、时间却更长。别随手调小。
+      var cap = isReviewOnly ? 70 : 40;
+      var bossItems = due.slice(0, cap).map(function (d) {
+        var word = EQ.word(d.word);
+        // 复习一律用双技能题：最弱的是「听」或「写」→ 听写；是「读」或「说」→ 朗读
+        var weak = SRS.weakest(d.card);
+        var type = (weak === 'l' || weak === 'w') ? 'dictate' : 'aloud';
+        var t = self.task(type, word, EQ.sceneById(word.scene));
+        t.review = true;
+        return t;
+      });
+      if (!bossItems.length && newWords.length) {
+        bossItems = shuffle(newWords).slice(0, 6).map(function (w) {
+          var t = self.task(Math.random() < 0.5 ? 'dictate' : 'aloud', w, scene);
+          t.review = true; return t;
+        });
+      }
+      phase('boss', bossItems);
+      phase('done', [{ t: 'done' }]);
+
+      this.session = {
+        scene: scene,
+        cursor: { unit: cursor.unit, scene: cursor.scene },
+        queue: queue,
+        i: 0,
+        startedAt: Date.now(),
+        xpGained: 0,
+        gemsGained: 0,
+        right: 0,
+        wrong: 0,
+        wrongWords: [],
+        relearn: [],          // 答错的题，塞回本节课后面再考一次
+        newCount: newWords.length,
+        reviewCount: bossItems.length
+      };
+      return this.session;
+    },
+
+    current: function () {
+      var s = this.session;
+      if (!s) return null;
+      return s.queue[s.i] || null;
+    },
+
+    /** 记一次作答 */
+    answer: function (good, task) {
+      var s = this.session;
+      task = task || this.current();
+      if (!task) return;
+
+      if (task.word && task.skill) SRS.grade(task.word.w, task.skill, good);
+      s.combo = good ? (s.combo || 0) + 1 : 0;
+      s.bestCombo = Math.max(s.bestCombo || 0, s.combo);
+
+      if (good) {
+        s.right++;
+        var xp = task.review ? 3 : 2;
+        s.xpGained += xp;
+        var up = Level.add(xp);
+        SFX.orb();
+        if (up) { SFX.levelup(); UI.toast('⭐', '等级提升！', 'Level ' + up); }
+      } else {
+        s.wrong++;
+        SFX.wrong();
+        if (task.word && s.wrongWords.indexOf(task.word.w) < 0) s.wrongWords.push(task.word.w);
+        // 错题在本节课末尾补考一次
+        if (task.word && !task.isRelearn && s.relearn.length < 12) {
+          var again = this.task(task.t, task.word, EQ.sceneById(task.word.scene));
+          again.phase = 'boss'; again.isRelearn = true; again.review = true;
+          s.relearn.push(again);
+        }
+      }
+      Save.save();
+    },
+
+    next: function () {
+      var s = this.session;
+      s.i++;
+      // 走到 done 之前，把错题补考插进来
+      var cur = s.queue[s.i];
+      if (cur && cur.t === 'done' && s.relearn.length) {
+        var extra = s.relearn.splice(0, s.relearn.length);
+        s.queue.splice(s.i, 0, extra[0]);
+        for (var k = 1; k < extra.length; k++) s.queue.splice(s.i + k, 0, extra[k]);
+      }
+      return this.current();
+    },
+
+    progress: function () {
+      var s = this.session;
+      return { i: s.i, n: s.queue.length, pct: Math.round(s.i / s.queue.length * 100) };
+    },
+
+    phaseState: function () {
+      var s = this.session, cur = this.current();
+      var curKey = cur ? cur.phase || cur.t : 'done';
+      var seen = {}, self = this;
+      s.queue.slice(0, s.i).forEach(function (t) { seen[t.phase || t.t] = true; });
+      return PHASES.map(function (p) {
+        return { ico: p.ico, name: p.name, now: p.key === curKey, done: !!seen[p.key] && p.key !== curKey };
+      });
+    },
+
+    /** 结算 */
+    finish: function () {
+      var s = this.session;
+      var mins = Math.round((Date.now() - s.startedAt) / 60000);
+      Save.data.stats.seconds += Math.round((Date.now() - s.startedAt) / 1000);
+
+      var acc = s.right + s.wrong ? Math.round(s.right / (s.right + s.wrong) * 100) : 0;
+      var gems = Math.max(1, Math.round(s.newCount * 0.5 + s.right * 0.1 + (acc >= 90 ? 3 : 0)));
+      Save.data.gems += gems;
+      s.gemsGained = gems;
+      s.minutes = mins;
+      s.accuracy = acc;
+
+      var freshDay = SRS.checkIn();
+      // 学完这个场景才推进光标；纯复习日不推进
+      if (s.scene) Save.data.cursor = EQ.advance(s.cursor);
+      Save.save();
+      s.freshDay = freshDay;
+      return s;
+    }
+  };
+
+  Game.shuffle = shuffle;
+  Game.sample = sample;
+  global.Game = Game;
+})(window);
+
+</script>
+<script>
+/* ===== js/views.js ===== */
+/* ============================================================
+   views.js — 所有界面与关卡玩法
+   ============================================================ */
+(function (global) {
+  'use strict';
+
+  var stage = null;
+  var showZh = false;          // 故事里的中文默认藏起来，点一下才看
+  var recog = null;            // 语音识别（有就用，没有就自评）
+
+  function esc(s) {
+    return String(s).replace(/[&<>"]/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c];
+    });
+  }
+
+  /** 把句子里的目标词高亮出来（词形可能带 s/ing/ed） */
+  function highlight(sentence, word) {
+    var re = new RegExp('\\b(' + word + '(?:s|es|ed|ing|d)?)\\b', 'i');
+    return esc(sentence).replace(re, function (m) { return '<b class="hl">' + m + '</b>'; });
+  }
+
+  /** 把句子里的目标词挖空 */
+  function blank(sentence, word) {
+    var re = new RegExp('\\b' + word + '(?:s|es|ed|ing|d)?\\b', 'i');
+    if (!re.test(sentence)) return esc(sentence) + ' <span class="blank">______</span>';
+    return esc(sentence).replace(re, '<span class="blank">______</span>');
+  }
+
+  var UI = {
+
+    mount: function (el) { stage = el; },
+
+    /* ------------------------------------------------------------------
+       通用：成就 / 提示条
+       ------------------------------------------------------------------ */
+    toast: function (ico, title, body) {
+      var box = document.getElementById('toasts');
+      var d = document.createElement('div');
+      d.className = 'toast';
+      d.innerHTML = '<div class="ico">' + ico + '</div><div><div class="tt px">' + esc(title) +
+                    '</div><div class="tb">' + esc(body) + '</div></div>';
+      box.appendChild(d);
+      setTimeout(function () {
+        d.style.transition = 'opacity .4s, transform .4s';
+        d.style.opacity = '0'; d.style.transform = 'translateX(120%)';
+        setTimeout(function () { d.remove(); }, 420);
+      }, 3400);
+    },
+
+    overlay: function (html, onClose) {
+      var o = document.createElement('div');
+      o.className = 'overlay';
+      o.innerHTML = '<div class="panel dark">' + html + '</div>';
+      o.addEventListener('click', function (e) {
+        if (e.target === o || e.target.dataset.close != null) {
+          o.remove(); onClose && onClose();
+        }
+      });
+      document.body.appendChild(o);
+      return o;
+    },
+
+    /* ==================================================================
+       主页
+       ================================================================== */
+    home: function () {
+      App.setHudMode('home');
+      var d = Save.data;
+      var g = SRS.goal();
+      var scene = EQ.sceneAt(d.cursor);
+      var unit = scene ? EQ.unit(scene.unit) : null;
+      var due = SRS.due().filter(function (x) { return EQ.word(x.word); }).length;
+      var lv = Level.info(d.xp);
+
+      stage.innerHTML =
+        '<div class="home scroll">' +
+          '<div class="home-title">' +
+            '<div class="sign">ENGLISH  QUEST</div>' +
+            '<div class="home-sub">Bufan 的英语冒险 · 目标 12/31 拿下 1000 词</div>' +
+          '</div>' +
+
+          '<div class="quest-card panel">' +
+            (scene
+              ? '<div class="qc-top">' +
+                  '<div class="qc-ico">' + scene.icon + '</div>' +
+                  '<div class="grow">' +
+                    '<div class="qc-unit px">' + esc(unit.titleZh) + '</div>' +
+                    '<div class="qc-name">' + esc(scene.title) + '</div>' +
+                    '<div class="qc-zh">' + esc(scene.titleZh) + ' · ' + esc(scene.whereZh) + '</div>' +
+                  '</div>' +
+                '</div>' +
+                '<div class="qc-meta">' +
+                  '<span class="tag new">⛏️ 新词 ' + scene.words.length + '</span>' +
+                  '<span class="tag rev">👹 复习 ' + due + '</span>' +
+                  '<span class="tag time">⏱ 约 30 分钟</span>' +
+                '</div>'
+              : '<div class="qc-top"><div class="qc-ico">🏆</div><div class="grow">' +
+                  '<div class="qc-name">All Chapters Cleared</div>' +
+                  '<div class="qc-zh">教材全部学完，今天是纯复习日</div></div></div>' +
+                '<div class="qc-meta"><span class="tag rev">👹 复习 ' + due + '</span></div>') +
+            '<button class="btn primary wide big" data-act="start">▶  开始今天的冒险</button>' +
+            (scene && due > 0
+              ? '<button class="btn ghost wide sm" data-act="reviewonly" style="margin-top:8px">' +
+                  '👹 今天很忙 · 只清 ' + Math.min(due, 70) + ' 道复习（约 ' + Math.max(5, Math.round(Math.min(due, 70) * 0.35)) + ' 分钟）</button>'
+              : '') +
+          '</div>' +
+
+          '<div class="stat-row">' +
+            statCard('💎', g.done, '/ ' + g.total + ' 词已掌握', g.pct + '%') +
+            statCard('📅', g.daysLeft, '天到 12/31', '每天需 ' + g.perDay + ' 词') +
+            statCard('🔥', d.streak, '天连续打卡', '最长 ' + (d.bestStreak || 0) + ' 天') +
+            statCard('⭐', 'Lv.' + lv.level, '当前等级', lv.into + '/' + lv.need + ' XP') +
+          '</div>' +
+
+          '<div class="goal-bar panel">' +
+            '<div class="row"><span class="px tiny">1000 词进度</span><span class="grow"></span>' +
+              '<span class="tiny">' + g.done + ' / ' + g.total + '</span></div>' +
+            '<div class="bar" style="margin-top:8px"><i style="width:' + g.pct + '%"></i></div>' +
+            '<div class="tiny muted" style="margin-top:6px;color:#555">' +
+              '正在学 ' + SRS.learningCount() + ' 词 · 教材共 ' + EQ.totalWords() + ' 词' +
+            '</div>' +
+          '</div>' +
+
+          '<div class="row wrap center home-nav">' +
+            '<button class="btn ghost" data-act="book">📦 单词背包</button>' +
+            '<button class="btn ghost" data-act="map">🗺️ 章节地图</button>' +
+            '<button class="btn ghost" data-act="stats">📊 成长报告</button>' +
+            '<button class="btn ghost" data-act="settings">⚙️ 设置</button>' +
+          '</div>' +
+        '</div>';
+
+      stage.querySelectorAll('[data-act]').forEach(function (b) {
+        b.onclick = function () {
+          SFX.click();
+          var a = b.dataset.act;
+          if (a === 'start') App.startSession();
+          if (a === 'reviewonly') App.startSession({ reviewOnly: true });
+          if (a === 'book') UI.book();
+          if (a === 'map') UI.map();
+          if (a === 'stats') UI.stats();
+          if (a === 'settings') UI.settings();
+        };
+      });
+
+      function statCard(ico, big, label, sub) {
+        return '<div class="stat panel">' +
+          '<div class="s-ico">' + ico + '</div>' +
+          '<div class="s-big px">' + big + '</div>' +
+          '<div class="s-lab">' + label + '</div>' +
+          '<div class="s-sub">' + sub + '</div>' +
+        '</div>';
+      }
+    },
+
+    /* ==================================================================
+       关卡分发
+       ================================================================== */
+    task: function () {
+      var t = Game.current();
+      App.paintHud();
+      if (!t) { return; }
+      var fn = {
+        story: this.vStory, mine: this.vMine, listen: this.vListen,
+        read: this.vRead, speak: this.vSpeak, write: this.vWrite,
+        dictate: this.vDictate, aloud: this.vAloud,
+        craft: this.vCraft, done: this.vDone
+      }[t.t];
+      fn.call(this, t);
+    },
+
+    head: function (ico, title, sub) {
+      return '<div class="t-head"><span class="t-ico">' + ico + '</span>' +
+             '<span class="t-title px">' + esc(title) + '</span>' +
+             (sub ? '<span class="t-sub">' + esc(sub) + '</span>' : '') + '</div>';
+    },
+
+    /* ---------------------------- 📖 故事 ---------------------------- */
+    vStory: function (t) {
+      var s = t.scene;
+      var lines = s.story.map(function (l, i) {
+        return '<div class="line" data-i="' + i + '">' +
+          '<div class="sp">' + esc(l.sp) + '</div>' +
+          '<div class="bubble">' +
+            '<div class="en">' + esc(l.en) + '</div>' +
+            '<div class="zh' + (showZh ? '' : ' hide') + '">' + esc(l.zh) + '</div>' +
+          '</div>' +
+          '<div class="spk">🔊</div>' +
+        '</div>';
+      }).join('');
+
+      stage.innerHTML =
+        this.head('📖', '场景故事', '点任意一句可以重听 · ' + s.whereZh) +
+        '<div class="scene-banner"><span class="sb-ico">' + s.icon + '</span>' +
+          '<span class="sb-en">' + esc(s.title) + '</span>' +
+          '<span class="sb-zh">' + esc(s.titleZh) + '</span></div>' +
+        '<div class="story scroll">' + lines + '</div>' +
+        '<div class="t-foot">' +
+          '<button class="btn" data-a="all">🔊 从头听一遍</button>' +
+          '<button class="btn ghost" data-a="zh">' + (showZh ? '🙈 藏起中文' : '🇨🇳 显示中文') + '</button>' +
+          '<span class="grow"></span>' +
+          '<button class="btn primary" data-a="go">开始挖词  ⛏️</button>' +
+        '</div>';
+
+      var host = this;
+      stage.querySelectorAll('.line').forEach(function (el) {
+        el.onclick = function () {
+          stage.querySelectorAll('.line').forEach(function (x) { x.classList.remove('active'); });
+          el.classList.add('active');
+          TTS.speak(s.story[+el.dataset.i].en, { rate: 0.85 });
+        };
+      });
+      stage.querySelector('[data-a="all"]').onclick = function () {
+        var els = stage.querySelectorAll('.line');
+        TTS.speakSeq(s.story.map(function (l) { return l.en; }), {
+          onLine: function (i) {
+            els.forEach(function (x) { x.classList.remove('active'); });
+            if (els[i]) { els[i].classList.add('active'); els[i].scrollIntoView({ block: 'center', behavior: 'smooth' }); }
+          }
+        });
+      };
+      stage.querySelector('[data-a="zh"]').onclick = function () {
+        showZh = !showZh; SFX.click(); host.vStory(t);
+      };
+      stage.querySelector('[data-a="go"]').onclick = function () { App.advance(); };
+
+      setTimeout(function () { stage.querySelector('[data-a="all"]').click(); }, 350);
+    },
+
+    /* ---------------------------- ⛏️ 挖新词 ---------------------------- */
+    vMine: function (t) {
+      var w = t.word;
+      var isNew = SRS.isNew(w.w);
+      stage.innerHTML =
+        this.head('⛏️', '挖掘新词', isNew ? '第一次见到这个词' : '这个词你见过，再巩固一次') +
+        '<div class="mine-wrap">' +
+          '<div class="ore-card panel dark">' +
+            '<div class="ore-ico">' + w.ico + '</div>' +
+            '<div class="ore-word px">' + esc(w.w) + '</div>' +
+            '<div class="ore-pos">' + esc(w.pos) + ' · ' + esc(w.zh) + '</div>' +
+            '<div class="ore-btns">' +
+              '<button class="btn sm" data-a="w">🔊 读单词</button>' +
+              '<button class="btn sm ghost" data-a="slow">🐢 慢一点</button>' +
+            '</div>' +
+          '</div>' +
+          '<div class="ore-sent panel">' +
+            '<div class="os-label px">用在句子里</div>' +
+            '<div class="os-en">' + highlight(w.s, w.w) + '</div>' +
+            '<div class="os-zh">' + esc(w.sZh) + '</div>' +
+            '<button class="btn sm" data-a="s">🔊 读句子</button>' +
+          '</div>' +
+        '</div>' +
+        '<div class="t-foot"><span class="grow"></span>' +
+          '<button class="btn primary" data-a="go">挖到了！  ⛏️  +1</button></div>';
+
+      stage.querySelector('[data-a="w"]').onclick = function () { TTS.speak(w.w, { rate: 0.8 }); };
+      stage.querySelector('[data-a="slow"]').onclick = function () { TTS.slow(w.w); };
+      stage.querySelector('[data-a="s"]').onclick = function () { TTS.speak(w.s, { rate: 0.85 }); };
+      stage.querySelector('[data-a="go"]').onclick = function () {
+        SFX.mine(); SRS.card(w.w); Save.save(); App.advance();
+      };
+      setTimeout(function () {
+        TTS.speak(w.w, { rate: 0.75, onend: function () {
+          setTimeout(function () { TTS.speak(w.s, { rate: 0.85 }); }, 260);
+        } });
+      }, 300);
+    },
+
+    /* ---------------------------- 🎧 听音辨词 ---------------------------- */
+    vListen: function (t) {
+      var w = t.word;
+      var opts = t.options.map(function (o, i) {
+        return '<div class="item opt big-opt" data-w="' + esc(o.w) + '">' +
+          '<div class="o-ico">' + o.ico + '</div><div class="o-zh">' + esc(o.zh) + '</div></div>';
+      }).join('');
+
+      stage.innerHTML =
+        this.head('🎧', '听音辨词', '听到的是哪一个？') +
+        '<div class="listen-wrap">' +
+          '<button class="speaker" data-a="play">🔊</button>' +
+          '<div class="tiny muted" style="margin-top:6px">点喇叭再听一遍</div>' +
+          '<button class="btn sm ghost" data-a="slow" style="margin-top:8px">🐢 慢速</button>' +
+        '</div>' +
+        '<div class="opts-4">' + opts + '</div>' +
+        '<div class="t-foot" id="foot"></div>';
+
+      var play = function () { TTS.speak(w.w, { rate: 0.8 }); };
+      stage.querySelector('[data-a="play"]').onclick = play;
+      stage.querySelector('[data-a="slow"]').onclick = function () { TTS.slow(w.w); };
+      setTimeout(play, 320);
+
+      var answered = false;
+      stage.querySelectorAll('.opt').forEach(function (el) {
+        el.onclick = function () {
+          if (answered) return; answered = true;
+          var good = el.dataset.w === w.w;
+          el.classList.add(good ? 'ok' : 'bad');
+          if (!good) {
+            stage.querySelectorAll('.opt').forEach(function (x) {
+              if (x.dataset.w === w.w) x.classList.add('ok');
+            });
+          }
+          UI.feedback(good, w, 'listen');
+        };
+      });
+    },
+
+    /* ---------------------------- 📕 读句填词 ---------------------------- */
+    vRead: function (t) {
+      var w = t.word;
+      var opts = t.options.map(function (o) {
+        return '<div class="item opt word-opt px" data-w="' + esc(o.w) + '">' + esc(o.w) + '</div>';
+      }).join('');
+
+      stage.innerHTML =
+        this.head('📕', '读句填词', '先自己读一遍，再选出空格里的词') +
+        '<div class="read-wrap panel">' +
+          '<div class="rw-sent">' + blank(w.s, w.w) + '</div>' +
+          '<div class="rw-zh">' + esc(w.sZh) + '</div>' +
+        '</div>' +
+        '<div class="opts-4 tight">' + opts + '</div>' +
+        '<div class="t-foot" id="foot"></div>';
+
+      var answered = false;
+      stage.querySelectorAll('.opt').forEach(function (el) {
+        el.onclick = function () {
+          if (answered) return; answered = true;
+          var good = el.dataset.w === w.w;
+          el.classList.add(good ? 'ok' : 'bad');
+          if (!good) stage.querySelectorAll('.opt').forEach(function (x) {
+            if (x.dataset.w === w.w) x.classList.add('ok');
+          });
+          stage.querySelector('.rw-sent').innerHTML = highlight(w.s, w.w);
+          UI.feedback(good, w, 'read');
+        };
+      });
+    },
+
+    /* ---------------------------- 🗣️ 开口跟读 / 📖 朗读 ----------------------------
+         speak —— 先放一遍标准音，孩子跟读（新词第一次练「说」）
+         aloud —— 不放音，孩子自己把这句话认出来读出声（复习用，一题同时练「读 + 说」）
+       ------------------------------------------------------------------------- */
+    vSpeak: function (t) { this.say(t, false); },
+    vAloud: function (t) { this.say(t, true); },
+
+    say: function (t, decode) {
+      var line = t.line;
+      var hasRecog = !!(global.SpeechRecognition || global.webkitSpeechRecognition);
+      var revealedZh = !decode;
+
+      stage.innerHTML =
+        (decode ? this.head('📖', '朗读 Read Aloud', '别急着听 —— 自己认出来，读出声 · 一题练「读 + 说」')
+                : this.head('🗣️', '开口跟读', '先听一遍，然后大声读出来')) +
+        '<div class="speak-wrap panel">' +
+          (decode ? '' : '<div class="sw-sp">' + esc(line.sp) + ' 说：</div>') +
+          '<div class="sw-en">' + esc(line.en) + '</div>' +
+          '<div class="sw-zh' + (revealedZh ? '' : ' hide') + '">' + esc(line.zh) + '</div>' +
+          '<div class="row center wrap" style="margin-top:14px">' +
+            (decode
+              ? '<button class="btn ghost" data-a="zh">🇨🇳 看中文意思</button>' +
+                '<button class="btn ghost" data-a="play">🔊 听正确读法</button>'
+              : '<button class="btn" data-a="play">🔊 再听一遍</button>' +
+                '<button class="btn ghost" data-a="slow">🐢 慢速</button>') +
+          '</div>' +
+          '<div class="sw-result" id="swr"></div>' +
+        '</div>' +
+        '<div class="t-foot">' +
+          (hasRecog ? '<button class="btn gold" data-a="mic">🎤 我来读</button>' : '') +
+          '<span class="grow"></span>' +
+          '<button class="btn ghost" data-a="hard">🔁 有点难，再练</button>' +
+          '<button class="btn primary" data-a="ok">✅ 我读对了</button>' +
+        '</div>';
+
+      stage.querySelector('[data-a="play"]').onclick = function () { TTS.speak(line.en, { rate: 0.85 }); };
+      var slowBtn = stage.querySelector('[data-a="slow"]');
+      if (slowBtn) slowBtn.onclick = function () { TTS.slow(line.en); };
+      var zhBtn = stage.querySelector('[data-a="zh"]');
+      if (zhBtn) zhBtn.onclick = function () { stage.querySelector('.sw-zh').classList.remove('hide'); SFX.click(); };
+
+      // 跟读关先示范；朗读关绝不先放音，那就等于把答案念出来了
+      if (!decode) setTimeout(function () { TTS.speak(line.en, { rate: 0.85 }); }, 320);
+
+      stage.querySelector('[data-a="ok"]').onclick = function () { SFX.right(); Game.answer(true, t); App.advance(); };
+      stage.querySelector('[data-a="hard"]').onclick = function () { Game.answer(false, t); App.advance(); };
+
+      var micBtn = stage.querySelector('[data-a="mic"]');
+      if (micBtn) micBtn.onclick = function () { UI.listenToChild(line.en, t, micBtn); };
+    },
+
+    /** 用浏览器语音识别给跟读打分；不支持或失败就退回自评 */
+    listenToChild: function (target, task, btn) {
+      var R = global.SpeechRecognition || global.webkitSpeechRecognition;
+      var out = document.getElementById('swr');
+      if (!R) return;
+      try { TTS.stop(); if (recog) recog.abort(); } catch (e) {}
+      recog = new R();
+      recog.lang = 'en-GB';
+      recog.interimResults = false;
+      recog.maxAlternatives = 3;
+      btn.textContent = '🎙️ 听你说...'; btn.classList.add('rec');
+      out.innerHTML = '<div class="swr-wait">请对着麦克风读出上面的句子</div>';
+
+      var norm = function (s) { return s.toLowerCase().replace(/[^a-z\s']/g, ' ').split(/\s+/).filter(Boolean); };
+      var want = norm(target);
+
+      recog.onresult = function (e) {
+        var best = 0, said = '';
+        for (var i = 0; i < e.results[0].length; i++) {
+          var txt = e.results[0][i].transcript;
+          var got = norm(txt);
+          var hit = want.filter(function (x) { return got.indexOf(x) >= 0; }).length / want.length;
+          if (hit > best) { best = hit; said = txt; }
+        }
+        var good = best >= 0.6;
+        out.innerHTML = '<div class="swr-said">你说的：<b>' + esc(said) + '</b></div>' +
+          '<div class="swr-score ' + (good ? 'good' : 'meh') + '">命中 ' + Math.round(best * 100) + '%' +
+          (good ? ' — 很棒！' : ' — 再读一遍试试') + '</div>';
+        if (good) { SFX.right(); Game.answer(true, task); setTimeout(function () { App.advance(); }, 1100); }
+        else { SFX.wrong(); }
+        btn.textContent = '🎤 我来读'; btn.classList.remove('rec');
+      };
+      recog.onerror = function () {
+        out.innerHTML = '<div class="swr-wait">麦克风用不了，用下面的按钮自己判断就行 👇</div>';
+        btn.textContent = '🎤 我来读'; btn.classList.remove('rec');
+      };
+      recog.onend = function () { btn.textContent = '🎤 我来读'; btn.classList.remove('rec'); };
+      try { recog.start(); } catch (e) { recog.onerror(); }
+    },
+
+    /* ---------------------------- 🔨 铁砧拼写 / 🎧 听写 ----------------------------
+       两关共用一套字母块界面，区别只在给不给提示线索：
+         write   —— 看着中文和挖空的句子拼（新词第一次练「写」）
+         dictate —— 只给声音，什么都不看就拼（复习用，一题同时练「听 + 写」）
+       ------------------------------------------------------------------------- */
+    vWrite: function (t) { this.spell(t, false); },
+    vDictate: function (t) { this.spell(t, true); },
+
+    spell: function (t, blind) {
+      var w = t.word;
+      var target = w.w.toLowerCase();
+      var letters = target.split('');
+      var extra = 'abcdefghijklmnopqrstuvwxyz'.split('');
+      var pool = Game.shuffle(letters.concat(Game.sample(extra, Math.min(4, Math.max(2, 8 - letters.length)))));
+      var filled = [];        // 已经敲进空格的字母
+      var usedTiles = [];     // 对应用掉的字母块下标，退格时按栈弹出
+      var revealed = 0;       // 用过几次提示
+
+      function isUsedTile(i) { return usedTiles.indexOf(i) >= 0; }
+
+      function paint() {
+        stage.querySelector('.wslots').innerHTML = target.split('').map(function (ch, i) {
+          var v = filled[i];
+          return '<div class="wslot' + (v ? ' has' : '') + (i < revealed ? ' hint' : '') + '" data-i="' + i + '">' +
+                 esc(v || '') + '</div>';
+        }).join('');
+        stage.querySelector('.wtiles').innerHTML = pool.map(function (ch, i) {
+          return '<div class="tile' + (isUsedTile(i) ? ' used' : '') + '" data-t="' + i + '">' + esc(ch) + '</div>';
+        }).join('');
+        bind();
+      }
+
+      /** 提示：把前 n 个字母直接摆好，并把对应的字母块标记为已用 */
+      function fillPrefix(n) {
+        filled = target.slice(0, n).split('');
+        usedTiles = [];
+        filled.forEach(function (ch) {
+          for (var i = 0; i < pool.length; i++) {
+            if (pool[i] === ch && usedTiles.indexOf(i) < 0) { usedTiles.push(i); return; }
+          }
+        });
+      }
+
+      stage.innerHTML =
+        (blind ? this.head('🎧', '听写 Dictation', '只靠耳朵，把这个词拼出来 · 一题练「听 + 写」')
+               : this.head('🔨', '铁砧拼写', '把字母敲成这个词')) +
+        '<div class="write-wrap">' +
+          (blind
+            ? '<div class="dict-clue">' +
+                '<button class="speaker" data-a="say">🔊</button>' +
+                '<div class="row center" style="margin-top:10px">' +
+                  '<button class="btn sm ghost" data-a="slow">🐢 慢一点</button>' +
+                '</div>' +
+              '</div>'
+            : '<div class="ww-clue panel">' +
+                '<span class="wc-ico">' + w.ico + '</span>' +
+                '<div class="grow"><div class="wc-zh">' + esc(w.zh) + '（' + esc(w.pos) + '）</div>' +
+                '<div class="wc-sent">' + blank(w.s, w.w) + '</div></div>' +
+                '<button class="btn sm" data-a="say">🔊</button>' +
+              '</div>') +
+          '<div class="wslots"></div>' +
+          '<div class="wtiles"></div>' +
+          '<div class="t-foot">' +
+            '<button class="btn ghost sm" data-a="hint">💡 提示一个字母</button>' +
+            '<button class="btn ghost sm" data-a="clear">↩️ 清空</button>' +
+            '<span class="grow"></span>' +
+          '</div>' +
+        '</div>' +
+        '<div id="foot"></div>';
+
+      var answered = false;
+      function bind() {
+        stage.querySelectorAll('.tile').forEach(function (el) {
+          el.onclick = function () {
+            if (answered || isUsedTile(+el.dataset.t)) return;
+            if (filled.length >= target.length) return;
+            filled.push(pool[+el.dataset.t]);
+            usedTiles.push(+el.dataset.t);
+            SFX.place();
+            paint();
+            if (filled.length === target.length) check();
+          };
+        });
+        stage.querySelectorAll('.wslot').forEach(function (el) {
+          el.onclick = function () {
+            if (answered || filled.length <= revealed) return;   // 提示给的字母不许退掉
+            filled.pop(); usedTiles.pop(); SFX.click(); paint();
+          };
+        });
+      }
+
+      function check() {
+        answered = true;
+        var good = filled.join('') === target;
+        stage.querySelectorAll('.wslot').forEach(function (el, i) {
+          el.classList.add(filled[i] === target[i] ? 'ok' : 'bad');
+        });
+        setTimeout(function () {
+          UI.feedback(good, w, blind ? 'dictate' : 'write',
+            good && revealed ? '用了 ' + revealed + ' 次提示，下次试试不用 💡' : null);
+        }, 250);
+      }
+
+      stage.querySelector('[data-a="say"]').onclick = function () {
+        TTS.speak(blind ? w.w : w.s, { rate: blind ? 0.75 : 0.85 });
+      };
+      var slowBtn = stage.querySelector('[data-a="slow"]');
+      if (slowBtn) slowBtn.onclick = function () { TTS.slow(w.w); };
+      stage.querySelector('[data-a="hint"]').onclick = function () {
+        if (answered || revealed >= target.length - 1) return;
+        revealed++; SFX.click();
+        fillPrefix(revealed);
+        paint();
+        if (filled.length === target.length) check();
+      };
+      stage.querySelector('[data-a="clear"]').onclick = function () {
+        if (answered) return;
+        fillPrefix(revealed); paint();
+      };
+      paint();
+      setTimeout(function () { TTS.speak(w.w, { rate: 0.75 }); }, 300);
+    },
+
+    /* ---------------------------- 🧰 工作台造句 ---------------------------- */
+    vCraft: function (t) {
+      var parts = t.sentence.replace(/([.!?,])/g, ' $1').split(/\s+/).filter(Boolean);
+      var pool = Game.shuffle(parts.map(function (p, i) { return { p: p, i: i }; }));
+      var built = [];
+      var answered = false;
+
+      stage.innerHTML =
+        this.head('🧰', '工作台造句', '把词块按正确顺序摆好') +
+        '<div class="craft-wrap">' +
+          '<div class="cw-goal panel"><span class="cg-lab px">要说的意思</span>' +
+            '<span class="cg-zh">' + esc(t.sentenceZh) + '</span>' +
+            '<button class="btn sm ghost" data-a="hear">🔊 听一遍</button></div>' +
+          '<div class="cw-line" id="built"></div>' +
+          '<div class="cw-pool" id="pool"></div>' +
+        '</div>' +
+        '<div class="t-foot">' +
+          '<button class="btn ghost sm" data-a="undo">↩️ 退一个</button>' +
+          '<span class="grow"></span>' +
+          '<button class="btn primary" data-a="check" disabled>🔨 合成！</button>' +
+        '</div><div id="foot"></div>';
+
+      function paint() {
+        document.getElementById('built').innerHTML = built.map(function (b, i) {
+          return '<div class="wblock" data-b="' + i + '">' + esc(b.p) + '</div>';
+        }).join('') || '<div class="cw-empty">点下面的词块，一个一个摆上来</div>';
+        document.getElementById('pool').innerHTML = pool.map(function (b, i) {
+          var used = built.some(function (x) { return x.i === b.i; });
+          return '<div class="wblock pool' + (used ? ' used' : '') + '" data-p="' + i + '">' + esc(b.p) + '</div>';
+        }).join('');
+        stage.querySelector('[data-a="check"]').disabled = built.length !== parts.length;
+        bind();
+      }
+      function bind() {
+        stage.querySelectorAll('.wblock.pool').forEach(function (el) {
+          el.onclick = function () {
+            if (answered || el.classList.contains('used')) return;
+            built.push(pool[+el.dataset.p]); SFX.place(); paint();
+          };
+        });
+        stage.querySelectorAll('#built .wblock').forEach(function (el) {
+          el.onclick = function () { if (answered) return; built.splice(+el.dataset.b, 1); SFX.click(); paint(); };
+        });
+      }
+
+      stage.querySelector('[data-a="undo"]').onclick = function () { if (!answered && built.length) { built.pop(); paint(); } };
+      stage.querySelector('[data-a="hear"]').onclick = function () { TTS.speak(t.sentence, { rate: 0.85 }); };
+      stage.querySelector('[data-a="check"]').onclick = function () {
+        if (answered) return; answered = true;
+        var got = built.map(function (b) { return b.p; }).join(' ');
+        var want = parts.join(' ');
+        var good = got === want;
+        document.getElementById('built').querySelectorAll('.wblock').forEach(function (el, i) {
+          el.classList.add(built[i].p === parts[i] ? 'ok' : 'bad');
+        });
+        if (!good) {
+          document.getElementById('built').insertAdjacentHTML('afterend',
+            '<div class="cw-answer">正确答案：<b>' + esc(t.sentence) + '</b></div>');
+        }
+        UI.feedback(good, t.word, 'read');
+      };
+      paint();
+    },
+
+    /* ---------------------------- 判定反馈条 ---------------------------- */
+    feedback: function (good, word, kind, note) {
+      var task = Game.current();
+      Game.answer(good, task);
+      if (good) SFX.right();
+
+      var foot = document.getElementById('foot') || stage.querySelector('.t-foot');
+      var html =
+        '<div class="fb ' + (good ? 'good' : 'bad') + '">' +
+          '<div class="fb-ico">' + (good ? '✅' : '❌') + '</div>' +
+          '<div class="grow">' +
+            '<div class="fb-t px">' + (good ? 'Nice!  答对了' : 'Oops!  再记一次') + '</div>' +
+            (word ? '<div class="fb-w"><b>' + esc(word.w) + '</b> ' + esc(word.zh) +
+                    ' — <span class="fb-s">' + esc(word.s) + '</span></div>' : '') +
+            (note ? '<div class="fb-n">' + esc(note) + '</div>' : '') +
+          '</div>' +
+          (word ? '<button class="btn sm ghost" data-a="say">🔊</button>' : '') +
+          '<button class="btn primary" data-a="next">继续 →</button>' +
+        '</div>';
+
+      if (foot) { foot.innerHTML = html; foot.className = 't-foot'; }
+      else { stage.insertAdjacentHTML('beforeend', html); }
+
+      var sayBtn = stage.querySelector('[data-a="say"]');
+      if (sayBtn) sayBtn.onclick = function () { TTS.speak(word.s, { rate: 0.85 }); };
+
+      var moved = false;
+      var go = function () { if (moved) return; moved = true; App.advance(); };
+      stage.querySelector('[data-a="next"]').onclick = go;
+
+      // 不管对错都把整句再读一遍，这是最值钱的一次重复输入
+      var spoke = false;
+      if (word && !TTS.muted) {
+        spoke = true;
+        TTS.speak(word.s, { rate: 0.85, onend: good ? function () { setTimeout(go, 400); } : null });
+      }
+      // 答对就自动往下走，孩子不用一节课点五十次「继续」；
+      // 答错才停下来等他自己点 —— 那一下停顿是要他重新看一遍这个词。
+      if (good) setTimeout(go, spoke ? 3200 : 900);   // 语音没回调时的兜底
+    },
+
+    /* ---------------------------- 🏆 结算 ---------------------------- */
+    vDone: function () {
+      var s = Game.finish();
+      var g = SRS.goal();
+      SFX.win();
+      App.setHudMode('home');
+
+      var wrongList = s.wrongWords.map(function (x) {
+        var w = EQ.word(x);
+        return '<span class="miss">' + esc(x) + ' <i>' + esc(w ? w.zh : '') + '</i></span>';
+      }).join('') || '<span class="muted tiny">一个都没错，太强了 🎉</span>';
+
+      stage.innerHTML =
+        '<div class="summary scroll">' +
+          '<div class="sign" style="font-size:16px">QUEST  COMPLETE</div>' +
+          '<div class="summary-sub">' + (s.scene ? esc(s.scene.title) + ' · ' + esc(s.scene.titleZh) : '复习日') + '</div>' +
+          '<div class="summary-grid">' +
+            dstat('⭐', '+' + s.xpGained, '经验值') +
+            dstat('💎', '+' + s.gemsGained, '绿宝石') +
+            dstat('🎯', s.accuracy + '%', '正确率') +
+            dstat('⏱', s.minutes + ' 分', '今天用时') +
+            dstat('⛏️', s.newCount, '新词') +
+            dstat('👹', s.reviewCount, '复习词') +
+          '</div>' +
+          '<div class="panel" style="margin-top:14px">' +
+            '<div class="px tiny" style="margin-bottom:8px">还需要多练的词</div>' +
+            '<div class="miss-row">' + wrongList + '</div>' +
+          '</div>' +
+          '<div class="panel" style="margin-top:12px">' +
+            '<div class="row"><span class="px tiny">1000 词进度</span><span class="grow"></span>' +
+              '<span class="tiny">' + g.done + ' / ' + g.total + ' · 还有 ' + g.daysLeft + ' 天</span></div>' +
+            '<div class="bar" style="margin-top:8px"><i style="width:' + g.pct + '%"></i></div>' +
+          '</div>' +
+          '<div class="row center" style="margin-top:18px;gap:12px">' +
+            '<button class="btn ghost" data-a="home">🏠 回主页</button>' +
+            '<button class="btn primary" data-a="more">🔁 再来一轮</button>' +
+          '</div>' +
+        '</div>';
+
+      if (s.freshDay) {
+        UI.toast('🔥', '连续打卡', '第 ' + Save.data.streak + ' 天，别断了！');
+      }
+      Ach.check(s);
+
+      stage.querySelector('[data-a="home"]').onclick = function () { SFX.click(); UI.home(); };
+      stage.querySelector('[data-a="more"]').onclick = function () { SFX.click(); App.startSession(); };
+
+      function dstat(i, b, l) {
+        return '<div class="dstat panel dark"><div class="di">' + i + '</div>' +
+               '<div class="db px">' + b + '</div><div class="dl">' + l + '</div></div>';
+      }
+    },
+
+    /* ==================================================================
+       📦 单词背包
+       ================================================================== */
+    book: function () {
+      App.setHudMode('home');
+      var cards = Save.data.cards;
+      var words = Object.keys(cards).map(function (k) { return EQ.word(k); }).filter(Boolean);
+      words.sort(function (a, b) { return (SRS.mastered(b.w) ? 1 : 0) - (SRS.mastered(a.w) ? 1 : 0) || a.w.localeCompare(b.w); });
+
+      var grid = words.map(function (w) {
+        var c = cards[w.w];
+        var bars = SRS.SKILLS.map(function (s) {
+          return '<i class="sk s' + c.sk[s] + '" title="' + s + '"></i>';
+        }).join('');
+        return '<div class="bk-item item' + (SRS.mastered(w.w) ? ' mastered' : '') + '" data-w="' + esc(w.w) + '">' +
+          '<div class="bk-ico">' + w.ico + '</div>' +
+          '<div class="bk-w px">' + esc(w.w) + '</div>' +
+          '<div class="bk-zh">' + esc(w.zh) + '</div>' +
+          '<div class="bk-sk">' + bars + '</div>' +
+        '</div>';
+      }).join('') || '<div class="muted" style="padding:20px">背包还是空的，先去上一课 ⛏️</div>';
+
+      stage.innerHTML =
+        this.head('📦', '单词背包', '共 ' + words.length + ' 词 · 已掌握 ' + SRS.masteredCount() +
+                  ' · 四条小格子 = 听 / 读 / 写 / 说') +
+        '<div class="bk-grid scroll">' + grid + '</div>' +
+        '<div class="t-foot"><button class="btn ghost" data-a="back">← 回主页</button></div>';
+
+      stage.querySelector('[data-a="back"]').onclick = function () { SFX.click(); UI.home(); };
+      stage.querySelectorAll('.bk-item').forEach(function (el) {
+        el.onclick = function () {
+          var w = EQ.word(el.dataset.w), c = Save.data.cards[w.w];
+          TTS.speak(w.w, { rate: 0.8 });
+          UI.overlay(
+            '<div class="row"><div style="font-size:44px">' + w.ico + '</div>' +
+            '<div class="grow" style="margin-left:12px"><div class="px" style="font-size:18px;color:#fff">' + esc(w.w) + '</div>' +
+            '<div class="muted">' + esc(w.pos) + ' · ' + esc(w.zh) + '</div></div></div>' +
+            '<div style="margin:14px 0;font-size:17px">' + highlight(w.s, w.w) + '</div>' +
+            '<div class="muted">' + esc(w.sZh) + '</div>' +
+            '<div class="ov-sk">' +
+              skRow('听', c.sk.l) + skRow('读', c.sk.r) + skRow('写', c.sk.w) + skRow('说', c.sk.s) +
+            '</div>' +
+            '<div class="tiny muted" style="margin-top:10px">复习盒 ' + c.b + ' 级 · 下次复习：' +
+              (c.due <= SRS.today() ? '今天' : '还有 ' + (c.due - SRS.today()) + ' 天') + '</div>' +
+            '<div class="row center" style="margin-top:14px"><button class="btn" data-close>关闭</button></div>'
+          );
+          function skRow(n, v) {
+            return '<div class="ovsk"><span>' + n + '</span>' +
+              [0, 1, 2].map(function (i) { return '<i class="' + (i < v ? 'on' : '') + '"></i>'; }).join('') + '</div>';
+          }
+        };
+      });
+    },
+
+    /* ==================================================================
+       🗺️ 章节地图
+       ================================================================== */
+    map: function () {
+      App.setHudMode('home');
+      var cur = Save.data.cursor;
+      var html = EQ.units.map(function (u) {
+        var scenes = u.scenes.map(function (s) {
+          var passed = (u.id < cur.unit) || (u.id === cur.unit && s.index < cur.scene);
+          var now = (u.id === cur.unit && s.index === cur.scene);
+          return '<div class="mp-scene item' + (passed ? ' ok' : now ? ' now' : ' dim') + '">' +
+            '<span class="ms-ico">' + s.icon + '</span>' +
+            '<span class="ms-t">' + esc(s.title) + '</span>' +
+            '<span class="ms-z">' + esc(s.titleZh) + '</span>' +
+            '<span class="ms-n">' + s.words.length + ' 词</span>' +
+          '</div>';
+        }).join('');
+        return '<div class="mp-unit"><div class="mp-h px">' + u.icon + '  ' + esc(u.titleZh) +
+               '  <span class="muted">' + esc(u.title) + '</span></div>' +
+               '<div class="mp-row">' + scenes + '</div></div>';
+      }).join('');
+
+      stage.innerHTML =
+        this.head('🗺️', '章节地图', '教材共 ' + EQ.totalWords() + ' 词 · 每个场景 = 一天的课') +
+        '<div class="mp scroll">' + html + '</div>' +
+        '<div class="t-foot"><button class="btn ghost" data-a="back">← 回主页</button></div>';
+      stage.querySelector('[data-a="back"]').onclick = function () { SFX.click(); UI.home(); };
+    },
+
+    /* ==================================================================
+       📊 成长报告
+       ================================================================== */
+    stats: function () {
+      App.setHudMode('home');
+      var d = Save.data, g = SRS.goal();
+      var acc = d.stats.answers ? Math.round(d.stats.correct / d.stats.answers * 100) : 0;
+      var byBox = [0, 0, 0, 0, 0, 0, 0, 0, 0];
+      Object.keys(d.cards).forEach(function (k) { byBox[d.cards[k].b]++; });
+      var maxBox = Math.max.apply(null, byBox) || 1;
+
+      // 最近 28 天打卡格
+      var today = SRS.today();
+      var cal = [];
+      for (var i = 27; i >= 0; i--) {
+        var day = today - i;
+        cal.push('<i class="' + (d.daysDone.indexOf(day) >= 0 ? 'on' : '') + (day === today ? ' t' : '') + '"></i>');
+      }
+
+      stage.innerHTML =
+        this.head('📊', '成长报告', '给爸爸妈妈看的') +
+        '<div class="scroll" style="flex:1">' +
+          '<div class="stat-row">' +
+            sc('💎', g.done + '/' + g.total, '已掌握（听说读写全过）') +
+            sc('📚', SRS.learningCount(), '正在学的词') +
+            sc('🎯', acc + '%', '历史正确率') +
+            sc('⏱', Math.round(d.stats.seconds / 60) + ' 分', '累计学习时长') +
+            sc('🔥', d.streak + ' 天', '当前连续打卡') +
+            sc('📅', g.daysLeft + ' 天', '距 12/31 · 每天需 ' + g.perDay + ' 词') +
+          '</div>' +
+          '<div class="panel" style="margin-top:14px">' +
+            '<div class="px tiny">最近 28 天打卡</div>' +
+            '<div class="cal">' + cal.join('') + '</div>' +
+          '</div>' +
+          '<div class="panel" style="margin-top:12px">' +
+            '<div class="px tiny">记忆盒分布（越靠右说明记得越牢）</div>' +
+            '<div class="boxes">' + byBox.map(function (n, i) {
+              return '<div class="bx"><i style="height:' + Math.round(n / maxBox * 70 + 4) + 'px"></i>' +
+                     '<span>' + (SRS.INTERVAL[i] || 0) + 'd</span><em>' + n + '</em></div>';
+            }).join('') + '</div>' +
+          '</div>' +
+        '</div>' +
+        '<div class="t-foot"><button class="btn ghost" data-a="back">← 回主页</button></div>';
+      stage.querySelector('[data-a="back"]').onclick = function () { SFX.click(); UI.home(); };
+
+      function sc(i, b, l) {
+        return '<div class="stat panel"><div class="s-ico">' + i + '</div>' +
+               '<div class="s-big px">' + b + '</div><div class="s-lab">' + l + '</div></div>';
+      }
+    },
+
+    /* ==================================================================
+       ⚙️ 设置
+       ================================================================== */
+    settings: function () {
+      App.setHudMode('home');
+      var voices = (global.speechSynthesis && speechSynthesis.getVoices()) || [];
+      var enVoices = voices.filter(function (v) { return /^en/i.test(v.lang); });
+      var opts = enVoices.map(function (v) {
+        return '<option value="' + esc(v.name) + '"' + (TTS.voice && TTS.voice.name === v.name ? ' selected' : '') +
+               '>' + esc(v.name) + ' (' + esc(v.lang) + ')</option>';
+      }).join('');
+
+      stage.innerHTML =
+        this.head('⚙️', '设置', '') +
+        '<div class="scroll" style="flex:1">' +
+          '<div class="panel"><div class="px tiny">发音</div>' +
+            '<div class="row" style="margin-top:10px"><span class="tiny" style="color:#333;width:80px">朗读声音</span>' +
+            '<select id="vsel" class="sel">' + (opts || '<option>系统没有英文语音</option>') + '</select>' +
+            '<button class="btn sm" data-a="test">试听</button></div>' +
+            '<div class="tiny" style="color:#555;margin-top:8px">新加坡用英式拼写，建议选 en-GB 的声音（Daniel / Serena / Kate）。</div>' +
+            '<div class="row" style="margin-top:10px">' +
+              '<button class="btn sm ghost" data-a="mute">' + (SFX.muted ? '🔇 音效已关' : '🔊 音效开着') + '</button>' +
+            '</div>' +
+          '</div>' +
+          '<div class="panel" style="margin-top:12px"><div class="px tiny">存档</div>' +
+            '<div class="tiny" style="color:#555;margin:8px 0">进度存在这台设备的浏览器里。换设备前先导出。</div>' +
+            '<div class="row wrap">' +
+              '<button class="btn sm" data-a="export">📤 导出存档</button>' +
+              '<button class="btn sm" data-a="import">📥 导入存档</button>' +
+              '<button class="btn sm ghost" data-a="reset">🗑️ 清空重来</button>' +
+            '</div>' +
+          '</div>' +
+        '</div>' +
+        '<div class="t-foot"><button class="btn ghost" data-a="back">← 回主页</button></div>';
+
+      var sel = document.getElementById('vsel');
+      if (sel) sel.onchange = function () {
+        TTS.voice = enVoices.filter(function (v) { return v.name === sel.value; })[0] || TTS.voice;
+      };
+      stage.querySelector('[data-a="test"]').onclick = function () {
+        TTS.speak('Good morning, Bufan. Time to wake up!', { rate: 0.85 });
+      };
+      stage.querySelector('[data-a="mute"]').onclick = function (e) {
+        SFX.muted = !SFX.muted; e.target.textContent = SFX.muted ? '🔇 音效已关' : '🔊 音效开着';
+      };
+      stage.querySelector('[data-a="export"]').onclick = function () {
+        UI.overlay('<div class="px tiny">复制下面全部文字保存好</div>' +
+          '<textarea class="ta" readonly>' + esc(Save.exportText()) + '</textarea>' +
+          '<div class="row center" style="margin-top:12px"><button class="btn" data-close>关闭</button></div>');
+      };
+      stage.querySelector('[data-a="import"]').onclick = function () {
+        var o = UI.overlay('<div class="px tiny">把导出的文字粘贴进来</div>' +
+          '<textarea class="ta" id="imp"></textarea>' +
+          '<div class="row center" style="margin-top:12px"><button class="btn primary" id="impgo">导入</button>' +
+          '<button class="btn ghost" data-close>取消</button></div>');
+        o.querySelector('#impgo').onclick = function () {
+          try { Save.importText(o.querySelector('#imp').value.trim()); o.remove(); UI.home(); UI.toast('📥', '导入成功', '进度已恢复'); }
+          catch (e) { alert('存档格式不对：' + e.message); }
+        };
+      };
+      stage.querySelector('[data-a="reset"]').onclick = function () {
+        if (confirm('确定清空全部学习进度？这个操作没法撤销。')) { Save.reset(); UI.home(); }
+      };
+      stage.querySelector('[data-a="back"]').onclick = function () { SFX.click(); UI.home(); };
+    }
+  };
+
+  global.UI = UI;
+})(window);
+
+</script>
+<script>
+/* ===== js/app.js ===== */
+/* ============================================================
+   app.js — 启动、顶栏 HUD、热键栏、成就
+   ============================================================ */
+(function (global) {
+  'use strict';
+
+  /* ---------------------- 成就 Advancements ---------------------- */
+  var LIST = [
+    { id: 'first',    ico: '🌱', t: 'Taking Inventory',   b: '完成第一节课' },
+    { id: 'streak3',  ico: '🔥', t: 'Hot Streak',         b: '连续打卡 3 天' },
+    { id: 'streak7',  ico: '🔥', t: 'A Week in the Mines',b: '连续打卡 7 天' },
+    { id: 'streak30', ico: '💠', t: 'Diamonds!',          b: '连续打卡 30 天' },
+    { id: 'perfect',  ico: '🎯', t: 'Sharpshooter',       b: '一节课全对' },
+    { id: 'combo10',  ico: '⚡', t: 'On Fire',            b: '连续答对 10 题' },
+    { id: 'w50',      ico: '📗', t: 'Fifty Words',        b: '掌握 50 个词' },
+    { id: 'w100',     ico: '📘', t: 'Century',            b: '掌握 100 个词' },
+    { id: 'w300',     ico: '📙', t: 'Three Hundred',      b: '掌握 300 个词' },
+    { id: 'w500',     ico: '🏅', t: 'Halfway There',      b: '掌握 500 个词' },
+    { id: 'w1000',    ico: '🐉', t: 'Free the End',       b: '掌握 1000 个词 —— 目标达成！' }
+  ];
+
+  var Ach = {
+    has: function (id) { return Save.data.ach.indexOf(id) >= 0; },
+    grant: function (id) {
+      if (this.has(id)) return;
+      var a = LIST.filter(function (x) { return x.id === id; })[0];
+      if (!a) return;
+      Save.data.ach.push(id); Save.save();
+      UI.toast(a.ico, '达成成就！', a.t + ' — ' + a.b);
+    },
+    check: function (s) {
+      var d = Save.data, m = SRS.masteredCount();
+      this.grant('first');
+      if (d.streak >= 3) this.grant('streak3');
+      if (d.streak >= 7) this.grant('streak7');
+      if (d.streak >= 30) this.grant('streak30');
+      if (s && s.wrong === 0 && s.right > 5) this.grant('perfect');
+      if (s && (s.bestCombo || 0) >= 10) this.grant('combo10');
+      [[50, 'w50'], [100, 'w100'], [300, 'w300'], [500, 'w500'], [1000, 'w1000']]
+        .forEach(function (p) { if (m >= p[0]) Ach.grant(p[1]); });
+    }
+  };
+
+  /* ---------------------- 主控 ---------------------- */
+  var App = {
+    mode: 'home',
+
+    boot: function () {
+      Textures.build();
+      Save.load();
+      TTS.init();
+      UI.mount(document.getElementById('stage'));
+      this.buildHotbar();
+      this.splash();
+    },
+
+    /** 开场页：iPad Safari 必须靠一次用户点击才能解锁语音 */
+    splash: function () {
+      var s = document.getElementById('splash');
+      s.classList.remove('hide');
+      document.getElementById('splash-go').onclick = function () {
+        TTS.unlock(); SFX.unlock(); SFX.click();
+        s.classList.add('gone');
+        setTimeout(function () { s.classList.add('hide'); }, 420);
+        App.setHudMode('home');
+        UI.home();
+      };
+    },
+
+    setHudMode: function (m) {
+      this.mode = m;
+      document.getElementById('app').dataset.mode = m;
+      document.querySelector('.hotbar').classList.toggle('hide', m !== 'session');
+      this.paintHud();
+    },
+
+    startSession: function (opts) {
+      Game.build(opts);
+      this.setHudMode('session');
+      UI.task();
+    },
+
+    advance: function () {
+      TTS.stop();
+      var next = Game.next();
+      if (!next) { UI.home(); return; }
+      UI.task();
+      var st = document.getElementById('stage');
+      if (st) st.scrollTop = 0;
+    },
+
+    quit: function () {
+      if (!confirm('要退出这节课吗？已经答过的题会保留。')) return;
+      TTS.stop(); UI.home();
+    },
+
+    buildHotbar: function () {
+      var bar = document.querySelector('.hotbar');
+      bar.innerHTML = Game.PHASES.map(function (p) {
+        return '<div class="slot" title="' + p.name + '">' + p.ico + '</div>';
+      }).join('');
+    },
+
+    paintHud: function () {
+      var d = Save.data;
+      var lv = Level.info(d.xp);
+      var left = document.getElementById('hud-left');
+      var bar = document.getElementById('xpfill');
+      var txt = document.getElementById('xptext');
+      var lvl = document.getElementById('xplevel');
+      var hearts = document.getElementById('hearts');
+      var gems = document.getElementById('gems');
+
+      lvl.textContent = lv.level;
+      gems.innerHTML = '💎 ' + d.gems;
+
+      if (this.mode === 'session' && Game.session) {
+        var p = Game.progress();
+        var cur = Game.current();
+        var ph = cur ? (Game.PHASES.filter(function (x) { return x.key === (cur.phase || cur.t); })[0] || {}) : {};
+        bar.style.width = p.pct + '%';
+        txt.textContent = (ph.name || '') + '   ' + p.i + ' / ' + p.n;
+        var combo = Math.min(5, Game.session.combo || 0);
+        hearts.innerHTML = [0, 1, 2, 3, 4].map(function (i) {
+          return '<span class="heart' + (i < combo ? '' : ' off') + '">❤️</span>';
+        }).join('');
+        var sc = Game.session.scene;
+        left.innerHTML = '<button class="chip" id="quitbtn">✕ 退出</button>' +
+          (sc ? '<span class="chip">' + sc.icon + ' <b>' + sc.title + '</b></span>' : '<span class="chip">👹 复习日</span>');
+        var qb = document.getElementById('quitbtn');
+        if (qb) qb.onclick = function () { App.quit(); };
+
+        // 热键栏状态
+        var slots = document.querySelectorAll('.hotbar .slot');
+        Game.phaseState().forEach(function (st, i) {
+          if (!slots[i]) return;
+          slots[i].classList.toggle('now', st.now);
+          slots[i].classList.toggle('done', st.done);
+        });
+      } else {
+        bar.style.width = lv.pct + '%';
+        txt.textContent = lv.into + ' / ' + lv.need + ' XP';
+        var st2 = Math.min(5, d.streak);
+        hearts.innerHTML = [0, 1, 2, 3, 4].map(function (i) {
+          return '<span class="heart' + (i < st2 ? '' : ' off') + '">🔥</span>';
+        }).join('');
+        left.innerHTML = '<span class="chip">🏠 <b>' + (d.name || 'Bufan') + '</b></span>' +
+                         '<span class="chip">🔥 ' + d.streak + ' 天</span>';
+      }
+    }
+  };
+
+  global.App = App;
+  global.Ach = Ach;
+
+  document.addEventListener('DOMContentLoaded', function () { App.boot(); });
+})(window);
+
+</script>
+</body>
+</html>
