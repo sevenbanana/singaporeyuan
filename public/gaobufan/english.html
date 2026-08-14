@@ -744,6 +744,21 @@ button.chip{ cursor:pointer; background:#5a2723; border-color:rgba(255,255,255,.
 }
 .voice-good b{ color:#0c2b0e; }
 
+/* 🔍 语音诊断 */
+.vd-tip{ font-size:12px; line-height:1.7; color:#c9c9c9; margin:10px 0; }
+.vd-tip b{ color:var(--gold); }
+.vd-list{ max-height:44vh; border:2px solid #333; padding:6px; background:rgba(0,0,0,.35); }
+.vd-row{
+  display:flex; align-items:center; gap:10px;
+  padding:8px; margin-bottom:6px; background:rgba(255,255,255,.05);
+  border:2px solid rgba(255,255,255,.08);
+}
+.vd-row.now{ border-color:var(--xp); background:rgba(127,252,32,.12); }
+.vd-row.junk{ opacity:.4; }
+.vd-n{ font-size:14px; color:#fff; }
+.vd-m{ font-size:11px; color:#a8a8a8; margin-top:3px; }
+.vd-list + .ta{ height:90px; }
+
 </style>
 </head>
 <body>
@@ -2815,6 +2830,63 @@ EQ.addUnit({
     },
 
     /* ==================================================================
+       🔍 语音诊断 —— 让设备自己报告它到底有什么声音
+       iOS 上「增强语音」不一定会变成独立条目，可能是同名声音悄悄换了高质量数据。
+       所以这里同时给「名字列表」和「逐个试听」，按名字看不出来就用耳朵分辨。
+       ================================================================== */
+    voiceDiag: function () {
+      var all = (global.speechSynthesis && speechSynthesis.getVoices()) || [];
+      // 好的排前面、玩具音沉底，方便在 iPad 上从上往下挨个试听
+      var en = all.filter(function (v) { return /^en/i.test(v.lang); })
+                  .sort(function (a, b) { return TTS.score(b) - TTS.score(a); });
+
+      var rows = en.map(function (v, i) {
+        var s = TTS.score(v);
+        var mine = TTS.voice && TTS.voice.name === v.name;
+        return '<div class="vd-row' + (mine ? ' now' : '') + (s <= -1000 ? ' junk' : '') + '">' +
+          '<button class="btn sm" data-say="' + esc(v.name) + '">🔊</button>' +
+          '<div class="grow"><div class="vd-n">' + esc(v.name) + (mine ? ' ← 现在用的' : '') + '</div>' +
+          '<div class="vd-m">' + esc(v.lang) + ' · ' + (v.localService ? '本地' : '云端') +
+          ' · 评分 ' + s + (s <= -1000 ? '（玩具音，已排除）' : '') + '</div></div>' +
+        '</div>';
+      }).join('') || '<div class="muted">这台设备一个英语语音都没报告出来</div>';
+
+      var plain = '设备: ' + navigator.userAgent + '\n' +
+                  '语音总数: ' + all.length + ' / 英语 ' + en.length + '\n' +
+                  '当前使用: ' + (TTS.voice ? TTS.voice.name + ' [' + TTS.voice.lang + ']' : '无') + '\n\n' +
+                  en.map(function (v) {
+                    return v.name + ' [' + v.lang + '] ' + (v.localService ? '本地' : '云端') + ' 评分' + TTS.score(v);
+                  }).join('\n');
+
+      var o = UI.overlay(
+        '<div class="px tiny">这台设备报告的英语语音（共 ' + en.length + ' 个）</div>' +
+        '<div class="vd-tip">挨个点 🔊 听一遍，<b>按耳朵挑，别按名字挑</b> —— ' +
+          'iOS 上增强语音可能不改名字，只是同一个名字下换成了高质量数据。</div>' +
+        '<div class="vd-list scroll">' + rows + '</div>' +
+        '<textarea class="ta" id="vddump" readonly>' + esc(plain) + '</textarea>' +
+        '<div class="row center wrap" style="margin-top:12px">' +
+          '<button class="btn sm" id="vdcopy">📋 复制这份清单</button>' +
+          '<button class="btn ghost" data-close>关闭</button></div>');
+
+      o.querySelectorAll('[data-say]').forEach(function (b) {
+        b.onclick = function () {
+          var v = en.filter(function (x) { return x.name === b.dataset.say; })[0];
+          if (!v) return;
+          var keep = TTS.voice;
+          TTS.voice = v;
+          TTS.speak('Good morning, Bufan. Time to wake up!', { rate: 0.9 });
+          setTimeout(function () { TTS.voice = keep; }, 2600);
+        };
+      });
+      o.querySelector('#vdcopy').onclick = function () {
+        var t = o.querySelector('#vddump');
+        t.select(); t.setSelectionRange(0, 99999);
+        try { document.execCommand('copy'); UI.toast('📋', '已复制', '粘贴给爸爸看'); }
+        catch (e) { UI.toast('📋', '复制失败', '手动选中文本框里的字'); }
+      };
+    },
+
+    /* ==================================================================
        ⚙️ 设置
        ================================================================== */
     settings: function () {
@@ -2851,8 +2923,9 @@ EQ.addUnit({
               ? '<div class="voice-good">✨ 发现更自然的声音：<b>' + esc(better.name) + '</b>' +
                 '<button class="btn sm primary" data-a="usebest">换成它</button></div>'
               : '') +
-            '<div class="row" style="margin-top:10px">' +
+            '<div class="row wrap" style="margin-top:10px">' +
               '<button class="btn sm ghost" data-a="mute">' + (SFX.muted ? '🔇 音效已关' : '🔊 音效开着') + '</button>' +
+              '<button class="btn sm ghost" data-a="diag">🔍 语音诊断</button>' +
             '</div>' +
           '</div>' +
           '<div class="panel" style="margin-top:12px"><div class="px tiny">玩家</div>' +
@@ -2882,6 +2955,7 @@ EQ.addUnit({
       stage.querySelector('[data-a="test"]').onclick = function () {
         TTS.speak('Good morning, Bufan. Time to wake up!', { rate: 0.9 });
       };
+      stage.querySelector('[data-a="diag"]').onclick = function () { UI.voiceDiag(); };
       var bestBtn = stage.querySelector('[data-a="usebest"]');
       if (bestBtn) bestBtn.onclick = function () {
         TTS.use(better.name); SFX.click();
