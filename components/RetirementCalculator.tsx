@@ -153,7 +153,8 @@ type RawForm = {
   otherIncomeMonthly: string;
   otherIncomeStartAge: string;
   inflation: string;
-  preReturn: string;
+  lumpReturn: string;
+  dcaReturn: string;
   srsReturn: string;
   postReturn: string;
 };
@@ -178,7 +179,8 @@ const BLANK: RawForm = {
   otherIncomeMonthly: '',
   otherIncomeStartAge: '60',
   inflation: '2.5',
-  preReturn: '5',
+  lumpReturn: '4',
+  dcaReturn: '5',
   srsReturn: '4',
   postReturn: '3',
 };
@@ -212,6 +214,21 @@ export default function RetirementCalculator() {
 
   const set = <K extends keyof RawForm>(key: K, value: RawForm[K]) =>
     setRaw((prev) => ({ ...prev, [key]: value }));
+
+  /** 增长率步进:基于最新状态计算,连点不会漏档 */
+  type RateKey = 'lumpReturn' | 'dcaReturn' | 'srsReturn' | 'postReturn' | 'inflation';
+  const RATE_MAX: Record<RateKey, number> = {
+    lumpReturn: 12,
+    dcaReturn: 12,
+    srsReturn: 10,
+    postReturn: 10,
+    inflation: 8,
+  };
+  const stepRate = (key: RateKey, delta: number) =>
+    setRaw((prev) => ({
+      ...prev,
+      [key]: String(clamp(Math.round((num(prev[key]) + delta) * 10) / 10, 0, RATE_MAX[key])),
+    }));
 
   /** 填写过程中把底部的微信/预约条收起来,到结果页再出现 */
   useEffect(() => {
@@ -261,11 +278,12 @@ export default function RetirementCalculator() {
   const assumptions: Assumptions = useMemo(
     () => ({
       inflation: clamp(num(raw.inflation), 0, 8),
-      preReturn: clamp(num(raw.preReturn), 0, 12),
+      lumpReturn: clamp(num(raw.lumpReturn), 0, 12),
+      dcaReturn: clamp(num(raw.dcaReturn), 0, 12),
       srsReturn: clamp(num(raw.srsReturn), 0, 10),
       postReturn: clamp(num(raw.postReturn), 0, 10),
     }),
-    [raw.inflation, raw.preReturn, raw.srsReturn, raw.postReturn],
+    [raw.inflation, raw.lumpReturn, raw.dcaReturn, raw.srsReturn, raw.postReturn],
   );
 
   const runs = useMemo(
@@ -328,7 +346,7 @@ export default function RetirementCalculator() {
   const summaryText = [
     '退休自由度测算 · 新加坡小圆姐',
     `目标:${form.retirementAge} 岁退休,相当于今天每月 ${sgd(form.monthlyGoal)} 的生活,规划到 ${form.planningAge} 岁`,
-    `假设:通胀 ${assumptions.inflation}% | 退休前投资 ${assumptions.preReturn}% | SRS ${assumptions.srsReturn}% | 退休后 ${assumptions.postReturn}%`,
+    `增长假设:现有资产 ${assumptions.lumpReturn}% | 每月定投 ${assumptions.dcaReturn}% | SRS ${assumptions.srsReturn}% | 退休后 ${assumptions.postReturn}% | 通胀 ${assumptions.inflation}%`,
     form.srs > 0 || form.annualSrs > 0
       ? `SRS 提取年龄 ${form.srsAge} 岁,分 ${base.srsSpreadYears} 年提取`
       : '未计入 SRS',
@@ -592,26 +610,44 @@ export default function RetirementCalculator() {
             sub="只算 CPF 和 SRS 以外的钱,不确定的先留空。"
           />
 
-          <div className="mt-9 grid gap-x-6 gap-y-5 sm:grid-cols-2">
-            <NumField
-              id="investments"
-              label="现有投资资产"
-              help="存款、基金、股票、储蓄险现金价值等"
-              prefix="S$"
-              money
-              value={raw.investments}
-              onChange={(v) => set('investments', v)}
-            />
-            <NumField
-              id="monthly-invest"
-              label="每月还会继续投入"
-              help="预计一直持续到退休"
-              prefix="S$"
-              suffix="/ 月"
-              money
-              value={raw.monthlyInvest}
-              onChange={(v) => set('monthlyInvest', v)}
-            />
+          <div className="mt-9 grid gap-x-6 gap-y-6 sm:grid-cols-2">
+            <div>
+              <NumField
+                id="investments"
+                label="现有投资资产"
+                help="存款、基金、股票、储蓄险现金价值等"
+                prefix="S$"
+                money
+                value={raw.investments}
+                onChange={(v) => set('investments', v)}
+              />
+              <RateStepper
+                id="rate-lump"
+                label="这笔钱预计年化增长"
+                value={raw.lumpReturn}
+                onStep={(d) => stepRate('lumpReturn', d)}
+                hint="默认 4%:已经攒下的钱通常配置得更稳一些"
+              />
+            </div>
+            <div>
+              <NumField
+                id="monthly-invest"
+                label="每月还会继续投入"
+                help="预计一直持续到退休"
+                prefix="S$"
+                suffix="/ 月"
+                money
+                value={raw.monthlyInvest}
+                onChange={(v) => set('monthlyInvest', v)}
+              />
+              <RateStepper
+                id="rate-dca"
+                label="定投部分预计年化增长"
+                value={raw.dcaReturn}
+                onStep={(d) => stepRate('dcaReturn', d)}
+                hint="默认 5%:长期定投一般比存量更进取"
+              />
+            </div>
           </div>
 
           <SectionLabel title="退休时的一次性资产" note="选填,没有就留空" />
@@ -636,7 +672,7 @@ export default function RetirementCalculator() {
           <StepFooter
             hint={
               form.investments + form.monthlyInvest > 0
-                ? `按 ${assumptions.preReturn}% 年化,这些钱到 ${form.retirementAge} 岁大约会长到 ${compact(base.investAtRetirement)}。`
+                ? `按上面的增长率,这些钱到 ${form.retirementAge} 岁大约会长到 ${compact(base.investAtRetirement)}。`
                 : '先留空也没关系,下一步填完 CPF 和 SRS 一样能看到结果。'
             }
             back={() => goto(1)}
@@ -752,8 +788,17 @@ export default function RetirementCalculator() {
 
           {raw.srsStatus === 'active' ? (
             <>
-              <div className="mt-5 grid gap-x-6 gap-y-5 sm:grid-cols-2">
-                <NumField id="srs-balance" label="现在的 SRS 余额" prefix="S$" money value={raw.srs} onChange={(v) => set('srs', v)} />
+              <div className="mt-5 grid gap-x-6 gap-y-6 sm:grid-cols-2">
+                <div>
+                  <NumField id="srs-balance" label="现在的 SRS 余额" prefix="S$" money value={raw.srs} onChange={(v) => set('srs', v)} />
+                  <RateStepper
+                    id="rate-srs"
+                    label="SRS 账户预计年化增长"
+                    value={raw.srsReturn}
+                    onStep={(d) => stepRate('srsReturn', d)}
+                    hint="默认 4%:取决于账户里的钱怎么投,放着不动只有 0.05%"
+                  />
+                </div>
                 <NumField
                   id="srs-annual"
                   label="每年还会存多少"
@@ -843,12 +888,25 @@ export default function RetirementCalculator() {
                 调整测算假设
                 <span aria-hidden className="transition-transform duration-300 group-open:rotate-45">＋</span>
               </summary>
-              <div className="mt-5 grid gap-x-6 gap-y-5 sm:grid-cols-2 lg:grid-cols-4">
-                <NumField id="a-inflation" label="长期通胀率" suffix="% / 年" value={raw.inflation} onChange={(v) => set('inflation', v)} />
-                <NumField id="a-pre" label="退休前投资年化" suffix="% / 年" value={raw.preReturn} onChange={(v) => set('preReturn', v)} />
-                <NumField id="a-srs" label="SRS 年化" suffix="% / 年" value={raw.srsReturn} onChange={(v) => set('srsReturn', v)} />
-                <NumField id="a-post" label="退休后资产回报" suffix="% / 年" value={raw.postReturn} onChange={(v) => set('postReturn', v)} />
+              <div className="mt-5 grid gap-x-6 gap-y-3 sm:grid-cols-2">
+                <RateStepper
+                  id="a-inflation"
+                  label="长期通胀率"
+                  value={raw.inflation}
+                  onStep={(d) => stepRate('inflation', d)}
+                  hint="默认 2.5%:用来把今天的目标换算成未来金额"
+                />
+                <RateStepper
+                  id="a-post"
+                  label="退休后资产回报"
+                  value={raw.postReturn}
+                  onStep={(d) => stepRate('postReturn', d)}
+                  hint="默认 3%:退休之后配置通常更保守"
+                />
               </div>
+              <p className="mt-4 text-[11.5px] leading-relaxed text-mist">
+                现有资产、每月定投、SRS 这三条增长率,已经放在上一步和这一步对应的金额旁边,可以直接调。
+              </p>
             </details>
           </div>
 
@@ -1082,8 +1140,62 @@ export default function RetirementCalculator() {
                 <Line label="其他固定收入" value={`${sgd(form.otherIncome.monthly)}/月 · ${form.otherIncome.startAge} 岁起`} />
               ) : null}
               <Line label="退休期长度" value={`${form.planningAge - form.retirementAge} 年(${form.retirementAge}–${form.planningAge} 岁)`} />
-              <Line label="测算假设" value={`通胀 ${assumptions.inflation}% · 退休前 ${assumptions.preReturn}% · 退休后 ${assumptions.postReturn}%`} />
+              <Line label="现有资产增长" value={`年化 ${assumptions.lumpReturn}%`} />
+              <Line label="每月定投增长" value={`年化 ${assumptions.dcaReturn}%`} />
+              <Line label="SRS 增长" value={form.srs > 0 || form.annualSrs > 0 ? `年化 ${assumptions.srsReturn}%` : '未使用'} />
+              <Line label="退休后资产回报" value={`年化 ${assumptions.postReturn}%`} />
+              <Line label="长期通胀" value={`每年 ${assumptions.inflation}%`} />
             </div>
+          </div>
+
+          {/* 假设面板:就地可调,改完上面所有数字立刻跟着变 */}
+          <div className={SUBCARD}>
+            <div className="flex flex-wrap items-start justify-between gap-x-6 gap-y-2">
+              <div>
+                <p className="eyebrow">测算假设</p>
+                <h3 className="mt-2 text-[19px] font-black leading-snug tracking-[-0.02em] text-navy md:text-[21px]">
+                  这些增长率可以直接调
+                </h3>
+              </div>
+              <p className="max-w-[320px] text-[11.5px] leading-relaxed text-mist">
+                调一下就能看到结论有多敏感 —— 这比记住某个具体数字更有用。
+              </p>
+            </div>
+            <div className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+              <RateStepper
+                id="r-lump"
+                label="现有资产年化"
+                value={raw.lumpReturn}
+                onStep={(d) => stepRate('lumpReturn', d)}
+              />
+              <RateStepper
+                id="r-dca"
+                label="每月定投年化"
+                value={raw.dcaReturn}
+                onStep={(d) => stepRate('dcaReturn', d)}
+              />
+              <RateStepper
+                id="r-srs"
+                label="SRS 年化"
+                value={raw.srsReturn}
+                onStep={(d) => stepRate('srsReturn', d)}
+              />
+              <RateStepper
+                id="r-post"
+                label="退休后资产回报"
+                value={raw.postReturn}
+                onStep={(d) => stepRate('postReturn', d)}
+              />
+              <RateStepper
+                id="r-infl"
+                label="长期通胀"
+                value={raw.inflation}
+                onStep={(d) => stepRate('inflation', d)}
+              />
+            </div>
+            <p className="mt-4 text-[11.5px] leading-relaxed text-mist">
+              上面的「压力 / 基础 / 宽松」三个情景,就是在这组数字上下浮动之后跑出来的。
+            </p>
           </div>
 
           {/* 保存 */}
@@ -1297,6 +1409,67 @@ function NumField({
         />
         {suffix ? <span className="shrink-0 text-xs font-medium text-mist">{suffix}</span> : null}
       </div>
+    </div>
+  );
+}
+
+/**
+ * 挂在金额字段下面的增长率控件。
+ * 默认值直接显示出来,客户不用打开任何设置就知道这笔钱按多少在长;
+ * 用 −/+ 步进而不是输入框,手机上一点就改,也不会填进离谱的数字。
+ */
+function RateStepper({
+  id,
+  label,
+  value,
+  onStep,
+  hint,
+}: {
+  id: string;
+  label: string;
+  value: string;
+  /** 只传增量,由父组件用函数式更新落地,连点两下不会丢一档 */
+  onStep: (delta: number) => void;
+  hint?: string;
+}) {
+  const current = num(value);
+  const step = onStep;
+  return (
+    <div className="mt-2 rounded-[11px] border border-navy/[0.09] bg-sand-50 px-3.5 py-2.5">
+      <div className="flex items-center justify-between gap-3">
+        <label htmlFor={id} className="text-[11.5px] font-medium text-mist">
+          {label}
+        </label>
+        <div className="flex items-center gap-1">
+          <button
+            type="button"
+            onClick={() => step(-0.5)}
+            aria-label={`${label}下调 0.5%`}
+            className="grid h-7 w-7 place-items-center rounded-lg border border-navy/15 bg-white text-navy transition-colors hover:border-gold hover:text-gold-deep"
+          >
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden>
+              <path d="M5 12h14" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" />
+            </svg>
+          </button>
+          <output
+            id={id}
+            className="min-w-[54px] text-center text-[15px] font-black tabular-nums text-navy"
+          >
+            {current.toFixed(1)}%
+          </output>
+          <button
+            type="button"
+            onClick={() => step(0.5)}
+            aria-label={`${label}上调 0.5%`}
+            className="grid h-7 w-7 place-items-center rounded-lg border border-navy/15 bg-white text-navy transition-colors hover:border-gold hover:text-gold-deep"
+          >
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden>
+              <path d="M12 5v14M5 12h14" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" />
+            </svg>
+          </button>
+        </div>
+      </div>
+      {hint ? <p className="mt-1.5 text-[11px] leading-relaxed text-mist/90">{hint}</p> : null}
     </div>
   );
 }

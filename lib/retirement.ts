@@ -100,8 +100,12 @@ export type RetirementForm = {
 
 export type Assumptions = {
   inflation: number;
-  preReturn: number;
+  /** 已经攒下的那笔投资资产的年化 */
+  lumpReturn: number;
+  /** 每月定投部分的年化(可以和上面不同:定投多半更进取) */
+  dcaReturn: number;
   srsReturn: number;
+  /** 退休之后的资产回报,通常更保守 */
   postReturn: number;
 };
 
@@ -162,12 +166,10 @@ export function potsAtRetirement(f: RetirementForm, a: Assumptions) {
   // SRS 只能缴到提取年龄为止(达龄后不得再供款)
   const srsContribYears = clamp(f.srsAge - f.currentAge, 0, yearsToRetirement);
 
-  const invest = accumulate(
-    f.investments,
-    f.monthlyInvest * 12,
-    yearsToRetirement,
-    a.preReturn,
-  );
+  // 存量和定投分开算:两者的年化可以不同
+  const investLump = accumulate(f.investments, 0, yearsToRetirement, a.lumpReturn);
+  const investDca = accumulate(0, f.monthlyInvest * 12, yearsToRetirement, a.dcaReturn);
+  const invest = investLump + investDca;
   const srs = accumulate(f.srs, f.annualSrs, yearsToRetirement, a.srsReturn, srsContribYears);
 
   return {
@@ -456,7 +458,8 @@ export function analyse(f: RetirementForm, a: Assumptions): Analysis {
   ];
 
   const assetGap = solveGap(f, a);
-  const fvPerMonthlyDollar = accumulate(0, 12, pots.yearsToRetirement, a.preReturn);
+  // 补缺口靠的是加大定投,所以用定投的年化
+  const fvPerMonthlyDollar = accumulate(0, 12, pots.yearsToRetirement, a.dcaReturn);
   const extraMonthlyNeeded = fvPerMonthlyDollar > 0 ? assetGap / fvPerMonthlyDollar : 0;
 
   const bridgeYears = Math.max(0, srsStartAge - f.retirementAge);
@@ -478,7 +481,9 @@ export function analyse(f: RetirementForm, a: Assumptions): Analysis {
     const age = f.currentAge + y;
     accumulation.push({
       age,
-      invest: accumulate(f.investments, f.monthlyInvest * 12, y, a.preReturn),
+      invest:
+        accumulate(f.investments, 0, y, a.lumpReturn) +
+        accumulate(0, f.monthlyInvest * 12, y, a.dcaReturn),
       srs: accumulate(
         f.srs,
         f.annualSrs,
@@ -522,7 +527,8 @@ export function scenarios(a: Assumptions) {
       name: '压力情景',
       note: '回报较低、通胀较高',
       assumptions: {
-        preReturn: clamp(a.preReturn - 1.5, 0, 12),
+        lumpReturn: clamp(a.lumpReturn - 1.5, 0, 12),
+        dcaReturn: clamp(a.dcaReturn - 1.5, 0, 12),
         srsReturn: clamp(a.srsReturn - 1, 0, 10),
         postReturn: clamp(a.postReturn - 1, 0, 10),
         inflation: clamp(a.inflation + 0.5, 0, 8),
@@ -539,7 +545,8 @@ export function scenarios(a: Assumptions) {
       name: '宽松情景',
       note: '回报较高、通胀较低',
       assumptions: {
-        preReturn: clamp(a.preReturn + 1.5, 0, 12),
+        lumpReturn: clamp(a.lumpReturn + 1.5, 0, 12),
+        dcaReturn: clamp(a.dcaReturn + 1.5, 0, 12),
         srsReturn: clamp(a.srsReturn + 1, 0, 10),
         postReturn: clamp(a.postReturn + 1, 0, 10),
         inflation: clamp(a.inflation - 0.25, 0, 8),
