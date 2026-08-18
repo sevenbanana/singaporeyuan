@@ -51,11 +51,39 @@ const LIFESTYLE = [
 ];
 const lifestyleOf = (v: number) => LIFESTYLE.find((l) => v < l.max) ?? LIFESTYLE[LIFESTYLE.length - 1];
 
-/** 第一步的三张生活方式选择卡 */
+/**
+ * 第一步的三张生活方式选择卡。
+ * scene 是卡片顶部那张小插画的配色:天空渐变 / 远山 / 太阳,
+ * 三档由冷到暖,和金额一起构成「越往右越松弛」的直觉。
+ */
 const GOAL_PRESETS = [
-  { key: 'steady', name: '安稳自在', desc: '日常生活舒适,偶尔旅行', amount: 4000 },
-  { key: 'quality', name: '从容品质', desc: '保持生活品质,每年安排旅行', amount: 6000 },
-  { key: 'free', name: '自由享受', desc: '更多旅行、兴趣和家庭支持', amount: 9000 },
+  {
+    key: 'steady',
+    name: '安稳自在',
+    desc: '日常舒适 · 偶尔旅行',
+    line: '两个人、一杯咖啡,日子慢下来',
+    amount: 4000,
+    motif: 'home' as const,
+    scene: { from: '#e6ecf3', to: '#c3d0dd', hill: '#7d92ad', sun: '#dcc088' },
+  },
+  {
+    key: 'quality',
+    name: '从容品质',
+    desc: '保持品质 · 每年旅行',
+    line: '有时间看世界,也有余裕照顾家人',
+    amount: 6000,
+    motif: 'diamond' as const,
+    scene: { from: '#f4ecdb', to: '#e6d3ae', hill: '#c9a55c', sun: '#fff4dc' },
+  },
+  {
+    key: 'free',
+    name: '自由享受',
+    desc: '更多体验 · 家庭支持',
+    line: '把退休过成一段新的黄金人生',
+    amount: 9000,
+    motif: 'spark' as const,
+    scene: { from: '#f7e8db', to: '#eccfb4', hill: '#a75a28', sun: '#f6d9a8' },
+  },
 ];
 
 /** 「帮我估算」里的支出科目 */
@@ -450,7 +478,7 @@ export default function RetirementCalculator() {
             <NumField id="planning-age" label="希望规划到几岁" help="家庭可按较年轻一方考虑" suffix="岁" value={raw.planningAge} onChange={(v) => set('planningAge', v)} />
           </div>
 
-          <SectionLabel title="想过什么样的生活" note="先选一个大方向,金额随时可以改" />
+          <SectionLabel title="哪一种生活,更像你想要的退休?" note="选择后仍可修改金额" />
           <div className="grid gap-3 sm:grid-cols-3">
             {GOAL_PRESETS.map((p) => {
               const active = Math.abs(form.monthlyGoal - p.amount) < 250;
@@ -459,15 +487,23 @@ export default function RetirementCalculator() {
                   key={p.key}
                   type="button"
                   onClick={() => set('monthlyGoal', String(p.amount))}
-                  className={`rounded-[16px] border p-5 text-left transition-all duration-200 ${
+                  aria-pressed={active}
+                  className={`overflow-hidden rounded-[16px] border text-left transition-all duration-200 ${
                     active
-                      ? 'border-gold bg-[#fffaf0] shadow-[0_12px_30px_-18px_rgba(127,89,37,0.5)]'
-                      : 'border-navy/12 bg-white hover:border-gold/60'
+                      ? 'border-gold shadow-[0_14px_34px_-18px_rgba(127,89,37,0.55)]'
+                      : 'border-navy/12 hover:border-gold/60'
                   }`}
                 >
-                  <p className={`text-[15px] font-black ${active ? 'text-gold-deep' : 'text-navy'}`}>{p.name}</p>
-                  <p className="mt-1.5 text-[12px] leading-relaxed text-mist">{p.desc}</p>
-                  <p className="mt-3 text-[13px] font-bold text-navy">参考 {sgd(p.amount)}/月</p>
+                  <LifestyleScene scene={p.scene} motif={p.motif} selected={active} />
+                  <div className={`p-5 ${active ? 'bg-[#fffaf0]' : 'bg-white'}`}>
+                    <p className="text-[16px] font-black text-navy">{p.name}</p>
+                    <p className="mt-1 text-[12px] leading-relaxed text-mist">{p.desc}</p>
+                    <p className="mt-3.5 whitespace-nowrap text-[22px] font-black tracking-[-0.03em] text-navy">
+                      {sgd(p.amount)}
+                      <span className="text-[12px] font-medium tracking-normal text-mist">/月</span>
+                    </p>
+                    <p className="mt-2.5 text-[11.5px] leading-relaxed text-mist">{p.line}</p>
+                  </div>
                 </button>
               );
             })}
@@ -948,13 +984,10 @@ export default function RetirementCalculator() {
               ))}
             </div>
 
-            <details className="group mt-6">
-              <summary className="inline-flex cursor-pointer list-none items-center gap-1.5 border-b border-gold/40 pb-0.5 text-[13px] font-semibold text-gold-deep [&::-webkit-details-marker]:hidden">
-                查看每一年的详细现金流
-                <span aria-hidden className="transition-transform duration-300 group-open:rotate-45">＋</span>
-              </summary>
-              <div className="mt-2">
-                <p className="mt-4 text-sm leading-relaxed text-mist">
+            <div className="mt-9 border-t border-navy/[0.08] pt-7">
+              <p className="eyebrow">每一年的详细现金流</p>
+              <div>
+                <p className="mt-3 text-sm leading-relaxed text-mist">
                   按你填的目标生活费逐年模拟。
                   {form.srs > 0 ? (
                     <>留意 <b className="text-navy">{base.srsStartAge} 岁</b>才出现的 SRS 色块 —— 在那之前它一分钱都用不上。</>
@@ -983,7 +1016,7 @@ export default function RetirementCalculator() {
                   )}
                 </p>
               </div>
-            </details>
+            </div>
           </div>
 
           {/* 组成拆解 */}
@@ -1007,20 +1040,11 @@ export default function RetirementCalculator() {
           </div>
 
           {/* 积累路径 */}
-          <details className={`${SUBCARD} group`}>
-            <summary className="flex cursor-pointer list-none items-center gap-3 [&::-webkit-details-marker]:hidden">
-              <div>
-                <p className="eyebrow">从今天到退休日 · 未来金额</p>
-                <h3 className="mt-1.5 text-[17px] font-black text-navy">
-                  {form.retirementAge} 岁时预计名下 {compact(base.availableAtRetirement)}
-                </h3>
-              </div>
-              <span aria-hidden className="ml-auto shrink-0 text-gold-deep transition-transform duration-300 group-open:rotate-45">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-                  <path d="M12 5v14M5 12h14" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
-                </svg>
-              </span>
-            </summary>
+          <div className={SUBCARD}>
+            <p className="eyebrow">从今天到退休日 · 未来金额</p>
+            <h3 className="mt-2 text-[21px] font-black leading-snug tracking-[-0.02em] text-navy md:text-[25px]">
+              {form.retirementAge} 岁时预计名下 {compact(base.availableAtRetirement)}
+            </h3>
             <AccumulationChart data={base.accumulation} srsAge={form.srsAge} />
             <Legend
               items={[
@@ -1030,7 +1054,7 @@ export default function RetirementCalculator() {
               ]}
             />
             <HoverHint />
-          </details>
+          </div>
 
           {/* 关键数字 */}
           <div className={SUBCARD}>
@@ -1289,11 +1313,22 @@ function PhaseCard({ phase }: { phase: Phase }) {
 
   return (
     <div className={`rounded-[16px] border p-5 ${phase.short ? 'border-gold/70 bg-[#fffaf0]' : 'border-navy/[0.1] bg-white'}`}>
-      <p className="text-[11px] font-semibold tracking-wide text-gold-deep">
-        {phase.fromAge}–{phase.toAge} 岁
-      </p>
-      <p className="mt-1.5 text-[16px] font-black text-navy">{phase.label}</p>
-      <p className="mt-1.5 min-h-[34px] text-[11.5px] leading-relaxed text-mist">{phase.note}</p>
+      <div className="flex items-start gap-3">
+        <span
+          className={`grid h-11 w-11 shrink-0 place-items-center rounded-[13px] ${
+            phase.short ? 'bg-gold/20 text-gold-deep' : 'bg-navy/[0.06] text-navy/70'
+          }`}
+        >
+          <PhaseIcon kind={phase.srsNet > 1 ? 'unlock' : phase.cpfLife > 1 ? 'horizon' : 'bridge'} />
+        </span>
+        <div className="min-w-0">
+          <p className="text-[11px] font-semibold tracking-wide text-gold-deep">
+            {phase.fromAge}–{phase.toAge} 岁
+          </p>
+          <p className="mt-1 text-[16px] font-black leading-snug text-navy">{phase.label}</p>
+        </div>
+      </div>
+      <p className="mt-3 min-h-[34px] text-[11.5px] leading-relaxed text-mist">{phase.note}</p>
 
       <div className="mt-4 flex h-2.5 overflow-hidden rounded-full bg-navy/[0.07]">
         {sources.map((s) => (
@@ -1322,6 +1357,119 @@ function PhaseCard({ phase }: { phase: Phase }) {
     </div>
   );
 }
+/* ------------------------------------------------------------------ 插画 */
+
+type Scene = { from: string; to: string; hill: string; sun: string };
+
+/**
+ * 生活方式卡的顶部小景:天空渐变 + 太阳 + 两层远山 + 一个白描图形。
+ * 三张卡由冷到暖,配合金额形成「越往右越松弛」的直觉。
+ */
+function LifestyleScene({
+  scene,
+  motif,
+  selected,
+}: {
+  scene: Scene;
+  motif: 'home' | 'diamond' | 'spark';
+  selected: boolean;
+}) {
+  const motifPath =
+    motif === 'home'
+      ? 'M0 5 L7 0 L14 5 L14 14 L0 14 Z'
+      : motif === 'diamond'
+        ? 'M7 0 L14 7 L7 14 L0 7 Z'
+        : 'M7 0 C7.6 4.4 9.6 6.4 14 7 C9.6 7.6 7.6 9.6 7 14 C6.4 9.6 4.4 7.6 0 7 C4.4 6.4 6.4 4.4 7 0 Z';
+
+  // 分层而不是一整张 SVG:天空和远山可以随卡片宽度拉伸,
+  // 太阳和图形用固定定位,窄卡片上既不会被裁掉也不会被压扁。
+  return (
+    <div className="relative h-[132px] w-full overflow-hidden">
+      <div
+        className="absolute inset-0"
+        style={{ background: `linear-gradient(180deg, ${scene.from} 0%, ${scene.to} 100%)` }}
+      />
+      <span
+        aria-hidden
+        className="absolute right-14 top-[22px] h-[38px] w-[38px] rounded-full"
+        style={{ background: scene.sun, opacity: 0.95 }}
+      />
+      <svg
+        viewBox="0 0 300 132"
+        preserveAspectRatio="none"
+        className="absolute inset-0 h-full w-full"
+        aria-hidden
+      >
+        <path
+          d="M0 104 C 60 76 120 84 176 96 C 224 106 268 112 300 114 L300 132 L0 132 Z"
+          fill={scene.hill}
+          opacity="0.42"
+        />
+        <path
+          d="M0 118 C 70 90 148 92 212 104 C 252 111 280 116 300 118 L300 132 L0 132 Z"
+          fill={scene.hill}
+        />
+      </svg>
+      <span aria-hidden className="absolute left-6 top-[46px] text-white/90">
+        <svg width="15" height="15" viewBox="0 0 14 14" fill="none">
+          <path d={motifPath} stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
+        </svg>
+      </span>
+      {selected ? (
+        <span className="absolute right-3.5 top-3.5 grid h-7 w-7 place-items-center rounded-full bg-navy text-cream shadow-[0_4px_12px_rgba(26,39,68,0.35)]">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden>
+            <path
+              d="m5 12.5 4.5 4.5L19 7.5"
+              stroke="currentColor"
+              strokeWidth="2.6"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+        </span>
+      ) : null}
+    </div>
+  );
+}
+
+/** 阶段卡的小图标:衔接期是桥,提取期是解锁,长期是地平线 */
+function PhaseIcon({ kind }: { kind: 'bridge' | 'unlock' | 'horizon' }) {
+  const common = {
+    width: 26,
+    height: 26,
+    viewBox: '0 0 24 24',
+    fill: 'none',
+    stroke: 'currentColor',
+    strokeWidth: 1.5,
+    strokeLinecap: 'round' as const,
+    strokeLinejoin: 'round' as const,
+    'aria-hidden': true,
+  };
+  if (kind === 'bridge')
+    return (
+      <svg {...common}>
+        <path d="M2 15h20" />
+        <path d="M2 15c3.5 0 5.5-5 10-5s6.5 5 10 5" />
+        <path d="M7 15v4M17 15v4M12 10.2V19" />
+      </svg>
+    );
+  if (kind === 'unlock')
+    return (
+      <svg {...common}>
+        <rect x="4" y="10.5" width="16" height="10" rx="2.2" />
+        <path d="M8 10.5V7.6A4 4 0 0 1 15.6 6" />
+        <circle cx="12" cy="15.5" r="1.4" />
+      </svg>
+    );
+  return (
+    <svg {...common}>
+      <path d="M2 17h20" />
+      <circle cx="12" cy="11" r="4.2" />
+      <path d="M12 2.5v2M12 17.5v2M4.6 5.6l1.4 1.4M18 15l1.4 1.4M2.5 11h2M19.5 11h2M4.6 16.4 6 15M18 7l1.4-1.4" />
+    </svg>
+  );
+}
+
 /* -------------------------------------------------------------- 图表 */
 
 /** 所有图表共用的坐标系宽度(viewBox),再按容器等比缩放 */
