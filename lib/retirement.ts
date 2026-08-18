@@ -60,6 +60,17 @@ export function residentTax(chargeableIncome: number): number {
   return b.base + (x - b.floor) * b.rate;
 }
 
+/** 一条退休期固定收入:从 startAge 起按月发放的未来金额 */
+export type IncomeStream = {
+  /** 开始领取那一年的月金额(未来金额,不是今天购买力) */
+  monthly: number;
+  startAge: number;
+  /** 是否每年递增 2%(CPF LIFE 递增计划) */
+  escalating: boolean;
+};
+
+export const EMPTY_STREAM: IncomeStream = { monthly: 0, startAge: 65, escalating: false };
+
 export type RetirementForm = {
   currentAge: number;
   retirementAge: number;
@@ -78,12 +89,10 @@ export type RetirementForm = {
   /** SRS 提取年龄:62 / 63 / 64 */
   srsAge: number;
 
-  /** CPF LIFE、年金、租金等合计,退休开始时的未来月金额 */
-  fixedIncome: number;
-  /** 上述固定收入的开始年龄(CPF LIFE 默认 65) */
-  fixedIncomeStartAge: number;
-  /** 固定收入是否逐年递增(CPF LIFE 递增计划 = 每年 +2%) */
-  fixedIncomeEscalating: boolean;
+  /** CPF LIFE 月领金额 */
+  cpfLife: IncomeStream;
+  /** 租金、年金等其他退休期固定收入 */
+  otherIncome: IncomeStream;
 
   /** 退休当年一次性可动用的其他资产(保单满期金、计划变现的资产等) */
   otherRetirementAssets: number;
@@ -100,8 +109,10 @@ export type LedgerRow = {
   age: number;
   /** 当年名义支出 */
   spend: number;
-  /** 当年名义固定收入 */
-  fixedIncome: number;
+  /** 当年名义 CPF LIFE 收入 */
+  cpfLife: number;
+  /** 当年名义其他固定收入 */
+  otherIncome: number;
   /** 当年 SRS 提取毛额 */
   srsGross: number;
   /** 当年 SRS 提取产生的所得税 */
@@ -204,13 +215,15 @@ export function simulate(
   for (let age = f.retirementAge; age < f.planningAge; age += 1) {
     const spend = todayMonthlySpend * 12 * Math.pow(1 + infl, age - f.currentAge);
 
-    let fixedIncome = 0;
-    if (age >= f.fixedIncomeStartAge) {
-      const escalation = f.fixedIncomeEscalating
-        ? Math.pow(1 + ESCALATING_RATE, age - f.fixedIncomeStartAge)
+    const streamAt = (st: IncomeStream) => {
+      if (age < st.startAge || st.monthly <= 0) return 0;
+      const escalation = st.escalating
+        ? Math.pow(1 + ESCALATING_RATE, age - st.startAge)
         : 1;
-      fixedIncome = f.fixedIncome * 12 * escalation;
-    }
+      return st.monthly * 12 * escalation;
+    };
+    const cpfLife = streamAt(f.cpfLife);
+    const otherIncome = streamAt(f.otherIncome);
 
     let srsGross = 0;
     let srsTax = 0;
@@ -223,7 +236,7 @@ export function simulate(
     }
     const srsNet = srsGross - srsTax;
 
-    const fromAssets = spend - fixedIncome - srsNet;
+    const fromAssets = spend - cpfLife - otherIncome - srsNet;
     liquid -= fromAssets;
 
     if (liquid < -0.5 && shortfallAge === null) shortfallAge = age;
@@ -231,7 +244,8 @@ export function simulate(
     rows.push({
       age,
       spend,
-      fixedIncome,
+      cpfLife,
+      otherIncome,
       srsGross,
       srsTax,
       srsNet,
@@ -309,7 +323,98 @@ export type Analysis = {
   bridge: { years: number; lockedAmount: number; shortfallAge: number | null } | null;
 
   accumulation: { age: number; invest: number; srs: number; other: number }[];
+
+  /** 退休期按里程碑切成的 2–4 个阶段,用于「先看结论」的简版图 */
+  phases: Phase[];
 };
+
+export type Phase = {
+  fromAge: number;
+  toAge: number;
+  label: string;
+  note: string;
+  /** 以下都是该阶段的年均值,已折算成今天的购买力(每月) */
+  spend: number;
+  cpfLife: number;
+  otherIncome: number;
+  srsNet: number;
+  fromAssets: number;
+  /** 该阶段是否出现过资金缺口 */
+  short: boolean;
+};
+
+/**
+ * 把退休期按「谁开始供钱」切段。边界来自实际发生的事件:
+ * SRS 开始/结束提取、CPF LIFE 开始、其他收入开始。
+ */
+function buildPhases(f: RetirementForm, a: Assumptions, run: SimResult): Phase[] {
+  const rows = run.rows;
+  if (!rows.length) return [];
+  const last = f.planningAge - 1;
+
+  const marks = new Set<number>([f.retirementAge]);
+  const add = (age: number) => {
+    if (age > f.retirementAge && age <= last) marks.add(age);
+  };
+  const firstSrs = rows.find((r) => r.srsGross > 0);
+  const lastSrs = [...rows].reverse().find((r) => r.srsGross > 0);
+  if (firstSrs) add(firstSrs.age);
+  if (lastSrs && lastSrs.age < last) add(lastSrs.age + 1);
+  const firstCpf = rows.find((r) => r.cpfLife > 0);
+  if (firstCpf) add(firstCpf.age);
+  const firstOther = rows.find((r) => r.otherIncome > 0);
+  if (firstOther) add(firstOther.age);
+
+  // 相隔太近的边界合并掉,免得切出只有一两年的碎片阶段
+  const starts = Array.from(marks)
+    .sort((x, y) => x - y)
+    .filter((age, i, all) => i === 0 || age - all[i - 1] >= 3)
+    .slice(0, 4);
+
+  return starts.map((from, i) => {
+    const to = i + 1 < starts.length ? starts[i + 1] - 1 : last;
+    const slice = rows.filter((r) => r.age >= from && r.age <= to);
+    const n = slice.length || 1;
+    // 折回今天的购买力,再摊成每月
+    const perMonth = (pick: (r: LedgerRow) => number) =>
+      slice.reduce(
+        (sum, r) => sum + pick(r) / Math.pow(1 + a.inflation / 100, r.age - f.currentAge),
+        0,
+      ) /
+      n /
+      12;
+
+    const hasSrs = slice.some((r) => r.srsGross > 0);
+    const hasCpf = slice.some((r) => r.cpfLife > 0);
+    const label = hasSrs
+      ? 'SRS 提取期'
+      : hasCpf
+        ? '长期退休期'
+        : i === 0
+          ? '自筹衔接期'
+          : '长期退休期';
+    const note = hasSrs
+      ? `SRS 分 ${srsSchedule(f).spreadYears} 年提取${hasCpf ? ',CPF LIFE 同期发放' : ''}`
+      : hasCpf
+        ? 'CPF LIFE 打底,不足部分动用投资资产'
+        : i === 0
+          ? 'SRS 与 CPF LIFE 都还没开始,全靠自有资产'
+          : '主要依靠 CPF LIFE 与剩余投资资产';
+
+    return {
+      fromAge: from,
+      toAge: to,
+      label,
+      note,
+      spend: perMonth((r) => r.spend),
+      cpfLife: perMonth((r) => r.cpfLife),
+      otherIncome: perMonth((r) => r.otherIncome),
+      srsNet: perMonth((r) => r.srsNet),
+      fromAssets: perMonth((r) => Math.max(0, r.fromAssets)),
+      short: slice.some((r) => r.liquidEnd < -0.5),
+    };
+  });
+}
 
 export function analyse(f: RetirementForm, a: Assumptions): Analysis {
   const pots = potsAtRetirement(f, a);
@@ -328,22 +433,25 @@ export function analyse(f: RetirementForm, a: Assumptions): Analysis {
   }
 
   // 各来源在退休时点的现值(SRS 提取计划与支出无关,可直接取 goalRun)
-  let pvFixed = 0;
+  let pvCpf = 0;
+  let pvOther = 0;
   let pvSrsNet = 0;
   for (const row of goalRun.rows) {
     const d = Math.pow(1 + post, row.age - f.retirementAge);
-    pvFixed += row.fixedIncome / d;
+    pvCpf += row.cpfLife / d;
+    pvOther += row.otherIncome / d;
     pvSrsNet += row.srsNet / d;
   }
-  const pvTotal = pots.invest + pots.other + pvFixed + pvSrsNet;
+  const pvTotal = pots.invest + pots.other + pvCpf + pvOther + pvSrsNet;
   const sustainableIdeal = spendingFactor > 0 ? pvTotal / spendingFactor : 0;
 
   // 拆解按现值占比分配到账本解上,保证各段之和等于头条数字
   const share = (v: number) => (pvTotal > 0 ? (v / pvTotal) * sustainableMonthly : 0);
   const breakdown: Breakdown[] = [
-    { key: 'fixed', label: 'CPF LIFE / 固定收入', value: share(pvFixed) },
+    { key: 'cpf', label: 'CPF LIFE', value: share(pvCpf) },
+    { key: 'other', label: '租金 / 年金等', value: share(pvOther) },
     { key: 'srs', label: 'SRS(已扣提取所得税)', value: share(pvSrsNet) },
-    { key: 'other', label: '保单 / 其他资产', value: share(pots.other) },
+    { key: 'lump', label: '保单 / 一次性资产', value: share(pots.other) },
     { key: 'invest', label: '投资资产', value: share(pots.invest) },
   ];
 
@@ -402,6 +510,7 @@ export function analyse(f: RetirementForm, a: Assumptions): Analysis {
     spendingFactor,
     bridge,
     accumulation,
+    phases: buildPhases(f, a, goalRun),
   };
 }
 

@@ -30,7 +30,10 @@ export default function MobileCta() {
 
   return (
     <>
-      <div className="fixed inset-x-0 bottom-0 z-40 border-t border-gold/25 bg-cream/90 backdrop-blur-md md:hidden">
+      <div
+        data-mobile-cta
+        className="fixed inset-x-0 bottom-0 z-40 border-t border-gold/25 bg-cream/90 backdrop-blur-md md:hidden"
+      >
         <div className="container-wide flex gap-3 py-3">
           <button
             onClick={() => setOpen(true)}

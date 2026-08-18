@@ -31,6 +31,7 @@ export default async function RetirementToolPage({
   return (
     <>
       <Watermark
+        density="light"
         text={
           en
             ? 'Yuan Yuan SG · Tools · For reference only'
@@ -39,11 +40,15 @@ export default async function RetirementToolPage({
       />
       <PageHero
         eyebrow={en ? 'Tools' : '小工具'}
-        title={en ? 'Retirement Readiness Calculator' : '退休自由度测算'}
+        title={
+          en
+            ? 'How much can you spend each month after you retire?'
+            : '你现在的退休准备,未来够你每月花多少?'
+        }
         subtitle={
           en
-            ? 'Put CPF LIFE, SRS and your investments on one timeline. Unlike most calculators, this one models SRS as locked until your statutory withdrawal age (62 / 63 / 64) and CPF LIFE as starting at 65 — so early-retirement plans show the cash-flow gap instead of hiding it. (In Chinese)'
-            : '把 CPF LIFE、SRS 和投资资产放在同一条时间线上,逐年模拟退休后每一笔钱从哪里来。SRS 会严格按你的提取年龄(62 / 63 / 64)才计入,CPF LIFE 也按开始领取的年龄计入 —— 想提前退休的人,能直接看到中间那段现金缺口。'
+            ? 'Put CPF LIFE, SRS and your investments together — about 3 minutes to see your retirement income and any funding gap. (In Chinese)'
+            : '把 CPF LIFE、SRS 和投资放在一起,约 3 分钟看到退休收入和可能的资金缺口。'
         }
         accent={
           <svg
