@@ -1,0 +1,1301 @@
+<title>穿越周期的家庭财富</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=Noto+Sans+SC:wght@400;500;700;900&display=swap">
+
+<style>
+/* ───────────────── tokens ───────────────── */
+:root{
+  --ink:#0A1C2E;
+  --ink-2:#0F2A44;
+  --ink-3:#1B4269;
+  --paper:#F4EEE1;
+  --paper-2:#E6DCC7;
+  --sail:#FCF9F2;
+  --gold:#D6A94C;
+  --gold-2:#A9812F;
+  --ember:#B5503C;
+  --mist:#93A9BE;
+  --slate:#51687D;
+  --field:#0F2A44;
+
+  --fs-body:1.0625rem;
+  --wrap:1080px;
+  --shadow:0 24px 60px -28px rgba(0,0,0,.75);
+  --sans:"Archivo",system-ui,-apple-system,"Helvetica Neue",Arial,"Noto Sans SC","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  background:var(--ink);
+  color:var(--paper);
+  font-family:var(--sans);
+  font-size:var(--fs-body);
+  line-height:1.85;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+h1,h2,h3,h4{margin:0;font-weight:900;line-height:1.22;text-wrap:balance;letter-spacing:.01em}
+p{margin:0}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px;border-radius:4px}
+
+/* ───────────────── fixed field (layer 0) ───────────────── */
+.field{position:fixed;inset:0;z-index:0;pointer-events:none;background:var(--ink);transition:background-color 1.2s ease}
+.field__glow{position:absolute;inset:-15% -10%;background:
+   radial-gradient(58% 42% at 22% 12%, color-mix(in srgb, var(--field) 92%, #2C6A9E) 0%, transparent 62%),
+   radial-gradient(50% 40% at 86% 78%, rgba(214,169,76,.13) 0%, transparent 60%);
+  transition:background 1.2s ease}
+.field__grain{position:absolute;inset:0;opacity:.5;
+  background-image:radial-gradient(rgba(255,255,255,.055) 1px, transparent 1px);
+  background-size:3px 3px}
+.field__waves{position:absolute;left:-6%;right:-6%;bottom:-4%;height:46vh;opacity:.5}
+.field__waves svg{width:100%;height:100%}
+
+/* ───────────────── chrome ───────────────── */
+.progress{position:fixed;top:0;left:0;height:3px;width:0;background:linear-gradient(90deg,var(--gold-2),var(--gold));z-index:60}
+.brandbar{position:fixed;top:0;left:0;right:0;z-index:55;display:flex;align-items:center;justify-content:space-between;
+  padding:14px clamp(16px,4vw,40px);pointer-events:none;
+  background:linear-gradient(180deg,rgba(10,28,46,.86),rgba(10,28,46,0));
+  opacity:0;transform:translateY(-12px);transition:opacity .5s ease,transform .5s ease}
+.brandbar.on{opacity:1;transform:none}
+.brandbar b{font-weight:700;font-size:.9rem;letter-spacing:.06em}
+.brandbar span{font-size:.72rem;letter-spacing:.24em;color:var(--mist);text-transform:uppercase}
+
+.dots{position:fixed;right:22px;top:50%;transform:translateY(-50%);z-index:55;display:flex;flex-direction:column;gap:11px}
+.dots a{width:9px;height:9px;border-radius:50%;background:rgba(244,238,225,.24);transition:.35s;position:relative}
+.dots a::after{content:attr(data-t);position:absolute;right:18px;top:50%;transform:translateY(-50%);
+  white-space:nowrap;font-size:.72rem;letter-spacing:.06em;color:var(--mist);opacity:0;transition:.3s;pointer-events:none}
+.dots a:hover::after{opacity:1}
+.dots a.on{background:var(--gold);transform:scale(1.45)}
+@media(max-width:900px){.dots{display:none}}
+
+/* ───────────────── scenes ───────────────── */
+.scene{position:relative;z-index:1;padding:clamp(76px,13vh,140px) clamp(18px,5vw,48px)}
+.scene__art{position:absolute;inset:0;z-index:-1;pointer-events:none;overflow:hidden}
+[data-depth]{transform:translate3d(0,var(--py,0px),0);will-change:transform}
+.inner{max-width:var(--wrap);margin:0 auto;position:relative}
+.narrow{max-width:64ch}
+
+.eyebrow{font-size:.72rem;letter-spacing:.34em;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:14px}
+.h-sec{font-size:clamp(1.85rem,4.4vw,2.9rem)}
+.rule{width:56px;height:3px;background:var(--gold);margin:20px 0 26px;border-radius:2px}
+.lede{color:#CDDAE6;max-width:60ch;margin-top:18px}
+.src{font-size:.76rem;line-height:1.7;color:#6E8399;margin-top:22px;letter-spacing:.01em}
+.kicker{color:var(--gold);font-weight:700}
+
+/* reveal */
+.rise{opacity:0;transform:translateY(30px)}
+.rise.in{opacity:1;transform:none;transition:opacity .85s ease var(--d,0s),transform .85s cubic-bezier(.2,.75,.25,1) var(--d,0s)}
+
+/* ───────────────── hero ───────────────── */
+.hero{min-height:100svh;display:flex;align-items:center;padding-top:clamp(60px,10vh,110px)}
+.hero__art{position:absolute;left:74%;top:56%;width:min(56vw,600px);opacity:.95;
+  transform:translate(-50%,-50%) translate3d(0,var(--py,0px),0)}
+@media(max-width:820px){.hero__art{left:56%;top:74%;width:min(108vw,560px);opacity:.5}}
+.hero h1{font-size:clamp(2.9rem,10.5vw,7rem);line-height:1.02;letter-spacing:-.01em}
+.hero h1 em{font-style:normal;color:var(--gold);display:block}
+.hero__brand{display:flex;align-items:center;gap:14px;margin-bottom:26px}
+.hero__brand b{font-size:clamp(1.1rem,2.6vw,1.35rem);font-weight:900;letter-spacing:.02em}
+.hero__brand i{font-style:normal;font-size:.68rem;letter-spacing:.28em;color:var(--mist);text-transform:uppercase}
+.hero__sub{margin-top:30px;font-size:clamp(1rem,2.2vw,1.2rem);color:#D3E0EA;max-width:19em;text-wrap:pretty}
+.hero__meta{margin-top:44px;display:flex;flex-wrap:wrap;gap:10px 22px;font-size:.82rem;color:var(--mist);letter-spacing:.04em}
+.scroll-hint{position:absolute;left:50%;bottom:26px;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;
+  font-size:.74rem;letter-spacing:.22em;color:var(--mist)}
+.scroll-hint span{display:block;width:1px;height:38px;background:linear-gradient(var(--gold),transparent);animation:drip 2.1s infinite}
+@keyframes drip{0%{transform:scaleY(.2);transform-origin:top;opacity:0}40%{opacity:1}100%{transform:scaleY(1);transform-origin:top;opacity:0}}
+
+/* ───────────────── chapter openers ───────────────── */
+.chapter{min-height:86svh;display:flex;align-items:center}
+.chapter__no{position:absolute;right:3%;top:8%;font-size:clamp(8rem,24vw,19rem);font-weight:800;line-height:.8;
+  color:rgba(214,169,76,.09);letter-spacing:-.04em;z-index:-1}
+.chapter h2{font-size:clamp(2.2rem,7vw,4.2rem);line-height:1.08}
+.chapter__art{position:absolute;right:2%;bottom:6%;width:min(46vw,430px);opacity:.85}
+@media(max-width:820px){.chapter__art{position:relative;right:auto;bottom:auto;width:min(74vw,320px);margin-top:38px;opacity:.9}}
+
+/* ───────────────── cards ───────────────── */
+.card{background:var(--paper);color:var(--ink);border-radius:22px;padding:clamp(22px,3.4vw,38px);box-shadow:var(--shadow)}
+.card--dark{background:linear-gradient(160deg,#12314F,#0C2135);color:var(--paper);box-shadow:var(--shadow);border:1px solid rgba(214,169,76,.22)}
+.card h3{font-size:1.15rem}
+.card p{color:var(--slate)}
+.card--dark p{color:#C3D3E0}
+
+.grid{display:grid;gap:clamp(14px,2vw,22px)}
+.g2{grid-template-columns:repeat(2,1fr)}
+.g3{grid-template-columns:repeat(3,1fr)}
+.g4{grid-template-columns:repeat(4,1fr)}
+@media(max-width:860px){.g3,.g4{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:620px){.g2,.g3,.g4{grid-template-columns:1fr}}
+
+.split{display:grid;grid-template-columns:minmax(0,1.62fr) minmax(0,1fr);gap:clamp(18px,3vw,34px);align-items:start}
+@media(max-width:900px){.split{grid-template-columns:1fr}}
+
+/* stats */
+.stat{padding:22px 4px}
+.stat__n{font-size:clamp(2rem,4.6vw,3rem);font-weight:800;color:var(--gold);line-height:1.1;font-variant-numeric:tabular-nums}
+.stat__l{font-weight:700;margin-top:6px;font-size:.98rem}
+.stat__d{color:var(--mist);font-size:.85rem;line-height:1.6;margin-top:4px}
+
+.pill{display:inline-flex;align-items:center;gap:8px;padding:7px 15px;border-radius:999px;font-size:.86rem;font-weight:500;
+  border:1px solid rgba(10,28,46,.16);background:rgba(255,255,255,.5);color:var(--ink)}
+.pill--star{background:var(--gold);border-color:transparent;color:#20180A;font-weight:700}
+.pill--dark{background:rgba(214,169,76,.16);border-color:rgba(214,169,76,.5);color:var(--paper)}
+
+/* takeaway strip */
+.takeaway{display:block;margin-top:26px;padding:18px 22px;border-radius:16px;
+  background:rgba(214,169,76,.12);border-left:3px solid var(--gold);font-weight:500}
+.takeaway b{color:var(--gold)}
+
+/* ───────────────── charts ───────────────── */
+.chartbox{background:var(--paper);border-radius:22px;padding:clamp(14px,2.4vw,26px);box-shadow:var(--shadow)}
+.chartbox--dark{background:linear-gradient(165deg,#12314F,#0B1E31);border:1px solid rgba(214,169,76,.2)}
+.scroller{overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:thin}
+.scroller svg{display:block;width:100%;height:auto}
+@media(max-width:820px){
+  .scroller--wide svg{min-width:620px}
+  .scroller--wide{position:relative}
+  .scroller--wide::after{content:"← 左右滑动查看完整图表";display:block;font-size:.72rem;letter-spacing:.08em;color:var(--slate);padding:6px 2px 0;position:sticky;left:0}
+  .chartbox--dark .scroller--wide::after{color:var(--mist)}
+  .field__waves{height:30vh;opacity:.35}
+}
+.chart-title{font-size:.82rem;letter-spacing:.16em;text-transform:uppercase;color:var(--slate);margin-bottom:6px;font-weight:600}
+.chartbox--dark .chart-title{color:var(--mist)}
+
+.ax{stroke:rgba(10,28,46,.35);stroke-width:1}
+.gl{stroke:rgba(10,28,46,.16);stroke-width:1;stroke-dasharray:3 5}
+.tick{fill:var(--slate);font-size:13px;font-family:var(--sans)}
+.lab{fill:var(--ink);font-size:14px;font-weight:700;font-family:var(--sans)}
+.val{fill:var(--ink);font-size:17px;font-weight:800;font-family:var(--sans);font-variant-numeric:tabular-nums}
+.dark-chart .ax{stroke:rgba(244,238,225,.3)}
+.dark-chart .gl{stroke:rgba(244,238,225,.13)}
+.dark-chart .tick{fill:var(--mist)}
+.dark-chart .lab,.dark-chart .val{fill:var(--paper)}
+.c-gold{fill:var(--gold)}.c-ember{fill:var(--ember)}.c-ink{fill:var(--ink-2)}
+.s-gold{stroke:var(--gold)}.s-ink{stroke:var(--ink-2)}
+
+.bar{transform:scaleY(0);transform-box:fill-box;transform-origin:bottom;transition:transform 1.05s cubic-bezier(.2,.8,.2,1) var(--d,0s)}
+.bar--neg{transform-origin:top}
+.is-live .bar{transform:scaleY(1)}
+.grow{transform:scaleY(0);transform-box:fill-box;transform-origin:bottom;transition:transform 1.2s cubic-bezier(.25,.8,.25,1) var(--d,0s)}
+.is-live .grow{transform:scaleY(1)}
+.draw{fill:none;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:var(--len);stroke-dashoffset:var(--len);
+  transition:stroke-dashoffset 2.4s cubic-bezier(.35,.1,.2,1) var(--d,0s)}
+.is-live .draw{stroke-dashoffset:0}
+.fade{opacity:0;transition:opacity .8s ease var(--d,.5s)}
+.is-live .fade{opacity:1}
+
+/* ───────────────── interactive: emotions ───────────────── */
+.emo{position:relative}
+.emo__nav{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
+.emo__nav button{font:inherit;font-size:.84rem;font-weight:600;cursor:pointer;padding:8px 14px;border-radius:999px;
+  border:1px solid rgba(244,238,225,.25);background:transparent;color:var(--paper);transition:.28s}
+.emo__nav button:hover{border-color:var(--gold)}
+.emo__nav button.on{background:var(--gold);border-color:var(--gold);color:#20180A}
+.emo__nav button.on.bad{background:var(--ember);border-color:var(--ember);color:#fff}
+.emo__note{margin-top:18px;min-height:5.4em;border-left:3px solid var(--gold);padding-left:18px}
+.emo__note.bad{border-color:var(--ember)}
+.emo__note b{display:block;font-size:1.2rem;margin-bottom:4px}
+.emo__note span{color:#C3D3E0}
+.emo-dot{transition:r .3s ease,fill .3s ease}
+.emo-cursor{transition:transform .7s cubic-bezier(.3,.8,.3,1)}
+
+/* ───────────────── interactive: DCA toggle ───────────────── */
+.toggle{display:inline-flex;padding:4px;border-radius:999px;background:rgba(10,28,46,.08);gap:4px;margin-bottom:14px}
+.toggle button{font:inherit;font-size:.85rem;font-weight:700;cursor:pointer;border:0;background:transparent;color:var(--slate);
+  padding:8px 16px;border-radius:999px;transition:.25s}
+.toggle button.on{background:var(--ink-2);color:var(--paper)}
+.dim{opacity:.22;transition:opacity .5s ease}
+
+.resultcard{border-radius:18px;padding:22px 24px;border:1px solid rgba(244,238,225,.18);background:rgba(255,255,255,.05)}
+.resultcard.hi{border-color:var(--gold);background:rgba(214,169,76,.14)}
+.resultcard p{color:#C3D3E0}
+.resultcard h4{font-size:1rem}
+.resultcard .big{font-size:clamp(2rem,5vw,2.8rem);font-weight:800;line-height:1.15;font-variant-numeric:tabular-nums}
+
+/* ───────────────── interactive: calculator ───────────────── */
+.calc{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:clamp(18px,3vw,34px);align-items:center}
+@media(max-width:820px){.calc{grid-template-columns:1fr}}
+.ctrl{margin-bottom:20px}
+.ctrl__top{display:flex;justify-content:space-between;align-items:baseline;font-size:.9rem;font-weight:600}
+.ctrl__v{font-size:1.15rem;font-weight:800;color:var(--gold);font-variant-numeric:tabular-nums}
+input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:4px;border-radius:4px;background:rgba(244,238,225,.22);margin-top:12px}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:22px;height:22px;border-radius:50%;background:var(--gold);cursor:pointer;border:3px solid #0F2A44}
+input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;background:var(--gold);cursor:pointer;border:3px solid #0F2A44}
+.calc__out{text-align:left}
+.calc__big{font-size:clamp(2.4rem,6.4vw,3.6rem);font-weight:800;color:var(--gold);line-height:1.1;font-variant-numeric:tabular-nums}
+.calc__bars{margin-top:22px;display:flex;flex-direction:column;gap:14px}
+.cbar__label{display:flex;justify-content:space-between;font-size:.85rem;margin-bottom:6px}
+.cbar__track{height:12px;border-radius:8px;background:rgba(244,238,225,.12);overflow:hidden}
+.cbar__fill{height:100%;border-radius:8px;transition:width .6s cubic-bezier(.3,.8,.3,1)}
+
+/* ───────────────── money bags ───────────────── */
+.bags{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(12px,2vw,20px)}
+@media(max-width:820px){.bags{grid-template-columns:1fr}}
+.bag{cursor:pointer;text-align:left;font:inherit;color:inherit;border:1px solid rgba(214,169,76,.28);background:rgba(255,255,255,.04);
+  border-radius:20px;padding:24px;transition:.35s;position:relative;overflow:hidden}
+.bag:hover{border-color:var(--gold);transform:translateY(-4px)}
+.bag.on{background:var(--paper);color:var(--ink);border-color:var(--paper)}
+.bag.on .bag__yrs{color:var(--gold-2)}
+.bag.on .bag__use{color:var(--slate)}
+.bag.on .pill--dark{background:rgba(255,255,255,.6);border-color:rgba(10,28,46,.16);color:var(--ink)}
+.bag.on .pill--star{background:var(--gold)}
+.bag__icon{width:52px;height:52px;margin-bottom:14px}
+.bag__yrs{font-size:.82rem;letter-spacing:.2em;color:var(--gold);font-weight:700;margin-bottom:6px}
+.bag h3{font-size:1.3rem;margin-bottom:8px}
+.bag__use{color:var(--mist);font-size:.9rem;margin-bottom:16px}
+.bag__tools{display:flex;flex-wrap:wrap;gap:8px}
+
+.safety{margin-top:22px;border-radius:20px;padding:24px clamp(18px,3vw,30px);background:linear-gradient(120deg,#12314F,#0B1E31);
+  border:1px solid rgba(214,169,76,.3);display:flex;flex-wrap:wrap;gap:16px 24px;align-items:center}
+.safety h3{color:var(--gold);font-size:1.1rem;white-space:nowrap}
+.safety__row{display:flex;flex-wrap:wrap;gap:8px;flex:1}
+
+/* ───────────────── contact ───────────────── */
+.contact{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:clamp(20px,3vw,40px);align-items:center}
+@media(max-width:820px){.contact{grid-template-columns:1fr;text-align:center;justify-items:center}}
+.avatar{width:132px;height:132px;border-radius:50%;object-fit:cover;border:3px solid var(--gold)}
+.qr{width:132px;height:132px;border-radius:12px;background:#fff;padding:7px}
+.contact__lines{display:flex;flex-direction:column;gap:6px;margin-top:14px;font-size:.98rem}
+.contact__lines a{text-decoration:none;border-bottom:1px solid rgba(214,169,76,.5);padding-bottom:1px}
+.qr-cap{font-size:.76rem;color:var(--mist);text-align:center;margin-top:8px;letter-spacing:.08em}
+
+footer{position:relative;z-index:1;padding:40px clamp(18px,5vw,48px) 60px;border-top:1px solid rgba(244,238,225,.12);
+  color:#6E8399;font-size:.78rem;line-height:1.8}
+footer .inner{display:flex;flex-wrap:wrap;gap:12px 28px;justify-content:space-between}
+
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{transition-duration:.01ms !important;animation:none !important}
+  .rise{opacity:1;transform:none}
+  .bar,.grow{transform:scaleY(1)}
+  .draw{stroke-dashoffset:0}
+  .fade{opacity:1}
+}
+</style>
+
+<!-- ══════════ hand-drawn illustration library ══════════ -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <filter id="rough">
+      <feTurbulence type="fractalNoise" baseFrequency="0.026" numOctaves="3" seed="7" result="n"/>
+      <feDisplacementMap in="SourceGraphic" in2="n" scale="3.2" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+    <filter id="rough-s">
+      <feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="2" seed="3" result="n"/>
+      <feDisplacementMap in="SourceGraphic" in2="n" scale="1.8" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+
+    <!-- 帆船 · 穿越波浪 -->
+    <symbol id="ill-boat" viewBox="0 0 620 340">
+      <g filter="url(#rough)" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="497" cy="86" r="46" stroke="var(--gold)" stroke-width="2.6"/>
+        <g stroke="var(--gold)" stroke-width="2" opacity=".75">
+          <path d="M497 20v-14M497 166v14M417 86h-14M591 86h14M441 30l-10-10M553 142l10 10M553 30l10-10M441 142l-10 10"/>
+        </g>
+        <!-- skyline -->
+        <g opacity=".55" stroke-width="2">
+          <path d="M40 214v-52h26v52M78 214v-74h22v74M112 214v-40h20v40M556 214v-58h24v58"/>
+          <path d="M150 214v-96l18-14 18 14v96"/>
+          <path d="M150 132h36M40 176h26M78 158h22"/>
+        </g>
+        <!-- boat -->
+        <path d="M228 214h150l-20 30q-55 12-110 0z" fill="rgba(214,169,76,.16)"/>
+        <path d="M300 214V72"/>
+        <path d="M308 84v122h74z" fill="rgba(214,169,76,.22)"/>
+        <path d="M292 92v112h-64z" fill="rgba(244,238,225,.1)"/>
+        <path d="M300 72l30 12-30 11z" fill="var(--gold)" stroke="var(--gold)"/>
+        <!-- waves -->
+        <g stroke-width="2.6">
+          <path d="M6 254q30-18 60 0t60 0 60 0 60 0 60 0 60 0 60 0 60 0 60 0 60 0"/>
+          <path d="M-14 288q34-20 68 0t68 0 68 0 68 0 68 0 68 0 68 0 68 0 68 0" opacity=".7"/>
+          <path d="M6 320q30-18 60 0t60 0 60 0 60 0 60 0 60 0 60 0 60 0 60 0 60 0" opacity=".45"/>
+        </g>
+      </g>
+    </symbol>
+
+    <!-- 灯塔 · 风浪中的坐标 -->
+    <symbol id="ill-lighthouse" viewBox="0 0 320 380">
+      <g filter="url(#rough)" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M120 300l16-176h48l16 176z" fill="rgba(244,238,225,.06)"/>
+        <path d="M133 176h54M129 220h62M125 264h70"/>
+        <path d="M134 124h52l-8-20h-36z" fill="rgba(214,169,76,.3)" stroke="var(--gold)"/>
+        <path d="M148 104l12-22 12 22" stroke="var(--gold)"/>
+        <g stroke="var(--gold)" stroke-width="2" opacity=".8">
+          <path d="M132 112L36 78M132 124L26 132M188 112l96-34M188 124l106 8"/>
+        </g>
+        <path d="M96 300h128" stroke-width="3"/>
+        <g stroke-width="2.6">
+          <path d="M10 322q28-20 56 0t56 0 56 0 56 0 56 0 56 0"/>
+          <path d="M-8 352q30-22 60 0t60 0 60 0 60 0 60 0 60 0" opacity=".65"/>
+        </g>
+        <path d="M44 44q14-12 28 0" opacity=".5"/>
+        <path d="M64 30q10-9 20 0" opacity=".35"/>
+      </g>
+    </symbol>
+
+    <!-- 浇灌 · 定投与复利 -->
+    <symbol id="ill-sprout" viewBox="0 0 340 340">
+      <g filter="url(#rough)" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M36 96h74v50q0 14-14 14H50q-14 0-14-14z" fill="rgba(244,238,225,.06)"/>
+        <path d="M110 108l34-14-8 34" stroke="var(--gold)"/>
+        <path d="M46 96q18-16 42 0"/>
+        <path d="M52 96q0-26 26-26" />
+        <g stroke="var(--gold)" stroke-width="2.4">
+          <path d="M148 132v16M162 142v14M136 146v12"/>
+        </g>
+        <path d="M186 300h84l-12-92h-60z" fill="rgba(214,169,76,.16)"/>
+        <path d="M180 208h96"/>
+        <path d="M228 208v-58"/>
+        <path d="M228 168q-40-4-46-44 42 2 46 44z" fill="rgba(244,238,225,.1)"/>
+        <path d="M228 150q34-6 40-44-38 4-40 44z" fill="rgba(214,169,76,.22)"/>
+        <g stroke="var(--gold)" stroke-width="2.4">
+          <circle cx="86" cy="238" r="16"/><path d="M80 238h12M86 232v12"/>
+          <circle cx="120" cy="278" r="13"/><path d="M115 278h10"/>
+          <circle cx="62" cy="288" r="11"/>
+        </g>
+        <path d="M20 316h300" stroke-width="3"/>
+      </g>
+    </symbol>
+
+    <!-- 伞 · 家庭安全网 -->
+    <symbol id="ill-shelter" viewBox="0 0 360 340">
+      <g filter="url(#rough)" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M40 150q0-96 140-96t140 96z" fill="rgba(214,169,76,.18)" stroke="var(--gold)"/>
+        <path d="M40 150q34-30 70 0 34-30 70 0 34-30 70 0 34-30 70 0" stroke="var(--gold)"/>
+        <path d="M180 54v208q0 26-26 26t-26-22"/>
+        <path d="M128 214h104v86H128z" fill="rgba(244,238,225,.07)"/>
+        <path d="M118 214l62-46 62 46"/>
+        <path d="M162 300v-44h36v44"/>
+        <g stroke="var(--gold)" stroke-width="2.2" opacity=".85">
+          <path d="M52 196l-14 34M300 196l14 34M28 244l-10 24M330 244l10 24"/>
+        </g>
+        <path d="M14 300h332" stroke-width="3"/>
+      </g>
+    </symbol>
+
+    <!-- 背景波纹 -->
+    <symbol id="ill-wavefield" viewBox="0 0 1200 300" preserveAspectRatio="none">
+      <g fill="none" stroke="var(--gold)" stroke-width="1.6" opacity=".33" filter="url(#rough-s)">
+        <path d="M0 40q60-28 120 0t120 0 120 0 120 0 120 0 120 0 120 0 120 0 120 0 120 0"/>
+        <path d="M0 100q60-28 120 0t120 0 120 0 120 0 120 0 120 0 120 0 120 0 120 0 120 0"/>
+        <path d="M0 160q60-28 120 0t120 0 120 0 120 0 120 0 120 0 120 0 120 0 120 0 120 0"/>
+        <path d="M0 220q60-28 120 0t120 0 120 0 120 0 120 0 120 0 120 0 120 0 120 0 120 0"/>
+        <path d="M0 280q60-28 120 0t120 0 120 0 120 0 120 0 120 0 120 0 120 0 120 0 120 0"/>
+      </g>
+    </symbol>
+
+    <!-- 钱袋子图标 -->
+    <symbol id="ic-bag1" viewBox="0 0 64 64">
+      <g filter="url(#rough-s)" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round">
+        <ellipse cx="32" cy="20" rx="17" ry="6"/><ellipse cx="32" cy="32" rx="17" ry="6"/><ellipse cx="32" cy="44" rx="17" ry="6"/>
+        <path d="M15 20v24M49 20v24"/>
+      </g>
+    </symbol>
+    <symbol id="ic-bag2" viewBox="0 0 64 64">
+      <g filter="url(#rough-s)" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M32 12v38M18 50h28M14 22h36M20 22l-9 18a9 9 0 0018 0zM44 22l-9 18a9 9 0 0018 0z"/>
+      </g>
+    </symbol>
+    <symbol id="ic-bag3" viewBox="0 0 64 64">
+      <g filter="url(#rough-s)" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M32 8c9 8 13 18 13 28l-6 10H25l-6-10c0-10 4-20 13-28z"/>
+        <circle cx="32" cy="28" r="5"/><path d="M27 46l-6 10 8-3M37 46l6 10-8-3"/>
+      </g>
+    </symbol>
+    <symbol id="ic-shield" viewBox="0 0 64 64">
+      <g filter="url(#rough-s)" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M32 8l20 8v18c0 12-9 20-20 24-11-4-20-12-20-24V16z"/><path d="M23 32l7 7 12-13"/>
+      </g>
+    </symbol>
+  </defs>
+</svg>
+
+<div class="progress" id="progress"></div>
+<div class="field" id="field">
+  <div class="field__glow"></div>
+  <div class="field__grain"></div>
+  <div class="field__waves" id="fieldWaves"><svg viewBox="0 0 1200 300" preserveAspectRatio="none"><use href="#ill-wavefield"/></svg></div>
+</div>
+
+<header class="brandbar" id="brandbar">
+  <b>新加坡小圆姐 <span style="color:var(--mist);font-weight:400">×</span> AIA</b>
+  <span>让家庭财富穿越周期</span>
+</header>
+
+<nav class="dots" id="dots" aria-label="章节导航"></nav>
+
+<!-- ══════════ 封面 ══════════ -->
+<section class="scene hero" id="s-cover" data-title="封面" data-tint="#0F2A44">
+  <div class="scene__art"><div class="hero__art" data-depth="-0.42"><svg viewBox="0 0 620 340" style="width:100%;height:auto;color:rgba(244,238,225,.34)"><use href="#ill-boat"/></svg></div></div>
+  <div class="inner">
+    <div class="hero__brand rise">
+      <b>新加坡小圆姐</b>
+      <i>AIA Singapore · Healthier, Longer, Better Lives</i>
+    </div>
+    <h1 class="rise" style="--d:.1s">让家庭财富<em>穿越周期</em></h1>
+    <p class="hero__sub rise" style="--d:.22s">如何通过投资实现财富增值<br>让每一分钱，都用在最对的地方。</p>
+    <div class="hero__meta rise" style="--d:.34s">
+      <span>袁媛 Yuan Yuan · AIA 财富管理顾问</span>
+      <span>2026 年 8 月</span>
+      <span>阅读约 8 分钟 · 建议下滑体验</span>
+    </div>
+  </div>
+  <div class="scroll-hint" aria-hidden="true">向下滑动<span></span></div>
+</section>
+
+<!-- ══════════ 关于 AIA ══════════ -->
+<section class="scene" id="s-aia" data-title="关于 AIA" data-tint="#10314E">
+  <div class="inner">
+    <p class="eyebrow rise">About AIA</p>
+    <h2 class="h-sec rise" style="--d:.06s">稳健护航的投资实力</h2>
+    <div class="rule rise" style="--d:.1s"></div>
+    <div class="grid g4" data-live style="margin-top:26px">
+      <div class="stat rise" style="--d:.05s"><div class="stat__n"><span data-count="1919" data-dur="1400" data-plain="1">1919</span></div><div class="stat__l">年成立 · 百年传承</div><div class="stat__d">深耕亚洲逾百年，18 个市场分支机构</div></div>
+      <div class="stat rise" style="--d:.13s"><div class="stat__n"><span data-count="3450">0</span> 亿+</div><div class="stat__l">总资产（美元）</div><div class="stat__d">雄厚资金实力，稳健护航财富增值</div></div>
+      <div class="stat rise" style="--d:.21s"><div class="stat__n"><span data-count="4400">0</span> 万+</div><div class="stat__l">个人保单</div><div class="stat__d">为超过 4,400 万份个人保单提供服务</div></div>
+      <div class="stat rise" style="--d:.29s"><div class="stat__n">连续 <span data-count="12">0</span> 年</div><div class="stat__l">MDRT 全球第一</div><div class="stat__d">百万圆桌注册会员数全球之冠</div></div>
+    </div>
+    <div class="grid g4 rise" style="--d:.34s;margin-top:34px">
+      <div class="card card--dark"><h3>全球最大市值寿险公司</h3><p style="margin-top:8px">唯一一家总部设于香港、100% 专注亚洲的国际人寿保险公司</p></div>
+      <div class="card card--dark"><h3>250+ 资深投资管理专家</h3><p style="margin-top:8px">汇聚全球智慧，严谨把控每一笔资产配置</p></div>
+      <div class="card card--dark"><h3>全球多元资产配置</h3><p style="margin-top:8px">分散风险、优化回报，布局全球优质资产</p></div>
+      <div class="card card--dark"><h3>严选全球顶尖基金经理</h3><p style="margin-top:8px">精挑细选、择优合作，为客户实现卓越回报</p></div>
+    </div>
+    <p class="src rise">数据来源：AIA 官方公开资料。</p>
+  </div>
+</section>
+
+<!-- ══════════ 章节 01 ══════════ -->
+<section class="scene chapter" id="s-c1" data-title="第一章 · 市场" data-tint="#0C2439">
+  <div class="scene__art">
+    <div class="chapter__no" data-depth="-0.2">01</div>
+    <div class="chapter__art" data-depth="-0.3"><svg viewBox="0 0 320 380" style="width:100%;height:auto;color:rgba(244,238,225,.4)"><use href="#ill-lighthouse"/></svg></div>
+  </div>
+  <div class="inner narrow">
+    <p class="eyebrow rise">Staying invested beats timing</p>
+    <h2 class="rise" style="--d:.08s">市场：<br>长期持有<br>胜过择时</h2>
+    <div class="rule rise" style="--d:.14s"></div>
+    <p class="lede rise" style="--d:.18s">为什么「时间在市场中」，比「挑选时点」更重要。<br>接下来的五组数据，回答的其实是同一个问题。</p>
+  </div>
+</section>
+
+<!-- ══════════ MSCI 长期趋势 ══════════ -->
+<section class="scene" id="s-crisis" data-title="历经危机" data-tint="#102D49">
+  <div class="inner">
+    <p class="eyebrow rise">Through every crisis</p>
+    <h2 class="h-sec rise" style="--d:.06s">市场历经危机，长期趋势始终向上</h2>
+    <div class="rule rise" style="--d:.1s"></div>
+    <div class="chartbox chartbox--dark dark-chart rise" data-live style="--d:.14s;margin-top:8px">
+      <p class="chart-title">MSCI 全球指数（对数刻度）</p>
+      <div class="scroller scroller--wide"><svg id="ch-msci" viewBox="0 0 980 440" role="img" aria-label="MSCI 全球指数 1987 至 2023 年走势，历经九次重大危机后累计上涨约十五倍"></svg></div>
+    </div>
+    <div class="grid g3" data-live style="margin-top:24px">
+      <div class="stat rise"><div class="stat__n"><span data-count="37">0</span> 年</div><div class="stat__l">时间跨度</div></div>
+      <div class="stat rise" style="--d:.1s"><div class="stat__n"><span data-count="9">0</span> 次</div><div class="stat__l">重大危机</div></div>
+      <div class="stat rise" style="--d:.2s"><div class="stat__n">约 <span data-count="15">0</span> 倍</div><div class="stat__l">指数累计涨幅</div></div>
+    </div>
+    <p class="src rise">来源：MSCI，截至 2023 年 12 月 31 日。仅供说明用途，过往表现并不代表未来表现，投资者无法直接投资于任何指数。</p>
+  </div>
+</section>
+
+<!-- ══════════ 持有 15 年 ══════════ -->
+<section class="scene" id="s-hold" data-title="持有 15 年" data-tint="#0E2B45">
+  <div class="inner">
+    <p class="eyebrow rise">Stay invested</p>
+    <h2 class="h-sec rise" style="--d:.06s">持有 15 年以上，大概率不会亏损</h2>
+    <div class="rule rise" style="--d:.1s"></div>
+    <div class="split" style="margin-top:8px">
+      <div class="chartbox rise" data-live style="--d:.14s">
+        <p class="chart-title">各滚动持有期的年化回报区间</p>
+        <div class="scroller"><svg id="ch-rolling" viewBox="0 0 620 420" role="img" aria-label="不同持有期的最好与最差回报区间，持有期越长区间越窄"></svg></div>
+      </div>
+      <div class="card card--dark rise" style="--d:.24s">
+        <h3 style="color:var(--gold)">关键结论</h3>
+        <p style="margin-top:16px"><b style="color:var(--paper)">持有 1 年：</b>回报范围极宽，运气成分很大。</p>
+        <p style="margin-top:14px"><b style="color:var(--gold)">持有 15 年以上：</b>历史回报区间整体为正 —— 大概率不会亏损。</p>
+        <div class="takeaway" style="margin-top:22px">持有期拉长，回报区间<b>显著收窄并整体上移</b>。</div>
+      </div>
+    </div>
+    <p class="src rise">来源：MSCI 世界指数各滚动持有期回报区间。仅供说明用途，过往表现并不代表未来表现。</p>
+  </div>
+</section>
+
+<!-- ══════════ 牛熊 ══════════ -->
+<section class="scene" id="s-bull" data-title="牛长熊短" data-tint="#11324F">
+  <div class="inner">
+    <p class="eyebrow rise">Bulls run longer</p>
+    <h2 class="h-sec rise" style="--d:.06s">牛市绵长丰厚，熊市短暂有限</h2>
+    <div class="rule rise" style="--d:.1s"></div>
+    <div class="chartbox chartbox--dark dark-chart rise" data-live style="--d:.14s;margin-top:8px">
+      <p class="chart-title">牛市累计涨幅 vs 熊市跌幅（示意）</p>
+      <div class="scroller scroller--wide"><svg id="ch-bull" viewBox="0 0 900 420" role="img" aria-label="1970 年以来牛市与熊市交替，牛市持续时间与涨幅远大于熊市"></svg></div>
+    </div>
+    <div class="grid g2" style="margin-top:18px">
+      <div class="card rise" style="--d:.2s">
+        <h3 style="color:var(--gold-2)">牛市 · 平均持续约 5 年</h3>
+        <p style="margin-top:6px">平均累计回报数倍于熊市跌幅，且往往在最悲观的时点起步。</p>
+      </div>
+      <div class="card rise" style="--d:.28s">
+        <h3 style="color:var(--ember)">熊市 · 平均仅约 14 个月</h3>
+        <p style="margin-top:6px">跌幅有限，且往往迅速修复 —— 真正的风险，是那段时间里离场。</p>
+      </div>
+    </div>
+    <div class="takeaway rise">错过牛市反弹的代价，<b>往往大于承受熊市下跌的损失</b>。</div>
+    <p class="src rise">来源：MSCI。熊市定义为高点至低点跌幅 20% 以上；其余时期为牛市。仅供说明用途。</p>
+  </div>
+</section>
+
+<!-- ══════════ 错过最好的 40 天 ══════════ -->
+<section class="scene" id="s-miss" data-title="错过 40 天" data-tint="#0C2439">
+  <div class="inner">
+    <p class="eyebrow rise">Missing the best days</p>
+    <h2 class="h-sec rise" style="--d:.06s">错过最好的 40 天，收益由正转负</h2>
+    <div class="rule rise" style="--d:.1s"></div>
+    <div class="split" style="margin-top:8px">
+      <div class="chartbox rise" data-live style="--d:.14s">
+        <p class="chart-title">US$1,000 投资十年后的价值</p>
+        <div class="scroller scroller--wide"><svg id="ch-miss" viewBox="0 0 700 440" role="img" aria-label="完整持有十年为 2418 美元，错过表现最好的 40 天后仅剩 815 美元"></svg></div>
+      </div>
+      <div class="card card--dark rise" style="--d:.24s">
+        <h3 style="color:var(--gold)">为什么躲不开？</h3>
+        <p style="margin-top:16px;color:var(--gold)"><b>涨幅最好的日子，往往就紧跟在跌得最深的日子之后</b><span style="color:#C3D3E0"> —— 恐慌离场的人，几乎必然错过反弹。</span></p>
+        <p style="margin-top:14px">没有人能预测这几十天何时出现。</p>
+        <div class="takeaway" style="margin-top:20px"><b>呆在市场里，通常比反复进出更可控。</b></div>
+      </div>
+    </div>
+    <p class="src rise">资料来源：资本集团。假设于 2014 年 12 月 31 日以 US$1,000 投资于 MSCI ACWI（股息再投资），至 2024 年 12 月 31 日。</p>
+  </div>
+</section>
+
+<!-- ══════════ 情绪陷阱（互动） ══════════ -->
+<section class="scene" id="s-emo" data-title="情绪陷阱" data-tint="#122F3F">
+  <div class="inner">
+    <p class="eyebrow rise">Emotions cost returns</p>
+    <h2 class="h-sec rise" style="--d:.06s">追涨杀跌：个人投资者的情绪陷阱</h2>
+    <div class="rule rise" style="--d:.1s"></div>
+    <p class="lede rise" style="--d:.14s">点一点每个节点，看看这条曲线上的人，当时在想什么。</p>
+    <div class="chartbox chartbox--dark dark-chart emo rise" data-live style="--d:.18s;margin-top:22px">
+      <div class="scroller scroller--wide"><svg id="ch-emo" viewBox="0 0 900 340" role="img" aria-label="投资者情绪曲线，从观望到追涨、贪婪、恐慌、割肉再到追涨"></svg></div>
+      <div class="emo__nav" id="emoNav"></div>
+      <div class="emo__note" id="emoNote"><b>观望 · 再等等看</b><span>市场刚刚回暖，账户里的钱还没动 —— 「再看看，等确定了再进。」</span></div>
+    </div>
+    <div class="takeaway rise"><span><b>金色 = 买入冲动，暗红 = 恐慌卖出：</b>每一步都合乎人性，却步步亏钱。</span></div>
+  </div>
+</section>
+
+<!-- ══════════ 历史新高 ══════════ -->
+<section class="scene" id="s-high" data-title="历史新高" data-tint="#0E2B45">
+  <div class="inner">
+    <p class="eyebrow rise">All-time highs are normal</p>
+    <h2 class="h-sec rise" style="--d:.06s">即使买在「历史新高」，长期回报依然可观</h2>
+    <div class="rule rise" style="--d:.1s"></div>
+    <div class="split" style="margin-top:8px;grid-template-columns:minmax(0,1fr) minmax(0,1.5fr)">
+      <div class="card card--dark rise" style="--d:.14s">
+        <div style="width:52px;height:52px;border-radius:50%;background:var(--gold);color:#20180A;display:flex;align-items:center;justify-content:center;font-size:1.8rem;font-weight:800;line-height:1">&ldquo;</div>
+        <p style="margin-top:18px;font-size:1.15rem;font-weight:700;color:var(--paper);line-height:1.7">现在都历史新高了，<br>我想等回调再进。</p>
+        <p style="margin-top:18px"><b style="color:var(--gold)">数据的回答：</b>对长期上行的市场而言，「新高」是常态而非风险信号 —— 大多数新高之后，还有更多新高。</p>
+      </div>
+      <div class="chartbox rise" data-live style="--d:.22s">
+        <p class="chart-title">买在历史新高之后的平均累计回报</p>
+        <div class="scroller"><svg id="ch-high" viewBox="0 0 620 420" role="img" aria-label="买在历史新高后，一年平均回报 15.5%，五年 80.3%，十年 190.9%"></svg></div>
+      </div>
+    </div>
+    <div class="takeaway rise">不必为等待回调而停止投资 —— <b>等待的成本，通常高于回调本身</b>。</div>
+    <p class="src rise">来源：资本集团，截至 2025 年 12 月底；模拟区间 1976 年 1 月–2025 年 12 月，使用 MSCI 世界指数。仅供说明用途。</p>
+  </div>
+</section>
+
+<!-- ══════════ 章节 02 ══════════ -->
+<section class="scene chapter" id="s-c2" data-title="第二章 · 方法" data-tint="#0B2135">
+  <div class="scene__art">
+    <div class="chapter__no" data-depth="-0.2">02</div>
+    <div class="chapter__art" data-depth="-0.3"><svg viewBox="0 0 340 340" style="width:100%;height:auto;color:rgba(244,238,225,.4)"><use href="#ill-sprout"/></svg></div>
+  </div>
+  <div class="inner narrow">
+    <p class="eyebrow rise">Discipline, DCA &amp; compounding</p>
+    <h2 class="rise" style="--d:.08s">方法：<br>定投、复利<br>与纪律</h2>
+    <div class="rule rise" style="--d:.14s"></div>
+    <p class="lede rise" style="--d:.18s">不预测、不纠结，让时间与纪律完成增值。</p>
+    <p class="lede rise" style="--d:.24s;color:var(--gold)">复利被称为「世界第八大奇迹」。<br>它真正依靠的，是时间与持续投入。</p>
+  </div>
+</section>
+
+<!-- ══════════ 定投原理（互动） ══════════ -->
+<section class="scene" id="s-dca" data-title="定投原理" data-tint="#10314E">
+  <div class="inner">
+    <p class="eyebrow rise">How DCA works</p>
+    <h2 class="h-sec rise" style="--d:.06s">同样的市场，两种截然不同的结果</h2>
+    <div class="rule rise" style="--d:.1s"></div>
+    <div class="split" style="margin-top:8px">
+      <div class="chartbox rise" data-live style="--d:.14s">
+        <div class="toggle" id="dcaToggle" role="group" aria-label="切换投入方式">
+          <button type="button" data-m="both" class="on">两者对比</button>
+          <button type="button" data-m="lump">一次性投入</button>
+          <button type="button" data-m="dca">每月定投</button>
+        </div>
+        <div class="scroller scroller--wide"><svg id="ch-dca" viewBox="0 0 760 420" role="img" aria-label="八个月的价格波动中，一次性买入成本 10 美元，定投平均成本 8.16 美元"></svg></div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:16px">
+        <div class="resultcard rise" id="rc-lump" style="--d:.2s">
+          <h4>一次性投入 US$800</h4>
+          <div class="big" style="color:var(--mist)">回报 0%</div>
+          <p style="font-size:.9rem;margin-top:6px">以 $10 买入后市场波动，八个月后价格回到 $10 —— 不赚不亏</p>
+        </div>
+        <div class="resultcard hi rise" id="rc-dca" style="--d:.28s">
+          <h4>每月定投 US$100</h4>
+          <div class="big" style="color:var(--gold)">回报 +22.5%</div>
+          <p style="font-size:.9rem;margin-top:6px">低位自动多买、高位自动少买，平均成本降至 $8.16</p>
+        </div>
+      </div>
+    </div>
+    <p class="src rise">示意案例：假设价格走势为 $10→$20→$7→$15→$5→$6→$6.5→$10，定投平均成本 $8.16（$10 ÷ $8.16 − 1 ≈ +22.5%）。仅供说明用途。</p>
+  </div>
+</section>
+
+<!-- ══════════ 50 年验证 ══════════ -->
+<section class="scene" id="s-fifty" data-title="50 年验证" data-tint="#0C2439">
+  <div class="inner">
+    <p class="eyebrow rise">Discipline beats timing</p>
+    <h2 class="h-sec rise" style="--d:.06s">50 年验证：持续投入，胜过「完美抄底」</h2>
+    <p class="lede rise" style="--d:.1s">同样累计投入 600 新币 · 1976–2025 · MSCI 世界指数模拟</p>
+    <div class="rule rise" style="--d:.12s"></div>
+    <div class="grid g2" data-live style="margin-top:8px">
+      <div class="chartbox chartbox--dark dark-chart rise" style="--d:.16s;border-color:var(--gold)">
+        <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
+          <h3 style="font-size:1.1rem">每月持续投入 1 新币</h3>
+          <span class="pill pill--star">★ 胜出 +85%</span>
+        </div>
+        <div style="font-size:clamp(2.4rem,6vw,3.4rem);font-weight:800;color:var(--gold);margin-top:10px;font-variant-numeric:tabular-nums">S$<span data-count="8039">0</span></div>
+        <p style="color:var(--mist);font-size:.9rem">最终总资产</p>
+        <div class="scroller"><svg id="ch-sp1" viewBox="0 0 420 170" role="img" aria-label="定投资产曲线持续上升"></svg></div>
+        <p style="margin-top:10px"><b style="color:var(--gold)">✓ 始终在场</b><br><span style="color:#C3D3E0;font-size:.94rem">波动被时间和纪律慢慢消化</span></p>
+      </div>
+      <div class="chartbox chartbox--dark dark-chart rise" style="--d:.26s">
+        <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
+          <h3 style="font-size:1.1rem">完美择时：攒钱只买「大底」</h3>
+        </div>
+        <div style="font-size:clamp(2.4rem,6vw,3.4rem);font-weight:800;color:var(--paper);margin-top:10px;font-variant-numeric:tabular-nums">S$<span data-count="4357">0</span></div>
+        <p style="color:var(--mist);font-size:.9rem">最终总资产</p>
+        <div class="scroller"><svg id="ch-sp2" viewBox="0 0 420 170" role="img" aria-label="择时策略资产曲线，四次抄底后仍显著落后"></svg></div>
+        <p style="margin-top:10px"><b style="color:var(--ember)">✗ 长期空仓等待</b><br><span style="color:#C3D3E0;font-size:.94rem">精准抄到四次大底，仍错过大段涨幅</span></p>
+      </div>
+    </div>
+    <div class="takeaway rise">差距的来源不是眼光，而是<b>在场时间</b> —— 等待大底的日子里，钱不在市场里。</div>
+    <p class="src rise">来源：资本集团，截至 2025 年 12 月底。定投：每月 1 新币；择时：每月储蓄 1 新币，分别于 1990 年 9 月、2002 年 9 月、2009 年 2 月及 2020 年 3 月一次性投入。仅供说明用途。</p>
+  </div>
+</section>
+
+<!-- ══════════ 早开始 + 计算器 ══════════ -->
+<section class="scene" id="s-early" data-title="早开始 10 年" data-tint="#11324F">
+  <div class="inner">
+    <p class="eyebrow rise">Start early</p>
+    <h2 class="h-sec rise" style="--d:.06s">早开始 10 年：少投 10 万，反而多赚 17.5 万</h2>
+    <div class="rule rise" style="--d:.1s"></div>
+    <div class="split" style="margin-top:8px">
+      <div class="chartbox rise" data-live style="--d:.14s">
+        <p class="chart-title">两位投资者的资产曲线（年化 8%）</p>
+        <div class="scroller scroller--wide"><svg id="ch-early" viewBox="0 0 700 430" role="img" aria-label="25 岁开始只投十年，65 岁时反而多于 35 岁开始连投三十年"></svg></div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:16px">
+        <div class="card rise" style="--d:.2s;border:2px solid var(--gold)">
+          <h3>小 A · 25 岁开始</h3>
+          <p style="margin-top:6px">总成本 <b style="color:var(--ink)">$50,000</b> · 只投 10 年便停止</p>
+          <p style="margin-top:8px;font-size:1.6rem;font-weight:800;color:var(--gold-2);font-variant-numeric:tabular-nums">65 岁时 $787,180</p>
+        </div>
+        <div class="card rise" style="--d:.28s">
+          <h3>小 B · 35 岁开始</h3>
+          <p style="margin-top:6px">总成本 <b style="color:var(--ink)">$150,000</b> · 连续投满 30 年</p>
+          <p style="margin-top:8px;font-size:1.6rem;font-weight:800;color:var(--ink-2);font-variant-numeric:tabular-nums">65 岁时 $611,730</p>
+        </div>
+        <div class="card card--dark rise" style="--d:.34s">
+          <h3 style="color:var(--gold)">复利最大的成本是「晚开始」</h3>
+          <p style="margin-top:6px">本金可以追，时间无法补。</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="chartbox chartbox--dark rise" style="margin-top:28px;padding:clamp(20px,3vw,34px)">
+      <p class="eyebrow" style="margin-bottom:6px">Try it yourself</p>
+      <h3 style="font-size:1.35rem">如果是你，从今天开始会怎样？</h3>
+      <p style="color:#C3D3E0;margin:8px 0 22px">拖动下面三个滑块，看看到 65 岁时的差别。</p>
+      <div class="calc">
+        <div>
+          <div class="ctrl">
+            <div class="ctrl__top"><label for="cAge">开始年龄</label><span class="ctrl__v"><span id="vAge">30</span> 岁</span></div>
+            <input id="cAge" type="range" min="22" max="55" step="1" value="30">
+          </div>
+          <div class="ctrl">
+            <div class="ctrl__top"><label for="cAmt">每月投入</label><span class="ctrl__v">S$<span id="vAmt">1,000</span></span></div>
+            <input id="cAmt" type="range" min="100" max="5000" step="100" value="1000">
+          </div>
+          <div class="ctrl">
+            <div class="ctrl__top"><label for="cRate">假设年化回报</label><span class="ctrl__v"><span id="vRate">6.0</span>%</span></div>
+            <input id="cRate" type="range" min="3" max="10" step="0.5" value="6">
+          </div>
+        </div>
+        <div class="calc__out">
+          <p style="color:var(--mist);font-size:.9rem;letter-spacing:.1em">65 岁时预计累积</p>
+          <div class="calc__big">S$<span id="vOut">0</span></div>
+          <p style="color:#C3D3E0;font-size:.92rem;margin-top:6px">其中本金 S$<span id="vCost">0</span>，其余是时间带来的增长。</p>
+          <div class="calc__bars">
+            <div>
+              <div class="cbar__label"><span>现在就开始</span><b id="lbNow" style="color:var(--gold)">S$0</b></div>
+              <div class="cbar__track"><div class="cbar__fill" id="barNow" style="background:var(--gold);width:0"></div></div>
+            </div>
+            <div>
+              <div class="cbar__label"><span>晚 10 年开始</span><b id="lbLate" style="color:var(--ember)">S$0</b></div>
+              <div class="cbar__track"><div class="cbar__fill" id="barLate" style="background:var(--ember);width:0"></div></div>
+            </div>
+          </div>
+          <p style="margin-top:16px;font-size:.9rem;color:var(--gold)">晚十年开始，少拿 <b id="vGap">S$0</b>。</p>
+        </div>
+      </div>
+      <p class="src" style="margin-top:18px">示意测算：按月复利、每月月末投入，回报率为假设值且恒定不变，未计入费用、税项与通胀。实际投资回报会波动，仅供说明用途，不构成任何回报承诺。</p>
+    </div>
+    <p class="src rise">图表示意测算：年化 8%、每年年末投入 US$5,000，复利滚存至 65 岁。仅供说明用途，不构成任何回报承诺。</p>
+  </div>
+</section>
+
+<!-- ══════════ 章节 03 ══════════ -->
+<section class="scene chapter" id="s-c3" data-title="第三章 · 配置" data-tint="#0B2135">
+  <div class="scene__art">
+    <div class="chapter__no" data-depth="-0.2">03</div>
+    <div class="chapter__art" data-depth="-0.3"><svg viewBox="0 0 360 340" style="width:100%;height:auto;color:rgba(244,238,225,.4)"><use href="#ill-shelter"/></svg></div>
+  </div>
+  <div class="inner narrow">
+    <p class="eyebrow rise">From principles to portfolio</p>
+    <h2 class="rise" style="--d:.08s">配置：<br>落到家庭<br>资产中</h2>
+    <div class="rule rise" style="--d:.14s"></div>
+    <p class="lede rise" style="--d:.18s">按使用时间分层安放资金，用保险保障筑牢底层安全网。</p>
+  </div>
+</section>
+
+<!-- ══════════ 三个钱袋子（互动） ══════════ -->
+<section class="scene" id="s-bags" data-title="三个钱袋子" data-tint="#10314E">
+  <div class="inner">
+    <p class="eyebrow rise">The three money bags</p>
+    <h2 class="h-sec rise" style="--d:.06s">家庭的三个钱袋子</h2>
+    <div class="rule rise" style="--d:.1s"></div>
+    <p class="lede rise" style="--d:.12s">钱要按「什么时候用」来分层。点击每个钱袋子，看它对应的工具。</p>
+    <div class="bags rise" style="--d:.16s;margin-top:26px" id="bags">
+      <button type="button" class="bag on" data-bag="1">
+        <svg class="bag__icon" viewBox="0 0 64 64" style="color:var(--gold)"><use href="#ic-bag1"/></svg>
+        <div class="bag__yrs">0–2 年</div>
+        <h3>短期流动资金</h3>
+        <p class="bag__use">日常开销 · 应急备用金</p>
+        <div class="bag__tools">
+          <span class="pill pill--dark">活期存款</span><span class="pill pill--dark">货币基金</span><span class="pill pill--dark">短期定存</span>
+        </div>
+      </button>
+      <button type="button" class="bag" data-bag="2">
+        <svg class="bag__icon" viewBox="0 0 64 64" style="color:var(--gold)"><use href="#ic-bag2"/></svg>
+        <div class="bag__yrs">3–10 年</div>
+        <h3>中期目标资金</h3>
+        <p class="bag__use">购房购车 · 大额支出</p>
+        <div class="bag__tools">
+          <span class="pill pill--dark">债券</span><span class="pill pill--dark">股票</span><span class="pill pill--star">★ 基金</span>
+        </div>
+      </button>
+      <button type="button" class="bag" data-bag="3">
+        <svg class="bag__icon" viewBox="0 0 64 64" style="color:var(--gold)"><use href="#ic-bag3"/></svg>
+        <div class="bag__yrs">10 年以上</div>
+        <h3>长期增长资金</h3>
+        <p class="bag__use">教育金 · 养老储备 · 财富传承</p>
+        <div class="bag__tools">
+          <span class="pill pill--star">★ 年金</span><span class="pill pill--star">★ 稳健储蓄</span><span class="pill pill--star">★ 基金定投</span>
+        </div>
+      </button>
+    </div>
+    <div class="safety rise" style="--d:.24s">
+      <svg style="width:44px;height:44px;color:var(--gold);flex:none" viewBox="0 0 64 64"><use href="#ic-shield"/></svg>
+      <h3>保险保障 — 底层安全网</h3>
+      <div class="safety__row">
+        <span class="pill pill--star">★ 住院医疗</span><span class="pill pill--star">★ 意外</span><span class="pill pill--star">★ 重疾</span>
+        <span class="pill pill--star">★ 人寿</span><span class="pill pill--star">★ 残疾护理</span>
+      </div>
+    </div>
+    <p class="src rise">★ = 新加坡小圆姐可为您规划配置。具体配置需经过完整的需求分析后确定。</p>
+  </div>
+</section>
+
+<!-- ══════════ 联系 ══════════ -->
+<section class="scene" id="s-contact" data-title="预约面谈" data-tint="#0D2A42">
+  <div class="scene__art"><div style="position:absolute;right:-6%;top:8%;width:min(52vw,520px);opacity:.22" data-depth="-0.34">
+    <svg viewBox="0 0 620 340" style="width:100%;height:auto;color:var(--gold)"><use href="#ill-boat"/></svg></div></div>
+  <div class="inner">
+    <p class="eyebrow rise">Contact</p>
+    <h2 class="h-sec rise" style="--d:.06s">为家族财富护航，为人生价值启航</h2>
+    <div class="rule rise" style="--d:.1s"></div>
+    <p class="lede rise" style="--d:.12s">预约一对一家庭财富规划面谈。第一次沟通是免费的，我会先帮你和家人，做一份客观中立的保障与配置梳理。</p>
+    <div class="card card--dark contact rise" style="--d:.18s;margin-top:30px">
+      <img class="avatar" src="data:image/jpeg;base64,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" alt="袁媛 Yuan Yuan">
+      <div>
+        <h3 style="font-size:1.5rem">袁媛 Yuan Yuan · 新加坡小圆姐</h3>
+        <p style="color:var(--gold);margin-top:4px">AIA 财富管理顾问 · MDRT 百万圆桌会员</p>
+        <div class="contact__lines">
+          <span>电话 · <a href="tel:+6583750190">+65 8375 0190</a></span>
+          <span>微信 · singaporeyuan</span>
+          <span>邮箱 · <a href="mailto:yuanyuan@aia.com.sg">yuanyuan@aia.com.sg</a></span>
+          <span>小红书 / 视频号 · @新加坡小圆姐</span>
+        </div>
+      </div>
+      <div>
+        <img class="qr" src="data:image/png;base64,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" alt="微信二维码">
+        <p class="qr-cap">扫码加我微信</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="inner">
+    <span>新加坡小圆姐 × AIA ｜ 让家庭财富穿越周期 · 2026 年 8 月</span>
+    <span>本资料仅供说明用途，不构成任何产品要约或投资建议。过往表现并不代表未来表现，投资者无法直接投资于任何指数。</span>
+  </div>
+</footer>
+
+<script>
+(function(){
+"use strict";
+const NS="http://www.w3.org/2000/svg";
+const RM = matchMedia("(prefers-reduced-motion: reduce)").matches;
+const el=(t,a)=>{const e=document.createElementNS(NS,t);for(const k in a)e.setAttribute(k,a[k]);return e;};
+const tx=(x,y,s,cls,a)=>{const e=el("text",Object.assign({x,y,class:cls},a||{}));e.textContent=s;return e;};
+const money=n=>n.toLocaleString("en-US");
+
+/* ───── layer 0/1: parallax + field tint ───── */
+const layers=[...document.querySelectorAll("[data-depth]")];
+const scenes=[...document.querySelectorAll(".scene[data-tint]")];
+const field=document.getElementById("field");
+const waves=document.getElementById("fieldWaves");
+const bar=document.getElementById("progress");
+const brandbar=document.getElementById("brandbar");
+let ticking=false;
+
+function frame(){
+  ticking=false;
+  const vh=innerHeight, y=scrollY;
+  bar.style.width=(y/Math.max(1,document.documentElement.scrollHeight-vh)*100)+"%";
+  brandbar.classList.toggle("on", y>vh*0.7);
+  if(RM) return;
+  waves.style.transform="translate3d(0,"+(y*-0.05).toFixed(1)+"px,0)";
+  for(const l of layers){
+    const host=l.closest(".scene")||l.parentElement;
+    const r=host.getBoundingClientRect();
+    const c=(r.top+r.height/2-vh/2)/vh;
+    l.style.setProperty("--py",(c*parseFloat(l.dataset.depth)*110).toFixed(1)+"px");
+  }
+}
+addEventListener("scroll",()=>{if(!ticking){ticking=true;requestAnimationFrame(frame);}},{passive:true});
+addEventListener("resize",frame);
+
+/* 章节导航点 + 背景色随章节变化 */
+const dots=document.getElementById("dots");
+scenes.forEach(s=>{
+  const a=document.createElement("a");
+  a.href="#"+s.id; a.dataset.t=s.dataset.title||""; a.setAttribute("aria-label",s.dataset.title||s.id);
+  dots.appendChild(a); s._dot=a;
+});
+const tintObs=new IntersectionObserver(es=>{
+  let best=null;
+  es.forEach(e=>{ if(e.isIntersecting && (!best || e.intersectionRatio>best.intersectionRatio)) best=e; });
+  if(best){
+    field.style.setProperty("--field", best.target.dataset.tint);
+    scenes.forEach(s=>s._dot.classList.toggle("on", s===best.target));
+  }
+},{threshold:[0.35,0.55,0.75]});
+scenes.forEach(s=>tintObs.observe(s));
+
+/* ───── layer 2: reveal + count-up ───── */
+const riseObs=new IntersectionObserver(es=>{
+  es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add("in"); riseObs.unobserve(e.target);} });
+},{rootMargin:"0px 0px -8% 0px",threshold:.15});
+document.querySelectorAll(".rise").forEach(n=>riseObs.observe(n));
+
+function countUp(node){
+  const to=parseFloat(node.dataset.count), dur=parseInt(node.dataset.dur||"1500",10);
+  const plain=node.dataset.plain==="1";
+  if(RM){node.textContent=plain?to:money(to);return;}
+  const t0=performance.now();
+  (function step(t){
+    const p=Math.min(1,(t-t0)/dur), e=1-Math.pow(1-p,3), v=Math.round(to*e);
+    node.textContent=plain?v:money(v);
+    if(p<1)requestAnimationFrame(step);
+  })(t0);
+}
+const liveObs=new IntersectionObserver(es=>{
+  es.forEach(e=>{
+    if(!e.isIntersecting)return;
+    e.target.classList.add("is-live");
+    e.target.querySelectorAll("[data-count]").forEach(countUp);
+    liveObs.unobserve(e.target);
+  });
+},{threshold:.28});
+document.querySelectorAll("[data-live]").forEach(n=>liveObs.observe(n));
+
+function armPaths(root){
+  root.querySelectorAll(".draw").forEach(p=>{
+    const L=p.getTotalLength();
+    p.style.setProperty("--len",L.toFixed(1));
+  });
+}
+
+/* ───── 1. MSCI 长期走势 ───── */
+(function(){
+  const svg=document.getElementById("ch-msci");
+  const W=980,H=440,L=58,R=22,T=34,B=48;
+  const anchors=[[1987,100],[1987.75,62],[1988.6,80],[1990,105],[1990.8,78],[1992,95],[1994,128],[1996,165],
+    [1997.5,205],[1998.6,168],[2000.2,330],[2001.7,235],[2003.0,175],[2005,262],[2007.8,400],[2008.8,250],
+    [2009.2,190],[2010.3,265],[2011.4,300],[2011.8,240],[2013,335],[2015.3,420],[2016.1,352],[2018.8,520],
+    [2020.15,560],[2020.28,392],[2021.9,800],[2022.8,610],[2023.95,760]];
+  let seed=42; const rnd=()=>((seed=seed*1103515245+12345&0x7fffffff)/0x7fffffff-0.5);
+  function raw(t){
+    for(let i=1;i<anchors.length;i++){
+      if(t<=anchors[i][0]){
+        const [x0,y0]=anchors[i-1],[x1,y1]=anchors[i];
+        const k=(t-x0)/(x1-x0);
+        return Math.exp(Math.log(y0)+(Math.log(y1)-Math.log(y0))*k);
+      }
+    }
+    return anchors[anchors.length-1][1];
+  }
+  const pts=[];let w=0;
+  for(let m=0;m<=443;m++){
+    const t=1987+m/12;
+    w=w*0.65+rnd()*0.03;
+    pts.push([t, raw(t)*Math.pow(1.019,t-1987)*(1+w)]);
+  }
+  const x=t=>L+(t-1987)/(2023.95-1987)*(W-L-R);
+  const lo=Math.log(55),hi=Math.log(2100);
+  const y=v=>H-B-(Math.log(v)-lo)/(hi-lo)*(H-T-B);
+  [100,200,400,800,1600].forEach(v=>{
+    svg.appendChild(el("line",{class:"gl",x1:L,x2:W-R,y1:y(v),y2:y(v)}));
+    svg.appendChild(tx(L-10,y(v)+4,money(v),"tick",{"text-anchor":"end"}));
+  });
+  for(let yr=1987;yr<=2023;yr+=4){svg.appendChild(tx(x(yr),H-B+24,yr,"tick",{"text-anchor":"middle"}));}
+  svg.appendChild(el("line",{class:"ax",x1:L,x2:W-R,y1:H-B,y2:H-B}));
+  const d=pts.map((p,i)=>(i?"L":"M")+x(p[0]).toFixed(1)+" "+y(p[1]).toFixed(1)).join(" ");
+  const grad=el("linearGradient",{id:"gMsci",x1:0,y1:0,x2:0,y2:1});
+  grad.appendChild(el("stop",{offset:"0%","stop-color":"#D6A94C","stop-opacity":".42"}));
+  grad.appendChild(el("stop",{offset:"100%","stop-color":"#D6A94C","stop-opacity":"0"}));
+  const defs=el("defs");defs.appendChild(grad);svg.appendChild(defs);
+  svg.appendChild(el("path",{class:"fade",d:d+" L"+x(2023.95)+" "+(H-B)+" L"+L+" "+(H-B)+" Z",fill:"url(#gMsci)",style:"--d:.9s"}));
+  svg.appendChild(el("path",{class:"draw",d:d,stroke:"#D6A94C","stroke-width":2.6}));
+  const marks=[[1987.75,"黑色星期一",26,-52,"start"],[1997.9,"亚洲金融危机",-4,-34,"middle"],[2001.7,"科网泡沫破裂",0,60,"middle"],
+    [2008.9,"全球金融危机",6,62,"middle"],[2020.28,"新冠疫情",-16,58,"middle"],[2022.8,"俄乌冲突 / 通胀",-20,-40,"middle"]];
+  marks.forEach((m,i)=>{
+    const px=x(m[0]),py=y(raw(m[0])*Math.pow(1.019,m[0]-1987));
+    const g=el("g",{class:"fade",style:"--d:"+(1.1+i*0.12)+"s"});
+    g.appendChild(el("line",{x1:px,y1:py,x2:px+m[2],y2:py+m[3],stroke:"rgba(244,238,225,.5)","stroke-width":1}));
+    g.appendChild(el("circle",{cx:px,cy:py,r:5.5,fill:"#D6A94C",stroke:"#0B1E31","stroke-width":2}));
+    g.appendChild(tx(px+m[2],py+m[3]+(m[3]<0?-6:16),m[1],"lab",{"text-anchor":m[4],"font-size":"13.5"}));
+    svg.appendChild(g);
+  });
+  armPaths(svg);
+})();
+
+/* ───── 2. 滚动持有期回报区间 ───── */
+(function(){
+  const svg=document.getElementById("ch-rolling");
+  const W=620,H=420,L=16,R=16,T=46,B=64;
+  const data=[["1 年",41.9,-40.2,"g"],["5 年",27.2,-2.5,"g"],["10 年",18.8,-0.6,"g"],["15 年",17.3,3.1,"n"],["20 年",15.0,4.9,"n"]];
+  const max=46,min=-46;
+  const zero=T+(max/(max-min))*(H-T-B);
+  const sc=v=>Math.abs(v)/(max-min)*(H-T-B);
+  const bw=(W-L-R)/data.length, iw=bw*0.52;
+  svg.appendChild(el("line",{class:"ax",x1:L,x2:W-R,y1:zero,y2:zero}));
+  data.forEach((d,i)=>{
+    const cx=L+bw*i+bw/2, col=d[3]==="g"?"#C9A24C":"#173E63", dl=(i*0.12).toFixed(2)+"s";
+    svg.appendChild(el("rect",{class:"bar",x:cx-iw/2,y:zero-sc(d[1]),width:iw,height:sc(d[1]),fill:col,rx:3,style:"--d:"+dl}));
+    svg.appendChild(tx(cx,zero-sc(d[1])-12,"+"+d[1].toFixed(1)+"%","val fade",{"text-anchor":"middle",style:"--d:"+(0.6+i*0.12)+"s"}));
+    if(d[2]<0){
+      svg.appendChild(el("rect",{class:"bar bar--neg",x:cx-iw/2,y:zero,width:iw,height:sc(d[2]),fill:"#B5503C",rx:3,style:"--d:"+dl}));
+      svg.appendChild(tx(cx,zero+sc(d[2])+26,d[2].toFixed(1)+"%","val fade",{"text-anchor":"middle",fill:"#B5503C",style:"--d:"+(0.6+i*0.12)+"s"}));
+    }else{
+      svg.appendChild(tx(cx,zero+26,"+"+d[2].toFixed(1)+"%","val fade",{"text-anchor":"middle",fill:"#173E63",style:"--d:"+(0.6+i*0.12)+"s"}));
+    }
+    svg.appendChild(tx(cx,H-22,d[0],"lab",{"text-anchor":"middle"}));
+  });
+  svg.appendChild(tx(L,26,"最好 / 最差年化回报","tick"));
+  const lg=el("g",{class:"fade",style:"--d:.9s"});
+  lg.appendChild(el("rect",{x:W-R-136,y:18,width:11,height:11,rx:2,fill:"#C9A24C"}));
+  lg.appendChild(tx(W-R-119,28,"正回报","tick",{"font-size":"12"}));
+  lg.appendChild(el("rect",{x:W-R-62,y:18,width:11,height:11,rx:2,fill:"#B5503C"}));
+  lg.appendChild(tx(W-R-45,28,"负回报","tick",{"font-size":"12"}));
+  svg.appendChild(lg);
+})();
+
+/* ───── 3. 牛市 vs 熊市 ───── */
+(function(){
+  const svg=document.getElementById("ch-bull");
+  const W=900,H=420,L=40,R=24,T=40,B=70;
+  const base=H-B-60;
+  const runs=[
+    {s:1970,e:1972.9,g:74},{s:1974.7,e:1987.6,g:845},{s:1988.2,e:2000.2,g:295},
+    {s:2003,e:2007.8,g:150},{s:2009.2,e:2020.1,g:300},{s:2020.4,e:2021.9,g:95}];
+  const bears=[{s:1972.9,e:1974.7,d:43},{s:1987.6,e:1988.2,d:25},{s:2000.2,e:2003,d:47},
+    {s:2007.8,e:2009.2,d:54},{s:2020.1,e:2020.4,d:33},{s:2021.9,e:2022.9,d:26}];
+  const x=t=>L+(t-1969)/(2024-1969)*(W-L-R);
+  const h=g=>g/845*(base-T);
+  const hb=d=>d/54*46;
+  svg.appendChild(el("line",{class:"ax",x1:L,x2:W-R,y1:base,y2:base}));
+  runs.forEach((r,i)=>{
+    const x0=x(r.s),x1=x(r.e),top=base-h(r.g);
+    const g=el("g",{class:"fade",style:"--d:"+(i*0.16)+"s"});
+    g.appendChild(el("path",{d:"M"+x0+" "+base+" Q"+(x0+(x1-x0)*0.72)+" "+(base-h(r.g)*0.22)+" "+x1+" "+top+" L"+x1+" "+base+" Z",
+      fill:"rgba(214,169,76,.75)",stroke:"#D6A94C","stroke-width":1.2}));
+    g.appendChild(tx(x1,top-12,"+"+r.g+"%","val",{"text-anchor":"middle",fill:"#D6A94C","font-size":"15"}));
+    svg.appendChild(g);
+  });
+  bears.forEach((b,i)=>{
+    const x0=x(b.s),x1=x(b.e);
+    svg.appendChild(el("path",{class:"fade",style:"--d:"+(0.3+i*0.16)+"s",
+      d:"M"+x0+" "+base+" L"+x1+" "+base+" L"+x1+" "+(base+hb(b.d)*0.35)+" Q"+((x0+x1)/2)+" "+(base+hb(b.d))+" "+x0+" "+base+" Z",
+      fill:"rgba(181,80,60,.9)"}));
+  });
+  for(let yr=1970;yr<=2018;yr+=8){svg.appendChild(tx(x(yr),base+80,yr,"tick",{"text-anchor":"middle"}));}
+  svg.appendChild(el("line",{class:"gl",x1:L,x2:W-R,y1:base+56,y2:base+56}));
+})();
+
+/* ───── 4. 错过最好的 40 天 ───── */
+(function(){
+  const svg=document.getElementById("ch-miss");
+  const W=700,H=440,L=24,R=18,T=54,B=86;
+  const data=[["完整持有|十年",2418,"#173E63"],["错过最好|10 天",1581,"#C9A24C"],["错过最好|20 天",1218,"#C9A24C"],
+    ["错过最好|30 天",978,"#B5503C"],["错过最好|40 天",815,"#B5503C"]];
+  const max=2600, sc=v=>v/max*(H-T-B);
+  const base=H-B, bw=(W-L-R)/data.length, iw=bw*0.56;
+  data.forEach((d,i)=>{
+    const cx=L+bw*i+bw/2, hh=sc(d[1]);
+    svg.appendChild(el("rect",{class:"bar",x:cx-iw/2,y:base-hh,width:iw,height:hh,fill:d[2],rx:4,style:"--d:"+(i*0.12)+"s"}));
+    svg.appendChild(tx(cx,base-hh-14,"$"+money(d[1]),"val fade",{"text-anchor":"middle",style:"--d:"+(0.55+i*0.12)+"s"}));
+    d[0].split("|").forEach((s,k)=>svg.appendChild(tx(cx,base+26+k*20,s,"lab",{"text-anchor":"middle","font-weight":"500"})));
+  });
+  const y1k=base-sc(1000);
+  svg.appendChild(el("line",{class:"fade",x1:L,x2:W-R,y1:y1k,y2:y1k,stroke:"rgba(10,28,46,.45)","stroke-width":1.4,"stroke-dasharray":"6 5",style:"--d:.2s"}));
+  svg.appendChild(tx(W-R,y1k-10,"原始投资 $1,000","tick fade",{"text-anchor":"end",style:"--d:.2s"}));
+  svg.appendChild(el("line",{class:"ax",x1:L,x2:W-R,y1:base,y2:base}));
+})();
+
+/* ───── 5. 情绪曲线（互动） ───── */
+(function(){
+  const svg=document.getElementById("ch-emo");
+  const W=900,H=340;
+  const dPath="M30 250 C120 244 150 238 210 200 C260 168 280 90 340 78 C400 66 420 150 470 186 C520 222 540 268 590 268 C650 268 680 150 730 122 C780 94 820 132 872 172";
+  const path=el("path",{class:"draw",d:dPath,stroke:"#BACBDA","stroke-width":3.4,style:"--d:.15s"});
+  svg.appendChild(el("path",{class:"fade",d:dPath+" L872 320 L30 320 Z",fill:"rgba(186,203,218,.09)",style:"--d:.9s"}));
+  svg.appendChild(path);
+  const steps=[
+    {t:0.02,tone:"wait",label:"观望 · 再等等看",note:"市场刚刚回暖，账户里的钱还没动 ——「再看看，等确定了再进。」"},
+    {t:0.22,tone:"buy",label:"追涨 · 不能再等了",note:"涨了一大段，身边的人都在赚钱。冲动第一次战胜了计划。"},
+    {t:0.37,tone:"buy",label:"贪婪 · 这次我看对了",note:"账户浮盈最漂亮的时刻，也常常是风险最高的时刻。"},
+    {t:0.56,tone:"sell",label:"恐慌 · 怎么又跌了",note:"回撤开始侵蚀浮盈，每天打开账户都比前一天难受。"},
+    {t:0.68,tone:"sell",label:"割肉 · 卖了不玩了",note:"在最接近底部的位置离场 —— 亏损从浮亏变成了实亏。"},
+    {t:0.88,tone:"buy",label:"再次追涨 · 该我赚钱了",note:"市场重回高位，同样的循环，又开始了一次。"}
+  ];
+  const dots=[],len=path.getTotalLength();
+  steps.forEach((s,i)=>{
+    const p=path.getPointAtLength(len*s.t);
+    s.x=p.x;s.y=p.y;
+    const c=el("circle",{class:"emo-dot fade",cx:p.x,cy:p.y,r:6,
+      fill:s.tone==="sell"?"#B5503C":s.tone==="buy"?"#D6A94C":"#F4EEE1",
+      stroke:"#0B1E31","stroke-width":2,style:"--d:"+(1.5+i*0.1)+"s"});
+    svg.appendChild(c);dots.push(c);
+  });
+  const cursor=el("g",{class:"emo-cursor fade",style:"--d:1.9s"});
+  cursor.appendChild(el("circle",{r:14,fill:"none",stroke:"#D6A94C","stroke-width":2,opacity:".9"}));
+  cursor.appendChild(el("circle",{r:22,fill:"none",stroke:"#D6A94C","stroke-width":1,opacity:".35"}));
+  svg.appendChild(cursor);
+  const nav=document.getElementById("emoNav"), note=document.getElementById("emoNote");
+  let cur=-1, timer=null;
+  function go(i,user){
+    cur=i;const s=steps[i];
+    cursor.setAttribute("transform","translate("+s.x+","+s.y+")");
+    cursor.querySelectorAll("circle").forEach(c=>c.setAttribute("stroke",s.tone==="sell"?"#B5503C":"#D6A94C"));
+    dots.forEach((d,k)=>d.setAttribute("r",k===i?9:6));
+    [...nav.children].forEach((b,k)=>{b.classList.toggle("on",k===i);b.classList.toggle("bad",steps[k].tone==="sell");});
+    note.className="emo__note"+(s.tone==="sell"?" bad":"");
+    note.innerHTML="<b>"+s.label+"</b><span>"+s.note+"</span>";
+    if(user&&timer){clearInterval(timer);timer=null;}
+  }
+  steps.forEach((s,i)=>{
+    const b=document.createElement("button");
+    b.type="button";b.textContent=s.label;
+    b.addEventListener("click",()=>go(i,true));
+    nav.appendChild(b);
+  });
+  armPaths(svg);
+  const startObs=new IntersectionObserver(es=>{
+    es.forEach(e=>{
+      if(!e.isIntersecting)return;
+      startObs.unobserve(e.target);
+      go(0,false);
+      if(RM)return;
+      setTimeout(()=>{ if(cur!==0)return; timer=setInterval(()=>{ go((cur+1)%steps.length,false); },2600); },2200);
+    });
+  },{threshold:.4});
+  startObs.observe(svg.closest(".emo"));
+})();
+
+/* ───── 6. 历史新高之后 ───── */
+(function(){
+  const svg=document.getElementById("ch-high");
+  const W=620,H=420,L=20,R=16,T=64,B=76;
+  const data=[["新高后 1 年",15.5,"#D9B76A"],["新高后 5 年",80.3,"#C29A45"],["新高后 10 年",190.9,"#A9812F"]];
+  const max=215,base=H-B,bw=(W-L-R)/3,iw=bw*0.62;
+  data.forEach((d,i)=>{
+    const cx=L+bw*i+bw/2,hh=d[1]/max*(H-T-B);
+    svg.appendChild(el("rect",{class:"bar",x:cx-iw/2,y:base-hh,width:iw,height:hh,fill:d[2],rx:4,style:"--d:"+(i*0.16)+"s"}));
+    svg.appendChild(tx(cx,base-hh-16,"+"+d[1].toFixed(1)+"%","val fade",{"text-anchor":"middle","font-size":"22",style:"--d:"+(0.6+i*0.16)+"s"}));
+    svg.appendChild(tx(cx,base+28,d[0],"lab",{"text-anchor":"middle"}));
+    svg.appendChild(tx(cx,base+48,"平均累计回报","tick",{"text-anchor":"middle"}));
+  });
+  svg.appendChild(el("line",{class:"ax",x1:L,x2:W-R,y1:base,y2:base}));
+})();
+
+/* ───── 7. 定投原理（互动） ───── */
+(function(){
+  const svg=document.getElementById("ch-dca");
+  const W=760,H=420,L=52,R=26,T=40,B=64;
+  const px=[10,20,7,15,5,6,6.5,10];
+  const x=i=>L+i/(px.length-1)*(W-L-R);
+  const y=v=>H-B-(v-3)/(21-3)*(H-T-B);
+  const dPath=px.map((v,i)=>(i?"L":"M")+x(i)+" "+y(v)).join(" ");
+  svg.appendChild(el("path",{class:"draw",d:dPath,stroke:"#173E63","stroke-width":3,style:"--d:.1s"}));
+  px.forEach((v,i)=>{
+    svg.appendChild(el("circle",{class:"fade",cx:x(i),cy:y(v),r:5,fill:"#C9A24C",style:"--d:"+(1.1+i*0.07)+"s"}));
+    svg.appendChild(tx(x(i),y(v)-14,"$"+v,"tick fade",{"text-anchor":"middle","font-weight":"600",style:"--d:"+(1.1+i*0.07)+"s"}));
+    svg.appendChild(tx(x(i),H-B+26,"第"+(i+1)+"月","tick",{"text-anchor":"middle"}));
+  });
+  const gl=el("g",{id:"dcaLump",class:"fade",style:"--d:1.4s"});
+  gl.appendChild(el("line",{x1:L,x2:x(6.7),y1:y(10),y2:y(10),stroke:"rgba(10,28,46,.5)","stroke-width":1.6,"stroke-dasharray":"7 5"}));
+  gl.appendChild(tx(x(6.7),y(10)-12,"一次性买入成本 $10.00","tick",{"text-anchor":"end","font-weight":"600"}));
+  svg.appendChild(gl);
+  const gd=el("g",{id:"dcaAvg",class:"fade",style:"--d:1.6s"});
+  gd.appendChild(el("line",{x1:L,x2:W-R,y1:y(8.16),y2:y(8.16),stroke:"#A9812F","stroke-width":2,"stroke-dasharray":"7 5"}));
+  gd.appendChild(tx(L,y(8.16)+22,"定投平均成本 $8.16","val",{fill:"#A9812F","font-size":"15"}));
+  svg.appendChild(gd);
+  svg.appendChild(el("line",{class:"ax",x1:L,x2:W-R,y1:H-B,y2:H-B}));
+  armPaths(svg);
+  const tg=document.getElementById("dcaToggle"), rcL=document.getElementById("rc-lump"), rcD=document.getElementById("rc-dca");
+  tg.addEventListener("click",e=>{
+    const b=e.target.closest("button"); if(!b)return;
+    [...tg.children].forEach(c=>c.classList.toggle("on",c===b));
+    const m=b.dataset.m;
+    gl.classList.toggle("dim",m==="dca"); gd.classList.toggle("dim",m==="lump");
+    rcL.classList.toggle("hi",m==="lump"); rcD.classList.toggle("hi",m!=="lump");
+  });
+})();
+
+/* ───── 8. 50 年：定投 vs 择时 迷你曲线 ───── */
+(function(){
+  const months=600, r=Math.pow(1.09,1/12)-1;
+  let seed=9; const rnd=()=>((seed=seed*1103515245+12345&0x7fffffff)/0x7fffffff-0.5);
+  const buys=[177,321,398,530];
+  let dca=0,cash=0,inv=0,w=0;
+  const A=[],B=[];
+  for(let m=0;m<=months;m++){
+    w=w*0.85+rnd()*0.05;
+    const g=1+r+w*0.06;
+    dca=dca*g+1; A.push(dca);
+    inv=inv*g; cash+=1;
+    if(buys.includes(m)){inv+=cash;cash=0;}
+    B.push(inv+cash);
+  }
+  const kA=8039/A[months], kB=4357/B[months];
+  function spark(id,data,k,color,marks){
+    const svg=document.getElementById(id),W=420,H=170,P=10;
+    const max=8039;
+    const x=i=>P+i/months*(W-P*2), y=v=>H-P-(v*k)/max*(H-P*2);
+    const d=data.map((v,i)=>(i?"L":"M")+x(i).toFixed(1)+" "+y(v).toFixed(1)).join(" ");
+    svg.appendChild(el("path",{class:"fade",d:d+" L"+x(months)+" "+(H-P)+" L"+P+" "+(H-P)+" Z",fill:color.replace("rgb","rgba").replace(")",",.28)"),style:"--d:.7s"}));
+    svg.appendChild(el("path",{class:"draw",d:d,stroke:color,"stroke-width":2.4,style:"--d:.3s"}));
+    svg.appendChild(el("line",{class:"ax",x1:P,x2:W-P,y1:H-P,y2:H-P}));
+    (marks||[]).forEach((m,i)=>{
+      svg.appendChild(el("path",{class:"fade",style:"--d:"+(1.6+i*0.1)+"s",
+        d:"M"+(x(m)-5)+" "+(H-P-9)+" L"+(x(m)+5)+" "+(H-P-9)+" L"+x(m)+" "+(H-P)+" Z",fill:"#B5503C"}));
+    });
+    [1976,1990,2005,2020].forEach(yr=>{
+      const i=(yr-1976)*12;
+      svg.appendChild(tx(x(i),H-P+16,yr,"tick",{"text-anchor":"middle","font-size":"11"}));
+    });
+    armPaths(svg);
+  }
+  spark("ch-sp1",A,kA,"rgb(214,169,76)");
+  spark("ch-sp2",B,kB,"rgb(85,131,178)",buys);
+})();
+
+/* ───── 9. 早开始 10 年 ───── */
+(function(){
+  const svg=document.getElementById("ch-early");
+  const W=700,H=430,L=46,R=120,T=44,B=60;
+  const g=1.08, ann=n=>(Math.pow(g,n)-1)/0.08;
+  const kA=787180/(ann(10)*Math.pow(g,31)), kB=611730/(ann(30)*g);
+  const cA=[],cB=[];
+  for(let t=0;t<=40;t++){
+    cA.push(t<=10 ? kA*ann(t) : kA*ann(10)*Math.pow(g,(t-10)/30*31));
+    cB.push(t<10 ? 0 : kB*ann(t-10)*g);
+  }
+  const max=820000;
+  const x=t=>L+t/40*(W-L-R), y=v=>H-B-v/max*(H-T-B);
+  [200000,400000,600000,800000].forEach(v=>{
+    svg.appendChild(el("line",{class:"gl",x1:L,x2:W-R,y1:y(v),y2:y(v)}));
+    svg.appendChild(tx(L-8,y(v)+4,"$"+(v/1000)+"k","tick",{"text-anchor":"end","font-size":"12"}));
+  });
+  for(let a=25;a<=65;a+=5) svg.appendChild(tx(x(a-25),H-B+24,a+"岁","tick",{"text-anchor":"middle"}));
+  svg.appendChild(el("line",{class:"ax",x1:L,x2:W-R,y1:H-B,y2:H-B}));
+  const pa=cA.map((v,i)=>(i?"L":"M")+x(i).toFixed(1)+" "+y(v).toFixed(1)).join(" ");
+  const pb=cB.map((v,i)=>(i?"L":"M")+x(i).toFixed(1)+" "+y(v).toFixed(1)).join(" ");
+  svg.appendChild(el("path",{class:"fade",d:pa+" L"+x(40)+" "+y(0)+" L"+L+" "+y(0)+" Z",fill:"rgba(169,129,47,.12)",style:"--d:.9s"}));
+  svg.appendChild(el("path",{class:"draw",d:pb,stroke:"#173E63","stroke-width":3,style:"--d:.35s"}));
+  svg.appendChild(el("path",{class:"draw",d:pa,stroke:"#C9A24C","stroke-width":3.2,style:"--d:.1s"}));
+  svg.appendChild(el("circle",{class:"fade",cx:x(40),cy:y(cA[40]),r:6,fill:"#C9A24C",style:"--d:2.2s"}));
+  svg.appendChild(el("circle",{class:"fade",cx:x(40),cy:y(cB[40]),r:6,fill:"#173E63",style:"--d:2.2s"}));
+  svg.appendChild(tx(x(40)+10,y(cA[40])+5,"$787,180","val fade",{fill:"#A9812F","font-size":"15",style:"--d:2.3s"}));
+  svg.appendChild(tx(x(40)+10,y(cB[40])+5,"$611,730","val fade",{fill:"#173E63","font-size":"15",style:"--d:2.4s"}));
+  svg.appendChild(tx(x(11),y(230000),"小 A：25 岁起投，只投 10 年","lab fade",{"font-size":"13",fill:"#A9812F",style:"--d:2.5s"}));
+  svg.appendChild(tx(x(15),y(120000),"小 B：35 岁起投，连投 30 年","lab fade",{"font-size":"13",fill:"#173E63",style:"--d:2.6s"}));
+  armPaths(svg);
+})();
+
+/* ───── 10. 复利计算器 ───── */
+(function(){
+  const age=document.getElementById("cAge"),amt=document.getElementById("cAmt"),rate=document.getElementById("cRate");
+  const vAge=document.getElementById("vAge"),vAmt=document.getElementById("vAmt"),vRate=document.getElementById("vRate");
+  const vOut=document.getElementById("vOut"),vCost=document.getElementById("vCost"),vGap=document.getElementById("vGap");
+  const lbNow=document.getElementById("lbNow"),lbLate=document.getElementById("lbLate");
+  const barNow=document.getElementById("barNow"),barLate=document.getElementById("barLate");
+  function fv(startAge,m,annual){
+    const n=Math.max(0,(65-startAge)*12), r=Math.pow(1+annual/100,1/12)-1;
+    return r===0? m*n : m*((Math.pow(1+r,n)-1)/r);
+  }
+  function draw(){
+    const a=+age.value,m=+amt.value,r=+rate.value;
+    vAge.textContent=a;vAmt.textContent=money(m);vRate.textContent=r.toFixed(1);
+    const now=fv(a,m,r), late=fv(a+10,m,r);
+    vOut.textContent=money(Math.round(now));
+    vCost.textContent=money(m*Math.max(0,(65-a)*12));
+    lbNow.textContent="S$"+money(Math.round(now));
+    lbLate.textContent="S$"+money(Math.round(late));
+    barNow.style.width="100%";
+    barLate.style.width=(now>0? Math.max(2,late/now*100):0)+"%";
+    vGap.textContent="S$"+money(Math.round(now-late));
+  }
+  [age,amt,rate].forEach(i=>i.addEventListener("input",draw));
+  draw();
+})();
+
+/* ───── 11. 三个钱袋子 ───── */
+(function(){
+  const bags=document.getElementById("bags");
+  bags.addEventListener("click",e=>{
+    const b=e.target.closest(".bag"); if(!b)return;
+    [...bags.children].forEach(c=>c.classList.toggle("on",c===b));
+  });
+})();
+
+frame();
+})();
+</script>

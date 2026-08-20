@@ -56,6 +56,14 @@ const IconSpark = (
   </svg>
 );
 
+const IconCycles = (
+  <svg {...ic}>
+    <path d="M3 17.2c1.5-1.5 3-1.5 4.5 0s3 1.5 4.5 0 3-1.5 4.5 0 2.1 1.1 3.5.6" />
+    <path d="M4 12.6 9 7.8l3.4 3.1L20 3.8" />
+    <path d="M15.4 3.8H20v4.6" />
+  </svg>
+);
+
 const IconRoute = (
   <svg {...ic}>
     <circle cx="6" cy="6" r="2.6" />
@@ -94,6 +102,17 @@ export default async function ResourcesPage({
   const en = locale === 'en';
 
   const resources: Resource[] = [
+    {
+      key: 'cycles',
+      tag: en ? 'Interactive' : '互动专题',
+      title: en ? 'Family Wealth Beyond Cycles' : '让家庭财富穿越周期',
+      desc: en
+        ? 'A scrollable story on why time in the market beats timing it: 37 years of crises, what holding for 15 years actually looks like, how dollar-cost averaging and compounding work, and how to split family money into three pots. Charts draw themselves as you scroll, plus a compounding calculator you can drag. (In Chinese)'
+        : '一页滚动读完:市场为什么值得长期待着、持有15年到底是什么概率、定投和复利怎么起作用、家庭的钱该怎么分成三个钱袋子。图表跟着你往下滑一笔笔画出来,末尾还有个复利计算器,可以自己拖到65岁看看差多少。',
+      icon: IconCycles,
+      external: '/guides/wealth-across-cycles.html',
+      cta: en ? 'Scroll the story' : '滚动看看',
+    },
     {
       key: 'healthcare',
       tag: en ? 'Guide' : '就医指南',
