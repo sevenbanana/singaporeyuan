@@ -946,6 +946,7 @@ button.chip{ cursor:pointer; background:#5a2723; border-color:rgba(255,255,255,.
   var Clips = {
     base: 'audio/',
     manifest: null,
+    ext: 'mp3',
     el: null,
 
     // 和 tools/gen-audio.js 里的 key() 必须是同一个算法，否则文件名对不上
@@ -963,13 +964,14 @@ button.chip{ cursor:pointer; background:#5a2723; border-color:rgba(255,255,255,.
       try {
         fetch(this.base + 'manifest.json', { cache: 'no-cache' })
           .then(function (r) { return r.ok ? r.json() : null; })
-          .then(function (j) { self.manifest = j || {}; })
+          .then(function (j) { self.manifest = j || {}; if (j && j._ext) self.ext = j._ext; })
           .catch(function () { self.manifest = {}; });
       } catch (e) { this.manifest = {}; }
     },
 
     has: function (text) {
-      return !!(this.manifest && this.manifest[this.key(text)]);
+      var k = this.key(text);
+      return !!(this.manifest && k !== '_ext' && this.manifest[k]);
     },
 
     /** 放现成音频；返回 false 表示没有，让调用方退回系统语音 */
@@ -979,7 +981,7 @@ button.chip{ cursor:pointer; background:#5a2723; border-color:rgba(255,255,255,.
       if (!this.el) this.el = new Audio();
       try {
         this.el.pause();
-        this.el.src = this.base + this.key(text) + '.mp3';
+        this.el.src = this.base + this.key(text) + '.' + this.ext;
         // 慢速按钮直接调播放速率，不用另外生成一套慢速音频（省一半钱和体积）
         this.el.playbackRate = opts.rate != null ? Math.max(0.5, Math.min(1.2, opts.rate + 0.1)) : 1;
         if ('preservesPitch' in this.el) this.el.preservesPitch = true;
@@ -988,6 +990,24 @@ button.chip{ cursor:pointer; background:#5a2723; border-color:rgba(255,255,255,.
         if (p && p.catch) p.catch(function () {});
         return true;
       } catch (e) { return false; }
+    },
+
+    /**
+     * iOS 要求音频的第一次播放必须由用户手势触发。
+     * 开场那次点击里先用一段静音把 <audio> 元素「点着」，
+     * 之后程序自动播放才不会被拦 —— 不做这一步，iPad 上会全程静默退回系统语音，
+     * 而在 Mac 上完全看不出问题。
+     */
+    unlock: function () {
+      if (!this.el) this.el = new Audio();
+      try {
+        this.el.src = 'data:audio/mp4;base64,AAAAHGZ0eXBNNEEgAAAAAE00QSBpc29tbXA0Mg==';
+        this.el.volume = 0;
+        var p = this.el.play();
+        if (p && p.catch) p.catch(function () {});
+        var self = this;
+        setTimeout(function () { try { self.el.pause(); self.el.volume = 1; } catch (e) {} }, 60);
+      } catch (e) {}
     },
 
     stop: function () { try { if (this.el) this.el.pause(); } catch (e) {} }
@@ -1066,6 +1086,7 @@ button.chip{ cursor:pointer; background:#5a2723; border-color:rgba(255,255,255,.
 
     // iPad Safari 要求首次朗读必须由用户手势触发，开场按钮里调一次这个解锁
     unlock: function () {
+      Clips.unlock();
       if (!global.speechSynthesis) return;
       try {
         var u = new SpeechSynthesisUtterance(' ');
