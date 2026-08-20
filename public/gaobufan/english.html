@@ -938,6 +938,61 @@ button.chip{ cursor:pointer; background:#5a2723; border-color:rgba(255,255,255,.
 (function (global) {
   'use strict';
 
+  /* ---------------------- 预生成音频 ----------------------
+     教材是封闭集合，所以整套词/句/对话都可以提前用神经 TTS 生成成 MP3。
+     有现成文件就放文件，没有就退回系统语音 —— 两边可以共存，
+     所以补内容的时候不会有一段突然哑掉。
+     ------------------------------------------------------- */
+  var Clips = {
+    base: 'audio/',
+    manifest: null,
+    el: null,
+
+    // 和 tools/gen-audio.js 里的 key() 必须是同一个算法，否则文件名对不上
+    key: function (text) {
+      var h = 0x811c9dc5, t = String(text).trim();
+      for (var i = 0; i < t.length; i++) {
+        h ^= t.charCodeAt(i);
+        h = (h + ((h << 1) + (h << 4) + (h << 7) + (h << 8) + (h << 24))) >>> 0;
+      }
+      return h.toString(36);
+    },
+
+    load: function () {
+      var self = this;
+      try {
+        fetch(this.base + 'manifest.json', { cache: 'no-cache' })
+          .then(function (r) { return r.ok ? r.json() : null; })
+          .then(function (j) { self.manifest = j || {}; })
+          .catch(function () { self.manifest = {}; });
+      } catch (e) { this.manifest = {}; }
+    },
+
+    has: function (text) {
+      return !!(this.manifest && this.manifest[this.key(text)]);
+    },
+
+    /** 放现成音频；返回 false 表示没有，让调用方退回系统语音 */
+    play: function (text, opts) {
+      if (!this.has(text)) return false;
+      opts = opts || {};
+      if (!this.el) this.el = new Audio();
+      try {
+        this.el.pause();
+        this.el.src = this.base + this.key(text) + '.mp3';
+        // 慢速按钮直接调播放速率，不用另外生成一套慢速音频（省一半钱和体积）
+        this.el.playbackRate = opts.rate != null ? Math.max(0.5, Math.min(1.2, opts.rate + 0.1)) : 1;
+        if ('preservesPitch' in this.el) this.el.preservesPitch = true;
+        this.el.onended = opts.onend || null;
+        var p = this.el.play();
+        if (p && p.catch) p.catch(function () {});
+        return true;
+      } catch (e) { return false; }
+    },
+
+    stop: function () { try { if (this.el) this.el.pause(); } catch (e) {} }
+  };
+
   /* ---------------------- 发音 TTS ---------------------- */
   var TTS = {
     voice: null,
@@ -1003,6 +1058,7 @@ button.chip{ cursor:pointer; background:#5a2723; border-color:rgba(255,255,255,.
     },
 
     init: function () {
+      Clips.load();
       if (!global.speechSynthesis) return;
       this.pick();
       speechSynthesis.onvoiceschanged = this.pick.bind(this);
@@ -1020,9 +1076,13 @@ button.chip{ cursor:pointer; background:#5a2723; border-color:rgba(255,255,255,.
     },
 
     speak: function (text, opts) {
-      if (this.muted || !global.speechSynthesis || !text) return;
+      if (this.muted || !text) return;
       opts = opts || {};
+      // 优先放预生成的神经语音；没有这一段才退回系统语音
       try { speechSynthesis.cancel(); } catch (e) {}
+      Clips.stop();
+      if (Clips.play(text, opts)) return;
+      if (!global.speechSynthesis) return;
       var u = new SpeechSynthesisUtterance(String(text));
       if (this.voice) { u.voice = this.voice; u.lang = this.voice.lang; }
       else { u.lang = 'en-GB'; }
@@ -1046,7 +1106,7 @@ button.chip{ cursor:pointer; background:#5a2723; border-color:rgba(255,255,255,.
       })();
     },
 
-    stop: function () { try { speechSynthesis.cancel(); } catch (e) {} }
+    stop: function () { Clips.stop(); try { speechSynthesis.cancel(); } catch (e) {} }
   };
 
   /* ---------------------- 音效 SFX ---------------------- */
@@ -1098,6 +1158,7 @@ button.chip{ cursor:pointer; background:#5a2723; border-color:rgba(255,255,255,.
     win:    function () { [392, 523, 659, 784, 1047].forEach(function (f, i) { setTimeout(function () { tone(f, 0.22, 'triangle', 0.13); }, i * 130); }); }
   };
 
+  global.Clips = Clips;
   global.TTS = TTS;
   global.SFX = SFX;
 })(window);
