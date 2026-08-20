@@ -759,6 +759,37 @@ button.chip{ cursor:pointer; background:#5a2723; border-color:rgba(255,255,255,.
 .vd-m{ font-size:11px; color:#a8a8a8; margin-top:3px; }
 .vd-list + .ta{ height:90px; }
 
+/* ============================ ⌨️ 默写 Boss ============================ */
+.typein-wrap{ margin:auto 0; text-align:center; padding:24px 18px; }
+.ti-top{ display:flex; align-items:center; justify-content:center; gap:12px; }
+.ti-ico{ font-size:44px; }
+.ti-zh{ font-size:20px; font-weight:700; color:#1c1c1c; }
+.ti-zh i{ font-style:normal; font-size:13px; color:#666; margin-left:4px; }
+.ti-sent{ margin:16px 0 8px; font-family:var(--f-read); font-size:24px; line-height:1.6; color:#1c1c1c; }
+.ti-sent .blank{ display:inline-block; min-width:120px; border-bottom:4px solid #c0392b; color:transparent; }
+.ti-sent .hl{ background:#ffe14d; padding:1px 5px; box-shadow:0 2px 0 #b99a00; }
+.ti-sentzh{ font-size:14px; color:#666; }
+.ti-input{
+  display:block; width:min(420px,100%); margin:18px auto 0; padding:14px;
+  font-family:var(--f-read); font-size:26px; font-weight:700; text-align:center;
+  letter-spacing:.06em; color:#eaffea; background:#1a1a1a;
+  border:3px solid; border-color:#111 #6a6a6a #6a6a6a #111;
+  box-shadow:inset 0 -4px 0 rgba(0,0,0,.45);
+}
+.ti-input:focus{ outline:3px solid var(--xp); outline-offset:2px; }
+.ti-input.ok{ background:#1e4a20; color:#b8f5bb; }
+.ti-input.bad{ background:#4a1a16; color:#ffc9c3; }
+.ti-msg{ margin-top:12px; min-height:22px; font-size:15px; color:#4a4a4a; }
+.ti-msg b{ color:#1e7d2e; font-size:18px; }
+.ti-msg s{ color:#b3432f; }
+
+/* 双层进度条：浅色=接触过，深色=真的记住了 */
+.bar2{ position:relative; height:14px; background:#000; border:2px solid #1c1c1c; }
+.bar2 i{ position:absolute; left:0; top:0; height:100%; transition:width .35s; }
+.bar2 i.met{ background:#9fd4a2; }
+.bar2 i.done{ background:linear-gradient(#5fd465,#2f7a33); }
+.qc-more{ font-size:13px; color:#6a6a6a; font-weight:400; }
+
 </style>
 </head>
 <body>
@@ -1086,8 +1117,10 @@ button.chip{ cursor:pointer; background:#5a2723; border-color:rgba(255,255,255,.
   // 访客写到 .guest，怎么点都碰不到 Bufan 的进度。
   var KEY_BASE = 'englishquest.save.v1';
   var PROFILES = {
-    bufan: { name: 'Bufan', face: '👦', label: 'GAO BUFAN', locked: true },
-    guest: { name: 'Guest', face: '🧍', label: 'GUEST', locked: false }
+    bufan: { name: 'Bufan', face: '👦', label: 'GAO BUFAN', locked: true, keeps: true },
+    // 访客不留进度：关掉就没了，下次进来永远是全新的。
+    // 这样别人怎么玩都不会在 localStorage 里留下东西。
+    guest: { name: 'Guest', face: '🧍', label: 'GUEST', locked: false, keeps: false }
   };
   var PIN_KEY = 'englishquest.pin.v1';
   var DEFAULT_PIN = '1102';
@@ -1096,10 +1129,13 @@ button.chip{ cursor:pointer; background:#5a2723; border-color:rgba(255,255,255,.
   var INTERVAL = [0, 1, 2, 4, 7, 15, 30, 60, 120];
   var MAX_BOX = INTERVAL.length - 1;
 
-  var SKILLS = ['l', 'r', 'w', 's'];   // listen / read / write / speak
+  var SKILLS = ['l', 'r', 'w', 's'];   // listen / read / write / speak（四项都练、都显示）
+  // 但「熟练掌握」只认读和写 —— 他听说本来就行，目标是 3000 词的读写。
+  // 记忆盒的推进也只看这两项，否则很少练到的「说」会把盒子永远卡在低档。
+  var CORE = ['r', 'w'];
   var SKILL_MAX = 3;
   var MASTER_BOX = 4;                  // 至少熬过 7 天那一档
-  var MASTER_SKILL = 2;                // 四项技能各到 2 级
+  var MASTER_SKILL = 2;
 
   function todayIndex(d) {
     d = d || new Date();
@@ -1113,12 +1149,13 @@ button.chip{ cursor:pointer; background:#5a2723; border-color:rgba(255,255,255,.
       name: (PROFILES[profile] || PROFILES.bufan).name,
       startDay: todayIndex(),
       goalDate: '2026-12-31',
-      goalWords: 1000,
+      goalWords: 3000,
+      minutes: 40,          // 每天想学多久，新词数由它自动推算
       xp: 0, gems: 0,
       streak: 0, bestStreak: 0,
       lastDay: null,
       daysDone: [],
-      cursor: { unit: 1, scene: 0 },   // 下一个要开的场景
+      wordIndex: 0,         // 学到教材第几个词了（自适应要跨场景取词，所以精确到词）
       cards: {},                        // word -> card
       ach: [],
       stats: { answers: 0, correct: 0, seconds: 0, sessions: 0 }
@@ -1135,19 +1172,32 @@ button.chip{ cursor:pointer; background:#5a2723; border-color:rgba(255,255,255,.
       return this.profile === 'bufan' ? KEY_BASE : KEY_BASE + '.' + this.profile;
     },
 
+    keeps: function () { return (PROFILES[this.profile] || PROFILES.bufan).keeps !== false; },
+
     load: function (profile) {
       if (profile) this.profile = PROFILES[profile] ? profile : 'bufan';
       this.data = blankSave(this.profile);
+      if (!this.keeps()) return this.data;      // 访客：永远从零开始，不读盘
       try {
         var raw = localStorage.getItem(this.key());
         if (raw) {
           var d = JSON.parse(raw);
           if (d && d.v === 1) {
-            // 补齐旧存档缺的字段
             var base = blankSave(this.profile);
+            // 先记下老存档「原本有没有」这个字段，再补默认值 ——
+            // 顺序反了的话默认值会先把 wordIndex 填成 0，迁移就永远不触发
+            var hadIndex = ('wordIndex' in d);
             for (var k in base) if (!(k in d)) d[k] = base[k];
             d.profile = this.profile;
             d.name = base.name;
+
+            // 老存档没有 wordIndex，从已有卡片反推学到哪了（见 registry.resumeIndex）
+            if (!hadIndex) d.wordIndex = global.EQ ? global.EQ.resumeIndex(d.cards) : 0;
+
+            // 目标词数这类全局设定要跟着新版本走，不能被老存档冻住在 1000
+            d.goalWords = base.goalWords;
+            if (!d.minutes) d.minutes = base.minutes;
+            delete d.cursor;
             this.data = d;
           }
         }
@@ -1156,6 +1206,7 @@ button.chip{ cursor:pointer; background:#5a2723; border-color:rgba(255,255,255,.
     },
 
     save: function () {
+      if (!this.keeps()) return;                // 访客：只活在内存里，不落盘
       try { localStorage.setItem(this.key(), JSON.stringify(this.data)); }
       catch (e) { console.warn('存档写入失败', e); }
     },
@@ -1245,7 +1296,15 @@ button.chip{ cursor:pointer; background:#5a2723; border-color:rgba(255,255,255,.
       return Math.max(2, days + d);
     },
 
+    /** 记忆盒推进看哪一项：只在读/写里挑最弱的 */
     weakest: function (c) {
+      var best = CORE[0], v = 99;
+      CORE.forEach(function (s) { if (c.sk[s] < v) { v = c.sk[s]; best = s; } });
+      return best;
+    },
+
+    /** 出题时看四项里最弱的，听和说也要照顾到，只是不卡盒子 */
+    weakestAll: function (c) {
       var best = 'l', v = 99;
       SKILLS.forEach(function (s) { if (c.sk[s] < v) { v = c.sk[s]; best = s; } });
       return best;
@@ -1255,7 +1314,7 @@ button.chip{ cursor:pointer; background:#5a2723; border-color:rgba(255,255,255,.
       var c = Save.data.cards[word];
       if (!c) return false;
       if (c.b < MASTER_BOX) return false;
-      return SKILLS.every(function (s) { return c.sk[s] >= MASTER_SKILL; });
+      return CORE.every(function (s) { return c.sk[s] >= MASTER_SKILL; });
     },
 
     masteredCount: function () {
@@ -1274,7 +1333,10 @@ button.chip{ cursor:pointer; background:#5a2723; border-color:rgba(255,255,255,.
         var c = Save.data.cards[w];
         if (c.due <= day) out.push({ word: w, card: c, overdue: day - c.due });
       });
-      out.sort(function (a, b) { return b.overdue - a.overdue || a.card.b - b.card.b; });
+      // 积压时按「谁最接近毕业」排，而不是「谁最逾期」。
+      // 推演里这一条把彻底塌方（掌握 0）变成稳定毕业（掌握 300+）：
+      // 只救最逾期的会让所有词一起卡在低档，谁也毕不了业。
+      out.sort(function (a, b) { return b.card.b - a.card.b || b.overdue - a.overdue; });
       return out;
     },
 
@@ -1284,7 +1346,10 @@ button.chip{ cursor:pointer; background:#5a2723; border-color:rgba(255,255,255,.
       var end = new Date(d.goalDate + 'T23:59:59');
       var left = Math.max(0, Math.ceil((end - new Date()) / 86400000));
       var done = this.masteredCount();
+      var met = this.learningCount();
       return {
+        met: met,
+        metPct: Math.min(100, Math.round(met / d.goalWords * 100)),
         done: done,
         total: d.goalWords,
         daysLeft: left,
@@ -1324,6 +1389,7 @@ button.chip{ cursor:pointer; background:#5a2723; border-color:rgba(255,255,255,.
     }
   };
 
+  SRS.CORE = CORE;
   global.Save = Save;
   global.SRS = SRS;
   global.Level = Level;
@@ -1336,6 +1402,9 @@ button.chip{ cursor:pointer; background:#5a2723; border-color:rgba(255,255,255,.
    registry.js — 教材注册表
    教学法：场景(scene) → 对话(story) → 句子(sentence) → 单词(word)
    单词永远挂在句子里，句子永远挂在场景里，不做裸词表。
+
+   光标精确到「第几个词」而不是「第几个场景」——
+   因为每天学多少词是按时间预算自动算的，一天可能跨好几个场景。
    ============================================================ */
 (function (global) {
   'use strict';
@@ -1344,23 +1413,29 @@ button.chip{ cursor:pointer; background:#5a2723; border-color:rgba(255,255,255,.
     units: [],
     _byId: {},
     _byWord: {},
+    _flat: [],          // 全部单词，按教材顺序摊平
 
     addUnit: function (u) {
+      var self = this;
       u.scenes.forEach(function (s, i) {
         s.unit = u.id;
         s.index = i;
-        s.words.forEach(function (w) { w.unit = u.id; w.scene = s.id; });
+        s.words.forEach(function (w) {
+          w.unit = u.id;
+          w.scene = s.id;
+          w.idx = self._flat.length;
+          self._flat.push(w);
+          self._byWord[w.w] = w;
+        });
       });
       this.units.push(u);
       this._byId[u.id] = u;
-      var self = this;
-      u.scenes.forEach(function (s) {
-        s.words.forEach(function (w) { self._byWord[w.w] = w; });
-      });
     },
 
     unit: function (id) { return this._byId[id]; },
     word: function (w) { return this._byWord[w]; },
+    all: function () { return this._flat; },
+    totalWords: function () { return this._flat.length; },
 
     scenes: function () {
       var out = [];
@@ -1372,43 +1447,41 @@ button.chip{ cursor:pointer; background:#5a2723; border-color:rgba(255,255,255,.
       return this.scenes().filter(function (s) { return s.id === id; })[0] || null;
     },
 
-    /** 光标指向的场景；跑完全部内容返回 null */
-    sceneAt: function (cursor) {
-      var u = this.unit(cursor.unit);
-      if (!u) return null;
-      return u.scenes[cursor.scene] || null;
+    /**
+     * 老存档迁移：从「他已经有卡片的词」反推学到哪了。
+     * 不能用老的 {unit, scene} 光标 —— 场景重排过（6 个小场景合成 2 个大场景），
+     * 老的场景序号在新结构里根本不存在，照着换算会把他直接跳到教材末尾。
+     * 数「开头连续多少个词已经见过」才是稳的，教材怎么重排都不会错。
+     */
+    resumeIndex: function (cards) {
+      cards = cards || {};
+      var i = 0;
+      while (i < this._flat.length && cards[this._flat[i].w]) i++;
+      return i;
     },
 
-    /** 光标往后推一格 */
-    advance: function (cursor) {
-      var u = this.unit(cursor.unit);
-      if (!u) return cursor;
-      if (cursor.scene + 1 < u.scenes.length) return { unit: cursor.unit, scene: cursor.scene + 1 };
-      var idx = this.units.indexOf(u);
-      if (idx + 1 < this.units.length) return { unit: this.units[idx + 1].id, scene: 0 };
-      return { unit: cursor.unit, scene: cursor.scene };   // 已到最后
+    /** 从第 i 个词开始取 n 个新词；教材见底就返回剩下的 */
+    wordsFrom: function (i, n) {
+      return this._flat.slice(i, i + n);
     },
 
-    allWords: function () {
-      var out = [];
-      this.scenes().forEach(function (s) { s.words.forEach(function (w) { out.push(w); }); });
-      return out;
-    },
-
-    /** 已解锁（学过或正在学）的词，用来出干扰项 */
-    unlockedWords: function (cursor) {
-      var out = [], stop = false, self = this;
-      this.units.forEach(function (u) {
-        u.scenes.forEach(function (s) {
-          if (stop) return;
-          out = out.concat(s.words);
-          if (u.id === cursor.unit && s.index === cursor.scene) stop = true;
-        });
+    /** 这批词涉及哪几个场景（按教材顺序，不重复）——故事阶段要按顺序放 */
+    scenesOf: function (words) {
+      var seen = {}, out = [], self = this;
+      words.forEach(function (w) {
+        if (seen[w.scene]) return;
+        seen[w.scene] = 1;
+        var s = self.sceneById(w.scene);
+        if (s) out.push(s);
       });
       return out;
     },
 
-    totalWords: function () { return this.allWords().length; }
+    /** 已解锁（学过或正在学）的词，用来出干扰项 */
+    unlockedWords: function (wordIndex) {
+      var upto = Math.max(24, Math.min(this._flat.length, (wordIndex || 0) + 40));
+      return this._flat.slice(0, upto);
+    }
   };
 
   global.EQ = EQ;
@@ -1417,156 +1490,116 @@ button.chip{ cursor:pointer; background:#5a2723; border-color:rgba(255,255,255,.
 </script>
 <script>
 /* ===== js/data/u01.js ===== */
-/* 第一章 · 我的家与早晨  |  Home & Morning  |  48 words */
+/* 第一章 · 我的家与早晨  |  Home & Morning  |  48 words
+   场景已按「一节课一个大场景」重排：每个场景 24 词，对话是三段连起来的完整一天。 */
 EQ.addUnit({
   id: 1,
   title: 'Home & Morning',
   titleZh: '第一章 · 我的家与早晨',
   icon: '🏠',
-  biome: 'plains',
   scenes: [
 
     {
-      id: 'u1s1', icon: '🌅',
-      title: 'Wake Up!', titleZh: '起床啦',
-      where: 'At home, 7 o\'clock in the morning', whereZh: '家里，早上七点',
+      id: 'u1sA', icon: '🌅',
+      title: 'My Morning', titleZh: '我的早晨',
+      where: 'At home, from waking up to breakfast', whereZh: '家里，从起床到吃完早餐',
       story: [
-        { sp: 'Mum',   en: 'Good morning, Bufan! Time to wake up.', zh: '早上好，步凡！该起床了。' },
+        { sp: 'Mum', en: 'Good morning, Bufan! Time to wake up.', zh: '早上好，步凡！该起床了。' },
         { sp: 'Bufan', en: 'Good morning, Mum. I am still sleepy.', zh: '早上好，妈妈。我还很困。' },
-        { sp: 'Mum',   en: 'Get up now. You have school today.',    zh: '快起来。你今天要上学。' },
-        { sp: 'Bufan', en: 'Okay. I will get out of bed.',          zh: '好的。我这就下床。' },
-        { sp: 'Mum',   en: 'Put on your uniform, please.',          zh: '请把校服穿上。' },
-        { sp: 'Bufan', en: 'I am ready, Mum!',                      zh: '我准备好了，妈妈！' }
+        { sp: 'Mum', en: 'Get up now. You have school today.', zh: '快起来。你今天要上学。' },
+        { sp: 'Bufan', en: 'Okay. I will get out of bed.', zh: '好的。我这就下床。' },
+        { sp: 'Mum', en: 'Put on your uniform, please.', zh: '请把校服穿上。' },
+        { sp: 'Bufan', en: 'I am ready, Mum!', zh: '我准备好了，妈妈！' },
+        { sp: 'Mum', en: 'Please brush your teeth first.', zh: '先去刷牙。' },
+        { sp: 'Bufan', en: 'I am brushing them now.', zh: '我正在刷。' },
+        { sp: 'Mum', en: 'Wash your face too.', zh: '脸也洗一下。' },
+        { sp: 'Bufan', en: 'Oh! The water is very cold.', zh: '哎呀！水好冷。' },
+        { sp: 'Mum', en: 'Now comb your hair, please.', zh: '现在请梳一下头发。' },
+        { sp: 'Bufan', en: 'My face is clean and my hair is neat.', zh: '我的脸干净了，头发也整齐了。' },
+        { sp: 'Mum', en: 'What do you want for breakfast?', zh: '你早餐想吃什么？' },
+        { sp: 'Bufan', en: 'I want bread and milk, please.', zh: '我想要面包和牛奶。' },
+        { sp: 'Mum', en: 'Here is your egg. Eat slowly.', zh: '这是你的鸡蛋。慢慢吃。' },
+        { sp: 'Bufan', en: 'Thank you, Mum. It is very nice.', zh: '谢谢妈妈。很好吃。' },
+        { sp: 'Mum', en: 'Drink your milk. Do not be late.', zh: '把牛奶喝了。别迟到。' },
+        { sp: 'Bufan', en: 'I have finished. May I go now?', zh: '我吃完了。我可以走了吗？' }
       ],
       words: [
-        { w: 'morning', pos: 'n',  zh: '早上',   ico: '🌅', s: 'Good morning, Mum!',              sZh: '早上好，妈妈！' },
-        { w: 'wake',    pos: 'v',  zh: '醒来',   ico: '⏰', s: 'I wake up at seven o\'clock.',    sZh: '我七点醒来。' },
-        { w: 'get',     pos: 'v',  zh: '得到；变得', ico: '🙌', s: 'I get out of bed.',            sZh: '我从床上下来。' },
-        { w: 'bed',     pos: 'n',  zh: '床',     ico: '🛏️', s: 'My bed is very soft.',           sZh: '我的床很软。' },
-        { w: 'time',    pos: 'n',  zh: '时间',   ico: '🕖', s: 'It is time to go to school.',    sZh: '该去上学了。' },
-        { w: 'school',  pos: 'n',  zh: '学校',   ico: '🏫', s: 'I go to school every day.',      sZh: '我每天去学校。' },
-        { w: 'ready',   pos: 'adj',zh: '准备好的', ico: '✅', s: 'I am ready for school.',        sZh: '我上学准备好了。' },
-        { w: 'today',   pos: 'n',  zh: '今天',   ico: '📅', s: 'I have school today.',           sZh: '我今天要上学。' }
+        { w: 'morning', pos: 'n', zh: '早上', ico: '🌅', s: 'Good morning, Mum!', sZh: '早上好，妈妈！' },
+        { w: 'wake', pos: 'v', zh: '醒来', ico: '⏰', s: 'I wake up at seven o\'clock.', sZh: '我七点醒来。' },
+        { w: 'get', pos: 'v', zh: '得到；变得', ico: '🙌', s: 'I get out of bed.', sZh: '我从床上下来。' },
+        { w: 'bed', pos: 'n', zh: '床', ico: '🛏️', s: 'My bed is very soft.', sZh: '我的床很软。' },
+        { w: 'time', pos: 'n', zh: '时间', ico: '🕖', s: 'It is time to go to school.', sZh: '该去上学了。' },
+        { w: 'school', pos: 'n', zh: '学校', ico: '🏫', s: 'I go to school every day.', sZh: '我每天去学校。' },
+        { w: 'ready', pos: 'adj', zh: '准备好的', ico: '✅', s: 'I am ready for school.', sZh: '我上学准备好了。' },
+        { w: 'today', pos: 'n', zh: '今天', ico: '📅', s: 'I have school today.', sZh: '我今天要上学。' },
+        { w: 'brush', pos: 'v', zh: '刷', ico: '🪥', s: 'I brush my teeth every morning.', sZh: '我每天早上刷牙。' },
+        { w: 'teeth', pos: 'n', zh: '牙齿', ico: '🦷', s: 'My teeth are white and clean.', sZh: '我的牙齿又白又干净。' },
+        { w: 'wash', pos: 'v', zh: '洗', ico: '🧼', s: 'Wash your hands before you eat.', sZh: '吃饭前先洗手。' },
+        { w: 'face', pos: 'n', zh: '脸', ico: '😀', s: 'I wash my face with water.', sZh: '我用水洗脸。' },
+        { w: 'water', pos: 'n', zh: '水', ico: '💧', s: 'The water is very cold.', sZh: '水很冷。' },
+        { w: 'cold', pos: 'adj', zh: '冷的', ico: '🧊', s: 'It is cold in the morning.', sZh: '早上很冷。' },
+        { w: 'hair', pos: 'n', zh: '头发', ico: '💇', s: 'Please comb your hair.', sZh: '请梳一下头发。' },
+        { w: 'clean', pos: 'adj', zh: '干净的', ico: '✨', s: 'My hands are clean now.', sZh: '我的手现在干净了。' },
+        { w: 'breakfast', pos: 'n', zh: '早餐', ico: '🍳', s: 'I eat breakfast at home.', sZh: '我在家吃早餐。' },
+        { w: 'want', pos: 'v', zh: '想要', ico: '🙋', s: 'I want some bread, please.', sZh: '我想要一些面包。' },
+        { w: 'bread', pos: 'n', zh: '面包', ico: '🥖', s: 'The bread is warm and soft.', sZh: '面包又暖又软。' },
+        { w: 'milk', pos: 'n', zh: '牛奶', ico: '🥛', s: 'Drink your milk, please.', sZh: '请把你的牛奶喝了。' },
+        { w: 'egg', pos: 'n', zh: '鸡蛋', ico: '🥚', s: 'I like to eat an egg.', sZh: '我喜欢吃鸡蛋。' },
+        { w: 'eat', pos: 'v', zh: '吃', ico: '🍽️', s: 'We eat breakfast every day.', sZh: '我们每天吃早餐。' },
+        { w: 'drink', pos: 'v', zh: '喝', ico: '🥤', s: 'I drink water when I am hot.', sZh: '我热的时候喝水。' },
+        { w: 'thank', pos: 'v', zh: '感谢', ico: '🙏', s: 'Thank you very much, Mum.', sZh: '非常谢谢你，妈妈。' }
       ]
     },
 
     {
-      id: 'u1s2', icon: '🪥',
-      title: 'Brush and Wash', titleZh: '刷牙洗脸',
-      where: 'In the bathroom', whereZh: '浴室里',
+      id: 'u1sB', icon: '🏠', mc: true,
+      title: 'My Home', titleZh: '我的家',
+      where: 'Around the flat, and one night in Minecraft', whereZh: '家里各处，外加一个 Minecraft 的夜晚',
       story: [
-        { sp: 'Mum',   en: 'Please brush your teeth first.',        zh: '先去刷牙。' },
-        { sp: 'Bufan', en: 'I am brushing them now.',               zh: '我正在刷。' },
-        { sp: 'Mum',   en: 'Wash your face too.',                   zh: '脸也洗一下。' },
-        { sp: 'Bufan', en: 'Oh! The water is very cold.',           zh: '哎呀！水好冷。' },
-        { sp: 'Mum',   en: 'Now comb your hair, please.',           zh: '现在请梳一下头发。' },
-        { sp: 'Bufan', en: 'My face is clean and my hair is neat.', zh: '我的脸干净了，头发也整齐了。' }
-      ],
-      words: [
-        { w: 'brush', pos: 'v', zh: '刷',   ico: '🪥', s: 'I brush my teeth every morning.', sZh: '我每天早上刷牙。' },
-        { w: 'teeth', pos: 'n', zh: '牙齿', ico: '🦷', s: 'My teeth are white and clean.',   sZh: '我的牙齿又白又干净。' },
-        { w: 'wash',  pos: 'v', zh: '洗',   ico: '🧼', s: 'Wash your hands before you eat.', sZh: '吃饭前先洗手。' },
-        { w: 'face',  pos: 'n', zh: '脸',   ico: '😀', s: 'I wash my face with water.',      sZh: '我用水洗脸。' },
-        { w: 'water', pos: 'n', zh: '水',   ico: '💧', s: 'The water is very cold.',         sZh: '水很冷。' },
-        { w: 'cold',  pos: 'adj',zh: '冷的',ico: '🧊', s: 'It is cold in the morning.',      sZh: '早上很冷。' },
-        { w: 'hair',  pos: 'n', zh: '头发', ico: '💇', s: 'Please comb your hair.',          sZh: '请梳一下头发。' },
-        { w: 'clean', pos: 'adj',zh: '干净的',ico:'✨', s: 'My hands are clean now.',        sZh: '我的手现在干净了。' }
-      ]
-    },
-
-    {
-      id: 'u1s3', icon: '🍞',
-      title: 'Breakfast Time', titleZh: '吃早餐',
-      where: 'At the kitchen table', whereZh: '厨房餐桌旁',
-      story: [
-        { sp: 'Mum',   en: 'What do you want for breakfast?',   zh: '你早餐想吃什么？' },
-        { sp: 'Bufan', en: 'I want bread and milk, please.',    zh: '我想要面包和牛奶。' },
-        { sp: 'Mum',   en: 'Here is your egg. Eat slowly.',     zh: '这是你的鸡蛋。慢慢吃。' },
-        { sp: 'Bufan', en: 'Thank you, Mum. It is very nice.',  zh: '谢谢妈妈。很好吃。' },
-        { sp: 'Mum',   en: 'Drink your milk. Do not be late.',  zh: '把牛奶喝了。别迟到。' },
-        { sp: 'Bufan', en: 'I have finished. May I go now?',    zh: '我吃完了。我可以走了吗？' }
-      ],
-      words: [
-        { w: 'breakfast', pos: 'n', zh: '早餐', ico: '🍳', s: 'I eat breakfast at home.',       sZh: '我在家吃早餐。' },
-        { w: 'want',      pos: 'v', zh: '想要', ico: '🙋', s: 'I want some bread, please.',     sZh: '我想要一些面包。' },
-        { w: 'bread',     pos: 'n', zh: '面包', ico: '🥖', s: 'The bread is warm and soft.',    sZh: '面包又暖又软。' },
-        { w: 'milk',      pos: 'n', zh: '牛奶', ico: '🥛', s: 'Drink your milk, please.',       sZh: '请把你的牛奶喝了。' },
-        { w: 'egg',       pos: 'n', zh: '鸡蛋', ico: '🥚', s: 'I like to eat an egg.',          sZh: '我喜欢吃鸡蛋。' },
-        { w: 'eat',       pos: 'v', zh: '吃',   ico: '🍽️', s: 'We eat breakfast every day.',    sZh: '我们每天吃早餐。' },
-        { w: 'drink',     pos: 'v', zh: '喝',   ico: '🥤', s: 'I drink water when I am hot.',   sZh: '我热的时候喝水。' },
-        { w: 'thank',     pos: 'v', zh: '感谢', ico: '🙏', s: 'Thank you very much, Mum.',      sZh: '非常谢谢你，妈妈。' }
-      ]
-    },
-
-    {
-      id: 'u1s4', icon: '🚪',
-      title: 'My House', titleZh: '我的家',
-      where: 'A small flat in Singapore', whereZh: '新加坡的一间小组屋',
-      story: [
-        { sp: 'Bufan', en: 'This is my house. It is small but nice.',   zh: '这是我家。虽然小但很好。' },
-        { sp: 'Dad',   en: 'Your room is next to the kitchen.',         zh: '你的房间在厨房旁边。' },
-        { sp: 'Bufan', en: 'I have a table, a chair and a lamp.',       zh: '我有一张桌子、一把椅子和一盏灯。' },
-        { sp: 'Dad',   en: 'Please close the door when you sleep.',     zh: '睡觉的时候请把门关上。' },
-        { sp: 'Bufan', en: 'Can I open the window? I like the wind.',   zh: '我能开窗吗？我喜欢风。' },
-        { sp: 'Dad',   en: 'Yes, you can. Now come down for dinner.',   zh: '可以。现在下来吃晚饭。' }
-      ],
-      words: [
-        { w: 'house',  pos: 'n',  zh: '房子',  ico: '🏠', s: 'This is my house.',            sZh: '这是我的房子。' },
-        { w: 'room',   pos: 'n',  zh: '房间',  ico: '🛋️', s: 'My room is small but nice.',   sZh: '我的房间小但很好。' },
-        { w: 'door',   pos: 'n',  zh: '门',    ico: '🚪', s: 'Please close the door.',       sZh: '请把门关上。' },
-        { w: 'window', pos: 'n',  zh: '窗户',  ico: '🪟', s: 'I open the window every day.', sZh: '我每天开窗。' },
-        { w: 'table',  pos: 'n',  zh: '桌子',  ico: '🪵', s: 'The book is on the table.',    sZh: '书在桌子上。' },
-        { w: 'chair',  pos: 'n',  zh: '椅子',  ico: '🪑', s: 'Please sit on the chair.',     sZh: '请坐在椅子上。' },
-        { w: 'open',   pos: 'v',  zh: '打开',  ico: '🔓', s: 'Can I open the window?',       sZh: '我能开窗吗？' },
-        { w: 'close',  pos: 'v',  zh: '关上',  ico: '🔒', s: 'Close the door, please.',      sZh: '请关门。' }
-      ]
-    },
-
-    {
-      id: 'u1s5', icon: '🧹',
-      title: 'Helping at Home', titleZh: '在家帮忙',
-      where: 'In the living room', whereZh: '客厅里',
-      story: [
-        { sp: 'Mum',   en: 'Can you help me, Bufan?',              zh: '步凡，你能帮我吗？' },
-        { sp: 'Bufan', en: 'Yes, Mum. What can I do?',             zh: '好的，妈妈。我能做什么？' },
-        { sp: 'Mum',   en: 'Please put the toys in the box.',      zh: '请把玩具放进盒子里。' },
-        { sp: 'Bufan', en: 'I will tidy my room first.',           zh: '我先整理我的房间。' },
-        { sp: 'Mum',   en: 'Good boy. Now throw the rubbish away.',zh: '好孩子。现在把垃圾扔掉。' },
-        { sp: 'Bufan', en: 'I am happy to help you.',              zh: '我很乐意帮你。' }
-      ],
-      words: [
-        { w: 'help',    pos: 'v',  zh: '帮助', ico: '🤝', s: 'Can you help me, please?',     sZh: '你能帮我一下吗？' },
-        { w: 'can',     pos: 'v',  zh: '能；可以', ico: '💪', s: 'I can do it by myself.',   sZh: '我能自己做。' },
-        { w: 'put',     pos: 'v',  zh: '放',   ico: '📥', s: 'Put the toys in the box.',     sZh: '把玩具放进盒子。' },
-        { w: 'toy',     pos: 'n',  zh: '玩具', ico: '🧸', s: 'I have many toys at home.',    sZh: '我家里有很多玩具。' },
-        { w: 'box',     pos: 'n',  zh: '盒子', ico: '📦', s: 'The box is under the table.',  sZh: '盒子在桌子下面。' },
-        { w: 'tidy',    pos: 'v',  zh: '整理', ico: '🧹', s: 'I tidy my room every day.',    sZh: '我每天整理房间。' },
-        { w: 'rubbish', pos: 'n',  zh: '垃圾', ico: '🗑️', s: 'Please throw the rubbish away.',sZh: '请把垃圾扔掉。' },
-        { w: 'happy',   pos: 'adj',zh: '开心的',ico: '😄', s: 'I am happy to help you.',     sZh: '我很乐意帮你。' }
-      ]
-    },
-
-    {
-      id: 'u1s6', icon: '⛏️',
-      title: 'My First Night', titleZh: '我的第一个夜晚', mc: true,
-      where: 'Minecraft — the Overworld at sunset', whereZh: 'Minecraft 主世界，日落时分',
-      story: [
+        { sp: 'Bufan', en: 'This is my house. It is small but nice.', zh: '这是我家。虽然小但很好。' },
+        { sp: 'Dad', en: 'Your room is next to the kitchen.', zh: '你的房间在厨房旁边。' },
+        { sp: 'Bufan', en: 'I have a table, a chair and a lamp.', zh: '我有一张桌子、一把椅子和一盏灯。' },
+        { sp: 'Dad', en: 'Please close the door when you sleep.', zh: '睡觉的时候请把门关上。' },
+        { sp: 'Bufan', en: 'Can I open the window? I like the wind.', zh: '我能开窗吗？我喜欢风。' },
+        { sp: 'Dad', en: 'Yes, you can. Now come down for dinner.', zh: '可以。现在下来吃晚饭。' },
+        { sp: 'Mum', en: 'Can you help me, Bufan?', zh: '步凡，你能帮我吗？' },
+        { sp: 'Bufan', en: 'Yes, Mum. What can I do?', zh: '好的，妈妈。我能做什么？' },
+        { sp: 'Mum', en: 'Please put the toys in the box.', zh: '请把玩具放进盒子里。' },
+        { sp: 'Bufan', en: 'I will tidy my room first.', zh: '我先整理我的房间。' },
+        { sp: 'Mum', en: 'Good boy. Now throw the rubbish away.', zh: '好孩子。现在把垃圾扔掉。' },
+        { sp: 'Bufan', en: 'I am happy to help you.', zh: '我很乐意帮你。' },
         { sp: 'Steve', en: 'The sun is going down. We must build a house.', zh: '太阳要下山了。我们必须盖一座房子。' },
-        { sp: 'Bufan', en: 'I will dig some stone with my pickaxe.',        zh: '我用镐挖一些石头。' },
-        { sp: 'Steve', en: 'Make a door. Do not let the zombie in!',        zh: '做一扇门。别让僵尸进来！' },
-        { sp: 'Bufan', en: 'I have a bed now. Can I sleep?',                zh: '我有床了。我能睡觉吗？' },
-        { sp: 'Steve', en: 'Yes. Sleep well and skip the night.',           zh: '可以。好好睡，跳过夜晚。' },
-        { sp: 'Bufan', en: 'Good night, Steve. See you in the morning!',    zh: '晚安，Steve。早上见！' }
+        { sp: 'Bufan', en: 'I will dig some stone with my pickaxe.', zh: '我用镐挖一些石头。' },
+        { sp: 'Steve', en: 'Make a door. Do not let the zombie in!', zh: '做一扇门。别让僵尸进来！' },
+        { sp: 'Bufan', en: 'I have a bed now. Can I sleep?', zh: '我有床了。我能睡觉吗？' },
+        { sp: 'Steve', en: 'Yes. Sleep well and skip the night.', zh: '可以。好好睡，跳过夜晚。' },
+        { sp: 'Bufan', en: 'Good night, Steve. See you in the morning!', zh: '晚安，Steve。早上见！' }
       ],
       words: [
-        { w: 'sun',   pos: 'n', zh: '太阳', ico: '☀️', s: 'The sun is going down.',       sZh: '太阳要下山了。' },
-        { w: 'down',  pos: 'adv',zh: '向下',ico: '⬇️', s: 'Please sit down here.',        sZh: '请坐在这里。' },
+        { w: 'house', pos: 'n', zh: '房子', ico: '🏠', s: 'This is my house.', sZh: '这是我的房子。' },
+        { w: 'room', pos: 'n', zh: '房间', ico: '🛋️', s: 'My room is small but nice.', sZh: '我的房间小但很好。' },
+        { w: 'door', pos: 'n', zh: '门', ico: '🚪', s: 'Please close the door.', sZh: '请把门关上。' },
+        { w: 'window', pos: 'n', zh: '窗户', ico: '🪟', s: 'I open the window every day.', sZh: '我每天开窗。' },
+        { w: 'table', pos: 'n', zh: '桌子', ico: '🪵', s: 'The book is on the table.', sZh: '书在桌子上。' },
+        { w: 'chair', pos: 'n', zh: '椅子', ico: '🪑', s: 'Please sit on the chair.', sZh: '请坐在椅子上。' },
+        { w: 'open', pos: 'v', zh: '打开', ico: '🔓', s: 'Can I open the window?', sZh: '我能开窗吗？' },
+        { w: 'close', pos: 'v', zh: '关上', ico: '🔒', s: 'Close the door, please.', sZh: '请关门。' },
+        { w: 'help', pos: 'v', zh: '帮助', ico: '🤝', s: 'Can you help me, please?', sZh: '你能帮我一下吗？' },
+        { w: 'can', pos: 'v', zh: '能；可以', ico: '💪', s: 'I can do it by myself.', sZh: '我能自己做。' },
+        { w: 'put', pos: 'v', zh: '放', ico: '📥', s: 'Put the toys in the box.', sZh: '把玩具放进盒子。' },
+        { w: 'toy', pos: 'n', zh: '玩具', ico: '🧸', s: 'I have many toys at home.', sZh: '我家里有很多玩具。' },
+        { w: 'box', pos: 'n', zh: '盒子', ico: '📦', s: 'The box is under the table.', sZh: '盒子在桌子下面。' },
+        { w: 'tidy', pos: 'v', zh: '整理', ico: '🧹', s: 'I tidy my room every day.', sZh: '我每天整理房间。' },
+        { w: 'rubbish', pos: 'n', zh: '垃圾', ico: '🗑️', s: 'Please throw the rubbish away.', sZh: '请把垃圾扔掉。' },
+        { w: 'happy', pos: 'adj', zh: '开心的', ico: '😄', s: 'I am happy to help you.', sZh: '我很乐意帮你。' },
+        { w: 'sun', pos: 'n', zh: '太阳', ico: '☀️', s: 'The sun is going down.', sZh: '太阳要下山了。' },
+        { w: 'down', pos: 'adv', zh: '向下', ico: '⬇️', s: 'Please sit down here.', sZh: '请坐在这里。' },
         { w: 'build', pos: 'v', zh: '建造', ico: '🏗️', s: 'We build a house with stone.', sZh: '我们用石头盖房子。' },
-        { w: 'dig',   pos: 'v', zh: '挖',   ico: '⛏️', s: 'I dig for stone and coal.',    sZh: '我挖石头和煤。' },
-        { w: 'stone', pos: 'n', zh: '石头', ico: '🪨', s: 'This stone is very hard.',     sZh: '这块石头很硬。' },
-        { w: 'make',  pos: 'v', zh: '做；制作',ico:'🔨', s: 'I want to make a door.',      sZh: '我想做一扇门。' },
-        { w: 'sleep', pos: 'v', zh: '睡觉', ico: '😴', s: 'I sleep in my bed at night.',  sZh: '我晚上在床上睡觉。' },
-        { w: 'night', pos: 'n', zh: '夜晚', ico: '🌙', s: 'Good night. See you tomorrow.',sZh: '晚安。明天见。' }
+        { w: 'dig', pos: 'v', zh: '挖', ico: '⛏️', s: 'I dig for stone and coal.', sZh: '我挖石头和煤。' },
+        { w: 'stone', pos: 'n', zh: '石头', ico: '🪨', s: 'This stone is very hard.', sZh: '这块石头很硬。' },
+        { w: 'make', pos: 'v', zh: '做；制作', ico: '🔨', s: 'I want to make a door.', sZh: '我想做一扇门。' },
+        { w: 'sleep', pos: 'v', zh: '睡觉', ico: '😴', s: 'I sleep in my bed at night.', sZh: '我晚上在床上睡觉。' },
+        { w: 'night', pos: 'n', zh: '夜晚', ico: '🌙', s: 'Good night. See you tomorrow.', sZh: '晚安。明天见。' }
       ]
     }
 
@@ -1576,156 +1609,116 @@ EQ.addUnit({
 </script>
 <script>
 /* ===== js/data/u02.js ===== */
-/* 第二章 · 在学校  |  At School  |  48 words */
+/* 第二章 · 在学校  |  At School  |  48 words
+   场景已按「一节课一个大场景」重排：每个场景 24 词，对话是三段连起来的完整一天。 */
 EQ.addUnit({
   id: 2,
   title: 'At School',
   titleZh: '第二章 · 在学校',
   icon: '🏫',
-  biome: 'plains',
   scenes: [
 
     {
-      id: 'u2s1', icon: '🚌',
-      title: 'Going to School', titleZh: '上学路上',
-      where: 'At the bus stop', whereZh: '巴士站',
+      id: 'u2sA', icon: '🏫',
+      title: 'A School Day', titleZh: '上学的一天',
+      where: 'From the bus stop to the canteen', whereZh: '从巴士站到食堂',
       story: [
-        { sp: 'Mum',    en: 'The bus is coming. Hurry up!',           zh: '巴士来了。快点！' },
-        { sp: 'Bufan',  en: 'I have my bag and my water bottle.',     zh: '我带了书包和水瓶。' },
-        { sp: 'Mum',    en: 'Hold my hand. Look left and right.',     zh: '牵着我的手。左右看看。' },
-        { sp: 'Bufan',  en: 'Bye, Mum! See you later.',               zh: '再见妈妈！待会儿见。' },
-        { sp: 'Driver', en: 'Good morning. Please sit down.',         zh: '早上好。请坐下。' },
-        { sp: 'Bufan',  en: 'Thank you, uncle.',                      zh: '谢谢叔叔。' }
+        { sp: 'Mum', en: 'The bus is coming. Hurry up!', zh: '巴士来了。快点！' },
+        { sp: 'Bufan', en: 'I have my bag and my water bottle.', zh: '我带了书包和水瓶。' },
+        { sp: 'Mum', en: 'Hold my hand. Look left and right.', zh: '牵着我的手。左右看看。' },
+        { sp: 'Bufan', en: 'Bye, Mum! See you later.', zh: '再见妈妈！待会儿见。' },
+        { sp: 'Driver', en: 'Good morning. Please sit down.', zh: '早上好。请坐下。' },
+        { sp: 'Bufan', en: 'Thank you, uncle.', zh: '谢谢叔叔。' },
+        { sp: 'Teacher', en: 'Good morning, class. Please sit down.', zh: '同学们早上好。请坐下。' },
+        { sp: 'Class', en: 'Good morning, Miss Tan.', zh: '陈老师早上好。' },
+        { sp: 'Teacher', en: 'Open your book to page ten.', zh: '把书翻到第十页。' },
+        { sp: 'Bufan', en: 'Miss, may I borrow a pencil?', zh: '老师，我能借一支铅笔吗？' },
+        { sp: 'Teacher', en: 'Yes. Write your name on the paper.', zh: '可以。把你的名字写在纸上。' },
+        { sp: 'Bufan', en: 'Look! I can read this word now.', zh: '看！我现在会读这个词了。' },
+        { sp: 'Bufan', en: 'I am hungry. Let us go to the canteen.', zh: '我饿了。我们去食堂吧。' },
+        { sp: 'Friend', en: 'I will buy noodles. What about you?', zh: '我要买面。你呢？' },
+        { sp: 'Bufan', en: 'I want rice and chicken, please.', zh: '我要饭和鸡肉。' },
+        { sp: 'Aunty', en: 'That is one dollar, boy.', zh: '一块钱，小朋友。' },
+        { sp: 'Bufan', en: 'Here you are. Thank you, aunty.', zh: '给你。谢谢阿姨。' },
+        { sp: 'Friend', en: 'Come. Let us eat together.', zh: '来。我们一起吃。' }
       ],
       words: [
-        { w: 'bus',    pos: 'n', zh: '巴士',  ico: '🚌', s: 'I go to school by bus.',        sZh: '我坐巴士去上学。' },
-        { w: 'come',   pos: 'v', zh: '来',    ico: '🏃', s: 'The bus is coming now.',        sZh: '巴士现在来了。' },
-        { w: 'bag',    pos: 'n', zh: '书包',  ico: '🎒', s: 'My school bag is very heavy.',  sZh: '我的书包很重。' },
-        { w: 'bottle', pos: 'n', zh: '瓶子',  ico: '🍶', s: 'I bring a water bottle to school.', sZh: '我带水瓶去学校。' },
-        { w: 'hand',   pos: 'n', zh: '手',    ico: '✋', s: 'Please hold my hand.',          sZh: '请牵着我的手。' },
-        { w: 'look',   pos: 'v', zh: '看',    ico: '👀', s: 'Look left and right.',          sZh: '左右看看。' },
-        { w: 'sit',    pos: 'v', zh: '坐',    ico: '💺', s: 'Please sit down here.',         sZh: '请坐这里。' },
-        { w: 'later',  pos: 'adv',zh: '待会儿',ico: '⏳', s: 'See you later, Mum!',          sZh: '待会儿见，妈妈！' }
+        { w: 'bus', pos: 'n', zh: '巴士', ico: '🚌', s: 'I go to school by bus.', sZh: '我坐巴士去上学。' },
+        { w: 'come', pos: 'v', zh: '来', ico: '🏃', s: 'The bus is coming now.', sZh: '巴士现在来了。' },
+        { w: 'bag', pos: 'n', zh: '书包', ico: '🎒', s: 'My school bag is very heavy.', sZh: '我的书包很重。' },
+        { w: 'bottle', pos: 'n', zh: '瓶子', ico: '🍶', s: 'I bring a water bottle to school.', sZh: '我带水瓶去学校。' },
+        { w: 'hand', pos: 'n', zh: '手', ico: '✋', s: 'Please hold my hand.', sZh: '请牵着我的手。' },
+        { w: 'look', pos: 'v', zh: '看', ico: '👀', s: 'Look left and right.', sZh: '左右看看。' },
+        { w: 'sit', pos: 'v', zh: '坐', ico: '💺', s: 'Please sit down here.', sZh: '请坐这里。' },
+        { w: 'later', pos: 'adv', zh: '待会儿', ico: '⏳', s: 'See you later, Mum!', sZh: '待会儿见，妈妈！' },
+        { w: 'class', pos: 'n', zh: '班级；课', ico: '👦', s: 'Our class has thirty children.', sZh: '我们班有三十个孩子。' },
+        { w: 'teacher', pos: 'n', zh: '老师', ico: '👩‍🏫', s: 'My teacher is very kind.', sZh: '我的老师很和蔼。' },
+        { w: 'book', pos: 'n', zh: '书', ico: '📕', s: 'Open your book, please.', sZh: '请打开你的书。' },
+        { w: 'page', pos: 'n', zh: '页', ico: '📄', s: 'Turn to page ten.', sZh: '翻到第十页。' },
+        { w: 'pencil', pos: 'n', zh: '铅笔', ico: '✏️', s: 'May I borrow a pencil?', sZh: '我能借支铅笔吗？' },
+        { w: 'write', pos: 'v', zh: '写', ico: '✍️', s: 'Write your name on the paper.', sZh: '把名字写在纸上。' },
+        { w: 'name', pos: 'n', zh: '名字', ico: '🏷️', s: 'My name is Gao Bufan.', sZh: '我叫高步凡。' },
+        { w: 'read', pos: 'v', zh: '读', ico: '📖', s: 'I can read this word now.', sZh: '我现在会读这个词了。' },
+        { w: 'hungry', pos: 'adj', zh: '饿的', ico: '😋', s: 'I am hungry at recess.', sZh: '课间休息时我饿了。' },
+        { w: 'canteen', pos: 'n', zh: '食堂', ico: '🏪', s: 'We eat in the school canteen.', sZh: '我们在学校食堂吃饭。' },
+        { w: 'buy', pos: 'v', zh: '买', ico: '💰', s: 'I buy noodles at recess.', sZh: '课间我买面吃。' },
+        { w: 'noodles', pos: 'n', zh: '面条', ico: '🍜', s: 'These noodles are very hot.', sZh: '这面很烫。' },
+        { w: 'rice', pos: 'n', zh: '米饭', ico: '🍚', s: 'I want rice and chicken.', sZh: '我要饭和鸡肉。' },
+        { w: 'chicken', pos: 'n', zh: '鸡肉', ico: '🍗', s: 'The chicken rice is delicious.', sZh: '鸡饭很好吃。' },
+        { w: 'dollar', pos: 'n', zh: '元', ico: '💵', s: 'It costs one dollar.', sZh: '要一块钱。' },
+        { w: 'together', pos: 'adv', zh: '一起', ico: '👬', s: 'Let us eat together.', sZh: '我们一起吃吧。' }
       ]
     },
 
     {
-      id: 'u2s2', icon: '📚',
-      title: 'In the Classroom', titleZh: '在教室里',
-      where: 'Primary One classroom', whereZh: '小一教室',
+      id: 'u2sB', icon: '⚽', mc: true,
+      title: 'After Recess', titleZh: '课间之后',
+      where: 'PE, the library, and a crafting lesson', whereZh: '体育课、图书馆和合成课',
       story: [
-        { sp: 'Teacher', en: 'Good morning, class. Please sit down.',   zh: '同学们早上好。请坐下。' },
-        { sp: 'Class',   en: 'Good morning, Miss Tan.',                 zh: '陈老师早上好。' },
-        { sp: 'Teacher', en: 'Open your book to page ten.',             zh: '把书翻到第十页。' },
-        { sp: 'Bufan',   en: 'Miss, may I borrow a pencil?',            zh: '老师，我能借一支铅笔吗？' },
-        { sp: 'Teacher', en: 'Yes. Write your name on the paper.',      zh: '可以。把你的名字写在纸上。' },
-        { sp: 'Bufan',   en: 'Look! I can read this word now.',         zh: '看！我现在会读这个词了。' }
+        { sp: 'Teacher', en: 'Line up, everyone. Stand up straight.', zh: '大家排队。站直。' },
+        { sp: 'Bufan', en: 'Can we play football today?', zh: '我们今天能踢足球吗？' },
+        { sp: 'Teacher', en: 'First we run around the field.', zh: '我们先绕操场跑一圈。' },
+        { sp: 'Bufan', en: 'Look at me! I can jump very high.', zh: '看我！我能跳很高。' },
+        { sp: 'Friend', en: 'I am tired. Let us rest for a while.', zh: '我累了。我们休息一下。' },
+        { sp: 'Teacher', en: 'Drink some water. Well done, boys.', zh: '喝点水。做得好，孩子们。' },
+        { sp: 'Bufan', en: 'I like this book about animals.', zh: '我喜欢这本关于动物的书。' },
+        { sp: 'Librarian', en: 'You may borrow two books today.', zh: '你今天可以借两本书。' },
+        { sp: 'Bufan', en: 'Where do I put my library card?', zh: '我的图书卡放哪里？' },
+        { sp: 'Librarian', en: 'Right here. Please be quiet inside.', zh: '就放这里。里面请安静。' },
+        { sp: 'Bufan', en: 'When must I return the books?', zh: '我什么时候要还书？' },
+        { sp: 'Librarian', en: 'In two weeks. Enjoy your reading!', zh: '两周后。阅读愉快！' },
+        { sp: 'Steve', en: 'Today we learn to make a pickaxe.', zh: '今天我们学做一把镐。' },
+        { sp: 'Bufan', en: 'I need three stones and two sticks.', zh: '我需要三块石头和两根木棍。' },
+        { sp: 'Steve', en: 'Put them in the crafting table.', zh: '把它们放进工作台。' },
+        { sp: 'Bufan', en: 'Look! My new pickaxe is done.', zh: '看！我的新镐做好了。' },
+        { sp: 'Steve', en: 'Now you can mine iron and coal.', zh: '现在你可以挖铁和煤了。' },
+        { sp: 'Bufan', en: 'Thank you, teacher Steve!', zh: '谢谢你，Steve 老师！' }
       ],
       words: [
-        { w: 'class',   pos: 'n', zh: '班级；课', ico: '👦', s: 'Our class has thirty children.', sZh: '我们班有三十个孩子。' },
-        { w: 'teacher', pos: 'n', zh: '老师',   ico: '👩‍🏫', s: 'My teacher is very kind.',      sZh: '我的老师很和蔼。' },
-        { w: 'book',    pos: 'n', zh: '书',     ico: '📕', s: 'Open your book, please.',        sZh: '请打开你的书。' },
-        { w: 'page',    pos: 'n', zh: '页',     ico: '📄', s: 'Turn to page ten.',              sZh: '翻到第十页。' },
-        { w: 'pencil',  pos: 'n', zh: '铅笔',   ico: '✏️', s: 'May I borrow a pencil?',         sZh: '我能借支铅笔吗？' },
-        { w: 'write',   pos: 'v', zh: '写',     ico: '✍️', s: 'Write your name on the paper.',  sZh: '把名字写在纸上。' },
-        { w: 'name',    pos: 'n', zh: '名字',   ico: '🏷️', s: 'My name is Gao Bufan.',          sZh: '我叫高步凡。' },
-        { w: 'read',    pos: 'v', zh: '读',     ico: '📖', s: 'I can read this word now.',      sZh: '我现在会读这个词了。' }
-      ]
-    },
-
-    {
-      id: 'u2s3', icon: '🍜',
-      title: 'Recess', titleZh: '课间休息',
-      where: 'The school canteen', whereZh: '学校食堂',
-      story: [
-        { sp: 'Bufan',  en: 'I am hungry. Let us go to the canteen.', zh: '我饿了。我们去食堂吧。' },
-        { sp: 'Friend', en: 'I will buy noodles. What about you?',    zh: '我要买面。你呢？' },
-        { sp: 'Bufan',  en: 'I want rice and chicken, please.',       zh: '我要饭和鸡肉。' },
-        { sp: 'Aunty',  en: 'That is one dollar, boy.',               zh: '一块钱，小朋友。' },
-        { sp: 'Bufan',  en: 'Here you are. Thank you, aunty.',        zh: '给你。谢谢阿姨。' },
-        { sp: 'Friend', en: 'Come. Let us eat together.',             zh: '来。我们一起吃。' }
-      ],
-      words: [
-        { w: 'hungry',   pos: 'adj',zh: '饿的',  ico: '😋', s: 'I am hungry at recess.',        sZh: '课间休息时我饿了。' },
-        { w: 'canteen',  pos: 'n',  zh: '食堂',  ico: '🏪', s: 'We eat in the school canteen.', sZh: '我们在学校食堂吃饭。' },
-        { w: 'buy',      pos: 'v',  zh: '买',    ico: '💰', s: 'I buy noodles at recess.',      sZh: '课间我买面吃。' },
-        { w: 'noodles',  pos: 'n',  zh: '面条',  ico: '🍜', s: 'These noodles are very hot.',   sZh: '这面很烫。' },
-        { w: 'rice',     pos: 'n',  zh: '米饭',  ico: '🍚', s: 'I want rice and chicken.',      sZh: '我要饭和鸡肉。' },
-        { w: 'chicken',  pos: 'n',  zh: '鸡肉',  ico: '🍗', s: 'The chicken rice is delicious.',sZh: '鸡饭很好吃。' },
-        { w: 'dollar',   pos: 'n',  zh: '元',    ico: '💵', s: 'It costs one dollar.',          sZh: '要一块钱。' },
-        { w: 'together', pos: 'adv',zh: '一起',  ico: '👬', s: 'Let us eat together.',          sZh: '我们一起吃吧。' }
-      ]
-    },
-
-    {
-      id: 'u2s4', icon: '⚽',
-      title: 'PE Lesson', titleZh: '体育课',
-      where: 'The school field', whereZh: '学校操场',
-      story: [
-        { sp: 'Teacher', en: 'Line up, everyone. Stand up straight.',  zh: '大家排队。站直。' },
-        { sp: 'Bufan',   en: 'Can we play football today?',            zh: '我们今天能踢足球吗？' },
-        { sp: 'Teacher', en: 'First we run around the field.',         zh: '我们先绕操场跑一圈。' },
-        { sp: 'Bufan',   en: 'Look at me! I can jump very high.',      zh: '看我！我能跳很高。' },
-        { sp: 'Friend',  en: 'I am tired. Let us rest for a while.',   zh: '我累了。我们休息一下。' },
-        { sp: 'Teacher', en: 'Drink some water. Well done, boys.',     zh: '喝点水。做得好，孩子们。' }
-      ],
-      words: [
-        { w: 'stand', pos: 'v',  zh: '站',    ico: '🧍', s: 'Please stand up straight.',    sZh: '请站直。' },
-        { w: 'play',  pos: 'v',  zh: '玩；踢',ico: '⚽', s: 'We play football after school.',sZh: '放学后我们踢足球。' },
-        { w: 'run',   pos: 'v',  zh: '跑',    ico: '🏃', s: 'I run around the field.',      sZh: '我绕着操场跑。' },
-        { w: 'field', pos: 'n',  zh: '操场',  ico: '🌱', s: 'The field is big and green.',  sZh: '操场又大又绿。' },
-        { w: 'jump',  pos: 'v',  zh: '跳',    ico: '🦘', s: 'I can jump very high.',        sZh: '我能跳很高。' },
-        { w: 'tired', pos: 'adj',zh: '累的',  ico: '😮‍💨', s: 'I am tired after the game.',   sZh: '比赛后我累了。' },
-        { w: 'rest',  pos: 'v',  zh: '休息',  ico: '🛋️', s: 'Let us rest for a while.',     sZh: '我们休息一下。' },
-        { w: 'high',  pos: 'adj',zh: '高的',  ico: '🔝', s: 'The wall is very high.',       sZh: '这墙很高。' }
-      ]
-    },
-
-    {
-      id: 'u2s5', icon: '📚',
-      title: 'The Library', titleZh: '图书馆',
-      where: 'The school library', whereZh: '学校图书馆',
-      story: [
-        { sp: 'Bufan',     en: 'I like this book about animals.',      zh: '我喜欢这本关于动物的书。' },
-        { sp: 'Librarian', en: 'You may borrow two books today.',      zh: '你今天可以借两本书。' },
-        { sp: 'Bufan',     en: 'Where do I put my library card?',      zh: '我的图书卡放哪里？' },
-        { sp: 'Librarian', en: 'Right here. Please be quiet inside.',  zh: '就放这里。里面请安静。' },
-        { sp: 'Bufan',     en: 'When must I return the books?',        zh: '我什么时候要还书？' },
-        { sp: 'Librarian', en: 'In two weeks. Enjoy your reading!',    zh: '两周后。阅读愉快！' }
-      ],
-      words: [
-        { w: 'library', pos: 'n',  zh: '图书馆', ico: '📚', s: 'The library is next to the hall.', sZh: '图书馆在礼堂旁边。' },
-        { w: 'borrow',  pos: 'v',  zh: '借',     ico: '🤲', s: 'May I borrow two books?',         sZh: '我能借两本书吗？' },
-        { w: 'two',     pos: 'num',zh: '二',     ico: '2️⃣', s: 'I have two books in my bag.',     sZh: '我书包里有两本书。' },
-        { w: 'where',   pos: 'q',  zh: '哪里',   ico: '❓', s: 'Where is my pencil?',             sZh: '我的铅笔在哪里？' },
-        { w: 'card',    pos: 'n',  zh: '卡片',   ico: '💳', s: 'This is my library card.',        sZh: '这是我的图书卡。' },
-        { w: 'quiet',   pos: 'adj',zh: '安静的', ico: '🤫', s: 'Please be quiet in the library.',  sZh: '在图书馆请安静。' },
-        { w: 'return',  pos: 'v',  zh: '归还',   ico: '↩️', s: 'I must return the book today.',   sZh: '我今天必须还书。' },
-        { w: 'week',    pos: 'n',  zh: '星期',   ico: '📅', s: 'There are seven days in a week.', sZh: '一星期有七天。' }
-      ]
-    },
-
-    {
-      id: 'u2s6', icon: '🧰',
-      title: 'Crafting Class', titleZh: '合成课', mc: true,
-      where: 'Minecraft — beside the crafting table', whereZh: 'Minecraft 工作台旁',
-      story: [
-        { sp: 'Steve', en: 'Today we learn to make a pickaxe.',       zh: '今天我们学做一把镐。' },
-        { sp: 'Bufan', en: 'I need three stones and two sticks.',     zh: '我需要三块石头和两根木棍。' },
-        { sp: 'Steve', en: 'Put them in the crafting table.',         zh: '把它们放进工作台。' },
-        { sp: 'Bufan', en: 'Look! My new pickaxe is done.',           zh: '看！我的新镐做好了。' },
-        { sp: 'Steve', en: 'Now you can mine iron and coal.',         zh: '现在你可以挖铁和煤了。' },
-        { sp: 'Bufan', en: 'Thank you, teacher Steve!',               zh: '谢谢你，Steve 老师！' }
-      ],
-      words: [
-        { w: 'learn', pos: 'v',  zh: '学习', ico: '🧠', s: 'I learn English every day.',   sZh: '我每天学英语。' },
-        { w: 'need',  pos: 'v',  zh: '需要', ico: '🙏', s: 'I need three stones.',         sZh: '我需要三块石头。' },
-        { w: 'three', pos: 'num',zh: '三',   ico: '3️⃣', s: 'I have three sticks here.',    sZh: '我这里有三根木棍。' },
-        { w: 'stick', pos: 'n',  zh: '木棍', ico: '🪵', s: 'A pickaxe needs two sticks.',  sZh: '一把镐需要两根木棍。' },
-        { w: 'new',   pos: 'adj',zh: '新的', ico: '✨', s: 'My new pickaxe is very fast.', sZh: '我的新镐很快。' },
-        { w: 'mine',  pos: 'v',  zh: '开采', ico: '⛏️', s: 'We mine iron and coal.',       sZh: '我们挖铁和煤。' },
-        { w: 'iron',  pos: 'n',  zh: '铁',   ico: '⚙️', s: 'Iron is strong and useful.',   sZh: '铁又硬又有用。' },
-        { w: 'coal',  pos: 'n',  zh: '煤',   ico: '🪨', s: 'We burn coal to make light.',  sZh: '我们烧煤来照明。' }
+        { w: 'stand', pos: 'v', zh: '站', ico: '🧍', s: 'Please stand up straight.', sZh: '请站直。' },
+        { w: 'play', pos: 'v', zh: '玩；踢', ico: '⚽', s: 'We play football after school.', sZh: '放学后我们踢足球。' },
+        { w: 'run', pos: 'v', zh: '跑', ico: '🏃', s: 'I run around the field.', sZh: '我绕着操场跑。' },
+        { w: 'field', pos: 'n', zh: '操场', ico: '🌱', s: 'The field is big and green.', sZh: '操场又大又绿。' },
+        { w: 'jump', pos: 'v', zh: '跳', ico: '🦘', s: 'I can jump very high.', sZh: '我能跳很高。' },
+        { w: 'tired', pos: 'adj', zh: '累的', ico: '😮‍💨', s: 'I am tired after the game.', sZh: '比赛后我累了。' },
+        { w: 'rest', pos: 'v', zh: '休息', ico: '🛋️', s: 'Let us rest for a while.', sZh: '我们休息一下。' },
+        { w: 'high', pos: 'adj', zh: '高的', ico: '🔝', s: 'The wall is very high.', sZh: '这墙很高。' },
+        { w: 'library', pos: 'n', zh: '图书馆', ico: '📚', s: 'The library is next to the hall.', sZh: '图书馆在礼堂旁边。' },
+        { w: 'borrow', pos: 'v', zh: '借', ico: '🤲', s: 'May I borrow two books?', sZh: '我能借两本书吗？' },
+        { w: 'two', pos: 'num', zh: '二', ico: '2️⃣', s: 'I have two books in my bag.', sZh: '我书包里有两本书。' },
+        { w: 'where', pos: 'q', zh: '哪里', ico: '❓', s: 'Where is my pencil?', sZh: '我的铅笔在哪里？' },
+        { w: 'card', pos: 'n', zh: '卡片', ico: '💳', s: 'This is my library card.', sZh: '这是我的图书卡。' },
+        { w: 'quiet', pos: 'adj', zh: '安静的', ico: '🤫', s: 'Please be quiet in the library.', sZh: '在图书馆请安静。' },
+        { w: 'return', pos: 'v', zh: '归还', ico: '↩️', s: 'I must return the book today.', sZh: '我今天必须还书。' },
+        { w: 'week', pos: 'n', zh: '星期', ico: '📅', s: 'There are seven days in a week.', sZh: '一星期有七天。' },
+        { w: 'learn', pos: 'v', zh: '学习', ico: '🧠', s: 'I learn English every day.', sZh: '我每天学英语。' },
+        { w: 'need', pos: 'v', zh: '需要', ico: '🙏', s: 'I need three stones.', sZh: '我需要三块石头。' },
+        { w: 'three', pos: 'num', zh: '三', ico: '3️⃣', s: 'I have three sticks here.', sZh: '我这里有三根木棍。' },
+        { w: 'stick', pos: 'n', zh: '木棍', ico: '🪵', s: 'A pickaxe needs two sticks.', sZh: '一把镐需要两根木棍。' },
+        { w: 'new', pos: 'adj', zh: '新的', ico: '✨', s: 'My new pickaxe is very fast.', sZh: '我的新镐很快。' },
+        { w: 'mine', pos: 'v', zh: '开采', ico: '⛏️', s: 'We mine iron and coal.', sZh: '我们挖铁和煤。' },
+        { w: 'iron', pos: 'n', zh: '铁', ico: '⚙️', s: 'Iron is strong and useful.', sZh: '铁又硬又有用。' },
+        { w: 'coal', pos: 'n', zh: '煤', ico: '🪨', s: 'We burn coal to make light.', sZh: '我们烧煤来照明。' }
       ]
     }
 
@@ -1737,23 +1730,40 @@ EQ.addUnit({
 /* ===== js/game.js ===== */
 /* ============================================================
    game.js — 每日关卡编排
-   一节课 ≈ 30 分钟，固定九个阶段（对应热键栏九格）：
-     📖 故事 → ⛏️ 挖新词 → 🎧 听 → 📖 读 → 🗣️ 说 → 🔨 写 → 🧰 造句 → 👹 Boss复习 → 🏆 结算
+
+   跟旧版最大的不同：**每天学多少新词不是写死的，是按时间预算算出来的**。
+   复习队列空的时候多灌新词（开头几天能到 40 个），复习堆起来了自动少灌。
+   写死 8 词/课会出现「前三天 10 分钟、一个月后 77 分钟」的失控曲线。
    ============================================================ */
 (function (global) {
   'use strict';
 
+  // 单题耗时估计（秒）。推演脚本直接读这里，保证模型和实现不会各说各话。
+  var COST = {
+    fixed:  60,     // 开场结算等固定开销
+    story: 100,     // 每个场景的对话
+    mine:    8,     // 新词卡
+    listen: 10,     // 听音辨词
+    spell:  20,     // 字母块拼写（界面里同时显示挖空的句子，所以记「读+写」）
+    craft:  35,     // 词块造句
+    speak:  15,     // 跟读
+    dictate:14,     // 字母块听写（比打字快，用在还没毕业的词上）
+    typein: 22      // 打字默写 —— 最贵的一关，也是最有效的一关
+  };
+
   var PHASES = [
-    { key: 'story', ico: '📖', name: '场景故事' },
-    { key: 'mine',  ico: '⛏️', name: '挖掘新词' },
-    { key: 'listen',ico: '🎧', name: '听音辨词' },
-    { key: 'read',  ico: '📕', name: '读句填词' },
-    { key: 'speak', ico: '🗣️', name: '开口跟读' },
-    { key: 'write', ico: '🔨', name: '铁砧拼写' },
-    { key: 'craft', ico: '🧰', name: '工作台造句' },
-    { key: 'boss',  ico: '👹', name: 'Boss 复习' },
-    { key: 'done',  ico: '🏆', name: '结算领奖' }
+    { key: 'story',  ico: '📖', name: '场景故事' },
+    { key: 'mine',   ico: '⛏️', name: '挖掘新词' },
+    { key: 'listen', ico: '🎧', name: '听音辨词' },
+    { key: 'write',  ico: '🔨', name: '铁砧拼写' },
+    { key: 'craft',  ico: '🧰', name: '工作台造句' },
+    { key: 'speak',  ico: '🗣️', name: '开口跟读' },
+    { key: 'drill',  ico: '🎧', name: '听写复习' },
+    { key: 'boss',   ico: '⌨️', name: '默写 Boss' },
+    { key: 'done',   ico: '🏆', name: '结算领奖' }
   ];
+
+  var MIN_NEW = 4, MAX_NEW = 40;
 
   function shuffle(a) {
     a = a.slice();
@@ -1769,31 +1779,33 @@ EQ.addUnit({
     return shuffle(pool).slice(0, n);
   }
 
+  function clamp(v, lo, hi) { return Math.max(lo, Math.min(hi, v)); }
+
   var Game = {
     PHASES: PHASES,
+    COST: COST,
     session: null,
+
+    // 一题练哪几项技能。拼写和默写界面里都带着挖空的句子，
+    // 所以它们同时练「读 + 写」—— 这正是这次的目标技能。
+    SKILL_OF: {
+      listen: 'l', read: 'r', speak: 's',
+      write: ['r', 'w'], typein: ['r', 'w'],
+      dictate: ['l', 'w', 'r'], aloud: ['r', 's']
+    },
 
     /** 出干扰项：优先同一章的词，长度接近的排前面 */
     distractors: function (target, n) {
-      var pool = EQ.unlockedWords(Save.data.cursor).filter(function (w) { return w.w !== target.w; });
-      if (pool.length < n) pool = EQ.allWords().filter(function (w) { return w.w !== target.w; });
+      var pool = EQ.unlockedWords(Save.data.wordIndex).filter(function (w) { return w.w !== target.w; });
+      if (pool.length < n) pool = EQ.all().filter(function (w) { return w.w !== target.w; });
       var same = pool.filter(function (w) { return w.unit === target.unit; });
       var use = same.length >= n ? same : pool;
-      // 同词性 + 长度接近的更像样
       use = use.slice().sort(function (a, b) {
         var sa = (a.pos === target.pos ? 0 : 2) + Math.abs(a.w.length - target.w.length) * 0.3;
         var sb = (b.pos === target.pos ? 0 : 2) + Math.abs(b.w.length - target.w.length) * 0.3;
         return sa - sb;
       }).slice(0, Math.max(n + 4, 8));
       return sample(use, n);
-    },
-
-    // 一题练哪几项技能。dictate（听写）和 aloud（朗读）一题练两项 ——
-    // 这不是取巧：听写本来就是「听懂 + 写出来」，朗读本来就是「认字 + 读出声」，
-    // 也正好是新加坡小学每周在做的两件事。复习题量因此减半，30 分钟才装得下 1000 词。
-    SKILL_OF: {
-      listen: 'l', read: 'r', write: 'w', speak: 's',
-      dictate: ['l', 'w'], aloud: ['r', 's']
     },
 
     task: function (type, word, scene) {
@@ -1807,6 +1819,7 @@ EQ.addUnit({
 
     /** 跟读用哪一句：优先用故事里含这个词的原句，没有就用词条例句 */
     lineFor: function (word, scene) {
+      scene = scene || EQ.sceneById(word.scene);
       if (scene) {
         var re = new RegExp('\\b' + word.w + '(?:s|es|ed|ing|d)?\\b', 'i');
         var hit = scene.story.filter(function (l) { return re.test(l.en); })[0];
@@ -1816,76 +1829,132 @@ EQ.addUnit({
     },
 
     /**
+     * 按时间预算算今天要学几个新词、复习几题。
+     * 复习优先（SRS 的铁律），但最多吃掉 72% 的时间，
+     * 否则到后期新词会被完全饿死，教材永远走不完。
+     */
+    /**
+     * 复习分两关，按「离毕业还有多远」分流：
+     *   盒子 ≥ 3 的老词  → ⌨️ 打字默写（22s，最严，最后一关）
+     *   盒子 < 3 的新词  → 🎧 字母块听写（14s，更快，刚学两天的词不该逼他盲打）
+     * 全部用打字的话吞吐量掉四成，年底熟练数从 ~1100 掉到 ~700。
+     */
+    splitDue: function (due) {
+      var hard = [], easy = [];
+      due.forEach(function (d) { (d.card.b >= 3 ? hard : easy).push(d); });
+      return { hard: hard, easy: easy };
+    },
+
+    plan: function (minutes, due, reviewOnly) {
+      var budget = Math.max(300, (minutes || 40) * 60 - COST.fixed);
+      var split = this.splitDue(due || []);
+
+      function fill(sec) {
+        // 先排最接近毕业的（打字），再用剩下的时间排听写
+        var typein = Math.min(split.hard.length, Math.floor(sec / COST.typein));
+        var rest = sec - typein * COST.typein;
+        var dictate = Math.min(split.easy.length, Math.floor(rest / COST.dictate));
+        return { typein: typein, dictate: dictate };
+      }
+
+      if (reviewOnly) {
+        var all = fill(budget);
+        return { typein: all.typein, dictate: all.dictate, reviews: all.typein + all.dictate, newCount: 0 };
+      }
+
+      var r = fill(Math.floor(budget * 0.72));
+      var used = r.typein * COST.typein + r.dictate * COST.dictate;
+      var left = budget - used;
+      var per = COST.mine + COST.spell + COST.story / 24;
+      var newCount = clamp(Math.floor(left / per), MIN_NEW, MAX_NEW);
+      return { typein: r.typein, dictate: r.dictate, reviews: r.typein + r.dictate, newCount: newCount };
+    },
+
+    /** 估算一节课要多久（分钟），主页上给家长看 */
+    estimate: function (newCount, sceneCount, p) {
+      var sec = COST.fixed + sceneCount * COST.story +
+                newCount * (COST.mine + COST.spell) +
+                Math.min(8, Math.ceil(newCount / 3)) * COST.listen +
+                Math.min(4, Math.ceil(newCount / 6)) * COST.craft +
+                Math.min(6, Math.ceil(newCount / 4)) * COST.speak +
+                (p.typein || 0) * COST.typein + (p.dictate || 0) * COST.dictate;
+      return Math.round(sec / 60);
+    },
+
+    /**
      * 组装今天这一节课
      * @param opts.reviewOnly 忙的时候只清复习，不开新场景
      */
     build: function (opts) {
       opts = opts || {};
-      var cursor = Save.data.cursor;
-      var scene = opts.reviewOnly ? null : EQ.sceneAt(cursor);
-      var isReviewOnly = !scene;                       // 教材学完、或今天主动选了只复习
-      var newWords = scene ? scene.words : [];
+      var self = this;
+      var wi = Save.data.wordIndex || 0;
+
+      var due = SRS.due().filter(function (d) { return EQ.word(d.word); });
+      var p = this.plan(Save.data.minutes, due, opts.reviewOnly);
+
+      var newWords = opts.reviewOnly ? [] : EQ.wordsFrom(wi, p.newCount);
+      var scenes = EQ.scenesOf(newWords);
+      var newSet = newWords.map(function (w) { return w.w; });
+      var pool = due.filter(function (d) { return newSet.indexOf(d.word) < 0; });
+      var split = this.splitDue(pool);
+      var hardItems = split.hard.slice(0, p.typein);
+      var easyItems = split.easy.slice(0, p.dictate);
 
       var queue = [];
       var phase = function (key, items) {
         items.forEach(function (it) { it.phase = key; queue.push(it); });
       };
-      var self = this;
 
-      if (scene) {
-        phase('story', [{ t: 'story', scene: scene }]);
-        phase('mine',  shuffle(newWords).map(function (w) { return { t: 'mine', word: w }; }));
-        phase('listen',shuffle(newWords).map(function (w) { return self.task('listen', w); }));
-        phase('read',  shuffle(newWords).map(function (w) { return self.task('read', w); }));
-        // 说：每个新词都要开口一次，句子优先取故事原句
-        // （必须覆盖全部新词，否则「说」这一项永远是 0 级，记忆盒会卡住出不去）
-        phase('speak', shuffle(newWords).map(function (w) { return self.task('speak', w, scene); }));
+      if (scenes.length) {
+        phase('story', scenes.map(function (s) { return { t: 'story', scene: s }; }));
+      }
+      if (newWords.length) {
+        phase('mine', newWords.map(function (w) { return { t: 'mine', word: w }; }));
+        // 听：抽一部分做支撑，不进主路径（他听说本来就行）
+        phase('listen', sample(newWords, Math.min(8, Math.ceil(newWords.length / 3)))
+          .map(function (w) { return self.task('listen', w); }));
+        // 写：全部新词都要拼一遍，这是主目标技能
         phase('write', shuffle(newWords).map(function (w) { return self.task('write', w); }));
-        phase('craft', shuffle(newWords).slice(0, 4).map(function (w) {
-          return { t: 'craft', word: w, sentence: w.s, sentenceZh: w.sZh };
-        }));
+        phase('craft', sample(newWords, Math.min(4, Math.ceil(newWords.length / 6)))
+          .map(function (w) { return { t: 'craft', word: w, sentence: w.s, sentenceZh: w.sZh, skill: ['r'] }; }));
+        phase('speak', sample(newWords, Math.min(6, Math.ceil(newWords.length / 4)))
+          .map(function (w) { return self.task('speak', w); }));
       }
 
-      // Boss：今天到期的复习词，按最弱技能出题
-      var due = SRS.due().filter(function (d) { return EQ.word(d.word); });
-      var newSet = newWords.map(function (w) { return w.w; });
-      due = due.filter(function (d) { return newSet.indexOf(d.word) < 0; });
-      // 40 是推演出来的临界吞吐量：低于 40 复习积压会滚雪球，
-      // 一批词永远卡在低档出不去，到 12/31 只能掌握两百多词；
-      // 到 40 就能推到九百八，再往上收益很小、时间却更长。别随手调小。
-      var cap = isReviewOnly ? 70 : 40;
-      var bossItems = due.slice(0, cap).map(function (d) {
-        var word = EQ.word(d.word);
-        // 复习一律用双技能题：最弱的是「听」或「写」→ 听写；是「读」或「说」→ 朗读
-        var weak = SRS.weakest(d.card);
-        var type = (weak === 'l' || weak === 'w') ? 'dictate' : 'aloud';
-        var t = self.task(type, word, EQ.sceneById(word.scene));
-        t.review = true;
-        return t;
+      // 倒数第二关：字母块听写，给还没毕业的词
+      phase('drill', easyItems.map(function (d) {
+        var t = self.task('dictate', EQ.word(d.word)); t.review = true; return t;
+      }));
+
+      // 最后一关：打字默写，不给选项，给最接近毕业的词
+      var bossItems = hardItems.map(function (d) {
+        var t = self.task('typein', EQ.word(d.word)); t.review = true; return t;
       });
       if (!bossItems.length && newWords.length) {
-        bossItems = shuffle(newWords).slice(0, 6).map(function (w) {
-          var t = self.task(Math.random() < 0.5 ? 'dictate' : 'aloud', w, scene);
-          t.review = true; return t;
+        bossItems = sample(newWords, Math.min(8, newWords.length)).map(function (w) {
+          var t = self.task('typein', w); t.review = true; return t;
         });
       }
       phase('boss', bossItems);
       phase('done', [{ t: 'done' }]);
 
       this.session = {
-        scene: scene,
-        cursor: { unit: cursor.unit, scene: cursor.scene },
+        scenes: scenes,
+        scene: scenes[0] || null,
+        startIndex: wi,
+        newWords: newWords,
         queue: queue,
         i: 0,
         startedAt: Date.now(),
-        xpGained: 0,
-        gemsGained: 0,
-        right: 0,
-        wrong: 0,
+        xpGained: 0, gemsGained: 0,
+        right: 0, wrong: 0,
         wrongWords: [],
-        relearn: [],          // 答错的题，塞回本节课后面再考一次
+        relearn: [],
         newCount: newWords.length,
-        reviewCount: bossItems.length
+        reviewCount: bossItems.length + easyItems.length,
+        typeinCount: bossItems.length,
+        estimate: this.estimate(newWords.length, scenes.length, { typein: bossItems.length, dictate: easyItems.length })
       };
       return this.session;
     },
@@ -1896,7 +1965,6 @@ EQ.addUnit({
       return s.queue[s.i] || null;
     },
 
-    /** 记一次作答 */
     answer: function (good, task) {
       var s = this.session;
       task = task || this.current();
@@ -1917,9 +1985,8 @@ EQ.addUnit({
         s.wrong++;
         SFX.wrong();
         if (task.word && s.wrongWords.indexOf(task.word.w) < 0) s.wrongWords.push(task.word.w);
-        // 错题在本节课末尾补考一次
         if (task.word && !task.isRelearn && s.relearn.length < 12) {
-          var again = this.task(task.t, task.word, EQ.sceneById(task.word.scene));
+          var again = this.task(task.t, task.word);
           again.phase = 'boss'; again.isRelearn = true; again.review = true;
           s.relearn.push(again);
         }
@@ -1930,12 +1997,10 @@ EQ.addUnit({
     next: function () {
       var s = this.session;
       s.i++;
-      // 走到 done 之前，把错题补考插进来
       var cur = s.queue[s.i];
       if (cur && cur.t === 'done' && s.relearn.length) {
         var extra = s.relearn.splice(0, s.relearn.length);
-        s.queue.splice(s.i, 0, extra[0]);
-        for (var k = 1; k < extra.length; k++) s.queue.splice(s.i + k, 0, extra[k]);
+        for (var k = 0; k < extra.length; k++) s.queue.splice(s.i + k, 0, extra[k]);
       }
       return this.current();
     },
@@ -1948,14 +2013,13 @@ EQ.addUnit({
     phaseState: function () {
       var s = this.session, cur = this.current();
       var curKey = cur ? cur.phase || cur.t : 'done';
-      var seen = {}, self = this;
+      var seen = {};
       s.queue.slice(0, s.i).forEach(function (t) { seen[t.phase || t.t] = true; });
       return PHASES.map(function (p) {
         return { ico: p.ico, name: p.name, now: p.key === curKey, done: !!seen[p.key] && p.key !== curKey };
       });
     },
 
-    /** 结算 */
     finish: function () {
       var s = this.session;
       var mins = Math.round((Date.now() - s.startedAt) / 60000);
@@ -1969,8 +2033,8 @@ EQ.addUnit({
       s.accuracy = acc;
 
       var freshDay = SRS.checkIn();
-      // 学完这个场景才推进光标；纯复习日不推进
-      if (s.scene) Save.data.cursor = EQ.advance(s.cursor);
+      // 学过的新词才推进光标
+      if (s.newCount) Save.data.wordIndex = s.startIndex + s.newCount;
       Save.save();
       s.freshDay = freshDay;
       return s;
@@ -2055,57 +2119,71 @@ EQ.addUnit({
       App.setHudMode('home');
       var d = Save.data;
       var g = SRS.goal();
-      var scene = EQ.sceneAt(d.cursor);
-      var unit = scene ? EQ.unit(scene.unit) : null;
-      var due = SRS.due().filter(function (x) { return EQ.word(x.word); }).length;
       var lv = Level.info(d.xp);
+      var due = SRS.due().filter(function (x) { return EQ.word(x.word); }).length;
+
+      // 今天这节课到底是什么样，先算出来给家长看
+      var plan = Game.plan(d.minutes, due, false);
+      var nw = EQ.wordsFrom(d.wordIndex || 0, plan.newCount);
+      var scenes = EQ.scenesOf(nw);
+      var mins = Game.estimate(nw.length, scenes.length, plan.reviews);
+      var first = scenes[0];
+      var unit = first ? EQ.unit(first.unit) : null;
+      var done = !nw.length;
 
       stage.innerHTML =
         '<div class="home scroll">' +
           '<div class="home-title">' +
             '<div class="sign">ENGLISH  QUEST</div>' +
-            '<div class="home-sub">Bufan 的英语冒险 · 目标 12/31 拿下 1000 词</div>' +
+            '<div class="home-sub">' + esc(d.name) + ' 的英语冒险 · 目标 12/31 拿下 ' + g.total + ' 词读写</div>' +
           '</div>' +
 
           '<div class="quest-card panel">' +
-            (scene
-              ? '<div class="qc-top">' +
-                  '<div class="qc-ico">' + scene.icon + '</div>' +
+            (done
+              ? '<div class="qc-top"><div class="qc-ico">🏆</div><div class="grow">' +
+                  '<div class="qc-name">All Words Unlocked</div>' +
+                  '<div class="qc-zh">教材全部走完，接下来是纯复习</div></div></div>'
+              : '<div class="qc-top">' +
+                  '<div class="qc-ico">' + first.icon + '</div>' +
                   '<div class="grow">' +
                     '<div class="qc-unit px">' + esc(unit.titleZh) + '</div>' +
-                    '<div class="qc-name">' + esc(scene.title) + '</div>' +
-                    '<div class="qc-zh">' + esc(scene.titleZh) + ' · ' + esc(scene.whereZh) + '</div>' +
+                    '<div class="qc-name">' + esc(first.title) +
+                      (scenes.length > 1 ? ' <span class="qc-more">+' + (scenes.length - 1) + ' 个场景</span>' : '') + '</div>' +
+                    '<div class="qc-zh">' + esc(first.titleZh) + ' · ' + esc(first.whereZh) + '</div>' +
                   '</div>' +
-                '</div>' +
-                '<div class="qc-meta">' +
-                  '<span class="tag new">⛏️ 新词 ' + scene.words.length + '</span>' +
-                  '<span class="tag rev">👹 复习 ' + due + '</span>' +
-                  '<span class="tag time">⏱ 约 30 分钟</span>' +
-                '</div>'
-              : '<div class="qc-top"><div class="qc-ico">🏆</div><div class="grow">' +
-                  '<div class="qc-name">All Chapters Cleared</div>' +
-                  '<div class="qc-zh">教材全部学完，今天是纯复习日</div></div></div>' +
-                '<div class="qc-meta"><span class="tag rev">👹 复习 ' + due + '</span></div>') +
+                '</div>') +
+            '<div class="qc-meta">' +
+              '<span class="tag new">⛏️ 新词 ' + nw.length + '</span>' +
+              '<span class="tag rev">⌨️ 默写复习 ' + plan.reviews + (due > plan.reviews ? ' / ' + due : '') + '</span>' +
+              '<span class="tag time">⏱ 约 ' + mins + ' 分钟</span>' +
+            '</div>' +
             '<button class="btn primary wide big" data-act="start">▶  开始今天的冒险</button>' +
-            (scene && due > 0
+            (due > 0
               ? '<button class="btn ghost wide sm" data-act="reviewonly" style="margin-top:8px">' +
-                  '👹 今天很忙 · 只清 ' + Math.min(due, 70) + ' 道复习（约 ' + Math.max(5, Math.round(Math.min(due, 70) * 0.35)) + ' 分钟）</button>'
+                  '⌨️ 今天很忙 · 只做默写复习</button>'
               : '') +
           '</div>' +
 
           '<div class="stat-row">' +
-            statCard('💎', g.done, '/ ' + g.total + ' 词已掌握', g.pct + '%') +
-            statCard('📅', g.daysLeft, '天到 12/31', '每天需 ' + g.perDay + ' 词') +
+            statCard('📖', g.met, '/ ' + g.total + ' 词已接触', g.metPct + '%') +
+            statCard('💎', g.done, '词熟练掌握（读写）', g.pct + '%') +
+            statCard('📅', g.daysLeft, '天到 12/31', '每天约 ' + nw.length + ' 新词') +
             statCard('🔥', d.streak, '天连续打卡', '最长 ' + (d.bestStreak || 0) + ' 天') +
-            statCard('⭐', 'Lv.' + lv.level, '当前等级', lv.into + '/' + lv.need + ' XP') +
           '</div>' +
 
           '<div class="goal-bar panel">' +
-            '<div class="row"><span class="px tiny">1000 词进度</span><span class="grow"></span>' +
-              '<span class="tiny">' + g.done + ' / ' + g.total + '</span></div>' +
-            '<div class="bar" style="margin-top:8px"><i style="width:' + g.pct + '%"></i></div>' +
-            '<div class="tiny muted" style="margin-top:6px;color:#555">' +
-              '正在学 ' + SRS.learningCount() + ' 词 · 教材共 ' + EQ.totalWords() + ' 词' +
+            '<div class="row"><span class="px tiny">' + g.total + ' 词进度</span><span class="grow"></span>' +
+              '<span class="tiny">接触 ' + g.met + ' · 熟练 ' + g.done + '</span></div>' +
+            '<div class="bar2" style="margin-top:8px">' +
+              '<i class="met" style="width:' + g.metPct + '%"></i>' +
+              '<i class="done" style="width:' + g.pct + '%"></i>' +
+            '</div>' +
+            '<div class="tiny" style="margin-top:8px;color:#555">' +
+              '<b>浅色 = 见过练过</b>　<b style="color:#2f7a33">深色 = 四道复习都熬过来、真的记住了</b>' +
+            '</div>' +
+            '<div class="tiny" style="margin-top:4px;color:#777">' +
+              '每天 ' + (d.minutes || 40) + ' 分钟 · 教材共 ' + EQ.totalWords() + ' 词 · Lv.' + lv.level +
+              ' (' + lv.into + '/' + lv.need + ' XP)' +
             '</div>' +
           '</div>' +
 
@@ -2150,7 +2228,7 @@ EQ.addUnit({
       var fn = {
         story: this.vStory, mine: this.vMine, listen: this.vListen,
         read: this.vRead, speak: this.vSpeak, write: this.vWrite,
-        dictate: this.vDictate, aloud: this.vAloud,
+        dictate: this.vDictate, aloud: this.vAloud, typein: this.vTypein,
         craft: this.vCraft, done: this.vDone
       }[t.t];
       fn.call(this, t);
@@ -2537,6 +2615,68 @@ EQ.addUnit({
       setTimeout(function () { TTS.speak(w.w, { rate: 0.75 }); }, 300);
     },
 
+
+    /* ---------------------------- ⌨️ 默写 Boss ----------------------------
+       最后一关不给选项，自己用键盘把词打出来。
+       比点选难得多，也是唯一能真正验证「会写」的题型。
+       ------------------------------------------------------------------- */
+    vTypein: function (t) {
+      var w = t.word;
+      var answered = false;
+      var heard = false;
+
+      stage.innerHTML =
+        this.head('⌨️', '默写 Boss', '不给选项了 —— 自己把这个词打出来') +
+        '<div class="typein-wrap panel">' +
+          '<div class="ti-top">' +
+            '<span class="ti-ico">' + w.ico + '</span>' +
+            '<span class="ti-zh">' + esc(w.zh) + '<i>（' + esc(w.pos) + '）</i></span>' +
+          '</div>' +
+          '<div class="ti-sent">' + blank(w.s, w.w) + '</div>' +
+          '<div class="ti-sentzh">' + esc(w.sZh) + '</div>' +
+          // 关掉 iOS 的自动大写/自动纠错/联想 —— 不关的话系统会替他把拼写改对，这一关就白做了
+          '<input id="tin" class="ti-input" type="text" ' +
+            'autocapitalize="none" autocorrect="off" autocomplete="off" spellcheck="false" ' +
+            'inputmode="text" enterkeyhint="done" placeholder="在这里打出这个词">' +
+          '<div class="ti-msg" id="timsg"></div>' +
+        '</div>' +
+        '<div class="t-foot">' +
+          '<button class="btn ghost sm" data-a="hear">🔊 听一下（算用了提示）</button>' +
+          '<span class="grow"></span>' +
+          '<button class="btn primary" data-a="go">交卷 ✓</button>' +
+        '</div>' +
+        '<div id="foot"></div>';
+
+      var input = document.getElementById('tin');
+      var msg = document.getElementById('timsg');
+      setTimeout(function () { try { input.focus(); } catch (e) {} }, 260);
+
+      function check() {
+        if (answered) return;
+        var got = (input.value || '').trim().toLowerCase();
+        if (!got) { msg.textContent = '先打点什么再交卷'; return; }
+        answered = true;
+        var want = w.w.toLowerCase();
+        var good = got === want;
+        input.classList.add(good ? 'ok' : 'bad');
+        input.blur();
+        if (!good) {
+          msg.innerHTML = '正确拼写是 <b>' + esc(w.w) + '</b>' +
+            (got.length ? '，你打的是 <s>' + esc(got) + '</s>' : '');
+        } else if (heard) {
+          msg.textContent = '对了，不过用了发音提示，下次试试直接写';
+        }
+        stage.querySelector('.ti-sent').innerHTML = highlight(w.s, w.w);
+        UI.feedback(good, w, 'typein', good && heard ? '用了发音提示 🔊' : null);
+      }
+
+      input.addEventListener('keydown', function (e) { if (e.key === 'Enter') check(); });
+      stage.querySelector('[data-a="go"]').onclick = check;
+      stage.querySelector('[data-a="hear"]').onclick = function () {
+        heard = true; TTS.speak(w.w, { rate: 0.75 });
+      };
+    },
+
     /* ---------------------------- 🧰 工作台造句 ---------------------------- */
     vCraft: function (t) {
       var parts = t.sentence.replace(/([.!?,])/g, ' $1').split(/\s+/).filter(Boolean);
@@ -2754,11 +2894,12 @@ EQ.addUnit({
        ================================================================== */
     map: function () {
       App.setHudMode('home');
-      var cur = Save.data.cursor;
+      var wi = Save.data.wordIndex || 0;
       var html = EQ.units.map(function (u) {
         var scenes = u.scenes.map(function (s) {
-          var passed = (u.id < cur.unit) || (u.id === cur.unit && s.index < cur.scene);
-          var now = (u.id === cur.unit && s.index === cur.scene);
+          var lo = s.words[0].idx, hi = s.words[s.words.length - 1].idx;
+          var passed = wi > hi;
+          var now = wi >= lo && wi <= hi;
           return '<div class="mp-scene item' + (passed ? ' ok' : now ? ' now' : ' dim') + '">' +
             '<span class="ms-ico">' + s.icon + '</span>' +
             '<span class="ms-t">' + esc(s.title) + '</span>' +
@@ -2928,10 +3069,21 @@ EQ.addUnit({
               '<button class="btn sm ghost" data-a="diag">🔍 语音诊断</button>' +
             '</div>' +
           '</div>' +
+          '<div class="panel" style="margin-top:12px"><div class="px tiny">每天学多久</div>' +
+            '<div class="tiny" style="color:#555;margin:8px 0">' +
+              '新词数由这个决定 —— 复习队列空的时候自动多灌，复习堆起来了自动少灌，' +
+              '所以不会出现「前几天 10 分钟、一个月后一小时」。</div>' +
+            '<div class="row wrap">' +
+              [30, 40, 50, 60].map(function (m) {
+                return '<button class="btn sm' + ((Save.data.minutes || 40) === m ? ' primary' : ' ghost') +
+                       '" data-mins="' + m + '">' + m + ' 分钟</button>';
+              }).join('') +
+            '</div>' +
+          '</div>' +
           '<div class="panel" style="margin-top:12px"><div class="px tiny">玩家</div>' +
             '<div class="tiny" style="color:#555;margin:8px 0">当前是 <b>' +
               esc((Save.PROFILES[Save.profile] || Save.PROFILES.bufan).name) + '</b>' +
-              (Save.profile === 'guest' ? ' —— 访客存档，跟 Bufan 的进度完全分开' : '') + '</div>' +
+              (Save.profile === 'guest' ? ' —— 访客模式，关掉就清空，什么都不会留下' : '') + '</div>' +
             '<div class="row wrap">' +
               '<button class="btn sm" data-a="switch">⇄ 换个玩家</button>' +
               (Save.profile === 'bufan' ? '<button class="btn sm ghost" data-a="pin">🔒 改密码</button>' : '') +
@@ -2980,6 +3132,13 @@ EQ.addUnit({
           catch (e) { alert('存档格式不对：' + e.message); }
         };
       };
+      stage.querySelectorAll('[data-mins]').forEach(function (b) {
+        b.onclick = function () {
+          Save.data.minutes = +b.dataset.mins; Save.save(); SFX.click();
+          UI.settings();
+          UI.toast('⏱', '已改成每天 ' + b.dataset.mins + ' 分钟', '新词数会自动跟着调');
+        };
+      });
       stage.querySelector('[data-a="switch"]').onclick = function () { SFX.click(); App.switchProfile(); };
       var pinBtn = stage.querySelector('[data-a="pin"]');
       if (pinBtn) pinBtn.onclick = function () {
