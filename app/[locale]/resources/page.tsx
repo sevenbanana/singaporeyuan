@@ -115,11 +115,11 @@ export default async function ResourcesPage({
     },
     {
       key: 'healthcare',
-      tag: en ? 'Guide' : '就医指南',
+      tag: en ? 'Interactive' : '互动指南',
       title: en ? 'Singapore Healthcare Guide' : '新加坡就医指南',
       desc: en
-        ? 'Where to see a doctor, what it costs, and how insurance claims work — GP vs polyclinic, specialists, A&E, TCM and more, all in one page. (In Chinese)'
-        : '看病去哪里、要花多少钱、保险怎么报,一篇讲清楚。GP与Polyclinic对比、专科两条路、急诊分诊、中医与社区医院、费用速查、理赔七个习惯。',
+        ? 'Where to see a doctor, what it costs, and how insurance claims work. Answer two questions and it points you to the right door; charts compare clinic fees and 20 common surgeries across public and private hospitals. (In Chinese)'
+        : '看病去哪里、要花多少钱、保险怎么报,一篇讲清楚。点两下就知道该去 GP、Polyclinic 还是急诊;图表对照门诊费用区间,以及 20 种常见手术在公立和私立的账单差距。',
       icon: IconSteth,
       external: '/guides/healthcare.html',
       cta: en ? 'Read the guide' : '阅读指南',
