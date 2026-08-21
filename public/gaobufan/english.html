@@ -1445,6 +1445,29 @@ button.chip{ cursor:pointer; background:#5a2723; border-color:rgba(255,255,255,.
       };
     },
 
+    /**
+     * 手动修正连续打卡天数。
+     * 换设备、请病假、或者存档出问题的时候用得上。
+     * 会把 lastDay 设成「昨天」，这样今天上完课自然接到第 n+1 天；
+     * 同时把成长报告里的打卡日历一起补上 —— 只改数字不补日历，
+     * 会出现「连续 3 天」但日历一格不亮的矛盾画面，看着更像坏了。
+     */
+    setStreak: function (n) {
+      n = Math.max(0, Math.min(365, Math.floor(n) || 0));
+      var d = Save.data, today = todayIndex();
+      d.streak = n;
+      d.bestStreak = Math.max(d.bestStreak || 0, n);
+      d.lastDay = n > 0 ? today - 1 : null;
+      d.daysDone = (d.daysDone || []).filter(function (x) { return x < today - n; });
+      for (var i = 1; i <= n; i++) {
+        var day = today - i;
+        if (d.daysDone.indexOf(day) < 0) d.daysDone.push(day);
+      }
+      d.daysDone.sort(function (a, b) { return a - b; });
+      Save.save();
+      return n;
+    },
+
     /** 打卡：更新连续天数 */
     checkIn: function () {
       var d = Save.data, day = todayIndex();
@@ -3220,6 +3243,7 @@ EQ.addUnit({
             '<div class="row wrap">' +
               '<button class="btn sm" data-a="switch">⇄ 换个玩家</button>' +
               (Save.profile === 'bufan' ? '<button class="btn sm ghost" data-a="pin">🔒 改密码</button>' : '') +
+              '<button class="btn sm ghost" data-a="streak">🔥 修正打卡天数</button>' +
             '</div>' +
           '</div>' +
           '<div class="panel" style="margin-top:12px"><div class="px tiny">存档</div>' +
@@ -3290,6 +3314,23 @@ EQ.addUnit({
           if (!/^\d{4}$/.test(a)) { msg.textContent = '要四位数字'; return; }
           if (a !== b) { msg.textContent = '两次输的不一样'; return; }
           Save.setPin(a); o.remove(); UI.toast('🔒', '密码已改', '下次开场用新密码');
+        };
+      };
+      stage.querySelector('[data-a="streak"]').onclick = function () {
+        var cur = Save.data.streak || 0;
+        var o = UI.overlay(
+          '<div class="px tiny">修正连续打卡天数</div>' +
+          '<div class="tiny muted" style="margin:10px 0;line-height:1.8">' +
+            '现在是 <b style="color:#fff">' + cur + '</b> 天。填「到昨天为止连续了几天」，' +
+            '今天上完课会自然接到下一天。<br>成长报告里的打卡日历会一起补上。</div>' +
+          '<input id="stk" class="pinput" inputmode="numeric" maxlength="3" value="' + cur + '">' +
+          '<div class="row center" style="margin-top:12px">' +
+            '<button class="btn primary" id="stkgo">保存</button>' +
+            '<button class="btn ghost" data-close>取消</button></div>');
+        o.querySelector('#stkgo').onclick = function () {
+          var n = SRS.setStreak(+o.querySelector('#stk').value);
+          o.remove(); UI.settings();
+          UI.toast('🔥', '已改成连续 ' + n + ' 天', '今天上完课就是第 ' + (n + 1) + ' 天');
         };
       };
       stage.querySelector('[data-a="reset"]').onclick = function () {
