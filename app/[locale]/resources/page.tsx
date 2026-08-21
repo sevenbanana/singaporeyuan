@@ -79,8 +79,13 @@ const IconClock = (
   </svg>
 );
 
+type ResourceGroup = 'care' | 'money' | 'settle';
+
 type Resource = {
   key: string;
+  /** 主题分组:看病 / 钱 / 落地 */
+  group: ResourceGroup;
+  /** 内容形式:互动专题 / 长文指南 / 小工具 / 流程说明 */
   tag: string;
   title: string;
   desc: string;
@@ -104,6 +109,7 @@ export default async function ResourcesPage({
   const resources: Resource[] = [
     {
       key: 'cycles',
+      group: 'money',
       tag: en ? 'Interactive' : '互动专题',
       title: en ? 'Family Wealth Beyond Cycles' : '让家庭财富穿越周期',
       desc: en
@@ -115,7 +121,8 @@ export default async function ResourcesPage({
     },
     {
       key: 'healthcare',
-      tag: en ? 'Interactive' : '互动指南',
+      group: 'care',
+      tag: en ? 'Interactive' : '互动专题',
       title: en ? 'Singapore Healthcare Guide' : '新加坡就医指南',
       desc: en
         ? 'Where to see a doctor, what it costs, and how insurance claims work. Answer two questions and it points you to the right door; charts compare clinic fees and 20 common surgeries across public and private hospitals. (In Chinese)'
@@ -126,7 +133,8 @@ export default async function ResourcesPage({
     },
     {
       key: 'journey',
-      tag: en ? 'How we work' : '流程说明',
+      group: 'care',
+      tag: en ? 'How it works' : '流程说明',
       title: en ? 'How Applying & Claiming Actually Works' : '投保与理赔的完整流程',
       desc: en
         ? 'What actually happens from the first conversation to a claim paid out, online or in person: who does what at each step, how long it takes, and what to prepare. (In Chinese)'
@@ -137,7 +145,8 @@ export default async function ResourcesPage({
     },
     {
       key: 'taxguide',
-      tag: en ? 'Guide' : '省税指南',
+      group: 'money',
+      tag: en ? 'Guide' : '长文指南',
       title: en ? 'Singapore Tax-Saving Guide: 24 Ways' : '新加坡省税指南:24个方法',
       desc: en
         ? '16 reliefs, 4 deductions, 2 rebates and 2 fixes — tax brackets, an SRS deep-dive and top-up strategy, all on one page. (In Chinese)'
@@ -148,7 +157,8 @@ export default async function ResourcesPage({
     },
     {
       key: 'pr',
-      tag: en ? 'Guide' : 'PR指南',
+      group: 'settle',
+      tag: en ? 'Guide' : '长文指南',
       title: en ? 'After Your Singapore PR Is Approved' : '新加坡PR落地指南',
       desc: en
         ? 'From health declaration and ICA formalities to your blue IC, insurance and tax re-planning, REP and NS — with official links for every step.'
@@ -159,6 +169,7 @@ export default async function ResourcesPage({
     },
     {
       key: 'tax',
+      group: 'money',
       tag: en ? 'Tool' : '小工具',
       title: en ? 'CPF / SRS Tax-Saving Calculator' : 'CPF / SRS 省税计算器',
       desc: en
@@ -170,6 +181,7 @@ export default async function ResourcesPage({
     },
     {
       key: 'retirement',
+      group: 'money',
       tag: en ? 'Tool' : '小工具',
       title: en ? 'Retirement Readiness Calculator' : '退休自由度测算',
       desc: en
@@ -178,6 +190,38 @@ export default async function ResourcesPage({
       icon: IconClock,
       href: '/tools/retirement',
       cta: en ? 'Open calculator' : '开始测算',
+    },
+  ];
+
+  const groups: {
+    key: ResourceGroup;
+    eyebrow: string;
+    title: string;
+    intro: string;
+  }[] = [
+    {
+      key: 'care',
+      eyebrow: en ? 'Care & claims' : '看病与理赔',
+      title: en ? 'When someone at home falls ill' : '家里有人生病的时候',
+      intro: en
+        ? 'Where to go, what it costs, and what actually happens when you make a claim.'
+        : '该去哪看、要花多少钱、真要理赔那天怎么走。',
+    },
+    {
+      key: 'money',
+      eyebrow: en ? 'Money, tax & retirement' : '钱、税与退休',
+      title: en ? 'Letting the money grow up slowly' : '让钱慢慢长大',
+      intro: en
+        ? 'How to keep money invested through the cycles, how to pay less tax, and two calculators you can run on yourself.'
+        : '怎么让钱穿越周期、怎么合法少交税，还有两个算给自己看的计算器。',
+    },
+    {
+      key: 'settle',
+      eyebrow: en ? 'Settling in' : '在新加坡落地',
+      title: en ? 'The paperwork of arriving' : '刚落地的那些手续',
+      intro: en
+        ? 'Identity, formalities, and what needs re-planning once your status changes.'
+        : '身份、手续，以及身份变了之后要重新排的事。',
     },
   ];
 
@@ -288,15 +332,52 @@ export default async function ResourcesPage({
         title={en ? 'Tools & guides, made for you' : '给你的实用工具与干货'}
         subtitle={
           en
-            ? 'Practical tools and plain-language guides for living in Singapore — use them anytime, no strings attached. New pieces are added as I write them.'
-            : '在新加坡生活用得上的小工具和白话干货,随时取用,不设门槛。我会持续把新的内容更新到这里。'
+            ? 'Practical tools and plain-language guides for living in Singapore, sorted into three: getting care, handling money, and settling in. Use them anytime, no strings attached.'
+            : '在新加坡生活用得上的小工具和白话干货,按「看病」「钱」「落地」分成三类,随时取用,不设门槛。'
         }
         accent={IconSpark}
       />
       <ContentLayer>
         <div className="container-wide py-16 md:py-20">
-          <div className="grid gap-6 md:grid-cols-2">
-            {resources.map((r, i) => {
+          <Reveal>
+            <div className="mb-12 flex flex-wrap gap-2.5 md:mb-14">
+              {groups.map((g) => (
+                <a
+                  key={g.key}
+                  href={`#${g.key}`}
+                  className="inline-flex items-center gap-2 rounded-full border border-navy/10 bg-white/70 px-4 py-2 text-sm font-semibold text-navy no-underline transition-colors duration-300 hover:border-gold/60 hover:bg-gold/10"
+                >
+                  {g.eyebrow}
+                  <span className="text-xs font-normal text-mist">
+                    {resources.filter((r) => r.group === g.key).length}
+                  </span>
+                </a>
+              ))}
+            </div>
+          </Reveal>
+
+          {groups.map((g, gi) => {
+            const items = resources.filter((r) => r.group === g.key);
+            if (items.length === 0) return null;
+            return (
+              <section
+                key={g.key}
+                id={g.key}
+                className={gi === 0 ? 'scroll-mt-28' : 'mt-16 scroll-mt-28 md:mt-20'}
+              >
+                <Reveal>
+                  <div className={gi === 0 ? '' : 'border-t border-navy/10 pt-10'}>
+                    <p className="eyebrow">
+                      {g.eyebrow} · {items.length} {en ? (items.length > 1 ? 'items' : 'item') : '项'}
+                    </p>
+                    <h2 className="mt-2 text-2xl font-black leading-snug text-navy md:text-3xl">
+                      {g.title}
+                    </h2>
+                    <p className="mt-2.5 max-w-2xl text-sm leading-[1.9] text-mist">{g.intro}</p>
+                  </div>
+                </Reveal>
+                <div className="mt-7 grid gap-6 md:grid-cols-2">
+                  {items.map((r, i) => {
               const inner = (
                 <>
                   <div className="flex items-center justify-between">
@@ -305,9 +386,9 @@ export default async function ResourcesPage({
                     </span>
                     <span className="eyebrow">{r.tag}</span>
                   </div>
-                  <h2 className="mt-6 text-xl font-black leading-snug text-navy md:text-2xl">
+                  <h3 className="mt-6 text-xl font-black leading-snug text-navy md:text-2xl">
                     {r.title}
-                  </h2>
+                  </h3>
                   <p className="mt-3 flex-1 text-sm leading-[1.95] text-mist">{r.desc}</p>
                   <span className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-gold-deep">
                     {r.cta}
@@ -342,16 +423,17 @@ export default async function ResourcesPage({
                   )}
                 </Reveal>
               );
-            })}
-          </div>
+                  })}
+                </div>
 
-          {/* CPF 官方工具箱 */}
-          <Reveal delay={160}>
-            <div className="mt-16">
-              <p className="eyebrow">{en ? 'CPF Official Tools' : 'CPF 官方工具'}</p>
-              <h2 className="mt-2 text-xl font-black leading-snug text-navy md:text-2xl">
-                {en ? 'CPF toolbox, with a map' : 'CPF 官方工具箱，中文导航'}
-              </h2>
+                {/* CPF 官方工具箱:属于「钱」这一类,挂在该组下面 */}
+                {g.key === 'money' && (
+                  <Reveal delay={160}>
+                    <div className="mt-12">
+                      <p className="eyebrow">{en ? 'CPF Official Tools' : 'CPF 官方工具'}</p>
+                      <h3 className="mt-2 text-xl font-black leading-snug text-navy md:text-2xl">
+                        {en ? 'CPF toolbox, with a map' : 'CPF 官方工具箱，中文导航'}
+                      </h3>
               <p className="mt-2 max-w-2xl text-sm leading-[1.9] text-mist">
                 {en
                   ? 'The most useful calculators and top-up entries on cpf.gov.sg — click through to the official CPF platform (Singpass login needed for some).'
@@ -390,10 +472,14 @@ export default async function ResourcesPage({
                     </p>
                     <p className="mt-2 flex-1 text-[13px] leading-relaxed text-mist">{t.desc}</p>
                   </a>
-                ))}
-              </div>
-            </div>
-          </Reveal>
+                        ))}
+                      </div>
+                    </div>
+                  </Reveal>
+                )}
+              </section>
+            );
+          })}
 
           {/* 更多内容预告 + 咨询引导 */}
           <Reveal delay={200}>
