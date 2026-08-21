@@ -4,6 +4,7 @@ import type { ReactNode } from 'react';
 import PageHero, { ContentLayer } from '@/components/PageHero';
 import Reveal from '@/components/Reveal';
 import { Link } from '@/lib/routing';
+import ResourceArt from './ResourceArt';
 
 export async function generateMetadata({
   params,
@@ -380,17 +381,24 @@ export default async function ResourcesPage({
                   {items.map((r, i) => {
               const inner = (
                 <>
-                  <div className="flex items-center justify-between">
-                    <span className="flex h-14 w-14 items-center justify-center rounded-2xl bg-gold/15 text-gold-deep transition-colors duration-500 group-hover:bg-gold/25">
+                  <div className="relative border-b border-gold/20 bg-sand-100/60">
+                    <ResourceArt
+                      k={r.key}
+                      className="h-[148px] w-full transition-transform duration-700 group-hover:scale-[1.03] md:h-[164px]"
+                    />
+                    <span className="eyebrow absolute right-4 top-4 rounded-full bg-cream/85 px-3 py-1 shadow-sm backdrop-blur-sm">
+                      {r.tag}
+                    </span>
+                    <span className="absolute -bottom-6 left-7 flex h-12 w-12 items-center justify-center rounded-2xl border border-gold/25 bg-white text-gold-deep shadow-card transition-colors duration-500 group-hover:bg-gold/10 md:left-8">
                       {r.icon}
                     </span>
-                    <span className="eyebrow">{r.tag}</span>
                   </div>
-                  <h3 className="mt-6 text-xl font-black leading-snug text-navy md:text-2xl">
-                    {r.title}
-                  </h3>
-                  <p className="mt-3 flex-1 text-sm leading-[1.95] text-mist">{r.desc}</p>
-                  <span className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-gold-deep">
+                  <div className="flex flex-1 flex-col p-7 pt-10 md:p-8 md:pt-11">
+                    <h3 className="text-xl font-black leading-snug text-navy md:text-2xl">
+                      {r.title}
+                    </h3>
+                    <p className="mt-3 flex-1 text-sm leading-[1.95] text-mist">{r.desc}</p>
+                    <span className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-gold-deep">
                     {r.cta}
                     <svg
                       width="15"
@@ -405,11 +413,12 @@ export default async function ResourcesPage({
                     >
                       <path d="M5 12h14M13 6l6 6-6 6" />
                     </svg>
-                  </span>
+                    </span>
+                  </div>
                 </>
               );
               const cardClass =
-                'card card-hover group flex h-full flex-col p-7 no-underline md:p-8';
+                'card card-hover group flex h-full flex-col overflow-hidden no-underline';
               return (
                 <Reveal key={r.key} delay={i * 90}>
                   {r.external ? (
