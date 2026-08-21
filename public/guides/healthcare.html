@@ -81,6 +81,20 @@ ul{margin:0;padding:0;list-style:none}
 .src{font-size:.76rem;line-height:1.75;color:rgba(255,255,255,.75);margin-top:20px}
 .note{font-size:.86rem;color:var(--mist);margin-top:10px}
 
+/* 插画 */
+.illband{display:block;width:100%;max-width:860px;margin:28px auto 0;color:rgba(255,255,255,.92)}
+.illband svg{width:100%;height:auto;display:block}
+.illcap{display:flex;justify-content:space-around;gap:12px;max-width:860px;margin:6px auto 0;
+  font-size:.82rem;letter-spacing:.06em;color:#EAF7EF;text-align:center}
+.illcap b{display:block;font-size:.95rem;color:#FFFFFF}
+.illcap span{flex:1}
+.spot{width:100%;max-width:230px;height:auto;display:block;color:#1F6B50;margin-bottom:12px}
+.spot--wide{max-width:100%;color:#1F6B50}
+.cardhead{display:flex;gap:18px;align-items:flex-start;flex-wrap:wrap}
+.cardhead .spot{flex:none;width:180px;margin-bottom:0}
+.cardhead>div{flex:1;min-width:200px}
+@media(max-width:560px){.cardhead .spot{width:140px}}
+
 .rise{opacity:0;transform:translateY(28px)}
 .rise.in{opacity:1;transform:none;transition:opacity .8s ease var(--d,0s),transform .8s cubic-bezier(.2,.75,.25,1) var(--d,0s)}
 
@@ -420,6 +434,126 @@ footer{position:relative;z-index:1;padding:36px clamp(18px,5vw,48px) 56px;border
     </g>
   </symbol>
 
+  <!-- 三层体系：诊所 → 医院 → 急诊 -->
+  <symbol id="ill-tiers" viewBox="0 0 900 250">
+    <g filter="url(#rough)" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+      <!-- 诊所 -->
+      <path d="M40 200v-74h120v74z" fill="rgba(255,255,255,.1)"/>
+      <path d="M34 126h132"/><path d="M52 100h44v26H52z" fill="rgba(255,221,142,.28)" stroke="var(--gold)"/>
+      <path d="M74 108v10M69 113h10" stroke="var(--gold)" stroke-width="2.6"/>
+      <path d="M64 150h26v20H64zM112 150h26v20h-26z"/>
+      <path d="M88 200v-24h24v24"/>
+      <path d="M176 148q22-6 22 14" opacity=".5"/>
+      <!-- 箭头 -->
+      <path d="M196 176h72" stroke="var(--gold)" stroke-width="2.6"/><path d="M262 169l12 7-12 7z" fill="var(--gold)" stroke="var(--gold)"/>
+      <!-- 医院 -->
+      <path d="M330 200V80h150v120z" fill="rgba(255,255,255,.1)"/>
+      <path d="M324 80h162"/>
+      <path d="M352 104h30v22h-30zM428 104h30v22h-30zM352 142h30v22h-30zM428 142h30v22h-30z"/>
+      <path d="M390 200v-38h30v38" fill="rgba(255,221,142,.2)"/>
+      <path d="M405 58v22M394 69h22" stroke="var(--gold)" stroke-width="3"/>
+      <path d="M498 152q24-8 24 16" opacity=".5"/>
+      <!-- 箭头 -->
+      <path d="M516 176h72" stroke="var(--ember)" stroke-width="2.6"/><path d="M582 169l12 7-12 7z" fill="var(--ember)" stroke="var(--ember)"/>
+      <!-- 急诊 -->
+      <path d="M620 178V116a8 8 0 0 1 8-8h108v70z" fill="rgba(255,255,255,.1)"/>
+      <path d="M736 130h44l30 32v16h-18"/>
+      <path d="M744 138h30l19 22h-49z" fill="rgba(255,255,255,.16)"/>
+      <circle cx="672" cy="184" r="15"/><circle cx="672" cy="184" r="5"/>
+      <circle cx="788" cy="184" r="15"/><circle cx="788" cy="184" r="5"/>
+      <path d="M692 178h82M620 178h24"/>
+      <path d="M678 128v28M664 142h28" stroke="var(--ember)" stroke-width="3"/>
+      <path d="M660 108V98h36v10" stroke="var(--ember)"/>
+      <path d="M828 120h40M822 142h52" opacity=".55" stroke="var(--ember)"/>
+      <path d="M20 218h860" stroke-width="3"/>
+    </g>
+  </symbol>
+
+  <!-- GP 街边诊所 -->
+  <symbol id="ill-gp" viewBox="0 0 320 230">
+    <g filter="url(#rough)" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M40 190V96h200v94z" fill="rgba(31,107,80,.07)"/>
+      <path d="M32 96h216l-14-26H46z" fill="rgba(31,107,80,.12)"/>
+      <path d="M60 70v-12M100 70v-12M140 70v-12M180 70v-12M220 70v-12" opacity=".5"/>
+      <path d="M64 122h64v42H64z"/>
+      <path d="M164 190v-58h48v58" fill="rgba(212,98,60,.14)"/>
+      <path d="M182 160h6"/>
+      <rect x="238" y="104" width="44" height="30" rx="4" stroke="#D4623C" fill="rgba(212,98,60,.12)"/>
+      <path d="M260 111v16M252 119h16" stroke="#D4623C" stroke-width="3"/>
+      <path d="M20 190h284" stroke-width="3"/>
+      <path d="M84 190v-14h24v14M92 176v-8" opacity=".55"/>
+    </g>
+  </symbol>
+
+  <!-- Polyclinic 综合诊所 + 叫号 -->
+  <symbol id="ill-poly" viewBox="0 0 320 230">
+    <g filter="url(#rough)" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M30 190V54h150v136z" fill="rgba(31,107,80,.07)"/>
+      <path d="M24 54h162"/>
+      <path d="M50 78h34v24H50zM126 78h34v24h-34zM50 116h34v24H50zM126 116h34v24h-34z"/>
+      <path d="M86 190v-32h38v32" fill="rgba(31,107,80,.12)"/>
+      <path d="M105 36v18M96 45h18" stroke="currentColor" stroke-width="3"/>
+      <rect x="206" y="86" width="86" height="66" rx="8" fill="rgba(255,255,255,.5)"/>
+      <path d="M222 112h54M222 130h34" opacity=".5"/>
+      <path d="M232 100h34" stroke="#D4623C" stroke-width="4"/>
+      <path d="M249 152v14M228 166h42" opacity=".7"/>
+      <path d="M14 190h292" stroke-width="3"/>
+    </g>
+  </symbol>
+
+  <!-- 一张单 vs 两张单 -->
+  <symbol id="ill-twobills" viewBox="0 0 640 300">
+    <g filter="url(#rough)" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+      <!-- 公立：一张打包单 -->
+      <path d="M40 40h180v210l-18-12-18 12-18-12-18 12-18-12-18 12-18-12-18 12-18-12z" fill="rgba(31,107,80,.09)"/>
+      <path d="M66 78h128M66 104h128M66 130h94M66 156h112" opacity=".55"/>
+      <path d="M66 196h128" stroke="#1F6B50" stroke-width="3.4"/>
+      <path d="M66 220h74" opacity=".55"/>
+      <circle cx="196" cy="62" r="13" stroke="#1F6B50"/><path d="M190 62l5 5 9-10" stroke="#1F6B50"/>
+      <!-- 私立：两张单 -->
+      <path d="M360 30h150v180l-15-10-15 10-15-10-15 10-15-10-15 10-15-10-15 10-15-10z" fill="rgba(212,98,60,.08)"/>
+      <path d="M382 64h106M382 88h106M382 112h70" opacity=".55"/>
+      <path d="M382 148h106" stroke="#D4623C" stroke-width="3"/>
+      <path d="M452 96h150v180l-15-10-15 10-15-10-15 10-15-10-15 10-15-10-15 10-15-10z" fill="rgba(212,98,60,.14)"/>
+      <path d="M474 130h106M474 154h106M474 178h70" opacity=".55"/>
+      <path d="M474 214h106" stroke="#D4623C" stroke-width="3"/>
+      <path d="M290 150h44" stroke="var(--gold)" stroke-width="2.6"/>
+      <path d="M328 143l12 7-12 7z" fill="var(--gold)" stroke="var(--gold)"/>
+    </g>
+  </symbol>
+
+  <!-- 社区医院 · 康复 -->
+  <symbol id="ill-rehab" viewBox="0 0 320 230">
+    <g filter="url(#rough)" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M40 176V96h24v80" />
+      <path d="M40 128h150v48H40z" fill="rgba(31,107,80,.09)"/>
+      <path d="M190 176v-40h24v40"/>
+      <path d="M64 128v-14h44v14" fill="rgba(255,255,255,.4)"/>
+      <path d="M40 156h174" opacity=".6"/>
+      <path d="M238 176v-64M282 176v-64M238 128h44M238 148h44" stroke="#D4623C"/>
+      <path d="M238 112h-8M282 112h8" stroke="#D4623C"/>
+      <path d="M20 176h284" stroke-width="3"/>
+      <path d="M120 60h70v40h-70z" fill="rgba(255,255,255,.35)"/>
+      <path d="M155 60v40M120 80h70" opacity=".5"/>
+    </g>
+  </symbol>
+
+  <!-- 理赔 · 手机上传 -->
+  <symbol id="ill-claim" viewBox="0 0 320 230">
+    <g filter="url(#rough)" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="60" y="30" width="110" height="176" rx="14" fill="rgba(31,107,80,.08)"/>
+      <path d="M100 44h30"/>
+      <path d="M84 92h62M84 116h62M84 140h40" opacity=".5"/>
+      <circle cx="115" cy="176" r="12"/><path d="M109 176l5 5 9-10"/>
+      <path d="M206 60h76v104h-76z" fill="rgba(255,255,255,.45)"/>
+      <path d="M222 88h44M222 108h44M222 128h28" opacity=".5"/>
+      <path d="M196 118l-24 0" stroke="var(--gold)" stroke-width="2.6"/>
+      <path d="M178 111l-12 7 12 7z" fill="var(--gold)" stroke="var(--gold)"/>
+      <path d="M244 164v22M232 186h24" opacity=".6"/>
+      <path d="M20 206h284" stroke-width="3"/>
+    </g>
+  </symbol>
+
   <symbol id="ill-pulseline" viewBox="0 0 1200 200" preserveAspectRatio="none">
     <g fill="none" stroke="var(--gold)" stroke-width="1.6" opacity=".4" filter="url(#rough-s)">
       <path d="M0 100h180l14-38 16 76 14-58 12 20h64l16-30 14 58 12-46 10 16h300l14-38 16 76 14-58 12 20h64l16-30 14 58 12-46 10 16h286"/>
@@ -444,7 +578,7 @@ footer{position:relative;z-index:1;padding:36px clamp(18px,5vw,48px) 56px;border
 
 <!-- ══════════ 封面 ══════════ -->
 <section class="scene hero" id="s-cover" data-title="封面" data-tint="#3E9B76">
-  <div class="scene__art"><div class="hero__art" data-depth="-0.4"><svg viewBox="0 0 620 340" style="width:100%;height:auto;color:rgba(244,238,225,.32)"><use href="#ill-clinic"/></svg></div></div>
+  <div class="scene__art"><div class="hero__art" data-depth="-0.4"><svg viewBox="0 0 620 340" style="width:100%;height:auto;color:rgba(255,255,255,.5)"><use href="#ill-clinic"/></svg></div></div>
   <div class="inner">
     <div class="hero__brand rise">
       <b>新加坡小圆姐</b>
@@ -475,6 +609,12 @@ footer{position:relative;z-index:1;padding:36px clamp(18px,5vw,48px) 56px;border
       <div class="stat rise" style="--d:.08s"><div class="stat__n"><span data-count="26" data-plain="1">0</span> 家</div><div class="stat__l">Polyclinic 综合诊所</div><div class="stat__d">政府定价，2030 年前增至 32 家</div></div>
       <div class="stat rise" style="--d:.16s"><div class="stat__n"><span data-count="11" data-plain="1">0</span> 家</div><div class="stat__l">公立急症医院</div><div class="stat__d">补贴与重症能力都在这里</div></div>
       <div class="stat rise" style="--d:.24s"><div class="stat__n"><span data-count="9" data-plain="1">0</span> 家</div><div class="stat__l">私立医院</div><div class="stat__d">快、可指定医生、费用高</div></div>
+    </div>
+    <div class="illband rise" style="--d:.3s"><svg viewBox="0 0 900 250" role="img" aria-label="三层医疗体系示意：诊所、医院、急诊"><use href="#ill-tiers"/></svg></div>
+    <div class="illcap rise" style="--d:.34s">
+      <span><b>第一层 · 诊所</b>八成的日常小病</span>
+      <span><b>第二层 · 医院</b>专科、手术、住院</span>
+      <span><b>第三层 · 急诊</b>只留给危及生命的</span>
     </div>
   </div>
 </section>
@@ -584,6 +724,13 @@ footer{position:relative;z-index:1;padding:36px clamp(18px,5vw,48px) 56px;border
 
     <div class="panel on rise" id="p-gp" style="--d:.2s">
       <div class="card">
+        <div class="cardhead" style="margin-bottom:14px">
+          <svg class="spot" viewBox="0 0 320 230" role="img" aria-label="街边 GP 诊所"><use href="#ill-gp"/></svg>
+          <div>
+            <h3 style="color:var(--gold-2)">走进去就能看</h3>
+            <p style="margin-top:6px">全岛两千多家，不用预约，半小时内通常能看上。代价是没有政府补贴。</p>
+          </div>
+        </div>
         <div class="rowlist">
           <div class="row"><div class="k"><svg class="ic"><use href="#i-pin"/></svg>怎么去</div><div class="v"><b>无需预约</b>，直接 walk-in，部分诊所支持线上预约</div></div>
           <div class="row"><div class="k"><svg class="ic"><use href="#i-clock"/></svg>等多久</div><div class="v">通常较短，很多社区诊所半小时内能看上</div></div>
@@ -601,6 +748,13 @@ footer{position:relative;z-index:1;padding:36px clamp(18px,5vw,48px) 56px;border
 
     <div class="panel rise" id="p-poly" style="--d:.2s">
       <div class="card">
+        <div class="cardhead" style="margin-bottom:14px">
+          <svg class="spot" viewBox="0 0 320 230" role="img" aria-label="综合诊所与叫号屏"><use href="#ill-poly"/></svg>
+          <div>
+            <h3 style="color:var(--gold-2)">便宜，但要排</h3>
+            <p style="margin-top:6px">政府统一定价、公民 PR 有补贴，代价是必须预约、现场也要等。</p>
+          </div>
+        </div>
         <div class="rowlist">
           <div class="row"><div class="k"><svg class="ic"><use href="#i-pin"/></svg>怎么去</div><div class="v"><b>必须提前预约</b>，通过 HealthHub App 或各集团官网，高峰期可能要等几天</div></div>
           <div class="row"><div class="k"><svg class="ic"><use href="#i-clock"/></svg>等多久</div><div class="v">现场等待时间较长，建议预留半天</div></div>
@@ -689,8 +843,8 @@ footer{position:relative;z-index:1;padding:36px clamp(18px,5vw,48px) 56px;border
 
 <!-- ══════════ 03 看专科 ══════════ -->
 <section class="scene" id="s-specialist" data-title="看专科" data-tint="#3A9270">
-  <div class="scene__art"><div style="position:absolute;right:2%;bottom:8%;width:min(30vw,300px);opacity:.5" data-depth="-0.3">
-    <svg viewBox="0 0 340 340" style="width:100%;height:auto;color:rgba(244,238,225,.4)"><use href="#ill-signpost"/></svg></div></div>
+  <div class="scene__art"><div style="position:absolute;right:2%;bottom:8%;width:min(32vw,330px);opacity:.85" data-depth="-0.3">
+    <svg viewBox="0 0 340 340" style="width:100%;height:auto;color:rgba(255,255,255,.62)"><use href="#ill-signpost"/></svg></div></div>
   <div class="inner">
     <p class="eyebrow rise">03 · Specialist</p>
     <h2 class="h-sec rise" style="--d:.06s">看专科的两条路</h2>
@@ -733,8 +887,8 @@ footer{position:relative;z-index:1;padding:36px clamp(18px,5vw,48px) 56px;border
 
 <!-- ══════════ 04 急诊 ══════════ -->
 <section class="scene" id="s-emergency" data-title="急诊" data-tint="#26654E">
-  <div class="scene__art"><div style="position:absolute;right:-2%;top:12%;width:min(34vw,340px);opacity:.4" data-depth="-0.26">
-    <svg viewBox="0 0 380 300" style="width:100%;height:auto;color:rgba(244,238,225,.42)"><use href="#ill-amb"/></svg></div></div>
+  <div class="scene__art"><div style="position:absolute;right:-2%;top:12%;width:min(34vw,360px);opacity:.8" data-depth="-0.26">
+    <svg viewBox="0 0 380 300" style="width:100%;height:auto;color:rgba(255,255,255,.62)"><use href="#ill-amb"/></svg></div></div>
   <div class="inner">
     <p class="eyebrow rise">04 · Emergency</p>
     <h2 class="h-sec rise" style="--d:.06s">急诊，什么情况该去</h2>
@@ -781,21 +935,27 @@ footer{position:relative;z-index:1;padding:36px clamp(18px,5vw,48px) 56px;border
 
 <!-- ══════════ 05 中医与社区医院 ══════════ -->
 <section class="scene" id="s-more" data-title="中医与康复" data-tint="#2F8767">
-  <div class="scene__art"><div style="position:absolute;left:-2%;bottom:6%;width:min(28vw,280px);opacity:.42" data-depth="-0.24">
-    <svg viewBox="0 0 320 320" style="width:100%;height:auto;color:rgba(244,238,225,.4)"><use href="#ill-herb"/></svg></div></div>
+  <div class="scene__art"><div style="position:absolute;left:-2%;bottom:6%;width:min(28vw,300px);opacity:.8" data-depth="-0.24">
+    <svg viewBox="0 0 320 320" style="width:100%;height:auto;color:rgba(255,255,255,.62)"><use href="#ill-herb"/></svg></div></div>
   <div class="inner">
     <p class="eyebrow rise">05 · More options</p>
     <h2 class="h-sec rise" style="--d:.06s">中医与社区医院</h2>
     <div class="rule rise" style="--d:.1s"></div>
     <div class="grid g2 rise" style="--d:.14s;margin-top:18px">
       <div class="card">
+        <svg class="spot spot--wide" viewBox="0 0 320 320" style="max-width:200px" role="img" aria-label="中医药罐与草药"><use href="#ill-herb"/></svg>
         <h3><svg class="ic"><use href="#i-leaf"/></svg>中医 TCM</h3>
         <p style="margin-top:8px">本地人常在慢性调理、亚健康、康复期以及配合西医治疗时看中医，比如针灸缓解化疗副作用、产后调理、颈肩腰腿痛。首诊约 S$15 至 80，可以官网、App 或电话预约，也接受现场挂号。</p>
         <p style="margin-top:10px;font-size:.88rem;color:var(--gold-2);font-weight:500">提醒一句，如果想用公司团险报销中医，要去团险 Panel 名单内的中医诊所。因意外看中医想走个人意外险的，非 Panel 诊所需要医生额外填一份问卷，可以找我拿表格。</p>
       </div>
       <div class="card">
+        <svg class="spot spot--wide" viewBox="0 0 320 230" style="max-width:260px" role="img" aria-label="社区医院康复病房"><use href="#ill-rehab"/></svg>
         <h3><svg class="ic"><use href="#i-bed"/></svg>社区医院</h3>
-        <p style="margin-top:8px">从急症医院出院后还需要康复、护理或监督的病人，会转到社区医院过渡，提供物理治疗、作业治疗、言语治疗等，年长者一般住两到四周。入住需要急症医院医生转介，之后会做经济评估决定补贴资格。公民日均账单约 S$136 至 409，康复护理每天最多可动用 S$250 的 MediSave。</p>
+        <p style="margin-top:8px">大手术或中风出院后，还需要康复和护理的人会转到这里过渡，做物理治疗、作业治疗、言语治疗，年长者一般住两到四周。</p>
+        <div class="rowlist" style="margin-top:10px">
+          <div class="row"><div class="k">怎么进</div><div class="v">急症医院医生转介，之后做经济评估定补贴</div></div>
+          <div class="row"><div class="k">花多少</div><div class="v">公民日均 <b>S$136–409</b>，康复护理每天最多可动 <b>S$250</b> MediSave</div></div>
+        </div>
       </div>
     </div>
   </div>
@@ -818,8 +978,8 @@ footer{position:relative;z-index:1;padding:36px clamp(18px,5vw,48px) 56px;border
 
 <!-- ══════════ 07 住院账单 ══════════ -->
 <section class="scene" id="s-bills" data-title="住院账单" data-tint="#3A9270">
-  <div class="scene__art"><div style="position:absolute;right:0%;top:10%;width:min(24vw,240px);opacity:.35" data-depth="-0.28">
-    <svg viewBox="0 0 320 340" style="width:100%;height:auto;color:rgba(244,238,225,.4)"><use href="#ill-bill"/></svg></div></div>
+  <div class="scene__art"><div style="position:absolute;right:0%;top:10%;width:min(24vw,250px);opacity:.75" data-depth="-0.28">
+    <svg viewBox="0 0 320 340" style="width:100%;height:auto;color:rgba(255,255,255,.62)"><use href="#ill-bill"/></svg></div></div>
   <div class="inner">
     <p class="eyebrow rise">07 · Hospital bills</p>
     <h2 class="h-sec rise" style="--d:.06s">住院账单，公立和私立差多少</h2>
@@ -828,8 +988,14 @@ footer{position:relative;z-index:1;padding:36px clamp(18px,5vw,48px) 56px;border
 
     <div class="card card--gold rise" style="--d:.14s;margin-top:18px">
       <h3 style="color:#FFDD8E"><svg class="ic"><use href="#i-alert"/></svg>两个最容易看错的地方</h3>
-      <p style="margin-top:10px"><b style="color:#FFFFFF">一、私立那一列不含医生费。</b>公立医院是一张打包账单，主刀、麻醉、住院期间查房的费用都算在里面；私立医院里医生和医院是两个独立主体，MOH 把「医院费」和「医生费（主刀费 / 麻醉费 / 住院查房费）」分开公布。所以下面私立的数字是<b style="color:#FFFFFF">医院账单口径</b>，真实要付的总额还要在上面加一笔医生费。</p>
-      <p style="margin-top:12px"><b style="color:#FFFFFF">二、中位数只是「中间那个人」。</b>同一个病，有没有并发症、要不要开刀、住几天 ICU，账单可以差好几倍。所以中风和肺炎我按并发症程度分档列出来了：同样叫中风，最轻的一档公立 A 级中位数约 S$7,300，最重的一档约 S$17,000，而这一档里有四分之一的人超过 S$30,000；如果还需要开颅或取栓手术，那属于另一组手术 DRG，账单更高。<b style="color:#FFFFFF">在公立医院花掉五六万，完全可能。</b></p>
+      <p style="margin-top:10px"><b style="color:#FFFFFF">一、公立是一张单，私立是两张单。</b></p>
+      <div class="illband" style="max-width:560px;margin-top:14px"><svg viewBox="0 0 640 300" role="img" aria-label="公立一张打包账单，私立分成医院账单与医生账单两张"><use href="#ill-twobills"/></svg></div>
+      <div class="illcap" style="max-width:560px">
+        <span><b>公立 · 一张</b>医生费已经含在里面</span>
+        <span><b>私立 · 两张</b>医院一张、医生一张</span>
+      </div>
+      <p style="margin-top:14px">下面图里私立那一列，是 MOH 的<b style="color:#FFFFFF">医院账单口径</b>——主刀费、麻醉费、住院查房费要另外加。</p>
+      <p style="margin-top:14px"><b style="color:#FFFFFF">二、中位数只是「中间那个人」。</b>同样叫中风，最轻的一档公立 A 级约 S$7,300，最重的一档约 S$17,000，而这一档里四分之一的人超过 S$30,000。要是还得开颅或取栓，那是另一组手术 DRG，账单更高。<b style="color:#FFFFFF">在公立花掉五六万，完全可能。</b></p>
     </div>
 
     <div class="chartbox rise" data-live style="--d:.16s;margin-top:22px">
@@ -872,6 +1038,7 @@ footer{position:relative;z-index:1;padding:36px clamp(18px,5vw,48px) 56px;border
     <h2 class="h-sec rise" style="--d:.06s">理赔顺利的七个习惯</h2>
     <div class="rule rise" style="--d:.1s"></div>
     <p class="lede rise" style="--d:.12s">作为顾问，这是我在无数次理赔跟进里总结出来的经验。养成这些习惯，报销会顺利很多。</p>
+    <div class="illband rise" style="--d:.14s;max-width:460px"><svg viewBox="0 0 320 230" role="img" aria-label="拿好单据，用 App 提交理赔"><use href="#ill-claim"/></svg></div>
     <div class="rise" style="--d:.16s;margin-top:16px">
       <div class="tip"><div class="tip__n"><svg class="ic"><use href="#i-arrow"/></svg><i>01</i></div><div><h4>团险看专科，先拿转诊信</h4><p>用公司团险报专科门诊，一般要先去团险 Panel 的 GP 拿到转诊信，再去 Panel 专科，直接去专科可能报不了。</p></div></div>
       <div class="tip"><div class="tip__n"><svg class="ic"><use href="#i-memo"/></svg><i>02</i></div><div><h4>看完医生记得要 Memo</h4><p>意外险理赔需要医生的诊断备注。当场跟医生要一份 memo，之后上传 App 报销就很顺畅，不用回头补材料。</p></div></div>
