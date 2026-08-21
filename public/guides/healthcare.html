@@ -7,18 +7,19 @@
 <style>
 /* ───────────────── tokens ───────────────── */
 :root{
-  --ink:#0A1C2E;
-  --ink-2:#0F2A44;
-  --paper:#F4EEE1;
-  --paper-2:#E6DCC7;
-  --gold:#D6A94C;
-  --gold-2:#A9812F;
-  --ember:#B5503C;
-  --jade:#3E8C86;
-  --jade-lt:#6FB3AC;
-  --mist:#93A9BE;
-  --slate:#51687D;
-  --field:#0F2A44;
+  --ink:#07211F;
+  --ink-2:#0D3A38;
+  --paper:#F5F1E6;
+  --paper-2:#E7E0CE;
+  --gold:#6FD3C0;        /* 主色 · 薄荷绿（深色底上用） */
+  --gold-2:#2E8577;      /* 主色 · 深青（浅色卡片上用） */
+  --ember:#DD6045;       /* 急诊 / 危险 */
+  --apricot:#E1954F;     /* 私立 · 杏橘 */
+  --jade:#2E8577;
+  --jade-lt:#6FD3C0;
+  --mist:#8FB6AF;
+  --slate:#557069;
+  --field:#0D3A38;
 
   --wrap:1080px;
   --shadow:0 24px 60px -28px rgba(0,0,0,.75);
@@ -42,8 +43,8 @@ ul{margin:0;padding:0;list-style:none}
 /* ───────────────── layer 0: field ───────────────── */
 .field{position:fixed;inset:0;z-index:0;pointer-events:none;background:var(--ink);transition:background-color 1.2s ease}
 .field__glow{position:absolute;inset:-15% -10%;transition:background 1.2s ease;background:
-  radial-gradient(58% 42% at 20% 10%, color-mix(in srgb, var(--field) 92%, #2C6A9E) 0%, transparent 62%),
-  radial-gradient(52% 40% at 88% 74%, rgba(214,169,76,.12) 0%, transparent 60%)}
+  radial-gradient(58% 42% at 20% 10%, color-mix(in srgb, var(--field) 92%, #2FA090) 0%, transparent 62%),
+  radial-gradient(52% 40% at 88% 74%, rgba(111,211,192,.12) 0%, transparent 60%)}
 .field__grain{position:absolute;inset:0;opacity:.5;background-image:radial-gradient(rgba(255,255,255,.055) 1px,transparent 1px);background-size:3px 3px}
 .field__pulse{position:absolute;left:-4%;right:-4%;bottom:6%;height:34vh;opacity:.45}
 .field__pulse svg{width:100%;height:100%}
@@ -105,9 +106,9 @@ a.chip:hover{border-color:var(--gold);color:var(--gold)}
 
 /* ───────────────── cards & grids ───────────────── */
 .card{background:var(--paper);color:var(--ink);border-radius:20px;padding:clamp(20px,3vw,32px);box-shadow:var(--shadow)}
-.card--dark{background:linear-gradient(160deg,#12314F,#0C2135);color:var(--paper);border:1px solid rgba(214,169,76,.22)}
-.card--gold{background:linear-gradient(160deg,rgba(214,169,76,.18),rgba(214,169,76,.07));border:1px solid rgba(214,169,76,.45);color:var(--paper)}
-.card--alert{background:linear-gradient(160deg,rgba(181,80,60,.22),rgba(181,80,60,.08));border:1px solid rgba(181,80,60,.5);color:var(--paper)}
+.card--dark{background:linear-gradient(160deg,#0E4340,#08292A);color:var(--paper);border:1px solid rgba(111,211,192,.22)}
+.card--gold{background:linear-gradient(160deg,rgba(111,211,192,.18),rgba(111,211,192,.07));border:1px solid rgba(111,211,192,.45);color:var(--paper)}
+.card--alert{background:linear-gradient(160deg,rgba(221,96,69,.22),rgba(221,96,69,.08));border:1px solid rgba(221,96,69,.5);color:var(--paper)}
 .card h3{font-size:1.1rem;display:flex;align-items:center;gap:9px}
 .card p{color:var(--slate)}
 .card--dark p,.card--gold p,.card--alert p{color:#C3D3E0}
@@ -129,39 +130,39 @@ a.chip:hover{border-color:var(--gold);color:var(--gold)}
 
 .pill{display:inline-flex;align-items:center;gap:6px;padding:6px 13px;border-radius:999px;font-size:.85rem;
   border:1px solid rgba(244,238,225,.22);background:rgba(255,255,255,.04)}
-.pill--red{border-color:rgba(181,80,60,.6);background:rgba(181,80,60,.16);color:#F1C8BF}
-.pill--gold{border-color:rgba(214,169,76,.55);background:rgba(214,169,76,.14);color:#EBD49A}
+.pill--red{border-color:rgba(221,96,69,.6);background:rgba(221,96,69,.16);color:#F1C8BF}
+.pill--gold{border-color:rgba(111,211,192,.55);background:rgba(111,211,192,.14);color:#A9E6D9}
 .pills{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
 .card .pill{border-color:rgba(10,28,46,.16);background:rgba(255,255,255,.55);color:var(--ink)}
 
 .takeaway{display:block;margin-top:22px;padding:17px 21px;border-radius:15px;
-  background:rgba(214,169,76,.12);border-left:3px solid var(--gold);font-weight:500}
+  background:rgba(111,211,192,.12);border-left:3px solid var(--gold);font-weight:500}
 .takeaway b{color:var(--gold)}
 
 /* ───────────────── decision helper ───────────────── */
 .picker{border-radius:22px;padding:clamp(20px,3vw,34px);box-shadow:var(--shadow);
-  background:linear-gradient(165deg,#12314F,#0B1E31);border:1px solid rgba(214,169,76,.25)}
+  background:linear-gradient(165deg,#0E4340,#08292A);border:1px solid rgba(111,211,192,.25)}
 .q{display:none}
 .q.on{display:block;animation:fadeUp .45s cubic-bezier(.2,.75,.25,1)}
 @keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
 .q__t{font-size:1.15rem;font-weight:700;margin-bottom:16px}
 .opt{display:flex;width:100%;gap:14px;align-items:flex-start;text-align:left;font:inherit;color:inherit;cursor:pointer;
   border:1px solid rgba(244,238,225,.18);background:rgba(255,255,255,.04);border-radius:16px;padding:16px 18px;margin-bottom:10px;transition:.28s}
-.opt:hover{border-color:var(--gold);background:rgba(214,169,76,.09);transform:translateX(3px)}
+.opt:hover{border-color:var(--gold);background:rgba(111,211,192,.09);transform:translateX(3px)}
 .opt__ic{width:40px;height:40px;border-radius:12px;display:flex;align-items:center;justify-content:center;flex:none}
 .opt__ic .ic{width:21px;height:21px}
-.i-red{background:rgba(181,80,60,.18);color:#E08B79}
+.i-red{background:rgba(221,96,69,.18);color:#E08B79}
 .i-jade{background:rgba(62,140,134,.2);color:var(--jade-lt)}
-.i-gold{background:rgba(214,169,76,.18);color:var(--gold)}
+.i-gold{background:rgba(225,149,79,.2);color:var(--apricot)}
 .opt b{display:block;font-size:1rem}
 .opt small{display:block;color:var(--mist);font-size:.85rem;line-height:1.65;margin-top:2px}
 .back{font:inherit;font-size:.85rem;color:var(--mist);background:none;border:0;cursor:pointer;padding:8px 2px;text-decoration:underline;text-underline-offset:3px}
-.res{border-radius:16px;padding:20px 22px;border-left:3px solid var(--gold);background:rgba(214,169,76,.12)}
-.res.red{border-color:var(--ember);background:rgba(181,80,60,.16)}
+.res{border-radius:16px;padding:20px 22px;border-left:3px solid var(--gold);background:rgba(111,211,192,.12)}
+.res.red{border-color:var(--ember);background:rgba(221,96,69,.16)}
 .res.jade{border-color:var(--jade-lt);background:rgba(62,140,134,.14)}
 .res h3{font-size:1.2rem;display:flex;align-items:center;gap:9px}
 .res p{margin-top:8px;color:#C9D8E4}
-.res a{color:var(--gold);font-weight:600;text-decoration:none;border-bottom:1px solid rgba(214,169,76,.5)}
+.res a{color:var(--gold);font-weight:600;text-decoration:none;border-bottom:1px solid rgba(111,211,192,.5)}
 
 /* ───────────────── tabs / accordion ───────────────── */
 .tabs{display:inline-flex;padding:4px;border-radius:999px;background:rgba(255,255,255,.06);gap:4px;margin-bottom:16px;flex-wrap:wrap}
@@ -199,23 +200,23 @@ a.chip:hover{border-color:var(--gold);color:var(--gold)}
   font-weight:800;font-size:1.05rem;margin-bottom:12px}
 .tri h4{font-size:1rem}
 .tri p{color:var(--mist);font-size:.86rem;line-height:1.7;margin-top:5px}
-.tri[data-p="1"] .tri__b{background:rgba(181,80,60,.9);color:#fff}
-.tri[data-p="2"] .tri__b{background:rgba(214,120,60,.85);color:#fff}
-.tri[data-p="3"] .tri__b{background:rgba(214,169,76,.9);color:#20180A}
-.tri[data-p="4"] .tri__b{background:rgba(147,169,190,.35);color:var(--paper)}
+.tri[data-p="1"] .tri__b{background:rgba(221,96,69,.9);color:#fff}
+.tri[data-p="2"] .tri__b{background:rgba(227,154,85,.9);color:#20242A}
+.tri[data-p="3"] .tri__b{background:rgba(111,211,192,.9);color:#052623}
+.tri[data-p="4"] .tri__b{background:rgba(143,182,175,.3);color:var(--paper)}
 .tri.on{background:var(--paper);border-color:var(--paper)}
 .tri.on h4{color:var(--ink)}
 .tri.on p{color:var(--slate)}
 
 .call{display:flex;align-items:center;gap:16px;margin-top:18px;padding:16px 20px;border-radius:16px;
-  background:rgba(181,80,60,.18);border:1px solid rgba(181,80,60,.45)}
-.call .ring{width:52px;height:52px;border-radius:50%;background:rgba(181,80,60,.9);color:#fff;display:flex;align-items:center;justify-content:center}
+  background:rgba(221,96,69,.18);border:1px solid rgba(221,96,69,.45)}
+.call .ring{width:52px;height:52px;border-radius:50%;background:rgba(221,96,69,.9);color:#fff;display:flex;align-items:center;justify-content:center}
 .call .num{font-size:1.9rem;font-weight:800;line-height:1;letter-spacing:.04em}
 .call .lbl{font-size:.85rem;color:#EBC6BD}
 
 /* ───────────────── charts ───────────────── */
 .chartbox{background:var(--paper);border-radius:20px;padding:clamp(14px,2.2vw,24px);box-shadow:var(--shadow)}
-.chartbox--dark{background:linear-gradient(165deg,#12314F,#0B1E31);border:1px solid rgba(214,169,76,.2)}
+.chartbox--dark{background:linear-gradient(165deg,#0E4340,#08292A);border:1px solid rgba(111,211,192,.2)}
 .chart-title{font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;color:var(--slate);margin-bottom:8px;font-weight:600}
 .chartbox--dark .chart-title{color:var(--mist)}
 .scroller{overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:thin}
@@ -255,7 +256,7 @@ td.pb{color:var(--jade);font-weight:700}
 /* tips */
 .tip{display:flex;gap:16px;padding:18px 0;border-top:1px solid rgba(244,238,225,.12)}
 .tip:first-of-type{border-top:0}
-.tip__n{width:44px;height:44px;border-radius:13px;background:rgba(214,169,76,.14);color:var(--gold);
+.tip__n{width:44px;height:44px;border-radius:13px;background:rgba(111,211,192,.14);color:var(--gold);
   display:flex;flex-direction:column;align-items:center;justify-content:center;flex:none;line-height:1}
 .tip__n i{font-style:normal;font-size:.68rem;font-weight:800;margin-top:2px}
 .tip h4{font-size:1.02rem}
@@ -268,7 +269,7 @@ td.pb{color:var(--jade);font-weight:700}
 .qr{width:128px;height:128px;border-radius:12px;background:#fff;padding:7px}
 .qr-cap{font-size:.75rem;color:var(--mist);text-align:center;margin-top:7px;letter-spacing:.06em}
 .lines{display:flex;flex-direction:column;gap:6px;margin-top:14px;font-size:.97rem}
-.lines a{text-decoration:none;border-bottom:1px solid rgba(214,169,76,.5);padding-bottom:1px}
+.lines a{text-decoration:none;border-bottom:1px solid rgba(111,211,192,.5);padding-bottom:1px}
 .slogan{margin-top:22px;text-align:center;color:var(--gold);letter-spacing:.16em;font-size:.9rem}
 
 footer{position:relative;z-index:1;padding:36px clamp(18px,5vw,48px) 56px;border-top:1px solid rgba(244,238,225,.12);
@@ -339,9 +340,9 @@ footer{position:relative;z-index:1;padding:36px clamp(18px,5vw,48px) 56px;border
       <path d="M78 148h196"/>
       <path d="M108 176h34v26h-34zM166 176h34v26h-34zM224 176h34v26h-34z"/>
       <path d="M108 216h34v26h-34zM224 216h34v26h-34z"/>
-      <path d="M162 268v-52h42v52" fill="rgba(214,169,76,.14)"/>
+      <path d="M162 268v-52h42v52" fill="rgba(111,211,192,.14)"/>
       <path d="M150 216h66l-8-14h-50z"/>
-      <rect x="98" y="112" width="46" height="30" rx="4" stroke="var(--gold)" fill="rgba(214,169,76,.16)"/>
+      <rect x="98" y="112" width="46" height="30" rx="4" stroke="var(--gold)" fill="rgba(111,211,192,.16)"/>
       <path d="M121 120v14M114 127h14" stroke="var(--gold)" stroke-width="3"/>
       <!-- 医院大楼 -->
       <path d="M300 268V96h108v172z" fill="rgba(244,238,225,.05)"/>
@@ -362,7 +363,7 @@ footer{position:relative;z-index:1;padding:36px clamp(18px,5vw,48px) 56px;border
   <symbol id="ill-signpost" viewBox="0 0 340 340">
     <g filter="url(#rough)" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
       <path d="M168 300V96"/>
-      <path d="M168 118h122l24 22-24 22H168z" fill="rgba(214,169,76,.18)" stroke="var(--gold)"/>
+      <path d="M168 118h122l24 22-24 22H168z" fill="rgba(111,211,192,.18)" stroke="var(--gold)"/>
       <path d="M168 186H46l-24 22 24 22h122z" fill="rgba(244,238,225,.07)"/>
       <path d="M204 140h64M78 208h64" opacity=".55"/>
       <path d="M130 300h76" stroke-width="3"/>
@@ -393,7 +394,7 @@ footer{position:relative;z-index:1;padding:36px clamp(18px,5vw,48px) 56px;border
       <path d="M80 200h140"/>
       <path d="M150 200v-34"/>
       <path d="M150 174c-34-2-40-34-40-34 34 0 40 34 40 34z" fill="rgba(62,140,134,.22)"/>
-      <path d="M150 160c30-4 36-36 36-36-32 2-36 36-36 36z" fill="rgba(214,169,76,.2)"/>
+      <path d="M150 160c30-4 36-36 36-36-32 2-36 36-36 36z" fill="rgba(111,211,192,.2)"/>
       <path d="M226 118l52-52M262 66h20v20" stroke="var(--gold)"/>
       <path d="M238 148l52-52M274 96h20v20" stroke="var(--gold)" opacity=".6"/>
       <path d="M52 118c14-6 26 2 26 14" opacity=".5"/>
@@ -436,7 +437,7 @@ footer{position:relative;z-index:1;padding:36px clamp(18px,5vw,48px) 56px;border
 <nav class="dots" id="dots" aria-label="章节导航"></nav>
 
 <!-- ══════════ 封面 ══════════ -->
-<section class="scene hero" id="s-cover" data-title="封面" data-tint="#0F2A44">
+<section class="scene hero" id="s-cover" data-title="封面" data-tint="#0D3A38">
   <div class="scene__art"><div class="hero__art" data-depth="-0.4"><svg viewBox="0 0 620 340" style="width:100%;height:auto;color:rgba(244,238,225,.32)"><use href="#ill-clinic"/></svg></div></div>
   <div class="inner">
     <div class="hero__brand rise">
@@ -457,7 +458,7 @@ footer{position:relative;z-index:1;padding:36px clamp(18px,5vw,48px) 56px;border
 </section>
 
 <!-- ══════════ 一眼看懂这个体系 ══════════ -->
-<section class="scene" id="s-map" data-title="体系概览" data-tint="#10314E">
+<section class="scene" id="s-map" data-title="体系概览" data-tint="#0F423E">
   <div class="inner">
     <p class="eyebrow rise">The system at a glance</p>
     <h2 class="h-sec rise" style="--d:.06s">先认识一下这个体系</h2>
@@ -473,7 +474,7 @@ footer{position:relative;z-index:1;padding:36px clamp(18px,5vw,48px) 56px;border
 </section>
 
 <!-- ══════════ 互动决策器 ══════════ -->
-<section class="scene" id="s-picker" data-title="我该去哪看" data-tint="#0C2439">
+<section class="scene" id="s-picker" data-title="我该去哪看" data-tint="#092C2B">
   <div class="inner">
     <p class="eyebrow rise">Where should I go</p>
     <h2 class="h-sec rise" style="--d:.06s">我现在应该去哪里看病</h2>
@@ -563,7 +564,7 @@ footer{position:relative;z-index:1;padding:36px clamp(18px,5vw,48px) 56px;border
 </section>
 
 <!-- ══════════ 01 日常看病 ══════════ -->
-<section class="scene" id="s-primary" data-title="日常看病" data-tint="#0E2B45">
+<section class="scene" id="s-primary" data-title="日常看病" data-tint="#114440">
   <div class="inner">
     <p class="eyebrow rise">01 · Primary care</p>
     <h2 class="h-sec rise" style="--d:.06s">日常看病，八成的问题在这里解决</h2>
@@ -612,7 +613,7 @@ footer{position:relative;z-index:1;padding:36px clamp(18px,5vw,48px) 56px;border
 </section>
 
 <!-- ══════════ 02 医院体系 ══════════ -->
-<section class="scene" id="s-hospital" data-title="医院体系" data-tint="#11324F">
+<section class="scene" id="s-hospital" data-title="医院体系" data-tint="#0E3C3A">
   <div class="inner">
     <p class="eyebrow rise">02 · Hospitals</p>
     <h2 class="h-sec rise" style="--d:.06s">医院体系，公立还是私立</h2>
@@ -681,7 +682,7 @@ footer{position:relative;z-index:1;padding:36px clamp(18px,5vw,48px) 56px;border
 </section>
 
 <!-- ══════════ 03 看专科 ══════════ -->
-<section class="scene" id="s-specialist" data-title="看专科" data-tint="#0C2439">
+<section class="scene" id="s-specialist" data-title="看专科" data-tint="#092C2B">
   <div class="scene__art"><div style="position:absolute;right:2%;bottom:8%;width:min(30vw,300px);opacity:.5" data-depth="-0.3">
     <svg viewBox="0 0 340 340" style="width:100%;height:auto;color:rgba(244,238,225,.4)"><use href="#ill-signpost"/></svg></div></div>
   <div class="inner">
@@ -701,7 +702,7 @@ footer{position:relative;z-index:1;padding:36px clamp(18px,5vw,48px) 56px;border
         <p style="margin-top:8px">先到 Polyclinic 看诊拿转诊信，转到公立医院专科。公民和 PR 每次看诊约 S$30 至 60，但热门专科可能要等数周到数月，且不能指定医生，住院默认安排 B2 或 C 级病房。</p>
       </div>
       <div class="card">
-        <h3 style="color:var(--gold-2)"><svg class="ic"><use href="#i-clock"/></svg>快速路线（私立或公立私人门诊）</h3>
+        <h3 style="color:#C97A33"><svg class="ic"><use href="#i-clock"/></svg>快速路线（私立或公立私人门诊）</h3>
         <p style="margin-top:8px">通过 GP 协助预约或自己直接约专科，当天到一周内看上，可以指定资深医生。初诊约 S$120 至 250 起，没有政府补贴，适合有商业保险或时间敏感的情况。</p>
       </div>
     </div>
@@ -725,7 +726,7 @@ footer{position:relative;z-index:1;padding:36px clamp(18px,5vw,48px) 56px;border
 </section>
 
 <!-- ══════════ 04 急诊 ══════════ -->
-<section class="scene" id="s-emergency" data-title="急诊" data-tint="#2A1E2E">
+<section class="scene" id="s-emergency" data-title="急诊" data-tint="#3A2124">
   <div class="scene__art"><div style="position:absolute;right:-2%;top:12%;width:min(34vw,340px);opacity:.4" data-depth="-0.26">
     <svg viewBox="0 0 380 300" style="width:100%;height:auto;color:rgba(244,238,225,.42)"><use href="#ill-amb"/></svg></div></div>
   <div class="inner">
@@ -773,7 +774,7 @@ footer{position:relative;z-index:1;padding:36px clamp(18px,5vw,48px) 56px;border
 </section>
 
 <!-- ══════════ 05 中医与社区医院 ══════════ -->
-<section class="scene" id="s-more" data-title="中医与康复" data-tint="#12332F">
+<section class="scene" id="s-more" data-title="中医与康复" data-tint="#143A2C">
   <div class="scene__art"><div style="position:absolute;left:-2%;bottom:6%;width:min(28vw,280px);opacity:.42" data-depth="-0.24">
     <svg viewBox="0 0 320 320" style="width:100%;height:auto;color:rgba(244,238,225,.4)"><use href="#ill-herb"/></svg></div></div>
   <div class="inner">
@@ -795,7 +796,7 @@ footer{position:relative;z-index:1;padding:36px clamp(18px,5vw,48px) 56px;border
 </section>
 
 <!-- ══════════ 06 费用速查 ══════════ -->
-<section class="scene" id="s-cost" data-title="费用速查" data-tint="#10314E">
+<section class="scene" id="s-cost" data-title="费用速查" data-tint="#0F423E">
   <div class="inner">
     <p class="eyebrow rise">06 · Cost</p>
     <h2 class="h-sec rise" style="--d:.06s">看一次病，大概多少钱</h2>
@@ -810,7 +811,7 @@ footer{position:relative;z-index:1;padding:36px clamp(18px,5vw,48px) 56px;border
 </section>
 
 <!-- ══════════ 07 住院账单 ══════════ -->
-<section class="scene" id="s-bills" data-title="住院账单" data-tint="#0C2439">
+<section class="scene" id="s-bills" data-title="住院账单" data-tint="#092C2B">
   <div class="scene__art"><div style="position:absolute;right:0%;top:10%;width:min(24vw,240px);opacity:.35" data-depth="-0.28">
     <svg viewBox="0 0 320 340" style="width:100%;height:auto;color:rgba(244,238,225,.4)"><use href="#ill-bill"/></svg></div></div>
   <div class="inner">
@@ -852,7 +853,7 @@ footer{position:relative;z-index:1;padding:36px clamp(18px,5vw,48px) 56px;border
 </section>
 
 <!-- ══════════ 08 理赔七个习惯 ══════════ -->
-<section class="scene" id="s-claims" data-title="理赔习惯" data-tint="#0E2B45">
+<section class="scene" id="s-claims" data-title="理赔习惯" data-tint="#114440">
   <div class="inner">
     <p class="eyebrow rise">08 · Insurance</p>
     <h2 class="h-sec rise" style="--d:.06s">理赔顺利的七个习惯</h2>
@@ -871,7 +872,7 @@ footer{position:relative;z-index:1;padding:36px clamp(18px,5vw,48px) 56px;border
 </section>
 
 <!-- ══════════ 联系 ══════════ -->
-<section class="scene" id="s-contact" data-title="随时找我" data-tint="#0D2A42">
+<section class="scene" id="s-contact" data-title="随时找我" data-tint="#0C3634">
   <div class="inner">
     <p class="eyebrow rise">Contact</p>
     <h2 class="h-sec rise" style="--d:.06s">就医路上，随时找我</h2>
@@ -1029,9 +1030,9 @@ document.querySelectorAll(".acc__h").forEach(h=>{
   const svg=document.getElementById("ch-paths");
   const W=900,H=300,L=40,R=40;
   const rows=[
-    {y:96,c:"#2E7D74",name:"补贴路线（公立）",steps:["GP / Polyclinic 看诊","拿转诊信","公立医院专科"],
+    {y:96,c:"#2E8577",name:"补贴路线（公立）",steps:["GP / Polyclinic 看诊","拿转诊信","公立医院专科"],
      wait:"等待数周至数月",fee:"每次约 S$30–60"},
-    {y:210,c:"#A9812F",name:"快速路线（私立）",steps:["直接预约专科","无需转诊信","看到指定医生"],
+    {y:210,c:"#C97A33",name:"快速路线（私立）",steps:["直接预约专科","无需转诊信","看到指定医生"],
      wait:"当天至一周",fee:"初诊约 S$120–250 起"}
   ];
   rows.forEach((r,i)=>{
@@ -1058,16 +1059,16 @@ document.querySelectorAll(".acc__h").forEach(h=>{
   const svg=document.getElementById("ch-cost");
   const W=900,H=470,L=190,R=90,T=44,B=52;
   const data=[
-    {n:"中医首诊",lo:15,hi:80,note:"视诊所而定",c:"#2E7D74"},
-    {n:"Polyclinic · 公民",lo:17.5,hi:17.5,note:"起",c:"#2E7D74"},
-    {n:"公立专科 · 补贴后",lo:30,hi:60,note:"需转诊信",c:"#2E7D74"},
-    {n:"GP 诊所（含药）",lo:30,hi:100,note:"夜间假日更高",c:"#A9812F"},
-    {n:"Polyclinic · PR",lo:35,hi:35,note:"起",c:"#2E7D74"},
-    {n:"Polyclinic · 外籍",lo:75,hi:75,note:"起",c:"#2E7D74"},
-    {n:"私立专科初诊",lo:120,hi:250,note:"无补贴",c:"#A9812F"},
-    {n:"社区医院 · 日均",lo:136,hi:409,note:"公民补贴后",c:"#2E7D74"},
-    {n:"公立急诊挂号",lo:145,hi:190,note:"各院不同",c:"#B5503C"},
-    {n:"非紧急用救护车",lo:274,hi:274,note:"真紧急免费",c:"#B5503C"}
+    {n:"中医首诊",lo:15,hi:80,note:"视诊所而定",c:"#2E8577"},
+    {n:"Polyclinic · 公民",lo:17.5,hi:17.5,note:"起",c:"#2E8577"},
+    {n:"公立专科 · 补贴后",lo:30,hi:60,note:"需转诊信",c:"#2E8577"},
+    {n:"GP 诊所（含药）",lo:30,hi:100,note:"夜间假日更高",c:"#C97A33"},
+    {n:"Polyclinic · PR",lo:35,hi:35,note:"起",c:"#2E8577"},
+    {n:"Polyclinic · 外籍",lo:75,hi:75,note:"起",c:"#2E8577"},
+    {n:"私立专科初诊",lo:120,hi:250,note:"无补贴",c:"#C97A33"},
+    {n:"社区医院 · 日均",lo:136,hi:409,note:"公民补贴后",c:"#2E8577"},
+    {n:"公立急诊挂号",lo:145,hi:190,note:"各院不同",c:"#C9503C"},
+    {n:"非紧急用救护车",lo:274,hi:274,note:"真紧急免费",c:"#C9503C"}
   ];
   const lo=Math.log(12),hi=Math.log(520);
   const x=v=>L+(Math.log(v)-lo)/(hi-lo)*(W-L-R);
@@ -1136,15 +1137,15 @@ const BILLS=[
     const conn=el("line",{class:"bar",x1:x(b[2]),x2:x(b[3]),y1:cy,y2:cy,stroke:"rgba(10,28,46,.28)","stroke-width":3,style:"--d:"+dl});
     conn.style.transformOrigin="left";
     g.appendChild(conn);
-    g.appendChild(el("circle",{class:"fade",cx:x(b[2]),cy:cy,r:6.5,fill:"#2E7D74",style:"--d:"+(0.35+i*0.04)+"s"}));
-    g.appendChild(el("circle",{class:"fade",cx:x(b[3]),cy:cy,r:6.5,fill:"#C9A24C",style:"--d:"+(0.45+i*0.04)+"s"}));
+    g.appendChild(el("circle",{class:"fade",cx:x(b[2]),cy:cy,r:6.5,fill:"#2E8577",style:"--d:"+(0.35+i*0.04)+"s"}));
+    g.appendChild(el("circle",{class:"fade",cx:x(b[3]),cy:cy,r:6.5,fill:"#C97A33",style:"--d:"+(0.45+i*0.04)+"s"}));
     g.appendChild(tx(W-R+14,cy+5,"×"+(b[3]/b[2]).toFixed(1),"val fade",{"font-size":"13",style:"--d:"+(0.6+i*0.04)+"s"}));
     svg.appendChild(g);
   });
   const lg=el("g",{class:"fade",style:"--d:.2s"});
-  lg.appendChild(el("circle",{cx:L+6,cy:T-34,r:6.5,fill:"#2E7D74"}));
+  lg.appendChild(el("circle",{cx:L+6,cy:T-34,r:6.5,fill:"#2E8577"}));
   lg.appendChild(tx(L+20,T-29,"公立 · 无补贴 A 级","tick",{"font-size":"13"}));
-  lg.appendChild(el("circle",{cx:L+186,cy:T-34,r:6.5,fill:"#C9A24C"}));
+  lg.appendChild(el("circle",{cx:L+186,cy:T-34,r:6.5,fill:"#C97A33"}));
   lg.appendChild(tx(L+200,T-29,"私立医院","tick",{"font-size":"13"}));
   lg.appendChild(tx(W-R+14,T-29,"倍数","tick",{"font-size":"12"}));
   svg.appendChild(lg);
