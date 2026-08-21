@@ -1373,6 +1373,22 @@ button.chip{ cursor:pointer; background:#5a2723; border-color:rgba(255,255,255,.
     },
 
     /**
+     * 纯练习：只把技能条往上推一格，**绝不碰记忆盒和到期日**。
+     * 跟读用这个而不是 grade() —— 跟读是练习不是考试，
+     * 一句话没读顺不该让这个词的读写复习计划倒退两档、当天重来。
+     */
+    practice: function (word, skill, good) {
+      var c = this.card(word);
+      c.seen++;
+      if (good && skill && c.sk[skill] != null) {
+        c.sk[skill] = Math.min(SKILL_MAX, c.sk[skill] + 1);
+      }
+      Save.data.stats.answers++;
+      if (good) Save.data.stats.correct++;
+      return c;
+    },
+
+    /**
      * 给间隔加 ±15% 的抖动。
      * 不加的话，同一天学的一批词会永远绑在一起到期 ——
      * 推演里能看到第 31/61/121 天突然冒出几百题的尖峰，孩子那天就崩了。
@@ -2035,8 +2051,17 @@ EQ.addUnit({
         phase('write', shuffle(newWords).map(function (w) { return self.task('write', w); }));
         phase('craft', sample(newWords, Math.min(4, Math.ceil(newWords.length / 6)))
           .map(function (w) { return { t: 'craft', word: w, sentence: w.s, sentenceZh: w.sZh, skill: ['r'] }; }));
-        phase('speak', sample(newWords, Math.min(6, Math.ceil(newWords.length / 4)))
-          .map(function (w) { return self.task('speak', w); }));
+        // 跟读按「句子」去重 —— 好几个目标词常常落在同一句台词上，
+        // 不去重的话同一句话在这一关里会连着让他读两三遍。
+        var spoken = {}, speakItems = [];
+        shuffle(newWords).forEach(function (w) {
+          if (speakItems.length >= Math.min(6, Math.ceil(newWords.length / 4))) return;
+          var t = self.task('speak', w, scenes[0]);
+          if (spoken[t.line.en]) return;
+          spoken[t.line.en] = 1;
+          speakItems.push(t);
+        });
+        phase('speak', speakItems);
       }
 
       // 倒数第二关：字母块听写，给还没毕业的词
@@ -2087,7 +2112,13 @@ EQ.addUnit({
       task = task || this.current();
       if (!task) return;
 
-      if (task.word && task.skill) SRS.grade(task.word.w, task.skill, good);
+      // 跟读是练习不是考试：只加技能条，不动记忆盒、不动到期日、不进补考队列。
+      // 读一遍就够了，不该因为一句没读顺就把这个词的读写复习计划打乱。
+      var practiceOnly = (task.t === 'speak' || task.t === 'aloud');
+      if (task.word && task.skill) {
+        if (practiceOnly) SRS.practice(task.word.w, 's', good);
+        else SRS.grade(task.word.w, task.skill, good);
+      }
       s.combo = good ? (s.combo || 0) + 1 : 0;
       s.bestCombo = Math.max(s.bestCombo || 0, s.combo);
 
@@ -2101,8 +2132,8 @@ EQ.addUnit({
       } else {
         s.wrong++;
         SFX.wrong();
-        if (task.word && s.wrongWords.indexOf(task.word.w) < 0) s.wrongWords.push(task.word.w);
-        if (task.word && !task.isRelearn && s.relearn.length < 12) {
+        if (!practiceOnly && task.word && s.wrongWords.indexOf(task.word.w) < 0) s.wrongWords.push(task.word.w);
+        if (!practiceOnly && task.word && !task.isRelearn && s.relearn.length < 12) {
           var again = this.task(task.t, task.word);
           again.phase = 'boss'; again.isRelearn = true; again.review = true;
           s.relearn.push(again);
