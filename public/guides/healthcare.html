@@ -96,6 +96,8 @@ ul{margin:0;padding:0;list-style:none}
 .chips{margin-top:34px;display:flex;flex-wrap:wrap;gap:9px}
 .chip{display:inline-flex;align-items:center;gap:7px;padding:7px 14px;border-radius:999px;font-size:.82rem;
   border:1px solid rgba(244,238,225,.2);color:var(--mist);text-decoration:none}
+a.chip{transition:.25s}
+a.chip:hover{border-color:var(--gold);color:var(--gold)}
 .scroll-hint{position:absolute;left:50%;bottom:24px;transform:translateX(-50%);display:flex;flex-direction:column;
   align-items:center;gap:8px;font-size:.74rem;letter-spacing:.2em;color:var(--mist)}
 .scroll-hint span{display:block;width:1px;height:36px;background:linear-gradient(var(--gold),transparent);animation:drip 2.1s infinite}
@@ -448,6 +450,7 @@ footer{position:relative;z-index:1;padding:36px clamp(18px,5vw,48px) 56px;border
       <span class="chip"><svg class="ic"><use href="#i-shield"/></svg>AIA 财务顾问</span>
       <span class="chip"><svg class="ic"><use href="#i-cal"/></svg>2026 年 8 月更新</span>
       <span class="chip"><svg class="ic"><use href="#i-clock"/></svg>读完约 12 分钟</span>
+      <a class="chip" href="/guides/healthcare-en.html"><svg class="ic"><use href="#i-globe"/></svg>English</a>
     </div>
   </div>
   <div class="scroll-hint" aria-hidden="true">向下滑动<span></span></div>

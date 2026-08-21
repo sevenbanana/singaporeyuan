@@ -1,0 +1,1151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Seeing a Doctor in Singapore: A Practical Guide | Yuan Yuan SG</title>
+<meta name="description" content="A practical guide to healthcare in Singapore: where to go when you are unwell, what it costs, and how insurance claims actually work.">
+<link rel="icon" href="/logo-mark.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@500;600;700&family=Noto+Sans:wght@400;500;700;900&family=Noto+Serif+SC:wght@500;600;700&family=Noto+Sans+SC:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --sand:#F8F3EA;
+  --cream:#FFFDF8;
+  --gold:#B8934F;
+  --gold-deep:#9A7635;
+  --gold-soft:#EFE3CC;
+  --navy:#182B45;
+  --navy-soft:#3D5270;
+  --ink:#33404F;
+  --line:#E6DCC8;
+  --alert:#A8523C;
+  --alert-soft:#F6E8E2;
+  --green:#5F7A5A;
+  --green-soft:#E9EFE5;
+  --radius:14px;
+  --shadow:0 2px 14px rgba(24,43,69,.07);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:64px}
+body{
+  font-family:'Noto Sans','Noto Sans SC',-apple-system,'PingFang SC','Microsoft YaHei',sans-serif;
+  background:var(--sand);
+  color:var(--ink);
+  line-height:1.75;
+  font-size:15.5px;
+}
+h1,h2,h3,.serif{font-family:'Noto Serif','Noto Serif SC','Noto Sans SC',serif}
+.wrap{max-width:720px;margin:0 auto;padding:0 20px}
+
+/* ---------- icon system ---------- */
+.ic{
+  width:18px;height:18px;flex:0 0 auto;
+  stroke:currentColor;fill:none;
+  stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;
+  vertical-align:-3px;
+}
+
+/* ---------- hero(与站点小工具页同款版式:米白渐变 + 金色大圆小圆) ---------- */
+.hero{
+  background:linear-gradient(135deg,#FFFDF8 0%,#FAF7F0 45%,#F5EFE1 100%);
+  color:var(--ink);
+  padding:64px 0 0;
+  position:relative;
+  overflow:hidden;
+}
+.hero::after{
+  content:"";
+  position:absolute;right:-8%;top:50%;transform:translateY(-50%);
+  width:440px;height:440px;border-radius:50%;
+  border:1px solid rgba(201,165,92,.3);
+}
+.hero::before{
+  content:"";
+  position:absolute;right:5%;top:50%;transform:translateY(-50%);
+  width:290px;height:290px;border-radius:50%;
+  background:rgba(201,165,92,.07);
+}
+.hero-ring{
+  position:absolute;right:26%;top:15%;
+  width:60px;height:60px;border-radius:50%;
+  border:1px solid rgba(201,165,92,.4);pointer-events:none;
+}
+.hero-dot{
+  position:absolute;right:42%;top:24%;
+  width:9px;height:9px;border-radius:50%;
+  background:rgba(201,165,92,.5);pointer-events:none;
+}
+.hero-dot.b{right:13%;top:auto;bottom:16%;width:7px;height:7px;background:rgba(201,165,92,.4)}
+.hero-ecg{
+  position:absolute;left:0;right:0;bottom:14px;
+  width:100%;height:46px;opacity:.35;pointer-events:none;
+}
+.hero-ecg path{
+  stroke:#C9A55C;stroke-width:1.6;fill:none;
+  stroke-linecap:round;stroke-linejoin:round;
+}
+.hero-grid{
+  display:flex;align-items:flex-end;gap:10px;
+  position:relative;z-index:2;
+}
+.hero-text{flex:1 1 auto;padding-bottom:96px}
+.hero .eyebrow{
+  display:inline-block;
+  font-size:12px;font-weight:700;letter-spacing:.24em;
+  text-transform:uppercase;
+  color:var(--gold-deep);margin-bottom:18px;
+}
+.hero h1{
+  font-family:'Noto Sans','Noto Sans SC',sans-serif;
+  font-size:clamp(30px,7.5vw,44px);font-weight:900;
+  letter-spacing:.02em;line-height:1.4;color:var(--navy);
+}
+.hero h1 em{font-style:normal;color:var(--gold-deep)}
+.hero p.sub{margin-top:18px;color:#7A7264;font-size:15px;line-height:1.95;max-width:30em}
+.hero .byline{
+  margin-top:28px;display:flex;flex-wrap:wrap;align-items:center;gap:9px;
+  font-size:13px;color:var(--navy-soft);
+}
+.hero .byline .chip{
+  display:inline-flex;align-items:center;gap:6px;
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:99px;padding:5px 13px;
+  box-shadow:0 1px 6px rgba(26,39,68,.05);
+}
+.hero .byline .chip .ic{width:13px;height:13px;color:var(--gold-deep)}
+.hero-figure{
+  flex:0 0 168px;width:168px;
+  position:relative;align-self:flex-end;
+  margin-bottom:-2px;
+}
+.hero-figure::before{
+  content:"";position:absolute;
+  left:50%;top:30px;transform:translateX(-50%);
+  width:172px;height:172px;border-radius:50%;
+  border:1.5px solid rgba(201,165,92,.5);
+  background:radial-gradient(circle,rgba(201,165,92,.14),rgba(201,165,92,0) 68%);
+}
+.hero-figure::after{
+  content:"";position:absolute;
+  left:50%;top:44px;transform:translateX(-50%);
+  width:200px;height:200px;border-radius:50%;
+  border:1px dashed rgba(201,165,92,.35);
+}
+.hero-figure img{
+  position:relative;z-index:1;
+  display:block;width:100%;height:auto;
+  filter:drop-shadow(0 10px 24px rgba(26,39,68,.18));
+}
+
+/* ---------- sticky nav ---------- */
+.nav{
+  position:sticky;top:0;z-index:40;
+  background:rgba(255,253,248,.93);
+  backdrop-filter:blur(8px);
+  border-bottom:1px solid var(--line);
+}
+.nav-scroll{
+  display:flex;gap:8px;overflow-x:auto;
+  padding:11px 18px;max-width:720px;margin:0 auto;
+  scrollbar-width:none;
+}
+.nav-scroll::-webkit-scrollbar{display:none}
+.nav a{
+  flex:0 0 auto;white-space:nowrap;
+  display:inline-flex;align-items:center;gap:6px;
+  font-size:13px;color:var(--navy-soft);text-decoration:none;
+  padding:6px 14px 6px 11px;border-radius:99px;border:1px solid var(--line);
+  background:#fff;transition:.2s;
+}
+.nav a .ic{width:14px;height:14px;color:var(--gold-deep);transition:.2s}
+.nav a:active,.nav a:hover{background:var(--navy);color:#F5EFE3;border-color:var(--navy)}
+.nav a:active .ic,.nav a:hover .ic{color:#E2C88F}
+
+/* ---------- decision helper (signature) ---------- */
+.helper{
+  margin:-56px auto 0;
+  position:relative;z-index:5;
+}
+.helper-card{
+  background:var(--cream);
+  border:1px solid var(--line);
+  border-radius:18px;
+  box-shadow:0 10px 34px rgba(24,43,69,.14);
+  padding:30px 26px;
+  position:relative;overflow:hidden;
+}
+.helper-card::after{
+  content:"";position:absolute;top:-46px;right:-46px;
+  width:130px;height:130px;border-radius:50%;
+  border:1px solid var(--gold-soft);pointer-events:none;
+}
+.helper-card .tag{
+  display:inline-flex;align-items:center;gap:7px;
+  font-size:12px;letter-spacing:.2em;color:var(--gold-deep);font-weight:700;
+}
+.helper-card .tag .ic{width:15px;height:15px}
+.helper-card h2{font-size:21px;color:var(--navy);margin:8px 0 5px}
+.helper-card p.lead{font-size:13.5px;color:#6C7683;margin-bottom:22px}
+.q-step{display:none}
+.q-step.active{display:block;animation:fade .3s ease}
+@keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.q-title{font-weight:700;color:var(--navy);font-size:16px;margin-bottom:12px}
+.opt{
+  display:flex;align-items:flex-start;gap:13px;width:100%;text-align:left;
+  background:#fff;border:1.5px solid var(--line);border-radius:12px;
+  padding:15px 17px 15px 14px;margin-bottom:12px;
+  font-size:14.5px;color:var(--ink);cursor:pointer;
+  font-family:inherit;transition:.15s;
+}
+.opt:hover{border-color:var(--gold);box-shadow:0 3px 12px rgba(24,43,69,.08)}
+.opt .opt-ic{
+  flex:0 0 36px;height:36px;border-radius:10px;margin-top:2px;
+  display:flex;align-items:center;justify-content:center;
+}
+.opt .opt-ic .ic{width:19px;height:19px}
+.opt .opt-ic.red{background:var(--alert-soft);color:var(--alert)}
+.opt .opt-ic.green{background:var(--green-soft);color:var(--green)}
+.opt .opt-ic.gold{background:var(--gold-soft);color:var(--gold-deep)}
+.opt strong{color:var(--navy)}
+.opt small{display:block;color:#8A93A0;font-size:12.5px;margin-top:2px}
+.result{border-radius:12px;padding:20px}
+.result.r-emergency{background:var(--alert-soft);border:1.5px solid #E0C2B6}
+.result.r-gp{background:var(--green-soft);border:1.5px solid #CBD8C3}
+.result.r-spec{background:var(--gold-soft);border:1.5px solid #DEC998}
+.result h3{
+  font-size:17px;margin-bottom:6px;
+  display:flex;align-items:center;gap:8px;
+}
+.result h3 .ic{width:19px;height:19px}
+.result.r-emergency h3{color:var(--alert)}
+.result.r-gp h3{color:var(--green)}
+.result.r-spec h3{color:var(--gold-deep)}
+.result p{font-size:14px}
+.result a.jump{color:var(--navy);font-weight:700;text-decoration:underline;text-underline-offset:3px}
+.restart{
+  margin-top:14px;background:none;border:none;cursor:pointer;
+  color:#8A93A0;font-size:13px;font-family:inherit;
+  text-decoration:underline;text-underline-offset:3px;
+}
+
+/* ---------- sections ---------- */
+section{padding:64px 0 12px}
+.sec-head{display:flex;gap:16px;margin-bottom:30px}
+.sec-badge{
+  flex:0 0 48px;height:48px;border-radius:15px;
+  background:var(--gold-soft);border:1px solid #DEC998;
+  color:var(--gold-deep);
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:var(--shadow);
+}
+.sec-badge .ic{width:24px;height:24px;stroke-width:1.6}
+.sec-num{
+  font-family:'Noto Serif','Noto Serif SC',serif;
+  font-size:13px;color:var(--gold-deep);letter-spacing:.24em;font-weight:700;
+}
+.sec-head h2{font-size:clamp(22px,5.5vw,27px);color:var(--navy);margin-top:2px;line-height:1.4}
+.sec-head p{color:#6C7683;font-size:14px;line-height:1.9;margin-top:10px;max-width:34em}
+
+.card{
+  background:var(--cream);border:1px solid var(--line);
+  border-radius:var(--radius);box-shadow:var(--shadow);
+  padding:24px 22px;margin-bottom:16px;
+}
+.card h3{
+  color:var(--navy);font-size:17px;margin-bottom:10px;
+  display:flex;align-items:center;gap:9px;
+}
+.card h3 .ic{width:19px;height:19px;color:var(--gold-deep)}
+.card p{font-size:14.5px;line-height:1.9}
+
+/* pill list */
+.pills{display:flex;flex-wrap:wrap;gap:9px;margin-top:14px}
+.pill{
+  display:inline-flex;align-items:center;gap:6px;
+  font-size:13px;background:#fff;border:1px solid var(--line);
+  border-radius:99px;padding:5px 13px;color:var(--navy-soft);
+}
+.pill .ic{width:13px;height:13px}
+.pill.gold{background:var(--gold-soft);border-color:#DEC998;color:var(--gold-deep)}
+.pill.red{background:var(--alert-soft);border-color:#E0C2B6;color:var(--alert)}
+
+/* ---------- tabs ---------- */
+.tabs{display:flex;gap:10px;margin-bottom:20px}
+.tab-btn{
+  flex:1;padding:12px 8px;border-radius:12px;
+  border:1.5px solid var(--line);background:#fff;
+  font-family:inherit;font-size:14.5px;font-weight:700;color:var(--navy-soft);
+  cursor:pointer;transition:.2s;
+  display:inline-flex;align-items:center;justify-content:center;gap:7px;
+}
+.tab-btn .ic{width:16px;height:16px;color:var(--gold-deep)}
+.tab-btn.active{background:var(--navy);color:#F1E7D2;border-color:var(--navy)}
+.tab-btn.active .ic{color:#E2C88F}
+.tab-panel{display:none}
+.tab-panel.active{display:block;animation:fade .25s ease}
+
+/* compare rows */
+.cmp{border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;background:var(--cream)}
+.cmp-row{display:grid;grid-template-columns:96px 1fr;border-bottom:1px solid var(--line)}
+.cmp-row:last-child{border-bottom:none}
+.cmp-row .k{
+  background:var(--gold-soft);padding:15px 12px;
+  font-size:13px;font-weight:700;color:var(--gold-deep);
+  display:flex;align-items:center;gap:6px;
+}
+.cmp-row .k .ic{width:14px;height:14px}
+.cmp-row .v{padding:15px 18px;font-size:14px;line-height:1.85}
+.cmp-row .v b{color:var(--navy)}
+
+/* ---------- accordion ---------- */
+.acc{border:1px solid var(--line);border-radius:var(--radius);background:var(--cream);margin-bottom:12px;overflow:hidden}
+.acc-head{
+  width:100%;display:flex;align-items:center;gap:10px;
+  padding:17px 20px;background:none;border:none;cursor:pointer;
+  font-family:inherit;font-size:15px;font-weight:700;color:var(--navy);text-align:left;
+}
+.acc-head .h-ic{
+  width:20px;height:20px;flex:0 0 20px;color:var(--gold-deep);
+}
+.acc-head .label{flex:1}
+.acc-head .chev{
+  width:22px;height:22px;flex:0 0 22px;border-radius:50%;
+  background:var(--gold-soft);color:var(--gold-deep);
+  display:flex;align-items:center;justify-content:center;
+  font-size:13px;transition:transform .25s;
+}
+.acc.open .chev{transform:rotate(180deg)}
+.acc-body{display:none;padding:0 20px 18px;font-size:14px}
+.acc.open .acc-body{display:block;animation:fade .25s ease}
+.acc-body ul{list-style:none}
+.acc-body li{
+  padding:9px 0 9px 18px;position:relative;border-bottom:1px dashed #EFE7D6;
+}
+.acc-body li:last-child{border-bottom:none}
+.acc-body li::before{
+  content:"";position:absolute;left:2px;top:18px;
+  width:6px;height:6px;border-radius:50%;background:var(--gold);
+}
+.acc-body li span{color:#8A93A0;font-size:12.5px;margin-left:6px}
+
+/* ---------- steps ---------- */
+.steps{position:relative;padding-left:34px}
+.steps::before{
+  content:"";position:absolute;left:11px;top:8px;bottom:8px;
+  width:1.5px;background:var(--line);
+}
+.step{position:relative;padding-bottom:26px}
+.step:last-child{padding-bottom:0}
+.step::before{
+  content:attr(data-n);
+  position:absolute;left:-34px;top:0;
+  width:24px;height:24px;border-radius:50%;
+  background:var(--navy);color:#EBDDC0;
+  font-size:12px;font-weight:700;
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Noto Serif','Noto Serif SC',serif;
+}
+.step h4{
+  color:var(--navy);font-size:15px;margin-bottom:6px;
+  display:flex;align-items:center;gap:7px;
+}
+.step h4 .ic{width:15px;height:15px;color:var(--gold-deep)}
+.step p{font-size:14px;color:#5A6674;line-height:1.85}
+
+/* ---------- triage ---------- */
+.triage{display:grid;gap:12px}
+.tri{
+  background:var(--cream);border:1px solid var(--line);border-left-width:5px;
+  border-radius:12px;padding:16px 18px;
+  display:flex;gap:14px;align-items:flex-start;
+}
+.tri .tri-badge{
+  flex:0 0 38px;height:38px;border-radius:50%;margin-top:2px;
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Noto Serif','Noto Serif SC',serif;font-weight:700;font-size:13.5px;
+  border:1.5px solid;
+}
+.tri h4{font-size:15px;margin-bottom:5px}
+.tri p{font-size:13.5px;color:#5A6674;line-height:1.8}
+.tri.p1{border-left-color:#A8523C}.tri.p1 h4{color:#A8523C}
+.tri.p1 .tri-badge{color:#A8523C;border-color:#D9AC9E;background:var(--alert-soft)}
+.tri.p2{border-left-color:#C07A3E}.tri.p2 h4{color:#B06E33}
+.tri.p2 .tri-badge{color:#B06E33;border-color:#E0BC94;background:#F7EBDD}
+.tri.p3{border-left-color:#B8934F}.tri.p3 h4{color:var(--gold-deep)}
+.tri.p3 .tri-badge{color:var(--gold-deep);border-color:#DEC998;background:var(--gold-soft)}
+.tri.p4{border-left-color:#5F7A5A}.tri.p4 h4{color:var(--green)}
+.tri.p4 .tri-badge{color:var(--green);border-color:#BCCDB4;background:var(--green-soft)}
+
+.alert-card{
+  background:var(--alert-soft);border:1.5px solid #E0C2B6;
+  border-radius:var(--radius);padding:22px 20px;margin-bottom:16px;
+}
+.alert-card h3{
+  color:var(--alert);font-size:16px;margin-bottom:10px;
+  display:flex;align-items:center;gap:9px;
+}
+.alert-card h3 .ic{width:19px;height:19px}
+.alert-card p{font-size:14px}
+.call-995{
+  display:flex;align-items:center;gap:15px;
+  background:#fff;border:1px dashed #E0C2B6;border-radius:12px;
+  padding:15px 18px;margin-top:16px;
+}
+.call-995 .ring{
+  flex:0 0 46px;height:46px;border-radius:50%;
+  background:var(--alert);color:#FDF6F3;
+  display:flex;align-items:center;justify-content:center;
+}
+.call-995 .ring .ic{width:22px;height:22px}
+.call-995 .num{
+  font-family:'Noto Serif','Noto Serif SC',serif;font-size:30px;font-weight:700;
+  color:var(--alert);line-height:1;letter-spacing:.04em;
+}
+.call-995 .lbl{font-size:12.5px;color:#8A93A0}
+
+/* ---------- cost cards ---------- */
+.cost-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.cost{
+  background:var(--cream);border:1px solid var(--line);border-radius:12px;
+  padding:18px 16px;position:relative;
+}
+.cost .c-ic{
+  position:absolute;top:16px;right:14px;
+  width:32px;height:32px;border-radius:9px;
+  background:var(--gold-soft);color:var(--gold-deep);
+  display:flex;align-items:center;justify-content:center;
+}
+.cost .c-ic .ic{width:17px;height:17px}
+.cost .c-label{font-size:12.5px;color:#8A93A0;padding-right:38px}
+.cost .c-val{
+  font-family:'Noto Serif','Noto Serif SC',serif;
+  font-size:19px;font-weight:700;color:var(--navy);margin:5px 0 3px;
+  font-variant-numeric:tabular-nums;
+}
+.cost .c-note{font-size:12px;color:var(--gold-deep)}
+
+/* ---------- hospital bills ---------- */
+.bill-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;background:var(--cream);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow)}
+.bill-tbl{width:100%;border-collapse:collapse;min-width:600px}
+.bill-tbl th{background:var(--navy);color:#fff;font-size:13px;font-weight:500;text-align:left;padding:12px 14px;white-space:nowrap}
+.bill-tbl th small{display:block;font-size:11px;color:rgba(255,255,255,.65);font-weight:400;margin-top:2px}
+.bill-tbl td{padding:12px 14px;font-size:13.5px;color:var(--ink);border-top:1px solid var(--line);font-variant-numeric:tabular-nums;white-space:nowrap}
+.bill-tbl td small{display:block;font-size:11.5px;color:#8A93A0;margin-top:1px;font-weight:400}
+.bill-tbl td:first-child{font-weight:700;color:var(--navy)}
+.bill-tbl tr:nth-child(even) td{background:var(--sand)}
+.bill-tbl td.pv{color:var(--gold-deep);font-weight:700;font-family:'Noto Serif','Noto Serif SC',serif;font-size:15px}
+.bill-note{font-size:12px;color:#8A93A0;line-height:1.9;margin-top:12px}
+
+/* ---------- tips ---------- */
+.tip{
+  display:flex;gap:16px;background:var(--cream);
+  border:1px solid var(--line);border-radius:var(--radius);
+  padding:20px 19px;margin-bottom:14px;box-shadow:var(--shadow);
+}
+.tip .no{
+  flex:0 0 40px;height:40px;border-radius:11px;position:relative;
+  background:var(--gold-soft);color:var(--gold-deep);
+  display:flex;align-items:center;justify-content:center;
+}
+.tip .no .ic{width:20px;height:20px}
+.tip .no i{
+  position:absolute;right:-5px;top:-6px;
+  width:17px;height:17px;border-radius:50%;
+  background:var(--navy);color:#EBDDC0;
+  font-style:normal;font-size:10.5px;font-weight:700;
+  font-family:'Noto Serif','Noto Serif SC',serif;
+  display:flex;align-items:center;justify-content:center;
+}
+.tip h4{font-size:15px;color:var(--navy);margin-bottom:6px}
+.tip p{font-size:13.8px;color:#5A6674;line-height:1.85}
+
+/* ---------- CTA ---------- */
+.cta{
+  background:linear-gradient(160deg,var(--navy),#253B5E);
+  border-radius:20px;color:#F1E7D2;
+  padding:42px 26px;margin:60px 0 24px;
+  text-align:center;position:relative;overflow:hidden;
+}
+.cta::before{
+  content:"";position:absolute;top:-70px;right:-70px;
+  width:200px;height:200px;border-radius:50%;
+  border:1px solid rgba(200,166,100,.35);
+}
+.cta::after{
+  content:"";position:absolute;bottom:-90px;left:-60px;
+  width:220px;height:220px;border-radius:50%;
+  border:1px solid rgba(200,166,100,.2);
+}
+.cta .avatar{
+  width:76px;height:76px;border-radius:50%;
+  margin:0 auto 14px;overflow:hidden;
+  border:2px solid #D9B878;
+  box-shadow:0 4px 18px rgba(0,0,0,.3);
+  background:#EDE4D3;
+  position:relative;z-index:1;
+}
+.cta .avatar img{
+  width:100%;height:100%;object-fit:cover;object-position:center;
+  display:block;
+}
+.cta h2{font-size:22px;margin-bottom:10px;position:relative;z-index:1}
+.cta p{font-size:14px;line-height:1.9;color:#C9D2DF;max-width:30em;margin:0 auto 24px;position:relative;z-index:1}
+.cta .contact{
+  display:flex;flex-direction:column;gap:9px;max-width:340px;margin:0 auto;
+  position:relative;z-index:1;
+}
+.cta .contact>a,.cta .contact>span{
+  display:flex;align-items:center;gap:10px;
+  background:rgba(255,255,255,.08);
+  border:1px solid rgba(200,166,100,.4);
+  border-radius:12px;padding:11px 15px;
+  color:#F1E7D2;text-decoration:none;font-size:14px;text-align:left;
+}
+.cta .contact .ic{width:17px;height:17px;color:#E2C88F}
+.cta .contact b{color:#E2C88F;font-weight:700}
+.cta .qr{
+  position:relative;z-index:1;
+  margin:18px auto 0;max-width:340px;
+  background:rgba(255,255,255,.96);
+  border:1px solid rgba(200,166,100,.5);
+  border-radius:14px;padding:14px;
+  display:flex;align-items:center;gap:14px;
+}
+.cta .qr img{
+  width:96px;height:96px;border-radius:8px;display:block;flex:0 0 96px;
+}
+.cta .qr .qr-txt{text-align:left;color:var(--navy)}
+.cta .qr .qr-txt b{display:block;font-size:14.5px;margin-bottom:2px}
+.cta .qr .qr-txt small{font-size:12.5px;color:#6C7683;line-height:1.6;display:block}
+.cta .slogan{margin-top:20px;font-size:13px;color:#AFBCCD;letter-spacing:.08em;position:relative;z-index:1}
+
+/* ---------- footer ---------- */
+footer{padding:14px 0 56px}
+.disclaimer{
+  font-size:12px;color:#95908A;line-height:2;
+  border-top:1px solid var(--line);padding-top:22px;
+}
+
+/* ---------- scroll reveal ---------- */
+@media (prefers-reduced-motion:no-preference){
+  .rv{opacity:0;transform:translateY(14px);transition:opacity .55s ease,transform .55s ease}
+  .rv.in{opacity:1;transform:none}
+}
+
+@media (max-width:560px){
+  .hero-figure{flex-basis:138px;width:138px}
+  .hero-figure::before{width:140px;height:140px;top:26px}
+  .hero-figure::after{width:164px;height:164px;top:38px}
+  .hero-text{padding-bottom:88px}
+}
+@media (max-width:480px){
+  .eyebrow-zh{display:none}
+}
+@media (max-width:420px){
+  .hero .eyebrow{font-size:11px;letter-spacing:.2em}
+  .cost-grid{grid-template-columns:1fr}
+  .cmp-row{grid-template-columns:86px 1fr}
+  .hero-figure{flex-basis:118px;width:118px}
+  .hero-figure::before{width:120px;height:120px;top:22px}
+  .hero-figure::after{display:none}
+  .tab-btn{font-size:13.5px;gap:5px}
+}
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+  html{scroll-behavior:auto}
+}
+/* ---------- watermark (与案例页同款) ---------- */
+#wm{position:fixed;inset:0;z-index:9999;pointer-events:none;overflow:hidden;opacity:.0325}
+#wm .row{position:absolute;white-space:nowrap;font-size:20px;color:var(--navy);font-weight:500;letter-spacing:.06em;transform:rotate(-24deg);transform-origin:left center}
+</style>
+</head>
+<body>
+
+<!-- ================= SVG ICON SPRITE ================= -->
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
+  <symbol id="i-compass" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="m15.5 8.5-2 5-5 2 2-5z"/></symbol>
+  <symbol id="i-steth" viewBox="0 0 24 24"><path d="M5 3H4a1 1 0 0 0-1 1v5a5 5 0 0 0 10 0V4a1 1 0 0 0-1-1h-1"/><path d="M8 14v2.5a5.5 5.5 0 0 0 11 0v-4"/><circle cx="19" cy="10" r="2.4"/></symbol>
+  <symbol id="i-clinic" viewBox="0 0 24 24"><path d="m3 11 9-7 9 7"/><path d="M5 10v10h14V10"/><path d="M12 12.5v5M9.5 15h5"/></symbol>
+  <symbol id="i-hospital" viewBox="0 0 24 24"><path d="M5 21V8h14v13"/><path d="M9 8V4h6v4"/><path d="M12 11.5v4M10 13.5h4"/><path d="M3 21h18"/></symbol>
+  <symbol id="i-doctor" viewBox="0 0 24 24"><circle cx="11" cy="8" r="3.4"/><path d="M4.5 20.5c.5-4 3.3-6 6.5-6s6 2 6.5 6"/><path d="M18.5 3.5v4M16.5 5.5h4"/></symbol>
+  <symbol id="i-siren" viewBox="0 0 24 24"><path d="M7 16.5v-4a5 5 0 0 1 10 0v4"/><rect x="4.5" y="16.5" width="15" height="4" rx="1.2"/><path d="M12 3.2v2M5.4 5.8 6.8 7.2M18.6 5.8 17.2 7.2"/></symbol>
+  <symbol id="i-leaf" viewBox="0 0 24 24"><path d="M4.5 19.5C4.5 10.5 10.5 4.5 20 4.5c0 9.5-6 15.5-15.5 15z"/><path d="M4.5 19.5C8 14.5 11.5 11 16 8.5"/></symbol>
+  <symbol id="i-coins" viewBox="0 0 24 24"><ellipse cx="12" cy="6" rx="7" ry="2.8"/><path d="M5 6v6c0 1.5 3.1 2.8 7 2.8s7-1.3 7-2.8V6"/><path d="M5 12v6c0 1.5 3.1 2.8 7 2.8s7-1.3 7-2.8v-6"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><path d="m12 3 8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="m8.8 12 2.2 2.2 4.2-4.5"/></symbol>
+  <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s-7-5.6-7-11a7 7 0 0 1 14 0c0 5.4-7 11-7 11z"/><circle cx="12" cy="10" r="2.4"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3.4 2"/></symbol>
+  <symbol id="i-dollar" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M15 9.3c-.5-.9-1.6-1.4-2.9-1.4-1.7 0-2.9.8-2.9 2.1 0 2.7 5.8 1.4 5.8 4.1 0 1.3-1.3 2.1-3 2.1-1.4 0-2.6-.6-3-1.6"/><path d="M12 6.5v11"/></symbol>
+  <symbol id="i-cal" viewBox="0 0 24 24"><rect x="4" y="5.5" width="16" height="15" rx="2"/><path d="M4 10.2h16M8.2 3.5v3.6M15.8 3.5v3.6"/></symbol>
+  <symbol id="i-users" viewBox="0 0 24 24"><circle cx="9" cy="8.5" r="3.1"/><path d="M3.5 20c.4-3.4 2.8-5.2 5.5-5.2s5.1 1.8 5.5 5.2"/><path d="M15.3 5.7a3.1 3.1 0 0 1 0 5.6M17.4 15c2 .7 3.3 2.3 3.6 5"/></symbol>
+  <symbol id="i-pill" viewBox="0 0 24 24"><path d="M10.5 20.4 3.6 13.5a4.9 4.9 0 1 1 6.9-6.9l6.9 6.9a4.9 4.9 0 1 1-6.9 6.9z"/><path d="m7 10.5 6.5 6.5"/></symbol>
+  <symbol id="i-phone" viewBox="0 0 24 24"><path d="M5.5 4H9l1.6 4.3L8.5 10a12.5 12.5 0 0 0 5.5 5.5l1.7-2.1L20 15v3.6A1.6 1.6 0 0 1 18.2 20C10.8 19.2 4.8 13.2 4 5.8A1.6 1.6 0 0 1 5.5 4z"/></symbol>
+  <symbol id="i-chat" viewBox="0 0 24 24"><path d="M21 11.8A8.3 8.3 0 0 1 8.9 19L3.5 20.5 5 15.2A8.3 8.3 0 1 1 21 11.8z"/><path d="M8.5 11.8h.01M12.2 11.8h.01M15.9 11.8h.01"/></symbol>
+  <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3.5 7.5 8.5 5.7 8.5-5.7"/></symbol>
+  <symbol id="i-memo" viewBox="0 0 24 24"><path d="M6 3h9l4 4v14H6z"/><path d="M14.5 3.5V8H19"/><path d="M9.2 13h5.6M9.2 16.5h5.6"/></symbol>
+  <symbol id="i-card" viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="13" rx="2"/><path d="M3 10.5h18"/><path d="M6.8 15.5h4.5"/></symbol>
+  <symbol id="i-clipboard" viewBox="0 0 24 24"><path d="M9 4.5H7a2 2 0 0 0-2 2V19a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V6.5a2 2 0 0 0-2-2h-2"/><rect x="9" y="2.8" width="6" height="3.2" rx="1"/><path d="m9 13.5 2.1 2.1 4-4.5"/></symbol>
+  <symbol id="i-stack" viewBox="0 0 24 24"><path d="m12 3.5 8.5 4.7L12 12.9 3.5 8.2z"/><path d="m3.5 12.6 8.5 4.7 8.5-4.7"/><path d="m3.5 16.8 8.5 4.7 8.5-4.7"/></symbol>
+  <symbol id="i-hourglass" viewBox="0 0 24 24"><path d="M5.5 2.5h13M5.5 21.5h13"/><path d="M17 21.5v-3.7c0-.5-.2-1-.6-1.4L12 12 7.6 16.4c-.4.4-.6.9-.6 1.4v3.7"/><path d="M7 2.5v3.7c0 .5.2 1 .6 1.4L12 12l4.4-4.4c.4-.4.6-.9.6-1.4V2.5"/></symbol>
+  <symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M3.5 12h17"/><path d="M12 3.5c2.4 2.3 3.7 5.2 3.7 8.5s-1.3 6.2-3.7 8.5c-2.4-2.3-3.7-5.2-3.7-8.5s1.3-6.2 3.7-8.5z"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M4.5 12H19"/><path d="m13.8 6.3 5.7 5.7-5.7 5.7"/></symbol>
+  <symbol id="i-amb" viewBox="0 0 24 24"><path d="M2.5 16.5V7A1.5 1.5 0 0 1 4 5.5h9.5v11"/><path d="M13.5 9H18l3.5 4.2v3.3h-2.2"/><circle cx="7" cy="17.6" r="1.9"/><circle cx="16.4" cy="17.6" r="1.9"/><path d="M9 17.5h5.3M2.5 16.5h2.6"/><path d="M8 8.3v4M6 10.3h4"/></symbol>
+  <symbol id="i-bed" viewBox="0 0 24 24"><path d="M3 5.5V19"/><path d="M3 12h18v7"/><circle cx="7.5" cy="9" r="1.9"/><path d="M11.5 12V8.8H18a3 3 0 0 1 3 3.2"/><path d="M3 15.8h18"/></symbol>
+  <symbol id="i-alert" viewBox="0 0 24 24"><path d="M12 3.5 2.8 19.5h18.4z"/><path d="M12 9.8v4.4"/><path d="M12 17.2h.01"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="m8.3 12.4 2.6 2.6 5-5.6"/></symbol>
+  <symbol id="i-heart" viewBox="0 0 24 24"><path d="M12 20.3C7.2 16.5 3.5 13.2 3.5 9.2 3.5 6.4 5.6 4.5 8 4.5c1.6 0 3 .8 4 2.1 1-1.3 2.4-2.1 4-2.1 2.4 0 4.5 1.9 4.5 4.7 0 4-3.7 7.3-8.5 11.1z"/></symbol>
+  <symbol id="i-star" viewBox="0 0 24 24"><path d="m12 3.5 2.6 5.4 5.9.8-4.3 4.1 1 5.9-5.2-2.8-5.2 2.8 1-5.9-4.3-4.1 5.9-.8z"/></symbol>
+</svg>
+
+<!-- ================= HERO ================= -->
+<header class="hero">
+  <span class="hero-ring" aria-hidden="true"></span>
+  <span class="hero-dot" aria-hidden="true"></span>
+  <span class="hero-dot b" aria-hidden="true"></span>
+  <svg class="hero-ecg" viewBox="0 0 720 46" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M0 30 H150 l8 0 6-12 8 24 8-30 8 34 8-22 5 6 H340 l6-10 8 20 8-26 8 30 7-18 5 4 H560 l6-8 7 16 7-22 7 26 6-14 5 4 H720"/>
+  </svg>
+  <div class="wrap">
+    <div class="hero-grid">
+      <div class="hero-text">
+        <span class="eyebrow">Singapore Healthcare<span class="eyebrow-zh"> · A Practical Guide</span></span>
+        <h1>Healthcare in Singapore<br>everything <em>in one place</em></h1>
+        <p class="sub">New to Singapore and unsure where to go when you fall ill, what it will cost, or how to claim on your insurance? I've gathered what I've learnt from years of walking clients through treatment and claims, so you can skip the trial and error.</p>
+        <div class="byline">
+          <span class="chip"><svg class="ic"><use href="#i-star"/></svg>Yuan Yuan · Singapore</span>
+          <span class="chip"><svg class="ic"><use href="#i-shield"/></svg>AIA Financial Adviser</span>
+          <span class="chip"><svg class="ic"><use href="#i-cal"/></svg>Updated July 2026</span>
+          <a class="chip" href="/guides/healthcare.html" style="text-decoration:none;color:inherit"><svg class="ic"><use href="#i-globe"/></svg>中文版</a>
+        </div>
+      </div>
+      <div class="hero-figure" aria-hidden="true">
+        <img src="/portrait.png" alt="">
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ================= NAV ================= -->
+<nav class="nav" aria-label="Page navigation">
+  <div class="nav-scroll">
+    <a href="#helper"><svg class="ic"><use href="#i-compass"/></svg>Where to go</a>
+    <a href="#primary"><svg class="ic"><use href="#i-steth"/></svg>Everyday care</a>
+    <a href="#hospital"><svg class="ic"><use href="#i-hospital"/></svg>Hospitals</a>
+    <a href="#specialist"><svg class="ic"><use href="#i-doctor"/></svg>Specialists</a>
+    <a href="#emergency"><svg class="ic"><use href="#i-siren"/></svg>Emergency</a>
+    <a href="#more"><svg class="ic"><use href="#i-leaf"/></svg>TCM &amp; rehab</a>
+    <a href="#cost"><svg class="ic"><use href="#i-coins"/></svg>Costs</a>
+    <a href="#bills"><svg class="ic"><use href="#i-dollar"/></svg>Hospital bills</a>
+    <a href="#claims"><svg class="ic"><use href="#i-shield"/></svg>Claims tips</a>
+  </div>
+</nav>
+
+<main class="wrap">
+
+<!-- ================= DECISION HELPER ================= -->
+<div class="helper" id="helper">
+  <div class="helper-card">
+    <span class="tag"><svg class="ic"><use href="#i-compass"/></svg>Start with one question</span>
+    <h2>Where should I go right now?</h2>
+    <p class="lead">Answer a couple of questions and find the right place to go in about 30 seconds.</p>
+
+    <div class="q-step active" id="q1">
+      <div class="q-title">Which best describes how you feel?</div>
+      <button class="opt" onclick="go('r-emergency')">
+        <span class="opt-ic red"><svg class="ic"><use href="#i-alert"/></svg></span>
+        <span><strong>There are red-flag symptoms</strong>
+        <small>Severe chest pain, difficulty breathing, heavy bleeding, sudden collapse or slurred speech, coughing or vomiting blood</small></span>
+      </button>
+      <button class="opt" onclick="go('q2')">
+        <span class="opt-ic green"><svg class="ic"><use href="#i-steth"/></svg></span>
+        <span><strong>Unwell, but not life-threatening</strong>
+        <small>Colds and fever, stomach upsets, rashes, sprains and other common complaints</small></span>
+      </button>
+      <button class="opt" onclick="go('q3')">
+        <span class="opt-ic gold"><svg class="ic"><use href="#i-cal"/></svg></span>
+        <span><strong>An ongoing problem, or a check-up</strong>
+        <small>Chronic disease follow-up, health screening, vaccinations, or something that hasn't cleared up and may need a specialist</small></span>
+      </button>
+    </div>
+
+    <div class="q-step" id="q2">
+      <div class="q-title">Seen sooner, or spend less?</div>
+      <button class="opt" onclick="go('r-gp')">
+        <span class="opt-ic green"><svg class="ic"><use href="#i-clock"/></svg></span>
+        <span><strong>I want to be seen quickly</strong>
+        <small>Happy to pay a bit more to avoid waiting</small></span>
+      </button>
+      <button class="opt" onclick="go('r-poly')">
+        <span class="opt-ic gold"><svg class="ic"><use href="#i-dollar"/></svg></span>
+        <span><strong>No rush, price matters more</strong>
+        <small>I can book ahead and don't mind waiting</small></span>
+      </button>
+      <button class="restart" onclick="go('q1')">Back</button>
+    </div>
+
+    <div class="q-step" id="q3">
+      <div class="q-title">What exactly do you need?</div>
+      <button class="opt" onclick="go('r-poly2')">
+        <span class="opt-ic green"><svg class="ic"><use href="#i-clipboard"/></svg></span>
+        <span><strong>Chronic care, screening, vaccinations</strong>
+        <small>Hypertension and diabetes follow-up, routine screening</small></span>
+      </button>
+      <button class="opt" onclick="go('r-spec')">
+        <span class="opt-ic gold"><svg class="ic"><use href="#i-doctor"/></svg></span>
+        <span><strong>A recurring problem — I want a specialist</strong>
+        <small>Needs deeper investigation and treatment</small></span>
+      </button>
+      <button class="restart" onclick="go('q1')">Back</button>
+    </div>
+
+    <div class="q-step" id="r-emergency">
+      <div class="result r-emergency">
+        <h3><svg class="ic"><use href="#i-siren"/></svg>Go to A&amp;E immediately</h3>
+        <p>Call <b>995</b> for an ambulance, or go straight to the nearest hospital's emergency department. For genuine emergencies the ambulance is free.<a class="jump" href="#emergency">See the full emergency guide</a></p>
+      </div>
+      <button class="restart" onclick="go('q1')">Start over</button>
+    </div>
+
+    <div class="q-step" id="r-gp">
+      <div class="result r-gp">
+        <h3><svg class="ic"><use href="#i-clinic"/></svg>Visit a GP clinic near home</h3>
+        <p>Walk in without an appointment, wait times are short, and there are more than two thousand across the island. Consultation plus medication comes to roughly S$30 to S$100.<a class="jump" href="#primary">How to find a GP</a></p>
+      </div>
+      <button class="restart" onclick="go('q1')">Start over</button>
+    </div>
+
+    <div class="q-step" id="r-poly">
+      <div class="result r-gp">
+        <h3><svg class="ic"><use href="#i-cal"/></svg>Book a polyclinic appointment</h3>
+        <p>Government-set pricing, subsidised for citizens and PRs, with cheaper medication too. You'll need to book online in advance.<a class="jump" href="#primary">How to book</a></p>
+      </div>
+      <button class="restart" onclick="go('q1')">Start over</button>
+    </div>
+
+    <div class="q-step" id="r-poly2">
+      <div class="result r-gp">
+        <h3><svg class="ic"><use href="#i-check"/></svg>A polyclinic is the best value here</h3>
+        <p>They handle long-term chronic care, vaccinations and basic screening, with extra medication subsidies for citizens. A GP clinic can do the same — it comes down to whether you value time or cost more.<a class="jump" href="#primary">Compare the two</a></p>
+      </div>
+      <button class="restart" onclick="go('q1')">Start over</button>
+    </div>
+
+    <div class="q-step" id="r-spec">
+      <div class="result r-spec">
+        <h3><svg class="ic"><use href="#i-doctor"/></svg>You need the specialist route</h3>
+        <p>A referral letter from a GP or polyclinic qualifies you for subsidies; alternatively you can book a private specialist directly and be seen within a day to a week.<a class="jump" href="#specialist">See the specialist guide</a></p>
+      </div>
+      <button class="restart" onclick="go('q1')">Start over</button>
+    </div>
+  </div>
+</div>
+
+<!-- ================= PRIMARY CARE ================= -->
+<section id="primary">
+  <div class="sec-head">
+    <div class="sec-badge"><svg class="ic"><use href="#i-steth"/></svg></div>
+    <div>
+      <div class="sec-num">01 · PRIMARY CARE</div>
+      <h2>Everyday care handles eight problems out of ten</h2>
+      <p>Colds and fever, stomach upsets, chronic disease follow-up, vaccinations and screening all fall under primary care. Singapore has more than two thousand GP clinics and 26 government polyclinics, which between them handle the vast majority of everyday consultations.</p>
+    </div>
+  </div>
+
+  <div class="tabs" role="tablist">
+    <button class="tab-btn active" onclick="tab(this,'p-gp')"><svg class="ic"><use href="#i-clinic"/></svg>GP private clinics</button>
+    <button class="tab-btn" onclick="tab(this,'p-poly')"><svg class="ic"><use href="#i-hospital"/></svg>Polyclinics</button>
+  </div>
+
+  <div class="tab-panel active" id="p-gp">
+    <div class="cmp">
+      <div class="cmp-row"><div class="k"><svg class="ic"><use href="#i-pin"/></svg>Getting there</div><div class="v"><b>No appointment needed</b> — just walk in; some clinics also take online bookings</div></div>
+      <div class="cmp-row"><div class="k"><svg class="ic"><use href="#i-clock"/></svg>Wait time</div><div class="v">Usually short; many neighbourhood clinics see you within half an hour</div></div>
+      <div class="cmp-row"><div class="k"><svg class="ic"><use href="#i-dollar"/></svg>Cost</div><div class="v">Consultation plus medication is about <b>S$30 to S$100+</b>. Nights and public holidays cost more, and you're typically given three days of medication</div></div>
+      <div class="cmp-row"><div class="k"><svg class="ic"><use href="#i-cal"/></svg>Opening hours</div><div class="v">Mostly office hours, some open Saturday mornings, and a few run 24 hours</div></div>
+      <div class="cmp-row"><div class="k"><svg class="ic"><use href="#i-doctor"/></svg>Doctor</div><div class="v">Usually the same doctor each time, which helps once they know you</div></div>
+      <div class="cmp-row"><div class="k"><svg class="ic"><use href="#i-users"/></svg>Best for</div><div class="v">Anyone who wants to be seen quickly. If you have company group insurance, check your insurer's <b>panel clinic list</b> first — you can only claim smoothly at clinics on that list</div></div>
+    </div>
+    <div class="card" style="margin-top:14px">
+      <h3><svg class="ic"><use href="#i-pin"/></svg>How to find a GP clinic</h3>
+      <p>If you have group insurance, get the panel list from your insurer's app or from HR. If you don't, search Google for "GP clinic" plus your neighbourhood, or use the official HealthHub directory to find the nearest one.</p>
+    </div>
+  </div>
+
+  <div class="tab-panel" id="p-poly">
+    <div class="cmp">
+      <div class="cmp-row"><div class="k"><svg class="ic"><use href="#i-pin"/></svg>Getting there</div><div class="v"><b>Booking required</b>, via the HealthHub app or the cluster websites; at peak times you may wait a few days</div></div>
+      <div class="cmp-row"><div class="k"><svg class="ic"><use href="#i-clock"/></svg>Wait time</div><div class="v">On-site waits are long — set aside half a day</div></div>
+      <div class="cmp-row"><div class="k"><svg class="ic"><use href="#i-dollar"/></svg>Cost</div><div class="v">Government-set pricing: <b>from about S$17.50 for citizens</b>, about S$35 for PRs and about S$75 for foreigners, with cheaper medication than private clinics</div></div>
+      <div class="cmp-row"><div class="k"><svg class="ic"><use href="#i-cal"/></svg>Opening hours</div><div class="v">Longer opening hours; many open evenings and weekends</div></div>
+      <div class="cmp-row"><div class="k"><svg class="ic"><use href="#i-doctor"/></svg>Doctor</div><div class="v">Rostered, so you may see a different doctor each visit</div></div>
+      <div class="cmp-row"><div class="k"><svg class="ic"><use href="#i-users"/></svg>Best for</div><div class="v">Long-term chronic care, screening and vaccinations, and anyone who wants a <b>subsidised referral</b> to a public specialist</div></div>
+    </div>
+    <div class="card" style="margin-top:14px">
+      <h3><svg class="ic"><use href="#i-check"/></svg>Worth knowing</h3>
+      <p>There are currently 26 polyclinics island-wide across three clusters — SingHealth, NHG and NUP — with the government planning to expand to 32 by 2030. Beyond consultations they also handle minor procedures, maternal and child health, and chronic disease screening.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= HOSPITALS ================= -->
+<section id="hospital">
+  <div class="sec-head">
+    <div class="sec-badge"><svg class="ic"><use href="#i-hospital"/></svg></div>
+    <div>
+      <div class="sec-num">02 · HOSPITALS</div>
+      <h2>Hospitals: public or private</h2>
+      <p>Singapore has 11 public acute hospitals and 9 private ones. Public hospitals have first-rate facilities and subsidies but come with queues; private hospitals are faster and more comfortable but cost considerably more. Which you choose comes down to how urgent the condition is and what your insurance covers.</p>
+    </div>
+  </div>
+
+  <div class="tabs">
+    <button class="tab-btn active" onclick="tab(this,'h-pub')"><svg class="ic"><use href="#i-shield"/></svg>Public hospitals</button>
+    <button class="tab-btn" onclick="tab(this,'h-pri')"><svg class="ic"><use href="#i-star"/></svg>Private hospitals</button>
+  </div>
+
+  <div class="tab-panel active" id="h-pub">
+    <div class="acc open">
+      <button class="acc-head" onclick="acc(this)"><svg class="ic h-ic"><use href="#i-hospital"/></svg><span class="label">SingHealth</span><span class="chev">▾</span></button>
+      <div class="acc-body"><ul>
+        <li>Singapore General Hospital (SGH)<span>Largest in the country</span></li>
+        <li>Changi General Hospital (CGH)<span>East</span></li>
+        <li>Sengkang General Hospital (SKH)<span>North-east</span></li>
+        <li>KK Women's and Children's Hospital (KKH)<span>Women and children</span></li>
+      </ul></div>
+    </div>
+    <div class="acc">
+      <button class="acc-head" onclick="acc(this)"><svg class="ic h-ic"><use href="#i-hospital"/></svg><span class="label">NHG · National Healthcare Group</span><span class="chev">▾</span></button>
+      <div class="acc-body"><ul>
+        <li>Tan Tock Seng Hospital (TTSH)<span>Central</span></li>
+        <li>Khoo Teck Puat Hospital (KTPH)<span>North</span></li>
+        <li>Woodlands Health<span>North, newest</span></li>
+        <li>Institute of Mental Health (IMH)<span>Psychiatry</span></li>
+      </ul></div>
+    </div>
+    <div class="acc">
+      <button class="acc-head" onclick="acc(this)"><svg class="ic h-ic"><use href="#i-hospital"/></svg><span class="label">NUHS · National University Health System</span><span class="chev">▾</span></button>
+      <div class="acc-body"><ul>
+        <li>National University Hospital (NUH)<span>West</span></li>
+        <li>Ng Teng Fong General Hospital (NTFGH)<span>West</span></li>
+        <li>Alexandra Hospital (AH)<span>No 24-hour A&amp;E</span></li>
+      </ul></div>
+    </div>
+    <div class="card">
+      <h3><svg class="ic"><use href="#i-check"/></svg>What public hospitals are like</h3>
+      <p>Citizens and PRs receive government subsidies, and wards are graded A, B1, B2 and C. The national specialty centres sit within the public system, which is where the strongest capability for complex and serious conditions lies. The trade-off is long waits for specialist clinics and elective surgery, and under the rostering system you usually can't request a particular doctor.</p>
+    </div>
+  </div>
+
+  <div class="tab-panel" id="h-pri">
+    <div class="acc open">
+      <button class="acc-head" onclick="acc(this)"><svg class="ic h-ic"><use href="#i-hospital"/></svg><span class="label">The nine private hospitals</span><span class="chev">▾</span></button>
+      <div class="acc-body"><ul>
+        <li>Mount Elizabeth<span>Orchard</span></li>
+        <li>Mount Elizabeth Novena<span>Novena</span></li>
+        <li>Gleneagles</li>
+        <li>Raffles Hospital</li>
+        <li>Mount Alvernia<span>Not-for-profit</span></li>
+        <li>Thomson Medical<span>Strong in obstetrics</span></li>
+        <li>Parkway East</li>
+        <li>Farrer Park</li>
+        <li>Concord International</li>
+      </ul></div>
+    </div>
+    <div class="card">
+      <h3><svg class="ic"><use href="#i-check"/></svg>What private hospitals are like</h3>
+      <p>Specialist appointments are available the same day to within a week, you can request a specific doctor, and rooms are mostly single or double, so the experience and privacy are better. There are no government subsidies, so you generally need private hospitalisation insurance to cover the cost. With the right plan in place, most admissions and discharges can be handled without paying up front.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SPECIALIST ================= -->
+<section id="specialist">
+  <div class="sec-head">
+    <div class="sec-badge"><svg class="ic"><use href="#i-doctor"/></svg></div>
+    <div>
+      <div class="sec-num">03 · SPECIALIST</div>
+      <h2>Two routes to a specialist</h2>
+      <p>When a condition needs specialist care you can take the subsidised route or the fast route. The difference comes down to time and money.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="steps">
+      <div class="step" data-n="A">
+        <h4><svg class="ic"><use href="#i-dollar"/></svg>Subsidised route (public)</h4>
+        <p>See a polyclinic doctor first for a referral to a public hospital specialist. Citizens and PRs pay about S$30 to S$60 per visit, but popular specialties can mean waits of weeks to months, you can't request a doctor, and admission defaults to a B2 or C class ward.</p>
+      </div>
+      <div class="step" data-n="B">
+        <h4><svg class="ic"><use href="#i-clock"/></svg>Fast route (private, or private clinics inside public hospitals)</h4>
+        <p>Have a GP help you book, or approach the specialist directly, and be seen within a day to a week with your choice of senior doctor. A first consultation starts at about S$120 to S$250 with no government subsidy, which suits those with private insurance or a time-sensitive condition.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3><svg class="ic"><use href="#i-star"/></svg>The ten national specialty centres</h3>
+    <p>Singapore has national specialty centres for cancer, cardiology, ophthalmology, dermatology, neuroscience, infectious diseases and dentistry, representing the highest level of care available locally.</p>
+    <div class="pills">
+      <span class="pill">National Cancer Centre (NCCS)</span>
+      <span class="pill">National Heart Centre (NHCS)</span>
+      <span class="pill">Singapore National Eye Centre (SNEC)</span>
+      <span class="pill">National Skin Centre (NSC)</span>
+      <span class="pill">National Neuroscience Institute (NNI)</span>
+      <span class="pill">National Centre for Infectious Diseases (NCID)</span>
+      <span class="pill">National Dental Centre (NDCS)</span>
+      <span class="pill">National University Cancer Institute (NCIS)</span>
+      <span class="pill">National University Heart Centre (NUHCS)</span>
+      <span class="pill">KK Women's and Children's Hospital (KKH)</span>
+    </div>
+  </div>
+
+  <div class="card" style="background:var(--gold-soft);border-color:#DEC998">
+    <h3 style="color:var(--gold-deep)"><svg class="ic"><use href="#i-heart"/></svg>On finding the right doctor</h3>
+    <p>Over years of accompanying clients through treatment, I've built up a lot of first-hand feedback on which doctors in each department are thorough and which handle complex cases well. For the departments people need most — paediatrics, obstetrics, oncology, cardiology — my clients are welcome to message me any time for recommendations.</p>
+  </div>
+</section>
+
+<!-- ================= EMERGENCY ================= -->
+<section id="emergency">
+  <div class="sec-head">
+    <div class="sec-badge"><svg class="ic"><use href="#i-siren"/></svg></div>
+    <div>
+      <div class="sec-num">04 · EMERGENCY</div>
+      <h2>A&amp;E: when to go</h2>
+      <p>A&amp;E is for life-threatening situations. If any of the following appear, don't hesitate — get medical help immediately.</p>
+    </div>
+  </div>
+
+  <div class="alert-card">
+    <h3><svg class="ic"><use href="#i-alert"/></svg>Red flags: call 995 immediately</h3>
+    <div class="pills">
+      <span class="pill red">Severe chest pain</span>
+      <span class="pill red">Difficulty breathing</span>
+      <span class="pill red">Uncontrolled bleeding</span>
+      <span class="pill red">Sudden confusion</span>
+      <span class="pill red">Sudden dizziness, numbness or weakness</span>
+      <span class="pill red">Sudden vision changes</span>
+      <span class="pill red">Coughing or vomiting blood</span>
+      <span class="pill red">Persistent vomiting or diarrhoea</span>
+    </div>
+    <div class="call-995">
+      <div class="ring"><svg class="ic"><use href="#i-phone"/></svg></div>
+      <div>
+        <div class="num">995</div>
+        <div class="lbl">Ambulance hotline · free for genuine emergencies</div>
+      </div>
+    </div>
+    <p style="margin-top:12px">When you call 995, give the address, postal code, floor and unit number, whether a card is needed for the lift, and the patient's condition. Where possible, have someone who speaks English make the call.</p>
+  </div>
+
+  <div class="card">
+    <h3><svg class="ic"><use href="#i-amb"/></svg>An ambulance rule change many people miss</h3>
+    <p>Since April 2019, SCDF ambulances no longer convey non-emergency cases. If the call operator assesses your situation as non-urgent, they will advise you to make your own way to a clinic. If you are conveyed and the case is later judged non-emergency, a charge of S$274 per trip applies. For non-emergency transport, contact a private ambulance operator licensed by the Ministry of Health, or simply take a taxi.</p>
+  </div>
+
+  <div class="card">
+    <h3><svg class="ic"><use href="#i-clock"/></svg>A&amp;E triages by severity, not by arrival order</h3>
+  </div>
+  <div class="triage">
+    <div class="tri p1"><div class="tri-badge">P1</div><div><h4>Critical</h4><p>Cardiac arrest, heart attack, major trauma with heavy bleeding, shock. Resuscitated immediately.</p></div></div>
+    <div class="tri p2"><div class="tri-badge">P2</div><div><h4>Major emergency</h4><p>Serious fractures, severe abdominal pain. Stable but unable to walk; assessed and treated on a trolley.</p></div></div>
+    <div class="tri p3"><div class="tri-badge">P3</div><div><h4>Minor</h4><p>Sprains, minor injuries, fever and vomiting, mild headache. Able to walk, and the wait can be long.</p></div></div>
+    <div class="tri p4"><div class="tri-badge">P4</div><div><h4>Non-emergency</h4><p>Old injuries and long-standing problems. A&amp;E is not the right place — see a GP.</p></div></div>
+  </div>
+
+  <div class="card" style="margin-top:14px">
+    <h3><svg class="ic"><use href="#i-dollar"/></svg>A&amp;E attendance fees</h3>
+    <p>Public hospitals charge a flat A&amp;E attendance fee. After adjustments from the second half of 2025 this currently sits at roughly S$145 to S$190, covering basic investigations; specific procedures such as CT scans or suturing are charged separately. Private hospital A&amp;E attendance runs about S$130 to S$200. Check each hospital's website for exact figures.</p>
+  </div>
+</section>
+
+<!-- ================= TCM & COMMUNITY ================= -->
+<section id="more">
+  <div class="sec-head">
+    <div class="sec-badge"><svg class="ic"><use href="#i-leaf"/></svg></div>
+    <div>
+      <div class="sec-num">05 · MORE OPTIONS</div>
+      <h2>TCM and community hospitals</h2>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3><svg class="ic"><use href="#i-leaf"/></svg>Traditional Chinese Medicine (TCM)</h3>
+    <p>Locals commonly turn to TCM for chronic conditioning, general low-level ill health, recovery periods and as a complement to Western medicine — acupuncture to ease chemotherapy side effects, postnatal recovery, or neck, shoulder, back and leg pain. A first consultation costs about S$15 to S$80; you can book online, by app or by phone, and walk-ins are usually accepted.</p>
+    <p style="margin-top:8px;font-size:13.5px;color:var(--gold-deep)">One thing to note: to claim TCM on company group insurance you need a clinic on the group panel list. If you're claiming TCM after an accident under a personal accident policy, a non-panel clinic will need the practitioner to complete an extra questionnaire — message me and I'll send you the form.</p>
+  </div>
+
+  <div class="card">
+    <h3><svg class="ic"><use href="#i-bed"/></svg>Community hospitals</h3>
+    <p>Patients discharged from an acute hospital who still need rehabilitation, nursing or monitoring move to a community hospital for the interim, receiving physiotherapy, occupational therapy, speech therapy and similar care; older patients typically stay two to four weeks. Admission requires a referral from an acute hospital doctor, followed by a means test to determine subsidy eligibility. Daily bills for citizens run about S$136 to S$409, and up to S$250 a day of MediSave can be used for rehabilitative care.</p>
+  </div>
+</section>
+
+<!-- ================= COST ================= -->
+<section id="cost">
+  <div class="sec-head">
+    <div class="sec-badge"><svg class="ic"><use href="#i-coins"/></svg></div>
+    <div>
+      <div class="sec-num">06 · COST</div>
+      <h2>Costs at a glance</h2>
+      <p>Approximate ranges as of mid-2026, to give you a sense of scale. Actual fees are as published by each institution.</p>
+    </div>
+  </div>
+  <div class="cost-grid">
+    <div class="cost"><div class="c-ic"><svg class="ic"><use href="#i-clinic"/></svg></div><div class="c-label">GP clinic (with medication)</div><div class="c-val">S$30 - 100+</div><div class="c-note">Higher at night and on holidays</div></div>
+    <div class="cost"><div class="c-ic"><svg class="ic"><use href="#i-steth"/></svg></div><div class="c-label">Polyclinic, citizen</div><div class="c-val">From S$17.50</div><div class="c-note">Foreigners from about S$75</div></div>
+    <div class="cost"><div class="c-ic"><svg class="ic"><use href="#i-hospital"/></svg></div><div class="c-label">Public specialist, subsidised</div><div class="c-val">S$30 - 60</div><div class="c-note">Polyclinic referral needed</div></div>
+    <div class="cost"><div class="c-ic"><svg class="ic"><use href="#i-doctor"/></svg></div><div class="c-label">Private specialist, first visit</div><div class="c-val">S$120 - 250+</div><div class="c-note">No subsidy</div></div>
+    <div class="cost"><div class="c-ic"><svg class="ic"><use href="#i-siren"/></svg></div><div class="c-label">Public A&amp;E attendance</div><div class="c-val">S$145 - 190</div><div class="c-note">Varies by hospital</div></div>
+    <div class="cost"><div class="c-ic"><svg class="ic"><use href="#i-amb"/></svg></div><div class="c-label">Non-emergency ambulance</div><div class="c-val">S$274</div><div class="c-note">Free if genuinely urgent</div></div>
+    <div class="cost"><div class="c-ic"><svg class="ic"><use href="#i-leaf"/></svg></div><div class="c-label">TCM first consultation</div><div class="c-val">S$15 - 80</div><div class="c-note">Depends on the clinic</div></div>
+    <div class="cost"><div class="c-ic"><svg class="ic"><use href="#i-bed"/></svg></div><div class="c-label">Community hospital, per day</div><div class="c-val">S$136 - 409</div><div class="c-note">Citizens, after subsidy</div></div>
+  </div>
+</section>
+
+<!-- ================= HOSPITAL BILLS ================= -->
+<section id="bills">
+  <div class="sec-head">
+    <div class="sec-badge"><svg class="ic"><use href="#i-dollar"/></svg></div>
+    <div>
+      <div class="sec-num">07 · HOSPITAL BILLS</div>
+      <h2>Hospital bills: how much more is private?</h2>
+      <p>Twenty common inpatient and day-surgery procedures, comparing public and private like for like using the Ministry of Health's published median actual bills, so you have a sense of the order of magnitude if you are ever admitted.</p>
+    </div>
+  </div>
+
+  <div class="bill-scroll">
+    <table class="bill-tbl">
+      <thead>
+        <tr>
+          <th>Condition / procedure</th>
+          <th>Public · unsubsidised<small>Class A ward / unsubsidised day surgery</small></th>
+          <th>Private hospital<small>Median bill per episode</small></th>
+          <th>Multiple<small>Private ÷ public</small></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Gastroscopy<small>Diagnostic OGD · day surgery</small></td><td>About S$1,500</td><td class="pv">About S$3,100</td><td>≈ 2.1&times;</td></tr>
+        <tr><td>Colonoscopy<small>Day surgery</small></td><td>About S$1,700</td><td class="pv">About S$3,200</td><td>≈ 1.9&times;</td></tr>
+        <tr><td>Cataract<small>One eye · day surgery</small></td><td>About S$4,600</td><td class="pv">About S$8,500</td><td>≈ 1.8&times;</td></tr>
+        <tr><td>Haemorrhoid surgery<small>Haemorrhoidectomy · day surgery</small></td><td>About S$3,400</td><td class="pv">About S$10,200</td><td>≈ 3.0&times;</td></tr>
+        <tr><td>Inguinal hernia<small>Unilateral repair</small></td><td>About S$6,000</td><td class="pv">About S$16,900</td><td>≈ 2.8&times;</td></tr>
+        <tr><td>Acute appendicitis<small>Appendicectomy</small></td><td>About S$8,800</td><td class="pv">About S$23,600</td><td>≈ 2.7&times;</td></tr>
+        <tr><td>Acute kidney stones<small>Ureteroscopy with laser lithotripsy</small></td><td>About S$10,000</td><td class="pv">About S$15,300</td><td>≈ 1.5&times;</td></tr>
+        <tr><td>Gallbladder removal<small>Gallstones and similar</small></td><td>About S$8,600</td><td class="pv">About S$21,200</td><td>≈ 2.4&times;</td></tr>
+        <tr><td>Vaginal delivery<small>Natural birth</small></td><td>About S$6,000</td><td class="pv">About S$10,800</td><td>≈ 1.8&times;</td></tr>
+        <tr><td>Caesarean section<small>Without complications</small></td><td>About S$9,800</td><td class="pv">About S$15,800</td><td>≈ 1.6&times;</td></tr>
+        <tr><td>Hysterectomy<small>Fibroids and similar</small></td><td>About S$13,100</td><td class="pv">About S$28,400</td><td>≈ 2.2&times;</td></tr>
+        <tr><td>Breast cancer<small>Mastectomy + axillary clearance</small></td><td>About S$13,500</td><td class="pv">About S$32,500</td><td>≈ 2.4&times;</td></tr>
+        <tr><td>Thyroid cancer<small>Total thyroidectomy</small></td><td>About S$15,400</td><td class="pv">About S$33,900</td><td>≈ 2.2&times;</td></tr>
+        <tr><td>Enlarged prostate<small>Transurethral resection (TURP)</small></td><td>About S$10,700</td><td class="pv">About S$21,400</td><td>≈ 2.0&times;</td></tr>
+        <tr><td>Knee replacement<small>Unilateral total knee replacement</small></td><td>About S$26,000</td><td class="pv">About S$43,100</td><td>≈ 1.7&times;</td></tr>
+        <tr><td>Pneumonia<small>Inpatient treatment</small></td><td>About S$4,600</td><td class="pv">About S$11,000</td><td>≈ 2.4&times;</td></tr>
+        <tr><td>Stroke<small>Inpatient treatment</small></td><td>About S$7,300</td><td class="pv">About S$15,000</td><td>≈ 2.0&times;</td></tr>
+        <tr><td>Cardiac stent<small>Single-vessel PCI</small></td><td>About S$18,300</td><td class="pv">About S$37,400</td><td>≈ 2.0&times;</td></tr>
+        <tr><td>Heart bypass<small>Coronary artery bypass (CABG)</small></td><td>About S$43,600</td><td class="pv">About S$113,000</td><td>≈ 2.6&times;</td></tr>
+        <tr><td>Early bowel cancer<small>Colectomy</small></td><td>About S$23,900</td><td class="pv">About S$55,900</td><td>≈ 2.3&times;</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="bill-note">Figures are the Ministry of Health's published median actual bills for 2023 (inclusive of GST, before insurance reimbursement). Inpatient surgery uses the public Class A ward; rows marked "day surgery" use the unsubsidised day-surgery basis; stroke and pneumonia are inpatient bills without major complications. Two things worth understanding. First, government subsidies apply only to B2/C wards and the subsidised day-surgery tier — Class A carries no subsidy at all, and a citizen in a subsidised ward typically sees a bill of roughly a third to a quarter of the Class A figure for the same procedure. Second, these are bills for a single admission or procedure; for serious illness such as cancer, the full course of treatment (pre-operative investigations, surgery, chemotherapy and radiotherapy, follow-up) often runs to several times a single bill, so protection planning should be budgeted against the whole course of treatment.</p>
+
+  <div class="card" style="background:var(--gold-soft);border-color:#DEC998;margin-top:14px">
+    <h3 style="color:var(--gold-deep)"><svg class="ic"><use href="#i-shield"/></svg>What this table is really saying</h3>
+    <p>For the same procedure, private runs roughly 1.5 to 3 times the unsubsidised public bill, and often more than ten times a subsidised ward — and for serious illness the full course of treatment multiplies that again. This is exactly what hospitalisation insurance is for: so that when you fall ill, you choose a hospital based on your condition rather than your bank balance.</p>
+  </div>
+</section>
+
+<!-- ================= CLAIMS ================= -->
+<section id="claims">
+  <div class="sec-head">
+    <div class="sec-badge"><svg class="ic"><use href="#i-shield"/></svg></div>
+    <div>
+      <div class="sec-num">08 · INSURANCE</div>
+      <h2>Seven habits that make claims go smoothly</h2>
+      <p>These are the lessons I've drawn from following up on countless claims as an adviser. Build these habits and reimbursement gets a great deal easier.</p>
+    </div>
+  </div>
+
+  <div class="tip"><div class="no"><svg class="ic"><use href="#i-arrow"/></svg><i>1</i></div><div><h4>With group cover, get a referral before seeing a specialist</h4><p>To claim specialist consultations on company group insurance you generally need a referral letter from a panel GP first, then a panel specialist. Going straight to a specialist may leave you unable to claim at all.</p></div></div>
+  <div class="tip"><div class="no"><svg class="ic"><use href="#i-memo"/></svg><i>2</i></div><div><h4>Ask for a memo before you leave</h4><p>Accident claims need the doctor's diagnostic note. Ask for a memo while you are still there and uploading it to the app later is straightforward, with no going back for missing paperwork.</p></div></div>
+  <div class="tip"><div class="no"><svg class="ic"><use href="#i-card"/></svg><i>3</i></div><div><h4>For planned surgery, arrange cashless admission in advance</h4><p>Citizens and PRs generally have a Letter of Guarantee (LOG) limit at the hospital, so the bill goes straight to the insurer. If you exceed that limit, are a foreigner, or have pre-existing condition exclusions, apply for pre-authorisation two to three working days ahead — in most cases you can then be discharged without fronting a large sum.</p></div></div>
+  <div class="tip"><div class="no"><svg class="ic"><use href="#i-clipboard"/></svg><i>4</i></div><div><h4>Declare your health honestly when you apply</h4><p>Chronic conditions, past surgery and long-term medication all need declaring. The rule is simple: if you would mention it to a doctor, declare it. This is what makes sure a claim actually pays out when the time comes.</p></div></div>
+  <div class="tip"><div class="no"><svg class="ic"><use href="#i-stack"/></svg><i>5</i></div><div><h4>Personal and group cover can stack</h4><p>Whatever you still pay out of pocket after your personal hospitalisation plan settles can then be submitted to your company group plan, which can bring your out-of-pocket cost to zero. The order matters, so ask me first if you are unsure.</p></div></div>
+  <div class="tip"><div class="no"><svg class="ic"><use href="#i-hourglass"/></svg><i>6</i></div><div><h4>Critical illness cover has a waiting period</h4><p>The usual rule is that beyond a 90-day waiting period, a diagnosis of a condition on the policy's defined list, together with meeting the survival period, is what qualifies for a claim. Read through the definitions list once you have bought — it is worth knowing where you stand.</p></div></div>
+  <div class="tip"><div class="no"><svg class="ic"><use href="#i-globe"/></svg><i>7</i></div><div><h4>Emergency hospitalisation overseas is claimable too</h4><p>Hospitalisation insurance covers emergency admission abroad; where you have a choice, use a tertiary or equivalent-grade local hospital. Chinese-language medical records generally do not need separate translation.</p></div></div>
+</section>
+
+<!-- ================= CTA ================= -->
+<div class="cta">
+  <div class="avatar"><img src="/avatar-round.png" alt="Yuan Yuan · Singapore"></div>
+  <h2 class="serif">I am here whenever you need me</h2>
+  <p>Whenever my clients run into a healthcare question — which doctor to see, how a claim works — just come to me first. After-sales support is part of the job, and you are never troubling me.</p>
+  <div class="contact">
+    <a href="https://wa.me/6583750190?text=Hi%20Yuan%20Yuan%2C%20I%20read%20your%20Singapore%20healthcare%20guide%20and%20have%20a%20question."><svg class="ic"><use href="#i-phone"/></svg><span><b>WhatsApp</b>　+65 8375 0190</span></a>
+    <a href="mailto:yuanyuan@aia.com.sg"><svg class="ic"><use href="#i-mail"/></svg><span><b>Email</b>　yuanyuan@aia.com.sg</span></a>
+    <span><svg class="ic"><use href="#i-star"/></svg><span><b>Xiaohongshu / WeChat Channels</b>　@Yuan Yuan SG</span></span>
+  </div>
+  <div class="qr">
+    <img src="/wechat-qr.png" alt="WeChat QR code">
+    <div class="qr-txt">
+      <b>Add me on WeChat</b>
+      <small>WeChat ID singaporeyuan<br>Ask me anything about care or claims</small>
+    </div>
+  </div>
+  <div class="slogan">Professional, patient, and in it with you for the long run</div>
+</div>
+
+<footer>
+  <p class="disclaimer">
+    The information on this page is compiled from public materials published by the Singapore Ministry of Health (MOH), the Singapore Civil Defence Force (SCDF) and individual healthcare institutions, updated July 2026. It is provided for general reference only and does not constitute medical advice. Fees, policies and processes may change at any time; official channels prevail. Anything concerning insurance is subject to the policy contract, and you should confirm the specifics of your cover with your adviser.<br>
+    Yuan Yuan · AIA Singapore Representative · RNF No. YY-300823216 · © 2026 singaporeyuan.com
+  </p>
+</footer>
+
+</main>
+
+<script>
+function go(id){
+  document.querySelectorAll('.q-step').forEach(s=>s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+}
+function tab(btn,id){
+  const group=btn.parentElement;
+  group.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  let el=group.nextElementSibling;
+  while(el && !el.classList.contains('tabs')){
+    if(el.classList.contains('tab-panel')) el.classList.remove('active');
+    el=el.nextElementSibling;
+  }
+  document.getElementById(id).classList.add('active');
+}
+function acc(head){
+  head.parentElement.classList.toggle('open');
+}
+(function(){
+  if(!('IntersectionObserver' in window))return;
+  if(window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+  const io=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}
+    });
+  },{threshold:.06,rootMargin:'0px 0px -20px 0px'});
+  document.querySelectorAll('.sec-head,.card,.tip,.cost,.tri,.acc,.cmp,.alert-card,.cta').forEach(function(el){
+    el.classList.add('rv');io.observe(el);
+  });
+})();
+</script>
+<div id="wm" aria-hidden="true"></div>
+<script>
+(function(){
+  var text="Yuan Yuan SG　　　singaporeyuan　　　For reference only　　　　　　";
+  var wm=document.getElementById('wm');var unit=text.repeat(6);
+  for(var i=0;i<16;i++){var d=document.createElement('div');d.className='row';d.textContent=unit;d.style.top=(i*110-120)+'px';d.style.left='-200px';wm.appendChild(d);}
+})();
+</script>
+</body>
+</html>
