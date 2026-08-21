@@ -824,7 +824,13 @@ footer{position:relative;z-index:1;padding:36px clamp(18px,5vw,48px) 56px;border
     <p class="eyebrow rise">07 · Hospital bills</p>
     <h2 class="h-sec rise" style="--d:.06s">住院账单，公立和私立差多少</h2>
     <div class="rule rise" style="--d:.1s"></div>
-    <p class="lede rise" style="--d:.12s">20 种常见的住院和日间手术，公立和私立都用卫生部公布的实际账单中位数、同一口径对照。每一行左边的点是公立，右边的点是私立，中间那段距离就是差价。</p>
+    <p class="lede rise" style="--d:.12s">常见的住院与日间手术，公立和私立都取卫生部（MOH）公布的实际账单中位数。每一行左边的点是公立，右边的点是私立，中间那段距离就是差价。<b style="color:var(--gold)">看之前先读下面这张卡</b>——公立和私立的账单不是同一个口径。</p>
+
+    <div class="card card--gold rise" style="--d:.14s;margin-top:18px">
+      <h3 style="color:#FFDD8E"><svg class="ic"><use href="#i-alert"/></svg>两个最容易看错的地方</h3>
+      <p style="margin-top:10px"><b style="color:#FFFFFF">一、私立那一列不含医生费。</b>公立医院是一张打包账单，主刀、麻醉、住院期间查房的费用都算在里面；私立医院里医生和医院是两个独立主体，MOH 把「医院费」和「医生费（主刀费 / 麻醉费 / 住院查房费）」分开公布。所以下面私立的数字是<b style="color:#FFFFFF">医院账单口径</b>，真实要付的总额还要在上面加一笔医生费。</p>
+      <p style="margin-top:12px"><b style="color:#FFFFFF">二、中位数只是「中间那个人」。</b>同一个病，有没有并发症、要不要开刀、住几天 ICU，账单可以差好几倍。所以中风和肺炎我按并发症程度分档列出来了：同样叫中风，最轻的一档公立 A 级中位数约 S$7,300，最重的一档约 S$17,000，而这一档里有四分之一的人超过 S$30,000；如果还需要开颅或取栓手术，那属于另一组手术 DRG，账单更高。<b style="color:#FFFFFF">在公立医院花掉五六万，完全可能。</b></p>
+    </div>
 
     <div class="chartbox rise" data-live style="--d:.16s;margin-top:22px">
       <div class="tabs" id="tabBills" style="margin-bottom:12px;background:rgba(31,107,80,.12)">
@@ -832,15 +838,15 @@ footer{position:relative;z-index:1;padding:36px clamp(18px,5vw,48px) 56px;border
         <button type="button" data-panel="b-table">完整表格</button>
       </div>
       <div class="panel on" id="b-chart">
-        <div class="scroller scroller--wide"><svg id="ch-bills" viewBox="0 0 900 700" role="img" aria-label="20 种手术的公立与私立账单中位数对照，私立普遍是公立无补贴的 1.5 到 3 倍"></svg></div>
+        <div class="scroller scroller--wide"><svg id="ch-bills" viewBox="0 0 900 800" role="img" aria-label="20 种手术的公立与私立账单中位数对照，私立普遍是公立无补贴的 1.5 到 3 倍"></svg></div>
       </div>
       <div class="panel" id="b-table">
         <div class="tblwrap">
           <table>
             <thead><tr>
               <th>常见病种 / 手术</th>
-              <th>公立 · 无补贴<small>A 级病房 / 日间无补贴</small></th>
-              <th>私立医院<small>单次账单中位数</small></th>
+              <th>公立 · 无补贴<small>A 级病房 / 日间无补贴 · 已含医生费</small></th>
+              <th>私立医院<small>医院账单中位数 · 不含医生费</small></th>
               <th>倍数<small>私立 ÷ 公立</small></th>
             </tr></thead>
             <tbody id="billBody"></tbody>
@@ -849,11 +855,12 @@ footer{position:relative;z-index:1;padding:36px clamp(18px,5vw,48px) 56px;border
       </div>
     </div>
 
-    <p class="src rise">数据取自卫生部（MOH）公布的 2023 年实际账单中位数（含 GST、保险报销前）：住院手术取公立 A 级病房，标注「日间」的取日间手术无补贴口径；中风、肺炎为无严重并发症的住院账单。两点说明：其一，政府补贴只适用于 B2/C 病房和日间补贴档，A 级病房本身没有补贴；公民若住补贴病房，同样的手术账单通常只有 A 级的三分之一到四分之一。其二，以上是单次住院或手术的账单，癌症等重症的整体疗程花费（术前检查、手术、化疗放疗、复查）往往是单次账单的数倍，做保障规划时应按整体疗程预算。</p>
+    <p class="src rise">数据来源：新加坡卫生部（MOH）「Hospital Bills and Fee Benchmarks」公布的新加坡公民实际账单中位数，含 GST，为保险（MediShield Life / 综合健保计划）与 MediSave 报销前的金额；公立为政府补贴后。中风与肺炎各档取自 MOH 的 DRG 账单页（B70A / B70B / B70C、E62A / E62C，页面更新至 2026 年 8 月），本页于 2026 年 8 月核对；其余手术为按 MOH 同一数据集整理，取公立 A 级病房，标注「日间」的取日间手术无补贴口径。<br>
+    另外三点：其一，政府补贴只适用于 B2/C 病房和日间补贴档，A 级病房本身没有补贴；公民若住补贴病房，同样的手术账单通常只有 A 级的三分之一到四分之一。其二，私立数字为医院账单口径，医生的主刀、麻醉与查房费另计。其三，以上是单次住院或手术的账单，癌症等重症的整体疗程花费（术前检查、手术、化疗放疗、复查）往往是单次账单的数倍，做保障规划时应按整体疗程预算。</p>
 
     <div class="card card--gold rise" style="margin-top:16px">
       <h3 style="color:var(--gold)"><svg class="ic"><use href="#i-shield"/></svg>这张图想说的事</h3>
-      <p style="margin-top:8px">同样的手术，私立大约是公立无补贴的 1.5 到 3 倍，和补贴病房比则常常是十倍以上；而重症的完整疗程还会把数字再放大几倍。这正是住院险的意义：<b style="color:var(--paper)">生病时按病情选医院，而不是按存款选医院</b>。</p>
+      <p style="margin-top:8px">同样的手术，私立大约是公立无补贴的 1.5 到 3 倍，和补贴病房比则常常是十倍以上；私立还要另加医生费，而重症的完整疗程会把数字再放大几倍。真正要防的不是「一次手术花多少」，而是<b style="color:#FFFFFF">最坏那一档发生在自己家里</b>的时候。这正是住院险的意义：<b style="color:#FFFFFF">生病时按病情选医院，而不是按存款选医院</b>。</p>
     </div>
   </div>
 </section>
@@ -1106,19 +1113,22 @@ const BILLS=[
   ["胃镜","诊断性 OGD · 日间",1500,3100],
   ["肠镜","结肠镜检查 · 日间",1700,3200],
   ["痔疮手术","痔疮切除 · 日间",3400,10200],
+  ["肺炎","无并发症 · DRG E62C",4561,10953],
   ["白内障","单眼手术 · 日间",4600,8500],
-  ["肺炎","住院治疗",4600,11000],
   ["腹股沟疝气","单侧疝修补",6000,16900],
   ["顺产","自然分娩",6000,10800],
-  ["中风","住院治疗",7300,15000],
+  ["中风","无严重并发症 · DRG B70C",7344,14981],
   ["胆囊切除","胆囊结石等",8600,21200],
   ["急性阑尾炎","阑尾切除手术",8800,23600],
+  ["中风","有严重并发症 · DRG B70B",9525,21047],
   ["剖腹产","无并发症",9800,15800],
   ["急性肾结石","输尿管镜激光碎石",10000,15300],
   ["前列腺增生","经尿道切除 TURP",10700,21400],
+  ["肺炎","有极重并发症 · DRG E62A",11456,38867],
   ["子宫切除","子宫肌瘤等",13100,28400],
   ["乳腺癌","乳房切除+腋下清扫",13500,32500],
   ["甲状腺癌","甲状腺全切手术",15400,33900],
+  ["中风","有极重并发症 · DRG B70A",17052,50527],
   ["心脏支架","单支血管 PCI",18300,37400],
   ["肠癌早期","结肠切除手术",23900,55900],
   ["膝关节置换","单侧全膝置换",26000,43100],
@@ -1126,7 +1136,7 @@ const BILLS=[
 ];
 (function(){
   const svg=document.getElementById("ch-bills");
-  const W=900,H=700,L=176,R=118,T=64,B=44;
+  const W=900,H=800,L=176,R=118,T=64,B=44;
   const lo=Math.log(1200),hi=Math.log(140000);
   const x=v=>L+(Math.log(v)-lo)/(hi-lo)*(W-L-R);
   [2000,5000,10000,30000,100000].forEach(v=>{
@@ -1150,9 +1160,9 @@ const BILLS=[
   });
   const lg=el("g",{class:"fade",style:"--d:.2s"});
   lg.appendChild(el("circle",{cx:L+6,cy:T-34,r:6.5,fill:"#1F6B50"}));
-  lg.appendChild(tx(L+20,T-29,"公立 · 无补贴 A 级","tick",{"font-size":"13"}));
-  lg.appendChild(el("circle",{cx:L+186,cy:T-34,r:6.5,fill:"#D4623C"}));
-  lg.appendChild(tx(L+200,T-29,"私立医院","tick",{"font-size":"13"}));
+  lg.appendChild(tx(L+20,T-29,"公立 · 无补贴 A 级（已含医生费）","tick",{"font-size":"13"}));
+  lg.appendChild(el("circle",{cx:L+252,cy:T-34,r:6.5,fill:"#D4623C"}));
+  lg.appendChild(tx(L+266,T-29,"私立 · 医院账单（不含医生费）","tick",{"font-size":"13"}));
   lg.appendChild(tx(W-R+14,T-29,"倍数","tick",{"font-size":"12"}));
   svg.appendChild(lg);
   svg.appendChild(el("line",{class:"ax",x1:L,x2:W-R,y1:H-B,y2:H-B}));
