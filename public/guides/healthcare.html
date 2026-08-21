@@ -114,7 +114,8 @@ a.chip:hover{border-color:var(--gold);color:var(--gold)}
 .card--alert p{color:#FFE7E1}
 .card h3{font-size:1.1rem;display:flex;align-items:center;gap:9px}
 .card p{color:var(--slate)}
-.card--dark p,.card--gold p,.card--alert p{color:#EAF7EF}
+.card--dark p,.card--gold p{color:#EAF7EF}
+.card--alert p{color:#FFE9E3}
 .stack{display:flex;flex-direction:column;gap:clamp(12px,1.8vw,18px)}
 
 .grid{display:grid;gap:clamp(12px,1.8vw,18px)}
@@ -137,6 +138,7 @@ a.chip:hover{border-color:var(--gold);color:var(--gold)}
 .pill--gold{border-color:rgba(255,221,142,.55);background:rgba(255,221,142,.14);color:#FFF0C4}
 .pills{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
 .card .pill{border-color:rgba(31,107,80,.28);background:rgba(31,107,80,.09);color:#1F6B50;font-weight:500}
+.card--alert .pill--red{border-color:rgba(255,255,255,.72);background:transparent;color:#FFFFFF;font-weight:600}
 
 .takeaway{display:block;margin-top:22px;padding:17px 21px;border-radius:15px;
   background:rgba(255,221,142,.12);border-left:3px solid var(--gold);font-weight:500}
@@ -213,10 +215,10 @@ a.chip:hover{border-color:var(--gold);color:var(--gold)}
 .tri.on p{color:var(--slate)}
 
 .call{display:flex;align-items:center;gap:16px;margin-top:18px;padding:16px 20px;border-radius:16px;
-  background:rgba(0,0,0,.18);border:1px solid rgba(255,255,255,.28)}
-.call .ring{width:52px;height:52px;border-radius:50%;background:#FFFFFF;color:#C9453A;display:flex;align-items:center;justify-content:center}
-.call .num{font-size:1.9rem;font-weight:800;line-height:1;letter-spacing:.04em}
-.call .lbl{font-size:.85rem;color:rgba(255,255,255,.88)}
+  background:#FBF6E9;border:1px solid rgba(255,255,255,.6)}
+.call .ring{width:52px;height:52px;border-radius:50%;background:#C9453A;color:#FFFFFF;display:flex;align-items:center;justify-content:center;flex:none}
+.call .num{font-size:1.9rem;font-weight:800;line-height:1;letter-spacing:.04em;color:#C9453A}
+.call .lbl{font-size:.85rem;color:#8A4438}
 
 /* ───────────────── charts ───────────────── */
 .chartbox{background:var(--paper);border-radius:20px;padding:clamp(14px,2.2vw,24px);box-shadow:var(--shadow)}
