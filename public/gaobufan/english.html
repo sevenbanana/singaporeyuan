@@ -789,6 +789,11 @@ button.chip{ cursor:pointer; background:#5a2723; border-color:rgba(255,255,255,.
 .bar2 i.met{ background:#9fd4a2; }
 .bar2 i.done{ background:linear-gradient(#5fd465,#2f7a33); }
 .qc-more{ font-size:13px; color:#6a6a6a; font-weight:400; }
+.idle-note{
+  padding:12px 14px; font-size:13px; line-height:1.8;
+  color:#5a4a2a; background:#ffeec2; border:2px solid #c9a13a;
+}
+.idle-note b{ color:#7a3d00; }
 
 </style>
 </head>
@@ -1923,6 +1928,13 @@ EQ.addUnit({
      */
     splitDue: function (due) {
       var hard = [], easy = [];
+      // 防呆：调用方历史上传过数量而不是列表，那种情况下当场崩在主页渲染里。
+      // 宁可退化成「全部按打字关处理」，也不要让整个界面白屏。
+      if (!due || typeof due.forEach !== 'function') {
+        var n = typeof due === 'number' ? due : 0;
+        for (var i = 0; i < n; i++) hard.push({ card: { b: 3 } });
+        return { hard: hard, easy: easy };
+      }
       due.forEach(function (d) { (d.card.b >= 3 ? hard : easy).push(d); });
       return { hard: hard, easy: easy };
     },
@@ -2102,8 +2114,22 @@ EQ.addUnit({
       });
     },
 
+    /** 这节课到底有没有内容 —— 空课不该记打卡、不该发奖励 */
+    isEmpty: function () {
+      var s = this.session;
+      return !s || (!s.newCount && !s.reviewCount);
+    },
+
     finish: function () {
       var s = this.session;
+      // 空课直接返回，不打卡不发绿宝石。
+      // 否则教材学完之后，每天点一下「开始」就能白拿奖励和连续天数，
+      // 而进度一个词都不动。
+      if (this.isEmpty()) {
+        s.minutes = 0; s.accuracy = 0; s.gemsGained = 0; s.freshDay = false;
+        s.empty = true;
+        return s;
+      }
       var mins = Math.round((Date.now() - s.startedAt) / 60000);
       Save.data.stats.seconds += Math.round((Date.now() - s.startedAt) / 1000);
 
@@ -2202,16 +2228,31 @@ EQ.addUnit({
       var d = Save.data;
       var g = SRS.goal();
       var lv = Level.info(d.xp);
-      var due = SRS.due().filter(function (x) { return EQ.word(x.word); }).length;
-
-      // 今天这节课到底是什么样，先算出来给家长看
-      var plan = Game.plan(d.minutes, due, false);
+      // plan() 要的是到期列表本身（它要按记忆盒分流成听写/打字两关），不是数量。
+      // 之前这里传的是 .length，复习数一旦不为 0 就会 due.forEach 崩掉，
+      // 主页整个渲染不出来 —— 这就是「进度卡住」的真正原因。
+      var dueList = SRS.due().filter(function (x) { return EQ.word(x.word); });
+      var due = dueList.length;
+      var plan = Game.plan(d.minutes, dueList, false);
       var nw = EQ.wordsFrom(d.wordIndex || 0, plan.newCount);
       var scenes = EQ.scenesOf(nw);
       var mins = Game.estimate(nw.length, scenes.length, plan.reviews);
       var first = scenes[0];
       var unit = first ? EQ.unit(first.unit) : null;
       var done = !nw.length;
+      // 教材学完 + 今天没有到期复习 = 没有任何可做的事。
+      // 这时候绝不能让他点「开始」——会直接跳到结算页、照发奖励、照记打卡，
+      // 但一个词都没学，进度永远不动。他反馈的「卡住」就是这个。
+      var idle = done && plan.reviews === 0;
+      var nextDue = null;
+      if (idle) {
+        var t0 = SRS.today(), soonest = null;
+        Object.keys(d.cards).forEach(function (k) {
+          var due2 = d.cards[k].due;
+          if (soonest === null || due2 < soonest) soonest = due2;
+        });
+        nextDue = soonest === null ? null : Math.max(0, soonest - t0);
+      }
 
       stage.innerHTML =
         '<div class="home scroll">' +
@@ -2221,7 +2262,14 @@ EQ.addUnit({
           '</div>' +
 
           '<div class="quest-card panel">' +
-            (done
+            (idle
+              ? '<div class="qc-top"><div class="qc-ico">😴</div><div class="grow">' +
+                  '<div class="qc-name">Nothing due today</div>' +
+                  '<div class="qc-zh">今天没有要做的 —— 教材这 ' + EQ.totalWords() + ' 个词都学过了，' +
+                    (nextDue === null ? '也没有待复习的词' :
+                     nextDue === 0 ? '复习也刚清完' :
+                     '最近的复习在 <b>' + nextDue + ' 天后</b>') + '</div></div></div>'
+              : done
               ? '<div class="qc-top"><div class="qc-ico">🏆</div><div class="grow">' +
                   '<div class="qc-name">All Words Unlocked</div>' +
                   '<div class="qc-zh">教材全部走完，接下来是纯复习</div></div></div>'
@@ -2239,11 +2287,14 @@ EQ.addUnit({
               '<span class="tag rev">⌨️ 默写复习 ' + plan.reviews + (due > plan.reviews ? ' / ' + due : '') + '</span>' +
               '<span class="tag time">⏱ 约 ' + mins + ' 分钟</span>' +
             '</div>' +
-            '<button class="btn primary wide big" data-act="start">▶  开始今天的冒险</button>' +
-            (due > 0
-              ? '<button class="btn ghost wide sm" data-act="reviewonly" style="margin-top:8px">' +
-                  '⌨️ 今天很忙 · 只做默写复习</button>'
-              : '') +
+            (idle
+              ? '<div class="idle-note">等新章节上线，或者用下面的「单词背包」自己复习。<br>' +
+                  '<b>进度停在 ' + g.met + ' / ' + g.total + ' 不是坏了，是教材写到这里为止。</b></div>'
+              : '<button class="btn primary wide big" data-act="start">▶  开始今天的冒险</button>' +
+                (due > 0
+                  ? '<button class="btn ghost wide sm" data-act="reviewonly" style="margin-top:8px">' +
+                      '⌨️ 今天很忙 · 只做默写复习</button>'
+                  : '')) +
           '</div>' +
 
           '<div class="stat-row">' +
@@ -2893,7 +2944,7 @@ EQ.addUnit({
             '<div class="miss-row">' + wrongList + '</div>' +
           '</div>' +
           '<div class="panel" style="margin-top:12px">' +
-            '<div class="row"><span class="px tiny">1000 词进度</span><span class="grow"></span>' +
+            '<div class="row"><span class="px tiny">' + g.total + ' 词进度</span><span class="grow"></span>' +
               '<span class="tiny">' + g.done + ' / ' + g.total + ' · 还有 ' + g.daysLeft + ' 天</span></div>' +
             '<div class="bar" style="margin-top:8px"><i style="width:' + g.pct + '%"></i></div>' +
           '</div>' +
