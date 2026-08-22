@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Tax savings">
+  <rect x="7" y="5" width="42" height="54" rx="7" fill="#102E5E"/>
+  <rect x="14" y="12" width="28" height="10" rx="2" fill="#FAF7EF"/>
+  <rect x="14" y="29" width="9" height="9" rx="2" fill="#D3A13A"/>
+  <rect x="28" y="29" width="9" height="9" rx="2" fill="#D3A13A"/>
+  <rect x="14" y="43" width="9" height="9" rx="2" fill="#D3A13A"/>
+  <rect x="28" y="43" width="9" height="9" rx="2" fill="#D3A13A"/>
+  <circle cx="49" cy="47" r="12" fill="#D3A13A" stroke="#102E5E" stroke-width="4"/>
+  <path d="M44 43h10M44 47h10M44 51h10" fill="none" stroke="#102E5E" stroke-width="2.5" stroke-linecap="round"/>
+</svg>

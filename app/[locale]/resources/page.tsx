@@ -203,25 +203,25 @@ export default async function ResourcesPage({
   }[] = [
     {
       key: 'q-care',
-      img: '/resources/q-care.webp',
+      img: '/resources/icons/medical-care.svg',
       lines: en ? ['Where do I', 'see a doctor?'] : ['生病了，', '该去哪里看？'],
       external: '/guides/healthcare.html',
     },
     {
       key: 'q-tax',
-      img: '/resources/q-tax.webp',
+      img: '/resources/icons/tax-savings.svg',
       lines: en ? ['How much tax', 'can I save?'] : ['今年还能', '省多少税？'],
       href: '/tools',
     },
     {
       key: 'q-retire',
-      img: '/resources/q-retire.webp',
+      img: '/resources/icons/retirement-age.svg',
       lines: en ? ['When can', 'I retire?'] : ['我几岁', '可以退休？'],
       href: '/tools/retirement',
     },
     {
       key: 'q-cycles',
-      img: '/resources/q-cycles.webp',
+      img: '/resources/icons/family-wealth.svg',
       lines: en ? ['Family wealth', 'beyond cycles'] : ['让家庭财富', '穿越周期'],
       external: '/guides/wealth-across-cycles.html',
     },
@@ -411,8 +411,9 @@ export default async function ResourcesPage({
                     <img
                       src={q.img}
                       alt=""
-                      loading="lazy"
-                      className="h-12 w-12 shrink-0 object-contain transition-transform duration-500 group-hover:scale-110"
+                      width={44}
+                      height={44}
+                      className="h-11 w-11 shrink-0 object-contain transition-transform duration-500 group-hover:scale-110"
                     />
                     <span className="min-w-0 flex-1 text-[15px] font-bold leading-[1.5] text-navy [text-wrap:balance]">
                       {q.lines[0]}
