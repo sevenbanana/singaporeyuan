@@ -83,6 +83,37 @@ function About() {
         </div>
       </section>
 
+      {/* 为什么我选择 AIA */}
+      <section className="container-wide max-w-3xl pt-10 md:pt-12">
+        <Link
+          href="/about/why-aia"
+          className="card card-hover group flex items-center gap-5 p-7 no-underline md:p-8"
+        >
+          <span className="hidden h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-gold/15 text-gold-deep sm:flex">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+              <path d="M12 3l8 3v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6z" />
+              <path d="M9.2 12.2l2.1 2.1 4-4.5" />
+            </svg>
+          </span>
+          <span className="min-w-0 flex-1">
+            <span className="eyebrow">{en ? 'My own judgement' : '我的判断标准'}</span>
+            <span className="mt-2 block text-lg font-black leading-snug text-navy md:text-xl">
+              {en
+                ? 'The six things I look at before trusting an insurer'
+                : '我用这六件事，判断一家保险公司值不值得托付'}
+            </span>
+            <span className="mt-2 block text-sm leading-[1.9] text-mist">
+              {en
+                ? 'Capital, claims speed, what doctors say, service, business, technology — the checklist I use, and what the public data says about AIA. Every figure links back to its source.'
+                : '资本、理赔速度、医生怎么说、服务、经营、科技——我自己用的那张清单，以及公开数据里的 AIA。每个数字都能点回原文。'}
+            </span>
+          </span>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="hidden shrink-0 text-gold-deep transition-transform duration-300 group-hover:translate-x-1 sm:block" aria-hidden="true">
+            <path d="M5 12h14M13 6l6 6-6 6" />
+          </svg>
+        </Link>
+      </section>
+
       {/* Story sections */}
       <article className="container-wide max-w-3xl py-16 md:py-20">
         <section>
