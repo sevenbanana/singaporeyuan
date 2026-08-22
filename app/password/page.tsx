@@ -1,4 +1,3 @@
-import DoorArt from './DoorArt';
 import PasswordField from './PasswordField';
 
 // 全站密码输入页:表单直接 POST 到 /api/password,只有「显示密码」用到客户端 JS
@@ -168,12 +167,19 @@ export default function PasswordPage({
           </div>
 
           {/* 右:插画 */}
-          <div className="relative hidden items-center justify-center bg-sand-50 md:flex">
+          <div className="relative hidden items-end justify-center bg-sand-50 px-6 pt-10 md:flex">
             <span
               aria-hidden="true"
               className="absolute inset-y-10 left-0 w-px bg-sand-200"
             />
-            <DoorArt className="h-auto w-[86%] max-w-[420px]" />
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/password/welcome-door.webp"
+              alt={'小圆姐在门口挥手'}
+              width={720}
+              height={1245}
+              className="h-auto w-full max-w-[290px] lg:max-w-[350px] xl:max-w-[390px]"
+            />
           </div>
         </div>
       </div>
