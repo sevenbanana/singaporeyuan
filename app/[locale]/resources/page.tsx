@@ -376,16 +376,16 @@ export default async function ResourcesPage({
           className="pointer-events-none absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-b from-transparent to-cream"
         />
 
-        <div className="container-wide relative grid items-center gap-10 py-14 lg:grid-cols-[minmax(0,1.04fr)_minmax(0,0.96fr)] lg:gap-8 lg:py-16">
+        <div className="container-wide relative grid items-center gap-8 py-12 lg:grid-cols-[minmax(0,0.94fr)_minmax(0,1.24fr)] lg:gap-6 lg:py-14">
           <div className="order-2 lg:order-1">
             <p className="eyebrow animate-fade-up">{en ? 'Resources' : '资源中心'}</p>
             <span className="rule-gold mt-3 block animate-fade-up" />
             <h1
-              className="mt-6 animate-fade-up text-[2rem] font-black leading-[1.3] text-navy md:text-[2.75rem]"
+              className="mt-6 animate-fade-up text-[2rem] font-black leading-[1.28] text-navy md:text-[3rem]"
               style={{ animationDelay: '80ms' }}
             >
               {en ? "Yuan Yuan's toolbox" : '小圆姐的实用工具箱'}
-              <span className="mt-2 block text-[1.6rem] leading-[1.4] md:text-[2rem]">
+              <span className="mt-2.5 block text-[1.5rem] leading-[1.42] md:text-[2.05rem]">
                 {en
                   ? 'When these things come up in Singapore, start here'
                   : '在新加坡遇到这些事，先来这里找答案'}
@@ -455,9 +455,9 @@ export default async function ResourcesPage({
             <img
               src="/resources/hero-toolbox.webp"
               alt={en ? 'Yuan Yuan with her toolbox' : '小圆姐和她的工具箱'}
-              width={1200}
-              height={800}
-              className="mx-auto w-full max-w-[520px] animate-fade-in lg:max-w-none"
+              width={1100}
+              height={1000}
+              className="mx-auto w-full max-w-[440px] animate-fade-in sm:max-w-[540px] lg:max-w-none lg:-mr-10 xl:-mr-20"
             />
           </div>
         </div>
