@@ -4,10 +4,40 @@ import PasswordField from './PasswordField';
 export default function PasswordPage({
   searchParams,
 }: {
-  searchParams: { from?: string; error?: string };
+  searchParams: { from?: string; error?: string; lang?: string };
 }) {
   const from = searchParams.from ?? '/';
   const hasError = searchParams.error === '1';
+  const en =
+    searchParams.lang === 'en' ||
+    (searchParams.lang !== 'zh' && (from === '/en' || from.startsWith('/en/')));
+  const t = {
+    chip: en ? 'Yuan Yuan SG · client only' : '新加坡小圆姐 · 客户专属',
+    title: en ? 'Welcome back' : '欢迎回来',
+    sub1: en
+      ? 'This is the private site Yuan Yuan keeps for her clients.'
+      : '这是小圆姐为客户准备的专属网站。',
+    sub2: en
+      ? 'Enter the site password to protect client information and materials.'
+      : '为保护客户资料与专属内容，请输入站点密码。',
+    label: en ? 'Site password' : '站点密码',
+    placeholder: en ? 'Enter password' : '输入密码',
+    submit: en ? 'Enter the site' : '进入网站',
+    error: en
+      ? 'That password didn’t work. Try again, or ask me for a new one.'
+      : '密码不正确，再试一次；或者找我要一次新的。',
+    noPass: en ? 'No password yet?' : '还没有密码？',
+    ask: en ? 'Ask Yuan Yuan for the ' : '联系小圆姐索取',
+    askEm: en ? 'site password' : '站点密码',
+    wechat: en ? 'WeChat' : '微信',
+    switchTo: en ? '中文' : 'EN',
+    show: en ? 'Show password' : '显示密码',
+    hide: en ? 'Hide password' : '隐藏密码',
+    alt: en ? 'Yuan Yuan waving at the door' : '小圆姐在门口挥手',
+  };
+  const switchHref = `/password?lang=${en ? 'zh' : 'en'}&from=${encodeURIComponent(from)}${
+    hasError ? '&error=1' : ''
+  }`;
 
   return (
     <main className="flex min-h-screen items-center justify-center bg-cream px-4 py-10 md:px-6">
@@ -15,18 +45,26 @@ export default function PasswordPage({
         <div className="grid md:grid-cols-[minmax(0,1fr)_minmax(0,0.82fr)]">
           {/* 左:表单 */}
           <div className="p-8 sm:p-11 md:p-14">
-            <span className="inline-flex items-center gap-2.5 rounded-full border border-gold/45 bg-gold/[0.07] py-1.5 pl-1.5 pr-4 text-sm font-semibold text-gold-deep">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src="/avatar-round.png"
-                alt=""
-                className="h-7 w-7 rounded-full object-cover"
-              />
-              新加坡小圆姐 · 客户专属
-            </span>
+            <div className="flex items-center justify-between gap-3">
+              <span className="inline-flex items-center gap-2.5 rounded-full border border-gold/45 bg-gold/[0.07] py-1.5 pl-1.5 pr-4 text-sm font-semibold text-gold-deep">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src="/avatar-round.png"
+                  alt=""
+                  className="h-7 w-7 rounded-full object-cover"
+                />
+                {t.chip}
+              </span>
+              <a
+                href={switchHref}
+                className="shrink-0 rounded-full border border-sand-200 px-3.5 py-1.5 text-xs font-bold tracking-wide text-mist no-underline transition-colors duration-300 hover:border-gold/60 hover:text-navy"
+              >
+                {t.switchTo}
+              </a>
+            </div>
 
             <h1 className="mt-7 flex items-center gap-3 text-4xl font-black tracking-tight text-navy sm:text-[2.75rem]">
-              欢迎回来
+              {t.title}
               <svg
                 width="30"
                 height="30"
@@ -44,9 +82,9 @@ export default function PasswordPage({
             </h1>
 
             <p className="mt-4 text-[15px] leading-[1.9] text-navy-600">
-              这是小圆姐为客户准备的专属网站。
+              {t.sub1}
               <br />
-              为保护客户资料与专属内容，请输入站点密码。
+              {t.sub2}
             </p>
 
             <form method="POST" action="/api/password" className="mt-8">
@@ -55,9 +93,13 @@ export default function PasswordPage({
                 htmlFor="site-password"
                 className="mb-2.5 block text-sm font-bold text-navy"
               >
-                站点密码
+                {t.label}
               </label>
-              <PasswordField />
+              <PasswordField
+                placeholder={t.placeholder}
+                showLabel={t.show}
+                hideLabel={t.hide}
+              />
 
               {hasError && (
                 <p
@@ -78,7 +120,7 @@ export default function PasswordPage({
                     <circle cx="12" cy="12" r="9" />
                     <path d="M12 7.5v5.5M12 16.4h.01" />
                   </svg>
-                  密码不正确，再试一次；或者找我要一次新的。
+                  {t.error}
                 </p>
               )}
 
@@ -86,7 +128,7 @@ export default function PasswordPage({
                 type="submit"
                 className="group mt-5 flex w-full items-center justify-center gap-3 rounded-2xl bg-navy py-4 text-base font-bold text-white transition-all duration-300 hover:bg-navy-700 hover:shadow-[0_14px_30px_-14px_rgba(26,39,68,0.7)]"
               >
-                进入网站
+                {t.submit}
                 <svg
                   width="18"
                   height="18"
@@ -106,13 +148,13 @@ export default function PasswordPage({
 
             <div className="mt-10 flex items-center gap-4">
               <span className="h-px flex-1 bg-sand-200" />
-              <span className="text-sm text-mist">还没有密码？</span>
+              <span className="text-sm text-mist">{t.noPass}</span>
               <span className="h-px flex-1 bg-sand-200" />
             </div>
 
             <p className="mt-5 text-center text-[15px] font-bold text-navy">
-              联系小圆姐索取
-              <span className="border-b-2 border-gold/70 pb-0.5">站点密码</span>
+              {t.ask}
+              <span className="border-b-2 border-gold/70 pb-0.5">{t.askEm}</span>
             </p>
 
             <div className="mt-5 grid gap-3 lg:grid-cols-2">
@@ -134,7 +176,7 @@ export default function PasswordPage({
                   </svg>
                 </span>
                 <span className="min-w-0">
-                  <b className="block text-sm font-bold text-navy">微信</b>
+                  <b className="block text-sm font-bold text-navy">{t.wechat}</b>
                   <span className="block text-sm text-mist">singaporeyuan</span>
                 </span>
               </div>
@@ -175,7 +217,7 @@ export default function PasswordPage({
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src="/password/welcome-door.webp"
-              alt={'小圆姐在门口挥手'}
+              alt={t.alt}
               width={720}
               height={1245}
               className="h-auto w-full max-w-[270px] lg:max-w-[320px] xl:max-w-[360px]"

@@ -2,7 +2,15 @@
 
 import { useState } from 'react';
 
-export default function PasswordField() {
+export default function PasswordField({
+  placeholder = '输入密码',
+  showLabel = '显示密码',
+  hideLabel = '隐藏密码',
+}: {
+  placeholder?: string;
+  showLabel?: string;
+  hideLabel?: string;
+}) {
   const [show, setShow] = useState(false);
 
   return (
@@ -34,14 +42,14 @@ export default function PasswordField() {
         required
         autoFocus
         autoComplete="current-password"
-        placeholder="输入密码"
+        placeholder={placeholder}
         className="w-full rounded-2xl border border-sand-300 bg-sand-50/60 py-4 pl-12 pr-12 text-[15px] text-navy outline-none transition-colors duration-300 placeholder:text-mist/70 focus:border-gold focus:bg-white"
       />
 
       <button
         type="button"
         onClick={() => setShow((v) => !v)}
-        aria-label={show ? '隐藏密码' : '显示密码'}
+        aria-label={show ? hideLabel : showLabel}
         aria-pressed={show}
         className="absolute right-3 top-1/2 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full text-mist transition-colors duration-300 hover:bg-sand-100 hover:text-navy"
       >

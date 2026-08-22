@@ -33,19 +33,64 @@
 
   /* ── PASSWORD GATE ── */
   body.locked{overflow:hidden}
-  body.locked>*:not(#pwGate){visibility:hidden}
-  #pwGate{position:fixed;inset:0;z-index:99;display:none;align-items:center;justify-content:center;background:linear-gradient(160deg,#3D3525 0%,#584A2E 60%,#6B5E42 100%);padding:24px;visibility:visible}
-  body.locked #pwGate{display:flex}
-  .pw-card{width:100%;max-width:360px;background:#fff;border-radius:18px;padding:34px 28px;text-align:center;box-shadow:0 24px 64px rgba(0,0,0,.35)}
-  .pw-brand{font-size:11px;letter-spacing:.22em;color:var(--gold-deep);margin-bottom:14px}
-  .pw-card h2{font-size:19px;color:var(--ink-mid);margin-bottom:6px}
-  .pw-card p{font-size:13px;color:var(--ink-muted);margin-bottom:18px}
-  #pwForm{display:flex;gap:8px}
-  #pwInput{flex:1;min-width:0;border:1px solid var(--rule);border-radius:10px;padding:11px 12px;font-size:15px;text-align:center;letter-spacing:.12em;outline:none;font-family:inherit}
-  #pwInput:focus{border-color:var(--gold-deep)}
-  #pwForm button{border:0;background:var(--ink-mid);color:#fff;border-radius:10px;padding:11px 18px;font-size:14px;cursor:pointer;font-family:inherit}
-  .pw-err{display:none;margin-top:12px;font-size:12px;color:#B4433A}
-  .pw-err.show{display:block}
+body.locked>*:not(#pwGate){visibility:hidden}
+#pwGate{position:fixed;inset:0;z-index:99;display:none;align-items:center;justify-content:center;
+  background:#FAF7F0;padding:20px;visibility:visible;overflow:auto;
+  font-family:-apple-system,"PingFang SC","Hiragino Sans GB","Noto Sans SC","Microsoft YaHei",sans-serif}
+body.locked #pwGate{display:flex}
+#pwGate *{box-sizing:border-box}
+.pw-card{width:100%;max-width:940px;background:#fff;border-radius:26px;overflow:hidden;text-align:left;
+  box-shadow:0 30px 80px -40px rgba(23,39,66,.38);display:grid;grid-template-columns:1fr}
+.pw-left{padding:30px 26px;position:relative}
+.pw-top{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.pw-chip{display:inline-flex;align-items:center;gap:9px;border:1px solid rgba(199,161,90,.45);
+  background:rgba(199,161,90,.08);border-radius:999px;padding:5px 15px 5px 5px;font-size:12.5px;
+  font-weight:700;color:#A8874C;line-height:1.4}
+.pw-chip img{width:26px;height:26px;border-radius:50%;object-fit:cover;display:block}
+#pwLang{flex:none;border:1px solid #E2E6EC;background:#fff;color:#687386;border-radius:999px;
+  padding:5px 13px;font-size:12px;font-weight:700;cursor:pointer;font-family:inherit;letter-spacing:.04em}
+#pwLang:hover{border-color:#C7A15A;color:#172742}
+.pw-card h2{font-size:27px;line-height:1.28;color:#172742;margin:20px 0 0;font-weight:800;letter-spacing:.01em}
+.pw-card .pw-sub{font-size:14.5px;line-height:1.9;color:#687386;margin:12px 0 0}
+.pw-label{display:block;margin:24px 0 9px;font-size:13px;font-weight:700;color:#172742}
+.pw-field{position:relative}
+.pw-field .pw-lock{position:absolute;left:15px;top:50%;transform:translateY(-50%);color:#687386;pointer-events:none}
+#pwInput{width:100%;border:1px solid #E2E6EC;border-radius:15px;background:#FCFBF7;
+  padding:14px 46px;font-size:15px;text-align:left;letter-spacing:0;outline:none;font-family:inherit;color:#172742}
+#pwInput::placeholder{color:#A6AEBC}
+#pwInput:focus{border-color:#C7A15A;background:#fff}
+#pwEye{position:absolute;right:9px;top:50%;transform:translateY(-50%);width:34px;height:34px;display:flex;
+  align-items:center;justify-content:center;border:0;background:none;border-radius:50%;cursor:pointer;color:#687386}
+#pwEye:hover{background:#EEF1F7;color:#172742}
+#pwForm{display:block}
+#pwSubmit{margin-top:18px;width:100%;display:flex;align-items:center;justify-content:center;gap:10px;border:0;
+  background:#172742;color:#fff;border-radius:15px;padding:15px;font-size:15.5px;font-weight:700;cursor:pointer;
+  font-family:inherit;transition:background .25s,box-shadow .25s}
+#pwSubmit:hover{background:#0F1C31;box-shadow:0 14px 30px -14px rgba(23,39,66,.7)}
+.pw-err{display:none;margin-top:12px;font-size:13px;color:#B4433A;font-weight:600}
+.pw-err.show{display:block}
+.pw-div{display:flex;align-items:center;gap:14px;margin-top:30px;color:#687386;font-size:13px}
+.pw-div span{flex:1;height:1px;background:#E2E6EC}
+.pw-ask{margin-top:16px;text-align:center;font-size:14.5px;font-weight:700;color:#172742}
+.pw-ask b{border-bottom:2px solid rgba(199,161,90,.7);padding-bottom:1px;font-weight:700}
+.pw-contact{display:grid;gap:10px;margin-top:16px}
+.pw-c{display:flex;align-items:center;gap:11px;border:1px solid #E2E6EC;background:#FCFBF7;
+  border-radius:15px;padding:12px 14px;text-decoration:none;color:inherit;transition:border-color .25s,background .25s}
+a.pw-c:hover{border-color:#C7A15A;background:rgba(199,161,90,.07)}
+.pw-c i{flex:none;width:34px;height:34px;border-radius:50%;background:rgba(199,161,90,.16);color:#A8874C;
+  display:flex;align-items:center;justify-content:center;font-style:normal}
+.pw-c b{display:block;font-size:13.5px;color:#172742;font-weight:700}
+.pw-c s{display:block;font-size:13.5px;color:#687386;text-decoration:none}
+.pw-art{display:none}
+.pw-art img{width:100%;max-width:280px;height:auto;display:block}
+@media(min-width:820px){
+  .pw-card{grid-template-columns:minmax(0,1fr) minmax(0,.82fr)}
+  .pw-left{padding:46px 44px}
+  .pw-card h2{font-size:32px}
+  .pw-art{display:flex;align-items:flex-end;justify-content:center;background:#F7F4EC;
+    border-left:1px solid #E2E6EC;padding:30px 20px 46px}
+}
+@media(min-width:1024px){.pw-contact{grid-template-columns:1fr 1fr}.pw-art img{max-width:320px}}
 
   /* ── HEADER ── */
   .header {
@@ -350,14 +395,53 @@
 
 <div id="pwGate">
   <div class="pw-card">
-    <div class="pw-brand">新加坡小圆姐 · SINGAPOREYUAN</div>
-    <h2>此页面为专属方案总结</h2>
-    <p>请输入访问密码查看</p>
-    <form id="pwForm">
-      <input id="pwInput" type="password" autocomplete="off" placeholder="访问密码">
-      <button type="submit">进入</button>
-    </form>
-    <div class="pw-err" id="pwErr">密码不正确，请重试</div>
+    <div class="pw-left">
+      <div class="pw-top">
+        <span class="pw-chip"><img src="/avatar-round.png" alt="">
+          <b data-zh="新加坡小圆姐 · 客户专属" data-en="Yuan Yuan SG &middot; client only">新加坡小圆姐 · 客户专属</b>
+        </span>
+        <button type="button" id="pwLang" data-zh="EN" data-en="中文">EN</button>
+      </div>
+
+      <h2 data-zh="专属方案总结" data-en="Your plan summary">专属方案总结</h2>
+      <p class="pw-sub" data-zh="这是小圆姐为客户准备的方案总结。<br>为保护客户资料，请输入访问密码。" data-en="A plan summary prepared for Yuan Yuan&rsquo;s client.<br>Enter the access password to view it.">这是小圆姐为客户准备的方案总结。<br>为保护客户资料，请输入访问密码。</p>
+
+      <form id="pwForm">
+        <label class="pw-label" for="pwInput" data-zh="访问密码" data-en="Access password">访问密码</label>
+        <div class="pw-field">
+          <svg class="pw-lock" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="4.5" y="10.5" width="15" height="10.5" rx="2.5"/><path d="M8 10.5V7.8a4 4 0 0 1 8 0v2.7"/><path d="M12 15v2.2"/>
+          </svg>
+          <input id="pwInput" type="password" autocomplete="off" placeholder="输入密码" data-zh="输入密码" data-en="Enter password">
+          <button type="button" id="pwEye" aria-label="显示密码" aria-pressed="false">
+            <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M3 12c0-2.5 4-7 9-7s9 4.5 9 7c0 2.5-4 7-9 7s-9-4.5-9-7z"/><circle cx="12" cy="12" r="2.6"/>
+            </svg>
+          </button>
+        </div>
+        <div class="pw-err" id="pwErr" data-zh="密码不正确，再试一次；或者找我要一次新的。" data-en="That password didn&rsquo;t work. Try again, or ask me for a new one.">密码不正确，再试一次；或者找我要一次新的。</div>
+        <button type="submit" id="pwSubmit"><span data-zh="查看方案" data-en="View the plan">查看方案</span>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </button>
+      </form>
+
+      <div class="pw-div"><span></span><b data-zh="还没有密码？" data-en="No password yet?" style="font-weight:400">还没有密码？</b><span></span></div>
+      <p class="pw-ask" data-zh="联系小圆姐索取访问密码" data-en="Ask Yuan Yuan for the password">联系小圆姐索取访问密码</p>
+      <div class="pw-contact">
+        <div class="pw-c">
+          <i><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.8A8.3 8.3 0 0 1 8.9 19L3.5 20.5 5 15.2A8.3 8.3 0 1 1 21 11.8z"/><path d="M8.5 11.8h.01M12.2 11.8h.01M15.9 11.8h.01"/></svg></i>
+          <span><b data-zh="微信" data-en="WeChat">微信</b><s>singaporeyuan</s></span>
+        </div>
+        <a class="pw-c" href="https://wa.me/6583750190?text=%E4%BD%A0%E5%A5%BD%E5%B0%8F%E5%9C%86%E5%A7%90%EF%BC%8C%E6%83%B3%E8%A6%81%E4%B8%80%E4%B8%8B%E6%96%B9%E6%A1%88%E9%A1%B5%E7%9A%84%E8%AE%BF%E9%97%AE%E5%AF%86%E7%A0%81%E3%80%82">
+          <i><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5.5 4H9l1.6 4.3L8.5 10a12.5 12.5 0 0 0 5.5 5.5l1.7-2.1L20 15v3.6A1.6 1.6 0 0 1 18.2 20C10.8 19.2 4.8 13.2 4 5.8A1.6 1.6 0 0 1 5.5 4z"/></svg></i>
+          <span><b>WhatsApp</b><s>+65 8375 0190</s></span>
+        </a>
+      </div>
+    </div>
+
+    <div class="pw-art">
+      <img src="/password/welcome-door.webp" alt="" width="720" height="1245">
+    </div>
   </div>
 </div>
 <script>
@@ -367,6 +451,39 @@
     return Array.prototype.map.call(new Uint8Array(b),function(x){return x.toString(16).padStart(2,"0")}).join("");
   })}
   try{ if(sessionStorage.getItem(KEY)===HASH){ document.body.classList.remove("locked"); } }catch(e){}
+  // 眼睛开关 + 中英切换(不影响密码校验)
+  var eye=document.getElementById("pwEye"), inp=document.getElementById("pwInput");
+  if(eye){ eye.addEventListener("click",function(){
+    var show=inp.type==="password";
+    inp.type=show?"text":"password";
+    eye.setAttribute("aria-pressed",show?"true":"false");
+    eye.setAttribute("aria-label",show?(gateLang==="zh"?"隐藏密码":"Hide password"):(gateLang==="zh"?"显示密码":"Show password"));
+    inp.focus();
+  }); }
+  var gateLang="zh";
+  function applyLang(L){
+    gateLang=L;
+    var g=document.getElementById("pwGate");
+    if(!g)return;
+    g.querySelectorAll("[data-zh]").forEach(function(el){
+      var t=el.getAttribute(L==="zh"?"data-zh":"data-en");
+      if(t==null)return;
+      if(el.tagName==="INPUT") el.placeholder=t; else el.innerHTML=t;
+    });
+    var b=document.getElementById("pwLang");
+    if(b) b.textContent = L==="zh" ? "EN" : "中文";
+    if(eye) eye.setAttribute("aria-label", inp.type==="password" ? (L==="zh"?"显示密码":"Show password") : (L==="zh"?"隐藏密码":"Hide password"));
+  }
+  try{
+    var saved=localStorage.getItem("sy_gate_lang");
+    applyLang(saved || ((navigator.language||"").toLowerCase().indexOf("zh")===0 ? "zh" : "en"));
+  }catch(e){ applyLang("zh"); }
+  var lb=document.getElementById("pwLang");
+  if(lb) lb.addEventListener("click",function(){
+    var L = gateLang==="zh" ? "en" : "zh";
+    applyLang(L);
+    try{ localStorage.setItem("sy_gate_lang",L); }catch(e){}
+  });
   document.getElementById("pwForm").addEventListener("submit",function(e){
     e.preventDefault();
     var v=document.getElementById("pwInput").value.trim();
