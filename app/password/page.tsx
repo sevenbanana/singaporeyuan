@@ -115,7 +115,7 @@ export default function PasswordPage({
               <span className="border-b-2 border-gold/70 pb-0.5">站点密码</span>
             </p>
 
-            <div className="mt-5 grid gap-3 sm:grid-cols-2">
+            <div className="mt-5 grid gap-3 lg:grid-cols-2">
               <div className="flex items-center gap-3 rounded-2xl border border-sand-200 bg-sand-50/70 px-4 py-3.5">
                 <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-gold/15 text-gold-deep">
                   <svg
@@ -135,7 +135,7 @@ export default function PasswordPage({
                 </span>
                 <span className="min-w-0">
                   <b className="block text-sm font-bold text-navy">微信</b>
-                  <span className="block truncate text-sm text-mist">singaporeyuan</span>
+                  <span className="block text-sm text-mist">singaporeyuan</span>
                 </span>
               </div>
 
@@ -160,14 +160,14 @@ export default function PasswordPage({
                 </span>
                 <span className="min-w-0">
                   <b className="block text-sm font-bold text-navy">WhatsApp</b>
-                  <span className="block truncate text-sm text-mist">+65 8375 0190</span>
+                  <span className="block text-sm text-mist">+65 8375 0190</span>
                 </span>
               </a>
             </div>
           </div>
 
           {/* 右:插画 */}
-          <div className="relative hidden items-end justify-center bg-sand-50 px-6 pt-10 md:flex">
+          <div className="relative hidden items-end justify-center bg-sand-50 px-6 pb-12 pt-8 md:flex lg:pb-16">
             <span
               aria-hidden="true"
               className="absolute inset-y-10 left-0 w-px bg-sand-200"
@@ -178,7 +178,7 @@ export default function PasswordPage({
               alt={'小圆姐在门口挥手'}
               width={720}
               height={1245}
-              className="h-auto w-full max-w-[290px] lg:max-w-[350px] xl:max-w-[390px]"
+              className="h-auto w-full max-w-[270px] lg:max-w-[320px] xl:max-w-[360px]"
             />
           </div>
         </div>

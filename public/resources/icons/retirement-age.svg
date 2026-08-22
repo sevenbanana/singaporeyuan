@@ -1,8 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Retirement age">
-  <circle cx="29" cy="29" r="21" fill="none" stroke="#102E5E" stroke-width="7"/>
-  <path d="M29 16v14l10 7" fill="none" stroke="#102E5E" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
-  <circle cx="29" cy="29" r="3.5" fill="#D3A13A"/>
-  <path d="M18 10l2.5 4M40 10l-2.5 4M8 29h5M45 29h5" fill="none" stroke="#D3A13A" stroke-width="3" stroke-linecap="round"/>
-  <ellipse cx="48" cy="48" rx="11" ry="5" fill="#D3A13A" stroke="#102E5E" stroke-width="3"/>
-  <path d="M37 48v7c0 2.8 4.9 5 11 5s11-2.2 11-5v-7" fill="#D3A13A" stroke="#102E5E" stroke-width="3" stroke-linejoin="round"/>
-</svg>

@@ -203,25 +203,25 @@ export default async function ResourcesPage({
   }[] = [
     {
       key: 'q-care',
-      img: '/resources/icons/medical-care.svg',
+      img: '/resources/icons/medical-care.webp',
       lines: en ? ['Where do I', 'see a doctor?'] : ['生病了，', '该去哪里看？'],
       external: '/guides/healthcare.html',
     },
     {
       key: 'q-tax',
-      img: '/resources/icons/tax-savings.svg',
+      img: '/resources/icons/tax-savings.webp',
       lines: en ? ['How much tax', 'can I save?'] : ['今年还能', '省多少税？'],
       href: '/tools',
     },
     {
       key: 'q-retire',
-      img: '/resources/icons/retirement-age.svg',
+      img: '/resources/icons/retirement-age.webp',
       lines: en ? ['When can', 'I retire?'] : ['我几岁', '可以退休？'],
       href: '/tools/retirement',
     },
     {
       key: 'q-cycles',
-      img: '/resources/icons/family-wealth.svg',
+      img: '/resources/icons/family-wealth.webp',
       lines: en ? ['Family wealth', 'beyond cycles'] : ['让家庭财富', '穿越周期'],
       external: '/guides/wealth-across-cycles.html',
     },
