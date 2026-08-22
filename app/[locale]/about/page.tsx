@@ -104,8 +104,8 @@ function About() {
             </span>
             <span className="mt-2 block text-sm leading-[1.9] text-mist">
               {en
-                ? 'Capital, claims speed, what doctors say, service, business, technology — the checklist I use, and what the public data says about AIA. Every figure links back to its source.'
-                : '资本、理赔速度、医生怎么说、服务、经营、科技——我自己用的那张清单，以及公开数据里的 AIA。每个数字都能点回原文。'}
+                ? 'Capital, claims speed, what doctors say, service, business, technology. This is the checklist I use, and what the public data says about AIA. Every figure links back to its source.'
+                : '资本、理赔速度、医生怎么说、服务、经营、科技。这是我自己用的那张清单，以及公开数据里的 AIA，每个数字都能点回原文。'}
             </span>
           </span>
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="hidden shrink-0 text-gold-deep transition-transform duration-300 group-hover:translate-x-1 sm:block" aria-hidden="true">

@@ -1,6 +1,6 @@
 import PasswordField from './PasswordField';
 
-// 全站密码输入页:表单直接 POST 到 /api/password,只有「显示密码」用到客户端 JS
+// 全站密码输入页:表单直接 POST 到 /api/password,只有显示密码的开关用到客户端 JS
 export default function PasswordPage({
   searchParams,
 }: {

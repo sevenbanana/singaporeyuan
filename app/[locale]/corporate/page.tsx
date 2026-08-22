@@ -162,7 +162,7 @@ export default async function CorporatePage({
         ? [
             { icon: I.globe, t: 'Cashless worldwide', s: 'Global guarantee letters + panel clinics in 7 markets' },
             { icon: I.plus, t: 'Rich optional benefits', s: 'Outpatient, dental, maternity, optical, wellness' },
-            { icon: I.check, t: 'Pre-existing conditions OK', s: 'Groups of 11+ can opt for “no questions asked” underwriting' },
+            { icon: I.check, t: 'Pre-existing conditions OK', s: 'Groups of 11+ can opt for no-questions-asked underwriting' },
             { icon: I.star, t: 'Concierge-level care', s: '24/7 service centre, case management, mental health support' },
           ]
         : [

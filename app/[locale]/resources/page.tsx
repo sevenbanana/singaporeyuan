@@ -150,7 +150,7 @@ export default async function ResourcesPage({
       tag: en ? 'Guide' : '长文指南',
       title: en ? 'Singapore Tax-Saving Guide: 24 Ways' : '新加坡省税指南:24个方法',
       desc: en
-        ? '16 reliefs, 4 deductions, 2 rebates and 2 fixes — tax brackets, an SRS deep-dive and top-up strategy, all on one page. (In Chinese)'
+        ? '16 reliefs, 4 deductions, 2 rebates and 2 fixes, plus tax brackets, an SRS deep-dive and top-up strategy, all on one page. (In Chinese)'
         : '16个税务减免、4个扣除、2个退税、2个补救错漏,一篇讲清楚。含最新税率表、SRS专题、CPF/SRS充值策略和工具速查。',
       icon: IconPercent,
       external: '/guides/tax-savings.html',
@@ -162,7 +162,7 @@ export default async function ResourcesPage({
       tag: en ? 'Guide' : '长文指南',
       title: en ? 'After Your Singapore PR Is Approved' : '新加坡PR落地指南',
       desc: en
-        ? 'From health declaration and ICA formalities to your blue IC, insurance and tax re-planning, REP and NS — with official links for every step.'
+        ? 'From health declaration and ICA formalities to your blue IC, insurance and tax re-planning, REP and NS, with official links for every step.'
         : '从健康申报、ICA手续到小蓝卡,从换身份到保险与省税重排,再到REP和NS。每一步都配好官方直达入口,照着办就行。',
       icon: IconSpark,
       external: en ? '/guides/pr-checklist-en.html' : '/guides/pr-checklist.html',
@@ -174,7 +174,7 @@ export default async function ResourcesPage({
       tag: en ? 'Tool' : '小工具',
       title: en ? 'CPF / SRS Tax-Saving Calculator' : 'CPF / SRS 省税计算器',
       desc: en
-        ? 'Enter your taxable income and top-up amounts to instantly see tax before and after, how much you save, and the savings rate — based on the latest resident tax rates.'
+        ? 'Enter your taxable income and top-up amounts to instantly see tax before and after, how much you save, and the savings rate, based on the latest resident tax rates.'
         : '输入应纳税收入与 CPF / SRS 充值金额,立即看充值前后税额、省多少税、省税比例,依据新加坡最新居民个税税率。',
       icon: IconCalc,
       href: '/tools',
@@ -186,7 +186,7 @@ export default async function ResourcesPage({
       tag: en ? 'Tool' : '小工具',
       title: en ? 'Retirement Readiness Calculator' : '退休自由度测算',
       desc: en
-        ? 'Put CPF LIFE, SRS and your investments on one timeline. SRS is modelled as locked until your statutory withdrawal age (62 / 63 / 64) and CPF LIFE as starting at 65 — so an early-retirement plan shows the cash-flow gap instead of hiding it. (In Chinese)'
+        ? 'Put CPF LIFE, SRS and your investments on one timeline. SRS is modelled as locked until your statutory withdrawal age (62 / 63 / 64) and CPF LIFE as starting at 65, so an early-retirement plan shows the cash-flow gap instead of hiding it. (In Chinese)'
         : '把 CPF LIFE、SRS 和投资资产放在同一条时间线上,逐年模拟退休后每一笔钱从哪里来。SRS 严格按你的提取年龄(62 / 63 / 64)才解锁,CPF LIFE 按开始领取年龄计入,想提前退休的人能直接看到中间那段现金缺口。',
       icon: IconClock,
       href: '/tools/retirement',
@@ -271,7 +271,7 @@ export default async function ResourcesPage({
       zh: en ? 'Top up SA / RA (cash top-up)' : '给 SA / RA 充值',
       en2: 'Retirement Sum Topping-Up',
       desc: en
-        ? 'Cash top-ups or OA transfers to your own or loved ones’ Special / Retirement Account, with tax relief. “Make a top-up now” inside.'
+        ? 'Cash top-ups or OA transfers to your own or loved ones’ Special / Retirement Account, with tax relief. The top-up button is on the page.'
         : '退休储蓄充值入口:给自己或家人的特别/退休账户充现金或转OA,可享税务减免。页面内有官方充值按钮。',
       url: 'https://www.cpf.gov.sg/member/growing-your-savings/saving-more-with-cpf/top-up-to-enjoy-higher-retirement-payouts',
       hot: true,
@@ -280,7 +280,7 @@ export default async function ResourcesPage({
       zh: en ? 'Top up MediSave' : '给 MediSave 充值',
       en2: 'MediSave Top-Up',
       desc: en
-        ? 'Top up your MediSave for medical expenses and premiums — also with tax relief. “Make a top-up now” inside.'
+        ? 'Top up your MediSave for medical expenses and premiums, also with tax relief. The top-up button is on the page.'
         : '保健储蓄充值入口:MA用来付住院险/终身健保保费和医疗开销,充值同样可抵税。页面内有官方充值按钮。',
       url: 'https://www.cpf.gov.sg/member/growing-your-savings/saving-more-with-cpf/top-up-your-medisave-savings',
       hot: true,
@@ -353,7 +353,7 @@ export default async function ResourcesPage({
       zh: en ? 'CPF: burning questions answered' : '公积金的十万个为什么',
       en2: en ? 'Interactive · Lianhe Zaobao' : '互动专题 · 联合早报',
       desc: en
-        ? 'Lianhe Zaobao’s interactive Q&A on the CPF questions everyone asks — a good companion to the official tools above (in Chinese).'
+        ? 'Lianhe Zaobao’s interactive Q&A on the CPF questions everyone asks, a good companion to the official tools above (in Chinese).'
         : '联合早报的互动问答专题,把大家最常问的公积金问题用中文一条条讲明白,和上面的官方工具搭配着看。',
       url: 'https://interactive.zaobao.com.sg/2025/cpf-burning-questions-answered/',
     },
@@ -396,7 +396,7 @@ export default async function ResourcesPage({
               style={{ animationDelay: '160ms' }}
             >
               {en
-                ? 'Getting care, making claims, filing tax, retiring, and planning family money — I turn the official material into plain language, and into tools you can use right away.'
+                ? 'Getting care, making claims, filing tax, retiring, and planning family money. I turn the official material into plain language, and into tools you can use right away.'
                 : '看病、理赔、报税、退休和家庭财富规划，我把复杂的官方资料翻成中文，也做成了可以直接使用的小工具。'}
             </p>
 
@@ -583,7 +583,7 @@ export default async function ResourcesPage({
                   })}
                 </div>
 
-                {/* CPF 官方工具箱:属于「钱」这一类,挂在该组下面 */}
+                {/* CPF 官方工具箱:属于钱这一类,挂在该组下面 */}
                 {g.key === 'money' && (
                   <Reveal delay={160}>
                     <div className="mt-12">
@@ -593,7 +593,7 @@ export default async function ResourcesPage({
                       </h3>
               <p className="mt-2 max-w-2xl text-sm leading-[1.9] text-mist">
                 {en
-                  ? 'The most useful calculators and top-up entries on cpf.gov.sg — click through to the official CPF platform (Singpass login needed for some).'
+                  ? 'The most useful calculators and top-up entries on cpf.gov.sg, linking straight through to the official CPF platform (Singpass login needed for some).'
                   : '公积金官网最常用的计算器和充值入口,配上中文说明,点击直达 CPF 官方平台(部分功能需要 Singpass 登录)。'}
               </p>
               <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -647,7 +647,7 @@ export default async function ResourcesPage({
                 </p>
                 <p className="mt-1.5 text-sm leading-relaxed text-mist">
                   {en
-                    ? 'Have a topic you want covered — CPF, insurance, retirement? Tell me and I may write it next.'
+                    ? 'Have a topic you want covered, whether CPF, insurance or retirement? Tell me and I may write it next.'
                     : '想看哪个话题?公积金、保险、退休规划……告诉我,说不定下一篇就写它。'}
                 </p>
               </div>

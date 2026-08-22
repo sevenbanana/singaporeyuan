@@ -180,7 +180,7 @@ tr.grp td{background:var(--gold-tint);color:var(--gold-deep);font-weight:700;fon
 .sf-org{margin-top:10px;font-size:11.5px;line-height:1.8;color:var(--muted)}
 .sf-bottom{margin-top:20px;border-top:1px solid rgba(199,161,90,.3);padding-top:16px;font-size:11.5px;line-height:1.8;color:var(--muted)}
 
-/* password gate — 与站点 /password 同一套视觉 */
+/* password gate · 与站点 /password 同一套视觉 */
 body.locked{overflow:hidden}
 body.locked>*:not(#pwGate){visibility:hidden}
 #pwGate{position:fixed;inset:0;z-index:99;display:none;align-items:center;justify-content:center;
@@ -414,13 +414,13 @@ a.pw-c:hover{border-color:var(--gold);background:rgba(199,161,90,.07)}
     <div class="tipcard">
       <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 21V5a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v16"/><path d="M2 21h20"/><path d="M12 7v4M10 9h4"/></svg>住院险 4 个关键点</h3>
       <li><b>公立 vs 私立的就诊体验</b>：私立预约快、可自选医生；公立性价比高但等待和病房体验不同。选 A 还是 B，先想清楚你更在意哪个。</li>
-      <li><b>理赔按「限额内」计算</b>：各理赔单项都有隐形上限（合理惯常收费、单项限额），不是账单全额都能进报销基数。</li>
+      <li><b>理赔按限额内计算</b>：各理赔单项都有隐形上限（合理惯常收费、单项限额），不是账单全额都能进报销基数。</li>
       <li><b>既往症</b>：投保前已有的疾病，住院险一般不保或除外承保；意外险通常不受既往症影响。</li>
       <li><b>核保严格</b>：需如实健康申报，具体保障范围以最终核保结果为准。</li>
     </div>
     <div class="tipcard">
       <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/><path d="m9 12 2 2 4-4"/></svg>意外险 3 个关键点</h3>
-      <li><b>Plan 2 是最多人选择</b>：额度大约覆盖 1 次核磁共振（MRI）。如果一次意外要做两次核磁（比如检查一次、复诊一次），额度可能不够——在意的话直接选 Plan 3 或以上。</li>
+      <li><b>Plan 2 是最多人选择</b>：额度大约覆盖 1 次核磁共振（MRI）。如果一次意外要做两次核磁（比如检查一次、复诊一次），额度可能不够，在意的话直接选 Plan 3 或以上。</li>
       <li><b>医疗报销 + 中医报销是最常用的理赔</b>：下方保障表中已用金色标出，选计划时重点看这两行。</li>
       <li><b>单次意外额度</b>：表中额度均为单次意外限额，每次意外分别计算；意外险一般不受既往症影响，但仍以条款和核保为准。</li>
     </div>
@@ -466,7 +466,7 @@ a.pw-c:hover{border-color:var(--gold);background:rgba(199,161,90,.07)}
             <div class="hfeat"><b class="k">既往症</b>投保前已有疾病一般不保或除外承保，以核保为准。</div>
           </div>
         </div>
-        <div class="bene-note">单项理赔均按「限额内合理惯常收费」计算，各单项设有上限；完整条款以保单合同为准。</div>
+        <div class="bene-note">单项理赔均按限额内合理惯常收费计算，各单项设有上限；完整条款以保单合同为准。</div>
       </div>
     </details>
   </div>
@@ -729,7 +729,7 @@ function calcPA(ps){
     if(ps.p.grpHosp){out.rows.push(['附加 意外住院保障组',PA_ADULTS.hosp[i]]);out.total+=PA_ADULTS.hosp[i];}
     if(ps.p.grpDis){out.rows.push(['附加 月度伤残护理',PA_ADULTS.disability[i]]);out.total+=PA_ADULTS.disability[i];}
   }else{
-    if(ps.age>80){out.notes.push('Centurion PA 最后投保年龄为 80 周岁，81 岁及以上仅限续保——请联系小圆姐评估其他方案。');return out;}
+    if(ps.age>80){out.notes.push('Centurion PA 最后投保年龄为 80 周岁，81 岁及以上仅限续保，请联系小圆姐评估其他方案。');return out;}
     const plan=Math.min(ps.p.plan,3), b=band(PA_ELDERLY,Math.max(ps.age,40));
     out.rows.push(['Centurion PA · Plan '+plan,b[plan]]); out.total+=b[plan];
     out.notes.push('可选失智保障组（按性别及吸烟状况另行报价），有需要请联系小圆姐。');
@@ -850,7 +850,7 @@ function render(){
     const hosp=calcHosp(ps),pa=calcPA(ps);let s=ps.name+'（'+ps.age+'岁）：';const seg=[];
     if(hosp)seg.push('住院险 '+fmt(hosp.total));
     if(pa&&pa.total)seg.push('意外险 '+fmt(pa.total));
-    return s+(seg.join(' + ')||'—');
+    return s+(seg.join(' + ')||'-');
   });
   const waText='你好小圆姐，我用保障方案测算工具算了全家方案：\n'+lines.join('\n')+'\n全家合计约 '+fmt(famTotal)+' / 年\n'+shareUrl()+'\n想进一步了解，麻烦你了！';
   document.getElementById('wa-btn').href='https://wa.me/6583750190?text='+encodeURIComponent(waText);

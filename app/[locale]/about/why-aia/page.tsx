@@ -16,8 +16,8 @@ export async function generateMetadata({
   return {
     title: en ? 'How I judge an insurer' : '我怎么判断一家保险公司',
     description: en
-      ? 'The six things I look at before trusting an insurer with a family — and what the public data says about AIA. Compiled by Yuan Yuan from public sources.'
-      : '把一个家庭托付给一家保险公司之前，我会看六件事——以及公开数据里的 AIA。由袁媛整理自公开资料，非 AIA 官方物料。',
+      ? 'The six things I look at before trusting an insurer with a family, and what the public data says about AIA. Compiled by Yuan Yuan from public sources.'
+      : '把一个家庭托付给一家保险公司之前，我会看六件事。这里也放了公开数据里的 AIA。由袁媛整理自公开资料，非 AIA 官方物料。',
   };
 }
 
@@ -124,7 +124,7 @@ export default async function WhyAiaPage({
         }
         subtitle={
           en
-            ? 'A policy can sit with a family for thirty years. So I do not start from products — I start from whether the company can still keep its promise decades later. Below is the checklist I use, and what the public data currently says about AIA.'
+            ? 'A policy can sit with a family for thirty years. So I do not start from products. I start from whether the company can still keep its promise decades later. Below is the checklist I use, and what the public data currently says about AIA.'
             : '一张保单可能陪一个家庭三十年。所以我不从产品看起，而是先看这家公司几十年后还兑不兑得了承诺。下面是我自己用的那张清单，以及公开数据里现在的 AIA。'
         }
         accent={<SectionArt k="capital" className="h-full w-full" />}
@@ -138,7 +138,7 @@ export default async function WhyAiaPage({
               <span className="eyebrow">{en ? 'The checklist' : '我的清单'}</span>
               <h2 className="mt-3 text-xl font-black leading-snug text-navy md:text-2xl">
                 {en
-                  ? 'Six angles — none of them are about products'
+                  ? 'Six angles, none of them about products'
                   : '六个角度，没有一个是关于产品的'}
               </h2>
               <div className="mt-7 grid gap-x-8 gap-y-6 sm:grid-cols-2">
@@ -205,11 +205,11 @@ export default async function WhyAiaPage({
               <b>{en ? 'So what: ' : '所以呢：'}</b>
               {en
                 ? 'Capital is the buffer that pays claims in a bad year. A ratio comfortably above the target means the promise is not running on a thin margin.'
-                : '资本就是「行情很差的那一年，还赔不赔得出来」的缓冲垫。比率稳稳高于目标，意味着这份承诺不是踩着线在走。'}
+                : '资本就是缓冲垫。行情很差的那一年，还赔不赔得出来，靠的就是它。比率稳稳高于目标，意味着这份承诺不是踩着线在走。'}
             </p>
             <p className={scopeCls}>
               {en
-                ? 'Group capital ratios are measured differently from the Singapore entity’s regulatory basis. D-SII status is designated by MAS and brings stricter capital and recovery-planning requirements — it is not a government guarantee.'
+                ? 'Group capital ratios are measured differently from the Singapore entity’s regulatory basis. D-SII status is designated by MAS and brings stricter capital and recovery-planning requirements. It is not a government guarantee.'
                 : '集团资本比率与新加坡实体的监管口径不同。D-SII 由新加坡金管局认定，意味着须接受更严格的资本与恢复规划要求，并不代表政府担保。'}
             </p>
             <SourceLink href={src.aia} label={en ? 'AIA Group 2025 Annual Results' : 'AIA 集团 2025 年报原文'} />
@@ -235,7 +235,7 @@ export default async function WhyAiaPage({
               axis={['0', '2', '4', '6', '7 ' + (en ? 'days' : '天')]}
               rows={[
                 {
-                  label: en ? 'AIA — 75% of claims done within' : 'AIA — 75% 的理赔完成于',
+                  label: en ? 'AIA · 75% of claims done within' : 'AIA · 75% 的理赔完成于',
                   value: 1,
                   read: en ? '1 day' : '1 天',
                 },
@@ -257,14 +257,14 @@ export default async function WhyAiaPage({
               ]}
               caption={
                 en
-                  ? 'Same for pre-authorisation: 50% same day, 75% within one working day. AIA also accepts submissions through app, web and phone — the widest set of channels in MOH’s table.'
+                  ? 'Same for pre-authorisation: 50% same day, 75% within one working day. AIA also accepts submissions through app, web and phone, the widest set of channels in MOH’s table.'
                   : '预授权同样：50% 当天完成、75% 一个工作日内完成。AIA 同时支持 App、网站和电话申请，是卫生部表格中申请渠道最完整的一家。'
               }
             />
             <p className={soWhatCls}>
               <b>{en ? 'So what: ' : '所以呢：'}</b>
               {en
-                ? 'It means you usually know whether the bill is covered within a day of submitting — not next month, and not after three rounds of chasing.'
+                ? 'It means you usually know whether the bill is covered within a day of submitting. Not next month, and not after three rounds of chasing.'
                 : '意思是：出院后提交，通常一天之内就知道赔不赔，而不是等到下个月，也不用来回追三轮。'}
             </p>
             <SourceLink href={src.mohIp} label={en ? 'MOH · Comparison of Integrated Shield Plans' : '卫生部 · 住院险计划对照表'} />
@@ -286,7 +286,7 @@ export default async function WhyAiaPage({
             />
             <p className="mt-5 text-[15px] leading-[1.95] text-navy/80">
               {en
-                ? 'The Singapore Medical Association asked doctors about working with each insurer — pre-authorisation, payment, panel terms and fee benchmarks. The survey covers 2022 experience and was published in 2023; SMA has not released a comparable ranking since, so I keep the year on the label instead of dressing it up as current.'
+                ? 'The Singapore Medical Association asked doctors about working with each insurer: pre-authorisation, payment, panel terms and fee benchmarks. The survey covers 2022 experience and was published in 2023; SMA has not released a comparable ranking since, so I keep the year on the label instead of dressing it up as current.'
                 : '新加坡医药协会调查的是医生与各家保险公司合作的体验：预授权、赔付、医生团与收费标准。这份调查反映的是 2022 年度体验、2023 年发布；此后医药协会没有再发布同口径排名，所以我保留年份，不把旧调查包装成最新排名。'}
             </p>
             <BarChart
@@ -294,7 +294,7 @@ export default async function WhyAiaPage({
               axis={['0', '1', '2', '3', '4', '5']}
               rows={[
                 {
-                  label: en ? 'AIA — overall rating' : 'AIA — 整体评分',
+                  label: en ? 'AIA · overall rating' : 'AIA · 整体评分',
                   value: 3.86,
                   read: '3.86 / 5',
                 },
@@ -306,7 +306,7 @@ export default async function WhyAiaPage({
                   tone: 'mist',
                   note: en
                     ? 'AIA ranked first on eight of the nine indicators, including willingness to recommend.'
-                    : '九项指标中 AIA 有八项排名第一，包括「推荐给亲友的意愿」。',
+                    : '九项指标中 AIA 有八项排名第一，其中包括推荐给亲友的意愿这一项。',
                 },
               ]}
             />
@@ -328,8 +328,8 @@ export default async function WhyAiaPage({
             <p className={soWhatCls}>
               <b>{en ? 'So what: ' : '所以呢：'}</b>
               {en
-                ? 'You never deal with the insurer alone — your doctor’s clinic does too. When that side runs smoothly, pre-authorisation and cashless admission are far less painful for you.'
-                : '你不是一个人在和保险公司打交道——你的主治医生那边也在打。医疗端顺畅，你的事前授权和免垫付住院才会顺。'}
+                ? 'You never deal with the insurer alone. Your doctor’s clinic does too. When that side runs smoothly, pre-authorisation and cashless admission are far less painful for you.'
+                : '你不是一个人在和保险公司打交道，你的主治医生那边也在打。医疗端顺畅，你的事前授权和免垫付住院才会顺。'}
             </p>
             <SourceLink href={src.sma} label={en ? 'SMA · IP Providers Ranking Survey 2022' : '医药协会 · 2022 年住院险公司排名调查'} />
           </Reveal>
@@ -347,7 +347,7 @@ export default async function WhyAiaPage({
             <p className="mt-5 text-[15px] leading-[1.95] text-navy/80">
               {en
                 ? 'Forrester named AIA a winner of its 2025 APAC Customer-Obsessed Enterprise Award, citing customer-experience transformation across 18 markets.'
-                : 'Forrester 将 AIA 评为 2025 年亚太区「以客户为中心企业奖」得主，认可其横跨 18 个市场的客户体验转型。'}
+                : 'Forrester 将 AIA 评为 2025 年亚太区以客户为中心企业奖得主，认可其横跨 18 个市场的客户体验转型。'}
             </p>
             <div className="mt-6 grid gap-4 sm:grid-cols-3">
               {[
@@ -411,8 +411,8 @@ export default async function WhyAiaPage({
             <p className={soWhatCls}>
               <b>{en ? 'So what: ' : '所以呢：'}</b>
               {en
-                ? 'Profit is what pays for the next ten years of service, systems and people. It says nothing about the return on your own policy — those are two different things.'
-                : '盈利买的是「未来十年还投不投得起服务、系统和人」。它和你保单本身的回报是两回事，别混为一谈。'}
+                ? 'Profit is what pays for the next ten years of service, systems and people. It says nothing about the return on your own policy. Those are two different things.'
+                : '盈利买的是未来十年还投不投得起服务、系统和人。它和你保单本身的回报是两回事，别混为一谈。'}
             </p>
             <div className="flex flex-wrap gap-x-6">
               <SourceLink href={src.aia} label={en ? 'AIA Group 2025 results' : 'AIA 集团 2025 年报'} />
@@ -447,8 +447,8 @@ export default async function WhyAiaPage({
               <p className="text-sm font-bold text-navy">AIA+ Singapore</p>
               <p className="mt-2 text-sm leading-[1.9] text-navy/75">
                 {en
-                  ? '1.3m+ registered users, 350k+ monthly actives, 4.7 / 5 app-store rating (as at December 2025) — one app for both personal and company policies.'
-                  : '130 万+ 注册用户、35 万+ 月活跃用户、应用商店评分 4.7 / 5（截至 2025 年 12 月）——个人保单和公司团险在同一个 App 里管理。'}
+                  ? '1.3m+ registered users, 350k+ monthly actives, 4.7 / 5 app-store rating (as at December 2025). One app for both personal and company policies.'
+                  : '130 万+ 注册用户、35 万+ 月活跃用户、应用商店评分 4.7 / 5（截至 2025 年 12 月）。个人保单和公司团险在同一个 App 里管理。'}
               </p>
               <p className="mt-3 text-xs leading-[1.9] text-mist">
                 {en
@@ -507,8 +507,8 @@ export default async function WhyAiaPage({
                 <li className="flex gap-3">
                   <span className="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-gold" />
                   {en
-                    ? 'On price alone, another insurer is sometimes cheaper for the same ward class — if budget is the binding constraint, that matters more than any ranking.'
-                    : '单看价格，同样的病房等级，有时候别家更便宜——如果预算是硬约束，这件事比任何排名都重要。'}
+                    ? 'On price alone, another insurer is sometimes cheaper for the same ward class. If budget is the binding constraint, that matters more than any ranking.'
+                    : '单看价格，同样的病房等级，有时候别家更便宜。如果预算是硬约束，这件事比任何排名都重要。'}
                 </li>
                 <li className="flex gap-3">
                   <span className="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-gold" />
@@ -519,14 +519,14 @@ export default async function WhyAiaPage({
                 <li className="flex gap-3">
                   <span className="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-gold" />
                   {en
-                    ? 'If your specialist is not on the panel, the calculation changes — the network matters more than the brand.'
-                    : '如果你固定看的专科医生不在医生团名单里，这笔账要重算——网络比品牌重要。'}
+                    ? 'If your specialist is not on the panel, the calculation changes. The network matters more than the brand.'
+                    : '如果你固定看的专科医生不在医生团名单里，这笔账要重算。网络比品牌重要。'}
                 </li>
               </ul>
               <p className="mt-6 border-t border-gold/25 pt-5 text-[15px] leading-[1.9] text-navy/80">
                 {en
-                  ? 'So this page is not “you should buy AIA”. It is “this is how I check a company — now go check mine, and anyone else’s, the same way”.'
-                  : '所以这页不是「你该买 AIA」，而是「我是这样查一家公司的——你可以用同一套标准，去查我，也去查别人」。'}
+                  ? 'So this page is not telling you to buy AIA. It is showing you how I check a company, so you can check mine the same way, and anyone else’s too.'
+                  : '所以这页不是要你买 AIA。它讲的是我怎么查一家公司，你可以用同一套标准来查我，也去查别人。'}
               </p>
             </div>
           </Reveal>
@@ -638,7 +638,7 @@ export default async function WhyAiaPage({
                 </p>
                 <p className="mt-3">
                   {en
-                    ? 'Figures are as at the dates stated (data compiled to August 2026). Cover, claims and service are subject to the policy contract and the insurer’s prevailing arrangements. Every family’s budget, health and existing cover differ — please make decisions after a full needs analysis.'
+                    ? 'Figures are as at the dates stated (data compiled to August 2026). Cover, claims and service are subject to the policy contract and the insurer’s prevailing arrangements. Every family’s budget, health and existing cover differ, so please make decisions after a full needs analysis.'
                     : '各项数字以文中标注的时点为准（资料整理至 2026 年 8 月）。保障、理赔与服务以正式保单条款及保险公司最新安排为准。每个家庭的预算、健康状况与既有保障都不同，请在完整需求分析之后再做决定。'}
                 </p>
               </div>
