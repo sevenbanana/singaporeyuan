@@ -1,7 +1,7 @@
 import { setRequestLocale } from 'next-intl/server';
 import type { Metadata } from 'next';
 import type { ReactNode } from 'react';
-import PageHero, { ContentLayer } from '@/components/PageHero';
+import { ContentLayer } from '@/components/PageHero';
 import Reveal from '@/components/Reveal';
 import { Link } from '@/lib/routing';
 import ResourceArt from './ResourceArt';
@@ -194,6 +194,39 @@ export default async function ResourcesPage({
     },
   ];
 
+  const quickLinks: {
+    key: string;
+    img: string;
+    lines: [string, string];
+    href?: string;
+    external?: string;
+  }[] = [
+    {
+      key: 'q-care',
+      img: '/resources/q-care.webp',
+      lines: en ? ['Where do I', 'see a doctor?'] : ['生病了，', '该去哪里看？'],
+      external: '/guides/healthcare.html',
+    },
+    {
+      key: 'q-tax',
+      img: '/resources/q-tax.webp',
+      lines: en ? ['How much tax', 'can I save?'] : ['今年还能', '省多少税？'],
+      href: '/tools',
+    },
+    {
+      key: 'q-retire',
+      img: '/resources/q-retire.webp',
+      lines: en ? ['When can', 'I retire?'] : ['我几岁', '可以退休？'],
+      href: '/tools/retirement',
+    },
+    {
+      key: 'q-cycles',
+      img: '/resources/q-cycles.webp',
+      lines: en ? ['Family wealth', 'beyond cycles'] : ['让家庭财富', '穿越周期'],
+      external: '/guides/wealth-across-cycles.html',
+    },
+  ];
+
   const groups: {
     key: ResourceGroup;
     eyebrow: string;
@@ -328,18 +361,132 @@ export default async function ResourcesPage({
 
   return (
     <>
-      <PageHero
-        eyebrow={en ? 'Resources' : '资源中心'}
-        title={en ? 'Tools & guides, made for you' : '给你的实用工具与干货'}
-        subtitle={
-          en
-            ? 'Practical tools and plain-language guides for living in Singapore, sorted into three: getting care, handling money, and settling in. Use them anytime, no strings attached.'
-            : '在新加坡生活用得上的小工具和白话干货,按「看病」「钱」「落地」分成三类,随时取用,不设门槛。'
-        }
-        accent={IconSpark}
-      />
+      {/* 首屏:工具箱插画 + 四个快捷入口 */}
+      <section className="relative isolate overflow-hidden bg-[#FBF8F1]">
+        <span
+          aria-hidden="true"
+          className="pointer-events-none absolute -right-24 top-[-18%] h-[520px] w-[520px] rounded-full border border-gold/20"
+        />
+        <span
+          aria-hidden="true"
+          className="pointer-events-none absolute right-[22%] top-[8%] hidden h-[260px] w-[260px] rounded-full border border-gold/15 lg:block"
+        />
+        <span
+          aria-hidden="true"
+          className="pointer-events-none absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-b from-transparent to-cream"
+        />
+
+        <div className="container-wide relative grid items-center gap-10 py-14 lg:grid-cols-[minmax(0,1.04fr)_minmax(0,0.96fr)] lg:gap-8 lg:py-16">
+          <div className="order-2 lg:order-1">
+            <p className="eyebrow animate-fade-up">{en ? 'Resources' : '资源中心'}</p>
+            <span className="rule-gold mt-3 block animate-fade-up" />
+            <h1
+              className="mt-6 animate-fade-up text-[2rem] font-black leading-[1.3] text-navy md:text-[2.75rem]"
+              style={{ animationDelay: '80ms' }}
+            >
+              {en ? "Yuan Yuan's toolbox" : '小圆姐的实用工具箱'}
+              <span className="mt-2 block text-[1.6rem] leading-[1.4] md:text-[2rem]">
+                {en
+                  ? 'When these things come up in Singapore, start here'
+                  : '在新加坡遇到这些事，先来这里找答案'}
+              </span>
+            </h1>
+            <p
+              className="mt-6 max-w-xl animate-fade-up text-base leading-[1.95] text-mist"
+              style={{ animationDelay: '160ms' }}
+            >
+              {en
+                ? 'Getting care, making claims, filing tax, retiring, and planning family money — I turn the official material into plain language, and into tools you can use right away.'
+                : '看病、理赔、报税、退休和家庭财富规划，我把复杂的官方资料翻成中文，也做成了可以直接使用的小工具。'}
+            </p>
+
+            <div
+              className="mt-8 grid animate-fade-up gap-3 sm:grid-cols-2"
+              style={{ animationDelay: '240ms' }}
+            >
+              {quickLinks.map((q) => {
+                const inner = (
+                  <>
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      src={q.img}
+                      alt=""
+                      loading="lazy"
+                      className="h-12 w-12 shrink-0 object-contain transition-transform duration-500 group-hover:scale-110"
+                    />
+                    <span className="min-w-0 flex-1 text-[15px] font-bold leading-[1.5] text-navy [text-wrap:balance]">
+                      {q.lines[0]}
+                      <br />
+                      {q.lines[1]}
+                    </span>
+                    <svg
+                      width="16"
+                      height="16"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      className="shrink-0 text-gold-deep transition-transform duration-300 group-hover:translate-x-1"
+                      aria-hidden="true"
+                    >
+                      <path d="M5 12h14M13 6l6 6-6 6" />
+                    </svg>
+                  </>
+                );
+                const cls =
+                  'group flex items-center gap-3 rounded-2xl border border-gold/30 bg-white/70 px-4 py-3.5 no-underline shadow-card transition-all duration-300 hover:-translate-y-0.5 hover:border-gold/60 hover:bg-white';
+                return q.external ? (
+                  <a key={q.key} href={q.external} className={cls}>
+                    {inner}
+                  </a>
+                ) : (
+                  <Link key={q.key} href={q.href!} className={cls}>
+                    {inner}
+                  </Link>
+                );
+              })}
+            </div>
+          </div>
+
+          <div className="order-1 lg:order-2">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/resources/hero-toolbox.webp"
+              alt={en ? 'Yuan Yuan with her toolbox' : '小圆姐和她的工具箱'}
+              width={1200}
+              height={800}
+              className="mx-auto w-full max-w-[520px] animate-fade-in lg:max-w-none"
+            />
+          </div>
+        </div>
+
+        <div className="relative flex justify-center pb-8">
+          <a
+            href="#care"
+            aria-label={en ? 'Scroll to the resources' : '向下看资源列表'}
+            className="animate-fade-in text-gold-deep/70 transition-colors duration-300 hover:text-gold-deep"
+          >
+            <svg
+              width="26"
+              height="26"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.8"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              aria-hidden="true"
+            >
+              <path d="M6 9l6 6 6-6" />
+            </svg>
+          </a>
+        </div>
+      </section>
+
       <ContentLayer>
-        <div className="container-wide py-16 md:py-20">
+        <div className="container-wide py-12 md:py-16">
           <Reveal>
             <div className="mb-12 flex flex-wrap gap-2.5 md:mb-14">
               {groups.map((g) => (
