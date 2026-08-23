@@ -1,0 +1,506 @@
+<title>换房前的四条CPF规则</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700;800;900&family=Noto+Sans+SC:wght@400;500;700;900&display=swap">
+
+<style>
+:root{
+  --bg-1:#9A7331;
+  --bg-2:#7C5A22;
+  --bg-3:#5E4315;
+  --cream:#FCF7EC;
+  --cream-2:rgba(252,247,236,.72);
+  --cream-3:rgba(252,247,236,.46);
+  --gold:#EFC96E;
+  --gold-2:#D8A63F;
+  --gold-soft:rgba(239,201,110,.22);
+  --line:rgba(252,247,236,.20);
+  --ok:#8FD3A6;
+  --warn:#E8A07A;
+
+  --sans:"Noto Sans SC","PingFang SC","Hiragino Sans GB","Microsoft YaHei",system-ui,sans-serif;
+  --num:"Archivo","Noto Sans SC",system-ui,sans-serif;
+
+  /* 右下角口播头像安全区，内容不会进入 */
+  --avz:clamp(128px,36vw,178px);
+  --pad:clamp(20px,5.4vw,30px);
+  --ease:cubic-bezier(.22,1,.36,1);
+}
+
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;padding:0;height:100%}
+body{
+  background:var(--bg-2);
+  color:var(--cream);
+  font-family:var(--sans);
+  overflow:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+
+/* ───────── 舞台 ───────── */
+#stage{
+  position:fixed;inset:0;
+  display:flex;align-items:center;justify-content:center;
+  background:
+    radial-gradient(120% 80% at 50% 8%, rgba(255,225,168,.16), transparent 58%),
+    radial-gradient(100% 70% at 50% 100%, rgba(0,0,0,.32), transparent 60%),
+    linear-gradient(168deg, var(--bg-1) 0%, var(--bg-2) 52%, var(--bg-3) 100%);
+  overflow:hidden;
+}
+#stage::after{ /* 纸质颗粒 */
+  content:"";position:absolute;inset:-40%;pointer-events:none;opacity:.055;
+  background-image:radial-gradient(rgba(255,255,255,.9) .6px, transparent .7px);
+  background-size:3px 3px;
+  animation:grain 6s steps(6) infinite;
+}
+@keyframes grain{
+  0%{transform:translate(0,0)}20%{transform:translate(-2%,1%)}40%{transform:translate(1%,-2%)}
+  60%{transform:translate(-1%,2%)}80%{transform:translate(2%,1%)}100%{transform:translate(0,0)}
+}
+
+#deck{position:relative;width:100%;max-width:520px;height:100%;margin:0 auto}
+
+.scene{
+  position:absolute;inset:0;
+  display:flex;flex-direction:column;justify-content:center;
+  padding:calc(var(--pad) + 32px) var(--pad) calc(var(--avz) + 58px);
+  opacity:0;visibility:hidden;transform:translateY(16px) scale(.995);
+  transition:opacity .6s var(--ease),transform .7s var(--ease),visibility 0s linear .7s;
+}
+.scene.live{opacity:1;visibility:visible;transform:none;transition-delay:0s}
+.scene.past{transform:translateY(-14px) scale(.99)}
+
+/* ───────── 基础动效单元 ───────── */
+.b{opacity:0;transform:translateY(14px);transition:opacity .5s var(--ease),transform .6s var(--ease)}
+.b.on{opacity:1;transform:none}
+.b.blur{filter:blur(6px)}
+.b.blur.on{filter:blur(0)}
+
+/* ───────── 文字层级 ───────── */
+.kicker{
+  display:inline-flex;align-items:center;gap:8px;align-self:flex-start;
+  font-size:12px;letter-spacing:.22em;font-weight:700;color:var(--gold);
+  padding:6px 12px;border:1px solid rgba(239,201,110,.42);border-radius:999px;
+  background:rgba(239,201,110,.08);
+}
+.idx{
+  font-family:var(--num);font-weight:900;font-size:clamp(46px,14vw,68px);
+  line-height:.82;color:transparent;-webkit-text-stroke:2px rgba(239,201,110,.55);
+  letter-spacing:-.02em;
+}
+h1{
+  margin:0;font-weight:900;letter-spacing:-.01em;line-height:1.1;
+  font-size:clamp(31px,8.6vw,44px);
+  text-shadow:0 8px 26px rgba(0,0,0,.28);
+}
+h2{
+  margin:0;font-weight:900;line-height:1.16;
+  font-size:clamp(25px,7vw,34px);
+  text-shadow:0 6px 20px rgba(0,0,0,.25);
+}
+.lead{margin:0;font-size:clamp(15px,4.1vw,17px);line-height:1.62;color:var(--cream-2);font-weight:500}
+.tiny{font-size:11.5px;line-height:1.5;color:var(--cream-3);font-weight:400}
+.mark{color:var(--gold)}
+.ul{
+  padding-bottom:6px;
+  background-image:linear-gradient(rgba(239,201,110,.9),rgba(239,201,110,.9));
+  background-position:0 100%;
+  background-repeat:no-repeat;background-size:0 7px;
+  transition:background-size .8s var(--ease) .25s;
+}
+.on .ul,.ul.on{background-size:100% 7px}
+.stack>*+*{margin-top:14px}
+.stack-s>*+*{margin-top:9px}
+
+/* ───────── 卡片 / 图表 ───────── */
+.card{
+  border:1px solid var(--line);border-radius:16px;
+  background:linear-gradient(180deg,rgba(252,247,236,.11),rgba(252,247,236,.045));
+  padding:13px 14px;backdrop-filter:blur(2px);
+}
+.card.gold{border-color:rgba(239,201,110,.5);background:linear-gradient(180deg,rgba(239,201,110,.20),rgba(239,201,110,.07))}
+.row{display:flex;gap:10px}
+.row>*{flex:1}
+.lbl{font-size:12px;color:var(--cream-3);font-weight:600;letter-spacing:.06em}
+.val{font-family:var(--num);font-weight:800;font-size:clamp(21px,5.6vw,26px);line-height:1.1;letter-spacing:-.01em}
+.val.g{color:var(--gold)}
+.unit{font-size:.56em;font-weight:700;margin-left:2px;opacity:.8}
+
+/* 条形图 */
+.bar{position:relative;height:34px;border-radius:9px;background:rgba(0,0,0,.16);overflow:hidden}
+.bar .fill{
+  position:absolute;inset:0 auto 0 0;width:0;border-radius:9px;
+  transition:width 1s var(--ease) .12s;
+}
+.b.on .bar .fill{width:var(--w)}
+.bar .fill.solid{background:linear-gradient(90deg,#F4D488,var(--gold-2))}
+.bar .fill.ghost{background:repeating-linear-gradient(115deg,rgba(252,247,236,.22) 0 7px,rgba(252,247,236,.08) 7px 14px)}
+.bar .fill.dim{background:linear-gradient(90deg,rgba(252,247,236,.34),rgba(252,247,236,.18))}
+.barrow{display:flex;align-items:center;gap:9px}
+.barrow .name{width:58px;flex:none;font-size:12.5px;color:var(--cream-2);font-weight:600;line-height:1.25}
+.barrow .bar{flex:1}
+.barrow .num{width:80px;flex:none;text-align:right;font-family:var(--num);font-weight:800;
+  font-size:14.5px;letter-spacing:-.01em}
+.barrow .num.g{color:var(--gold)}
+
+/* 堆叠条 */
+.stackbar{display:flex;height:38px;border-radius:10px;overflow:hidden;background:rgba(0,0,0,.16)}
+.stackbar{gap:2px;padding:0}
+.stackbar span{width:0;transition:width .9s var(--ease);border-radius:2px}
+.on .stackbar span{width:var(--w)}
+.s1{background:#F6DFA6}.s2{background:var(--gold)}.s3{background:#C68F35}.s4{background:#9C6D24;color:#FCF7EC}
+.legend{display:flex;flex-wrap:wrap;gap:7px 14px;font-size:12px;color:var(--cream-2);font-weight:600}
+.legend b{font-family:var(--num);font-weight:800;color:var(--cream)}
+.legend i{display:inline-block;width:9px;height:9px;border-radius:3px;margin-right:5px;vertical-align:middle}
+
+/* 分叉 */
+.fork{display:flex;gap:10px;align-items:stretch}
+.fork .card{display:flex;flex-direction:column;gap:6px}
+.age{
+  position:relative;text-align:center;font-family:var(--num);font-weight:900;
+  font-size:clamp(40px,11vw,54px);color:var(--gold);line-height:1;
+}
+.age::before,.age::after{
+  content:"";position:absolute;top:50%;width:22%;height:1px;background:linear-gradient(90deg,transparent,rgba(239,201,110,.6));
+}
+.age::before{left:4%}
+.age::after{right:4%;transform:scaleX(-1)}
+
+/* 时间轴 */
+.tl{position:relative;padding-left:22px}
+.tl::before{content:"";position:absolute;left:6px;top:6px;bottom:6px;width:2px;background:linear-gradient(180deg,var(--gold),rgba(239,201,110,.12))}
+.tl .step{position:relative;padding:0 0 13px}
+.tl .step:last-child{padding-bottom:0}
+.tl .step::before{
+  content:"";position:absolute;left:-21px;top:5px;width:10px;height:10px;border-radius:50%;
+  background:var(--gold);box-shadow:0 0 0 4px rgba(239,201,110,.16);
+}
+.tl .t{font-size:14.5px;font-weight:700;line-height:1.35}
+.tl .d{font-size:12px;color:var(--cream-3);margin-top:2px;line-height:1.45}
+
+/* 迷你折线图 */
+.chart{width:100%;height:auto;display:block;overflow:visible}
+.chart .grid{stroke:rgba(252,247,236,.14);stroke-width:1}
+.chart .axis{fill:rgba(252,247,236,.5);font-size:8.5px;font-family:var(--num);font-weight:700}
+.chart .ln{fill:none;stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round;
+  stroke-dasharray:520;stroke-dashoffset:520;transition:stroke-dashoffset 1.5s var(--ease) .2s}
+.on .chart .ln{stroke-dashoffset:0}
+.chart .ln.a{stroke:rgba(252,247,236,.42);stroke-dasharray:4 5;stroke-dashoffset:0;opacity:0;transition:opacity .6s ease .2s}
+.on .chart .ln.a{opacity:1}
+.chart .ln.b{stroke:var(--gold)}
+.chart .gap{opacity:0;transition:opacity .5s ease 1.5s}
+.on .chart .gap{opacity:1}
+.chart .gapln{stroke:var(--gold);stroke-width:1;stroke-dasharray:2 3}
+.chart .gaptx{fill:var(--gold);font-size:9.5px;font-weight:800;font-family:var(--num)}
+
+/* 三查卡片 */
+.checks{display:flex;flex-direction:column;gap:9px}
+.check{display:flex;align-items:center;gap:11px;padding:11px 13px;border-radius:14px;
+  border:1px solid var(--line);background:rgba(252,247,236,.07)}
+.check .n{font-family:var(--num);font-weight:900;color:var(--gold);font-size:15px;opacity:.85}
+.check .tx{font-size:14px;font-weight:600;line-height:1.35}
+
+/* 底部脚注（避开右下角头像位） */
+.fn{
+  position:absolute;left:var(--pad);right:var(--pad);
+  bottom:calc(var(--avz) + 16px);
+}
+.fn .tiny{display:block}
+
+/* ───────── 顶部进度 / 控制 ───────── */
+#hud{position:fixed;top:0;left:0;right:0;padding:14px var(--pad) 0;z-index:20;pointer-events:none;
+  max-width:520px;margin:0 auto}
+#ticks{display:flex;gap:4px}
+#ticks .tk{flex:1;height:3px;border-radius:2px;background:rgba(252,247,236,.18);overflow:hidden}
+#ticks .tk i{display:block;height:100%;width:0;background:var(--gold);transition:width .45s var(--ease)}
+#ctl{position:fixed;top:10px;right:calc(50% - 260px + var(--pad) - 6px);z-index:22;display:flex;gap:4px;pointer-events:auto}
+@media(max-width:560px){#ctl{right:calc(var(--pad) - 6px)}}
+#ctl button{
+  width:30px;height:30px;border-radius:50%;border:1px solid rgba(252,247,236,.22);
+  background:rgba(0,0,0,.16);color:var(--cream-2);font-size:12px;cursor:pointer;
+  display:grid;place-items:center;padding:0;font-family:var(--num);font-weight:800;
+}
+#ctl button:active{transform:scale(.92)}
+
+/* 头像安全区（默认隐形，按 ◎ 显示参考圈） */
+#avz{
+  position:fixed;right:max(10px, calc(50% - 260px + 10px));bottom:10px;
+  width:var(--avz);height:var(--avz);border-radius:50%;z-index:15;pointer-events:none;
+  border:1px dashed rgba(252,247,236,0);transition:border-color .3s ease,background .3s ease;
+}
+#avz.show{border-color:rgba(239,201,110,.5);background:rgba(239,201,110,.05)}
+@media(max-width:560px){#avz{right:10px}}
+
+#hint{
+  position:fixed;left:max(var(--pad), calc(50% - 260px + var(--pad)));bottom:14px;
+  font-size:11px;letter-spacing:.16em;color:rgba(252,247,236,.34);z-index:18;pointer-events:none;
+  transition:opacity .6s ease;
+}
+#tapzone{position:fixed;inset:0;z-index:10}
+@media (prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+</style>
+
+<div id="stage">
+  <div id="deck">
+
+    <!-- 1 · 钩子 -->
+    <section class="scene stack">
+      <span class="b kicker">换 房 前 必 看</span>
+      <h1 class="b">房子<span class="mark" data-count="100" data-suf="万">0万</span>卖掉<br>你能拿到多少现金？</h1>
+      <div class="b row" style="margin-top:4px">
+        <div class="card" style="text-align:center"><div class="val">63<span class="unit">万</span></div><div class="lbl" style="margin-top:3px">直觉答案</div></div>
+        <div class="card gold" style="text-align:center"><div class="val g">10<span class="unit">万</span></div><div class="lbl" style="margin-top:3px">可能的真相</div></div>
+      </div>
+      <p class="b lead">剩下的 <b class="mark">53万</b>，并没有消失<br>它退回了你自己的 CPF。</p>
+      <div class="fn"><span class="b tiny">全片金额为示意演算，用于说明规则，非个人测算结果。</span></div>
+    </section>
+
+    <!-- 2 · 直觉算法 vs 真实到手 -->
+    <section class="scene stack">
+      <span class="b kicker">很 多 人 这 么 算</span>
+      <div class="b barrow"><span class="name">成交价</span><div class="bar"><div class="fill dim" style="--w:100%"></div></div><span class="num">100万</span></div>
+      <div class="b barrow"><span class="name">未还房贷</span><div class="bar"><div class="fill ghost" style="--w:37%"></div></div><span class="num">-37万</span></div>
+      <div class="b barrow"><span class="name">表面剩余</span><div class="bar"><div class="fill dim" style="--w:63%"></div></div><span class="num">63万</span></div>
+      <div class="b"><p class="lead">但这 63万 真正拆开，是两笔：</p></div>
+      <div class="b barrow"><span class="name">退回 CPF</span><div class="bar"><div class="fill solid" style="--w:84%"></div></div><span class="num g">53万</span></div>
+      <div class="b barrow"><span class="name">到手现金</span><div class="bar"><div class="fill solid" style="--w:16%"></div></div><span class="num g">10万</span></div>
+      <p class="b lead">到手现金，可能只有你以为的 <b class="mark">六分之一</b>。</p>
+      <div class="fn"><span class="b tiny">示意：成交价 S$100万，剩余贷款 S$37万，历史 CPF 动用 + 应计利息 S$53万。</span></div>
+    </section>
+
+    <!-- 3 · 规则一 -->
+    <section class="scene stack">
+      <div class="b idx">01</div>
+      <h2 class="b">用过的 CPF<br><span class="ul">卖房时要退回去</span></h2>
+      <div class="b">
+        <div class="stackbar">
+          <span class="s1" style="--w:34%"></span>
+          <span class="s2" style="--w:41%"></span>
+          <span class="s3" style="--w:6%"></span>
+          <span class="s4" style="--w:19%"></span>
+        </div>
+        <div class="legend" style="margin-top:11px">
+          <span><i style="background:#F6DFA6"></i>首付 <b>18万</b></span>
+          <span><i style="background:#EFC96E"></i>月供 <b>22万</b></span>
+          <span><i style="background:#C68F35"></i>住房补贴 <b>3万</b></span>
+          <span><i style="background:#9C6D24"></i>应计利息 <b>10万</b></span>
+        </div>
+      </div>
+      <p class="b lead">这些钱<b class="mark">还是你的</b>，只是回到 CPF 账户，<br>没有直接变成可支配现金。</p>
+      <div class="fn"><span class="b tiny">来源：CPF Board「Housing refund」——动用的 CPF 及按 OA 利率 2.5% 计算的应计利息，须于售房时退回本人 CPF 账户。</span></div>
+    </section>
+
+    <!-- 4 · 应计利息曲线 -->
+    <section class="scene stack">
+      <span class="b kicker">最 容 易 被 低 估 的 一 笔</span>
+      <h2 class="b">应计利息<br>一直在<span class="ul">悄悄累积</span></h2>
+      <div class="b card">
+        <svg class="chart" viewBox="0 0 300 138" role="img" aria-label="应计利息累积示意图">
+          <line class="grid" x1="25" y1="120" x2="292" y2="120"/>
+          <line class="grid" x1="25" y1="70" x2="292" y2="70"/>
+          <line class="grid" x1="25" y1="20" x2="292" y2="20"/>
+          <text class="axis" x="22" y="133" text-anchor="middle">0</text>
+          <text class="axis" x="155" y="133" text-anchor="middle">第10年</text>
+          <text class="axis" x="285" y="133" text-anchor="middle">第20年</text>
+          <polyline class="ln a" points="25,110 90,110 155,110 220,110 285,110"/>
+          <polyline class="ln b" points="25,110 90,92 155,71 220,47 285,20"/>
+          <g class="gap">
+            <line class="gapln" x1="285" y1="20" x2="285" y2="110"/>
+            <text class="gaptx" x="279" y="60" text-anchor="end">+ 应计利息</text>
+            <text class="gaptx" x="279" y="72" text-anchor="end">≈ S$19万</text>
+          </g>
+        </svg>
+        <div class="legend" style="margin-top:6px">
+          <span><i style="background:rgba(252,247,236,.42)"></i>动用本金 S$30万</span>
+          <span><i style="background:#EFC96E"></i>本金 + 应计利息</span>
+        </div>
+      </div>
+      <p class="b tiny">示意：本金 S$30万，按 OA 年利率 2.5% 复利 20 年，需退回约 S$49万。</p>
+      <div class="fn"><span class="b tiny">来源：CPF Board，普通账户（OA）基本利率 2.5% p.a.，应计利息按复利计算。</span></div>
+    </section>
+
+    <!-- 5 · 规则二 55岁 -->
+    <section class="scene stack">
+      <div class="b idx">02</div>
+      <h2 class="b">退款回到哪里<br><span class="ul">要看你几岁</span></h2>
+      <div class="b age">55<span style="font-size:.32em;font-weight:800;letter-spacing:.1em;margin-left:4px">岁</span></div>
+      <div class="b fork">
+        <div class="card">
+          <div class="lbl">55 岁之前卖房</div>
+          <div class="val g">全额回 OA</div>
+          <div class="tiny">退款进入普通账户，<br>可继续用于下一套房。</div>
+        </div>
+        <div class="card gold">
+          <div class="lbl">55 岁之后卖房</div>
+          <div class="val g">先补 RA</div>
+          <div class="tiny">先补足退休账户至<br>全额退休存款，余额才回 OA。</div>
+        </div>
+      </div>
+      <div class="b">
+        <div class="lbl" style="margin-bottom:8px">示意：55岁后卖房，S$53万退款如何落地</div>
+        <div class="stackbar">
+          <span class="s3" style="--w:23%"></span>
+          <span class="s1" style="--w:77%"></span>
+        </div>
+        <div class="legend" style="margin-top:11px">
+          <span><i style="background:#C68F35"></i>先补 RA <b>12万</b></span>
+          <span><i style="background:#F6DFA6"></i>余额回 OA <b>41万</b></span>
+        </div>
+      </div>
+      <div class="fn"><span class="b tiny">来源：CPF Board 退休存款——2026 年满 55 岁人群全额退休存款（FRS）为 S$220,400，具体以 CPF 官网公布为准。</span></div>
+    </section>
+
+    <!-- 6 · 规则三 先买后卖 -->
+    <section class="scene stack">
+      <div class="b idx">03</div>
+      <h2 class="b">先买后卖<br><span class="ul">按第二套房计算</span></h2>
+      <div class="tl">
+        <div class="step b"><div class="t">① 先买新房</div><div class="d">旧房里的 CPF 暂时拿不出来</div></div>
+        <div class="step b"><div class="t">② 按第二套住宅计税</div><div class="d">新加坡公民第二套 ABSD 20%</div></div>
+        <div class="step b"><div class="t">③ 再卖旧房</div><div class="d">CPF 退款此时才回到账户</div></div>
+        <div class="step b"><div class="t">④ 是否可退还 ABSD</div><div class="d">要看具体换房条件是否符合</div></div>
+      </div>
+      <div class="b card gold" style="display:flex;align-items:center;gap:12px">
+        <div class="val g" style="font-size:clamp(28px,8vw,36px)"><span data-count="20" data-suf="%">0%</span></div>
+        <div class="tiny" style="color:var(--cream-2)">按 S$150万新房计，需先行准备<br><b class="mark">约 S$30万</b> 的额外印花税。</div>
+      </div>
+      <div class="fn"><span class="b tiny">来源：IRAS，2023年4月27日起新加坡公民购买第二套住宅 ABSD 税率 20%；夫妻（至少一方为公民）符合条件、在规定期限内售出原唯一住宅，可申请退还。</span></div>
+    </section>
+
+    <!-- 7 · 规则四 屋龄 -->
+    <section class="scene stack">
+      <div class="b idx">04</div>
+      <h2 class="b">房子的屋龄<br><span class="ul">也会影响 CPF</span></h2>
+      <div class="b card"><div class="lbl">门槛</div><div class="val">剩余地契 <span class="mark">≥ 20 年</span></div><div class="tiny" style="margin-top:3px">低于 20 年，原则上不能动用 CPF。</div></div>
+      <div class="b stack-s">
+        <div class="lbl">剩余地契能否覆盖最年轻买家到 95 岁 · CPF 可用额度</div>
+        <div class="barrow"><span class="name">可覆盖</span><div class="bar" style="height:30px"><div class="fill solid" style="--w:100%"></div></div><span class="num g">100%</span></div>
+        <div class="barrow"><span class="name">不覆盖</span><div class="bar" style="height:30px"><div class="fill dim" style="--w:82%"></div></div><span class="num">约 82%</span></div>
+        <div class="tiny">例：买家 40 岁，需覆盖 55 年，剩余地契 45 年 → 可用额度按比例折减。</div>
+      </div>
+      <p class="b lead">屋龄越老，能用的 CPF 越少，<br>要补的<b class="mark">现金就越多</b>。</p>
+      <div class="fn"><span class="b tiny">来源：CPF Board 房产地契规则——剩余地契不足 20 年不可动用 CPF；不足以覆盖最年轻买家至 95 岁的，CPF 可用额度按比例折减。</span></div>
+    </section>
+
+    <!-- 8 · 行动清单 -->
+    <section class="scene stack">
+      <span class="b kicker">换 房 之 前 · 三 件 事</span>
+      <h2 class="b">不要只看<span class="ul">成交价</span></h2>
+      <div class="checks">
+        <div class="check b"><span class="n">01</span><span class="tx">还剩多少房贷未还</span></div>
+        <div class="check b"><span class="n">02</span><span class="tx">需要退回多少 CPF（含应计利息）</span></div>
+        <div class="check b"><span class="n">03</span><span class="tx">最后真正能到手多少现金</span></div>
+      </div>
+      <div class="b card gold">
+        <div class="lbl">在哪里查</div>
+        <div class="val g" style="font-size:clamp(17px,4.6vw,20px);margin-top:3px">CPF · Home Ownership Dashboard</div>
+      </div>
+      <p class="b lead">如果已经接近 55 岁，还要多看一步：<br>这次换房，会不会<b class="mark">影响以后的退休收入</b>。</p>
+    </section>
+
+    <!-- 9 · 收尾 -->
+    <section class="scene stack">
+      <span class="b kicker">S I N G A P O R E · 退 休 规 划</span>
+      <h1 class="b">我是在新加坡<br>做退休规划的<span class="mark">小圆姐</span></h1>
+      <h2 class="b" style="color:var(--gold)"><span class="ul">陪你一起，日富一日</span></h2>
+      <div class="fn"><span class="b tiny">本页内容仅供信息参考，不构成投资、税务或法律建议。CPF、ABSD 及地契相关规定以 CPF Board、IRAS、HDB / URA 最新公布为准。</span></div>
+    </section>
+
+  </div>
+</div>
+
+<div id="hud"><div id="ticks"></div></div>
+<div id="ctl">
+  <button id="bPrev" title="上一步">‹</button>
+  <button id="bPlay" title="播放/暂停">II</button>
+  <button id="bGuide" title="显示头像位">◎</button>
+</div>
+<div id="avz"></div>
+<div id="hint">轻 触 继 续</div>
+<div id="tapzone"></div>
+
+<script>
+(function(){
+  var STEP_MS = 2000;                       // 每个展示点约 2 秒
+  var scenes = Array.prototype.slice.call(document.querySelectorAll('.scene'));
+  var beats  = [];
+  scenes.forEach(function(sc,si){
+    Array.prototype.slice.call(sc.querySelectorAll('.b')).forEach(function(el,bi){
+      beats.push({el:el,scene:si,i:bi});
+    });
+  });
+  var perScene = scenes.map(function(sc){return sc.querySelectorAll('.b').length;});
+  var cur = -1, timer = null, playing = true;
+
+  // 顶部进度刻度
+  var ticks = document.getElementById('ticks');
+  scenes.forEach(function(){var d=document.createElement('div');d.className='tk';d.innerHTML='<i></i>';ticks.appendChild(d);});
+  var tkFills = Array.prototype.slice.call(ticks.querySelectorAll('i'));
+
+  function countUp(el){
+    var target = parseFloat(el.getAttribute('data-count'));
+    var suf = el.getAttribute('data-suf') || '';
+    var t0 = null, dur = 900;
+    function tick(ts){
+      if(!t0) t0 = ts;
+      var p = Math.min(1,(ts-t0)/dur);
+      var e = 1 - Math.pow(1-p,3);
+      el.textContent = Math.round(target*e) + suf;
+      if(p<1) requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  }
+
+  function render(){
+    var sIdx = beats[cur].scene;
+    scenes.forEach(function(sc,i){
+      sc.classList.toggle('live', i===sIdx);
+      sc.classList.toggle('past', i<sIdx);
+    });
+    beats.forEach(function(b,i){
+      var on = (b.scene < sIdx) || (b.scene===sIdx && i<=cur);
+      if(on && !b.el.classList.contains('on')){
+        b.el.classList.add('on');
+        Array.prototype.slice.call(b.el.querySelectorAll('[data-count]')).concat(
+          b.el.hasAttribute && b.el.hasAttribute('data-count') ? [b.el] : []
+        ).forEach(countUp);
+      }
+      if(!on) b.el.classList.remove('on');
+    });
+    tkFills.forEach(function(f,i){
+      var w = i<sIdx ? 100 : (i>sIdx ? 0 : ((beats[cur].i+1)/perScene[i])*100);
+      f.style.width = w + '%';
+    });
+    var hint = document.getElementById('hint');
+    hint.style.opacity = cur > 1 ? 0 : .9;
+  }
+
+  function go(n){
+    if(n<0) n=0;
+    if(n>beats.length-1){ n = beats.length-1; pause(); }
+    cur = n; render(); schedule();
+  }
+  function schedule(){
+    clearTimeout(timer);
+    if(!playing || cur>=beats.length-1) return;
+    var extra = beats[cur+1] && beats[cur+1].scene!==beats[cur].scene ? 500 : 0; // 换场稍作停顿
+    timer = setTimeout(function(){ go(cur+1); }, STEP_MS + extra);
+  }
+  function pause(){ playing=false; clearTimeout(timer); document.getElementById('bPlay').textContent='▶'; }
+  function play(){ playing=true; document.getElementById('bPlay').textContent='II'; if(cur>=beats.length-1) go(0); else schedule(); }
+
+  document.getElementById('tapzone').addEventListener('click', function(){ go(cur+1); });
+  document.getElementById('bPrev').addEventListener('click', function(e){ e.stopPropagation(); go(cur-1); });
+  document.getElementById('bPlay').addEventListener('click', function(e){ e.stopPropagation(); playing?pause():play(); });
+  document.getElementById('bGuide').addEventListener('click', function(e){ e.stopPropagation(); document.getElementById('avz').classList.toggle('show'); });
+  document.addEventListener('keydown', function(e){
+    if(e.key===' '){ e.preventDefault(); playing?pause():play(); }
+    if(e.key==='ArrowRight'||e.key==='ArrowDown'){ e.preventDefault(); go(cur+1); }
+    if(e.key==='ArrowLeft'||e.key==='ArrowUp'){ e.preventDefault(); go(cur-1); }
+    if(e.key==='r'||e.key==='R'){ go(0); play(); }
+    if(e.key==='g'||e.key==='G'){ document.getElementById('avz').classList.toggle('show'); }
+  });
+
+  go(0);
+})();
+</script>
