@@ -205,6 +205,44 @@ h1 .mark,h2 .mark{text-shadow:0 1px 0 rgba(58,36,2,.5), 0 4px 16px rgba(239,201,
 .check .n{font-family:var(--num);font-weight:900;color:var(--gold);font-size:15px;opacity:.85}
 .check .tx{font-size:15px;font-weight:600;line-height:1.5}
 
+/* 首屏房产类型卡 */
+.ptype{display:flex;flex-direction:column;align-items:center;gap:10px;padding:18px 12px}
+.ptype svg{width:clamp(38px,10.5vw,46px);height:auto;color:var(--cream)}
+.ptype.gold svg{color:var(--gold)}
+.ptype .nm{font-size:15px;font-weight:700;line-height:1.35;text-align:center}
+.ptype .en{display:block;font-family:var(--num);font-size:11.5px;font-weight:700;
+  letter-spacing:.1em;color:var(--cream-3);margin-top:3px}
+
+/* 章节过渡页 */
+.mid{text-align:center}
+.mid .kicker{align-self:center}
+.nums{display:flex;justify-content:center;gap:clamp(14px,5vw,26px);
+  font-family:var(--num);font-weight:900;font-size:clamp(17px,4.8vw,21px);color:transparent;
+  -webkit-text-stroke:1.6px rgba(239,201,110,.55);letter-spacing:.02em}
+
+/* 55 岁左右对比 */
+.vs{position:relative}
+.vs .panes{display:flex;border:1px solid var(--line);border-radius:18px;overflow:hidden;
+  background:linear-gradient(180deg,rgba(252,247,236,.09),rgba(252,247,236,.035))}
+.vs .pane{flex:1;padding:20px 10px 16px;display:flex;flex-direction:column;align-items:center;gap:11px}
+.vs .pane+.pane{border-left:1px dashed rgba(239,201,110,.5);background:rgba(239,201,110,.08)}
+.vs .when{font-size:12.5px;font-weight:700;letter-spacing:.06em;color:var(--cream-3)}
+.vs .dest{font-family:var(--num);font-weight:800;font-size:clamp(15px,4.2vw,17px);color:var(--gold);text-align:center;line-height:1.35}
+.vs .note{font-size:11.5px;line-height:1.55;color:var(--cream-3);text-align:center}
+.vs .badge{
+  position:absolute;left:50%;top:0;transform:translate(-50%,-52%);z-index:3;
+  font-family:var(--num);font-weight:900;font-size:13.5px;color:var(--gold);
+  padding:4px 12px;border-radius:999px;border:1px solid rgba(239,201,110,.55);background:var(--bg-2);
+}
+.col{width:clamp(46px,13vw,58px);height:clamp(84px,24vw,108px);border-radius:9px;
+  background:rgba(0,0,0,.2);display:flex;flex-direction:column-reverse;overflow:hidden}
+.col i{display:block;width:100%;height:0;transition:height .95s var(--ease) .1s}
+.on .col i{height:var(--h)}
+.col .ra{background:#C68F35}
+.col .oa{background:#F6DFA6}
+.collbl{display:flex;flex-direction:column;gap:3px;font-size:11.5px;line-height:1.4;color:var(--cream-2);text-align:center}
+.collbl b{font-family:var(--num);color:var(--cream)}
+
 /* 常显小字注解 */
 .fn{
   position:absolute;left:var(--pad);right:auto;width:50%;
@@ -221,9 +259,10 @@ h1 .mark,h2 .mark{text-shadow:0 1px 0 rgba(58,36,2,.5), 0 4px 16px rgba(239,201,
 #ticks{display:flex;gap:4px}
 #ticks .tk{flex:1;height:3px;border-radius:2px;background:rgba(252,247,236,.18);overflow:hidden}
 #ticks .tk i{display:block;height:100%;width:0;background:var(--gold);transition:width .45s var(--ease)}
-#ctl{position:fixed;top:calc(10px + var(--sat));right:max(10px, calc(50% - 260px + var(--pad) - 8px));z-index:22;display:flex;gap:5px}
+#ctl{position:fixed;bottom:calc(10px + var(--sab));right:max(10px, calc(50% - 260px + 10px));
+  z-index:22;display:flex;gap:5px;opacity:.5}
 #ctl button{
-  width:30px;height:30px;border-radius:50%;border:1px solid rgba(252,247,236,.22);
+  width:28px;height:28px;border-radius:50%;border:1px solid rgba(252,247,236,.22);
   background:rgba(0,0,0,.18);color:var(--cream-2);font-size:12px;cursor:pointer;
   display:grid;place-items:center;padding:0;font-family:var(--num);font-weight:800;
 }
@@ -410,6 +449,27 @@ h1 .mark,h2 .mark{text-shadow:0 1px 0 rgba(58,36,2,.5), 0 4px 16px rgba(239,201,
     </g>
   </symbol>
 
+  <symbol id="ic-hdb" viewBox="0 0 64 64">
+    <g filter="url(#rough-s)" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M8 22l24-11 24 11"/>
+      <path d="M10 22v32h44V22" fill="rgba(252,247,236,.06)"/>
+      <path d="M16 30h8v7h-8zM30 30h8v7h-8zM44 30h6v7h-6z"/>
+      <path d="M16 42h8v7h-8zM44 42h6v7h-6z"/>
+      <path d="M29 54v-12h6v12"/>
+      <path d="M4 56h56" stroke-width="3"/>
+    </g>
+  </symbol>
+  <symbol id="ic-condo" viewBox="0 0 64 64">
+    <g filter="url(#rough-s)" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M22 54V8h24v46" fill="rgba(239,201,110,.14)"/>
+      <path d="M22 18h24M22 28h24M22 38h24"/>
+      <path d="M34 8v46" opacity=".45"/>
+      <path d="M10 54V32h12v22" fill="rgba(239,201,110,.08)"/>
+      <path d="M13 38h6M13 46h6"/>
+      <path d="M4 56h56" stroke-width="3"/>
+    </g>
+  </symbol>
+
   <symbol id="ill-wave" viewBox="0 0 1200 300" preserveAspectRatio="none">
     <g fill="none" stroke="var(--gold)" stroke-width="1.6" opacity=".5" filter="url(#rough-s)">
       <path d="M0 60q60-28 120 0t120 0 120 0 120 0 120 0 120 0 120 0 120 0 120 0 120 0"/>
@@ -428,11 +488,13 @@ h1 .mark,h2 .mark{text-shadow:0 1px 0 rgba(58,36,2,.5), 0 4px 16px rgba(239,201,
     <section class="scene">
       <div class="art big"><svg viewBox="0 0 200 200"><use href="#ill-house"/></svg></div>
       <div class="inner stack">
-        <span class="b kicker">换 房 前 必 看</span>
+        <span class="b kicker">新 加 坡 🇸🇬 · 换 房 前 必 看</span>
         <h1 class="b">房子<span class="mark" data-count="100" data-suf="万">0万</span>卖掉<br>你能拿到多少<span class="mark">现金</span>？</h1>
         <div class="b row">
-          <div class="card" style="text-align:center"><div class="val">63<span class="unit">万</span></div><div class="lbl" style="margin-top:4px">直觉答案</div></div>
-          <div class="card gold" style="text-align:center"><div class="val g">10<span class="unit">万</span></div><div class="lbl" style="margin-top:4px">可能的真相</div></div>
+          <div class="card ptype"><svg viewBox="0 0 64 64"><use href="#ic-hdb"/></svg>
+            <div class="nm">组屋<span class="en">HDB</span></div></div>
+          <div class="card gold ptype"><svg viewBox="0 0 64 64"><use href="#ic-condo"/></svg>
+            <div class="nm">私宅<span class="en">PRIVATE</span></div></div>
         </div>
       </div>
       <div class="fn"><span class="tiny">全片金额为示意演算，用于说明规则，非个人测算结果。</span></div>
@@ -454,16 +516,25 @@ h1 .mark,h2 .mark{text-shadow:0 1px 0 rgba(58,36,2,.5), 0 4px 16px rgba(239,201,
         </div>
         <div class="b hr">实 际 到 账</div>
         <div class="b stack-s">
-          <div class="barrow"><span class="name">退回 CPF</span><div class="bar"><div class="fill solid" style="--w:84%"></div></div><span class="num g">53万</span></div>
+          <div class="barrow"><span class="name">到手现金</span><div class="bar"><div class="fill solid" style="--w:16%"></div></div><span class="num g">10万</span></div>
         </div>
         <div class="b stack-s">
-          <div class="barrow"><span class="name">到手现金</span><div class="bar"><div class="fill solid" style="--w:16%"></div></div><span class="num g">10万</span></div>
+          <div class="barrow"><span class="name">退回 CPF</span><div class="bar"><div class="fill solid" style="--w:84%"></div></div><span class="num g">53万</span></div>
         </div>
       </div>
       <div class="fn"><span class="tiny">示意：成交价 100万、剩余贷款 37万、历史 CPF 含应计利息 53万。</span></div>
     </section>
 
-    <!-- 3 -->
+    <!-- 3 · 章节过渡 -->
+    <section class="scene">
+      <div class="inner stack mid">
+        <span class="b kicker">接 下 来</span>
+        <h1 class="b">换房前<br>最容易忽略的<br><span class="mark">4 个规则</span></h1>
+        <div class="b nums"><span>01</span><span>02</span><span>03</span><span>04</span></div>
+      </div>
+    </section>
+
+    <!-- 4 -->
     <section class="scene">
       <div class="art"><svg viewBox="0 0 200 200"><use href="#ill-vault"/></svg></div>
       <div class="inner stack">
@@ -486,7 +557,7 @@ h1 .mark,h2 .mark{text-shadow:0 1px 0 rgba(58,36,2,.5), 0 4px 16px rgba(239,201,
       <div class="fn"><span class="tiny">来源：CPF Board 住房退款——动用的 CPF 及应计利息须在售房时退回本人账户。</span></div>
     </section>
 
-    <!-- 4 -->
+    <!-- 5 -->
     <section class="scene">
       <div class="art"><svg viewBox="0 0 200 200"><use href="#ill-hourglass"/></svg></div>
       <div class="inner stack">
@@ -517,31 +588,34 @@ h1 .mark,h2 .mark{text-shadow:0 1px 0 rgba(58,36,2,.5), 0 4px 16px rgba(239,201,
       <div class="fn"><span class="tiny">示意：本金 30万按 OA 利率 2.5% 复利 20 年，需退约 49万。来源：CPF Board。</span></div>
     </section>
 
-    <!-- 5 -->
+    <!-- 6 -->
     <section class="scene">
       <div class="art"><svg viewBox="0 0 200 200"><use href="#ill-signpost"/></svg></div>
       <div class="inner stack">
         <div class="b idx">02</div>
         <h2 class="b">退款回到哪里<br><span class="ul">要看你<span class="mark">几岁</span></span></h2>
-        <div class="b age">55<span style="font-size:.32em;font-weight:800;letter-spacing:.1em;margin-left:4px">岁</span></div>
-        <div class="b fork">
-          <div class="card"><div class="lbl">55 岁之前</div><div class="val g">全额回 OA</div></div>
-          <div class="card gold"><div class="lbl">55 岁之后</div><div class="val g">先补 RA</div></div>
-        </div>
-        <div class="b">
-          <div class="stackbar">
-            <span class="s3" style="--w:23%"></span><span class="s1" style="--w:77%"></span>
-          </div>
-          <div class="legend" style="margin-top:13px">
-            <span><i style="background:#C68F35"></i>先补 RA <b>12万</b></span>
-            <span><i style="background:#F6DFA6"></i>余额回 OA <b>41万</b></span>
+        <div class="b vs">
+          <span class="badge">55 岁</span>
+          <div class="panes">
+            <div class="pane b">
+              <span class="when">之 前 卖 房</span>
+              <div class="col"><i class="oa" style="--h:100%"></i></div>
+              <div class="dest">全额回 OA</div>
+              <div class="collbl"><span>OA <b>53万</b></span></div>
+            </div>
+            <div class="pane b">
+              <span class="when">之 后 卖 房</span>
+              <div class="col"><i class="ra" style="--h:23%"></i><i class="oa" style="--h:77%"></i></div>
+              <div class="dest">先补 RA 再回 OA</div>
+              <div class="collbl"><span>RA <b>12万</b> · OA <b>41万</b></span></div>
+            </div>
           </div>
         </div>
       </div>
       <div class="fn"><span class="tiny">来源：CPF Board。2026 年满 55 岁的全额退休存款 S$220,400，以官网公布为准。</span></div>
     </section>
 
-    <!-- 6 -->
+    <!-- 7 -->
     <section class="scene">
       <div class="art"><svg viewBox="0 0 200 200"><use href="#ill-two-houses"/></svg></div>
       <div class="inner stack">
@@ -561,7 +635,7 @@ h1 .mark,h2 .mark{text-shadow:0 1px 0 rgba(58,36,2,.5), 0 4px 16px rgba(239,201,
       <div class="fn"><span class="tiny">来源：IRAS。2023年4月27日起公民第二套住宅 ABSD 20%，符合条件可申请退还。</span></div>
     </section>
 
-    <!-- 7 -->
+    <!-- 8 -->
     <section class="scene">
       <div class="art"><svg viewBox="0 0 200 200"><use href="#ill-clock-house"/></svg></div>
       <div class="inner stack">
@@ -578,7 +652,7 @@ h1 .mark,h2 .mark{text-shadow:0 1px 0 rgba(58,36,2,.5), 0 4px 16px rgba(239,201,
       <div class="fn"><span class="tiny">来源：CPF Board 地契规则。例：40 岁买家需覆盖至 95 岁，即 55 年。</span></div>
     </section>
 
-    <!-- 8 -->
+    <!-- 9 -->
     <section class="scene">
       <div class="art"><svg viewBox="0 0 200 200"><use href="#ill-clipboard"/></svg></div>
       <div class="inner stack">
@@ -597,7 +671,7 @@ h1 .mark,h2 .mark{text-shadow:0 1px 0 rgba(58,36,2,.5), 0 4px 16px rgba(239,201,
       <div class="fn"><span class="tiny">接近 55 岁的换房，还要看这一步会不会影响以后的退休收入。</span></div>
     </section>
 
-    <!-- 9 -->
+    <!-- 10 -->
     <section class="scene">
       <div class="art big"><svg viewBox="0 0 200 200"><use href="#ill-sunrise"/></svg></div>
       <div class="inner stack">
