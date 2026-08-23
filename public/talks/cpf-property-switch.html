@@ -62,15 +62,20 @@ body{
 
 .scene{
   position:absolute;inset:0;
-  display:flex;flex-direction:column;justify-content:center;
+  display:flex;flex-direction:column;justify-content:center;align-items:stretch;
   padding:calc(var(--pad) + 32px) var(--pad) calc(var(--avz) + 58px);
   opacity:0;visibility:hidden;transform:translateY(16px) scale(.995);
-  transition:opacity .6s var(--ease),transform .7s var(--ease),visibility 0s linear .7s;
+  transition:opacity .3s var(--ease),transform .7s var(--ease),visibility 0s linear .7s;
 }
-.scene.live{opacity:1;visibility:visible;transform:none;transition-delay:0s}
+/* 换场时旧屏先退，新屏稍后进，避免两屏文字叠在一起 */
+.scene.live{
+  opacity:1;visibility:visible;transform:none;
+  transition:opacity .5s var(--ease) .18s,transform .6s var(--ease) .12s,visibility 0s linear 0s;
+}
 .scene.past{transform:translateY(-14px) scale(.99)}
 
 /* ───────── 基础动效单元 ───────── */
+.inner{width:100%;transform-origin:center center;transition:transform .25s var(--ease)}
 .b{opacity:0;transform:translateY(14px);transition:opacity .5s var(--ease),transform .6s var(--ease)}
 .b.on{opacity:1;transform:none}
 .b.blur{filter:blur(6px)}
@@ -78,7 +83,7 @@ body{
 
 /* ───────── 文字层级 ───────── */
 .kicker{
-  display:inline-flex;align-items:center;gap:8px;align-self:flex-start;
+  display:inline-flex;line-height:1.15;align-items:center;gap:8px;align-self:flex-start;
   font-size:12px;letter-spacing:.22em;font-weight:700;color:var(--gold);
   padding:6px 12px;border:1px solid rgba(239,201,110,.42);border-radius:999px;
   background:rgba(239,201,110,.08);
@@ -89,17 +94,18 @@ body{
   letter-spacing:-.02em;
 }
 h1{
-  margin:0;font-weight:900;letter-spacing:-.01em;line-height:1.1;
+  margin:0;font-weight:900;letter-spacing:.005em;line-height:1.32;
   font-size:clamp(31px,8.6vw,44px);
   text-shadow:0 8px 26px rgba(0,0,0,.28);
 }
 h2{
-  margin:0;font-weight:900;line-height:1.16;
+  margin:0;font-weight:900;line-height:1.36;letter-spacing:.005em;
   font-size:clamp(25px,7vw,34px);
   text-shadow:0 6px 20px rgba(0,0,0,.25);
 }
-.lead{margin:0;font-size:clamp(15px,4.1vw,17px);line-height:1.62;color:var(--cream-2);font-weight:500}
-.tiny{font-size:11.5px;line-height:1.5;color:var(--cream-3);font-weight:400}
+.lead{margin:0;font-size:clamp(15px,4.1vw,17px);line-height:1.95;letter-spacing:.012em;
+  color:var(--cream-2);font-weight:500}
+.tiny{font-size:11.5px;line-height:1.85;letter-spacing:.012em;color:var(--cream-3);font-weight:400}
 .mark{color:var(--gold)}
 .ul{
   padding-bottom:6px;
@@ -109,20 +115,20 @@ h2{
   transition:background-size .8s var(--ease) .25s;
 }
 .on .ul,.ul.on{background-size:100% 7px}
-.stack>*+*{margin-top:14px}
-.stack-s>*+*{margin-top:9px}
+.stack>*+*{margin-top:clamp(16px,4.2vw,22px)}
+.stack-s>*+*{margin-top:11px}
 
 /* ───────── 卡片 / 图表 ───────── */
 .card{
   border:1px solid var(--line);border-radius:16px;
   background:linear-gradient(180deg,rgba(252,247,236,.11),rgba(252,247,236,.045));
-  padding:13px 14px;backdrop-filter:blur(2px);
+  padding:15px 16px;backdrop-filter:blur(2px);
 }
 .card.gold{border-color:rgba(239,201,110,.5);background:linear-gradient(180deg,rgba(239,201,110,.20),rgba(239,201,110,.07))}
 .row{display:flex;gap:10px}
 .row>*{flex:1}
-.lbl{font-size:12px;color:var(--cream-3);font-weight:600;letter-spacing:.06em}
-.val{font-family:var(--num);font-weight:800;font-size:clamp(21px,5.6vw,26px);line-height:1.1;letter-spacing:-.01em}
+.lbl{font-size:12px;line-height:1.6;color:var(--cream-3);font-weight:600;letter-spacing:.06em}
+.val{font-family:var(--num);font-weight:800;font-size:clamp(21px,5.6vw,26px);line-height:1.24;letter-spacing:-.01em}
 .val.g{color:var(--gold)}
 .unit{font-size:.56em;font-weight:700;margin-left:2px;opacity:.8}
 
@@ -137,7 +143,7 @@ h2{
 .bar .fill.ghost{background:repeating-linear-gradient(115deg,rgba(252,247,236,.22) 0 7px,rgba(252,247,236,.08) 7px 14px)}
 .bar .fill.dim{background:linear-gradient(90deg,rgba(252,247,236,.34),rgba(252,247,236,.18))}
 .barrow{display:flex;align-items:center;gap:9px}
-.barrow .name{width:58px;flex:none;font-size:12.5px;color:var(--cream-2);font-weight:600;line-height:1.25}
+.barrow .name{width:58px;flex:none;font-size:12.5px;color:var(--cream-2);font-weight:600;line-height:1.45}
 .barrow .bar{flex:1}
 .barrow .num{width:80px;flex:none;text-align:right;font-family:var(--num);font-weight:800;
   font-size:14.5px;letter-spacing:-.01em}
@@ -149,13 +155,13 @@ h2{
 .stackbar span{width:0;transition:width .9s var(--ease);border-radius:2px}
 .on .stackbar span{width:var(--w)}
 .s1{background:#F6DFA6}.s2{background:var(--gold)}.s3{background:#C68F35}.s4{background:#9C6D24;color:#FCF7EC}
-.legend{display:flex;flex-wrap:wrap;gap:7px 14px;font-size:12px;color:var(--cream-2);font-weight:600}
+.legend{display:flex;flex-wrap:wrap;gap:10px 16px;font-size:12px;line-height:1.6;color:var(--cream-2);font-weight:600}
 .legend b{font-family:var(--num);font-weight:800;color:var(--cream)}
 .legend i{display:inline-block;width:9px;height:9px;border-radius:3px;margin-right:5px;vertical-align:middle}
 
 /* 分叉 */
 .fork{display:flex;gap:10px;align-items:stretch}
-.fork .card{display:flex;flex-direction:column;gap:6px}
+.fork .card{display:flex;flex-direction:column;gap:8px}
 .age{
   position:relative;text-align:center;font-family:var(--num);font-weight:900;
   font-size:clamp(40px,11vw,54px);color:var(--gold);line-height:1;
@@ -169,14 +175,14 @@ h2{
 /* 时间轴 */
 .tl{position:relative;padding-left:22px}
 .tl::before{content:"";position:absolute;left:6px;top:6px;bottom:6px;width:2px;background:linear-gradient(180deg,var(--gold),rgba(239,201,110,.12))}
-.tl .step{position:relative;padding:0 0 13px}
+.tl .step{position:relative;padding:0 0 17px}
 .tl .step:last-child{padding-bottom:0}
 .tl .step::before{
   content:"";position:absolute;left:-21px;top:5px;width:10px;height:10px;border-radius:50%;
   background:var(--gold);box-shadow:0 0 0 4px rgba(239,201,110,.16);
 }
-.tl .t{font-size:14.5px;font-weight:700;line-height:1.35}
-.tl .d{font-size:12px;color:var(--cream-3);margin-top:2px;line-height:1.45}
+.tl .t{font-size:14.5px;font-weight:700;line-height:1.5}
+.tl .d{font-size:12px;color:var(--cream-3);margin-top:4px;line-height:1.65}
 
 /* 迷你折线图 */
 .chart{width:100%;height:auto;display:block;overflow:visible}
@@ -194,16 +200,16 @@ h2{
 .chart .gaptx{fill:var(--gold);font-size:9.5px;font-weight:800;font-family:var(--num)}
 
 /* 三查卡片 */
-.checks{display:flex;flex-direction:column;gap:9px}
-.check{display:flex;align-items:center;gap:11px;padding:11px 13px;border-radius:14px;
+.checks{display:flex;flex-direction:column;gap:11px}
+.check{display:flex;align-items:center;gap:12px;padding:14px 14px;border-radius:14px;
   border:1px solid var(--line);background:rgba(252,247,236,.07)}
 .check .n{font-family:var(--num);font-weight:900;color:var(--gold);font-size:15px;opacity:.85}
-.check .tx{font-size:14px;font-weight:600;line-height:1.35}
+.check .tx{font-size:14px;font-weight:600;line-height:1.5}
 
 /* 底部脚注（避开右下角头像位） */
 .fn{
   position:absolute;left:var(--pad);right:var(--pad);
-  bottom:calc(var(--avz) + 16px);
+  bottom:calc(var(--avz) + 20px);
 }
 .fn .tiny{display:block}
 
@@ -237,6 +243,37 @@ h2{
   transition:opacity .6s ease;
 }
 #tapzone{position:fixed;inset:0;z-index:10}
+/* 矮屏手机：等比收紧留白，保证不与脚注/头像位打架 */
+@media (max-height:800px){
+  :root{--avz:clamp(108px,31vw,150px);--pad:clamp(18px,5vw,26px)}
+  .scene{padding:calc(var(--pad) + 26px) var(--pad) calc(var(--avz) + 48px)}
+  .stack>*+*{margin-top:clamp(13px,3.4vw,17px)}
+  .stack-s>*+*{margin-top:9px}
+  .lead{line-height:1.8}
+  .tiny{line-height:1.75}
+  .card{padding:13px 14px}
+  .tl .step{padding-bottom:14px}
+  .checks{gap:9px}
+  .check{padding:12px 13px}
+  .fn{bottom:calc(var(--avz) + 16px)}
+}
+@media (max-height:700px){
+  :root{--avz:clamp(96px,27vw,130px)}
+  .scene{padding:calc(var(--pad) + 22px) var(--pad) calc(var(--avz) + 36px)}
+  .stack>*+*{margin-top:11px}
+  .stack-s>*+*{margin-top:8px}
+  h1{line-height:1.24}
+  h2{line-height:1.28}
+  .lead{line-height:1.7}
+  .tiny{font-size:11px;line-height:1.62}
+  .idx{font-size:clamp(36px,10vw,50px)}
+  .card{padding:12px 13px}
+  .tl .step{padding-bottom:12px}
+  .checks{gap:8px}
+  .check{padding:11px 12px}
+  .legend{gap:7px 13px}
+  .fn{bottom:calc(var(--avz) + 14px)}
+}
 @media (prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;transition-duration:.01ms!important}}
 </style>
 
@@ -244,20 +281,18 @@ h2{
   <div id="deck">
 
     <!-- 1 · 钩子 -->
-    <section class="scene stack">
-      <span class="b kicker">换 房 前 必 看</span>
+    <section class="scene"><div class="inner stack"><span class="b kicker">换 房 前 必 看</span>
       <h1 class="b">房子<span class="mark" data-count="100" data-suf="万">0万</span>卖掉<br>你能拿到多少现金？</h1>
       <div class="b row" style="margin-top:4px">
         <div class="card" style="text-align:center"><div class="val">63<span class="unit">万</span></div><div class="lbl" style="margin-top:3px">直觉答案</div></div>
         <div class="card gold" style="text-align:center"><div class="val g">10<span class="unit">万</span></div><div class="lbl" style="margin-top:3px">可能的真相</div></div>
       </div>
       <p class="b lead">剩下的 <b class="mark">53万</b>，并没有消失<br>它退回了你自己的 CPF。</p>
-      <div class="fn"><span class="b tiny">全片金额为示意演算，用于说明规则，非个人测算结果。</span></div>
-    </section>
+      </div>
+      <div class="fn"><span class="b tiny">全片金额为示意演算，用于说明规则，非个人测算结果。</span></div></section>
 
     <!-- 2 · 直觉算法 vs 真实到手 -->
-    <section class="scene stack">
-      <span class="b kicker">很 多 人 这 么 算</span>
+    <section class="scene"><div class="inner stack"><span class="b kicker">很 多 人 这 么 算</span>
       <div class="b barrow"><span class="name">成交价</span><div class="bar"><div class="fill dim" style="--w:100%"></div></div><span class="num">100万</span></div>
       <div class="b barrow"><span class="name">未还房贷</span><div class="bar"><div class="fill ghost" style="--w:37%"></div></div><span class="num">-37万</span></div>
       <div class="b barrow"><span class="name">表面剩余</span><div class="bar"><div class="fill dim" style="--w:63%"></div></div><span class="num">63万</span></div>
@@ -265,12 +300,11 @@ h2{
       <div class="b barrow"><span class="name">退回 CPF</span><div class="bar"><div class="fill solid" style="--w:84%"></div></div><span class="num g">53万</span></div>
       <div class="b barrow"><span class="name">到手现金</span><div class="bar"><div class="fill solid" style="--w:16%"></div></div><span class="num g">10万</span></div>
       <p class="b lead">到手现金，可能只有你以为的 <b class="mark">六分之一</b>。</p>
-      <div class="fn"><span class="b tiny">示意：成交价 S$100万，剩余贷款 S$37万，历史 CPF 动用 + 应计利息 S$53万。</span></div>
-    </section>
+      </div>
+      <div class="fn"><span class="b tiny">示意：成交价 S$100万，剩余贷款 S$37万，历史 CPF 动用 + 应计利息 S$53万。</span></div></section>
 
     <!-- 3 · 规则一 -->
-    <section class="scene stack">
-      <div class="b idx">01</div>
+    <section class="scene"><div class="inner stack"><div class="b idx">01</div>
       <h2 class="b">用过的 CPF<br><span class="ul">卖房时要退回去</span></h2>
       <div class="b">
         <div class="stackbar">
@@ -287,12 +321,11 @@ h2{
         </div>
       </div>
       <p class="b lead">这些钱<b class="mark">还是你的</b>，只是回到 CPF 账户，<br>没有直接变成可支配现金。</p>
-      <div class="fn"><span class="b tiny">来源：CPF Board「Housing refund」——动用的 CPF 及按 OA 利率 2.5% 计算的应计利息，须于售房时退回本人 CPF 账户。</span></div>
-    </section>
+      </div>
+      <div class="fn"><span class="b tiny">来源：CPF Board「Housing refund」——动用的 CPF 及按 OA 利率 2.5% 计算的应计利息，须于售房时退回本人 CPF 账户。</span></div></section>
 
     <!-- 4 · 应计利息曲线 -->
-    <section class="scene stack">
-      <span class="b kicker">最 容 易 被 低 估 的 一 笔</span>
+    <section class="scene"><div class="inner stack"><span class="b kicker">最 容 易 被 低 估 的 一 笔</span>
       <h2 class="b">应计利息<br>一直在<span class="ul">悄悄累积</span></h2>
       <div class="b card">
         <svg class="chart" viewBox="0 0 300 138" role="img" aria-label="应计利息累积示意图">
@@ -316,12 +349,11 @@ h2{
         </div>
       </div>
       <p class="b tiny">示意：本金 S$30万，按 OA 年利率 2.5% 复利 20 年，需退回约 S$49万。</p>
-      <div class="fn"><span class="b tiny">来源：CPF Board，普通账户（OA）基本利率 2.5% p.a.，应计利息按复利计算。</span></div>
-    </section>
+      </div>
+      <div class="fn"><span class="b tiny">来源：CPF Board，普通账户（OA）基本利率 2.5% p.a.，应计利息按复利计算。</span></div></section>
 
     <!-- 5 · 规则二 55岁 -->
-    <section class="scene stack">
-      <div class="b idx">02</div>
+    <section class="scene"><div class="inner stack"><div class="b idx">02</div>
       <h2 class="b">退款回到哪里<br><span class="ul">要看你几岁</span></h2>
       <div class="b age">55<span style="font-size:.32em;font-weight:800;letter-spacing:.1em;margin-left:4px">岁</span></div>
       <div class="b fork">
@@ -347,12 +379,11 @@ h2{
           <span><i style="background:#F6DFA6"></i>余额回 OA <b>41万</b></span>
         </div>
       </div>
-      <div class="fn"><span class="b tiny">来源：CPF Board 退休存款——2026 年满 55 岁人群全额退休存款（FRS）为 S$220,400，具体以 CPF 官网公布为准。</span></div>
-    </section>
+      </div>
+      <div class="fn"><span class="b tiny">来源：CPF Board 退休存款——2026 年满 55 岁人群全额退休存款（FRS）为 S$220,400，具体以 CPF 官网公布为准。</span></div></section>
 
     <!-- 6 · 规则三 先买后卖 -->
-    <section class="scene stack">
-      <div class="b idx">03</div>
+    <section class="scene"><div class="inner stack"><div class="b idx">03</div>
       <h2 class="b">先买后卖<br><span class="ul">按第二套房计算</span></h2>
       <div class="tl">
         <div class="step b"><div class="t">① 先买新房</div><div class="d">旧房里的 CPF 暂时拿不出来</div></div>
@@ -364,12 +395,11 @@ h2{
         <div class="val g" style="font-size:clamp(28px,8vw,36px)"><span data-count="20" data-suf="%">0%</span></div>
         <div class="tiny" style="color:var(--cream-2)">按 S$150万新房计，需先行准备<br><b class="mark">约 S$30万</b> 的额外印花税。</div>
       </div>
-      <div class="fn"><span class="b tiny">来源：IRAS，2023年4月27日起新加坡公民购买第二套住宅 ABSD 税率 20%；夫妻（至少一方为公民）符合条件、在规定期限内售出原唯一住宅，可申请退还。</span></div>
-    </section>
+      </div>
+      <div class="fn"><span class="b tiny">来源：IRAS，2023年4月27日起新加坡公民购买第二套住宅 ABSD 税率 20%；夫妻（至少一方为公民）符合条件、在规定期限内售出原唯一住宅，可申请退还。</span></div></section>
 
     <!-- 7 · 规则四 屋龄 -->
-    <section class="scene stack">
-      <div class="b idx">04</div>
+    <section class="scene"><div class="inner stack"><div class="b idx">04</div>
       <h2 class="b">房子的屋龄<br><span class="ul">也会影响 CPF</span></h2>
       <div class="b card"><div class="lbl">门槛</div><div class="val">剩余地契 <span class="mark">≥ 20 年</span></div><div class="tiny" style="margin-top:3px">低于 20 年，原则上不能动用 CPF。</div></div>
       <div class="b stack-s">
@@ -379,12 +409,11 @@ h2{
         <div class="tiny">例：买家 40 岁，需覆盖 55 年，剩余地契 45 年 → 可用额度按比例折减。</div>
       </div>
       <p class="b lead">屋龄越老，能用的 CPF 越少，<br>要补的<b class="mark">现金就越多</b>。</p>
-      <div class="fn"><span class="b tiny">来源：CPF Board 房产地契规则——剩余地契不足 20 年不可动用 CPF；不足以覆盖最年轻买家至 95 岁的，CPF 可用额度按比例折减。</span></div>
-    </section>
+      </div>
+      <div class="fn"><span class="b tiny">来源：CPF Board 房产地契规则——剩余地契不足 20 年不可动用 CPF；不足以覆盖最年轻买家至 95 岁的，CPF 可用额度按比例折减。</span></div></section>
 
     <!-- 8 · 行动清单 -->
-    <section class="scene stack">
-      <span class="b kicker">换 房 之 前 · 三 件 事</span>
+    <section class="scene"><div class="inner stack"><span class="b kicker">换 房 之 前 · 三 件 事</span>
       <h2 class="b">不要只看<span class="ul">成交价</span></h2>
       <div class="checks">
         <div class="check b"><span class="n">01</span><span class="tx">还剩多少房贷未还</span></div>
@@ -396,15 +425,15 @@ h2{
         <div class="val g" style="font-size:clamp(17px,4.6vw,20px);margin-top:3px">CPF · Home Ownership Dashboard</div>
       </div>
       <p class="b lead">如果已经接近 55 岁，还要多看一步：<br>这次换房，会不会<b class="mark">影响以后的退休收入</b>。</p>
+      </div>
     </section>
 
     <!-- 9 · 收尾 -->
-    <section class="scene stack">
-      <span class="b kicker">S I N G A P O R E · 退 休 规 划</span>
+    <section class="scene"><div class="inner stack"><span class="b kicker">S I N G A P O R E · 退 休 规 划</span>
       <h1 class="b">我是在新加坡<br>做退休规划的<span class="mark">小圆姐</span></h1>
       <h2 class="b" style="color:var(--gold)"><span class="ul">陪你一起，日富一日</span></h2>
-      <div class="fn"><span class="b tiny">本页内容仅供信息参考，不构成投资、税务或法律建议。CPF、ABSD 及地契相关规定以 CPF Board、IRAS、HDB / URA 最新公布为准。</span></div>
-    </section>
+      </div>
+      <div class="fn"><span class="b tiny">本页内容仅供信息参考，不构成投资、税务或法律建议。CPF、ABSD 及地契相关规定以 CPF Board、IRAS、HDB / URA 最新公布为准。</span></div></section>
 
   </div>
 </div>
@@ -450,6 +479,27 @@ h2{
     }
     requestAnimationFrame(tick);
   }
+
+  // 每屏可用高度 = 顶部留白 ~ 脚注(或头像安全区)上沿；内容超出则整体等比缩小
+  var GAP = 16;
+  function fit(){
+    var avz = document.getElementById('avz').getBoundingClientRect();
+    scenes.forEach(function(sc){
+      var inner = sc.querySelector('.inner');
+      if(!inner) return;
+      var scTop = sc.getBoundingClientRect().top;
+      var fn = sc.querySelector('.fn');
+      var limit = (fn ? fn.getBoundingClientRect().top : avz.top) - scTop - GAP;
+      sc.style.paddingBottom = Math.max(0, sc.clientHeight - limit) + 'px';
+      var avail = limit - parseFloat(getComputedStyle(sc).paddingTop);
+      inner.style.transform = '';
+      var h = inner.offsetHeight;
+      if(h > avail && avail > 0){
+        inner.style.transform = 'scale(' + Math.max(.72, avail / h).toFixed(3) + ')';
+      }
+    });
+  }
+  window.addEventListener('resize', fit);
 
   function render(){
     var sIdx = beats[cur].scene;
@@ -501,6 +551,7 @@ h2{
     if(e.key==='g'||e.key==='G'){ document.getElementById('avz').classList.toggle('show'); }
   });
 
+  fit();
   go(0);
 })();
 </script>
