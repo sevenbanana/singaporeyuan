@@ -28,7 +28,7 @@
 
   /* 右下角口播头像安全区，内容永不进入 */
   --avz:clamp(128px,36vw,178px);
-  --pad:clamp(22px,5.6vw,32px);
+  --pad:clamp(28px,7.2vw,44px);
   --ease:cubic-bezier(.22,1,.36,1);
   --sat:env(safe-area-inset-top,0px);
   --sab:env(safe-area-inset-bottom,0px);
@@ -68,7 +68,7 @@ body{
 .scene{
   position:absolute;inset:0;
   display:flex;flex-direction:column;justify-content:center;
-  padding:calc(var(--pad) + 40px + var(--sat)) var(--pad) calc(var(--avz) + 66px + var(--sab));
+  padding:calc(var(--pad) + 40px + var(--sat)) var(--pad) calc(var(--avz) + 30px + var(--sab));
   opacity:0;visibility:hidden;
   transition:opacity .32s var(--ease),transform .6s var(--ease),visibility 0s linear .6s;
 }
@@ -107,16 +107,19 @@ body{
   font-family:var(--num);font-weight:900;font-size:clamp(44px,13vw,64px);line-height:.8;
   color:transparent;-webkit-text-stroke:2px rgba(239,201,110,.5);letter-spacing:-.02em;
 }
-h1{margin:0;font-weight:900;line-height:1.34;letter-spacing:.005em;
-  font-size:clamp(30px,8.4vw,42px);text-shadow:0 8px 26px rgba(0,0,0,.3)}
-h2{margin:0;font-weight:900;line-height:1.38;letter-spacing:.005em;
-  font-size:clamp(24px,6.8vw,33px);text-shadow:0 6px 20px rgba(0,0,0,.26)}
+h1,h2{
+  margin:0;font-weight:900;letter-spacing:.005em;
+  text-shadow:0 1px 0 rgba(58,36,2,.55), 0 3px 8px rgba(44,27,0,.4), 0 16px 34px rgba(0,0,0,.34);
+}
+h1{line-height:1.34;font-size:clamp(30px,8.4vw,42px)}
+h2{line-height:1.38;font-size:clamp(24px,6.8vw,33px)}
+h1 .mark,h2 .mark{text-shadow:0 1px 0 rgba(58,36,2,.5), 0 4px 16px rgba(239,201,110,.32), 0 16px 34px rgba(0,0,0,.3)}
 .lead{margin:0;font-size:clamp(16px,4.3vw,18px);line-height:1.9;letter-spacing:.014em;
   color:var(--cream-2);font-weight:500}
 .tiny{font-size:12.5px;line-height:1.8;letter-spacing:.014em;color:var(--cream-3);font-weight:400}
 .mark{color:var(--gold)}
 .ul{
-  padding-bottom:6px;
+  padding-bottom:12px;
   background-image:linear-gradient(rgba(239,201,110,.9),rgba(239,201,110,.9));
   background-position:0 100%;background-repeat:no-repeat;background-size:0 7px;
   transition:background-size .8s var(--ease) .25s;
@@ -204,10 +207,12 @@ h2{margin:0;font-weight:900;line-height:1.38;letter-spacing:.005em;
 
 /* 常显小字注解 */
 .fn{
-  position:absolute;left:var(--pad);right:var(--pad);bottom:calc(var(--avz) + 20px + var(--sab));z-index:2;
-  padding-top:10px;border-top:1px solid rgba(252,247,236,.12);
+  position:absolute;left:var(--pad);right:auto;width:50%;
+  bottom:calc(42px + var(--sab));z-index:2;
+  padding-top:9px;border-top:1px solid rgba(252,247,236,.14);
   opacity:0;transition:opacity .6s var(--ease) .3s;
 }
+.fn .tiny{line-height:1.72}
 .scene.live .fn{opacity:1}
 
 /* ───────── HUD ───────── */
@@ -232,7 +237,7 @@ h2{margin:0;font-weight:900;line-height:1.38;letter-spacing:.005em;
 #avz.show{border-color:rgba(239,201,110,.5);background:rgba(239,201,110,.05)}
 
 #swipe{
-  position:fixed;left:max(var(--pad), calc(50% - 260px + var(--pad)));bottom:calc(16px + var(--sab));z-index:18;
+  position:fixed;left:max(var(--pad), calc(50% - 260px + var(--pad)));bottom:calc(12px + var(--sab));z-index:18;
   display:flex;align-items:center;gap:9px;pointer-events:none;
   color:rgba(252,247,236,.5);font-size:11px;letter-spacing:.2em;font-weight:600;
   opacity:0;transition:opacity .5s ease;
@@ -245,12 +250,12 @@ h2{margin:0;font-weight:900;line-height:1.38;letter-spacing:.005em;
 
 /* 矮屏收紧 */
 @media (max-height:800px){
-  :root{--avz:clamp(108px,31vw,150px);--pad:clamp(18px,5vw,26px)}
-  .scene{padding:calc(var(--pad) + 32px + var(--sat)) var(--pad) calc(var(--avz) + 54px + var(--sab))}
+  :root{--avz:clamp(108px,31vw,150px);--pad:clamp(24px,6.4vw,36px)}
+  .scene{padding:calc(var(--pad) + 32px + var(--sat)) var(--pad) calc(var(--avz) + 24px + var(--sab))}
   .stack>*+*{margin-top:clamp(16px,4.4vw,22px)}
   .lead{line-height:1.8}
   .card{padding:14px 15px}
-  .fn{bottom:calc(var(--avz) + 16px + var(--sab))}
+  .fn{bottom:calc(38px + var(--sab))}
 }
 @media (max-height:700px){
   :root{--avz:clamp(96px,27vw,130px)}
@@ -424,7 +429,7 @@ h2{margin:0;font-weight:900;line-height:1.38;letter-spacing:.005em;
       <div class="art big"><svg viewBox="0 0 200 200"><use href="#ill-house"/></svg></div>
       <div class="inner stack">
         <span class="b kicker">换 房 前 必 看</span>
-        <h1 class="b">房子<span class="mark" data-count="100" data-suf="万">0万</span>卖掉<br>你能拿到多少现金？</h1>
+        <h1 class="b">房子<span class="mark" data-count="100" data-suf="万">0万</span>卖掉<br>你能拿到多少<span class="mark">现金</span>？</h1>
         <div class="b row">
           <div class="card" style="text-align:center"><div class="val">63<span class="unit">万</span></div><div class="lbl" style="margin-top:4px">直觉答案</div></div>
           <div class="card gold" style="text-align:center"><div class="val g">10<span class="unit">万</span></div><div class="lbl" style="margin-top:4px">可能的真相</div></div>
@@ -455,7 +460,7 @@ h2{margin:0;font-weight:900;line-height:1.38;letter-spacing:.005em;
           <div class="barrow"><span class="name">到手现金</span><div class="bar"><div class="fill solid" style="--w:16%"></div></div><span class="num g">10万</span></div>
         </div>
       </div>
-      <div class="fn"><span class="tiny">示意：成交价 S$100万，剩余贷款 S$37万，历史 CPF 动用 + 应计利息 S$53万。</span></div>
+      <div class="fn"><span class="tiny">示意：成交价 100万、剩余贷款 37万、历史 CPF 含应计利息 53万。</span></div>
     </section>
 
     <!-- 3 -->
@@ -463,7 +468,7 @@ h2{margin:0;font-weight:900;line-height:1.38;letter-spacing:.005em;
       <div class="art"><svg viewBox="0 0 200 200"><use href="#ill-vault"/></svg></div>
       <div class="inner stack">
         <div class="b idx">01</div>
-        <h2 class="b">用过的 CPF<br><span class="ul">卖房时要退回去</span></h2>
+        <h2 class="b">用过的 <span class="mark">CPF</span><br><span class="ul">卖房时要退回去</span></h2>
         <div class="b">
           <div class="stackbar">
             <span class="s1" style="--w:34%"></span><span class="s2" style="--w:41%"></span>
@@ -478,7 +483,7 @@ h2{margin:0;font-weight:900;line-height:1.38;letter-spacing:.005em;
         </div>
         <p class="b lead">钱还是你的，<b class="mark">只是不在手上</b>。</p>
       </div>
-      <div class="fn"><span class="tiny">来源：CPF Board「Housing refund」——动用的 CPF 及应计利息，须于售房时退回本人 CPF 账户。</span></div>
+      <div class="fn"><span class="tiny">来源：CPF Board 住房退款——动用的 CPF 及应计利息须在售房时退回本人账户。</span></div>
     </section>
 
     <!-- 4 -->
@@ -486,7 +491,7 @@ h2{margin:0;font-weight:900;line-height:1.38;letter-spacing:.005em;
       <div class="art"><svg viewBox="0 0 200 200"><use href="#ill-hourglass"/></svg></div>
       <div class="inner stack">
         <span class="b kicker">最 容 易 低 估 的 一 笔</span>
-        <h2 class="b">应计利息<br><span class="ul">一直在累积</span></h2>
+        <h2 class="b"><span class="mark">应计利息</span><br><span class="ul">一直在累积</span></h2>
         <div class="b card">
           <svg class="chart" viewBox="0 0 300 138" role="img" aria-label="应计利息累积示意图">
             <line class="grid" x1="25" y1="120" x2="292" y2="120"/>
@@ -509,7 +514,7 @@ h2{margin:0;font-weight:900;line-height:1.38;letter-spacing:.005em;
           </div>
         </div>
       </div>
-      <div class="fn"><span class="tiny">示意：本金 S$30万按 OA 年利率 2.5% 复利 20 年，需退回约 S$49万。来源：CPF Board。</span></div>
+      <div class="fn"><span class="tiny">示意：本金 30万按 OA 利率 2.5% 复利 20 年，需退约 49万。来源：CPF Board。</span></div>
     </section>
 
     <!-- 5 -->
@@ -517,7 +522,7 @@ h2{margin:0;font-weight:900;line-height:1.38;letter-spacing:.005em;
       <div class="art"><svg viewBox="0 0 200 200"><use href="#ill-signpost"/></svg></div>
       <div class="inner stack">
         <div class="b idx">02</div>
-        <h2 class="b">退款回到哪里<br><span class="ul">要看你几岁</span></h2>
+        <h2 class="b">退款回到哪里<br><span class="ul">要看你<span class="mark">几岁</span></span></h2>
         <div class="b age">55<span style="font-size:.32em;font-weight:800;letter-spacing:.1em;margin-left:4px">岁</span></div>
         <div class="b fork">
           <div class="card"><div class="lbl">55 岁之前</div><div class="val g">全额回 OA</div></div>
@@ -533,7 +538,7 @@ h2{margin:0;font-weight:900;line-height:1.38;letter-spacing:.005em;
           </div>
         </div>
       </div>
-      <div class="fn"><span class="tiny">来源：CPF Board 退休存款——2026 年满 55 岁人群全额退休存款（FRS）S$220,400，以官网公布为准。</span></div>
+      <div class="fn"><span class="tiny">来源：CPF Board。2026 年满 55 岁的全额退休存款 S$220,400，以官网公布为准。</span></div>
     </section>
 
     <!-- 6 -->
@@ -541,7 +546,7 @@ h2{margin:0;font-weight:900;line-height:1.38;letter-spacing:.005em;
       <div class="art"><svg viewBox="0 0 200 200"><use href="#ill-two-houses"/></svg></div>
       <div class="inner stack">
         <div class="b idx">03</div>
-        <h2 class="b">先买后卖<br><span class="ul">按第二套计算</span></h2>
+        <h2 class="b">先买后卖<br><span class="ul">按<span class="mark">第二套</span>计算</span></h2>
         <div class="tl">
           <div class="step b"><div class="t">① 先买新房</div><div class="d">旧房 CPF 暂时拿不出来</div></div>
           <div class="step b"><div class="t">② 按第二套计税</div><div class="d">公民第二套 ABSD 20%</div></div>
@@ -553,7 +558,7 @@ h2{margin:0;font-weight:900;line-height:1.38;letter-spacing:.005em;
           <div class="tiny" style="color:var(--cream-2)">按 S$150万新房计，<br>需先备 <b class="mark">约 S$30万</b> 印花税。</div>
         </div>
       </div>
-      <div class="fn"><span class="tiny">来源：IRAS，2023年4月27日起公民第二套住宅 ABSD 20%；夫妻符合条件、在期限内售出原唯一住宅可申请退还。</span></div>
+      <div class="fn"><span class="tiny">来源：IRAS。2023年4月27日起公民第二套住宅 ABSD 20%，符合条件可申请退还。</span></div>
     </section>
 
     <!-- 7 -->
@@ -561,7 +566,7 @@ h2{margin:0;font-weight:900;line-height:1.38;letter-spacing:.005em;
       <div class="art"><svg viewBox="0 0 200 200"><use href="#ill-clock-house"/></svg></div>
       <div class="inner stack">
         <div class="b idx">04</div>
-        <h2 class="b">房子的屋龄<br><span class="ul">也会影响 CPF</span></h2>
+        <h2 class="b">房子的<span class="mark">屋龄</span><br><span class="ul">也会影响 CPF</span></h2>
         <div class="b card"><div class="lbl">门槛</div><div class="val">剩余地契 <span class="mark">≥ 20 年</span></div></div>
         <div class="b stack-s">
           <div class="lbl">能否覆盖最年轻买家到 95 岁</div>
@@ -570,7 +575,7 @@ h2{margin:0;font-weight:900;line-height:1.38;letter-spacing:.005em;
         </div>
         <p class="b lead">屋龄越老，要补的<b class="mark">现金越多</b>。</p>
       </div>
-      <div class="fn"><span class="tiny">来源：CPF Board 房产地契规则。例：买家 40 岁需覆盖 55 年，剩余地契 45 年，可用额度按比例折减。</span></div>
+      <div class="fn"><span class="tiny">来源：CPF Board 地契规则。例：40 岁买家需覆盖至 95 岁，即 55 年。</span></div>
     </section>
 
     <!-- 8 -->
@@ -578,7 +583,7 @@ h2{margin:0;font-weight:900;line-height:1.38;letter-spacing:.005em;
       <div class="art"><svg viewBox="0 0 200 200"><use href="#ill-clipboard"/></svg></div>
       <div class="inner stack">
         <span class="b kicker">换 房 之 前 · 三 件 事</span>
-        <h2 class="b">不要只看<span class="ul">成交价</span></h2>
+        <h2 class="b">不要只看<span class="ul"><span class="mark">成交价</span></span></h2>
         <div class="checks">
           <div class="check b"><span class="n">01</span><span class="tx">还剩多少房贷</span></div>
           <div class="check b"><span class="n">02</span><span class="tx">要退回多少 CPF</span></div>
@@ -600,7 +605,7 @@ h2{margin:0;font-weight:900;line-height:1.38;letter-spacing:.005em;
         <h1 class="b">我是在新加坡<br>做退休规划的<span class="mark">小圆姐</span></h1>
         <h2 class="b" style="color:var(--gold)"><span class="ul">陪你一起，日富一日</span></h2>
       </div>
-      <div class="fn"><span class="tiny">本页仅供信息参考，不构成投资、税务或法律建议。相关规定以 CPF Board、IRAS、HDB / URA 最新公布为准。</span></div>
+      <div class="fn"><span class="tiny">本页仅供参考，不构成投资、税务或法律建议。以 CPF Board、IRAS、HDB / URA 最新规定为准。</span></div>
     </section>
 
   </div>
@@ -639,7 +644,8 @@ h2{margin:0;font-weight:900;line-height:1.38;letter-spacing:.005em;
     scenes.forEach(function(sc){
       var inner = sc.querySelector('.inner'); if(!inner) return;
       var fn = sc.querySelector('.fn');
-      var limit = (fn ? fn.getBoundingClientRect().top : avz.top) - sc.getBoundingClientRect().top - GAP;
+      var lim = fn ? Math.min(fn.getBoundingClientRect().top, avz.top) : avz.top;
+      var limit = lim - sc.getBoundingClientRect().top - GAP;
       sc.style.paddingBottom = Math.max(0, sc.clientHeight - limit) + 'px';
       var avail = limit - parseFloat(getComputedStyle(sc).paddingTop);
       inner.style.transform = '';
