@@ -74,7 +74,7 @@ section{margin-top:48px;scroll-margin-top:24px}
 .adl-item{display:inline-flex;align-items:center;gap:7px;background:#fff;border:1px solid #D9E0EC;border-radius:9px;padding:6px 12px;font-size:13px;color:var(--navy-soft)}
 .adl-item svg{width:15px;height:15px;color:var(--gold-deep);flex-shrink:0}
 
-/* ---------- plan cards ---------- */
+/* ---------- tier cards ---------- */
 .cards{display:grid;gap:18px}
 @media(min-width:680px){.cards{grid-template-columns:1fr 1fr}}
 .pcard{background:#fff;border:1px solid var(--line);border-radius:18px;overflow:hidden;border-top:4px solid var(--pc);display:flex;flex-direction:column}
@@ -84,22 +84,25 @@ section{margin-top:48px;scroll-margin-top:24px}
 .pcard.private .pc-head{background:linear-gradient(150deg,#F2F5FA,#FBFAF7)}
 .pcard.public .pc-head{background:linear-gradient(150deg,#F9F4E8,#FBFAF7)}
 .pc-tag{display:inline-flex;align-items:center;gap:6px;font-size:11.5px;letter-spacing:.08em;font-weight:600;color:var(--pc);border:1px solid var(--pc);border-radius:20px;padding:3px 12px;margin-bottom:12px}
-.pc-head h3{font-size:19px;color:var(--navy);line-height:1.45}
-.pc-prod{margin-top:6px;font-size:12.5px;line-height:1.75;color:var(--muted)}
-.pc-big{margin-top:16px;display:flex;align-items:flex-end;justify-content:space-between;gap:12px;flex-wrap:wrap}
 .pc-big-k{font-size:11.5px;color:var(--muted);letter-spacing:.04em}
-.pc-monthly{font-size:30px;font-weight:800;color:var(--navy);line-height:1.1;white-space:nowrap}
+.pc-monthly{font-size:32px;font-weight:800;color:var(--navy);line-height:1.1;white-space:nowrap;margin-top:2px}
 .pc-monthly small{font-size:12px;font-weight:500;color:var(--muted)}
-.pc-annual{text-align:right;font-size:12px;color:var(--muted);line-height:1.5}
-.pc-annual strong{display:block;color:var(--navy);font-size:20px;font-weight:700}
+.pc-prem{margin-top:16px;border-top:1px dashed var(--line);padding-top:14px}
+.prem-row{display:flex;justify-content:space-between;align-items:baseline;gap:10px;font-size:13px;padding:5px 0}
+.prem-row .k{color:var(--muted)}
+.prem-row .v{font-weight:700;color:var(--navy);white-space:nowrap}
+.prem-row.tot{border-top:1px solid var(--line);margin-top:6px;padding-top:10px;font-size:14px}
+.prem-row.tot .k{color:var(--navy);font-weight:600}
+.prem-row.tot .v{font-size:19px}
 .pc-pay{margin-top:14px;display:flex;flex-wrap:wrap;gap:8px}
 .pay-chip{display:inline-flex;align-items:center;gap:7px;border-radius:9px;padding:7px 12px;font-size:13px;font-weight:600;line-height:1.4}
 .pay-chip svg{width:15px;height:15px;flex-shrink:0}
 .pay-chip.cash{background:var(--green-tint);color:var(--green)}
 .pay-chip.cpf{background:var(--navy-tint);color:var(--navy-soft)}
 .pc-body{padding:18px 22px 22px;flex:1;display:flex;flex-direction:column}
+.pc-body-h{font-size:11.5px;letter-spacing:.1em;color:var(--muted);margin-bottom:12px}
 .feat{display:grid;grid-template-columns:36px 1fr;gap:12px;padding:11px 0;border-bottom:1px dashed var(--line)}
-.feat:first-child{padding-top:0}
+.feat:first-of-type{padding-top:0}
 .feat:last-of-type{border-bottom:0}
 .fico{width:36px;height:36px;border-radius:10px;background:var(--gold-tint);color:var(--gold-deep);display:flex;align-items:center;justify-content:center;flex-shrink:0}
 .fico svg{width:19px;height:19px}
@@ -123,11 +126,11 @@ table{width:100%;border-collapse:collapse;min-width:520px}
 th,td{padding:13px 16px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top;font-size:13.5px}
 th{background:var(--navy-tint);color:var(--navy);font-size:12.5px;font-weight:600;white-space:nowrap}
 td.num,th.num{white-space:nowrap}
-/* 两人栏底色：Mr Wang 浅蓝、Mrs Yang 浅金 */
-table.two-person th:nth-child(2){background:#E8EEF7}
-table.two-person td:nth-child(2){background:#F6F8FC}
-table.two-person th:nth-child(3){background:#F4EDDA}
-table.two-person td:nth-child(3){background:#FBF7EC}
+/* 两档栏底色：S$1,500 浅蓝、S$2,000 浅金 */
+table.two-tier th:nth-child(2){background:#E8EEF7}
+table.two-tier td:nth-child(2){background:#F6F8FC}
+table.two-tier th:nth-child(3){background:#F4EDDA}
+table.two-tier td:nth-child(3){background:#FBF7EC}
 table.three-col th:nth-child(3){background:#E8EEF7}
 table.three-col td:nth-child(3){background:#F6F8FC}
 table.three-col th:nth-child(4){background:#F4EDDA}
@@ -139,6 +142,7 @@ tr.hlrow td.num{font-weight:700;color:var(--navy)}
 td .sub-line{display:block;font-size:11.5px;color:var(--muted);font-weight:400}
 td .b-navy{color:var(--navy);font-weight:600}
 td.green{color:var(--green);font-weight:700}
+td.cashv{color:var(--navy);font-weight:700}
 .cash-note{padding:16px 18px;background:#FBFAF5;border-top:1px solid var(--line);font-size:13px;color:#3B4358;line-height:1.8;display:flex;gap:11px;align-items:flex-start}
 .cash-note svg{width:19px;height:19px;flex-shrink:0;margin-top:3px;color:var(--gold-deep)}
 .cash-note b{color:var(--navy)}
@@ -153,7 +157,7 @@ td.green{color:var(--green);font-weight:700}
 .ph-when{font-size:11.5px;font-weight:700;letter-spacing:.1em;color:var(--pcol)}
 .ph-head h3{font-size:16.5px;color:var(--navy)}
 .ph-desc{font-size:12.5px;color:var(--muted);margin-bottom:14px}
-.bar-row{display:grid;grid-template-columns:78px 1fr 96px;gap:10px;align-items:center;margin-bottom:8px}
+.bar-row{display:grid;grid-template-columns:96px 1fr 96px;gap:10px;align-items:center;margin-bottom:8px}
 .bar-row:last-child{margin-bottom:0}
 .bar-row .who{font-size:12px;color:var(--navy-soft);white-space:nowrap;font-weight:600}
 .bar-track{height:15px;border-radius:8px;background:#F1EFE8;overflow:hidden}
@@ -269,13 +273,13 @@ body.locked #pwGate{display:flex}
     <div>
       <div class="hd-tag">QUOTATION · SINGLIFE CARESHIELD PLUS</div>
       <div class="hd-eyebrow">保障方案与报价 · 长期护理附加计划（CareShield Life Supplement）</div>
-      <h1>夫妻二人的<em>长期护理</em>保障方案<br>Singlife CareShield Plus</h1>
-      <div class="hd-sub">在政府 CareShield Life 基本月付款之上，为 Mr Wang 与 Mrs Yang 各自叠加一份终身月付款。本页整理两人的保障内容与最新报价。</div>
+      <h1>夫妻二人的<em>长期护理</em>保障方案<br>两档保障额可选</h1>
+      <div class="hd-sub">在政府 CareShield Life 基本月付款之上，为 Mr Wang 与 Mrs Yang 各自叠加一份终身月付款。本页列出每月 S$1,500 与 S$2,000 两档的保障内容与报价。</div>
       <div class="hd-pills">
         <span class="hd-pill solid">Mr Wang · Mrs Yang</span>
         <span class="hd-pill">Singlife CareShield Plus</span>
-        <span class="hd-pill">币种：新币 SGD</span>
-        <span class="hd-pill">现金支出 S$0</span>
+        <span class="hd-pill">两档：S$1,500 / S$2,000</span>
+        <span class="hd-pill">已含 25% 永久折扣</span>
         <span class="hd-pill">报价：2026年8月</span>
       </div>
     </div>
@@ -294,7 +298,7 @@ body.locked #pwGate{display:flex}
 
 <nav class="qnav" aria-label="页内导航">
   <a href="#about">这份保障是什么</a>
-  <a href="#plans">方案速览</a>
+  <a href="#plans">两档速览</a>
   <a href="#premium">保费明细</a>
   <a href="#benefits">保障内容</a>
   <a href="#timeline">理赔后能拿多少</a>
@@ -326,77 +330,83 @@ body.locked #pwGate{display:flex}
   </div>
 </section>
 
-<!-- ================= 方案速览 ================= -->
+<!-- ================= 两档速览 ================= -->
 <section id="plans">
-  <div class="sec-eyebrow">PLANS AT A GLANCE</div>
-  <h2 class="sec-title serif">两人的方案，一眼看懂</h2>
-  <p class="sec-sub">两份报价折扣后每人年保费都在 S$600 的 MediSave 上限以内，因此两人都可以全额用 CPF MediSave 支付，现金支出 S$0。</p>
+  <div class="sec-eyebrow">TWO OPTIONS AT A GLANCE</div>
+  <h2 class="sec-title serif">两档保障额，一眼看懂</h2>
+  <p class="sec-sub">两位选的是同一款计划，保障结构完全一致，差别只在每月保障额的高低，以及随之而来的保费。</p>
 
   <div class="cards">
-    <!-- Mr Wang -->
+    <!-- S$1,500 档 -->
     <article class="pcard private">
       <div class="pc-head">
-        <span class="pc-tag">被保人 · Mr Wang</span>
-        <h3>Singlife CareShield Plus</h3>
-        <p class="pc-prod">附加月付款，可领至终身</p>
-        <div class="pc-big">
-          <div>
-            <div class="pc-big-k">每月保障额</div>
-            <div class="pc-monthly">S$1,000 <small>/ 月</small></div>
-          </div>
-          <div class="pc-annual">折扣后年保费<strong>S$549.01</strong></div>
+        <span class="pc-tag">方案一 · 稳健档</span>
+        <div class="pc-big-k">每月保障额</div>
+        <div class="pc-monthly">S$1,500 <small>/ 月</small></div>
+        <div class="pc-prem">
+          <div class="prem-row"><span class="k">Mr Wang 年保费</span><span class="v">S$772.05</span></div>
+          <div class="prem-row"><span class="k">Mrs Yang 年保费</span><span class="v">S$975.98</span></div>
+          <div class="prem-row tot"><span class="k">夫妻合计 / 年</span><span class="v">S$1,748.03</span></div>
         </div>
         <div class="pc-pay">
-          <span class="pay-chip cpf"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg>全额 CPF MediSave 支付</span>
-          <span class="pay-chip cash"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="12" cy="12" r="2.5"/><path d="M6 12h.01M18 12h.01"/></svg>现金 S$0 / 年</span>
+          <span class="pay-chip cpf"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg>MediSave S$1,200</span>
+          <span class="pay-chip cash"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="12" cy="12" r="2.5"/><path d="M6 12h.01M18 12h.01"/></svg>现金 S$548.03 / 年</span>
         </div>
       </div>
       <div class="pc-body">
+        <div class="pc-body-h">理赔时可拿到</div>
         <div class="feat">
           <span class="fico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>
-          <div><b>一次性付款 S$3,000</b><p>理赔确立时一次过发放，等于首次月付款的 3 倍。</p></div>
+          <div><b>一次性付款 S$4,500</b><p>理赔确立时一次过发放，等于首次月付款的 3 倍。</p></div>
         </div>
         <div class="feat">
           <span class="fico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M2 12h20"/></svg></span>
-          <div><b>首 12 个月每月 S$2,800</b><p>月付款、额外月付款、看护者补贴、家属照顾补贴叠加后的金额。</p></div>
+          <div><b>首 12 个月每月 S$4,200</b><p>月付款、额外月付款、看护者补贴、家属照顾补贴叠加后的金额。</p></div>
+        </div>
+        <div class="feat">
+          <span class="fico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></span>
+          <div><b>第 37 个月起 S$1,500 / 月</b><p>基础月付款，只要持续符合条件就一直领到终身。</p></div>
         </div>
         <div class="feat">
           <span class="fico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.51 4.04 3 5.5l7 7Z"/></svg></span>
-          <div><b>身故保障 S$3,000</b><p>等于最后一次月付款的 3 倍。</p></div>
+          <div><b>身故保障 S$4,500</b><p>等于最后一次月付款的 3 倍。</p></div>
         </div>
       </div>
     </article>
 
-    <!-- Mrs Yang -->
+    <!-- S$2,000 档 -->
     <article class="pcard public">
       <div class="pc-head">
-        <span class="pc-tag">被保人 · Mrs Yang</span>
-        <h3>Singlife CareShield Plus</h3>
-        <p class="pc-prod">附加月付款，可领至终身</p>
-        <div class="pc-big">
-          <div>
-            <div class="pc-big-k">每月保障额</div>
-            <div class="pc-monthly">S$800 <small>/ 月</small></div>
-          </div>
-          <div class="pc-annual">折扣后年保费<strong>S$576.15</strong></div>
+        <span class="pc-tag">方案二 · 加强档</span>
+        <div class="pc-big-k">每月保障额</div>
+        <div class="pc-monthly">S$2,000 <small>/ 月</small></div>
+        <div class="pc-prem">
+          <div class="prem-row"><span class="k">Mr Wang 年保费</span><span class="v">S$1,013.05</span></div>
+          <div class="prem-row"><span class="k">Mrs Yang 年保费</span><span class="v">S$1,113.62</span></div>
+          <div class="prem-row tot"><span class="k">夫妻合计 / 年</span><span class="v">S$2,126.67</span></div>
         </div>
         <div class="pc-pay">
-          <span class="pay-chip cpf"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg>全额 CPF MediSave 支付</span>
-          <span class="pay-chip cash"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="12" cy="12" r="2.5"/><path d="M6 12h.01M18 12h.01"/></svg>现金 S$0 / 年</span>
+          <span class="pay-chip cpf"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg>MediSave S$1,200</span>
+          <span class="pay-chip cash"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="12" cy="12" r="2.5"/><path d="M6 12h.01M18 12h.01"/></svg>现金 S$926.67 / 年</span>
         </div>
       </div>
       <div class="pc-body">
+        <div class="pc-body-h">理赔时可拿到</div>
         <div class="feat">
           <span class="fico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>
-          <div><b>一次性付款 S$2,400</b><p>理赔确立时一次过发放，等于首次月付款的 3 倍。</p></div>
+          <div><b>一次性付款 S$6,000</b><p>理赔确立时一次过发放，等于首次月付款的 3 倍。</p></div>
         </div>
         <div class="feat">
           <span class="fico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M2 12h20"/></svg></span>
-          <div><b>首 12 个月每月 S$2,240</b><p>月付款、额外月付款、看护者补贴、家属照顾补贴叠加后的金额。</p></div>
+          <div><b>首 12 个月每月 S$5,600</b><p>月付款、额外月付款、看护者补贴、家属照顾补贴叠加后的金额。</p></div>
+        </div>
+        <div class="feat">
+          <span class="fico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></span>
+          <div><b>第 37 个月起 S$2,000 / 月</b><p>基础月付款，只要持续符合条件就一直领到终身。</p></div>
         </div>
         <div class="feat">
           <span class="fico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.51 4.04 3 5.5l7 7Z"/></svg></span>
-          <div><b>身故保障 S$2,400</b><p>等于最后一次月付款的 3 倍。</p></div>
+          <div><b>身故保障 S$6,000</b><p>等于最后一次月付款的 3 倍。</p></div>
         </div>
       </div>
     </article>
@@ -404,7 +414,7 @@ body.locked #pwGate{display:flex}
 
   <div class="oneliner">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
-    <span>一句话总结：夫妻两份加起来<b>每年 S$1,125.16</b>，全部由 MediSave 扣，<b>家庭现金流不受影响</b>。换来的是任一方失能时，每月一笔可领至终身的现金。</span>
+    <span>两档之间的差价：夫妻合计每年多 <b>S$378.64</b>（现金多 S$378.64，折合每月约 S$31.55），换来每人每月保障额从 S$1,500 提高到 S$2,000，理赔首年可领金额从 S$54,900 提高到 <b>S$73,200</b>。</span>
   </div>
 </section>
 
@@ -412,27 +422,72 @@ body.locked #pwGate{display:flex}
 <section id="premium">
   <div class="sec-eyebrow">PREMIUM BREAKDOWN</div>
   <h2 class="sec-title serif">保费明细</h2>
-  <p class="sec-sub">以下金额均为 Singlife 报价单显示数字，已扣除 LTC1 永久折扣。</p>
+  <p class="sec-sub">以下金额均为 Singlife 报价单显示数字，已扣除 LT25 永久折扣 25%。保费超过 MediSave 每年 S$600 的支付上限，超出部分需以现金支付。</p>
 
+  <!-- Mr Wang -->
   <div class="tbl-card">
+    <div class="tbl-head">
+      <span class="fico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></span>
+      <div><b>Mr Wang</b> <span>· Singlife CareShield Plus</span></div>
+    </div>
     <div class="tbl-scroll">
-      <table class="two-person">
-        <thead><tr><th style="width:34%">项目</th><th>Mr Wang</th><th>Mrs Yang</th></tr></thead>
+      <table class="two-tier">
+        <thead><tr><th style="width:34%">项目</th><th>方案一 · S$1,500 / 月</th><th>方案二 · S$2,000 / 月</th></tr></thead>
         <tbody>
-          <tr><td>计划</td><td>Singlife CareShield Plus</td><td>Singlife CareShield Plus</td></tr>
-          <tr><td>每月保障额（附加）</td><td class="num"><span class="b-navy">S$1,000</span></td><td class="num"><span class="b-navy">S$800</span></td></tr>
-          <tr><td>缴费期</td><td>每年缴付<span class="sub-line">报价单列有缴 29 年至 69 岁 / 缴 59 年至 99 岁两档</span></td><td>每年缴付<span class="sub-line">报价单列有缴 29 年至 69 岁 / 缴 59 年至 99 岁两档</span></td></tr>
-          <tr><td>年保费（折扣前）</td><td class="num">S$686.26</td><td class="num">S$720.18</td></tr>
-          <tr><td>折扣</td><td>LTC1 永久折扣 20%<span class="sub-line">减 S$137.25</span></td><td>LTC1 永久折扣 20%<span class="sub-line">减 S$144.03</span></td></tr>
-          <tr class="hlrow"><td><span class="b-navy">折扣后年保费</span></td><td class="num">S$549.01</td><td class="num">S$576.15</td></tr>
-          <tr><td>CPF MediSave 抵扣</td><td>最高 S$600 / 年</td><td>最高 S$600 / 年</td></tr>
-          <tr><td>MediSave 抵扣后现金支出</td><td class="num green">S$0.00</td><td class="num green">S$0.00</td></tr>
+          <tr><td>每月保障额（附加）</td><td class="num"><span class="b-navy">S$1,500</span></td><td class="num"><span class="b-navy">S$2,000</span></td></tr>
+          <tr><td>年保费（折扣前）</td><td class="num">S$1,029.40</td><td class="num">S$1,350.73</td></tr>
+          <tr><td>折扣</td><td>LT25 永久折扣 25%<span class="sub-line">减 S$257.35</span></td><td>LT25 永久折扣 25%<span class="sub-line">减 S$337.68</span></td></tr>
+          <tr class="hlrow"><td><span class="b-navy">折扣后年保费</span></td><td class="num">S$772.05</td><td class="num">S$1,013.05</td></tr>
+          <tr><td>CPF MediSave 抵扣</td><td class="num green">S$600.00</td><td class="num green">S$600.00</td></tr>
+          <tr><td><span class="b-navy">现金支出 / 年</span></td><td class="num cashv">S$172.05<span class="sub-line">每月约 S$14.34</span></td><td class="num cashv">S$413.05<span class="sub-line">每月约 S$34.42</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Mrs Yang -->
+  <div class="tbl-card">
+    <div class="tbl-head">
+      <span class="fico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></span>
+      <div><b>Mrs Yang</b> <span>· Singlife CareShield Plus</span></div>
+    </div>
+    <div class="tbl-scroll">
+      <table class="two-tier">
+        <thead><tr><th style="width:34%">项目</th><th>方案一 · S$1,500 / 月</th><th>方案二 · S$2,000 / 月</th></tr></thead>
+        <tbody>
+          <tr><td>每月保障额（附加）</td><td class="num"><span class="b-navy">S$1,500</span></td><td class="num"><span class="b-navy">S$2,000</span></td></tr>
+          <tr><td>年保费（折扣前）</td><td class="num">S$1,301.30</td><td class="num">以完整报价单为准<span class="sub-line">该份报价单未列示此行</span></td></tr>
+          <tr><td>折扣</td><td>LT25 永久折扣 25%<span class="sub-line">减 S$325.32</span></td><td>LT25 永久折扣 25%<span class="sub-line">同款折扣</span></td></tr>
+          <tr class="hlrow"><td><span class="b-navy">折扣后年保费</span></td><td class="num">S$975.98</td><td class="num">S$1,113.62</td></tr>
+          <tr><td>CPF MediSave 抵扣</td><td class="num green">S$600.00</td><td class="num green">S$600.00</td></tr>
+          <tr><td><span class="b-navy">现金支出 / 年</span></td><td class="num cashv">S$375.98<span class="sub-line">每月约 S$31.33</span></td><td class="num cashv">S$513.62<span class="sub-line">每月约 S$42.80</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- 夫妻合计 -->
+  <div class="tbl-card">
+    <div class="tbl-head">
+      <span class="fico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
+      <div><b>夫妻合计</b> <span>· 两人同档投保</span></div>
+    </div>
+    <div class="tbl-scroll">
+      <table class="two-tier">
+        <thead><tr><th style="width:34%">项目</th><th>两人都选 S$1,500</th><th>两人都选 S$2,000</th></tr></thead>
+        <tbody>
+          <tr><td>Mr Wang 折扣后年保费</td><td class="num">S$772.05</td><td class="num">S$1,013.05</td></tr>
+          <tr><td>Mrs Yang 折扣后年保费</td><td class="num">S$975.98</td><td class="num">S$1,113.62</td></tr>
+          <tr class="total"><td>合计年保费</td><td class="num">S$1,748.03</td><td class="num">S$2,126.67</td></tr>
+          <tr><td>CPF MediSave 抵扣（两人各 S$600）</td><td class="num green">S$1,200.00</td><td class="num green">S$1,200.00</td></tr>
+          <tr class="hlrow"><td><span class="b-navy">家庭现金支出 / 年</span></td><td class="num">S$548.03</td><td class="num">S$926.67</td></tr>
+          <tr><td>折合每月现金</td><td class="num">约 S$45.67</td><td class="num">约 S$77.22</td></tr>
         </tbody>
       </table>
     </div>
     <div class="cash-note">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg>
-      <span><b>夫妻合计：折扣后每年 S$1,125.16</b>，折合每月约 S$93.76。由于每人保费都低于 MediSave 每年 S$600 的支付上限，两份保单都可以<b>全额从 CPF MediSave 户口扣除，现金支出 S$0</b>。</span>
+      <span><b>关于 MediSave：</b>CareShield Life 附加计划的保费可以用 CPF MediSave 支付，上限为<b>每名被保人每个日历年 S$600</b>。这两档保费都超过了上限，因此每人每年有一部分需要以现金支付。两位可以按各自情况选择不同档位，不一定要同档。</span>
     </div>
   </div>
 </section>
@@ -441,48 +496,48 @@ body.locked #pwGate{display:flex}
 <section id="benefits">
   <div class="sec-eyebrow">BENEFITS IN DETAIL</div>
   <h2 class="sec-title serif">保障内容逐项说明</h2>
-  <p class="sec-sub">以下八项均按报价单所列整理。所有金额都是在政府 CareShield Life 基本月付款之外，额外再拿到的。</p>
+  <p class="sec-sub">两档的保障结构完全相同，所有金额都按月保障额等比例放大。以下均为在政府 CareShield Life 基本月付款之外，额外再拿到的。</p>
 
   <div class="tbl-card">
     <div class="tbl-scroll">
-      <table class="three-col" style="min-width:660px">
-        <thead><tr><th style="width:20%">保障项目</th><th style="width:36%">说明</th><th>Mr Wang</th><th>Mrs Yang</th></tr></thead>
+      <table class="three-col" style="min-width:680px">
+        <thead><tr><th style="width:19%">保障项目</th><th style="width:35%">说明</th><th>S$1,500 档</th><th>S$2,000 档</th></tr></thead>
         <tbody>
           <tr>
             <td><span class="b-navy">每月付款</span></td>
             <td>六项 ADL 中有任意一项无法自行完成即开始给付，<b>可领至终身</b>，只要持续符合理赔条件。</td>
-            <td class="num">S$1,000 / 月</td>
-            <td class="num">S$800 / 月</td>
+            <td class="num">S$1,500 / 月</td>
+            <td class="num">S$2,000 / 月</td>
           </tr>
           <tr>
             <td><span class="b-navy">一次性付款</span></td>
             <td>首次月付款的 3 倍，理赔确立时一次过发放，用来应付轮椅、护理床、家中改装等前期开销。</td>
-            <td class="num">S$3,000</td>
-            <td class="num">S$2,400</td>
+            <td class="num">S$4,500</td>
+            <td class="num">S$6,000</td>
           </tr>
           <tr>
             <td><span class="b-navy">额外月付款</span></td>
             <td>首 12 个月每月再加 100% 月保障额，把最吃紧的第一年现金流垫厚。</td>
-            <td class="num">+S$1,000 / 月<span class="sub-line">最长 12 个月</span></td>
-            <td class="num">+S$800 / 月<span class="sub-line">最长 12 个月</span></td>
+            <td class="num">+S$1,500 / 月<span class="sub-line">最长 12 个月</span></td>
+            <td class="num">+S$2,000 / 月<span class="sub-line">最长 12 个月</span></td>
           </tr>
           <tr>
             <td><span class="b-navy">看护者补贴</span></td>
             <td>60% 月保障额，用于聘请住家看护或护工的费用。</td>
-            <td class="num">+S$600 / 月<span class="sub-line">最长 12 个月</span></td>
-            <td class="num">+S$480 / 月<span class="sub-line">最长 12 个月</span></td>
+            <td class="num">+S$900 / 月<span class="sub-line">最长 12 个月</span></td>
+            <td class="num">+S$1,200 / 月<span class="sub-line">最长 12 个月</span></td>
           </tr>
           <tr>
             <td><span class="b-navy">家属照顾补贴</span></td>
             <td>20% 月保障额，补贴因照顾家人而减少收入的配偶或子女。</td>
-            <td class="num">+S$200 / 月<span class="sub-line">最长 36 个月</span></td>
-            <td class="num">+S$160 / 月<span class="sub-line">最长 36 个月</span></td>
+            <td class="num">+S$300 / 月<span class="sub-line">最长 36 个月</span></td>
+            <td class="num">+S$400 / 月<span class="sub-line">最长 36 个月</span></td>
           </tr>
           <tr>
             <td><span class="b-navy">身故保障</span></td>
             <td>最后一次月付款的 3 倍，付给受益人。</td>
-            <td class="num">S$3,000</td>
-            <td class="num">S$2,400</td>
+            <td class="num">S$4,500</td>
+            <td class="num">S$6,000</td>
           </tr>
           <tr>
             <td><span class="b-navy">保费豁免</span></td>
@@ -507,7 +562,7 @@ body.locked #pwGate{display:flex}
     </div>
     <div class="cash-note">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
-      <span>各项补贴的具体理赔条件、给付起算时点与定义，以 Singlife 正式产品摘要与保单条款为准。上表金额取自报价单的保障明细。</span>
+      <span>Mr Wang 与 Mrs Yang 在同一档下的保障金额完全一致，两人报价的差别只在保费。各项补贴的具体理赔条件、给付起算时点与定义，以 Singlife 正式产品摘要与保单条款为准。</span>
     </div>
   </div>
 </section>
@@ -524,9 +579,9 @@ body.locked #pwGate{display:flex}
       <h3>四项叠加，现金流最厚的一年</h3>
     </div>
     <div class="ph-desc">月付款 + 额外月付款 + 看护者补贴 + 家属照顾补贴</div>
-    <div class="bar-row"><span class="who">Mr Wang</span><span class="bar-track"><i style="width:100%"></i></span><span class="amt">S$2,800 / 月</span></div>
-    <div class="bar-row"><span class="who">Mrs Yang</span><span class="bar-track"><i style="width:80%"></i></span><span class="amt">S$2,240 / 月</span></div>
-    <div class="ph-extra">另加一次性付款：Mr Wang <b>S$3,000</b>，Mrs Yang <b>S$2,400</b>，在理赔确立时一次过发放。</div>
+    <div class="bar-row"><span class="who">S$1,500 档</span><span class="bar-track"><i style="width:75%"></i></span><span class="amt">S$4,200 / 月</span></div>
+    <div class="bar-row"><span class="who">S$2,000 档</span><span class="bar-track"><i style="width:100%"></i></span><span class="amt">S$5,600 / 月</span></div>
+    <div class="ph-extra">另加一次性付款：S$1,500 档 <b>S$4,500</b>，S$2,000 档 <b>S$6,000</b>，在理赔确立时一次过发放。</div>
   </div>
 
   <div class="phase p2">
@@ -535,8 +590,8 @@ body.locked #pwGate{display:flex}
       <h3>额外月付款与看护者补贴结束</h3>
     </div>
     <div class="ph-desc">月付款 + 家属照顾补贴</div>
-    <div class="bar-row"><span class="who">Mr Wang</span><span class="bar-track"><i style="width:43%"></i></span><span class="amt">S$1,200 / 月</span></div>
-    <div class="bar-row"><span class="who">Mrs Yang</span><span class="bar-track"><i style="width:34%"></i></span><span class="amt">S$960 / 月</span></div>
+    <div class="bar-row"><span class="who">S$1,500 档</span><span class="bar-track"><i style="width:32%"></i></span><span class="amt">S$1,800 / 月</span></div>
+    <div class="bar-row"><span class="who">S$2,000 档</span><span class="bar-track"><i style="width:43%"></i></span><span class="amt">S$2,400 / 月</span></div>
   </div>
 
   <div class="phase p3">
@@ -545,29 +600,29 @@ body.locked #pwGate{display:flex}
       <h3>基本月付款，一直领到终身</h3>
     </div>
     <div class="ph-desc">月付款</div>
-    <div class="bar-row"><span class="who">Mr Wang</span><span class="bar-track"><i style="width:36%"></i></span><span class="amt">S$1,000 / 月</span></div>
-    <div class="bar-row"><span class="who">Mrs Yang</span><span class="bar-track"><i style="width:29%"></i></span><span class="amt">S$800 / 月</span></div>
+    <div class="bar-row"><span class="who">S$1,500 档</span><span class="bar-track"><i style="width:27%"></i></span><span class="amt">S$1,500 / 月</span></div>
+    <div class="bar-row"><span class="who">S$2,000 档</span><span class="bar-track"><i style="width:36%"></i></span><span class="amt">S$2,000 / 月</span></div>
     <div class="scale-note">三段的横条按同一比例尺绘制，可直接比较长短。</div>
   </div>
 
   <div class="sum-cards">
     <div class="sum-card">
-      <div class="sum-who">Mr Wang</div>
+      <div class="sum-who">方案一 · S$1,500 档</div>
       <div class="sum-k">首 12 个月累计可领</div>
-      <div class="sum-v">S$36,600</div>
-      <div class="sum-sub">一次性 S$3,000，加上 12 个月每月 S$2,800。</div>
+      <div class="sum-v">S$54,900</div>
+      <div class="sum-sub">一次性 S$4,500，加上 12 个月每月 S$4,200。</div>
     </div>
     <div class="sum-card gold">
-      <div class="sum-who">Mrs Yang</div>
+      <div class="sum-who">方案二 · S$2,000 档</div>
       <div class="sum-k">首 12 个月累计可领</div>
-      <div class="sum-v">S$29,280</div>
-      <div class="sum-sub">一次性 S$2,400，加上 12 个月每月 S$2,240。</div>
+      <div class="sum-v">S$73,200</div>
+      <div class="sum-sub">一次性 S$6,000，加上 12 个月每月 S$5,600。</div>
     </div>
   </div>
 
   <div class="oneliner">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
-    <span>换个角度看：Mr Wang 一年保费 S$549.01，而理赔成立后<b>光是首年就可以领到 S$36,600</b>，相当于约 67 年的保费。这就是长期护理附加计划的杠杆所在。</span>
+    <span>换个角度看：选 S$2,000 档，夫妻两人一年的<b>现金支出约 S$927</b>（MediSave 另付 S$1,200）。而任一方理赔成立后，<b>光是首年就可以领到 S$73,200</b>，之后每月 S$2,000 一直领到终身。这就是长期护理附加计划的杠杆所在。</span>
   </div>
 </section>
 
@@ -579,11 +634,13 @@ body.locked #pwGate{display:flex}
       重要说明
     </div>
     <ul>
-      <li>本页内容整理自 Singlife 于 2026 年 8 月生成的两份线上报价，仅供沟通参考，实际保障以正式保单合同为准。</li>
+      <li>本页内容整理自 Singlife 于 2026 年 8 月生成的四份线上报价（两人各两档），仅供沟通参考，实际保障以正式保单合同为准。</li>
+      <li>本次报价适用的折扣为 <b>LT25 永久折扣 25%</b>，本页所有折扣后金额均已扣除该折扣。折扣受活动条款约束，以投保时系统实际适用者为准。</li>
+      <li>Mrs Yang 的 S$2,000 档报价单只截取到第一页，未包含保费明细页，因此折扣前保费与折扣金额本页未列示。该档<b>折扣后年保费 S$1,113.62</b> 由报价单载明的现金支出 S$513.62 加上 MediSave 抵扣上限 S$600 得出，正式投保前我会以完整报价单再核对一次。</li>
       <li>理赔时间线为便于理解的示意，假设理赔成立且全程持续符合理赔条件。实际给付起算时点、各项补贴的资格条件与终止条件，以保单条款为准。</li>
       <li>报价单显示两档缴费期（缴 29 年至 69 岁 / 缴 59 年至 99 岁），两档保费不同。本页金额对应报价单生成时所选档位，正式投保前我会再和两位核对一次。</li>
       <li>报价单另外列示了一项针对现有 Singlife CareShield 保单持有人的 <b>35% 终身保费折扣</b>（年保费需达 S$550 以上，受活动条款约束）。两位折扣前的年保费均超过此门槛，如符合资格条件，值得再确认一次是否可以适用更优折扣。</li>
-      <li>CPF MediSave 支付附加计划保费的上限为每名被保人每个日历年 S$600。若日后保费上调超过此上限，超出部分需以现金支付。</li>
+      <li>CPF MediSave 支付附加计划保费的上限为每名被保人每个日历年 S$600，超出部分需以现金支付。日后保费若上调，现金部分会相应增加。</li>
       <li>购买附加计划（Supplement）者不符合政府 Additional Premium Support（APS）资格。若目前正在领取 APS，请务必先与我确认再投保。</li>
       <li>投保需先持有基本 CareShield Life 或 ElderShield 保单，并通过健康核保。既往病症的承保结果以核保为准。</li>
       <li>保单送达后有 60 天的自由查阅期（free-look period）。</li>
