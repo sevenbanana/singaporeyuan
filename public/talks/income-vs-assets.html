@@ -276,15 +276,20 @@ h1 .mark,h2 .mark{text-shadow:0 1px 0 rgba(58,36,2,.5), 0 4px 16px rgba(239,201,
 }
 #avz.show{border-color:rgba(239,201,110,.5);background:rgba(239,201,110,.05)}
 
-#swipe{
-  position:fixed;left:max(var(--pad), calc(50% - 260px + var(--pad)));bottom:calc(12px + var(--sab));z-index:18;
-  display:flex;align-items:center;gap:9px;pointer-events:none;
-  color:rgba(252,247,236,.5);font-size:11px;letter-spacing:.2em;font-weight:600;
-  opacity:0;transition:opacity .5s ease;
+/* 时间码读数：落在头像位内，录制时会被人像挡住 */
+#clock{
+  position:fixed;right:max(14px, calc(50% - 260px + 14px));bottom:calc(46px + var(--sab));z-index:21;
+  font-family:var(--num);font-weight:800;font-size:12px;letter-spacing:.08em;
+  color:rgba(255,252,245,.32);pointer-events:none;
 }
-#swipe.show{opacity:1}
-#swipe svg{width:15px;height:15px;animation:nudge 1.6s ease-in-out infinite}
-@keyframes nudge{0%,100%{transform:translateY(-3px)}50%{transform:translateY(3px)}}
+#paused{
+  position:fixed;left:max(var(--pad), calc(50% - 260px + var(--pad)));bottom:calc(12px + var(--sab));z-index:18;
+  display:flex;align-items:center;gap:8px;pointer-events:none;
+  color:rgba(255,252,245,.44);font-size:11px;letter-spacing:.18em;font-weight:600;
+  opacity:0;transition:opacity .3s ease;
+}
+#paused.show{opacity:1}
+#paused svg{width:12px;height:12px}
 
 #gesture{position:fixed;inset:0;z-index:10}
 
@@ -509,9 +514,9 @@ h1 .mark,h2 .mark{text-shadow:0 1px 0 rgba(58,36,2,.5), 0 4px 16px rgba(239,201,
     <section class="scene">
       <div class="art big"><svg viewBox="0 0 200 200"><use href="#ill-chair"/></svg></div>
       <div class="inner stack">
-        <span class="b kicker">中 国 家 庭 财 富 调 查</span>
-        <h1 class="b">年入百万的家庭里<br>占比最高的<br>是<span class="mark">不上班</span>的人</h1>
-        <div class="b big"><span data-count="41" data-suf="">0</span><span class="u">.1%</span></div>
+        <span class="b kicker" data-t="0.0">中 国 家 庭 财 富 调 查</span>
+        <h1 class="b" data-t="0.6">年入百万的家庭里<br>占比最高的<br>是<span class="mark">不上班</span>的人</h1>
+        <div class="b big" data-t="4.6"><span data-count="41" data-suf="">0</span><span class="u">.1%</span></div>
       </div>
       <div class="fn"><span class="tiny">年收入 100 万及以上家庭中，职业为「未工作」的占 41.1%。</span></div>
     </section>
@@ -520,9 +525,9 @@ h1 .mark,h2 .mark{text-shadow:0 1px 0 rgba(58,36,2,.5), 0 4px 16px rgba(239,201,
     <section class="scene">
       <div class="art"><svg viewBox="0 0 200 200"><use href="#ill-chart"/></svg></div>
       <div class="inner stack">
-        <span class="b kicker">年 收 入 100 万 及 以 上</span>
-        <h2 class="b">这群人的<br><span class="ul">职业分布</span></h2>
-        <div class="b">
+        <span class="b kicker" data-t="6.2">年 收 入 100 万 及 以 上</span>
+        <h2 class="b" data-t="6.7">这群人的<br><span class="ul">职业分布</span></h2>
+        <div class="b" data-t="7.3">
           <div class="stackbar">
             <span class="s1" style="--w:41.1%"></span><span class="s2" style="--w:21.7%"></span>
             <span class="s3" style="--w:8.1%"></span><span class="s4" style="--w:29.1%"></span>
@@ -534,7 +539,7 @@ h1 .mark,h2 .mark{text-shadow:0 1px 0 rgba(58,36,2,.5), 0 4px 16px rgba(239,201,
             <span><i style="background:#9C6D24"></i>其他职业合计 <b>29.1%</b></span>
           </div>
         </div>
-        <p class="b lead">「未工作」里，包含<b class="mark">学生、失业与退休</b>。</p>
+        <p class="b lead" data-t="8.8">「未工作」里，包含<b class="mark">学生、失业与退休</b>。</p>
       </div>
       <div class="fn"><span class="tiny">来源：厦门大学经济学院 & 蚂蚁集团研究院《中国家庭财富与消费报告（2026 年第一季度）》，有效问卷 14,967 份。其他职业为余下各项合计。</span></div>
     </section>
@@ -542,9 +547,9 @@ h1 .mark,h2 .mark{text-shadow:0 1px 0 rgba(58,36,2,.5), 0 4px 16px rgba(239,201,
     <!-- 3 · 别急着辞职 -->
     <section class="scene">
       <div class="inner stack mid">
-        <span class="b kicker">先 别 急 着 辞 职</span>
-        <h1 class="b">不是不上班<br>才有钱</h1>
-        <h2 class="b" style="color:var(--gold)"><span class="ul">是有钱，才可以不上班</span></h2>
+        <span class="b kicker" data-t="11.0">因 果 是 反 过 来 的</span>
+        <h1 class="b" data-t="11.5">不是不上班<br>才有钱</h1>
+        <h2 class="b" data-t="13.2" style="color:var(--gold)"><span class="ul">是有钱，才可以不上班</span></h2>
       </div>
       <div class="fn"><span class="tiny">因果关系是反过来的：先有资产，才有不上班的选择权。</span></div>
     </section>
@@ -553,18 +558,18 @@ h1 .mark,h2 .mark{text-shadow:0 1px 0 rgba(58,36,2,.5), 0 4px 16px rgba(239,201,
     <section class="scene">
       <div class="art"><svg viewBox="0 0 200 200"><use href="#ill-scale"/></svg></div>
       <div class="inner stack">
-        <span class="b kicker">同 样 的 收 入 · 不 同 的 家 底</span>
-        <div class="b grp">
+        <span class="b kicker" data-t="15.2">同 样 的 收 入 · 不 同 的 家 底</span>
+        <div class="b grp" data-t="16.8">
           <div class="lbl">家庭金融资产</div>
           <div class="barrow"><span class="name">未工作</span><div class="bar" style="height:28px"><div class="fill solid" style="--w:100%"></div></div><span class="num g">52万</span></div>
           <div class="barrow"><span class="name">上班族</span><div class="bar" style="height:28px"><div class="fill dim" style="--w:54%"></div></div><span class="num">约一半</span></div>
         </div>
-        <div class="b grp">
+        <div class="b grp" data-t="21.8">
           <div class="lbl">房产总值</div>
           <div class="barrow"><span class="name">未工作</span><div class="bar" style="height:28px"><div class="fill solid" style="--w:100%"></div></div><span class="num g">251万</span></div>
           <div class="barrow"><span class="name">上班族</span><div class="bar" style="height:28px"><div class="fill dim" style="--w:62%"></div></div><span class="num">少约 100万</span></div>
         </div>
-        <div class="b grp">
+        <div class="b grp" data-t="25.8">
           <div class="lbl">家庭年收入</div>
           <div class="barrow"><span class="name">两 边</span><div class="bar" style="height:28px"><div class="fill ghost" style="--w:100%"></div></div><span class="num">几乎持平</span></div>
         </div>
@@ -575,9 +580,9 @@ h1 .mark,h2 .mark{text-shadow:0 1px 0 rgba(58,36,2,.5), 0 4px 16px rgba(239,201,
     <!-- 5 · 一句话 -->
     <section class="scene">
       <div class="inner stack mid">
-        <h1 class="b">收入差不多</h1>
-        <h1 class="b" style="color:var(--gold)"><span class="ul">家底差一倍</span></h1>
-        <div class="b nums"><span>52</span><span>VS</span><span>251</span></div>
+        <h1 class="b" data-t="28.2">收入差不多</h1>
+        <h1 class="b" data-t="29.0" style="color:var(--gold)"><span class="ul">家底差一倍</span></h1>
+        <div class="b nums" data-t="30.0"><span>52</span><span>VS</span><span>251</span></div>
       </div>
       <div class="fn"><span class="tiny">差别不在每月赚多少，而在账户里已经站着多少。</span></div>
     </section>
@@ -586,16 +591,16 @@ h1 .mark,h2 .mark{text-shadow:0 1px 0 rgba(58,36,2,.5), 0 4px 16px rgba(239,201,
     <section class="scene">
       <div class="art"><svg viewBox="0 0 200 200"><use href="#ill-tree"/></svg></div>
       <div class="inner stack">
-        <span class="b kicker">两 种 赚 钱 方 式</span>
-        <div class="b vs">
+        <span class="b kicker" data-t="31.0">两 种 赚 钱 方 式</span>
+        <div class="b vs" data-t="31.3">
           <div class="panes">
-            <div class="pane b">
+            <div class="pane b" data-t="31.7">
               <span class="when">工 作</span>
               <svg class="pico" viewBox="0 0 32 32"><use href="#ic-time"/></svg>
               <div class="dest">你在赚钱</div>
               <div class="note">停下来，就停了</div>
             </div>
-            <div class="pane b">
+            <div class="pane b" data-t="33.2">
               <span class="when">资 产</span>
               <svg class="pico gold" viewBox="0 0 32 32"><use href="#ic-grow"/></svg>
               <div class="dest">钱替你赚钱</div>
@@ -611,9 +616,9 @@ h1 .mark,h2 .mark{text-shadow:0 1px 0 rgba(58,36,2,.5), 0 4px 16px rgba(239,201,
     <section class="scene">
       <div class="art"><svg viewBox="0 0 200 200"><use href="#ill-clock"/></svg></div>
       <div class="inner stack">
-        <span class="b kicker">一 个 扎 心 的 事 实</span>
-        <h2 class="b">很多高收入的人<br><span class="ul">其实是<span class="mark">高收入穷人</span></span></h2>
-        <div class="b ring">
+        <span class="b kicker" data-t="35.2">一 个 扎 心 的 事 实</span>
+        <h2 class="b" data-t="36.0">很多高收入的人<br><span class="ul">其实是<span class="mark">高收入穷人</span></span></h2>
+        <div class="b ring" data-t="38.4">
           <svg viewBox="0 0 120 120" role="img" aria-label="收入来源占比：100% 来自本人时间">
             <circle class="rbg" cx="60" cy="60" r="48"/>
             <circle class="rfg" cx="60" cy="60" r="48"/>
@@ -629,13 +634,13 @@ h1 .mark,h2 .mark{text-shadow:0 1px 0 rgba(58,36,2,.5), 0 4px 16px rgba(239,201,
     <section class="scene">
       <div class="art"><svg viewBox="0 0 200 200"><use href="#ill-break"/></svg></div>
       <div class="inner stack">
-        <span class="b kicker">这 种 结 构 有 三 个 断 点</span>
+        <span class="b kicker" data-t="42.2">这 种 结 构 有 三 个 断 点</span>
         <div class="risk">
-          <div class="rk b"><svg viewBox="0 0 32 32"><use href="#ic-illness"/></svg><span class="t">一场突如其来的大病</span><span class="tag">概率</span></div>
-          <div class="rk b"><svg viewBox="0 0 32 32"><use href="#ic-jobless"/></svg><span class="t">失业</span><span class="tag">概率</span></div>
-          <div class="rk hot b"><svg viewBox="0 0 32 32"><use href="#ic-age"/></svg><span class="t">变老</span><span class="tag">100%</span></div>
+          <div class="rk b" data-t="44.6"><svg viewBox="0 0 32 32"><use href="#ic-illness"/></svg><span class="t">一场突如其来的大病</span><span class="tag">概率</span></div>
+          <div class="rk b" data-t="45.4"><svg viewBox="0 0 32 32"><use href="#ic-jobless"/></svg><span class="t">失业</span><span class="tag">概率</span></div>
+          <div class="rk hot b" data-t="46.2"><svg viewBox="0 0 32 32"><use href="#ic-age"/></svg><span class="t">变老</span><span class="tag">100%</span></div>
         </div>
-        <p class="b lead">前两个是概率，<br>最后一个是<b class="mark">一定会发生</b>。</p>
+        <p class="b lead" data-t="47.4">前两个是概率，<br>最后一个是<b class="mark">一定会发生</b>。</p>
       </div>
       <div class="fn"><span class="tiny">前两个可以用保障对冲，最后一个只能提前用资产准备。</span></div>
     </section>
@@ -644,9 +649,9 @@ h1 .mark,h2 .mark{text-shadow:0 1px 0 rgba(58,36,2,.5), 0 4px 16px rgba(239,201,
     <section class="scene">
       <div class="art"><svg viewBox="0 0 200 200"><use href="#ill-faucet"/></svg></div>
       <div class="inner stack">
-        <span class="b kicker">别 再 问 月 薪 多 少</span>
-        <h2 class="b">如果明天开始不上班<br><span class="ul">家里的钱</span></h2>
-        <p class="b quote">还能<b class="mark">自己流进来</b>多少？</p>
+        <span class="b kicker" data-t="50.4">别 再 问 月 薪 多 少</span>
+        <h2 class="b" data-t="52.8">如果明天开始不上班<br><span class="ul">家里的钱</span></h2>
+        <p class="b quote" data-t="55.4">还能<b class="mark">自己流进来</b>多少？</p>
       </div>
       <div class="fn"><span class="tiny">把答案算成一个具体数字：每月不靠工资，还能进账多少。</span></div>
     </section>
@@ -654,9 +659,9 @@ h1 .mark,h2 .mark{text-shadow:0 1px 0 rgba(58,36,2,.5), 0 4px 16px rgba(239,201,
     <!-- 10 · 如果是零 -->
     <section class="scene">
       <div class="inner stack mid">
-        <span class="b kicker">如 果 这 个 数 字 是</span>
-        <div class="b big">0</div>
-        <h2 class="b">你的高收入<br><span class="ul">只是一份<span class="mark">很贵的工作</span></span></h2>
+        <span class="b kicker" data-t="57.2">如 果 这 个 数 字 是</span>
+        <div class="b big" data-t="57.9">0</div>
+        <h2 class="b" data-t="59.2">你的高收入<br><span class="ul">只是一份<span class="mark">很贵的工作</span></span></h2>
       </div>
       <div class="fn"><span class="tiny">工作可以很贵，但它仍然是工作，不是资产。</span></div>
     </section>
@@ -665,9 +670,9 @@ h1 .mark,h2 .mark{text-shadow:0 1px 0 rgba(58,36,2,.5), 0 4px 16px rgba(239,201,
     <section class="scene">
       <div class="art big"><svg viewBox="0 0 200 200"><use href="#ill-sunrise"/></svg></div>
       <div class="inner stack">
-        <span class="b kicker">那 41% 不 是 躺 平</span>
-        <h1 class="b">你要么去上班<br>要么<span class="mark">让你的钱去上班</span></h1>
-        <h2 class="b" style="color:var(--gold)"><span class="ul">陪你一起，日富一日</span></h2>
+        <span class="b kicker" data-t="62.2">那 41% 不 是 躺 平</span>
+        <h1 class="b" data-t="65.4">你要么去上班<br>要么<span class="mark">让你的钱去上班</span></h1>
+        <h2 class="b" data-t="69.6" style="color:var(--gold)"><span class="ul">陪你一起，日富一日</span></h2>
       </div>
       <div class="fn"><span class="tiny">本页仅供参考，不构成投资、税务或法律建议。数据以原报告公布为准。</span></div>
     </section>
@@ -679,29 +684,45 @@ h1 .mark,h2 .mark{text-shadow:0 1px 0 rgba(58,36,2,.5), 0 4px 16px rgba(239,201,
 <div id="ctl">
   <button id="bUp" title="上一页">↑</button>
   <button id="bDown" title="下一页">↓</button>
-  <button id="bPlay" title="暂停/继续本页">II</button>
+  <button id="bPlay" title="播放/暂停">II</button>
+  <button id="bReset" title="从头播放">R</button>
   <button id="bGuide" title="显示头像位">◎</button>
 </div>
 <div id="avz"></div>
-<div id="swipe">
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
-  <span>下 滑 继 续</span>
+<div id="clock">0:00</div>
+<div id="paused">
+  <svg viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>
+  <span>已 暂 停 · 轻 触 继 续</span>
 </div>
 <div id="gesture"></div>
 
 <script>
 (function(){
-  var STEP_MS = 2000;                        // 本页内每个展示点约 2 秒
-  var scenes  = Array.prototype.slice.call(document.querySelectorAll('.scene'));
-  var beats   = scenes.map(function(sc){ return Array.prototype.slice.call(sc.querySelectorAll('.b')); });
-  var page = 0, step = -1, timer = null, playing = true;
+  /* ── 按口播字幕时间轴自动播放 ──
+     每个展示点的出现时间写在 data-t（秒）上，与字幕时间码一一对应。 */
+  var scenes = Array.prototype.slice.call(document.querySelectorAll('.scene'));
+  var beats  = [];
+  scenes.forEach(function(sc,i){
+    Array.prototype.slice.call(sc.querySelectorAll('.b')).forEach(function(el){
+      beats.push({el:el, t:parseFloat(el.getAttribute('data-t'))||0, p:i});
+    });
+  });
+  var starts = scenes.map(function(sc,i){
+    var ts = beats.filter(function(b){return b.p===i;}).map(function(b){return b.t;});
+    return ts.length ? Math.min.apply(null,ts) : 0;
+  });
+  var LAST = Math.max.apply(null, beats.map(function(b){return b.t;}));
+  var END  = LAST + 6.5;
+
+  var t = 0, playing = true, prevPage = -1, raf = null, lastNow = 0;
 
   var ticks = document.getElementById('ticks');
   scenes.forEach(function(){ var d=document.createElement('div'); d.className='tk'; d.innerHTML='<i></i>'; ticks.appendChild(d); });
   var tkFills = Array.prototype.slice.call(ticks.querySelectorAll('i'));
-  var swipe = document.getElementById('swipe');
+  var clockEl = document.getElementById('clock');
+  var pausedEl = document.getElementById('paused');
 
-  /* 每页可用高度 = 顶部留白 ~ 注解上沿，内容超出则整页等比缩小 */
+  /* 每页可用高度 = 顶部留白 ~ 注解上沿与头像安全区上沿的较小值，超出则整页等比缩小 */
   var GAP = 18;
   function fit(){
     var avz = document.getElementById('avz').getBoundingClientRect();
@@ -722,94 +743,107 @@ h1 .mark,h2 .mark{text-shadow:0 1px 0 rgba(58,36,2,.5), 0 4px 16px rgba(239,201,
   function countUp(el){
     var target = parseFloat(el.getAttribute('data-count')), suf = el.getAttribute('data-suf')||'';
     var t0 = null;
-    function tick(ts){
+    function step(ts){
       if(!t0) t0 = ts;
-      var p = Math.min(1,(ts-t0)/900), e = 1 - Math.pow(1-p,3);
+      var q = Math.min(1,(ts-t0)/900), e = 1 - Math.pow(1-q,3);
       el.textContent = Math.round(target*e) + suf;
-      if(p<1) requestAnimationFrame(tick);
+      if(q<1) requestAnimationFrame(step);
     }
-    requestAnimationFrame(tick);
+    requestAnimationFrame(step);
+  }
+
+  function pageAt(time){
+    var p = 0;
+    for(var i=0;i<starts.length;i++){ if(time >= starts[i] - 0.001) p = i; }
+    return p;
   }
 
   function render(){
-    scenes.forEach(function(sc,i){
-      sc.classList.toggle('live', i===page);
-      sc.classList.toggle('above', i<page);
-      sc.classList.toggle('below', i>page);
-    });
-    beats.forEach(function(list,i){
-      list.forEach(function(el,j){
-        var on = i<page || (i===page && j<=step);
-        if(on && !el.classList.contains('on')){
-          el.classList.add('on');
-          Array.prototype.slice.call(el.querySelectorAll('[data-count]')).forEach(countUp);
-        }
-        if(!on) el.classList.remove('on');
+    var page = pageAt(t);
+    if(page !== prevPage){
+      scenes.forEach(function(sc,i){
+        sc.classList.toggle('live', i===page);
+        sc.classList.toggle('above', i<page);
+        sc.classList.toggle('below', i>page);
       });
+      prevPage = page;
+    }
+    beats.forEach(function(b){
+      var on = b.t <= t + 0.001;
+      if(on && !b.el.classList.contains('on')){
+        b.el.classList.add('on');
+        Array.prototype.slice.call(b.el.querySelectorAll('[data-count]')).forEach(countUp);
+      } else if(!on && b.el.classList.contains('on')){
+        b.el.classList.remove('on');
+        Array.prototype.slice.call(b.el.querySelectorAll('[data-count]')).forEach(function(el){
+          el.textContent = '0' + (el.getAttribute('data-suf')||'');
+        });
+      }
     });
     tkFills.forEach(function(f,i){
-      f.style.width = (i<page ? 100 : i>page ? 0 : ((step+1)/beats[i].length)*100) + '%';
+      var a = starts[i], z = (i+1<starts.length ? starts[i+1] : END);
+      var w = t<=a ? 0 : t>=z ? 100 : (t-a)/(z-a)*100;
+      f.style.width = w.toFixed(1) + '%';
     });
-    var done = step >= beats[page].length-1;
-    swipe.classList.toggle('show', done && page < scenes.length-1);
+    var sec = Math.max(0, Math.floor(t));
+    clockEl.textContent = Math.floor(sec/60) + ':' + ('0'+(sec%60)).slice(-2);
   }
 
-  function schedule(){
-    clearTimeout(timer);
-    if(!playing || step >= beats[page].length-1) return;
-    timer = setTimeout(function(){ step++; render(); schedule(); }, STEP_MS);
+  function loop(now){
+    if(playing){
+      if(lastNow) t = Math.min(END, t + (now-lastNow)/1000);
+      lastNow = now;
+      if(t >= END) pause();
+    }
+    render();
+    raf = requestAnimationFrame(loop);
   }
-  function nextStep(){
-    if(step < beats[page].length-1){ step++; render(); schedule(); }
-  }
-  function goPage(n, fromStart){
-    if(n<0 || n>scenes.length-1) return;
-    page = n; step = fromStart===false ? beats[page].length-1 : 0;
-    render(); schedule();
-  }
-  function pause(){ playing=false; clearTimeout(timer); document.getElementById('bPlay').textContent='▶'; }
-  function play(){ playing=true; document.getElementById('bPlay').textContent='II'; schedule(); }
+  function play(){ if(t>=END) t=0; playing=true; lastNow=0; pausedEl.classList.remove('show');
+    document.getElementById('bPlay').textContent='II'; }
+  function pause(){ playing=false; pausedEl.classList.add('show');
+    document.getElementById('bPlay').textContent='▶'; }
+  function seek(v){ t = Math.max(0, Math.min(END, v)); lastNow = 0; render(); }
+  function jump(d){ seek(starts[Math.max(0, Math.min(scenes.length-1, pageAt(t)+d))]); }
 
-  /* ── 手势：上下滑动翻页，轻触推进本页展示点 ── */
-  var lock = false;
-  function guard(fn){ if(lock) return; lock=true; setTimeout(function(){lock=false;},720); fn(); }
-  var gz = document.getElementById('gesture');
+  /* ── 交互：轻触暂停/继续，上下滑动或方向键跳页 ── */
+  var gz = document.getElementById('gesture'), sy=0, sx=0, moved=0, lock=false;
+  function guard(fn){ if(lock) return; lock=true; setTimeout(function(){lock=false;},600); fn(); }
   gz.addEventListener('wheel', function(e){
     if(Math.abs(e.deltaY) < 16) return;
-    guard(function(){ goPage(page + (e.deltaY>0 ? 1 : -1)); });
+    guard(function(){ jump(e.deltaY>0 ? 1 : -1); });
   }, {passive:true});
-
-  var sy=0, sx=0, moved=0;
-  gz.addEventListener('touchstart', function(e){
-    sy=e.touches[0].clientY; sx=e.touches[0].clientX; moved=0;
-  }, {passive:true});
+  gz.addEventListener('touchstart', function(e){ sy=e.touches[0].clientY; sx=e.touches[0].clientX; moved=0; }, {passive:true});
   gz.addEventListener('touchmove', function(e){
     moved = Math.max(moved, Math.abs(e.touches[0].clientY-sy), Math.abs(e.touches[0].clientX-sx));
   }, {passive:true});
   gz.addEventListener('touchend', function(e){
     var dy = sy - e.changedTouches[0].clientY;
-    if(Math.abs(dy) > 46) guard(function(){ goPage(page + (dy>0 ? 1 : -1)); });
-    else if(moved < 12) nextStep();
+    if(Math.abs(dy) > 46) guard(function(){ jump(dy>0 ? 1 : -1); });
+    else if(moved < 12) playing ? pause() : play();
   }, {passive:true});
-  gz.addEventListener('click', function(){ if(moved < 12) nextStep(); });
+  gz.addEventListener('click', function(){ if(moved < 12) playing ? pause() : play(); });
 
-  document.getElementById('bUp').addEventListener('click', function(e){ e.stopPropagation(); goPage(page-1); });
-  document.getElementById('bDown').addEventListener('click', function(e){ e.stopPropagation(); goPage(page+1); });
+  document.getElementById('bUp').addEventListener('click', function(e){ e.stopPropagation(); jump(-1); });
+  document.getElementById('bDown').addEventListener('click', function(e){ e.stopPropagation(); jump(1); });
   document.getElementById('bPlay').addEventListener('click', function(e){ e.stopPropagation(); playing?pause():play(); });
+  document.getElementById('bReset').addEventListener('click', function(e){ e.stopPropagation(); seek(0); play(); });
   document.getElementById('bGuide').addEventListener('click', function(e){ e.stopPropagation(); document.getElementById('avz').classList.toggle('show'); });
 
   document.addEventListener('keydown', function(e){
     var k = e.key;
-    if(k==='ArrowDown'||k==='PageDown'||k==='ArrowRight'){ e.preventDefault(); goPage(page+1); }
-    else if(k==='ArrowUp'||k==='PageUp'||k==='ArrowLeft'){ e.preventDefault(); goPage(page-1); }
-    else if(k===' '){ e.preventDefault(); playing?pause():play(); }
-    else if(k==='Enter'){ e.preventDefault(); nextStep(); }
-    else if(k==='r'||k==='R'){ goPage(page); }
+    if(k===' '){ e.preventDefault(); playing?pause():play(); }
+    else if(k==='ArrowDown'||k==='PageDown'){ e.preventDefault(); jump(1); }
+    else if(k==='ArrowUp'||k==='PageUp'){ e.preventDefault(); jump(-1); }
+    else if(k==='ArrowRight'){ e.preventDefault(); seek(t+2); }
+    else if(k==='ArrowLeft'){ e.preventDefault(); seek(t-2); }
+    else if(k==='r'||k==='R'){ seek(0); play(); }
     else if(k==='g'||k==='G'){ document.getElementById('avz').classList.toggle('show'); }
   });
 
-  fit();
-  goPage(0);
+  window.__seek = function(v){ pause(); seek(v); };   /* 调试与截图用 */
+
+  fit(); render();
+  raf = requestAnimationFrame(loop);
 })();
 </script>
 
