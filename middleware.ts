@@ -29,8 +29,11 @@ export const config = {
   // gaobufan:儿子的英语学习工具,故意不设密码 —— 他每天要用,
   // 站点密码 cookie 只有 7 天,而且「添加到主屏幕」后独立容器可能读不到,
   // 孩子会被锁在外面。页面里只有英语课,没有任何客户或业务信息
+  //
+  // clients:客户专属页(/clients/vip/xxx)。这类页面自带一层独立访问密码,
+  // 直接把干净地址发给客户即可;再叠一层站点密码只会让客户输两次
   matcher: [
-    '/((?!password|api/password|_next|gaobufan|.*\\..*).*)',
+    '/((?!password|api/password|_next|gaobufan|clients|.*\\..*).*)',
     '/proposals/piw-vs-platg-case.html',
   ],
 };

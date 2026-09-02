@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>SRS Investment Summary · AIA Global Dynamic Income Fund | Yuan Yuan SG</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  /* 与官网 tailwind.config.ts 同一套色板 */
+  --navy:#1a2744;
+  --navy-deep:#131d33;
+  --navy-700:#26354f;
+  --navy-600:#3a4d6e;
+  --gold:#c9a55c;
+  --gold-light:#dcc088;
+  --gold-deep:#a8843f;
+  --gold-soft:#e8d5a8;
+  --sand-50:#faf7f0;
+  --sand-100:#f5efe1;
+  --sand-200:#efe6d2;
+  --cream:#faf7f0;
+  --ink:#2a2620;
+  --mist:#7a7264;
+  --line:#eeddb4;
+  --paper:#fdf8ec;
+  --green:#1E7A52;
+  --green-tint:#EAF6F0;
+}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth;background:var(--cream)}
+body{
+  font-family:'Noto Sans SC','PingFang SC','Hiragino Sans GB',-apple-system,system-ui,sans-serif;
+  background:var(--cream);
+  background-image:radial-gradient(circle at 15% 0%, rgba(232,213,168,.35), transparent 45%),
+                   radial-gradient(circle at 85% 100%, rgba(232,213,168,.25), transparent 40%);
+  background-attachment:fixed;
+  color:var(--ink);
+  line-height:1.75;
+  font-size:15px;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+}
+::selection{background:rgba(201,165,92,.3);color:var(--navy)}
+.wrap{max-width:920px;margin:0 auto;padding:0 20px 64px}
+svg{display:block}
+
+/* ---------- header ---------- */
+header{
+  background:linear-gradient(160deg,#1a2744 0%,#20304f 55%,#26354f 100%);
+  color:var(--cream);padding:44px 20px 46px;position:relative;overflow:hidden;
+}
+header::after{content:"";position:absolute;right:-90px;top:-100px;width:330px;height:330px;border-radius:50%;border:1px solid rgba(201,165,92,.3)}
+header::before{content:"";position:absolute;right:34px;top:34px;width:170px;height:170px;border-radius:50%;border:1px solid rgba(201,165,92,.14)}
+.hd-in{max-width:920px;margin:0 auto;position:relative;z-index:1}
+.hd-top{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-bottom:26px}
+.hd-brand{display:inline-flex;align-items:center;gap:10px;text-decoration:none;color:inherit}
+.hd-brand img{width:34px;height:34px;border-radius:50%;object-fit:cover;border:1px solid rgba(201,165,92,.5)}
+.hd-brand b{font-size:14px;font-weight:700;letter-spacing:.02em;color:#f3ead6}
+.hd-brand s{display:block;font-size:11px;text-decoration:none;color:rgba(220,192,136,.75);letter-spacing:.16em;text-transform:uppercase}
+#langBtn{
+  flex:none;border:1px solid rgba(201,165,92,.5);background:rgba(201,165,92,.1);color:#dcc088;
+  border-radius:999px;padding:6px 15px;font-size:12px;font-weight:700;cursor:pointer;
+  font-family:inherit;letter-spacing:.05em;transition:background .25s,color .25s,border-color .25s;
+}
+#langBtn:hover{background:var(--gold);color:var(--navy);border-color:var(--gold)}
+.hd-tag{font-size:11.5px;font-weight:700;letter-spacing:.28em;text-transform:uppercase;color:var(--gold)}
+.hd-eyebrow{margin-top:11px;font-size:12.5px;letter-spacing:.04em;color:rgba(220,192,136,.85)}
+h1{margin-top:13px;font-size:clamp(25px,4.4vw,36px);font-weight:900;line-height:1.34;letter-spacing:.01em}
+h1 em{font-style:normal;color:var(--gold-light)}
+.hd-sub{margin-top:15px;font-size:14.5px;line-height:1.85;color:rgba(250,247,240,.78);max-width:600px}
+.hd-pills{margin-top:22px;display:flex;flex-wrap:wrap;gap:9px}
+.hd-pill{border-radius:20px;padding:6px 15px;font-size:12px;border:1px solid rgba(201,165,92,.42);color:var(--gold-light)}
+.hd-pill.solid{background:var(--gold);color:var(--navy);font-weight:700;border-color:var(--gold)}
+
+/* ---------- hero value ---------- */
+.hero-card{
+  margin-top:-30px;position:relative;z-index:2;
+  background:var(--paper);border:1px solid rgba(201,165,92,.5);border-radius:22px;
+  box-shadow:0 18px 50px -26px rgba(26,39,68,.45);
+  padding:26px 24px;
+  display:grid;gap:20px;
+}
+@media(min-width:680px){.hero-card{grid-template-columns:1.1fr .9fr;align-items:center;padding:30px 32px}}
+.hv-label{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-deep);font-weight:700}
+.hv-amount{font-size:clamp(34px,6vw,44px);font-weight:900;color:var(--navy);line-height:1.06;margin-top:9px;letter-spacing:-.01em}
+.hv-asof{margin-top:8px;font-size:12.5px;color:var(--mist)}
+.hv-gain{background:var(--green-tint);border:1px solid rgba(30,122,82,.2);border-radius:16px;padding:17px 20px}
+.hv-gain .k{font-size:12px;color:#4a6f5f;line-height:1.6}
+.hv-gain .v{font-size:26px;font-weight:900;color:var(--green);line-height:1.2;margin-top:5px}
+.hv-gain .s{font-size:12.5px;color:#4a6f5f;margin-top:3px}
+
+/* ---------- metrics ---------- */
+.grid4{margin-top:16px;display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(min-width:760px){.grid4{grid-template-columns:repeat(4,1fr)}}
+.metric{background:#fffdf6;border:1px solid var(--line);border-radius:16px;padding:16px 17px}
+.metric .k{font-size:11.5px;color:var(--mist);letter-spacing:.02em}
+.metric .v{font-size:clamp(19px,2.6vw,22px);font-weight:800;color:var(--navy);margin-top:5px;line-height:1.2}
+.metric .s{font-size:11.5px;color:var(--mist);margin-top:4px;line-height:1.6}
+.metric.accent{background:#fbeccb;border-color:#e5c98a}
+.metric.accent .v{color:var(--gold-deep)}
+
+/* ---------- sections ---------- */
+section{margin-top:40px;scroll-margin-top:24px}
+.sec-eyebrow{font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold-deep);font-weight:700;margin-bottom:7px}
+.sec-title{font-size:clamp(19px,3vw,23px);font-weight:800;color:var(--navy);line-height:1.35}
+.sec-sub{font-size:13.5px;color:var(--mist);margin-top:7px;max-width:660px;line-height:1.8}
+.panel{margin-top:18px;background:var(--paper);border:1px solid rgba(201,165,92,.4);border-radius:20px;padding:22px 24px;box-shadow:0 2px 20px -8px rgba(26,39,68,.12)}
+.panel+.panel{margin-top:16px}
+
+/* ---------- tables ---------- */
+.tbl-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;border-radius:14px;border:1px solid var(--line);background:#fffdf6}
+table{width:100%;border-collapse:separate;border-spacing:0;font-size:14px;min-width:340px}
+th,td{padding:12px 15px;border-bottom:1px solid #f0e5c8;text-align:left;vertical-align:middle}
+th{background:#f5eeda;color:#4a4433;font-size:12.5px;font-weight:800;white-space:nowrap}
+td{color:#54503f}
+td:first-child{font-weight:600;color:#4a3a20}
+td:last-child,th:last-child{text-align:right;white-space:nowrap}
+tr:last-child td{border-bottom:0}
+tr.hl td{background:#fbeccb;font-weight:800;color:var(--navy)}
+tr.hl td:first-child{color:var(--navy)}
+
+/* ---------- progress ---------- */
+.prog{margin-top:22px}
+.prog-track{height:38px;border-radius:12px;background:#efe6d2;overflow:hidden;display:flex;border:1px solid var(--line)}
+.prog-seg{height:100%;display:flex;align-items:center;justify-content:center;font-size:11.5px;font-weight:700;color:#fff;white-space:nowrap;overflow:hidden}
+.prog-seg.recover{background:var(--navy-600);width:62.25%}
+.prog-seg.above{background:linear-gradient(90deg,var(--gold-deep),var(--gold));width:37.75%;color:var(--navy)}
+.prog-marks{display:flex;justify-content:space-between;gap:10px;margin-top:10px;font-size:11.5px;color:var(--mist);line-height:1.5}
+.prog-marks span{flex:1}
+.prog-marks span:nth-child(2){text-align:center}
+.prog-marks span:last-child{text-align:right}
+.prog-marks b{display:block;color:var(--navy);font-weight:700;font-size:12.5px}
+/* 窄屏放不下条内文字,改成条下图例 */
+.prog-legend{display:none;flex-direction:column;gap:8px;margin-top:12px}
+.prog-legend span{display:flex;align-items:center;gap:9px;font-size:12.5px;color:#54503f;line-height:1.5}
+.prog-legend em{font-style:normal}
+.prog-legend i{flex:none;width:13px;height:13px;border-radius:4px}
+.prog-legend i.recover{background:var(--navy-600)}
+.prog-legend i.above{background:linear-gradient(90deg,var(--gold-deep),var(--gold))}
+
+/* ---------- highlight / notes ---------- */
+.callout{margin-top:18px;background:#fbeccb;border:1px solid #e5c98a;border-radius:14px;padding:15px 17px;font-size:13.5px;line-height:1.85;color:#54503f}
+.callout b{color:var(--gold-deep);font-weight:800}
+.note{margin-top:16px;background:rgba(26,39,68,.045);border-radius:14px;padding:15px 17px;font-size:12.5px;line-height:1.9;color:#5e5747}
+.note b{color:var(--navy);font-weight:700}
+
+/* ---------- distribution ---------- */
+.badge{display:inline-block;font-size:11px;font-weight:800;color:var(--gold-deep);background:rgba(201,165,92,.16);
+  border:1px solid rgba(201,165,92,.45);border-radius:999px;padding:3px 11px;margin-left:8px;vertical-align:middle;letter-spacing:.02em}
+.dist-grid{display:grid;gap:14px;margin-top:4px}
+@media(min-width:620px){.dist-grid{grid-template-columns:1fr 1fr}}
+.dist{background:#fffdf6;border:1px solid var(--line);border-radius:16px;padding:18px 20px}
+.dist .k{font-size:12px;color:var(--mist);line-height:1.6}
+.dist .v{font-size:clamp(22px,3.4vw,26px);font-weight:900;color:var(--navy);margin-top:6px;line-height:1.2}
+.dist .s{font-size:12px;color:var(--mist);margin-top:5px}
+
+/* ---------- summary ---------- */
+.summary{background:linear-gradient(160deg,#1a2744 0%,#20304f 60%,#26354f 100%);border-radius:22px;padding:28px 26px;color:#eef2f8;position:relative;overflow:hidden}
+@media(min-width:680px){.summary{padding:34px 36px}}
+.summary::after{content:"";position:absolute;right:-70px;bottom:-90px;width:260px;height:260px;border-radius:50%;border:1px solid rgba(201,165,92,.22)}
+.summary .sec-eyebrow{color:var(--gold)}
+.summary h2{color:#fff;font-size:clamp(19px,3vw,23px);font-weight:800;line-height:1.35;position:relative;z-index:1}
+.summary p{margin-top:14px;font-size:14px;line-height:1.95;color:rgba(238,242,248,.86);position:relative;z-index:1}
+.summary strong{color:var(--gold-light);font-weight:800}
+
+/* ---------- disclaimer ---------- */
+.disc{margin-top:26px;background:rgba(26,39,68,.045);border-radius:16px;padding:20px 22px;font-size:12.5px;color:var(--mist);line-height:1.95}
+.disc-h{display:flex;align-items:center;gap:9px;color:var(--navy-700);font-weight:700;font-size:13.5px;margin-bottom:10px}
+.disc ul{list-style:none}
+.disc li{padding-left:18px;position:relative;margin-bottom:7px}
+.disc li::before{content:"";position:absolute;left:2px;top:11px;width:5px;height:5px;border-radius:50%;background:var(--gold)}
+.disc b{color:var(--navy-700)}
+
+/* ---------- site footer（与官网 Footer 一致） ---------- */
+.site-footer{margin-top:56px;border-top:1px solid rgba(201,165,92,.25);background:var(--sand-100)}
+.site-footer a{color:inherit;text-decoration:none;transition:color .2s}
+.site-footer a:hover{color:var(--gold-deep)}
+.sf-in{max-width:920px;margin:0 auto;padding:44px 20px 32px}
+.sf-grid{display:grid;gap:28px}
+@media(min-width:560px){.sf-grid{grid-template-columns:1fr 1fr}}
+@media(min-width:820px){.sf-grid{grid-template-columns:1.2fr 1fr 1fr 1fr}}
+.sf-brand{font-size:18px;font-weight:700;color:var(--navy)}
+.sf-tag{margin-top:6px;font-size:13px;color:var(--gold-deep)}
+.sf-org{margin-top:14px;font-size:11.5px;line-height:1.8;color:var(--mist)}
+.sf-h{font-size:11px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--gold-deep)}
+.sf-list{list-style:none;margin-top:12px}
+.sf-list li{font-size:13px;color:rgba(26,39,68,.8);margin-bottom:7px}
+.sf-bottom{margin-top:32px;border-top:1px solid rgba(201,165,92,.25);padding-top:20px;font-size:11.5px;line-height:1.8;color:var(--mist)}
+.sf-rights{margin-top:10px}
+
+/* ---------- password gate（全站同款） ---------- */
+body.locked{overflow:hidden}
+body.locked>*:not(#pwGate){visibility:hidden}
+#pwGate{position:fixed;inset:0;z-index:99;display:none;align-items:center;justify-content:center;
+  background:#FAF7F0;padding:20px;visibility:visible;overflow:auto;
+  font-family:'Noto Sans SC','PingFang SC','Hiragino Sans GB',-apple-system,system-ui,sans-serif}
+body.locked #pwGate{display:flex}
+#pwGate *{box-sizing:border-box}
+.pw-card{width:100%;max-width:940px;background:#fff;border-radius:26px;overflow:hidden;text-align:left;
+  box-shadow:0 30px 80px -40px rgba(23,39,66,.38);display:grid;grid-template-columns:1fr}
+.pw-left{padding:30px 26px;position:relative}
+.pw-top{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.pw-chip{display:inline-flex;align-items:center;gap:9px;border:1px solid rgba(199,161,90,.45);
+  background:rgba(199,161,90,.08);border-radius:999px;padding:5px 15px 5px 5px;font-size:12.5px;
+  font-weight:700;color:#A8874C;line-height:1.4}
+.pw-chip img{width:26px;height:26px;border-radius:50%;object-fit:cover;display:block}
+#pwLang{flex:none;border:1px solid #E2E6EC;background:#fff;color:#687386;border-radius:999px;
+  padding:5px 13px;font-size:12px;font-weight:700;cursor:pointer;font-family:inherit;letter-spacing:.04em}
+#pwLang:hover{border-color:#C7A15A;color:#172742}
+.pw-card h2{font-size:27px;line-height:1.28;color:#172742;margin:20px 0 0;font-weight:800;letter-spacing:.01em}
+.pw-card .pw-sub{font-size:14.5px;line-height:1.9;color:#687386;margin:12px 0 0}
+.pw-label{display:block;margin:24px 0 9px;font-size:13px;font-weight:700;color:#172742}
+.pw-field{position:relative}
+.pw-field .pw-lock{position:absolute;left:15px;top:50%;transform:translateY(-50%);color:#687386;pointer-events:none}
+#pwInput{width:100%;border:1px solid #E2E6EC;border-radius:15px;background:#FCFBF7;
+  padding:14px 46px;font-size:15px;text-align:left;letter-spacing:0;outline:none;font-family:inherit;color:#172742}
+#pwInput::placeholder{color:#A6AEBC}
+#pwInput:focus{border-color:#C7A15A;background:#fff}
+#pwEye{position:absolute;right:9px;top:50%;transform:translateY(-50%);width:34px;height:34px;display:flex;
+  align-items:center;justify-content:center;border:0;background:none;border-radius:50%;cursor:pointer;color:#687386}
+#pwEye:hover{background:#EEF1F7;color:#172742}
+#pwForm{display:block}
+#pwSubmit{margin-top:18px;width:100%;display:flex;align-items:center;justify-content:center;gap:10px;border:0;
+  background:#172742;color:#fff;border-radius:15px;padding:15px;font-size:15.5px;font-weight:700;cursor:pointer;
+  font-family:inherit;transition:background .25s,box-shadow .25s}
+#pwSubmit:hover{background:#0F1C31;box-shadow:0 14px 30px -14px rgba(23,39,66,.7)}
+.pw-err{display:none;margin-top:12px;font-size:13px;color:#B4433A;font-weight:600}
+.pw-err.show{display:block}
+.pw-div{display:flex;align-items:center;gap:14px;margin-top:30px;color:#687386;font-size:13px}
+.pw-div span{flex:1;height:1px;background:#E2E6EC}
+.pw-ask{margin-top:16px;text-align:center;font-size:14.5px;font-weight:700;color:#172742}
+.pw-contact{display:grid;gap:10px;margin-top:16px}
+.pw-c{display:flex;align-items:center;gap:11px;border:1px solid #E2E6EC;background:#FCFBF7;
+  border-radius:15px;padding:12px 14px;text-decoration:none;color:inherit;transition:border-color .25s,background .25s}
+a.pw-c:hover{border-color:#C7A15A;background:rgba(199,161,90,.07)}
+.pw-c i{flex:none;width:34px;height:34px;border-radius:50%;background:rgba(199,161,90,.16);color:#A8874C;
+  display:flex;align-items:center;justify-content:center;font-style:normal}
+.pw-c b{display:block;font-size:13.5px;color:#172742;font-weight:700}
+.pw-c s{display:block;font-size:13.5px;color:#687386;text-decoration:none}
+.pw-art{display:none}
+.pw-art img{width:100%;max-width:280px;height:auto;display:block}
+@media(min-width:820px){
+  .pw-card{grid-template-columns:minmax(0,1fr) minmax(0,.82fr)}
+  .pw-left{padding:46px 44px}
+  .pw-card h2{font-size:32px}
+  .pw-art{display:flex;align-items:flex-end;justify-content:center;background:#F7F4EC;
+    border-left:1px solid #E2E6EC;padding:30px 20px 46px}
+}
+@media(min-width:1024px){.pw-contact{grid-template-columns:1fr 1fr}.pw-art img{max-width:320px}}
+
+/* ---------- watermark（全站同款） ---------- */
+#wm{position:fixed;inset:0;z-index:9999;pointer-events:none;overflow:hidden;opacity:.0325}
+#wm .row{position:absolute;white-space:nowrap;font-size:20px;color:var(--navy);font-weight:500;letter-spacing:.06em;transform:rotate(-24deg);transform-origin:left center}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+
+/* ---------- 窄屏收敛 ---------- */
+@media(max-width:620px){
+  .wrap{padding:0 14px 48px}
+  header{padding:34px 16px 40px}
+  .hero-card{padding:22px 18px}
+  .panel{padding:18px 16px}
+  table{min-width:0}
+  th,td{padding:11px 12px;font-size:13px}
+  th{font-size:12px}
+  .prog-track{height:30px}
+  .prog-seg{font-size:0}
+  .prog-legend{display:flex}
+  .prog-marks{font-size:11px;gap:6px}
+  .prog-marks b{font-size:11.5px}
+  .dist{padding:16px 17px}
+  .summary{padding:24px 20px}
+  .disc{padding:18px 17px}
+  .sf-in{padding:36px 16px 28px}
+  .sf-list li{word-break:break-word}
+}
+
+@media print{
+  body{background:#fff;background-image:none}
+  header{background:#1a2744!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  #langBtn,#wm{display:none}
+  section{break-inside:avoid}
+  .site-footer{background:#fff}
+  @page{size:A4;margin:12mm}
+}
+</style>
+</head>
+<body class="locked">
+
+<div id="pwGate">
+  <div class="pw-card">
+    <div class="pw-left">
+      <div class="pw-top">
+        <span class="pw-chip"><img src="/avatar-round.png" alt="">
+          <b data-zh="新加坡小圆姐 · 客户专属" data-en="Yuan Yuan SG · client only">Yuan Yuan SG · client only</b>
+        </span>
+        <button type="button" id="pwLang" data-zh="EN" data-en="中文">中文</button>
+      </div>
+
+      <h2 data-zh="您的 SRS 投资总结" data-en="Your SRS investment summary">Your SRS investment summary</h2>
+      <p class="pw-sub" data-zh="这是小圆姐为客户准备的 SRS 投资表现总结。&lt;br&gt;为保护客户资料，请输入访问密码。" data-en="An SRS investment performance summary prepared for Yuan Yuan&rsquo;s client.&lt;br&gt;Enter the access password to view it.">An SRS investment performance summary prepared for Yuan Yuan&rsquo;s client.<br>Enter the access password to view it.</p>
+
+      <form id="pwForm">
+        <label class="pw-label" for="pwInput" data-zh="访问密码" data-en="Access password">Access password</label>
+        <div class="pw-field">
+          <svg class="pw-lock" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="4.5" y="10.5" width="15" height="10.5" rx="2.5"></rect><path d="M8 10.5V7.8a4 4 0 0 1 8 0v2.7"></path><path d="M12 15v2.2"></path>
+          </svg>
+          <input id="pwInput" type="password" autocomplete="off" placeholder="Enter password" data-zh="输入密码" data-en="Enter password">
+          <button type="button" id="pwEye" aria-label="Show password" aria-pressed="false">
+            <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M3 12c0-2.5 4-7 9-7s9 4.5 9 7c0 2.5-4 7-9 7s-9-4.5-9-7z"></path><circle cx="12" cy="12" r="2.6"></circle>
+            </svg>
+          </button>
+        </div>
+        <div class="pw-err" id="pwErr" data-zh="密码不正确，再试一次；或者找我要一次新的。" data-en="That password didn&rsquo;t work. Try again, or ask me for a new one.">That password didn&rsquo;t work. Try again, or ask me for a new one.</div>
+        <button type="submit" id="pwSubmit"><span data-zh="查看总结" data-en="View the summary">View the summary</span>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
+        </button>
+      </form>
+
+      <div class="pw-div"><span></span><b data-zh="还没有密码？" data-en="No password yet?" style="font-weight:400">No password yet?</b><span></span></div>
+      <p class="pw-ask" data-zh="联系小圆姐索取访问密码" data-en="Ask Yuan Yuan for the password">Ask Yuan Yuan for the password</p>
+      <div class="pw-contact">
+        <div class="pw-c">
+          <i><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.8A8.3 8.3 0 0 1 8.9 19L3.5 20.5 5 15.2A8.3 8.3 0 1 1 21 11.8z"></path><path d="M8.5 11.8h.01M12.2 11.8h.01M15.9 11.8h.01"></path></svg></i>
+          <span><b data-zh="微信" data-en="WeChat">WeChat</b><s>singaporeyuan</s></span>
+        </div>
+        <a class="pw-c" href="https://wa.me/6583750190?text=Hi%20Yuan%20Yuan%2C%20could%20I%20have%20the%20access%20password%20for%20my%20summary%20page%3F">
+          <i><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5.5 4H9l1.6 4.3L8.5 10a12.5 12.5 0 0 0 5.5 5.5l1.7-2.1L20 15v3.6A1.6 1.6 0 0 1 18.2 20C10.8 19.2 4.8 13.2 4 5.8A1.6 1.6 0 0 1 5.5 4z"></path></svg></i>
+          <span><b>WhatsApp</b><s>+65 8375 0190</s></span>
+        </a>
+      </div>
+    </div>
+
+    <div class="pw-art">
+      <img src="/password/welcome-door.webp" alt="" width="720" height="1245">
+    </div>
+  </div>
+</div>
+
+<header>
+  <div class="hd-in">
+    <div class="hd-top">
+      <a class="hd-brand" href="https://www.singaporeyuan.com/en">
+        <img src="/avatar-round.png" alt="">
+        <span>
+          <b data-zh="新加坡小圆姐" data-en="Yuan Yuan SG">Yuan Yuan SG</b>
+          <s>singaporeyuan.com</s>
+        </span>
+      </a>
+      <button type="button" id="langBtn" data-zh="EN" data-en="中文">中文</button>
+    </div>
+
+    <div class="hd-tag" data-zh="AIA INVEST EASY（SRS）" data-en="AIA INVEST EASY (SRS)">AIA INVEST EASY (SRS)</div>
+    <div class="hd-eyebrow" data-zh="为 James 准备 · 投资表现总结" data-en="Prepared for James · investment performance summary">Prepared for James · investment performance summary</div>
+    <h1 data-zh="AIA Global Dynamic Income Fund<br><em>投资表现总结</em>" data-en="AIA Global Dynamic Income Fund<br><em>Investment Performance Summary</em>">AIA Global Dynamic Income Fund<br><em>Investment Performance Summary</em></h1>
+    <div class="hd-sub" data-zh="这一页把你这笔 SRS 投资的本金、首次费用、当前账户价值和派息安排一次讲清楚：钱去了哪里、现在值多少、以及 5% 目标派息率到底该怎么理解。" data-en="This page lays out your SRS investment in one place: what went in, what the initial charge cost, what the account is worth today, and how the 5% target distribution rate should actually be read.">This page lays out your SRS investment in one place: what went in, what the initial charge cost, what the account is worth today, and how the 5% target distribution rate should actually be read.</div>
+
+    <div class="hd-pills">
+      <span class="hd-pill solid" data-zh="保单生效：2025年9月30日" data-en="Policy inception: 30 Sep 2025">Policy inception: 30 Sep 2025</span>
+      <span class="hd-pill" data-zh="估值日期：2026年8月31日" data-en="As of: 31 Aug 2026">As of: 31 Aug 2026</span>
+      <span class="hd-pill" data-zh="持有约 11 个月" data-en="Holding period: approx. 11 months">Holding period: approx. 11 months</span>
+      <span class="hd-pill" data-zh="单笔供款 S$30,000" data-en="Single contribution S$30,000">Single contribution S$30,000</span>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <div class="hero-card">
+    <div>
+      <div class="hv-label" data-zh="当前账户价值" data-en="Current fund value">Current fund value</div>
+      <div class="hv-amount">S$30,545.87</div>
+      <div class="hv-asof" data-zh="截至 2026 年 8 月 31 日" data-en="As at 31 August 2026">As at 31 August 2026</div>
+    </div>
+    <div class="hv-gain">
+      <div class="k" data-zh="与原始投入金额相比" data-en="Compared with the original amount invested">Compared with the original amount invested</div>
+      <div class="v">+S$545.87</div>
+      <div class="s" data-zh="净回报 +1.82%（首次费用已全部赚回）" data-en="Net return +1.82% (initial charge fully recovered)">Net return +1.82% (initial charge fully recovered)</div>
+    </div>
+  </div>
+
+  <div class="grid4">
+    <div class="metric">
+      <div class="k" data-zh="投入总额" data-en="Total amount invested">Total amount invested</div>
+      <div class="v">S$30,000</div>
+      <div class="s" data-zh="单笔供款" data-en="Single contribution">Single contribution</div>
+    </div>
+    <div class="metric">
+      <div class="k" data-zh="首次费用" data-en="Initial charge">Initial charge</div>
+      <div class="v">S$900</div>
+      <div class="s" data-zh="一次性 3%" data-en="One-time 3% charge">One-time 3% charge</div>
+    </div>
+    <div class="metric">
+      <div class="k" data-zh="实际入市金额" data-en="Net amount invested">Net amount invested</div>
+      <div class="v">S$29,100</div>
+      <div class="s">S$30,000 × 97%</div>
+    </div>
+    <div class="metric accent">
+      <div class="k" data-zh="高于回本线" data-en="Above break-even">Above break-even</div>
+      <div class="v">S$545.87</div>
+      <div class="s" data-zh="首次费用已全部收回" data-en="Initial charge fully recovered">Initial charge fully recovered</div>
+    </div>
+  </div>
+
+  <section id="performance">
+    <div class="sec-eyebrow" data-zh="01 · 表现" data-en="01 · Performance">01 · Performance</div>
+    <h2 class="sec-title" data-zh="这 11 个月，这笔投资表现如何？" data-en="How has the investment performed over 11 months?">How has the investment performed over 11 months?</h2>
+    <p class="sec-sub" data-zh="要看清真实表现，得分两层看：一层是基金本身赚了多少（以实际入市的 S$29,100 为基数），另一层是你口袋里的钱赚了多少（以原始的 S$30,000 为基数）。" data-en="Two layers tell the real story: how much the fund itself has gained (measured against the S$29,100 that actually went in), and how much you are up against the original S$30,000 you contributed.">Two layers tell the real story: how much the fund itself has gained (measured against the S$29,100 that actually went in), and how much you are up against the original S$30,000 you contributed.</p>
+
+    <div class="panel">
+      <div class="tbl-scroll">
+        <table>
+          <thead>
+            <tr>
+              <th data-zh="项目" data-en="Item">Item</th>
+              <th data-zh="结果" data-en="Result">Result</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td data-zh="实际入市金额" data-en="Net amount invested">Net amount invested</td><td>S$29,100.00</td></tr>
+            <tr><td data-zh="当前账户价值" data-en="Current fund value">Current fund value</td><td>S$30,545.87</td></tr>
+            <tr class="hl"><td data-zh="基金层面收益" data-en="Fund-level gain">Fund-level gain</td><td>+S$1,445.87</td></tr>
+            <tr class="hl"><td data-zh="基金层面回报率" data-en="Fund-level return">Fund-level return</td><td>+4.97%</td></tr>
+            <tr><td data-zh="约合年化回报" data-en="Approx. annualised return">Approx. annualised return</td><td data-zh="约 +5.43%" data-en="about +5.43%">about +5.43%</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="prog">
+        <div class="prog-track">
+          <div class="prog-seg recover" data-zh="赚回首次费用 S$900" data-en="Recovered the S$900 initial charge">Recovered the S$900 initial charge</div>
+          <div class="prog-seg above" data-zh="已超出本金 S$545.87" data-en="Above original S$545.87">Above original S$545.87</div>
+        </div>
+        <div class="prog-marks">
+          <span data-zh="&lt;b&gt;S$29,100&lt;/b&gt;实际入市" data-en="&lt;b&gt;S$29,100&lt;/b&gt;Net invested"><b>S$29,100</b>Net invested</span>
+          <span data-zh="&lt;b&gt;S$30,000&lt;/b&gt;回本线" data-en="&lt;b&gt;S$30,000&lt;/b&gt;Break-even"><b>S$30,000</b>Break-even</span>
+          <span data-zh="&lt;b&gt;S$30,545.87&lt;/b&gt;当前价值" data-en="&lt;b&gt;S$30,545.87&lt;/b&gt;Current value"><b>S$30,545.87</b>Current value</span>
+        </div>
+        <div class="prog-legend">
+          <span><i class="recover"></i><em data-zh="赚回一次性首次费用 S$900" data-en="Recovered the S$900 initial charge">Recovered the S$900 initial charge</em></span>
+          <span><i class="above"></i><em data-zh="已超出原始投入金额 S$545.87" data-en="Above the original amount invested by S$545.87">Above the original amount invested by S$545.87</em></span>
+        </div>
+      </div>
+
+      <div class="callout" data-zh="原始供款是 S$30,000。扣掉一次性 3% 的首次费用后，真正进入基金的是 &lt;b&gt;S$29,100&lt;/b&gt;。当前账户价值已经到 &lt;b&gt;S$30,545.87&lt;/b&gt; —— 也就是说，首次费用不但全部赚了回来，账户还站到了原始投入金额之上。" data-en="The original contribution was S$30,000. After the one-time 3% initial charge, &lt;b&gt;S$29,100&lt;/b&gt; was effectively invested into the fund. The current fund value has reached &lt;b&gt;S$30,545.87&lt;/b&gt; &mdash; the initial charge has been fully recovered, and the account now sits above the original amount invested.">The original contribution was S$30,000. After the one-time 3% initial charge, <b>S$29,100</b> was effectively invested into the fund. The current fund value has reached <b>S$30,545.87</b> &mdash; the initial charge has been fully recovered, and the account now sits above the original amount invested.</div>
+    </div>
+  </section>
+
+  <section id="distribution">
+    <div class="sec-eyebrow" data-zh="02 · 派息" data-en="02 · Distribution">02 · Distribution</div>
+    <h2 class="sec-title" data-zh="目标年派息率 5%<span class=&quot;badge&quot;>非保证</span>" data-en="Target annual distribution rate: 5%<span class=&quot;badge&quot;>Not guaranteed</span>">Target annual distribution rate: 5%<span class="badge">Not guaranteed</span></h2>
+    <p class="sec-sub" data-zh="派息会自动再投资回基金，也就是用来买入更多基金单位，而不是以现金形式派发给你。" data-en="Distributions are automatically reinvested into the fund, meaning they are used to purchase additional fund units rather than being paid out in cash.">Distributions are automatically reinvested into the fund, meaning they are used to purchase additional fund units rather than being paid out in cash.</p>
+
+    <div class="panel">
+      <div class="dist-grid">
+        <div class="dist">
+          <div class="k" data-zh="按当前价值测算的年派息（示意）" data-en="Illustrative annual distribution based on current value">Illustrative annual distribution based on current value</div>
+          <div class="v" data-zh="约 S$1,527 / 年" data-en="Approx. S$1,527 / year">Approx. S$1,527 / year</div>
+          <div class="s">S$30,545.87 × 5%</div>
+        </div>
+        <div class="dist">
+          <div class="k" data-zh="折算到每月" data-en="Monthly equivalent">Monthly equivalent</div>
+          <div class="v" data-zh="约 S$127 / 月" data-en="Approx. S$127 / month">Approx. S$127 / month</div>
+          <div class="s" data-zh="实际派息水平可能不同" data-en="Actual distributions may vary">Actual distributions may vary</div>
+        </div>
+      </div>
+
+      <div class="tbl-scroll" style="margin-top:16px">
+        <table>
+          <thead>
+            <tr>
+              <th data-zh="示意期间" data-en="Illustrative period">Illustrative period</th>
+              <th data-zh="按 5% 累计派息等值" data-en="Cumulative distribution equivalent at 5%">Cumulative distribution equivalent at 5%</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td data-zh="1 年" data-en="1 year">1 year</td><td data-zh="约 S$1,527" data-en="Approx. S$1,527">Approx. S$1,527</td></tr>
+            <tr><td data-zh="3 年" data-en="3 years">3 years</td><td data-zh="约 S$4,582" data-en="Approx. S$4,582">Approx. S$4,582</td></tr>
+            <tr><td data-zh="5 年" data-en="5 years">5 years</td><td data-zh="约 S$7,636" data-en="Approx. S$7,636">Approx. S$7,636</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="note" data-zh="重要：&lt;b&gt;5% 的目标派息率，并不等于 5% 的投资回报率。&lt;/b&gt;派息之后基金净值会相应调整，再投资只是把派息重新换成了更多的基金单位。最终账户价值仍然取决于基金表现、实际派息水平和相关费用。由于派息是自动再投资的，当前 S$30,545.87 这个数字里已经包含了再投资的效果，计算当前回报时不应该把 5% 派息再加一次。" data-en="Important: &lt;b&gt;a 5% target distribution rate is not the same as a 5% investment return.&lt;/b&gt; The fund&rsquo;s NAV adjusts after distributions, and reinvestment simply converts the distributions back into additional fund units. The final account value will still depend on fund performance, actual distribution levels and applicable charges. Since distributions are automatically reinvested, the current value of S$30,545.87 already reflects the reinvestment effect, and the 5% distribution should not be added again when calculating current return.">Important: <b>a 5% target distribution rate is not the same as a 5% investment return.</b> The fund&rsquo;s NAV adjusts after distributions, and reinvestment simply converts the distributions back into additional fund units. The final account value will still depend on fund performance, actual distribution levels and applicable charges. Since distributions are automatically reinvested, the current value of S$30,545.87 already reflects the reinvestment effect, and the 5% distribution should not be added again when calculating current return.</div>
+    </div>
+  </section>
+
+  <section id="summary">
+    <div class="summary">
+      <div class="sec-eyebrow" data-zh="03 · 总结" data-en="03 · Summary">03 · Summary</div>
+      <h2 data-zh="一句话说清楚这笔 SRS 投资" data-en="Your SRS investment, in plain terms">Your SRS investment, in plain terms</h2>
+      <p data-zh="这笔 SRS 投资在 2025 年 9 月底开始。扣掉一次性 3% 首次费用后，真正投入基金的是 &lt;strong&gt;S$29,100&lt;/strong&gt;。截至 2026 年 8 月 31 日，账户价值已经涨到 &lt;strong&gt;S$30,545.87&lt;/strong&gt;。" data-en="This SRS investment started at the end of September 2025. After the one-time 3% initial charge, &lt;strong&gt;S$29,100&lt;/strong&gt; was effectively invested into the fund. As of 31 August 2026, the account value has grown to &lt;strong&gt;S$30,545.87&lt;/strong&gt;.">This SRS investment started at the end of September 2025. After the one-time 3% initial charge, <strong>S$29,100</strong> was effectively invested into the fund. As of 31 August 2026, the account value has grown to <strong>S$30,545.87</strong>.</p>
+      <p data-zh="以实际入市金额为基数，这 11 个月的基金层面收益大约是 &lt;strong&gt;4.97%&lt;/strong&gt;。和原始的 S$30,000 供款相比，首次费用已经全部赚回，账户目前是正回报，约 &lt;strong&gt;1.82%&lt;/strong&gt;。" data-en="Based on the net amount invested into the fund, the investment has gained approximately &lt;strong&gt;4.97%&lt;/strong&gt; over 11 months. Compared with the original S$30,000 contribution, the initial charge has been fully recovered and the account is showing a positive return of approximately &lt;strong&gt;1.82%&lt;/strong&gt;.">Based on the net amount invested into the fund, the investment has gained approximately <strong>4.97%</strong> over 11 months. Compared with the original S$30,000 contribution, the initial charge has been fully recovered and the account is showing a positive return of approximately <strong>1.82%</strong>.</p>
+      <p data-zh="这只基金同时设有约 &lt;strong&gt;5%&lt;/strong&gt; 的目标年派息率。由于派息自动再投资，这笔钱更适合用长期的眼光来看，让再投资和市场表现随着时间一起复利。" data-en="The fund also targets an annual distribution rate of approximately &lt;strong&gt;5%&lt;/strong&gt;. As distributions are automatically reinvested, the investment can be viewed from a longer-term perspective, allowing reinvestment and market performance to compound over time.">The fund also targets an annual distribution rate of approximately <strong>5%</strong>. As distributions are automatically reinvested, the investment can be viewed from a longer-term perspective, allowing reinvestment and market performance to compound over time.</p>
+    </div>
+  </section>
+
+  <div class="disc">
+    <div class="disc-h">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M12 8h.01M11 12h1v4h1"></path></svg>
+      <span data-zh="说明与免责" data-en="Notes and disclaimer">Notes and disclaimer</span>
+    </div>
+    <ul>
+      <li data-zh="以上测算基于所述的一次性 3% 首次费用，以及 2026 年 8 月 31 日的账户价值。" data-en="The above calculations are based on the stated one-time 3% initial charge and the account value as of 31 Aug 2026.">The above calculations are based on the stated one-time 3% initial charge and the account value as of 31 Aug 2026.</li>
+      <li data-zh="数字仅供说明与客户沟通使用。年化回报由不足一年的持有期推算而来，&lt;b&gt;不代表未来表现&lt;/b&gt;。" data-en="Figures are for illustration and client discussion purposes only. The annualised return is extrapolated from a holding period of less than one year and &lt;b&gt;does not represent future performance&lt;/b&gt;.">Figures are for illustration and client discussion purposes only. The annualised return is extrapolated from a holding period of less than one year and <b>does not represent future performance</b>.</li>
+      <li data-zh="目标派息率非保证。基金价格与派息水平都可能上升或下降。" data-en="The target distribution rate is not guaranteed. Fund prices and distributions may rise or fall.">The target distribution rate is not guaranteed. Fund prices and distributions may rise or fall.</li>
+      <li data-zh="本总结未包含来源资料中未提供的其他费用、税务影响或 SRS 税务优惠。" data-en="This summary does not include any other charges, tax implications or SRS tax benefits that may apply but were not provided in the source information.">This summary does not include any other charges, tax implications or SRS tax benefits that may apply but were not provided in the source information.</li>
+      <li data-zh="一切以保险公司正式文件与基金公司公布的数据为准。" data-en="The insurer&rsquo;s official documents and the fund house&rsquo;s published data prevail in all cases.">The insurer&rsquo;s official documents and the fund house&rsquo;s published data prevail in all cases.</li>
+    </ul>
+  </div>
+
+</div>
+
+<footer class="site-footer">
+  <div class="sf-in">
+    <div class="sf-grid">
+      <div>
+        <p class="sf-brand" data-zh="新加坡小圆姐" data-en="Yuan Yuan SG">Yuan Yuan SG</p>
+        <p class="sf-tag" data-zh="用专业和耐心，陪你一起日富一日" data-en="With expertise and patience, growing richer with you, day by day">With expertise and patience, growing richer with you, day by day</p>
+        <p class="sf-org" data-zh="新加坡财富规划经理&lt;br&gt;RNF：YY-300823216" data-en="Prestige Wealth Manager&lt;br&gt;RNF: YY-300823216">Prestige Wealth Manager<br>RNF: YY-300823216</p>
+      </div>
+      <div>
+        <p class="sf-h" data-zh="联系方式" data-en="Contact">Contact</p>
+        <ul class="sf-list">
+          <li data-zh="微信：singaporeyuan" data-en="WeChat: singaporeyuan">WeChat: singaporeyuan</li>
+          <li><a href="https://wa.me/6583750190" target="_blank" rel="noopener noreferrer">WhatsApp: +65 8375 0190</a></li>
+          <li><a href="mailto:yuanyuan@aia.com.sg" data-zh="邮箱：yuanyuan@aia.com.sg" data-en="Email: yuanyuan@aia.com.sg">Email: yuanyuan@aia.com.sg</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="sf-h" data-zh="关注我" data-en="Follow">Follow</p>
+        <ul class="sf-list">
+          <li><a href="https://www.linkedin.com/in/singaporeyuan/" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+          <li class="zh-only"><a href="https://xhslink.com/m/9KS9V4ytFmj" target="_blank" rel="noopener noreferrer">小红书 · 新加坡小圆姐</a></li>
+          <li class="zh-only"><a href="https://xhslink.com/m/2eFS3jpJutg" target="_blank" rel="noopener noreferrer">小红书 · 图文笔记</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="sf-h" data-zh="新加坡小圆姐" data-en="Yuan Yuan SG">Yuan Yuan SG</p>
+        <ul class="sf-list" id="sfNav">
+          <li><a href="https://www.singaporeyuan.com/en/about" data-zh="关于我" data-en="About">About</a></li>
+          <li><a href="https://www.singaporeyuan.com/en/cases" data-zh="规划案例" data-en="Case Studies">Case Studies</a></li>
+          <li><a href="https://www.singaporeyuan.com/en/services" data-zh="业务范围" data-en="Services">Services</a></li>
+          <li><a href="https://www.singaporeyuan.com/en/resources" data-zh="资源中心" data-en="Resources">Resources</a></li>
+          <li><a href="https://www.singaporeyuan.com/en/consult" data-zh="预约咨询" data-en="Get in Touch">Get in Touch</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="sf-bottom">
+      <p data-zh="本网站内容仅供参考，不构成任何投资、保险、法律或税务建议。保险产品涉及条款与风险，部分收益为非保证。具体以保险公司正式文件及相关专业意见为准。" data-en="The content of this site is for reference only and does not constitute any investment, insurance, legal or tax advice. Insurance products involve terms and risks, and some returns are non-guaranteed. The insurer&rsquo;s official documents and relevant professional advice prevail.">The content of this site is for reference only and does not constitute any investment, insurance, legal or tax advice. Insurance products involve terms and risks, and some returns are non-guaranteed. The insurer&rsquo;s official documents and relevant professional advice prevail.</p>
+      <p class="sf-rights" data-zh="© 2026 袁媛 Yuan Yuan. 版权所有。" data-en="© 2026 Yuan Yuan. All rights reserved.">© 2026 Yuan Yuan. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+<div id="wm" aria-hidden="true"></div>
+
+<script>
+/* ---------- 中英切换：整页 + 密码门共用一套语言状态，默认英文 ---------- */
+(function(){
+  var LANG_KEY="sy_client_james_lang";
+  var lang="en";
+
+  function localise(root,L){
+    root.querySelectorAll("[data-zh],[data-en]").forEach(function(el){
+      var t=el.getAttribute(L==="zh"?"data-zh":"data-en");
+      if(t==null)return;
+      if(el.tagName==="INPUT") el.placeholder=t; else el.innerHTML=t;
+    });
+  }
+
+  function apply(L){
+    lang=L;
+    localise(document,L);
+    document.documentElement.lang = L==="zh" ? "zh-CN" : "en";
+    document.querySelectorAll(".zh-only").forEach(function(el){
+      el.style.display = L==="zh" ? "" : "none";
+    });
+    // 底部快捷链接跟随语言指向对应 locale
+    document.querySelectorAll("#sfNav a").forEach(function(a){
+      a.href = a.href.replace(/\/(en|zh)\//, "/"+L+"/");
+    });
+    var inp=document.getElementById("pwInput"), eye=document.getElementById("pwEye");
+    if(eye&&inp) eye.setAttribute("aria-label",
+      inp.type==="password" ? (L==="zh"?"显示密码":"Show password") : (L==="zh"?"隐藏密码":"Hide password"));
+  }
+
+  function toggle(){
+    var L = lang==="zh" ? "en" : "zh";
+    apply(L);
+    try{ localStorage.setItem(LANG_KEY,L); }catch(e){}
+  }
+
+  var saved=null;
+  try{ saved=localStorage.getItem(LANG_KEY); }catch(e){}
+  apply(saved==="zh" ? "zh" : "en");   // 默认英文
+
+  ["pwLang","langBtn"].forEach(function(id){
+    var b=document.getElementById(id);
+    if(b) b.addEventListener("click",toggle);
+  });
+})();
+</script>
+
+<script>
+/* ---------- 密码门（全站同款：SHA-256 比对 + sessionStorage 记住本次会话） ---------- */
+(function(){
+  var HASH="a7fbc36f5d9aa9dd261f28051bd81cdaeeaafb7b68d2af6825bd08821d5565f1",
+      KEY="sy_client_james_auth";
+  function sha(s){return crypto.subtle.digest("SHA-256",new TextEncoder().encode(s)).then(function(b){
+    return Array.prototype.map.call(new Uint8Array(b),function(x){return x.toString(16).padStart(2,"0")}).join("");
+  })}
+  try{ if(sessionStorage.getItem(KEY)===HASH){ document.body.classList.remove("locked"); } }catch(e){}
+
+  var inp=document.getElementById("pwInput"), eye=document.getElementById("pwEye");
+  if(eye&&inp){ eye.addEventListener("click",function(){
+    var show=inp.type==="password";
+    inp.type=show?"text":"password";
+    eye.setAttribute("aria-pressed",show?"true":"false");
+    inp.focus();
+  }); }
+
+  document.getElementById("pwForm").addEventListener("submit",function(e){
+    e.preventDefault();
+    var v=inp.value.trim();
+    sha(v).then(function(h){
+      if(h===HASH){
+        try{sessionStorage.setItem(KEY,HASH);}catch(e){}
+        document.body.classList.remove("locked");
+        window.scrollTo(0,0);
+      }else{
+        document.getElementById("pwErr").classList.add("show");
+        inp.select();
+      }
+    });
+  });
+})();
+</script>
+
+<script>
+/* ---------- 水印（全站同款） ---------- */
+(function(){
+  var text="新加坡小圆姐　　　singaporeyuan　　　仅供本人参考　　　　　　";
+  var wm=document.getElementById('wm');var unit=text.repeat(6);
+  for(var i=0;i<16;i++){var d=document.createElement('div');d.className='row';d.textContent=unit;d.style.top=(i*110-120)+'px';d.style.left='-200px';wm.appendChild(d);}
+})();
+</script>
+
+</body>
+</html>
