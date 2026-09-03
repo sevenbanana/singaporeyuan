@@ -177,22 +177,6 @@ tfoot td.age{z-index:3}
 .sf-bottom{margin-top:32px;border-top:1px solid rgba(201,165,92,.25);padding-top:20px;font-size:11.5px;line-height:1.8;color:#7a7264}
 .sf-rights{margin-top:10px}
 
-/* ---------- password gate ---------- */
-body.locked{overflow:hidden}
-body.locked>*:not(#pwGate){visibility:hidden}
-#pwGate{position:fixed;inset:0;z-index:99;display:none;align-items:center;justify-content:center;background:linear-gradient(160deg,#1B2A4A 0%,#24365C 60%,#2C4270 100%);padding:24px;visibility:visible}
-body.locked #pwGate{display:flex}
-.pw-card{width:100%;max-width:360px;background:#fff;border-radius:18px;padding:34px 28px;text-align:center;box-shadow:0 24px 64px rgba(0,0,0,.35)}
-.pw-brand{font-size:11px;letter-spacing:.22em;color:var(--gold-deep);margin-bottom:14px}
-.pw-card h2{font-size:19px;color:var(--navy);margin-bottom:6px}
-.pw-card p{font-size:13px;color:var(--muted);margin-bottom:18px}
-#pwForm{display:flex;gap:8px}
-#pwInput{flex:1;min-width:0;border:1px solid var(--line);border-radius:10px;padding:11px 12px;font-size:15px;text-align:center;letter-spacing:.12em;outline:none;font-family:inherit}
-#pwInput:focus{border-color:var(--gold-deep)}
-#pwForm button{border:0;background:var(--navy);color:#fff;border-radius:10px;padding:11px 18px;font-size:14px;cursor:pointer;font-family:inherit}
-.pw-err{display:none;margin-top:12px;font-size:12px;color:var(--red)}
-.pw-err.show{display:block}
-
 /* ---------- watermark ---------- */
 #wm{position:fixed;inset:0;z-index:9999;pointer-events:none;overflow:hidden;opacity:.0325}
 #wm .row{position:absolute;white-space:nowrap;font-size:20px;color:var(--navy);font-weight:500;letter-spacing:.06em;transform:rotate(-24deg);transform-origin:left center}
@@ -208,43 +192,7 @@ body.locked #pwGate{display:flex}
 }
 </style>
 </head>
-<body class="locked">
-
-<div id="pwGate">
-  <div class="pw-card">
-    <div class="pw-brand">新加坡小圆姐 · SINGAPOREYUAN</div>
-    <h2 class="serif">此页面为保费测算明细</h2>
-    <p>请输入访问密码查看</p>
-    <form id="pwForm">
-      <input id="pwInput" type="password" autocomplete="off" placeholder="访问密码">
-      <button type="submit">进入</button>
-    </form>
-    <div class="pw-err" id="pwErr">密码不正确，请重试</div>
-  </div>
-</div>
-<script>
-(function(){
-  var HASH="5647cdb5254a24d3a184f9136af8416c1ffb1050fd57c67dc133e588b73fc706", KEY="sy_case_hsg_max_61_100_auth";
-  function sha(s){return crypto.subtle.digest("SHA-256",new TextEncoder().encode(s)).then(function(b){
-    return Array.prototype.map.call(new Uint8Array(b),function(x){return x.toString(16).padStart(2,"0")}).join("");
-  })}
-  try{ if(sessionStorage.getItem(KEY)===HASH){ document.body.classList.remove("locked"); } }catch(e){}
-  document.getElementById("pwForm").addEventListener("submit",function(e){
-    e.preventDefault();
-    var v=document.getElementById("pwInput").value.trim();
-    sha(v).then(function(h){
-      if(h===HASH){
-        try{sessionStorage.setItem(KEY,HASH);}catch(e){}
-        document.body.classList.remove("locked");
-        window.scrollTo(0,0);
-      }else{
-        document.getElementById("pwErr").classList.add("show");
-        document.getElementById("pwInput").select();
-      }
-    });
-  });
-})();
-</script>
+<body>
 
 <header>
   <div class="hd-in">
