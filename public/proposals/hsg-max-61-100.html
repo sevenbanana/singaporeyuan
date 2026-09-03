@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex,nofollow">
+<title>61 至 100 岁住院险保费测算 · AIA HealthShield Gold Max | 新加坡小圆姐</title>
+<style>
+:root{
+  --navy:#1B2A4A;
+  --navy-soft:#2E4068;
+  --navy-tint:#EEF1F7;
+  --gold:#C9A86A;
+  --gold-deep:#A8874C;
+  --gold-tint:#F7F1E4;
+  --ivory:#FBFAF7;
+  --ink:#22293A;
+  --muted:#6B7280;
+  --line:#E4E2DB;
+  --green:#1E7A52;
+  --green-tint:#EAF6F0;
+  --red:#B4433A;
+  --pa:#1B2A4A;   /* Max A · 私立 */
+  --pb:#A8874C;   /* Max B · 公立 */
+}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth}
+body{
+  font-family:-apple-system,"PingFang SC","Hiragino Sans GB","Noto Sans SC","Microsoft YaHei",sans-serif;
+  background:var(--ivory);color:var(--ink);line-height:1.7;font-size:15px;
+}
+.wrap{max-width:960px;margin:0 auto;padding:0 16px 64px}
+.serif{font-family:"Songti SC","Noto Serif SC",Georgia,serif}
+.num{font-variant-numeric:tabular-nums;font-feature-settings:"tnum" 1}
+svg{display:block}
+
+/* ---------- header ---------- */
+header{
+  background:linear-gradient(160deg,#1B2A4A 0%,#24365C 60%,#2C4270 100%);
+  color:#faf7f0;padding:52px 16px 46px;position:relative;overflow:hidden;
+}
+header::after{content:"";position:absolute;right:-80px;top:-96px;width:320px;height:320px;border-radius:50%;border:1px solid rgba(201,165,92,.3)}
+header::before{content:"";position:absolute;right:40px;top:40px;width:160px;height:160px;border-radius:50%;border:1px solid rgba(201,165,92,.15)}
+.hd-in{max-width:960px;margin:0 auto;position:relative;z-index:1;display:grid;grid-template-columns:1fr;gap:24px;align-items:end}
+@media(min-width:700px){.hd-in{grid-template-columns:1fr auto}}
+.hd-tag{font-size:12px;font-weight:600;letter-spacing:.3em;text-transform:uppercase;color:#c9a55c}
+.hd-eyebrow{margin-top:10px;font-size:12px;letter-spacing:.05em;color:rgba(220,192,136,.8)}
+h1{margin-top:14px;font-size:clamp(26px,4.6vw,38px);font-weight:900;line-height:1.35;letter-spacing:.01em}
+h1 em{font-style:normal;color:#dcc088}
+.hd-sub{margin-top:16px;font-size:15px;line-height:1.85;color:rgba(250,247,240,.8);max-width:600px}
+.hd-pills{margin-top:24px;display:flex;flex-wrap:wrap;gap:10px}
+.hd-pill{border-radius:20px;padding:6px 16px;font-size:12px;border:1px solid rgba(201,165,92,.45);color:#dcc088}
+.hd-pill.solid{background:#c9a55c;color:#1B2A4A;font-weight:600;border-color:#c9a55c}
+.hd-icon{display:none;position:relative;align-self:end;margin-bottom:-8px}
+@media(min-width:700px){.hd-icon{display:block}}
+
+/* ---------- quick nav ---------- */
+.qnav{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
+.qnav a{font-size:12.5px;color:var(--navy-soft);background:#fff;border:1px solid var(--line);border-radius:20px;padding:6px 14px;text-decoration:none;transition:all .2s}
+.qnav a:hover{border-color:var(--gold-deep);color:var(--gold-deep)}
+
+/* ---------- sections ---------- */
+section{margin-top:48px;scroll-margin-top:24px}
+.sec-eyebrow{font-size:12px;letter-spacing:.28em;color:var(--gold-deep);margin-bottom:6px}
+.sec-title{font-size:21px;font-weight:600;color:var(--navy);margin-bottom:4px}
+.sec-sub{font-size:13px;color:var(--muted);margin-bottom:18px;max-width:680px}
+
+/* ---------- rate switcher ---------- */
+.switcher{margin-top:26px;background:var(--gold-tint);border:1px solid #EADFC6;border-radius:16px;padding:18px 20px;
+  display:flex;flex-wrap:wrap;gap:16px;align-items:center;justify-content:space-between}
+.sw-label{display:flex;gap:11px;align-items:flex-start;max-width:600px}
+.sw-label svg{width:20px;height:20px;flex-shrink:0;margin-top:3px;color:var(--gold-deep)}
+.sw-label b{display:block;font-size:14px;color:var(--gold-deep);margin-bottom:2px}
+.sw-label span{font-size:12.5px;color:#6D5318;line-height:1.7}
+.seg{display:inline-flex;background:#fff;border:1px solid #EADFC6;border-radius:12px;padding:4px;gap:4px;flex-shrink:0}
+.seg button{font-family:inherit;font-size:12.5px;color:var(--muted);background:transparent;border:0;border-radius:9px;
+  padding:8px 14px;cursor:pointer;white-space:nowrap;transition:background .18s,color .18s}
+.seg button:hover{color:var(--navy)}
+.seg button[aria-pressed="true"]{background:var(--navy);color:#fff;font-weight:600}
+.seg button:focus-visible{outline:2px solid var(--gold-deep);outline-offset:2px}
+
+/* ---------- compare cards ---------- */
+.cards{display:grid;gap:18px}
+@media(min-width:680px){.cards{grid-template-columns:1fr 1fr}}
+.pcard{background:#fff;border:1px solid var(--line);border-radius:18px;overflow:hidden;border-top:4px solid var(--pc);display:flex;flex-direction:column}
+.pcard.public{--pc:var(--pb)}
+.pcard.private{--pc:var(--pa)}
+.pc-head{padding:22px 22px 20px;border-bottom:1px solid var(--line)}
+.pcard.public .pc-head{background:linear-gradient(150deg,#F9F4E8,#FBFAF7)}
+.pcard.private .pc-head{background:linear-gradient(150deg,#F2F5FA,#FBFAF7)}
+.pc-tag{display:inline-flex;align-items:center;gap:6px;font-size:11.5px;letter-spacing:.08em;font-weight:600;color:var(--pc);border:1px solid var(--pc);border-radius:20px;padding:3px 12px;margin-bottom:12px}
+.pc-name{font-size:16.5px;font-weight:700;color:var(--navy);line-height:1.45}
+.pc-note{font-size:12px;color:var(--muted);margin-top:3px}
+.pc-big-k{font-size:11.5px;color:var(--muted);letter-spacing:.04em;margin-top:16px}
+.pc-total{font-size:33px;font-weight:800;color:var(--pc);line-height:1.1;white-space:nowrap;margin-top:2px}
+.pc-total small{font-size:14px;font-weight:600;color:var(--muted);margin-right:5px}
+.rate-flag{display:inline-block;margin-top:12px;font-size:11px;letter-spacing:.06em;color:var(--gold-deep);
+  background:var(--gold-tint);border:1px solid #EADFC6;border-radius:20px;padding:3px 11px}
+.was{margin-top:10px;font-size:12.5px;color:var(--muted);line-height:1.7}
+.was b{color:var(--navy);font-weight:700}
+.pc-body{padding:16px 22px 20px}
+.prem-row{display:flex;justify-content:space-between;align-items:baseline;gap:10px;font-size:13px;padding:6px 0;border-bottom:1px dashed var(--line)}
+.prem-row:last-child{border-bottom:0}
+.prem-row .k{color:var(--muted)}
+.prem-row .v{font-weight:700;color:var(--navy);white-space:nowrap}
+.prem-row.pay{border-bottom:0;padding-top:12px}
+.prem-row.pay+.prem-row.pay{padding-top:2px}
+.prem-row.pay .k{color:var(--navy-soft)}
+.prem-row.cash .v{color:var(--green)}
+.pc-split{margin-top:8px;padding-top:10px;border-top:1px solid var(--line)}
+
+/* ---------- delta band ---------- */
+.delta{margin-top:18px;background:linear-gradient(150deg,#F2F5FA,#FBFAF7);border:1px solid var(--line);border-radius:16px;
+  padding:20px 22px;display:flex;flex-wrap:wrap;align-items:baseline;gap:8px 14px;font-size:14px;color:#3B4358}
+.delta b{font-size:27px;font-weight:800;color:var(--navy);line-height:1.2;white-space:nowrap}
+.delta span.tail{font-size:12.5px;color:var(--muted)}
+
+/* ---------- chart ---------- */
+.tbl-card{background:#fff;border:1px solid var(--line);border-radius:18px;overflow:hidden}
+.tbl-head{padding:16px 18px 14px;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.fico{width:32px;height:32px;border-radius:10px;background:var(--gold-tint);color:var(--gold-deep);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.fico svg{width:17px;height:17px}
+.tbl-head b{font-size:15px;color:var(--navy)}
+.tbl-head span{font-size:12px;color:var(--muted)}
+.legend{display:flex;flex-wrap:wrap;gap:8px 18px;padding:14px 18px 4px;font-size:12px;color:var(--muted)}
+.legend i{display:inline-block;width:20px;height:3px;border-radius:2px;vertical-align:middle;margin-right:7px}
+.chartbox{padding:4px 12px 14px;overflow-x:auto}
+
+/* ---------- table ---------- */
+.tbl-scroll{overflow:auto;max-height:620px}
+table{width:100%;border-collapse:separate;border-spacing:0;min-width:880px;font-size:13px}
+thead th{position:sticky;background:var(--navy-tint);color:var(--navy);font-size:11.5px;font-weight:600;
+  white-space:nowrap;padding:9px 12px;text-align:right;border-bottom:1px solid var(--line);z-index:2}
+thead tr.grp th{top:0;font-size:11px;letter-spacing:.1em;padding:8px 12px 6px;text-align:center}
+thead tr.cols th{top:33px}
+thead th.ga{background:#E8EEF7;color:var(--pa)}
+thead th.gb{background:#F4EDDA;color:#7A5F26}
+th.age,td.age{text-align:left;position:sticky;left:0;z-index:1}
+thead th.age{z-index:3}
+td.age{background:#fff}
+td{padding:7px 12px;text-align:right;border-bottom:1px solid var(--line);
+  font-variant-numeric:tabular-nums;color:var(--ink);white-space:nowrap}
+td.age{color:var(--navy-soft);font-weight:600}
+td.age i{display:block;font-style:normal;font-size:10.5px;color:var(--muted);font-weight:400;letter-spacing:.03em}
+tr.bandstart td{border-top:1px solid #D8D4CA}
+td.a{background:#F6F8FC}
+td.b{background:#FBF7EC}
+td.tot{font-weight:700;color:var(--navy)}
+td.sep{border-left:1px solid var(--line)}
+tfoot td{position:sticky;bottom:0;background:#FBFAF5;border-top:1px solid #D8D4CA;font-weight:700;color:var(--navy);padding:11px 12px;z-index:2}
+tfoot td.age{z-index:3}
+
+/* ---------- notes ---------- */
+.disc{background:var(--navy-tint);border-radius:14px;padding:20px 22px;font-size:12.5px;color:var(--muted);line-height:1.9}
+.disc-h{display:flex;align-items:center;gap:9px;color:var(--navy-soft);font-weight:600;font-size:13.5px;margin-bottom:10px}
+.disc-h svg{width:18px;height:18px}
+.disc ol,.disc ul{list-style:none}
+.disc li{padding-left:18px;position:relative;margin-bottom:8px}
+.disc li::before{content:"";position:absolute;left:2px;top:11px;width:5px;height:5px;border-radius:50%;background:var(--gold)}
+.disc b{color:var(--navy)}
+.disc code{font-family:ui-monospace,"SF Mono",Menlo,monospace;font-size:12px;background:#fff;border:1px solid var(--line);border-radius:4px;padding:0 5px}
+
+/* ---------- site footer ---------- */
+.site-footer{margin-top:56px;border-top:1px solid rgba(201,165,92,.25);background:#f5efe1}
+.site-footer a{color:inherit;text-decoration:none;transition:color .2s}
+.site-footer a:hover{color:#a8843f}
+.sf-in{max-width:960px;margin:0 auto;padding:44px 20px 32px}
+.sf-grid{display:grid;gap:28px}
+@media(min-width:560px){.sf-grid{grid-template-columns:1fr 1fr}}
+@media(min-width:820px){.sf-grid{grid-template-columns:1.2fr 1fr 1fr 1fr}}
+.sf-brand{font-size:18px;font-weight:700;color:#1a2744}
+.sf-tag{margin-top:6px;font-size:13px;color:#a8843f}
+.sf-org{margin-top:14px;font-size:11.5px;line-height:1.8;color:#7a7264}
+.sf-h{font-size:11px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:#a8843f}
+.sf-list{list-style:none;margin-top:12px}
+.sf-list li{font-size:13px;color:rgba(26,39,68,.8);margin-bottom:7px}
+.sf-bottom{margin-top:32px;border-top:1px solid rgba(201,165,92,.25);padding-top:20px;font-size:11.5px;line-height:1.8;color:#7a7264}
+.sf-rights{margin-top:10px}
+
+/* ---------- password gate ---------- */
+body.locked{overflow:hidden}
+body.locked>*:not(#pwGate){visibility:hidden}
+#pwGate{position:fixed;inset:0;z-index:99;display:none;align-items:center;justify-content:center;background:linear-gradient(160deg,#1B2A4A 0%,#24365C 60%,#2C4270 100%);padding:24px;visibility:visible}
+body.locked #pwGate{display:flex}
+.pw-card{width:100%;max-width:360px;background:#fff;border-radius:18px;padding:34px 28px;text-align:center;box-shadow:0 24px 64px rgba(0,0,0,.35)}
+.pw-brand{font-size:11px;letter-spacing:.22em;color:var(--gold-deep);margin-bottom:14px}
+.pw-card h2{font-size:19px;color:var(--navy);margin-bottom:6px}
+.pw-card p{font-size:13px;color:var(--muted);margin-bottom:18px}
+#pwForm{display:flex;gap:8px}
+#pwInput{flex:1;min-width:0;border:1px solid var(--line);border-radius:10px;padding:11px 12px;font-size:15px;text-align:center;letter-spacing:.12em;outline:none;font-family:inherit}
+#pwInput:focus{border-color:var(--gold-deep)}
+#pwForm button{border:0;background:var(--navy);color:#fff;border-radius:10px;padding:11px 18px;font-size:14px;cursor:pointer;font-family:inherit}
+.pw-err{display:none;margin-top:12px;font-size:12px;color:var(--red)}
+.pw-err.show{display:block}
+
+/* ---------- watermark ---------- */
+#wm{position:fixed;inset:0;z-index:9999;pointer-events:none;overflow:hidden;opacity:.0325}
+#wm .row{position:absolute;white-space:nowrap;font-size:20px;color:var(--navy);font-weight:500;letter-spacing:.06em;transform:rotate(-24deg);transform-origin:left center}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+
+@media print{
+  body{background:#fff}
+  .qnav,.seg{display:none}
+  section{break-inside:avoid}
+  .tbl-scroll{max-height:none}
+  .site-footer{background:#fff}
+  @page{size:A4 landscape;margin:10mm}
+}
+</style>
+</head>
+<body class="locked">
+
+<div id="pwGate">
+  <div class="pw-card">
+    <div class="pw-brand">新加坡小圆姐 · SINGAPOREYUAN</div>
+    <h2 class="serif">此页面为保费测算明细</h2>
+    <p>请输入访问密码查看</p>
+    <form id="pwForm">
+      <input id="pwInput" type="password" autocomplete="off" placeholder="访问密码">
+      <button type="submit">进入</button>
+    </form>
+    <div class="pw-err" id="pwErr">密码不正确，请重试</div>
+  </div>
+</div>
+<script>
+(function(){
+  var HASH="5647cdb5254a24d3a184f9136af8416c1ffb1050fd57c67dc133e588b73fc706", KEY="sy_case_hsg_max_61_100_auth";
+  function sha(s){return crypto.subtle.digest("SHA-256",new TextEncoder().encode(s)).then(function(b){
+    return Array.prototype.map.call(new Uint8Array(b),function(x){return x.toString(16).padStart(2,"0")}).join("");
+  })}
+  try{ if(sessionStorage.getItem(KEY)===HASH){ document.body.classList.remove("locked"); } }catch(e){}
+  document.getElementById("pwForm").addEventListener("submit",function(e){
+    e.preventDefault();
+    var v=document.getElementById("pwInput").value.trim();
+    sha(v).then(function(h){
+      if(h===HASH){
+        try{sessionStorage.setItem(KEY,HASH);}catch(e){}
+        document.body.classList.remove("locked");
+        window.scrollTo(0,0);
+      }else{
+        document.getElementById("pwErr").classList.add("show");
+        document.getElementById("pwInput").select();
+      }
+    });
+  });
+})();
+</script>
+
+<header>
+  <div class="hd-in">
+    <div>
+      <div class="hd-tag">PREMIUM PROJECTION · AIA HEALTHSHIELD GOLD MAX</div>
+      <div class="hd-eyebrow">住院险保费测算 · 公民 / PR 现行费率（含 9% GST）</div>
+      <h1>61 岁到 100 岁，<br>这份住院险<em>一共要交多少</em></h1>
+      <div class="hd-sub">主险加 Rider 的逐年明细。一边是公立医院方案 Max B，一边是私立医院方案 Max A。同样交 40 年，两条路的差距都在下面这张表里。</div>
+      <div class="hd-pills">
+        <span class="hd-pill solid">新加坡公民 / PR</span>
+        <span class="hd-pill">投保年龄 61 至 100（40 个保单年度）</span>
+        <span class="hd-pill">费率含 9% GST</span>
+        <span class="hd-pill">住院险费率不分男女</span>
+      </div>
+    </div>
+    <div class="hd-icon" aria-hidden="true">
+      <svg width="150" height="150" viewBox="0 0 150 150" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="75" cy="75" r="70" stroke="rgba(220,192,136,.3)"/>
+        <circle cx="75" cy="75" r="56" stroke="rgba(220,192,136,.15)"/>
+        <path d="M75 28 L112 42 V76 C112 103 94 118 75 126 C56 118 38 103 38 76 V42 Z" stroke="#dcc088" stroke-width="2.5" fill="rgba(201,165,92,.08)" stroke-linejoin="round"/>
+        <path d="M75 62 V96 M58 79 H92" stroke="#dcc088" stroke-width="6" stroke-linecap="round"/>
+      </svg>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+
+<nav class="qnav" aria-label="页内导航">
+  <a href="#compare">两条路的总账</a>
+  <a href="#chart">每年要交多少</a>
+  <a href="#table">逐年明细</a>
+  <a href="#notes">算这张表的口径</a>
+</nav>
+
+<div class="switcher">
+  <div class="sw-label">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v4l3 2"/></svg>
+    <div>
+      <b>Max A 主险费率 2026 年 10 月 1 日起调涨</b>
+      <span>切换查看调涨前后的差别。Max B 主险、两个 Rider 与 MediShield Life 保费本次不变。</span>
+    </div>
+  </div>
+  <div class="seg" role="group" aria-label="选择 Max A 主险费率版本">
+    <button type="button" id="btn-new" aria-pressed="true">10 月 1 日起 · 新费率</button>
+    <button type="button" id="btn-old" aria-pressed="false">10 月 1 日前 · 现行</button>
+  </div>
+</div>
+
+<!-- ================= 两条路的总账 ================= -->
+<section id="compare">
+  <div class="sec-eyebrow">40-YEAR TOTAL</div>
+  <h2 class="sec-title serif">两条路，40 年各交多少</h2>
+  <p class="sec-sub">下面两张卡片是 61 岁到 100 岁全部 40 个保单年度的保费合计，含主险、Rider 与 MediShield Life。</p>
+
+  <div class="cards">
+    <div class="pcard public">
+      <div class="pc-head">
+        <div class="pc-tag">公立医院</div>
+        <div class="pc-name">Max B ＋ Max VitalHealth Pro B</div>
+        <div class="pc-note">B 级病房 · 公立医院</div>
+        <div class="pc-big-k">40 年保费合计</div>
+        <div class="pc-total num"><small>S$</small><span id="tb">—</span></div>
+      </div>
+      <div class="pc-body">
+        <div class="prem-row"><span class="k">主险（私人保障部分）</span><span class="v num" id="tbm">—</span></div>
+        <div class="prem-row"><span class="k">Rider（Pro B）</span><span class="v num" id="tbr">—</span></div>
+        <div class="prem-row"><span class="k">MediShield Life</span><span class="v num" id="tbs">—</span></div>
+        <div class="pc-split">
+          <div class="prem-row pay cash"><span class="k">其中：现金支付</span><span class="v num" id="tbc">—</span></div>
+          <div class="prem-row pay"><span class="k">其中：MediSave 支付</span><span class="v num" id="tbv">—</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="pcard private">
+      <div class="pc-head">
+        <div class="pc-tag">私立医院</div>
+        <div class="pc-name">Max A ＋ Max VitalHealth Pro A</div>
+        <div class="pc-note">私立医院 · 政府医院 A 级病房</div>
+        <div class="rate-flag" id="flag">—</div>
+        <div class="pc-big-k">40 年保费合计</div>
+        <div class="pc-total num"><small>S$</small><span id="ta">—</span></div>
+        <div class="was" id="was"></div>
+      </div>
+      <div class="pc-body">
+        <div class="prem-row"><span class="k">主险（私人保障部分）</span><span class="v num" id="tam">—</span></div>
+        <div class="prem-row"><span class="k">Rider（Pro A）</span><span class="v num" id="tar">—</span></div>
+        <div class="prem-row"><span class="k">MediShield Life</span><span class="v num" id="tas">—</span></div>
+        <div class="pc-split">
+          <div class="prem-row pay cash"><span class="k">其中：现金支付</span><span class="v num" id="tac">—</span></div>
+          <div class="prem-row pay"><span class="k">其中：MediSave 支付</span><span class="v num" id="tav">—</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="delta">
+    <span>40 年下来，私立方案比公立方案多交</span>
+    <b class="num" id="dlt">—</b>
+    <span class="tail" id="dltx"></span>
+  </div>
+</section>
+
+<!-- ================= 每年要交多少 ================= -->
+<section id="chart">
+  <div class="sec-eyebrow">ANNUAL PREMIUM</div>
+  <h2 class="sec-title serif">每年要交多少</h2>
+  <p class="sec-sub">含主险、Rider 与 MediShield Life 的年度总保费。台阶状的跳跃就是 AIA 的费率年龄段，每跨一档，保费一次性上一个台阶。</p>
+
+  <div class="tbl-card">
+    <div class="tbl-head">
+      <div class="fico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m7 15 4-5 3 3 5-7"/></svg></div>
+      <div><b>年度总保费曲线</b> <span>61 岁至 100 岁</span></div>
+    </div>
+    <div class="legend">
+      <span><i style="background:var(--pa)"></i>Max A ＋ Pro A（私立）</span>
+      <span><i style="background:var(--pb)"></i>Max B ＋ Pro B（公立）</span>
+      <span><i style="background:repeating-linear-gradient(90deg,var(--pa) 0 5px,transparent 5px 9px);opacity:.6"></i>Max A 另一版费率（对照）</span>
+    </div>
+    <div class="chartbox">
+      <svg id="chartSvg" viewBox="0 0 880 330" width="100%" style="min-width:640px" role="img"
+           aria-label="61 至 100 岁年度总保费曲线。私立方案（Max A ＋ Pro A）与公立方案（Max B ＋ Pro B）均随年龄呈台阶式上升，私立方案始终高于公立方案，两条线的差距逐年拉大。"></svg>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 逐年明细 ================= -->
+<section id="table">
+  <div class="sec-eyebrow">YEAR BY YEAR</div>
+  <h2 class="sec-title serif">逐年明细</h2>
+  <p class="sec-sub">金额单位 S$。合计 ＝ 主险 ＋ Rider ＋ MediShield Life；其中现金 ＝ 合计中无法用 MediSave 支付、必须自付现金的部分。</p>
+
+  <div class="tbl-card">
+    <div class="tbl-head">
+      <div class="fico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 5h18v14H3z"/><path d="M3 10h18M9 10v9"/></svg></div>
+      <div><b>40 个保单年度逐年保费</b> <span>左右可滑动，表头与合计行固定</span></div>
+    </div>
+    <div class="tbl-scroll">
+      <table>
+        <thead>
+          <tr class="grp">
+            <th class="age"></th><th></th>
+            <th class="ga sep" colspan="4">MAX A ＋ PRO A · 私立</th>
+            <th class="gb sep" colspan="4">MAX B ＋ PRO B · 公立</th>
+          </tr>
+          <tr class="cols">
+            <th class="age">年龄</th>
+            <th>MediShield Life</th>
+            <th class="sep">主险</th><th>Rider</th><th>合计</th><th>其中现金</th>
+            <th class="sep">主险</th><th>Rider</th><th>合计</th><th>其中现金</th>
+          </tr>
+        </thead>
+        <tbody id="tbody"></tbody>
+        <tfoot>
+          <tr>
+            <td class="age">40 年合计</td>
+            <td id="f_ms">—</td>
+            <td class="sep" id="f_am">—</td><td id="f_ar">—</td><td id="f_at">—</td><td id="f_ac">—</td>
+            <td class="sep" id="f_bm">—</td><td id="f_br">—</td><td id="f_bt">—</td><td id="f_bc">—</td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 口径与说明 ================= -->
+<section id="notes">
+  <div class="sec-eyebrow">METHODOLOGY</div>
+  <h2 class="sec-title serif">算这张表用到的口径</h2>
+  <p class="sec-sub">下面几条决定了表里的每一个数字是怎么来的，也决定了它能用来做什么、不能用来做什么。</p>
+
+  <div class="disc">
+    <div class="disc-h">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.46 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><path d="M12 9v4M12 17h.01"/></svg>
+      口径与重要说明
+    </div>
+    <ol>
+      <li><b>Max A 主险 2026 年 10 月 1 日起调涨</b>，两版费率均取自 AIA 官方费率表（Age Next Birthday，含 9% GST）。页面顶部的切换按钮可对比调涨前后，图中虚线为另一版费率的对照曲线。<b>Max B 主险、Pro A 与 Pro B Rider、MediShield Life 保费本次不变</b>。若这几项日后也调整，本表需要重算。</li>
+      <li>其余费率取自 AIA 官网保费计算器的现行公民 / PR 费率表（<code>Singaporean / Permanent Resident</code>）。住院险费率不分性别，男性女性同价。</li>
+      <li>年龄按 AIA 口径为<b>下次生日年龄（age next birthday）</b>查表。表中的年龄即为查费率所用的年龄。</li>
+      <li>合计 ＝ MediShield Life 保费 ＋ 主险私人保障部分 ＋ Rider。MediShield Life 可全额用 MediSave 支付；主险私人保障部分每年可用 MediSave 的额度（AWL）为 61 至 70 岁 S$600、71 岁以上 S$900，超出部分须现金；Rider 一律现金支付。</li>
+      <li>本表<b>未</b>计入 MediShield Life 保费津贴（Pioneer 与 Merdeka 世代、中低收入津贴、政府过渡补贴），也未计入 AIA Vitality 折扣。实际现金支出通常低于此表。</li>
+      <li>Rider 为现行的 <b>AIA Max VitalHealth Pro A / Pro B</b>。2026 年 4 月起的新 Rider 不再覆盖 MOH 规定的自付额（deductible），共付上限亦有调整；旧 Rider 保单可延续至 2028 年 4 月后的首个续保日。</li>
+      <li><b>费率会变。</b>住院险（IP）保费由保险公司逐年检讨，MediShield Life 保费亦在 2025 至 2027 年分阶段调整中。本表按当前费率静态推算 40 年，仅作规划参考，不代表未来实际应交金额。</li>
+      <li>数据来源：AIA Singapore 官方保费计算器（aia.com.sg，HealthShield Gold Max 现行费率表）。本页为测算工具，非保险合同、不构成投保要约；实际保费以 AIA 出具的正式建议书与保单为准。</li>
+    </ol>
+  </div>
+</section>
+
+</div>
+
+<footer class="site-footer">
+  <div class="sf-in">
+    <div class="sf-grid">
+      <div>
+        <p class="sf-brand">新加坡小圆姐</p>
+        <p class="sf-tag">用专业和耐心，陪你一起日富一日</p>
+        <p class="sf-org">新加坡财富规划经理<br>RNF：YY-300823216</p>
+      </div>
+      <div>
+        <p class="sf-h">联系方式</p>
+        <ul class="sf-list">
+          <li>微信：singaporeyuan</li>
+          <li><a href="https://wa.me/6583750190" target="_blank" rel="noopener noreferrer">WhatsApp：+65 8375 0190</a></li>
+          <li><a href="mailto:yuanyuan@aia.com.sg">邮箱：yuanyuan@aia.com.sg</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="sf-h">关注我</p>
+        <ul class="sf-list">
+          <li><a href="https://xhslink.com/m/9KS9V4ytFmj" target="_blank" rel="noopener noreferrer">小红书 · 新加坡小圆姐</a></li>
+          <li><a href="https://xhslink.com/m/2eFS3jpJutg" target="_blank" rel="noopener noreferrer">小红书 · 图文笔记</a></li>
+          <li><a href="https://www.linkedin.com/in/singaporeyuan/" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="sf-h">新加坡小圆姐</p>
+        <ul class="sf-list">
+          <li><a href="/zh/about">关于我</a></li>
+          <li><a href="/zh/cases">规划案例</a></li>
+          <li><a href="/zh/services">业务范围</a></li>
+          <li><a href="/zh/resources">资源中心</a></li>
+          <li><a href="/zh/consult">预约咨询</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="sf-bottom">
+      <p>本页面为住院险保费测算，仅供沟通参考，不构成任何投资、保险、法律或税务建议。完整保障范围、定义及除外责任以正式保单合同为准。</p>
+      <p class="sf-rights">© 2026 袁媛 Yuan Yuan. 版权所有。</p>
+    </div>
+  </div>
+</footer>
+
+<div id="wm" aria-hidden="true"></div>
+<script>
+(function(){
+  var text="新加坡小圆姐　　　singaporeyuan　　　仅供本人参考　　　　　　";
+  var wm=document.getElementById('wm');var unit=text.repeat(6);
+  for(var i=0;i<16;i++){var d=document.createElement('div');d.className='row';d.textContent=unit;d.style.top=(i*110-120)+'px';d.style.left='-200px';wm.appendChild(d);}
+})();
+</script>
+
+<script>
+// AIA 官方公民 / PR 费率表（含 9% GST）
+// [起, 迄, MediShield Life, MediSave 可付额度(AWL),
+//  Max A 主险(10.1 前), Max A 主险(10.1 起), Max B 主险, Pro A rider, Pro B rider]
+const BANDS=[
+ [61,65, 1039.07,600,  3225,  3612,  856, 2714,  761],
+ [66,70, 1120.56,600,  4739,  5308, 1598, 3702, 1257],
+ [71,73, 1217.34,900,  6295,  7051, 2210, 4413, 1643],
+ [74,75, 1344.67,900,  6972,  7809, 2389, 4967, 1670],
+ [76,78, 1558.60,900,  8718,  9765, 3400, 5313, 1708],
+ [79,80, 1619.72,900,  9721, 10888, 3414, 5739, 1708],
+ [81,83, 1706.31,900, 10333, 11573, 3479, 6083, 1984],
+ [84,85, 1971.17,900, 10437, 11690, 3567, 6454, 2158],
+ [86,88, 2062.85,900, 10541, 11806, 3686, 6844, 2287],
+ [89,90, 2062.85,900, 10647, 11925, 3886, 7258, 2333],
+ [91,93, 2093.41,900, 11180, 12522, 4216, 7501, 2506],
+ [94,95, 2093.41,900, 11740, 13149, 4551, 7749, 2681],
+ [96,98, 2093.41,900, 12559, 14067, 5086, 8009, 2938],
+ [99,100,2093.41,900, 12687, 14210, 5475, 8276, 3112]
+];
+const f0=n=>n.toLocaleString('en-SG',{minimumFractionDigits:0,maximumFractionDigits:0});
+const f2=n=>n.toLocaleString('en-SG',{minimumFractionDigits:2,maximumFractionDigits:2});
+const set=(id,v)=>document.getElementById(id).textContent=v;
+
+// mode: 'new' = 2026-10-01 起；'old' = 2026-10-01 前
+function build(mode){
+  const out=[];
+  for(const [lo,hi,ms,awl,amOld,amNew,bm,ar,br] of BANDS){
+    const am = mode==='new'?amNew:amOld;
+    for(let age=lo; age<=hi; age++){
+      out.push({age, first:age===lo, band:lo+'–'+hi, ms, awl,
+        am, ar, at:ms+am+ar, ac:Math.max(am-awl,0)+ar,
+        bm, br, bt:ms+bm+br, bc:Math.max(bm-awl,0)+br,
+        mv:ms+Math.min(am,awl)});
+    }
+  }
+  return out;
+}
+const totals=rs=>{const S=k=>rs.reduce((s,r)=>s+r[k],0);
+  return {ms:S('ms'),am:S('am'),ar:S('ar'),at:S('at'),ac:S('ac'),
+          bm:S('bm'),br:S('br'),bt:S('bt'),bc:S('bc'),mv:S('mv')};};
+
+const T_OLD=totals(build('old')), T_NEW=totals(build('new'));
+let rows=[], T={};
+
+function render(mode){
+  rows=build(mode); T=totals(rows);
+  const isNew = mode==='new';
+
+  set('flag', isNew?'费率版本 · 2026 年 10 月 1 日起':'费率版本 · 2026 年 10 月 1 日前');
+  set('ta',f0(T.at)); set('tam',f0(T.am)); set('tar',f0(T.ar)); set('tas',f2(T.ms));
+  set('tac',f0(T.ac)); set('tav',f2(T.mv));
+  set('tb',f0(T.bt)); set('tbm',f0(T.bm)); set('tbr',f0(T.br)); set('tbs',f2(T.ms));
+  set('tbc',f0(T.bc)); set('tbv',f2(T.mv));
+
+  const gap=T_NEW.at-T_OLD.at, pct=(gap/T_OLD.at*100).toFixed(1);
+  document.getElementById('was').innerHTML = isNew
+    ? '涨价前为 <b>S$ '+f0(T_OLD.at)+'</b>，40 年多交 <b>S$ '+f0(gap)+'</b>（＋'+pct+'%）'
+    : '10 月 1 日起将升至 <b>S$ '+f0(T_NEW.at)+'</b>，40 年多交 <b>S$ '+f0(gap)+'</b>（＋'+pct+'%）';
+
+  set('dlt','S$ '+f0(T.at-T.bt));
+  document.getElementById('dltx').textContent =
+    '约为公立方案的 '+(T.at/T.bt).toFixed(1)+' 倍，平均每年多 S$ '+f0((T.at-T.bt)/rows.length);
+
+  document.getElementById('tbody').innerHTML = rows.map(r=>
+   '<tr class="'+(r.first?'bandstart':'')+'">'+
+    '<td class="age">'+r.age+(r.first?'<i>'+r.band+'</i>':'')+'</td>'+
+    '<td>'+f2(r.ms)+'</td>'+
+    '<td class="sep a">'+f0(r.am)+'</td><td class="a">'+f0(r.ar)+'</td>'+
+    '<td class="a tot">'+f2(r.at)+'</td><td class="a">'+f0(r.ac)+'</td>'+
+    '<td class="sep b">'+f0(r.bm)+'</td><td class="b">'+f0(r.br)+'</td>'+
+    '<td class="b tot">'+f2(r.bt)+'</td><td class="b">'+f0(r.bc)+'</td>'+
+   '</tr>').join('');
+  [['f_ms',T.ms,2],['f_am',T.am,0],['f_ar',T.ar,0],['f_at',T.at,2],['f_ac',T.ac,0],
+   ['f_bm',T.bm,0],['f_br',T.br,0],['f_bt',T.bt,2],['f_bc',T.bc,0]]
+   .forEach(([id,v,d])=>set(id, d?f2(v):f0(v)));
+
+  document.getElementById('btn-new').setAttribute('aria-pressed', String(isNew));
+  document.getElementById('btn-old').setAttribute('aria-pressed', String(!isNew));
+  drawChart();
+}
+document.getElementById('btn-new').addEventListener('click',()=>render('new'));
+document.getElementById('btn-old').addEventListener('click',()=>render('old'));
+
+// 图表
+function drawChart(){
+  const W=880,H=330, m={t:26,r:80,b:36,l:64};
+  const iw=W-m.l-m.r, ih=H-m.t-m.b;
+  const yMax=30000;
+  const x=a=>m.l+(a-61)/40*iw;               // 每个保单年度占满一格，61 至 101
+  const y=v=>m.t+ih-(v/yMax)*ih;
+  const pathOf=(rs,key)=>rs.map((r,i)=>
+      (i?'L':'M')+x(r.age).toFixed(1)+','+y(r[key]).toFixed(1)+'L'+x(r.age+1).toFixed(1)+','+y(r[key]).toFixed(1)
+    ).join('');
+  const path=key=>pathOf(rows,key);
+  const other=build(rows[0].am===BANDS[0][4]?'new':'old');   // 另一个费率版本，画虚线对照
+  const area=(key,fill)=>
+    '<path d="'+path(key)+'L'+x(101).toFixed(1)+','+y(0).toFixed(1)+'L'+x(61).toFixed(1)+','+y(0).toFixed(1)+'Z" fill="'+fill+'" stroke="none"/>';
+  const line=(key,color)=>{
+    const last=rows[rows.length-1][key];
+    return '<path d="'+path(key)+'" fill="none" stroke="'+color+'" stroke-width="2.2" stroke-linejoin="round"/>'+
+      '<circle cx="'+x(101).toFixed(1)+'" cy="'+y(last).toFixed(1)+'" r="3.4" fill="'+color+'"/>'+
+      '<text x="'+(x(101)+9).toFixed(1)+'" y="'+(y(last)+4).toFixed(1)+'" fill="'+color+'" font-family="ui-monospace, SF Mono, Menlo, monospace" font-size="12" font-weight="700">'+f0(last)+'</text>';
+  };
+  let g = area('at','rgba(27,42,74,.10)') + area('bt','rgba(168,135,76,.18)');
+  for(let v=0; v<=yMax; v+=6000){
+    g+='<line x1="'+m.l+'" y1="'+y(v)+'" x2="'+(W-m.r)+'" y2="'+y(v)+'" stroke="#E4E2DB" stroke-width="1"/>'+
+       '<text x="'+(m.l-10)+'" y="'+(y(v)+4)+'" text-anchor="end" fill="#6B7280" font-family="ui-monospace, SF Mono, Menlo, monospace" font-size="11">'+(v?f0(v):'0')+'</text>';
+  }
+  [61,70,80,90,100].forEach(a=>{
+    g+='<text x="'+x(a)+'" y="'+(H-12)+'" text-anchor="middle" fill="#6B7280" font-family="ui-monospace, SF Mono, Menlo, monospace" font-size="11">'+a+'</text>';
+  });
+  g+='<text x="'+(m.l-10)+'" y="12" text-anchor="end" fill="#6B7280" font-size="10.5">S$</text>';
+  g+='<path d="'+pathOf(other,'at')+'" fill="none" stroke="#1B2A4A" stroke-width="1.4" stroke-dasharray="5 4" opacity=".5"/>';
+  g+=line('at','#1B2A4A');
+  g+=line('bt','#A8874C');
+  document.getElementById('chartSvg').innerHTML=g;
+}
+render('new');
+</script>
+</body>
+</html>
