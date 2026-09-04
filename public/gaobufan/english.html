@@ -2756,6 +2756,23 @@ EQ.addUnit({
     mount: function (el) { stage = el; },
 
     /* ------------------------------------------------------------------
+       各关卡进场后都会延时自动朗读。人切走了这些回调还是会触发，
+       那时界面已经重绘，querySelector 拿到 null，链式调用直接抛异常。
+       统一登记、切关卡时清空 —— 报错本身不致命，但它会污染 console，
+       让真正的问题更难被发现。
+       ------------------------------------------------------------------ */
+    _timers: [],
+    after: function (fn, ms) {
+      var id = setTimeout(function () { try { fn(); } catch (e) {} }, ms);
+      this._timers.push(id);
+      return id;
+    },
+    clearTimers: function () {
+      this._timers.forEach(clearTimeout);
+      this._timers = [];
+    },
+
+    /* ------------------------------------------------------------------
        通用：成就 / 提示条
        ------------------------------------------------------------------ */
     toast: function (ico, title, body) {
@@ -2920,6 +2937,7 @@ EQ.addUnit({
        关卡分发
        ================================================================== */
     task: function () {
+      this.clearTimers();
       var t = Game.current();
       App.paintHud();
       if (!t) { return; }
@@ -2987,7 +3005,10 @@ EQ.addUnit({
       };
       stage.querySelector('[data-a="go"]').onclick = function () { App.advance(); };
 
-      setTimeout(function () { stage.querySelector('[data-a="all"]').click(); }, 350);
+      UI.after(function () {
+        var b = stage.querySelector('[data-a="all"]');
+        if (b) b.click();          // 人可能已经切走了
+      }, 350);
     },
 
     /* ---------------------------- ⛏️ 挖新词 ---------------------------- */
@@ -3022,9 +3043,9 @@ EQ.addUnit({
       stage.querySelector('[data-a="go"]').onclick = function () {
         SFX.mine(); SRS.card(w.w); Save.save(); App.advance();
       };
-      setTimeout(function () {
+      UI.after(function () {
         TTS.speak(w.w, { rate: 0.75, onend: function () {
-          setTimeout(function () { TTS.speak(w.s, { rate: 0.85 }); }, 260);
+          UI.after(function () { TTS.speak(w.s, { rate: 0.85 }); }, 260);
         } });
       }, 300);
     },
@@ -3050,7 +3071,7 @@ EQ.addUnit({
       var play = function () { TTS.speak(w.w, { rate: 0.8 }); };
       stage.querySelector('[data-a="play"]').onclick = play;
       stage.querySelector('[data-a="slow"]').onclick = function () { TTS.slow(w.w); };
-      setTimeout(play, 320);
+      UI.after(play, 320);
 
       var answered = false;
       stage.querySelectorAll('.opt').forEach(function (el) {
@@ -3141,7 +3162,7 @@ EQ.addUnit({
       if (zhBtn) zhBtn.onclick = function () { stage.querySelector('.sw-zh').classList.remove('hide'); SFX.click(); };
 
       // 跟读关先示范；朗读关绝不先放音，那就等于把答案念出来了
-      if (!decode) setTimeout(function () { TTS.speak(line.en, { rate: 0.85 }); }, 320);
+      if (!decode) UI.after(function () { TTS.speak(line.en, { rate: 0.85 }); }, 320);
 
       stage.querySelector('[data-a="ok"]').onclick = function () { SFX.right(); Game.answer(true, t); App.advance(); };
       stage.querySelector('[data-a="hard"]').onclick = function () { Game.answer(false, t); App.advance(); };
@@ -3310,7 +3331,7 @@ EQ.addUnit({
         fillPrefix(revealed); paint();
       };
       paint();
-      setTimeout(function () { TTS.speak(w.w, { rate: 0.75 }); }, 300);
+      UI.after(function () { TTS.speak(w.w, { rate: 0.75 }); }, 300);
     },
 
 
@@ -3347,7 +3368,7 @@ EQ.addUnit({
 
       var input = document.getElementById('tin');
       var msg = document.getElementById('timsg');
-      setTimeout(function () { try { input.focus(); } catch (e) {} }, 260);
+      UI.after(function () { try { input.focus(); } catch (e) {} }, 260);
 
       function check() {
         if (answered) return;
