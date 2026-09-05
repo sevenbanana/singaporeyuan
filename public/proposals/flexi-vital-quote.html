@@ -630,6 +630,7 @@
               <li>公共交通意外致昏迷额外赔付 20%（上限 S$20,000）</li>
               <li>TPD 后行动辅助器材报销 95%，上限 S$1,000</li>
               <li>费率与年龄无关，按职业等级 Class 1 计</li>
+              <li>员工家属可加保（保额为员工的 50%）</li>
             </ul>
           </div>
           <button type="button" class="more-toggle">查看完整保障范围</button>
@@ -655,6 +656,7 @@
             <div class="c-en">Group Dental</div>
             <ul class="feats">
               <li>单一费率，无档位；须全体员工统一参加（AIA 规则）</li>
+              <li>员工与家属各有一档费率，均不分年龄段</li>
               <li>非网络牙科按价目表定额报销（如根管 S$150–350、拔牙 S$30 起）</li>
               <li>颌骨骨折、口腔肿瘤切除等手术项目亦有定额保障</li>
               <li>可扩展覆盖员工配偶及子女</li>
@@ -683,9 +685,11 @@
       <details class="legal" open>
         <summary>费率版本与重要说明</summary>
         <ul class="notes">
-          <li>本工具使用的费率版本：2026 年 5 月 22 日版。当前结果仅供预算参考，正式报价将按最新有效费率及员工资料计算。</li>
+          <li>本工具使用的费率版本：员工费率为 2026 年 5 月 22 日版，家属费率取自 2025 年 3 月版手册；两版手册的员工费率逐表核对一致。当前结果仅供预算参考，正式报价将按最新有效费率及投保人资料计算。</li>
           <li>费率为 AIA Flexi Vital Care Plus 员工费率，按年龄段（age last birthday）取值，男女费率相同。团队年龄跨度较大时请使用「精细报价」，逐段填写人数后按段计算再汇总。</li>
-          <li>家属（配偶及子女）保费口径见价格表下方说明；该口径尚未与 AIA 官方家属费率表逐表核对，家属部分金额仅供内部预算参考，正式报价以 AIA 出具为准。</li>
+          <li>家属（配偶及子女）保费采用 AIA 手册的家属费率表（2025 年 3 月版，与员工费率表分开列示），按家属本人所属年龄段取值。寿险、重疾、意外的家属保额为员工的 50%，上述家属费率已按该保额出具，无需再行折算。</li>
+          <li>家属须随员工投保，且核心计划与档位须与员工一致。配偶适用年龄同员工（16–69 岁，续保至 74 岁）；子女为 2 周至 25 岁未婚且无业者，牙科为 3 至 25 岁。</li>
+          <li>本产品承保 5 至 50 条生命（含家属）。重疾（GACI）适用至 64 岁投保、续保至 69 岁，故 70–74 岁年龄段无重疾费率。</li>
           <li>意外险（GADD）费率与年龄无关，按职业等级 Class 1（室内办公 / 文职）计算；涉及仓储、外勤、驾驶等岗位适用 Class 2 / 3 费率。</li>
           <li>重疾（GACI）档位须与寿险（GTL）档位一致，70–74 岁年龄段不可附加；普通门诊（GP）仅可附加于住院计划；「普通门诊」与「门诊 + 专科」二选一。</li>
           <li>牙科计划投保须全体员工参加。团体投保有最低人数要求，本工具按 5 人起算。</li>
@@ -764,7 +768,8 @@
 
 <script>
 /*CALC-START*/
-// 费率来源:AIA Flexi Vital Care Plus 官方手册(费率版本2026-05-22,与2025-07-31版逐表核对一致),员工费率,S$/人/年
+// 员工费率:AIA Flexi Vital Care Plus 官方手册,S$/员工/年
+// 费率版本 2026-05-22,已与 2025-07-31 版及 2025-03 版手册逐表核对一致(三版员工费率相同)
 // 年龄段顺序:0=29岁及以下,1=30-34,2=35-39,3=40-44,4=45-49,5=50-54,6=55-59,7=60-64,8=65-69,9=70-74
 const BANDS = ['29岁及以下','30–34岁','35–39岁','40–44岁','45–49岁','50–54岁','55–59岁','60–64岁','65–69岁','70–74岁'];
 const SENIOR = 9; // 70-74:门诊类费率不同;重疾不可投保
@@ -815,7 +820,8 @@ const RATES = {
           senior:{0:[526.84,571.25,683.27,744.84], 5:[519.77,564.18,676.21,737.77]} },
   dental: { price:395.63 } // 各年龄段统一
 };
-const MIN_COUNT = 5;
+const MIN_COUNT = 5;    // 手册:最少 5 条生命
+const MAX_LIVES = 50;   // 手册:最多 50 条生命(含家属)
 const MODULES = ['ghs','gtl','gaci','gadd','gp','gpsp','dental'];
 const r2 = n => Math.round(n*100)/100;
 
@@ -826,19 +832,62 @@ function gaciRate(band, plan){
 function gpRate(band, copay){ return (band===SENIOR?RATES.gp.senior:RATES.gp.std)[copay]; }
 function gpspRate(band, copay, plan){ return (band===SENIOR?RATES.gpsp.senior:RATES.gpsp.std)[copay][plan]; }
 
-/* ===== 家属费率口径 =====
-   AIA Flexi Vital Care Plus 手册的费率表是「员工费率」。下面这一块是家属保费的取值口径,
-   拿到官方家属费率表后,把 DEP.table 填上即可整块替换,页面其余计算与 UI 无需改动。
-   DEP.table 形如 { ghs:(band,o)=>..., gtl:(band,o)=>..., ... },按模块给出家属年费率。 */
-const DEP = {
-  table: null,
-  // 家属可投保的项目。GADD 按职业等级定价,此处按员工专属处理(不计入家属保费)
-  eligible: { ghs:true, gp:true, gpsp:true, dental:true, gtl:true, gaci:true, gadd:false },
-  // 寿险 / 重疾:家属保额为员工的 50%,费率按保额比例折算
-  saFactor: 0.5
+/* 家属费率:AIA Flexi Vital Care Plus 手册(2025-03 版)家属费率表,S$/家属/年
+   GTL 第6页 / GHS+EMM 第9页 / GTL+GACI 第12页 / GP 第13页 / GP+SP 第15页 / GADD 第16页 / 牙科 第17页
+   家属为员工的配偶及子女;手册第19页第6条:寿险、重疾、意外的家属保额为员工的 50%,
+   下表已是按家属保额出的费率,不需要再乘系数。年龄段顺序与员工表一致。 */
+const DEP_RATES = {
+  gtl: { prices:[
+    [28.00,45.00,67.50,101.00,140.00,279.50],
+    [29.50,47.00,70.50,105.50,146.50,292.50],
+    [33.50,54.00,80.50,121.00,167.50,335.00],
+    [51.50,82.50,124.00,185.50,257.50,515.00],
+    [70.00,112.00,167.50,251.50,349.00,697.50],
+    [107.50,172.00,258.00,387.00,537.50,1075.00],
+    [195.00,312.00,468.00,702.00,975.00,1950.00],
+    [341.00,545.50,818.00,1227.00,1704.00,3407.50],
+    [579.00,926.00,1389.00,2083.50,2894.00,5787.50],
+    [1267.00,2027.00,3040.50,4560.50,6334.00,12667.50]
+  ]},
+  ghs: { prices:[
+    [362.33,460.23,593.45,1155.60],
+    [409.76,520.78,671.16,1305.99],
+    [409.76,520.78,671.16,1305.99],
+    [451.14,573.26,739.79,1439.21],
+    [577.30,733.74,945.68,1839.88],
+    [723.64,918.43,1183.87,2305.15],
+    [951.74,1209.10,1558.30,3034.85],
+    [1280.75,1627.94,2097.25,4083.47],
+    [1774.28,2255.70,2907.68,5660.94],
+    [2431.31,3090.35,3983.55,7755.15]
+  ]},
+  // 家属 GTL+GACI 合并费率;重疾增量 = 合并 - 家属 GTL。70-74 岁 N/A
+  gtlGaci: { prices:[
+    [40.50,65.00,97.00,145.00,201.50,402.00],
+    [53.50,85.00,127.50,191.00,265.50,530.00],
+    [70.00,112.50,168.50,252.50,350.00,700.00],
+    [119.50,191.00,287.00,429.50,596.50,1192.50],
+    [187.00,299.00,448.00,672.00,933.00,1865.00],
+    [273.00,437.00,655.50,983.00,1365.00,2730.00],
+    [460.00,736.00,1104.00,1656.00,2300.00,4600.00],
+    [761.50,1218.50,1827.00,2740.50,3806.00,7611.50],
+    [1184.50,1894.50,2841.50,4262.00,5920.00,11839.00],
+    null
+  ]},
+  gadd: { prices:[16.15,25.24,37.35,57.53,79.74,157.45] }, // Class 1,与年龄无关
+  gp:   { std:{0:282.60,5:275.53}, senior:{0:310.85,5:302.78} },
+  gpsp: { std:{0:[526.84,571.25,683.27,744.84], 5:[519.77,564.18,676.21,737.77]},
+          senior:{0:[579.31,628.77,750.89,819.52], 5:[571.25,620.70,742.82,811.45]} },
+  dental: { price:494.54 }
 };
 
-// 单人单项年费率;不可投保返回 null,不参保返回 0
+// 家属重疾增量(合并费率 - 家属寿险费率);该年龄段不可投保时返回 null
+function depGaciRate(band, plan){
+  const combined = DEP_RATES.gtlGaci.prices[band];
+  return combined ? r2(combined[plan] - DEP_RATES.gtl.prices[band][plan]) : null;
+}
+
+// 单人单项年费率;该年龄段不可投保返回 null
 function empRate(mod, band, o){
   switch(mod){
     case 'ghs':    return RATES.ghs.prices[band][o.plan];
@@ -852,14 +901,16 @@ function empRate(mod, band, o){
   return 0;
 }
 function depRate(mod, band, o){
-  if(DEP.table && DEP.table[mod]) return DEP.table[mod](band, o);
-  if(!DEP.eligible[mod]) return 0;
-  if(mod==='gtl') return r2(RATES.gtl.prices[band][o.plan] * DEP.saFactor);
-  if(mod==='gaci'){
-    const g = gaciRate(band, o.plan);
-    return g===null ? null : r2(g * DEP.saFactor);
+  switch(mod){
+    case 'ghs':    return DEP_RATES.ghs.prices[band][o.plan];
+    case 'gtl':    return DEP_RATES.gtl.prices[band][o.plan];
+    case 'gaci':   return depGaciRate(band, o.plan);
+    case 'gadd':   return DEP_RATES.gadd.prices[o.plan];
+    case 'gp':     return (band===SENIOR?DEP_RATES.gp.senior:DEP_RATES.gp.std)[o.copay];
+    case 'gpsp':   return (band===SENIOR?DEP_RATES.gpsp.senior:DEP_RATES.gpsp.std)[o.copay][o.plan];
+    case 'dental': return DEP_RATES.dental.price;
   }
-  return empRate(mod, band, o);   // 医疗类按家属本人年龄段查同一张表
+  return 0;
 }
 const unitRate = (mod, band, who, o) => who==='dep' ? depRate(mod, band, o) : empRate(mod, band, o);
 
@@ -1033,6 +1084,13 @@ const FULL_NAME = {
 };
 const onModules = st => MODULES.filter(m => (st||state)[m].on);
 
+// 家属保额(手册第19页第6条:寿险 / 重疾 / 意外的家属保额为员工的 50%)
+const DEP_SA = {
+  gtl:  ['$25,000','$40,000','$60,000','$90,000','$125,000','$250,000'],
+  gaci: ['$12,500','$20,000','$30,000','$45,000','$62,500','$125,000'],
+  gadd: ['$25,000','$40,000','$60,000','$90,000','$125,000','$250,000']
+};
+
 // 摘要条目:快速模式给单价,精细模式给该项全员合计
 function selectedItems(){
   const census = state.mode==='census';
@@ -1126,8 +1184,7 @@ function renderItemTable(){
   const body = mods.map(m=>{
     const sp = moduleSplit(state, m);
     return '<tr><td>'+FULL_NAME[m]()+'</td>'+tdMoney(sp.emp)+
-      (dep ? (DEP.eligible[m] ? tdMoney(sp.dep) : '<td class="dim">不适用</td>') : '')+
-      tdMoney(sp.all)+'</tr>';
+      (dep ? tdMoney(sp.dep) : '')+tdMoney(sp.all)+'</tr>';
   }).join('');
   const tEmp = r2(mods.reduce((a,m)=>a+moduleSplit(state,m).emp,0));
   const tDep = r2(mods.reduce((a,m)=>a+moduleSplit(state,m).dep,0));
@@ -1143,11 +1200,17 @@ function renderDepNote(){
       ' 人不可附加重大疾病（AIA 费率表未提供），价格表已按无重疾计算。</p>');
   }
   if(cc.dep){
-    out.push('<p><b>家属保费口径（待官方家属费率表核对）：</b>'+
-      '住院、门诊、牙科按家属本人所属年龄段查同一张费率表；'+
-      '团体定期寿险与重大疾病按「家属保额为员工的 50%」折算保费；'+
-      '意外身故及伤残按职业等级定价，此处按员工专属处理，未计入家属保费。'+
-      '家属部分金额仅供内部预算参考。</p>');
+    out.push('<p><b>家属保费：</b>采用 AIA 手册的家属费率表（与员工费率表分开列示），'+
+      '按家属本人所属年龄段取值。家属计划须与员工的核心计划、档位一致。</p>');
+    const sa = [];
+    if(state.gtl.on)  sa.push('寿险 '+DEP_SA.gtl[state.gtl.plan]);
+    if(state.gaci.on) sa.push('重疾 '+DEP_SA.gaci[state.gtl.plan]);
+    if(state.gadd.on) sa.push('意外 '+DEP_SA.gadd[state.gadd.plan]);
+    if(sa.length) out.push('<p><b>家属保额为员工的 50%：</b>'+sa.join('　·　')+
+      '（住院、门诊、牙科的家属保障内容与员工相同）。</p>');
+  }
+  if(cc.all && cc.all > MAX_LIVES){
+    out.push('<p><b>人数上限：</b>本产品最多承保 '+MAX_LIVES+' 条生命（含家属），当前 '+cc.all+' 人已超出，请联系顾问改用其他团险方案。</p>');
   }
   $('dep-note').innerHTML = out.join('');
   $('dep-note').classList.toggle('on', out.length>0);
@@ -1172,7 +1235,7 @@ function tableTSV(){
   L.push(['保障项目','员工小计'].concat(dep?['家属小计']:[]).concat(['合计 / 年']).join('\t'));
   onModules(state).forEach(m=>{
     const sp = moduleSplit(state, m);
-    L.push([FULL_NAME[m](), sp.emp].concat(dep?[DEP.eligible[m]?sp.dep:'不适用']:[]).concat([sp.all]).join('\t'));
+    L.push([FULL_NAME[m](), sp.emp].concat(dep?[sp.dep]:[]).concat([sp.all]).join('\t'));
   });
   L.push('');
   L.push('金额单位 S$ / 年。本表为预算估算，非正式报价。');
@@ -1213,13 +1276,14 @@ function render(){
   $('count').textContent = state.count;
   $('minus').disabled = state.count <= MIN_COUNT;
   syncCensusInputs();
-  const short = cc.emp && cc.emp < MIN_COUNT;
-  $('cs-status').className = 'setup-status' + (short ? ' st-warn' : '');
+  const short = cc.all > 0 && cc.all < MIN_COUNT, over = cc.all > MAX_LIVES;
+  $('cs-status').className = 'setup-status' + (short||over ? ' st-warn' : '');
   $('cs-status').innerHTML = cc.all
     ? '共 <b>'+cc.emp+'</b> 名员工'+(cc.dep?'、<b>'+cc.dep+'</b> 名家属':'')+
-      '，覆盖 <b>'+bandRows(state).length+'</b> 个年龄段'+
-      (short ? '　·　团体投保 '+MIN_COUNT+' 人起，当前员工人数不足' : '')
-    : '请在上表填写各年龄段人数，至少 '+MIN_COUNT+' 名员工';
+      '，合计 <b>'+cc.all+'</b> 人，覆盖 <b>'+bandRows(state).length+'</b> 个年龄段'+
+      (short ? '　·　本产品 '+MIN_COUNT+' 人起保（含家属），当前不足' : '')+
+      (over ? '　·　本产品最多 '+MAX_LIVES+' 人（含家属），当前已超出' : '')
+    : '请在上表填写各年龄段人数，'+MIN_COUNT+' 至 '+MAX_LIVES+' 人（含家属）';
 
   // 卡片价格:快速模式给员工单价,精细模式给该项全员合计
   for(const m of MODULES){
@@ -1423,20 +1487,39 @@ if(location.search.indexOf('selftest')>-1){
   eq('精细 人数统计', censusCounts(s).all, 5);
   eq('精细 有人段数', bandRows(s).length, 2);
 
-  // 家属:医疗类按家属本人年龄段查同一张表
+  // 家属:住院 / 门诊按官方家属费率表(与员工表不同,通常更高)
   s = census(at(1,3), at(0,2));
-  eq('家属住院+门诊按本人年龄段', censusTotal(s), r2(851.82*3 + (331.04+478.39)*2));
+  eq('家属住院+门诊用家属费率表', censusTotal(s), r2(851.82*3 + (362.33+526.84)*2));
+  eq('家属住院费率高于员工', DEP_RATES.ghs.prices[0][0], 362.33);
+  ok('家属费率表与员工表不同',
+     DEP_RATES.ghs.prices[0][0] !== RATES.ghs.prices[0][0] &&
+     DEP_RATES.gtl.prices[0][0] !== RATES.gtl.prices[0][0] &&
+     DEP_RATES.dental.price !== RATES.dental.price, '(疑似复用了员工表)');
 
-  // 家属:寿险/重疾按保额 50% 折算
+  // 家属:寿险 / 重疾用家属专属费率表,不是员工费率的一半
   s = census(at(1,1), at(1,1)); s.gtl.on = true; normalize(s);
-  eq('家属寿险为员工一半', perPersonAt(s,1,'dep'), r2(373.43+478.39+53.50*0.5));
+  eq('家属寿险用家属费率表', perPersonAt(s,1,'dep'), r2(409.76+526.84+29.50));
+  ok('家属寿险≠员工费率的一半', Math.abs(DEP_RATES.gtl.prices[1][0] - RATES.gtl.prices[1][0]/2) > 0.005, '(仍在折半)');
   s.gaci.on = true; normalize(s);
-  eq('家属重疾为员工一半', perPersonAt(s,1,'dep'), r2(373.43+478.39+26.75+(97.00-53.50)*0.5));
+  eq('家属重疾增量=家属合并-家属寿险', perPersonAt(s,1,'dep'), r2(409.76+526.84+29.50+(53.50-29.50)));
 
-  // 家属:意外险按员工专属处理
+  // 家属:意外险有家属费率(Class 1),并非员工专属
   s = census(at(1,1), at(1,1)); s.gadd.on = true; s.gadd.plan = 0; normalize(s);
-  eq('家属不计意外险', perPersonAt(s,1,'dep'), 851.82);
-  eq('员工计意外险', perPersonAt(s,1,'emp'), r2(851.82+27.25));
+  eq('家属意外用家属费率表', perPersonAt(s,1,'dep'), r2(409.76+526.84+16.15));
+  eq('员工意外用员工费率表', perPersonAt(s,1,'emp'), r2(851.82+27.25));
+
+  // 家属:牙科 / 普通门诊各有独立费率
+  s = census(at(1,1), at(1,1)); s.dental.on = true; normalize(s);
+  eq('家属牙科 494.54', perPersonAt(s,1,'dep'), r2(409.76+526.84+494.54));
+  s = census(at(0,1), at(0,1)); s.gpsp.on=false; s.gp.on=true; normalize(s);
+  eq('家属普通门诊 282.60', perPersonAt(s,0,'dep'), r2(362.33+282.60));
+  eq('员工普通门诊 256.35', perPersonAt(s,0,'emp'), r2(331.04+256.35));
+  s = census(at(9,1), at(9,1)); s.gpsp.on=false; s.gp.on=true; normalize(s);
+  eq('家属70-74 门诊 310.85', perPersonAt(s,9,'dep'), r2(2431.31+310.85));
+
+  // 家属:70-74 同样不可投保重疾
+  s = census(at(9,1), at(9,1)); s.gtl.on=true; s.gaci.on=true; normalize(s);
+  eq('家属70-74 不计重疾', perPersonAt(s,9,'dep'), r2(2431.31+579.31+1267.00));
 
   // 70-74 在精细模式下不再整体锁死重疾,只是该段不计
   s = census(at(2,1, at(9,1))); s.gtl.on = true; s.gaci.on = true; normalize(s);
@@ -1451,6 +1534,8 @@ if(location.search.indexOf('selftest')>-1){
   results.push((Math.abs(byItem-censusTotal(s))<0.005?'PASS':'FAIL('+byItem+'≠'+censusTotal(s)+')')+' 按段汇总=按项汇总');
   eq('混合名单人数', censusCounts(s).all, 12+5);
   ok('不足5人给出提示而非强改', census(at(1,2)).emp[1] === 2, '(人数被改写)');
+  eq('生命数含家属', censusCounts(census(at(1,2), at(1,3))).all, 5);
+  eq('人数上限50', MAX_LIVES, 50);
 
   // 配置串:36 位,向下兼容旧的 15 位链接
   const cfg = cfgString();
