@@ -1245,7 +1245,9 @@ button.chip{ cursor:pointer; background:#5a2723; border-color:rgba(255,255,255,.
       wordIndex: 0,         // 学到教材第几个词了（自适应要跨场景取词，所以精确到词）
       cards: {},                        // word -> card
       ach: [],
-      stats: { answers: 0, correct: 0, seconds: 0, sessions: 0 }
+      stats: { answers: 0, correct: 0, seconds: 0, sessions: 0 },
+      updatedAt: 0,         // 这份存档最后一次变动的时间（跨设备合并要用它比新旧）
+      syncRev: 0            // 已经落地的「进度档」版本号（见 sync.js / progress.json）
     };
   }
 
@@ -1292,10 +1294,17 @@ button.chip{ cursor:pointer; background:#5a2723; border-color:rgba(255,255,255,.
       return this.data;
     },
 
-    save: function () {
+    /**
+     * 落盘。opts.quiet = true 用在「同步模块自己刚算好的结果」上：
+     * 那时候 updatedAt 已经是想要的值，再盖一次就会把云端的时间戳冲掉，
+     * 两台设备会互相判断对方更新，来回推。
+     */
+    save: function (opts) {
       if (!this.keeps()) return;                // 访客：只活在内存里，不落盘
+      if (!(opts && opts.quiet)) this.data.updatedAt = Date.now();
       try { localStorage.setItem(this.key(), JSON.stringify(this.data)); }
       catch (e) { console.warn('存档写入失败', e); }
+      if (!(opts && opts.quiet) && global.Sync) global.Sync.schedule();
     },
 
     reset: function () { this.data = blankSave(this.profile); this.save(); },
@@ -3809,8 +3818,16 @@ EQ.addUnit({
               '<button class="btn sm ghost" data-a="streak">🔥 修正打卡天数</button>' +
             '</div>' +
           '</div>' +
+          '<div class="panel" style="margin-top:12px"><div class="px tiny">跨设备同步</div>' +
+            '<div class="tiny" style="color:#555;margin:8px 0;line-height:1.8">' +
+              esc(Sync.statusText()) +
+              '<br>每次打开都会自动对一次，平时不用管这里。</div>' +
+            '<div class="row wrap">' +
+              '<button class="btn sm" data-a="sync">☁️ 立即同步</button>' +
+            '</div>' +
+          '</div>' +
           '<div class="panel" style="margin-top:12px"><div class="px tiny">存档</div>' +
-            '<div class="tiny" style="color:#555;margin:8px 0">进度存在这台设备的浏览器里，每个玩家一份。换设备前先导出。</div>' +
+            '<div class="tiny" style="color:#555;margin:8px 0">同步之外的保险绳：整份进度也能手抄一份带走。</div>' +
             '<div class="row wrap">' +
               '<button class="btn sm" data-a="export">📤 导出存档</button>' +
               '<button class="btn sm" data-a="import">📥 导入存档</button>' +
@@ -3859,6 +3876,11 @@ EQ.addUnit({
           UI.toast('⏱', '已改成每天 ' + b.dataset.mins + ' 分钟', '新词数会自动跟着调');
         };
       });
+      stage.querySelector('[data-a="sync"]').onclick = function (e) {
+        SFX.click();
+        e.target.textContent = '☁️ 同步中…';
+        Sync.now().then(function () { if (App.mode === 'home') UI.settings(); });
+      };
       stage.querySelector('[data-a="switch"]').onclick = function () { SFX.click(); App.switchProfile(); };
       var pinBtn = stage.querySelector('[data-a="pin"]');
       if (pinBtn) pinBtn.onclick = function () {
@@ -3905,6 +3927,332 @@ EQ.addUnit({
   };
 
   global.UI = UI;
+})(window);
+
+</script>
+<script>
+/* ===== js/sync.js ===== */
+/* ============================================================
+   sync.js — 跨设备进度同步
+
+   他在 iPad 上学一节、在电脑上再学一节，进度不该各存各的。
+   这里有两条通道，各管一件事，缺一条另一条照样能用：
+
+   1) 进度档 progress.json（永远可用，不用配置任何东西）
+      仓库里的一份「家长发布的进度」，每台设备打开页面时自动拉一次。
+      版本号 rev 比本机记录的大，就落地一次，然后记下 rev 不再重复应用。
+      用来做「把各台设备统一拨到某一章某一节」这种矫正。
+
+   2) 云端存档（要在 Vercel 配好 KV，见 app/api/gaobufan/progress/route.ts）
+      每次存档变动后延迟几秒推一次，进入世界时拉一次。
+      两边有差异不是二选一，而是合并：每个词取「学得更熟的那一边」，
+      天数、经验、掌握度都取大的。这样先在 iPad 学、再在电脑学，
+      谁也不会把谁的一节课抹掉。
+      没配 KV 的时候接口会明确回 configured:false，这里就安静地只走第 1 条。
+
+   访客存档从不参与同步（Save.keeps() === false）。
+   ============================================================ */
+(function (global) {
+  'use strict';
+
+  var CHECKPOINT_URL = '/gaobufan/progress.json';   // 用绝对路径：/gaobufan/english 和 .html 两个地址都要对
+  var API_URL = '/api/gaobufan/progress';
+  var PUSH_DELAY = 4000;        // 答完一题就推一次太吵，等他停手几秒再推
+  var SKILLS = ['l', 'r', 'w', 's'];
+
+  function clone(o) { return JSON.parse(JSON.stringify(o)); }
+  function num(v) { return typeof v === 'number' && isFinite(v) ? v : 0; }
+
+  /**
+   * 按 key 排序后的 JSON，只用来比较「两份存档一不一样」。
+   * 直接 JSON.stringify 不行：合并出来的卡片字段顺序和原来的不一定一致，
+   * 内容一模一样也会被判成有差异，于是每次打开都白推一次、白弹一次提示。
+   */
+  function stable(o) {
+    if (o === null || typeof o !== 'object') return JSON.stringify(o);
+    if (Object.prototype.toString.call(o) === '[object Array]') {
+      return '[' + o.map(stable).join(',') + ']';
+    }
+    return '{' + Object.keys(o).sort().map(function (k) {
+      return JSON.stringify(k) + ':' + stable(o[k]);
+    }).join(',') + '}';
+  }
+
+  /** 两张卡片取「更熟的那一张」：盒子、四项技能、见过次数都取大的 */
+  function mergeCard(x, y) {
+    if (!x) return clone(y);
+    if (!y) return clone(x);
+    var c = {
+      b: Math.max(num(x.b), num(y.b)),
+      sk: {},
+      seen: Math.max(num(x.seen), num(y.seen)),
+      wrong: Math.max(num(x.wrong), num(y.wrong)),
+      first: Math.min(num(x.first) || num(y.first), num(y.first) || num(x.first)),
+      // 到期日取更晚的：更熟的那一边说了算。取早的话，
+      // 刚在 iPad 上复习完的词，换到电脑上又被要求当天重来一遍。
+      due: Math.max(num(x.due), num(y.due))
+    };
+    SKILLS.forEach(function (k) {
+      c.sk[k] = Math.max(num(x.sk && x.sk[k]), num(y.sk && y.sk[k]));
+    });
+    return c;
+  }
+
+  function union(a, b) {
+    var out = (a || []).slice();
+    (b || []).forEach(function (v) { if (out.indexOf(v) < 0) out.push(v); });
+    return out;
+  }
+
+  var Sync = {
+    // off = 没配云端（只有进度档）；on = 云端可用；denied = 密码对不上；error = 网络/服务出错
+    cloud: 'unknown',
+    lastPull: 0,
+    lastPush: 0,
+    _timer: null,
+    _busy: false,
+
+    on: function () { return !!(global.Save && Save.keeps()); },
+
+    headers: function () {
+      // 云端如果设了 GAOBUFAN_SYNC_PIN，就拿本机的开场密码当钥匙。
+      // 四位数字算不上什么强口令，这里防的是「谁顺手改掉小孩的进度」，
+      // 不是真正的机密数据 —— 存档里只有单词熟练度。
+      return { 'content-type': 'application/json', 'x-eq-pin': Save.getPin() };
+    },
+
+    /**
+     * 合并两份存档。原则：只取并集、只往高了取，永远不删东西。
+     * 冲突的设定项（每天学多久、目标）跟着「最后改动时间更晚」的那一份走。
+     */
+    merge: function (a, b) {
+      if (!a) return clone(b);
+      if (!b) return clone(a);
+      var out = clone(a);
+      var newer = num(b.updatedAt) > num(a.updatedAt) ? b : a;
+
+      out.xp = Math.max(num(a.xp), num(b.xp));
+      out.gems = Math.max(num(a.gems), num(b.gems));
+      out.streak = Math.max(num(a.streak), num(b.streak));
+      out.bestStreak = Math.max(num(a.bestStreak), num(b.bestStreak));
+      out.lastDay = Math.max(num(a.lastDay), num(b.lastDay)) || null;
+      out.startDay = Math.min(num(a.startDay) || num(b.startDay), num(b.startDay) || num(a.startDay));
+      out.wordIndex = Math.max(num(a.wordIndex), num(b.wordIndex));
+      out.syncRev = Math.max(num(a.syncRev), num(b.syncRev));
+      out.minutes = newer.minutes || out.minutes;
+      out.goalDate = newer.goalDate || out.goalDate;
+      out.goalWords = newer.goalWords || out.goalWords;
+      out.daysDone = union(a.daysDone, b.daysDone).sort(function (x, y) { return x - y; });
+      out.ach = union(a.ach, b.ach);
+      out.stats = {
+        answers: Math.max(num(a.stats && a.stats.answers), num(b.stats && b.stats.answers)),
+        correct: Math.max(num(a.stats && a.stats.correct), num(b.stats && b.stats.correct)),
+        seconds: Math.max(num(a.stats && a.stats.seconds), num(b.stats && b.stats.seconds)),
+        sessions: Math.max(num(a.stats && a.stats.sessions), num(b.stats && b.stats.sessions))
+      };
+      out.cards = {};
+      var ac = a.cards || {}, bc = b.cards || {};
+      Object.keys(ac).forEach(function (w) { out.cards[w] = mergeCard(ac[w], bc[w]); });
+      Object.keys(bc).forEach(function (w) { if (!out.cards[w]) out.cards[w] = clone(bc[w]); });
+      out.updatedAt = Math.max(num(a.updatedAt), num(b.updatedAt));
+      return out;
+    },
+
+    /* ---------------- 通道 1：家长发布的进度档 ---------------- */
+
+    /**
+     * 把一份进度档落到本机存档上。
+     * completedScenes 里的词按「学过并熟练」补齐（只补强，本机已经更熟的不动），
+     * 光标挪到 resumeScene 的第一个词。
+     * 用场景 id 而不是写死的词序号 —— 教材重排过一次，序号会对不上，场景 id 不会。
+     */
+    applyCheckpoint: function (cp) {
+      var d = Save.data;
+      var today = SRS.today();
+      var scenes = (cp.completedScenes || []).map(function (id) { return EQ.sceneById(id); })
+        .filter(function (s) { return !!s; });
+      var added = 0, n = 0;
+
+      scenes.forEach(function (s) {
+        s.words.forEach(function (w) {
+          var c = d.cards[w.w];
+          if (!c) {
+            c = d.cards[w.w] = { b: 0, due: today, sk: { l: 0, r: 0, w: 0, s: 0 }, seen: 0, wrong: 0, first: today };
+            added++;
+          }
+          if (!c.sk) c.sk = { l: 0, r: 0, w: 0, s: 0 };
+          SKILLS.forEach(function (k) { c.sk[k] = Math.max(num(c.sk[k]), 2); });
+          if (num(c.b) < 4) {
+            c.b = 4;                       // 至少熬过 7 天那一档 = SRS 认的「掌握」
+            // 到期日按顺序摊到往后一周。全压在同一天的话，
+            // 他下次打开就撞上上百个词一起到期。算法是定死的，每台设备算出来一样。
+            c.due = today + 1 + (n % 7);
+          }
+          n++;
+        });
+      });
+
+      var resume = cp.resumeScene ? EQ.sceneById(cp.resumeScene) : null;
+      if (resume) {
+        // 家长发布的进度档是权威：说从这一节开始，就拨到这一节，
+        // 哪怕这台设备之前跑得更靠前（卡片一个都不会删，词还在）
+        d.wordIndex = resume.words[0].idx;
+      } else if (scenes.length) {
+        var last = scenes[scenes.length - 1].words;
+        d.wordIndex = Math.max(num(d.wordIndex), last[last.length - 1].idx + 1);
+      }
+
+      d.syncRev = num(cp.rev);
+      Save.save();
+      return { words: n, added: added, resume: resume };
+    },
+
+    checkpoint: function () {
+      var self = this;
+      return fetch(CHECKPOINT_URL, { cache: 'no-store' })
+        .then(function (r) { return r.ok ? r.json() : null; })
+        .then(function (cp) {
+          if (!cp || cp.profile !== Save.profile) return false;
+          if (!(num(cp.rev) > num(Save.data.syncRev))) return false;
+          var res = self.applyCheckpoint(cp);
+          UI.toast('☁️', '进度已同步',
+            cp.note || ('已标记 ' + res.words + ' 个词学过' +
+              (res.resume ? '，接下来学「' + res.resume.titleZh + '」' : '')));
+          self.push();
+          return true;
+        })
+        .catch(function () { return false; });
+    },
+
+    /* ---------------- 通道 2：云端存档 ---------------- */
+
+    pull: function () {
+      var self = this;
+      if (!this.on()) return Promise.resolve(false);
+      return fetch(API_URL + '?profile=' + encodeURIComponent(Save.profile), {
+        cache: 'no-store', headers: this.headers()
+      }).then(function (r) {
+        if (r.status === 403) { self.cloud = 'denied'; return false; }
+        if (r.status === 501) { self.cloud = 'off'; return false; }
+        if (!r.ok) { self.cloud = 'error'; return false; }
+        return r.json().then(function (j) {
+          if (!j || !j.configured) { self.cloud = 'off'; return false; }
+          self.cloud = 'on';
+          self.lastPull = Date.now();
+          var remote = (j.save && j.save.v === 1) ? j.save : null;
+          if (!remote) { self.push(); return false; }      // 云端还是空的：先把本机的传上去
+
+          var merged = self.merge(Save.data, remote);
+          merged.profile = Save.profile;
+          merged.name = Save.data.name;
+          var changedHere = stable(merged) !== stable(Save.data);
+          var changedThere = stable(merged) !== stable(remote);
+
+          if (changedHere) {
+            Save.data = merged;
+            Save.save({ quiet: true });                    // 时间戳保持合并后的值，别盖新的
+          }
+          if (changedThere) self.push();                   // 本机有云端没有的东西，推回去
+          if (changedHere) UI.toast('☁️', '已同步别的设备', '进度已经合并到这台设备上');
+          return changedHere;
+        });
+      }).catch(function () { self.cloud = 'error'; return false; });
+    },
+
+    /** 存档一变就排队推，几秒内的连续改动合成一次 */
+    schedule: function () {
+      var self = this;
+      if (!this.on() || this.cloud === 'off' || this.cloud === 'denied') return;
+      if (this._timer) clearTimeout(this._timer);
+      this._timer = setTimeout(function () { self.push(); }, PUSH_DELAY);
+    },
+
+    push: function () {
+      var self = this;
+      if (this._timer) { clearTimeout(this._timer); this._timer = null; }
+      if (!this.on()) return Promise.resolve(false);
+      // 已经问过一次、知道云端没开（或密码不对）就别再敲了 ——
+      // 控制台里一串 501 看着像坏了，其实只是没配 KV。
+      // pull() 每次进来都会重新探一次，配好了自然会翻回 on。
+      if (this.cloud === 'off' || this.cloud === 'denied') return Promise.resolve(false);
+      if (this._busy) { this.schedule(); return Promise.resolve(false); }
+      this._busy = true;
+      return fetch(API_URL, {
+        method: 'PUT', headers: this.headers(),
+        body: JSON.stringify({ profile: Save.profile, save: Save.data })
+      }).then(function (r) {
+        self._busy = false;
+        if (r.status === 403) { self.cloud = 'denied'; return false; }
+        if (r.status === 501) { self.cloud = 'off'; return false; }
+        // 409 = 推的时候云端已经更新了（另一台设备刚存过）。合并后再推一次，
+        // 不是丢掉本机这一节课。
+        if (r.status === 409) {
+          return r.json().then(function (j) {
+            var remote = (j && j.save && j.save.v === 1) ? j.save : null;
+            if (!remote) return false;
+            var merged = self.merge(Save.data, remote);
+            merged.profile = Save.profile;
+            merged.name = Save.data.name;
+            merged.updatedAt = Date.now();
+            Save.data = merged;
+            Save.save({ quiet: true });
+            self.schedule();
+            return true;
+          }).catch(function () { return false; });
+        }
+        if (!r.ok) { self.cloud = 'error'; return false; }
+        self.cloud = 'on';
+        self.lastPush = Date.now();
+        return true;
+      }).catch(function () { self._busy = false; self.cloud = 'error'; return false; });
+    },
+
+    /* ---------------- 对外 ---------------- */
+
+    /** 进入世界时跑一次：先跟云端合并，再看有没有新的进度档 */
+    onEnter: function () {
+      var self = this;
+      if (!this.on()) return;
+      this.pull().then(function (pulled) {
+        return self.checkpoint().then(function (applied) {
+          if ((pulled || applied) && App.mode === 'home') UI.home();
+        });
+      });
+    },
+
+    /** 设置页里手动点一次 */
+    now: function () {
+      var self = this;
+      return this.push().then(function () { return self.pull(); })
+        .then(function () { return self.checkpoint(); })
+        .then(function (applied) {
+          if (!applied) {
+            UI.toast('☁️', '同步完成', self.cloud === 'on' ? '云端和这台设备已经一致' : '云端没开，已检查进度档');
+          }
+          return true;
+        });
+    },
+
+    statusText: function () {
+      if (!this.on()) return '访客存档不参与同步。';
+      if (this.cloud === 'on') {
+        return '云端存档已连上，进度会在各台设备之间自动合并。' +
+               (this.lastPush ? '最近一次上传：' + new Date(this.lastPush).toLocaleTimeString() + '。' : '');
+      }
+      if (this.cloud === 'denied') return '云端拒绝了这台设备：开场密码和云端设的不一样，改回去就能同步。';
+      if (this.cloud === 'error') return '云端连不上（可能是没网），进度仍然存在这台设备里，回头会自动重试。';
+      if (this.cloud === 'off') return '云端存档没开，目前只接收家长发布的进度档。要开的话在 Vercel 配一个 KV。';
+      return '正在检查……';
+    }
+  };
+
+  // 关标签页/切到后台之前，把还没推的那一次补上
+  global.addEventListener('pagehide', function () { if (Sync._timer) Sync.push(); });
+  document.addEventListener('visibilitychange', function () {
+    if (document.hidden && Sync._timer) Sync.push();
+  });
+
+  global.Sync = Sync;
 })(window);
 
 </script>
@@ -4036,11 +4384,12 @@ EQ.addUnit({
       paintDots();
     },
 
-    /** 真正进入世界：读这个玩家自己的存档 */
+    /** 真正进入世界：读这个玩家自己的存档，再跟云端/进度档对一次 */
     enter: function (profile) {
       var s = document.getElementById('splash');
       TTS.unlock(); SFX.unlock();
       Save.load(profile);
+      if (global.Sync) Sync.onEnter();       // 后台跑，拉到东西会自己刷新主页
       s.classList.add('gone');
       setTimeout(function () { s.classList.add('hide'); }, 420);
       this.setHudMode('home');

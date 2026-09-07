@@ -1,0 +1,9 @@
+{
+  "rev": 1,
+  "profile": "bufan",
+  "updatedAt": "2026-09-07",
+  "note": "第一、二章已完成，接下来学第三章第一节「在小贩中心吃午饭」",
+  "completedScenes": ["u1sA", "u1sB", "u2sA", "u2sB"],
+  "resumeScene": "u3sA",
+  "_readme": "家长发布的进度档。english.html 每次打开都会读它一次，rev 比设备上记录的大就落地一次（各台设备各自落地一次，互不影响）。改进度的办法：改 completedScenes / resumeScene，然后把 rev 加一。场景 id 见页面里的「章节地图」，写死的词序号不要用，教材重排过。"
+}
