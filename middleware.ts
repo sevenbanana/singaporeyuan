@@ -23,7 +23,8 @@ export async function middleware(request: NextRequest) {
 }
 
 export const config = {
-  // 排除密码页本身、验证接口、Next 内部资源和带扩展名的静态文件;
+  // 排除密码页本身、验证接口(含 gaobufan 的进度同步接口)、Next 内部资源
+  // 和带扩展名的静态文件;
   // 脱敏案例页虽是静态 .html,但需要站点密码,故单独列入
   //
   // gaobufan:儿子的英语学习工具,故意不设密码 —— 他每天要用,
@@ -33,7 +34,7 @@ export const config = {
   // clients:客户专属页(/clients/vip/xxx)。这类页面自带一层独立访问密码,
   // 直接把干净地址发给客户即可;再叠一层站点密码只会让客户输两次
   matcher: [
-    '/((?!password|api/password|_next|gaobufan|clients|.*\\..*).*)',
+    '/((?!password|api/password|api/gaobufan|_next|gaobufan|clients|.*\\..*).*)',
     '/proposals/piw-vs-platg-case.html',
   ],
 };
