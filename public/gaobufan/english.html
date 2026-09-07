@@ -967,11 +967,23 @@ button.chip{ cursor:pointer; background:#5a2723; border-color:rgba(255,255,255,.
     load: function () {
       var self = this;
       try {
-        fetch(this.base + 'manifest.json', { cache: 'no-cache' })
+        return fetch(this.base + 'manifest.json', { cache: 'no-cache' })
           .then(function (r) { return r.ok ? r.json() : null; })
           .then(function (j) { self.manifest = j || {}; if (j && j._ext) self.ext = j._ext; })
           .catch(function () { self.manifest = {}; });
-      } catch (e) { this.manifest = {}; }
+      } catch (e) { this.manifest = {}; return Promise.resolve(); }
+    },
+
+    /**
+     * 语音包状态。设置页要显示 ——
+     * 「怎么又变成机器音了」十有八九是这份清单没拉下来（网络、缓存、没部署上），
+     * 光靠耳朵分不清是「退回系统语音」还是「系统语音本身太差」。
+     */
+    status: function () {
+      if (this.manifest === null) return { state: 'loading', n: 0 };
+      var n = 0, self = this;
+      Object.keys(this.manifest).forEach(function (k) { if (k !== '_ext' && self.manifest[k]) n++; });
+      return { state: n ? 'ready' : 'missing', n: n };
     },
 
     has: function (text) {
@@ -3774,16 +3786,49 @@ EQ.addUnit({
       var cur = TTS.voice ? TTS.score(TTS.voice) : -1;
       var better = (!noGood && ranked[0] && cur < best) ? ranked[0] : null;
 
+      // 「试听课文语音」要放真有音频的句子 —— 用他现在学到的那一节，
+      // 听到的就是明天上课会听到的声音，而不是下面那个备用语音的试听
+      var clipDemo = (function () {
+        var all = EQ.all(), i = Math.min(Save.data.wordIndex || 0, all.length - 1);
+        var w = all[i] || all[0];
+        var sc = w ? EQ.sceneById(w.scene) : null;
+        var hit = sc && sc.story.filter(function (l) { return Clips.has(l.en); })[0];
+        if (hit) return hit.en;
+        if (w && Clips.has(w.s)) return w.s;
+        for (var k = 0; k < all.length; k++) if (Clips.has(all[k].s)) return all[k].s;
+        return null;
+      })();
+      var cs = Clips.status();
+      var clipMsg = cs.state === 'ready'
+        ? '✅ 神经语音包已加载（' + cs.n + ' 段），他听到的是这个。'
+        : (cs.state === 'loading'
+          ? '⏳ 正在加载语音包……'
+          : '❌ 这台设备没拉到语音包，所以全程在用下面那个备用语音（机器感就是从这来的）。' +
+            '多半是网络或缓存问题 —— 点下面的「重新加载」，还不行就刷新一下页面。');
+
       stage.innerHTML =
         this.head('⚙️', '设置', '') +
         '<div class="scroll" style="flex:1">' +
           '<div class="panel"><div class="px tiny">发音</div>' +
-            '<div class="row" style="margin-top:10px"><span class="tiny" style="color:#333;width:80px">朗读声音</span>' +
+            '<div class="tiny" style="color:#555;margin:8px 0;line-height:1.8">' +
+              '<b style="color:#333">课文语音</b>（他实际听到的）：单词、例句、对话全是提前生成好的' +
+              '真人级音频，存在网站上，跟这台设备装了什么语音<b>没关系</b> —— iPad 和电脑听到的一模一样。<br>' +
+              esc(clipMsg) + '</div>' +
+            '<div class="row wrap">' +
+              (clipDemo ? '<button class="btn sm primary" data-a="clip">🔊 试听课文语音</button>' : '') +
+              (cs.state === 'ready' ? '' : '<button class="btn sm" data-a="reclip">↻ 重新加载语音包</button>') +
+            '</div>' +
+            '<div style="border-top:2px solid rgba(0,0,0,.12);margin:14px 0 10px"></div>' +
+            '<div class="tiny" style="color:#555;line-height:1.8">' +
+              '<b style="color:#333">备用语音</b>：只在极少数没生成音频的地方才会用到' +
+              '（<b>包括下面这个「试听」按钮本身</b>）。它是这台设备自带的机器语音，' +
+              '听着生硬是正常的，<b>不代表课文也是这个声音</b>。</div>' +
+            '<div class="row" style="margin-top:10px"><span class="tiny" style="color:#333;width:80px">备用声音</span>' +
             '<select id="vsel" class="sel">' + (opts || '<option>系统没有英文语音</option>') + '</select>' +
             '<button class="btn sm" data-a="test">试听</button></div>' +
             '<div class="tiny" style="color:#555;margin-top:8px">列表已按自然度排好，⭐ 的最好听。新加坡用英式，同等自然度下优先 en-SG / en-GB。</div>' +
             (noGood
-              ? '<div class="voice-warn">⚠️ 这台设备只装了<b>老式语音引擎</b>，机器感就是从这来的。<br>' +
+              ? '<div class="voice-warn">⚠️ 这台设备只装了<b>老式语音引擎</b>，备用语音的机器感就是从这来的。<br>' +
                 '<b>iPad：</b>设置 → 辅助功能 → 朗读内容 → 声音 → 英语，下载任意带<b>「增强」或「高级」</b>的声音（免费，几十 MB），回来在上面重选。<br>' +
                 '<b>Mac：</b>系统设置 → 辅助功能 → 朗读内容 → 系统声音 → 管理声音，同样下载增强版。<br>' +
                 '下载完回来<b>刷新一下页面</b>，新声音才会出现在上面的列表里。</div>'
@@ -3841,7 +3886,20 @@ EQ.addUnit({
       if (sel) sel.onchange = function () {
         if (TTS.use(sel.value)) TTS.speak('Good morning, Bufan. Time to wake up!', { rate: 0.9 });
       };
+      var clipBtn = stage.querySelector('[data-a="clip"]');
+      if (clipBtn) clipBtn.onclick = function () {
+        SFX.click();
+        TTS.speak(clipDemo, { rate: 0.9 });
+      };
+      var reBtn = stage.querySelector('[data-a="reclip"]');
+      if (reBtn) reBtn.onclick = function () {
+        SFX.click();
+        reBtn.textContent = '↻ 加载中…';
+        Clips.manifest = null;
+        Promise.resolve(Clips.load()).then(function () { UI.settings(); });
+      };
       stage.querySelector('[data-a="test"]').onclick = function () {
+        // 这里故意不走预生成音频：选的就是备用语音，试听当然要听备用语音本身
         TTS.speak('Good morning, Bufan. Time to wake up!', { rate: 0.9 });
       };
       stage.querySelector('[data-a="diag"]').onclick = function () { UI.voiceDiag(); };
