@@ -4037,7 +4037,12 @@ EQ.addUnit({
       out.bestStreak = Math.max(num(a.bestStreak), num(b.bestStreak));
       out.lastDay = Math.max(num(a.lastDay), num(b.lastDay)) || null;
       out.startDay = Math.min(num(a.startDay) || num(b.startDay), num(b.startDay) || num(a.startDay));
-      out.wordIndex = Math.max(num(a.wordIndex), num(b.wordIndex));
+      // 光标不能无脑取大：家长发新进度档「往回拨」的时候，
+      // 取大会被云端那份更靠前的记录原样拉回去,等于拨了个寂寞。
+      // 谁落地过更新的进度档谁说了算；两边 rev 一样才是「谁学得更远算谁的」。
+      out.wordIndex = num(a.syncRev) === num(b.syncRev)
+        ? Math.max(num(a.wordIndex), num(b.wordIndex))
+        : (num(a.syncRev) > num(b.syncRev) ? num(a.wordIndex) : num(b.wordIndex));
       out.syncRev = Math.max(num(a.syncRev), num(b.syncRev));
       out.minutes = newer.minutes || out.minutes;
       out.goalDate = newer.goalDate || out.goalDate;
@@ -4209,7 +4214,24 @@ EQ.addUnit({
 
     /* ---------------- 对外 ---------------- */
 
-    /** 进入世界时跑一次：先跟云端合并，再看有没有新的进度档 */
+    /**
+     * 输完密码、还没画主页之前跑的那一次。
+     * 他看到的第一屏就该是对的进度，而不是先闪一下旧的再跳过去。
+     * 只等 progress.json 这一个同源小文件，最多等 1.2 秒 ——
+     * 网卡住也照样进得去,晚到的话 onEnter 那条路会补上并刷新主页。
+     */
+    beforeEnter: function () {
+      var self = this;
+      if (!this.on()) return Promise.resolve(false);
+      return new Promise(function (resolve) {
+        var done = false;
+        function finish(v) { if (!done) { done = true; resolve(v); } }
+        setTimeout(function () { finish(false); }, 1200);
+        self.checkpoint().then(finish, function () { finish(false); });
+      });
+    },
+
+    /** 进主页之后在后台跑：跟云端合并，顺带补一次刚才没等到的进度档 */
     onEnter: function () {
       var self = this;
       if (!this.on()) return;
@@ -4389,11 +4411,18 @@ EQ.addUnit({
       var s = document.getElementById('splash');
       TTS.unlock(); SFX.unlock();
       Save.load(profile);
-      if (global.Sync) Sync.onEnter();       // 后台跑，拉到东西会自己刷新主页
-      s.classList.add('gone');
-      setTimeout(function () { s.classList.add('hide'); }, 420);
-      this.setHudMode('home');
-      UI.home();
+
+      function show() {
+        s.classList.add('gone');
+        setTimeout(function () { s.classList.add('hide'); }, 420);
+        App.setHudMode('home');
+        UI.home();
+        if (global.Sync) Sync.onEnter();     // 云端那条通道继续在后台跑
+      }
+      // 先把进度档落地再揭开开场页：宁可开场页多停半秒，
+      // 也别让他先看见旧的章节、再当着面跳一下。
+      if (global.Sync) Sync.beforeEnter().then(show, show);
+      else show();
     },
 
     /** 换人：回到选玩家页，当前进度已经随时在存 */
