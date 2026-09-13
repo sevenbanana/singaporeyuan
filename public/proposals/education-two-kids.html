@@ -1,0 +1,938 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>双宝教育金案例：每月 S$3,000 定投 5 年，够不够两个孩子读大学</title>
+<meta name="robots" content="noindex,nofollow">
+<meta name="description" content="新加坡双宝家庭教育金案例：老大 6.5 岁、老二 3.5 岁，每月 S$3,000 基金定投 5 年。按保单说明书退保价值表，看 8% 与 4% 两种情景、三条升学路线下，这笔钱到底能撑到什么程度。">
+<style>
+:root{
+  --navy:#1B2A4A;
+  --navy-soft:#2E4068;
+  --navy-tint:#EEF1F7;
+  --gold:#C9A86A;
+  --gold-deep:#A8874C;
+  --gold-tint:#F7F1E4;
+  --ivory:#FBFAF7;
+  --ink:#22293A;
+  --muted:#6B7280;
+  --line:#E4E2DB;
+  --good:#2E7D5B;
+  --good-bg:#EDF5F0;
+  --warn:#B9642A;
+  --warn-bg:#FBF1E8;
+  --bad:#B5433C;
+  --bad-bg:#FBEDEC;
+}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth}
+body{
+  font-family:-apple-system,"PingFang SC","Hiragino Sans GB","Noto Sans SC","Microsoft YaHei",sans-serif;
+  background:var(--ivory);color:var(--ink);line-height:1.7;font-size:15px;
+}
+.wrap{max-width:1040px;margin:0 auto;padding:0 16px 64px}
+b,strong{font-weight:700}
+.num{font-variant-numeric:tabular-nums}
+
+/* ---------- header ---------- */
+header{
+  background:linear-gradient(160deg,#1B2A4A 0%,#24365C 60%,#2C4270 100%);
+  color:#faf7f0;padding:52px 16px 46px;position:relative;overflow:hidden;
+}
+header::after{content:"";position:absolute;right:-80px;top:-96px;width:320px;height:320px;border-radius:50%;border:1px solid rgba(201,165,92,.3)}
+header::before{content:"";position:absolute;right:40px;top:40px;width:160px;height:160px;border-radius:50%;border:1px solid rgba(201,165,92,.15)}
+.hd-in{max-width:1040px;margin:0 auto;position:relative;z-index:1;display:grid;grid-template-columns:1fr;gap:24px;align-items:end}
+@media(min-width:760px){.hd-in{grid-template-columns:1fr auto}}
+.hd-back{font-size:13px;color:rgba(250,247,240,.7);text-decoration:none}
+.hd-back:hover{color:#dcc088}
+.hd-tag{margin-top:26px;font-size:12px;font-weight:600;letter-spacing:.3em;text-transform:uppercase;color:#c9a55c}
+.hd-eyebrow{margin-top:10px;font-size:12px;letter-spacing:.05em;color:rgba(220,192,136,.8)}
+h1{margin-top:14px;font-size:clamp(26px,4.4vw,38px);font-weight:900;line-height:1.3;letter-spacing:.01em;max-width:720px}
+h1 em{font-style:normal;color:#dcc088}
+.hd-sub{margin-top:16px;font-size:15px;line-height:1.85;color:rgba(250,247,240,.82);max-width:620px}
+.hd-pills{margin-top:24px;display:flex;flex-wrap:wrap;gap:10px}
+.hd-pill{border-radius:20px;padding:6px 16px;font-size:12px;border:1px solid rgba(201,165,92,.45);color:#dcc088}
+.hd-pill.solid{background:#c9a55c;color:#1B2A4A;font-weight:600;border-color:#c9a55c}
+.hd-icon{display:none;position:relative;align-self:end;margin-bottom:-10px;color:rgba(220,192,136,.55)}
+@media(min-width:760px){.hd-icon{display:block}}
+
+/* ---------- sections ---------- */
+section{margin-top:52px}
+.sec-eyebrow{font-size:12px;letter-spacing:.28em;color:var(--gold-deep);margin-bottom:6px}
+.sec-title{font-size:22px;font-weight:700;color:var(--navy);margin-bottom:4px;line-height:1.4}
+.sec-sub{font-size:13.5px;color:var(--muted);margin-bottom:20px;max-width:760px}
+
+/* ---------- profile cards ---------- */
+.grid{display:grid;gap:14px}
+.grid.c2{grid-template-columns:1fr}
+.grid.c3{grid-template-columns:1fr}
+.grid.c4{grid-template-columns:1fr 1fr}
+@media(min-width:640px){.grid.c2{grid-template-columns:1fr 1fr}.grid.c3{grid-template-columns:1fr 1fr 1fr}}
+@media(min-width:900px){.grid.c4{grid-template-columns:repeat(4,1fr)}}
+.card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:20px 20px;min-width:0}
+.card h3{font-size:15px;color:var(--navy);margin-bottom:10px;display:flex;align-items:center;gap:8px}
+.card h3 svg{width:18px;height:18px;color:var(--gold-deep);flex:none}
+.card ul{list-style:none}
+.card li{font-size:13.5px;color:#3B4358;padding:5px 0;border-top:1px dashed var(--line);line-height:1.6}
+.card li:first-child{border-top:0}
+
+/* ---------- summary tiles ---------- */
+.tiles{display:grid;gap:12px;grid-template-columns:1fr 1fr}
+@media(min-width:760px){.tiles{grid-template-columns:repeat(3,1fr)}}
+@media(min-width:1000px){.tiles{grid-template-columns:repeat(6,1fr)}}
+.tile{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 14px;min-height:112px}
+.tile .l{font-size:12px;color:var(--muted);margin-bottom:6px;line-height:1.4}
+.tile .v{font-size:24px;font-weight:800;color:var(--navy);line-height:1.15;letter-spacing:-.01em}
+.tile .v.gold{color:var(--gold-deep)}
+.tile .s{font-size:11.5px;color:var(--muted);margin-top:6px;line-height:1.5}
+
+/* ---------- timeline ---------- */
+.tl-scroll{overflow-x:auto;padding-bottom:6px}
+.tl{display:grid;grid-template-columns:repeat(6,minmax(150px,1fr));gap:0;min-width:900px;position:relative;padding-top:8px}
+.tl::before{content:"";position:absolute;left:8%;right:8%;top:22px;height:2px;background:linear-gradient(90deg,var(--gold),var(--navy-soft))}
+.tl-n{position:relative;text-align:center;padding:0 8px}
+.tl-dot{width:30px;height:30px;border-radius:50%;background:#fff;border:2px solid var(--gold);margin:0 auto;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:var(--navy);position:relative;z-index:1}
+.tl-n.key .tl-dot{background:var(--navy);color:#fff;border-color:var(--navy)}
+.tl-y{margin-top:10px;font-size:12px;letter-spacing:.08em;color:var(--gold-deep);font-weight:600}
+.tl-t{font-size:14px;font-weight:700;color:var(--navy);margin-top:2px;line-height:1.4}
+.tl-d{font-size:12px;color:var(--muted);margin-top:4px;line-height:1.55}
+.scroll-hint{font-size:11.5px;color:var(--muted);margin-top:6px;display:none}
+@media(max-width:940px){.scroll-hint{display:block}}
+
+/* ---------- tables ---------- */
+.table-wrap{overflow-x:auto;background:#fff;border:1px solid var(--line);border-radius:14px}
+table{width:100%;border-collapse:collapse;min-width:640px}
+th,td{padding:10px 12px;font-size:13px;text-align:left;vertical-align:middle;white-space:nowrap}
+thead th{background:var(--navy);color:#fff;font-weight:500;font-size:12.5px}
+thead th.sub{background:var(--navy-soft);font-size:12px}
+tbody tr:nth-child(even){background:#F8F8F5}
+tbody td:first-child{font-weight:600;color:var(--navy)}
+tbody tr.hl{background:var(--gold-tint)!important}
+tbody tr.hl td{font-weight:700;color:var(--navy)}
+tbody tr.dim td{color:#9AA1AE}
+td.g8{color:var(--navy);font-weight:600}
+td.g4{color:var(--navy-soft)}
+.tbl-note{font-size:12px;color:var(--muted);margin-top:10px;line-height:1.7}
+.rowtag{display:inline-block;font-size:10.5px;padding:1px 7px;border-radius:10px;background:var(--gold);color:#1B2A4A;margin-left:6px;font-weight:700;vertical-align:middle}
+
+/* ---------- chart ---------- */
+.chart{background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px 10px 8px}
+.chart svg{width:100%;height:auto;display:block}
+.legend{display:flex;flex-wrap:wrap;gap:14px;font-size:12.5px;color:var(--muted);margin:0 6px 8px}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.legend i{display:inline-block;width:18px;height:4px;border-radius:2px}
+.legend i.dash{background:repeating-linear-gradient(90deg,var(--muted) 0 4px,transparent 4px 7px);height:2px}
+
+/* ---------- interactive ---------- */
+.controls{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:18px}
+.seg{display:flex;flex-wrap:wrap;gap:4px;background:#fff;border:1px solid var(--line);border-radius:999px;padding:4px}
+.seg button{appearance:none;border:0;background:transparent;color:var(--navy-soft);padding:9px 15px;font-size:13.5px;font-weight:600;border-radius:999px;cursor:pointer;transition:.2s;font-family:inherit}
+.seg button.active{background:var(--navy);color:#fff}
+.seg.gold button.active{background:var(--gold-deep)}
+.seg-label{font-size:11.5px;color:var(--muted);align-self:center;margin-right:2px;letter-spacing:.05em}
+.seg-group{display:flex;align-items:center;gap:8px}
+.ia{display:grid;gap:16px;grid-template-columns:1fr}
+@media(min-width:960px){.ia{grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr)}}
+.pill{display:inline-block;padding:4px 11px;border-radius:999px;background:var(--navy-tint);color:var(--navy);font-size:12px;font-weight:700;margin-bottom:12px}
+.kpis{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px}
+@media(min-width:640px){.kpis{grid-template-columns:repeat(4,minmax(0,1fr))}}
+.kpi{border:1px solid var(--line);border-radius:12px;padding:12px 12px;background:#FCFCFA}
+.kpi .l{font-size:11.5px;color:var(--muted);line-height:1.4;margin-bottom:5px}
+.kpi .v{font-size:18px;font-weight:800;color:var(--navy);line-height:1.15}
+.kpi .v small{display:block;font-size:11px;color:var(--muted);font-weight:400;margin-top:3px}
+.hl-box{display:grid;grid-template-columns:1fr;gap:12px;align-items:center;padding:16px 18px;border-radius:14px;background:var(--gold-tint);border:1px solid #EADFC6;margin-bottom:14px}
+@media(min-width:560px){.hl-box{grid-template-columns:1fr auto}}
+.hl-box .d{font-size:13.5px;color:#3B4358;line-height:1.75}
+.hl-box .big{font-size:30px;font-weight:900;color:var(--gold-deep);line-height:1.1;margin-top:6px}
+.hl-box .big small{font-size:12px;font-weight:500;color:var(--muted);margin-left:6px}
+.status{display:inline-flex;align-items:center;gap:8px;padding:9px 14px;border-radius:999px;font-size:13px;font-weight:700;white-space:nowrap}
+.status.ok{background:var(--good-bg);color:var(--good);border:1px solid #CFE3D6}
+.status.warn{background:var(--warn-bg);color:var(--warn);border:1px solid #EDD5C0}
+.status.bad{background:var(--bad-bg);color:var(--bad);border:1px solid #EFC9C6}
+.formula{padding:12px 14px;border-radius:12px;background:var(--navy-tint);color:#3B4A6B;font-size:13px;line-height:1.75;margin-bottom:14px}
+.metrics{display:grid;grid-template-columns:1fr;gap:10px;margin-top:14px}
+@media(min-width:560px){.metrics{grid-template-columns:repeat(3,minmax(0,1fr))}}
+.metric{border:1px solid var(--line);border-radius:12px;padding:12px 14px;background:#fff}
+.metric .l{font-size:11.5px;color:var(--muted);margin-bottom:6px}
+.metric .v{font-size:19px;font-weight:800;color:var(--navy);line-height:1.15}
+.metric .v.gap{color:var(--bad)}
+.metric .v.left{color:var(--good)}
+.bar{height:10px;background:#EDEEF2;border-radius:999px;overflow:hidden;margin-top:9px}
+.bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--gold),var(--gold-deep));transition:width .5s ease}
+.topup{margin-top:14px;padding:14px 16px;border-radius:12px;border:1px dashed var(--gold);background:#fff;font-size:13px;line-height:1.75;color:#3B4358}
+.topup b{color:var(--gold-deep)}
+.chart-text{font-size:13.5px;color:var(--muted);line-height:1.75;margin-bottom:10px}
+
+/* ---------- conclusion ---------- */
+.ccard{background:#fff;border:1px solid var(--line);border-radius:16px;padding:20px;border-top:4px solid var(--gold)}
+.ccard h4{font-size:16px;color:var(--navy);margin-bottom:8px;line-height:1.45}
+.ccard p{font-size:13.5px;color:#4B5468;line-height:1.8}
+.ccard .k{display:inline-block;font-size:11px;letter-spacing:.15em;color:var(--gold-deep);margin-bottom:8px}
+.steps{counter-reset:s;display:grid;gap:12px}
+.step{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 18px 16px 62px;position:relative;font-size:13.5px;color:#3B4358;line-height:1.8}
+.step::before{counter-increment:s;content:counter(s);position:absolute;left:18px;top:16px;width:30px;height:30px;border-radius:50%;background:var(--navy);color:#fff;font-weight:700;display:flex;align-items:center;justify-content:center;font-size:14px}
+.step b{color:var(--navy)}
+.honest{background:var(--navy);color:#EDE6D6;border-radius:16px;padding:22px 24px}
+.honest h3{font-size:16px;color:#dcc088;margin-bottom:10px}
+.honest p{font-size:13.5px;line-height:1.85;color:rgba(237,230,214,.9)}
+.honest p+p{margin-top:8px}
+.honest .row{display:grid;gap:10px;grid-template-columns:1fr;margin-top:14px}
+@media(min-width:640px){.honest .row{grid-template-columns:repeat(3,1fr)}}
+.honest .hs{background:rgba(255,255,255,.07);border:1px solid rgba(220,192,136,.25);border-radius:12px;padding:12px 14px}
+.honest .hs .l{font-size:11.5px;color:rgba(220,192,136,.85)}
+.honest .hs .v{font-size:22px;font-weight:800;color:#fff;margin-top:2px}
+.honest .hs .s{font-size:11.5px;color:rgba(237,230,214,.7);margin-top:2px}
+
+.disc{background:var(--navy-tint);border-radius:14px;padding:18px;font-size:12px;color:var(--muted);line-height:1.8}
+.disc b{color:var(--navy-soft)}
+.disc p+p{margin-top:10px}
+.cta{margin-top:40px;background:linear-gradient(160deg,#1B2A4A 0%,#2C4270 100%);border-radius:18px;padding:30px 24px;color:#faf7f0;display:grid;gap:16px;grid-template-columns:1fr;align-items:center}
+@media(min-width:700px){.cta{grid-template-columns:1fr auto}}
+.cta h3{font-size:20px;font-weight:800;color:#fff;line-height:1.4}
+.cta p{font-size:13.5px;color:rgba(250,247,240,.8);margin-top:6px;line-height:1.75}
+.btn{display:inline-block;background:#c9a55c;color:#1B2A4A;font-weight:700;padding:12px 22px;border-radius:999px;text-decoration:none;font-size:14px;white-space:nowrap}
+.btn:hover{background:#dcc088}
+
+/* ---------- site footer ---------- */
+.site-footer{margin-top:56px;border-top:1px solid rgba(201,165,92,.25);background:#f5efe1}
+.site-footer a{color:inherit;text-decoration:none;transition:color .2s}
+.site-footer a:hover{color:#a8843f}
+.sf-in{max-width:1040px;margin:0 auto;padding:44px 20px 32px}
+.sf-grid{display:grid;gap:28px}
+@media(min-width:560px){.sf-grid{grid-template-columns:1fr 1fr}}
+@media(min-width:820px){.sf-grid{grid-template-columns:1.2fr 1fr 1fr 1fr}}
+.sf-brand{font-size:18px;font-weight:700;color:#1a2744}
+.sf-tag{margin-top:6px;font-size:13px;color:#a8843f}
+.sf-org{margin-top:14px;font-size:11.5px;line-height:1.8;color:#7a7264}
+.sf-h{font-size:11px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:#a8843f}
+.sf-list{list-style:none;margin-top:12px}
+.sf-list li{font-size:13px;color:rgba(26,39,68,.8);margin-bottom:7px}
+.sf-bottom{margin-top:32px;border-top:1px solid rgba(201,165,92,.25);padding-top:20px;font-size:11.5px;line-height:1.8;color:#7a7264}
+.sf-rights{margin-top:10px}
+
+/* ---------- password gate ---------- */
+body.locked{overflow:hidden}
+body.locked>*:not(#pwGate){visibility:hidden}
+#pwGate{position:fixed;inset:0;z-index:99;display:none;align-items:center;justify-content:center;
+  background:#FAF7F0;padding:20px;visibility:visible;overflow:auto;
+  font-family:-apple-system,"PingFang SC","Hiragino Sans GB","Noto Sans SC","Microsoft YaHei",sans-serif}
+body.locked #pwGate{display:flex}
+#pwGate *{box-sizing:border-box}
+.pw-card{width:100%;max-width:940px;background:#fff;border-radius:26px;overflow:hidden;text-align:left;
+  box-shadow:0 30px 80px -40px rgba(23,39,66,.38);display:grid;grid-template-columns:1fr}
+.pw-left{padding:30px 26px;position:relative}
+.pw-top{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.pw-chip{display:inline-flex;align-items:center;gap:9px;border:1px solid rgba(199,161,90,.45);
+  background:rgba(199,161,90,.08);border-radius:999px;padding:5px 15px 5px 5px;font-size:12.5px;
+  font-weight:700;color:#A8874C;line-height:1.4}
+.pw-chip img{width:26px;height:26px;border-radius:50%;object-fit:cover;display:block}
+#pwLang{flex:none;border:1px solid #E2E6EC;background:#fff;color:#687386;border-radius:999px;
+  padding:5px 13px;font-size:12px;font-weight:700;cursor:pointer;font-family:inherit;letter-spacing:.04em}
+#pwLang:hover{border-color:#C7A15A;color:#172742}
+.pw-card h2{font-size:27px;line-height:1.28;color:#172742;margin:20px 0 0;font-weight:800;letter-spacing:.01em}
+.pw-card .pw-sub{font-size:14.5px;line-height:1.9;color:#687386;margin:12px 0 0}
+.pw-label{display:block;margin:24px 0 9px;font-size:13px;font-weight:700;color:#172742}
+.pw-field{position:relative}
+.pw-field .pw-lock{position:absolute;left:15px;top:50%;transform:translateY(-50%);color:#687386;pointer-events:none}
+#pwInput{width:100%;border:1px solid #E2E6EC;border-radius:15px;background:#FCFBF7;
+  padding:14px 46px;font-size:15px;text-align:left;letter-spacing:0;outline:none;font-family:inherit;color:#172742}
+#pwInput::placeholder{color:#A6AEBC}
+#pwInput:focus{border-color:#C7A15A;background:#fff}
+#pwEye{position:absolute;right:9px;top:50%;transform:translateY(-50%);width:34px;height:34px;display:flex;
+  align-items:center;justify-content:center;border:0;background:none;border-radius:50%;cursor:pointer;color:#687386}
+#pwEye:hover{background:#EEF1F7;color:#172742}
+#pwForm{display:block}
+#pwSubmit{margin-top:18px;width:100%;display:flex;align-items:center;justify-content:center;gap:10px;border:0;
+  background:#172742;color:#fff;border-radius:15px;padding:15px;font-size:15.5px;font-weight:700;cursor:pointer;
+  font-family:inherit;transition:background .25s,box-shadow .25s}
+#pwSubmit:hover{background:#0F1C31;box-shadow:0 14px 30px -14px rgba(23,39,66,.7)}
+.pw-err{display:none;margin-top:12px;font-size:13px;color:#B4433A;font-weight:600}
+.pw-err.show{display:block}
+.pw-div{display:flex;align-items:center;gap:14px;margin-top:30px;color:#687386;font-size:13px}
+.pw-div span{flex:1;height:1px;background:#E2E6EC}
+.pw-ask{margin-top:16px;text-align:center;font-size:14.5px;font-weight:700;color:#172742}
+.pw-ask b{border-bottom:2px solid rgba(199,161,90,.7);padding-bottom:1px;font-weight:700}
+.pw-contact{display:grid;gap:10px;margin-top:16px}
+.pw-c{display:flex;align-items:center;gap:11px;border:1px solid #E2E6EC;background:#FCFBF7;
+  border-radius:15px;padding:12px 14px;text-decoration:none;color:inherit;transition:border-color .25s,background .25s}
+a.pw-c:hover{border-color:#C7A15A;background:rgba(199,161,90,.07)}
+.pw-c i{flex:none;width:34px;height:34px;border-radius:50%;background:rgba(199,161,90,.16);color:#A8874C;
+  display:flex;align-items:center;justify-content:center;font-style:normal}
+.pw-c b{display:block;font-size:13.5px;color:#172742;font-weight:700}
+.pw-c s{display:block;font-size:13.5px;color:#687386;text-decoration:none}
+.pw-art{display:none}
+.pw-art img{width:100%;max-width:280px;height:auto;display:block}
+@media(min-width:820px){
+  .pw-card{grid-template-columns:minmax(0,1fr) minmax(0,.82fr)}
+  .pw-left{padding:46px 44px}
+  .pw-card h2{font-size:32px}
+  .pw-art{display:flex;align-items:flex-end;justify-content:center;background:#F7F4EC;
+    border-left:1px solid #E2E6EC;padding:30px 20px 46px}
+}
+@media(min-width:1024px){.pw-contact{grid-template-columns:1fr 1fr}.pw-art img{max-width:320px}}
+
+/* ---------- watermark ---------- */
+#wm{position:fixed;inset:0;z-index:9999;pointer-events:none;overflow:hidden;opacity:.0325}
+#wm .row{position:absolute;white-space:nowrap;font-size:20px;color:var(--navy);font-weight:500;letter-spacing:.06em;transform:rotate(-24deg);transform-origin:left center}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body class="locked">
+
+<div id="pwGate">
+  <div class="pw-card">
+    <div class="pw-left">
+      <div class="pw-top">
+        <span class="pw-chip"><img src="/avatar-round.png" alt="">
+          <b data-zh="新加坡小圆姐 · 客户专属" data-en="Yuan Yuan SG · client only">新加坡小圆姐 · 客户专属</b>
+        </span>
+        <button type="button" id="pwLang" data-zh="EN" data-en="中文">EN</button>
+      </div>
+
+      <h2 data-zh="双宝教育金案例" data-en="Education fund case: two kids">双宝教育金案例</h2>
+      <p class="pw-sub" data-zh="这是小圆姐整理的客户教育金案例。&lt;br&gt;为保护客户资料，请输入访问密码。" data-en="An education-fund case prepared by Yuan Yuan.&lt;br&gt;Enter the access password to view it.">这是小圆姐整理的客户教育金案例。<br>为保护客户资料，请输入访问密码。</p>
+
+      <form id="pwForm">
+        <label class="pw-label" for="pwInput" data-zh="访问密码" data-en="Access password">访问密码</label>
+        <div class="pw-field">
+          <svg class="pw-lock" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="4.5" y="10.5" width="15" height="10.5" rx="2.5"></rect><path d="M8 10.5V7.8a4 4 0 0 1 8 0v2.7"></path><path d="M12 15v2.2"></path>
+          </svg>
+          <input id="pwInput" type="password" autocomplete="off" placeholder="输入密码" data-zh="输入密码" data-en="Enter password">
+          <button type="button" id="pwEye" aria-label="显示密码" aria-pressed="false">
+            <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M3 12c0-2.5 4-7 9-7s9 4.5 9 7c0 2.5-4 7-9 7s-9-4.5-9-7z"></path><circle cx="12" cy="12" r="2.6"></circle>
+            </svg>
+          </button>
+        </div>
+        <div class="pw-err" id="pwErr" data-zh="密码不正确，再试一次；或者找我要一次新的。" data-en="That password didn’t work. Try again, or ask me for a new one.">密码不正确，再试一次；或者找我要一次新的。</div>
+        <button type="submit" id="pwSubmit"><span data-zh="查看方案" data-en="View the plan">查看方案</span>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
+        </button>
+      </form>
+
+      <div class="pw-div"><span></span><b data-zh="还没有密码？" data-en="No password yet?" style="font-weight:400">还没有密码？</b><span></span></div>
+      <p class="pw-ask" data-zh="联系小圆姐索取访问密码" data-en="Ask Yuan Yuan for the password">联系小圆姐索取访问密码</p>
+      <div class="pw-contact">
+        <div class="pw-c">
+          <i><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.8A8.3 8.3 0 0 1 8.9 19L3.5 20.5 5 15.2A8.3 8.3 0 1 1 21 11.8z"></path><path d="M8.5 11.8h.01M12.2 11.8h.01M15.9 11.8h.01"></path></svg></i>
+          <span><b data-zh="微信" data-en="WeChat">微信</b><s>singaporeyuan</s></span>
+        </div>
+        <a class="pw-c" href="https://wa.me/6583750190?text=%E4%BD%A0%E5%A5%BD%E5%B0%8F%E5%9C%86%E5%A7%90%EF%BC%8C%E6%83%B3%E8%A6%81%E4%B8%80%E4%B8%8B%E6%96%B9%E6%A1%88%E9%A1%B5%E7%9A%84%E8%AE%BF%E9%97%AE%E5%AF%86%E7%A0%81%E3%80%82">
+          <i><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5.5 4H9l1.6 4.3L8.5 10a12.5 12.5 0 0 0 5.5 5.5l1.7-2.1L20 15v3.6A1.6 1.6 0 0 1 18.2 20C10.8 19.2 4.8 13.2 4 5.8A1.6 1.6 0 0 1 5.5 4z"></path></svg></i>
+          <span><b>WhatsApp</b><s>+65 8375 0190</s></span>
+        </a>
+      </div>
+    </div>
+
+    <div class="pw-art">
+      <img src="/password/welcome-door.webp" alt="" width="720" height="1245">
+    </div>
+  </div>
+</div>
+
+<header>
+  <div class="hd-in">
+    <div>
+      <a class="hd-back" href="https://www.singaporeyuan.com/zh/cases">← 返回案例库</a>
+      <p class="hd-tag">CASE · 双宝家庭 · 教育金</p>
+      <p class="hd-eyebrow">客户案例 · 仅供方案说明 · 数字取自保单说明书退保价值表</p>
+      <h1>两个孩子的大学教育金，<em>每月 S$3,000 定投 5 年</em>，够不够？</h1>
+      <p class="hd-sub">老大 6.5 岁、老二 3.5 岁。父母想用 5 年时间把一笔教育金存出来，之后不再追加，等两个孩子上大学时分年提取。这页把保单说明书的数字、三条升学路线和两种回报情景摆在一起，让你自己拨一拨看结果。</p>
+      <div class="hd-pills">
+        <span class="hd-pill solid">每月 S$3,000 × 5 年</span>
+        <span class="hd-pill">总投入 S$180,000</span>
+        <span class="hd-pill">老大 20 岁上大学 · 2040 年</span>
+        <span class="hd-pill">老二 18 岁上大学 · 2041 年</span>
+      </div>
+    </div>
+    <div class="hd-icon" aria-hidden="true">
+      <svg width="150" height="150" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M4 21V7l8-4 8 4v14" /><path d="M2 21h20" /><path d="M12 10v5M9.5 12.5h5" />
+      </svg>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+
+<!-- 01 家庭画像 -->
+<section>
+  <p class="sec-eyebrow">01 / 家庭画像</p>
+  <h2 class="sec-title">一对 35 岁上下的父母，两个相差 3 岁的孩子</h2>
+  <p class="sec-sub">家庭信息已匿名处理。这不是一份保障方案，父母自身的住院、重疾、人寿已经配置齐全，这笔钱只解决一件事：孩子读大学时，账上有钱。</p>
+  <div class="grid c4">
+    <div class="card">
+      <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h3l3 7h8"/><path d="M5 13a6 6 0 0 0 6-6V6"/><circle cx="9" cy="18" r="1.5"/><circle cx="17" cy="18" r="1.5"/></svg>家庭现状</h3>
+      <ul>
+        <li>投保人 35 岁，双职工，现金流稳定</li>
+        <li>老大 6.5 岁（男，需服兵役，20 岁上大学）</li>
+        <li>老二 3.5 岁（女，18 岁上大学）</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M9 15s1-1.5 3-1.5 3 1.5 3 1.5"/><path d="M9 9.5h.01M15 9.5h.01"/></svg>他们的困扰</h3>
+      <ul>
+        <li>两个孩子只差 3 岁，大学 4 年有 3 年重叠，开支会挤在一起</li>
+        <li>不确定本地读还是出国读，想先把底盘打好</li>
+        <li>不想存 15 年，希望 5 年存完就不再操心</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v5c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3z"/><path d="M9 12l2 2 4-4"/></svg>已有保障</h3>
+      <ul>
+        <li>父母：住院 / 意外 / 重疾 / 人寿 已配置 ✓</li>
+        <li>孩子：住院 + 意外 已配置 ✓</li>
+        <li>教育金：此前没有专门账户 ✕</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5"/></svg>核心诉求</h3>
+      <ul>
+        <li>5 年缴完，之后不追加</li>
+        <li>两个孩子共用一个资金池，按年提取</li>
+        <li>看清楚：本地读够不够，出国读差多少</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 02 方案底盘 -->
+<section>
+  <p class="sec-eyebrow">02 / 方案底盘</p>
+  <h2 class="sec-title">AIA 基金定投保单：每月 S$3,000，缴 5 年，之后让它自己长</h2>
+  <p class="sec-sub">保单说明书按 4% 与 8% 两种投资回报做演示，两者都是非保证。下面所有数字取自说明书的退保价值表（Surrender Value），因为教育金最终是提出来用的，看退保价值比看身故赔付更实在。</p>
+  <div class="tiles">
+    <div class="tile"><div class="l">每月投入</div><div class="v">S$3,000</div><div class="s">两个孩子各 S$1,500</div></div>
+    <div class="tile"><div class="l">缴费年限</div><div class="v">5 年</div><div class="s">2026 至 2031，共 60 期</div></div>
+    <div class="tile"><div class="l">总投入</div><div class="v">S$180,000</div><div class="s">3,000 × 12 × 5</div></div>
+    <div class="tile"><div class="l">老大入学时账户价值<br>（第 14 年末，2040）</div><div class="v gold">S$351,400</div><div class="s">8% 情景；4% 情景 S$223,500</div></div>
+    <div class="tile"><div class="l">不提款放到老二毕业<br>（第 19 年末，2045）</div><div class="v gold">S$491,100</div><div class="s">8% 情景；4% 情景 S$258,700</div></div>
+    <div class="tile"><div class="l">策略</div><div class="v" style="font-size:20px">边提边长</div><div class="s">大学期间按年提，剩下的继续投资</div></div>
+  </div>
+</section>
+
+<!-- 03 时间轴 -->
+<section>
+  <p class="sec-eyebrow">03 / 时间轴</p>
+  <h2 class="sec-title">从今天到老二毕业，钱在哪一年做什么</h2>
+  <p class="sec-sub">保单第 1 到第 7 年有退保折价，第 8 年起退保价值等于账户价值。这份钱从第 14 年才开始提，完全避开折价期。</p>
+  <div class="tl-scroll">
+    <div class="tl">
+      <div class="tl-n"><div class="tl-dot">1</div><div class="tl-y">2026 · 第 1 年</div><div class="tl-t">开始定投</div><div class="tl-d">每月 S$3,000<br>老大 6.5 岁，老二 3.5 岁</div></div>
+      <div class="tl-n"><div class="tl-dot">5</div><div class="tl-y">2031 · 第 5 年</div><div class="tl-t">缴费结束</div><div class="tl-d">累计投入 S$180,000<br>此时退保价值仅 S$81,700（8%）</div></div>
+      <div class="tl-n"><div class="tl-dot">8</div><div class="tl-y">2034 · 第 8 年</div><div class="tl-t">折价期结束</div><div class="tl-d">退保价值 = 账户价值<br>S$235,200（8%）/ S$187,600（4%）</div></div>
+      <div class="tl-n key"><div class="tl-dot">14</div><div class="tl-y">2040 · 第 14 年</div><div class="tl-t">老大上大学</div><div class="tl-d">第一次提款<br>S$351,400（8%）/ S$223,500（4%）</div></div>
+      <div class="tl-n key"><div class="tl-dot">15</div><div class="tl-y">2041 · 第 15 年</div><div class="tl-t">老二上大学</div><div class="tl-d">两人同时在读<br>连续 3 年双份开支</div></div>
+      <div class="tl-n"><div class="tl-dot">18</div><div class="tl-y">2044 · 第 18 年</div><div class="tl-t">老二大四</div><div class="tl-d">最后一次提款<br>剩余资金可留作研究生或起步金</div></div>
+    </div>
+  </div>
+  <p class="scroll-hint">← 左右滑动查看完整时间轴</p>
+</section>
+
+<!-- 04 BI 数据 -->
+<section>
+  <p class="sec-eyebrow">04 / 保单说明书数据</p>
+  <h2 class="sec-title">退保价值表：4% 与 8% 两种演示情景</h2>
+  <p class="sec-sub">投保年龄 35 岁，年缴 S$36,000 × 5 年。表中金额取自 AIA 保单说明书，保证部分为 0，全部为非保证。高亮的第 14、15 年是两个孩子的入学年份。</p>
+
+  <div class="chart">
+    <div class="legend">
+      <span><i style="background:#1B2A4A"></i>8% 情景退保价值</span>
+      <span><i style="background:#C9A86A"></i>4% 情景退保价值</span>
+      <span><i class="dash"></i>累计已缴保费</span>
+    </div>
+    <svg id="biChart" viewBox="0 0 760 320" role="img" aria-label="退保价值随保单年度增长曲线"></svg>
+  </div>
+
+  <div class="table-wrap" style="margin-top:14px">
+    <table>
+      <thead>
+        <tr><th rowspan="2">保单年度末 / 年龄</th><th rowspan="2">累计已缴保费</th><th colspan="2">退保价值（非保证）</th><th rowspan="2">对应年份</th></tr>
+        <tr><th class="sub">4% 情景</th><th class="sub">8% 情景</th></tr>
+      </thead>
+      <tbody id="biTable"></tbody>
+    </table>
+  </div>
+  <p class="tbl-note">说明书完整列示第 1 到 20 年及第 25、30、35、40 年，这里省略了第 21 年以后的部分。前 2 年退保价值为 0，第 3 到 7 年有退保折价，第 8 年起退保价值与账户价值一致。从第 8 年起逐年增幅：8% 情景约 6.9%，4% 情景约 3.0%，差额就是保单每年的费用。</p>
+</section>
+
+<!-- 05 互动测算 -->
+<section id="calc">
+  <p class="sec-eyebrow">05 / 互动测算</p>
+  <h2 class="sec-title">三条升学路线 × 两种回报情景，这笔钱能撑到什么程度</h2>
+  <p class="sec-sub">起点取说明书第 14 年末退保价值（8% 情景 S$351,400，4% 情景 S$223,500），大学 5 个学年按年提款，剩余资金按说明书第 8 年后的净增长率继续滚存（8% 情景 6.9%，4% 情景 3.0%）。学费默认按每年 3% 的教育通胀推到 2040 年，可以关掉看今天的价格。</p>
+
+  <div class="controls">
+    <div class="seg-group"><span class="seg-label">升学路线</span>
+      <div class="seg" id="modeSwitch">
+        <button data-mode="localAvg" class="active">本地大学 · 一般专业</button>
+        <button data-mode="localHigh">本地大学 · 医科口径</button>
+        <button data-mode="abroad">海外留学 · 英澳口径</button>
+      </div>
+    </div>
+    <div class="seg-group"><span class="seg-label">回报情景</span>
+      <div class="seg gold" id="rateSwitch">
+        <button data-rate="8" class="active">8% 演示</button>
+        <button data-rate="4">4% 演示</button>
+      </div>
+    </div>
+    <div class="seg-group"><span class="seg-label">教育通胀</span>
+      <div class="seg" id="inflSwitch">
+        <button data-infl="3" class="active">每年 3%</button>
+        <button data-infl="0">不计通胀</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="ia">
+    <div class="card">
+      <span class="pill" id="scenarioPill">本地大学 · 一般专业</span>
+      <div class="kpis">
+        <div class="kpi"><div class="l">每位孩子年学费<br>（今日价格）</div><div class="v" id="kTuition">S$12,000</div></div>
+        <div class="kpi"><div class="l">每位孩子年生活 / 交通 / 书本</div><div class="v" id="kLiving">S$13,000</div></div>
+        <div class="kpi"><div class="l">每位孩子年预算<br>（今日价格）</div><div class="v" id="kAnnual">S$25,000</div></div>
+        <div class="kpi"><div class="l">推到 2040 年入学时<br>每位孩子年预算</div><div class="v" id="kAnnualFuture">S$37,800<small>含 14 年通胀</small></div></div>
+      </div>
+
+      <div class="hl-box">
+        <div>
+          <div class="d" id="scenarioDesc"></div>
+          <div class="d" style="margin-top:8px;color:var(--muted);font-size:12.5px">两个孩子 8 个学年合计预算</div>
+          <div class="big num" id="totalNeed">S$321,000<small id="totalNeedNote">含通胀</small></div>
+        </div>
+        <div id="statusBox" class="status ok">教育金覆盖充足</div>
+      </div>
+
+      <div class="formula" id="withdrawPattern"></div>
+
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>学年</th><th>就读情况</th><th>当年预算</th><th>实际提款</th><th>提款后余额</th><th>年末余额</th><th>备注</th></tr></thead>
+          <tbody id="cashflowTable"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="card">
+      <span class="pill">教育金配置效果</span>
+      <h3 style="font-size:18px;color:var(--navy);margin-bottom:6px;line-height:1.4">这个方案能撑到什么程度？</h3>
+      <p class="chart-text" id="chartText"></p>
+      <div class="legend">
+        <span><i style="background:#1B2A4A"></i>年末教育金余额</span>
+        <span><i style="background:#C9A86A"></i>累计已提取</span>
+        <span><i style="background:#B5433C"></i>累计缺口</span>
+      </div>
+      <div class="chart" style="padding:8px 4px 4px">
+        <svg id="planChart" viewBox="0 0 560 280" role="img" aria-label="提款期余额与累计提款曲线"></svg>
+      </div>
+      <div class="metrics">
+        <div class="metric"><div class="l">两个孩子总预算</div><div class="v num" id="mNeed">S$321,000</div></div>
+        <div class="metric"><div class="l">教育金可承担</div><div class="v num" id="mCover">S$321,000</div><div class="bar"><i id="coverBar"></i></div></div>
+        <div class="metric"><div class="l" id="mGapLabel">老二毕业时结余</div><div class="v num left" id="mGap">S$98,000</div></div>
+      </div>
+      <div class="topup" id="topupBox"></div>
+    </div>
+  </div>
+</section>
+
+<!-- 06 结论 -->
+<section>
+  <p class="sec-eyebrow">06 / 一页看结论</p>
+  <h2 class="sec-title">这笔钱的定位，和它补不上的部分</h2>
+  <p class="sec-sub">六种组合切换一遍，结论其实很清楚。</p>
+  <div class="grid c3">
+    <div class="ccard">
+      <span class="k">本地一般专业</span>
+      <h4>主力资金池，两种情景都站得住</h4>
+      <p>8% 情景连通胀一起覆盖，老二毕业时还剩约 S$98,000。4% 情景含通胀能覆盖 73%，最后一年半需要家庭现金流补约 S$88,000。不计通胀则两种情景都够。</p>
+    </div>
+    <div class="ccard">
+      <span class="k">本地医科口径</span>
+      <h4>基础池，另一半要另想办法</h4>
+      <p>医科学费是一般专业的 3 到 4 倍。含通胀总预算约 S$707,000，8% 情景只能承担一半，4% 情景三成。如果孩子真走这条路，从第 6 年起就要继续加投。</p>
+    </div>
+    <div class="ccard">
+      <span class="k">海外留学</span>
+      <h4>基础池，需要提前加配</h4>
+      <p>英澳口径每人每年 S$80,000，美国私立大学还要再高四成。这笔钱在 8% 情景下只够三分之一。留学路线建议现在就把第二个账户开起来，或明确用父母的现金流补差。</p>
+    </div>
+  </div>
+
+  <div style="margin-top:22px" class="honest">
+    <h3>把话说清楚：这份保单的三个前提</h3>
+    <p>说明书用 4% 和 8% 做演示，不是承诺。真实结果取决于基金表现，也可能低于 4%。下面三个数字是把说明书拆开来看的结果，签字前应该知道。</p>
+    <div class="row">
+      <div class="hs"><div class="l">前 7 年退保折价</div><div class="v">缴完当年只剩 45%</div><div class="s">第 5 年已缴 S$180,000，退保价值 S$81,700。2034 年前这笔钱不能动。</div></div>
+      <div class="hs"><div class="l">到老大入学时的实际年化</div><div class="v">5.7% / 1.8%</div><div class="s">分别对应 8% 与 4% 演示情景，已扣除保单全部费用。</div></div>
+      <div class="hs"><div class="l">第 8 年后每年费用</div><div class="v">约 1%</div><div class="s">8% 演示下退保价值实际每年增 6.9%，4% 演示下增 3.0%。</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 07 建议 -->
+<section>
+  <p class="sec-eyebrow">07 / 给这个家庭的建议</p>
+  <h2 class="sec-title">五件事，按先后顺序</h2>
+  <div class="steps">
+    <div class="step"><b>先按本地一般专业的口径把这笔钱存满。</b>5 年 S$180,000 是这个家庭现金流能承受的上限，先把主力池建起来，路线以后再定。</div>
+    <div class="step"><b>2034 年之前不要碰。</b>第 8 年起退保价值才等于账户价值，任何提前动用都要承受折价。家庭应急金请另外准备 6 个月开支，不要指望这笔钱。</div>
+    <div class="step"><b>缴完 5 年后，如果倾向医科或留学，从第 6 年起继续加投。</b>上面的测算器会按你选的路线算出每月要再投多少。放在第二个账户，不要动第一个。</div>
+    <div class="step"><b>本地学费可以用父母的公积金普通户口（CPF OA）教育贷款兜底。</b>公民孩子读本地公立大学，学费可先从父母 CPF OA 支付，毕业后分期归还。这样教育金可以优先留给生活费或留学。</div>
+    <div class="step"><b>老大入学前 2 到 3 年，逐步把基金切换到低波动组合。</b>提款期一共 5 年，最怕开头两年遇到下跌。8% 是长期平均，不是每一年。</div>
+  </div>
+</section>
+
+<section>
+  <div class="disc">
+    <p><b>重要说明：</b>本页为客户案例的匿名整理，仅供方案说明用途，不构成保险合同的一部分，也不构成投资、税务或法律建议。退保价值数据取自 AIA Singapore 出具的保单说明书（Policy Illustration），投保年龄 35 岁、年缴 S$36,000、缴费 5 年；4% 与 8% 为监管规定的演示回报率，均为非保证，实际回报可能高于或低于演示值，也可能为负。</p>
+    <p>提款期测算为本页自行推算：起点取说明书第 14 年末退保价值，剩余资金按说明书第 8 年后的净增长率滚存，未考虑基金波动顺序、部分提款的最低留存要求及未来费用调整。实际提款规则以保单条款为准。</p>
+    <p>大学费用为教育金规划用途的估算口径。本地学费参考 2025/26 学年新加坡公民补贴后学费：NUS / NTU 一般本科约 S$8,300 至 S$9,700 每年，SMU 约 S$11,550，医科约 S$36,000 至 S$37,000；生活费按住宿舍口径估算。海外口径为英国、澳洲主流大学的学费与生活费均值，美国私立大学明显更高。教育通胀 3% 为假设值。所有费用随学校、专业、身份、住宿与生活方式变化。</p>
+    <p>该保单由 AIA Singapore 承保，受新加坡保单持有人保障计划（SDIC）保障。正式建议须完成完整财务需求分析（Fact Find）后方可提供；投保前请完整阅读产品说明书与产品重点摘要。购买前可通过 www.comparefirst.sg 比较市场上的同类产品。</p>
+  </div>
+
+  <div class="cta">
+    <div>
+      <h3>想把你家的数字放进来算一遍？</h3>
+      <p>孩子年龄、每月预算、本地还是出国，换一组参数结论就不一样。留一个联系方式，我把你的版本做出来。</p>
+    </div>
+    <a class="btn" href="https://www.singaporeyuan.com/zh/consult">预约咨询 →</a>
+  </div>
+</section>
+
+</div>
+
+<footer class="site-footer">
+  <div class="sf-in">
+    <div class="sf-grid">
+      <div>
+        <p class="sf-brand">新加坡小圆姐</p>
+        <p class="sf-tag">用专业和耐心，陪你一起日富一日</p>
+        <p class="sf-org">新加坡财富规划经理<br>RNF：YY-300823216</p>
+      </div>
+      <div>
+        <p class="sf-h">联系方式</p>
+        <ul class="sf-list">
+          <li>微信：singaporeyuan</li>
+          <li><a href="https://wa.me/6583750190" target="_blank" rel="noopener noreferrer">WhatsApp：+65 8375 0190</a></li>
+          <li><a href="mailto:yuanyuan@aia.com.sg">邮箱：yuanyuan@aia.com.sg</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="sf-h">关注我</p>
+        <ul class="sf-list">
+          <li><a href="https://xhslink.com/m/9KS9V4ytFmj" target="_blank" rel="noopener noreferrer">小红书 · 新加坡小圆姐</a></li>
+          <li><a href="https://xhslink.com/m/2eFS3jpJutg" target="_blank" rel="noopener noreferrer">小红书 · 图文笔记</a></li>
+          <li><a href="https://www.linkedin.com/in/singaporeyuan/" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="sf-h">新加坡小圆姐</p>
+        <ul class="sf-list">
+          <li><a href="https://www.singaporeyuan.com/zh/about">关于我</a></li>
+          <li><a href="https://www.singaporeyuan.com/zh/cases">规划案例</a></li>
+          <li><a href="https://www.singaporeyuan.com/zh/services">业务范围</a></li>
+          <li><a href="https://www.singaporeyuan.com/zh/resources">资源中心</a></li>
+          <li><a href="https://www.singaporeyuan.com/zh/consult">预约咨询</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="sf-bottom">
+      <p>本网站内容仅供参考，不构成任何投资、保险、法律或税务建议。保险产品涉及条款与风险，部分收益为非保证。具体以保险公司正式文件及相关专业意见为准。</p>
+      <p class="sf-rights">© 2026 袁媛 Yuan Yuan. 版权所有。</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var HASH="5647cdb5254a24d3a184f9136af8416c1ffb1050fd57c67dc133e588b73fc706", KEY="sy_case_edu_twokids_auth";
+  function sha(s){return crypto.subtle.digest("SHA-256",new TextEncoder().encode(s)).then(function(b){
+    return Array.prototype.map.call(new Uint8Array(b),function(x){return x.toString(16).padStart(2,"0")}).join("");
+  })}
+  try{ if(sessionStorage.getItem(KEY)===HASH){ document.body.classList.remove("locked"); } }catch(e){}
+  var eye=document.getElementById("pwEye"), inp=document.getElementById("pwInput");
+  if(eye){ eye.addEventListener("click",function(){
+    var show=inp.type==="password";
+    inp.type=show?"text":"password";
+    eye.setAttribute("aria-pressed",show?"true":"false");
+    eye.setAttribute("aria-label",show?(gateLang==="zh"?"隐藏密码":"Hide password"):(gateLang==="zh"?"显示密码":"Show password"));
+    inp.focus();
+  }); }
+  var gateLang="zh";
+  function applyLang(L){
+    gateLang=L;
+    var g=document.getElementById("pwGate");
+    if(!g)return;
+    g.querySelectorAll("[data-zh]").forEach(function(el){
+      var t=el.getAttribute(L==="zh"?"data-zh":"data-en");
+      if(t==null)return;
+      if(el.tagName==="INPUT") el.placeholder=t; else el.innerHTML=t;
+    });
+    var b=document.getElementById("pwLang");
+    if(b) b.textContent = L==="zh" ? "EN" : "中文";
+    if(eye) eye.setAttribute("aria-label", inp.type==="password" ? (L==="zh"?"显示密码":"Show password") : (L==="zh"?"隐藏密码":"Hide password"));
+  }
+  try{
+    var saved=localStorage.getItem("sy_gate_lang");
+    applyLang(saved || ((navigator.language||"").toLowerCase().indexOf("zh")===0 ? "zh" : "en"));
+  }catch(e){ applyLang("zh"); }
+  var lb=document.getElementById("pwLang");
+  if(lb) lb.addEventListener("click",function(){
+    var L = gateLang==="zh" ? "en" : "zh";
+    applyLang(L);
+    try{ localStorage.setItem("sy_gate_lang",L); }catch(e){}
+  });
+  document.getElementById("pwForm").addEventListener("submit",function(e){
+    e.preventDefault();
+    var v=document.getElementById("pwInput").value.trim();
+    sha(v).then(function(h){
+      if(h===HASH){
+        try{sessionStorage.setItem(KEY,HASH);}catch(e){}
+        document.body.classList.remove("locked");
+        window.scrollTo(0,0);
+      }else{
+        document.getElementById("pwErr").classList.add("show");
+        document.getElementById("pwInput").select();
+      }
+    });
+  });
+})();
+</script>
+
+<div id="wm" aria-hidden="true"></div>
+
+<script>
+(function(){
+  var text="新加坡小圆姐　　　singaporeyuan　　　案例仅供说明　　　　　　";
+  var wm=document.getElementById('wm');var unit=text.repeat(6);
+  for(var i=0;i<16;i++){var d=document.createElement('div');d.className='row';d.textContent=unit;d.style.top=(i*110-120)+'px';d.style.left='-200px';wm.appendChild(d);}
+})();
+</script>
+
+<script>
+/* ===== 保单说明书退保价值表（AIA Policy Illustration, age 35, S$36,000 x 5） ===== */
+const BI = {
+  years: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,25,30],
+  paid:  [36000,72000,108000,144000,180000,180000,180000,180000,180000,180000,180000,180000,180000,180000,180000,180000,180000,180000,180000,180000,180000,180000],
+  sv4:   [0,0,22400,44100,72800,90400,98800,187600,193100,198900,204800,210800,217100,223500,230100,237000,244000,251200,258700,266300,308200,356700],
+  sv8:   [0,0,24200,48500,81700,105300,119600,235200,251500,268900,287500,307400,328700,351400,375800,401800,429600,459300,491100,525200,733900,1025700]
+};
+const START_AGE = 35, START_CAL = 2026;
+const ENTRY_YEAR = 14;             // 老大入学 = 第 14 个保单年度末
+const START_FUND = { 8: 351400, 4: 223500 };
+const NET_RATE   = { 8: 0.069, 4: 0.030 };
+
+const scenarios = {
+  localAvg: { name:"本地大学 · 一般专业", tuition:12000, living:13000,
+    note:"新加坡公民在 NUS / NTU / SMU 读一般本科，学费经 MOE 补贴后约 S$8,300 至 S$11,600，这里取 S$12,000 留出余量；生活费按住宿舍口径。" },
+  localHigh:{ name:"本地大学 · 医科口径", tuition:40000, living:15000,
+    note:"本地医科、牙科补贴后学费约 S$36,000 至 S$37,000 每年，这里取 S$40,000。适合用来看高配预算下这笔钱的安全边际。" },
+  abroad:   { name:"海外留学 · 英澳口径", tuition:55000, living:25000,
+    note:"英国、澳洲主流大学的国际生学费加住宿生活、机票保险杂费的均值。美国私立大学每年约 S$110,000 以上，比这个口径再高四成。" }
+};
+let mode="localAvg", rate=8, infl=3;
+
+const fmt = n => "S$" + Math.round(n).toLocaleString("en-SG");
+const fmtK = n => (n/1000).toFixed(0) + "k";
+
+/* ---------- 提款期模拟 ---------- */
+function simulate(modeKey, r, inflPct){
+  const s = scenarios[modeKey];
+  const annual = s.tuition + s.living;
+  const f = 1 + inflPct/100;
+  const pattern = [1,2,2,2,1];
+  const study = ["老大大一","老大大二 + 老二大一","老大大三 + 老二大二","老大大四 + 老二大三","老二大四"];
+  let bal = START_FUND[r], taken = 0, gap = 0;
+  const rows=[], endBal=[], cumTaken=[], cumGap=[];
+  pattern.forEach((n,i)=>{
+    const cost = annual * n * Math.pow(f, ENTRY_YEAR + i);
+    const w = Math.min(cost, bal);
+    const g = cost - w;
+    gap += g; taken += w;
+    const after = bal - w;
+    const end = after * (1 + NET_RATE[r]);
+    rows.push({ year: START_CAL + ENTRY_YEAR + i, study: study[i], cost, w, after, end, g });
+    bal = end;
+    endBal.push(end); cumTaken.push(taken); cumGap.push(gap);
+  });
+  const need = rows.reduce((a,x)=>a+x.cost,0);
+  return { rows, endBal, cumTaken, cumGap, need, taken, gap, finalBal: bal, annual,
+           annualFuture: annual * Math.pow(f, ENTRY_YEAR), coverage: taken/need };
+}
+
+/* 补缺口：从第 6 年起每月再投 X，投 8 年（第 6 到 13 年），按同样净增长率滚到第 14 年末，
+   再看需要多大的额外起点才能把缺口填平（二分求解，额外资金同样按净增长率滚存） */
+function topupMonthly(modeKey, r, inflPct, baseGap){
+  if (baseGap <= 0) return 0;
+  const s = scenarios[modeKey], annual = s.tuition + s.living, f = 1 + inflPct/100, nr = NET_RATE[r];
+  const pattern=[1,2,2,2,1];
+  function gapWithExtra(extra){
+    let bal = START_FUND[r] + extra, gap = 0;
+    pattern.forEach((n,i)=>{ const cost = annual*n*Math.pow(f, ENTRY_YEAR+i); const w=Math.min(cost,bal); gap+=cost-w; bal=(bal-w)*(1+nr); });
+    return gap;
+  }
+  let lo=0, hi=2000000;
+  for(let i=0;i<60;i++){ const m=(lo+hi)/2; if(gapWithExtra(m)>0.5) lo=m; else hi=m; }
+  const extra = hi;
+  // 年初投入 A，第 6 到 13 年共 8 笔，滚到第 14 年末：A * Σ (1+nr)^j, j=2..9
+  let factor=0; for(let j=2;j<=9;j++) factor += Math.pow(1+nr, j);
+  return extra / factor / 12;
+}
+
+/* ---------- 视图 ---------- */
+function statusOf(res){
+  if (res.gap <= 0.5){
+    if (res.finalBal > res.need * 0.2) return { cls:"ok", text:"教育金覆盖充足，还有结余" };
+    return { cls:"ok", text:"教育金基本可覆盖" };
+  }
+  if (res.coverage >= 0.6) return { cls:"warn", text:"可覆盖大部分，需补充配置" };
+  return { cls:"bad", text:"覆盖不足，需明显加配" };
+}
+
+function updateView(){
+  const s = scenarios[mode];
+  const res = simulate(mode, rate, infl);
+  const st = statusOf(res);
+  const $ = id => document.getElementById(id);
+
+  $("scenarioPill").textContent = s.name;
+  $("kTuition").textContent = fmt(s.tuition);
+  $("kLiving").textContent = fmt(s.living);
+  $("kAnnual").textContent = fmt(res.annual);
+  $("kAnnualFuture").innerHTML = fmt(res.annualFuture) + "<small>" + (infl>0 ? "含 14 年通胀，每年 "+infl+"%" : "不计通胀") + "</small>";
+  $("scenarioDesc").textContent = s.note;
+  $("totalNeed").innerHTML = fmt(res.need) + '<small id="totalNeedNote">' + (infl>0 ? "含通胀，2040 至 2044 年价格" : "今日价格") + "</small>";
+
+  const sb = $("statusBox"); sb.className = "status " + st.cls; sb.textContent = st.text;
+
+  $("withdrawPattern").innerHTML =
+    "<b>提款假设：</b>两个孩子相差 1 年入学，5 个学年按 1 人、2 人、2 人、2 人、1 人提款。起点 <b>" + fmt(START_FUND[rate]) +
+    "</b>（说明书第 14 年末退保价值，" + rate + "% 情景），剩余资金按每年 <b>" + (NET_RATE[rate]*100).toFixed(1) + "%</b> 净增长滚存。<br>每年提款额：<b>" +
+    res.rows.map(x=>fmt(x.cost)).join(" → ") + "</b>";
+
+  const tb = $("cashflowTable"); tb.innerHTML = "";
+  res.rows.forEach(x=>{
+    const tr = document.createElement("tr");
+    const note = x.g > 0.5 ? '<span style="color:var(--bad);font-weight:700">尚缺 ' + fmt(x.g) + '</span>' : (x.end > x.after ? "余额继续增长" : "正常提款");
+    tr.innerHTML = "<td>" + x.year + "</td><td>" + x.study + "</td><td class='num'>" + fmt(x.cost) + "</td><td class='num'>" + fmt(x.w) +
+      "</td><td class='num'>" + fmt(x.after) + "</td><td class='num'>" + fmt(x.end) + "</td><td>" + note + "</td>";
+    tb.appendChild(tr);
+  });
+
+  $("chartText").innerHTML = "当前显示：<b>" + s.name + "</b> + <b>" + rate + "% 演示</b>" + (infl>0 ? " + 每年 " + infl + "% 教育通胀" : " + 今日价格") +
+    "。起点 <b>" + fmt(START_FUND[rate]) + "</b>。";
+  $("mNeed").textContent = fmt(res.need);
+  $("mCover").textContent = fmt(res.taken);
+  $("coverBar").style.width = (Math.min(1,res.coverage)*100).toFixed(1) + "%";
+  const gapEl = $("mGap");
+  if (res.gap > 0.5){ $("mGapLabel").textContent = "预计缺口"; gapEl.textContent = fmt(res.gap); gapEl.className = "v num gap"; }
+  else { $("mGapLabel").textContent = "老二毕业时结余"; gapEl.textContent = fmt(res.finalBal); gapEl.className = "v num left"; }
+
+  const tu = $("topupBox");
+  if (res.gap > 0.5){
+    const m = topupMonthly(mode, rate, infl, res.gap);
+    tu.innerHTML = "<b>补齐这个缺口要多少？</b>缴完 5 年后，从第 6 年起每月再投约 <b>" + fmt(Math.ceil(m/50)*50) +
+      "</b>，投 8 年到老大入学（按同样 " + (NET_RATE[rate]*100).toFixed(1) + "% 净增长），就能把 " + fmt(res.gap) + " 的缺口填平。也可以用父母 CPF OA 教育贷款先付本地学费，把这笔钱留给生活费。";
+  } else {
+    tu.innerHTML = "<b>不需要加配。</b>按这个组合，两个孩子本科期间不需要家庭再拿现金出来，老二毕业时账户里还剩 <b>" + fmt(res.finalBal) + "</b>，可以留作研究生、交换项目或孩子的起步资金。";
+  }
+
+  drawPlan(res);
+}
+
+/* ---------- SVG 工具 ---------- */
+const NS="http://www.w3.org/2000/svg";
+function el(tag, attrs, text){ const e=document.createElementNS(NS,tag); for(const k in attrs) e.setAttribute(k, attrs[k]); if(text!=null) e.textContent=text; return e; }
+
+/* ---------- 提款期图 ---------- */
+function drawPlan(res){
+  const svg=document.getElementById("planChart"); svg.innerHTML="";
+  const W=560,H=280,pl=54,pr=16,pt=22,pb=34, pw=W-pl-pr, ph=H-pt-pb;
+  const series=[res.endBal,res.cumTaken,res.cumGap];
+  const maxY=Math.max(START_FUND[rate], ...res.cumTaken, ...res.cumGap, ...res.endBal)*1.12;
+  const x=i=>pl+i*pw/4, y=v=>pt+ph-(v/maxY)*ph;
+  for(let i=0;i<=4;i++){ const v=maxY/4*i, yy=y(v);
+    svg.appendChild(el("line",{x1:pl,x2:W-pr,y1:yy,y2:yy,stroke:"#E4E2DB","stroke-width":1}));
+    svg.appendChild(el("text",{x:pl-6,y:yy+4,"text-anchor":"end","font-size":11,fill:"#6B7280"},"S$"+fmtK(v)));
+  }
+  res.rows.forEach((r,i)=>svg.appendChild(el("text",{x:x(i),y:H-10,"text-anchor":"middle","font-size":11.5,fill:"#6B7280"},r.year)));
+  // 起点虚线
+  svg.appendChild(el("line",{x1:pl,x2:W-pr,y1:y(START_FUND[rate]),y2:y(START_FUND[rate]),stroke:"#9AA1AE","stroke-width":1,"stroke-dasharray":"4 4"}));
+  svg.appendChild(el("text",{x:W-pr,y:y(START_FUND[rate])-5,"text-anchor":"end","font-size":10.5,fill:"#6B7280"},"起点 "+fmt(START_FUND[rate])));
+  const colors=["#1B2A4A","#C9A86A","#B5433C"];
+  series.forEach((vals,si)=>{
+    if(si===2 && vals[vals.length-1]<=0.5) return;
+    const pts=vals.map((v,i)=>x(i)+","+y(v)).join(" ");
+    if(si===0){ svg.appendChild(el("polygon",{points:pts+" "+x(4)+","+y(0)+" "+x(0)+","+y(0),fill:"rgba(27,42,74,.07)"})); }
+    svg.appendChild(el("polyline",{points:pts,fill:"none",stroke:colors[si],"stroke-width":3,"stroke-linejoin":"round","stroke-linecap":"round"}));
+    vals.forEach((v,i)=>{
+      svg.appendChild(el("circle",{cx:x(i),cy:y(v),r:4.5,fill:colors[si],stroke:"#fff","stroke-width":2}));
+      const dy = si===0 ? -10 : (si===1 ? 16 : -10);
+      const anchor = i===0 ? "start" : (i===4 ? "end" : "middle");
+      svg.appendChild(el("text",{x:x(i)+(i===0?-4:(i===4?4:0)),y:y(v)+dy,"text-anchor":anchor,"font-size":11,"font-weight":700,fill:colors[si]},fmtK(v)));
+    });
+  });
+}
+
+/* ---------- BI 增长曲线 ---------- */
+function drawBI(){
+  const svg=document.getElementById("biChart"); svg.innerHTML="";
+  const W=760,H=320,pl=60,pr=20,pt=20,pb=36, pw=W-pl-pr, ph=H-pt-pb;
+  const N=20; // 只画 1 到 20 年
+  const maxY=560000;
+  const x=yr=>pl+(yr-1)*pw/(N-1), y=v=>pt+ph-(v/maxY)*ph;
+  for(let i=0;i<=4;i++){ const v=maxY/4*i, yy=y(v);
+    svg.appendChild(el("line",{x1:pl,x2:W-pr,y1:yy,y2:yy,stroke:"#E4E2DB","stroke-width":1}));
+    svg.appendChild(el("text",{x:pl-8,y:yy+4,"text-anchor":"end","font-size":11,fill:"#6B7280"},"S$"+fmtK(v)));
+  }
+  for(let yr=1;yr<=N;yr++){ if(yr%2===0||yr===1) svg.appendChild(el("text",{x:x(yr),y:H-12,"text-anchor":"middle","font-size":11,fill:"#6B7280"},"第"+yr+"年")); }
+  // 折价期底色
+  svg.appendChild(el("rect",{x:x(1),y:pt,width:x(7.999)-x(1),height:ph,fill:"rgba(181,67,60,.05)"}));
+  svg.appendChild(el("text",{x:x(4.5),y:pt+16,"text-anchor":"middle","font-size":11,fill:"#B5433C"},"第 1 到 7 年有退保折价"));
+  // 入学年份标线
+  [[14,"老大入学"],[15,"老二入学"]].forEach(([yr,lab])=>{
+    svg.appendChild(el("line",{x1:x(yr),x2:x(yr),y1:pt,y2:pt+ph,stroke:"#A8874C","stroke-width":1,"stroke-dasharray":"3 4"}));
+    svg.appendChild(el("text",{x:x(yr)+(yr===14?-6:6),y:pt+ph-8,"text-anchor":yr===14?"end":"start","font-size":11,fill:"#A8874C","font-weight":700},lab));
+  });
+  const line=(arr,color,width,dash)=>{
+    const pts=arr.slice(0,N).map((v,i)=>x(i+1)+","+y(v)).join(" ");
+    const a={points:pts,fill:"none",stroke:color,"stroke-width":width,"stroke-linejoin":"round"}; if(dash) a["stroke-dasharray"]=dash;
+    svg.appendChild(el("polyline",a));
+  };
+  line(BI.paid,"#6B7280",1.5,"5 5");
+  line(BI.sv4,"#C9A86A",3);
+  line(BI.sv8,"#1B2A4A",3);
+  [[14,"sv8",-12],[14,"sv4",20],[15,"sv8",-12],[8,"sv8",-12],[20,"sv8",-12],[20,"sv4",18]].forEach(([yr,k,dy])=>{
+    const v=BI[k][yr-1], c=k==="sv8"?"#1B2A4A":"#A8874C";
+    svg.appendChild(el("circle",{cx:x(yr),cy:y(v),r:4,fill:c,stroke:"#fff","stroke-width":2}));
+    svg.appendChild(el("text",{x:x(yr),y:y(v)+dy,"text-anchor":yr===20?"end":"middle","font-size":11,"font-weight":700,fill:c},fmtK(v)));
+  });
+}
+
+/* ---------- BI 表 ---------- */
+function buildBITable(){
+  const tb=document.getElementById("biTable");
+  BI.years.forEach((yr,i)=>{
+    const tr=document.createElement("tr");
+    let tag="";
+    if(yr===ENTRY_YEAR) tag='<span class="rowtag">老大入学</span>';
+    if(yr===ENTRY_YEAR+1) tag='<span class="rowtag">老二入学</span>';
+    if(yr===5) tag='<span class="rowtag" style="background:#E4E2DB">缴费结束</span>';
+    if(yr===8) tag='<span class="rowtag" style="background:#E4E2DB">折价期结束</span>';
+    if(yr===ENTRY_YEAR||yr===ENTRY_YEAR+1) tr.className="hl";
+    else if(yr<8) tr.className="dim";
+    tr.innerHTML="<td>"+yr+" / "+(START_AGE+yr)+" 岁"+tag+"</td><td class='num'>"+fmt(BI.paid[i])+"</td><td class='num g4'>"+fmt(BI.sv4[i])+"</td><td class='num g8'>"+fmt(BI.sv8[i])+"</td><td>"+(START_CAL+yr)+"</td>";
+    tb.appendChild(tr);
+  });
+}
+
+document.querySelectorAll("#modeSwitch button").forEach(b=>b.addEventListener("click",()=>{mode=b.dataset.mode;document.querySelectorAll("#modeSwitch button").forEach(x=>x.classList.remove("active"));b.classList.add("active");updateView();}));
+document.querySelectorAll("#rateSwitch button").forEach(b=>b.addEventListener("click",()=>{rate=Number(b.dataset.rate);document.querySelectorAll("#rateSwitch button").forEach(x=>x.classList.remove("active"));b.classList.add("active");updateView();}));
+document.querySelectorAll("#inflSwitch button").forEach(b=>b.addEventListener("click",()=>{infl=Number(b.dataset.infl);document.querySelectorAll("#inflSwitch button").forEach(x=>x.classList.remove("active"));b.classList.add("active");updateView();}));
+
+buildBITable(); drawBI(); updateView();
+</script>
+</body>
+</html>
