@@ -4,8 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="noindex,nofollow">
-<title>双宝教育金：每月 S$3,000 存 5 年，两个孩子的大学够不够</title>
-<meta name="description" content="新加坡双宝家庭教育金案例：每月 S$3,000 基金定投 5 年，拖一拖看账户每年有多少钱，切换本地、医科、留学三条路，看够不够。">
+<title>小圆姐家庭两个孩子的教育金方案</title>
+<meta name="description" content="小圆姐自家两个孩子的教育金方案：每月 S$3,000 基金定投 5 年，拖一拖看账户每年有多少钱，AIA 基金的 8% 怎么来，切换本地、医科、留学三条路看够不够。">
 <style>
 :root{
   --navy:#1B2A4A;--navy-soft:#2E4068;--navy-tint:#EEF1F7;
@@ -103,7 +103,37 @@ tbody tr.hl{background:var(--gold-tint)!important}
 tbody tr.hl td{font-weight:700}
 tbody tr.dim td{color:#9AA1AE}
 
-/* ---------- 03 够不够 ---------- */
+/* ---------- 03 基金 ---------- */
+.hows{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:18px}
+@media(min-width:720px){.hows{grid-template-columns:repeat(4,1fr)}}
+.how{background:#fff;border:1px solid var(--line);border-radius:16px;padding:18px 16px;text-align:center}
+.how .ic{width:56px;height:56px;border-radius:50%;background:var(--gold-tint);color:var(--gold-deep);display:flex;align-items:center;justify-content:center;margin:0 auto 10px}
+.how .ic svg{width:30px;height:30px}
+.how .t{font-size:17px;font-weight:800;color:var(--navy)}
+.how .d{font-size:12.5px;color:var(--muted);margin-top:4px;line-height:1.6}
+.funds{display:grid;grid-template-columns:1fr;gap:14px}
+@media(min-width:860px){.funds{grid-template-columns:repeat(3,minmax(0,1fr))}}
+.fund{background:#fff;border:1px solid var(--line);border-radius:20px;padding:22px 20px;border-top:6px solid var(--fc);display:flex;flex-direction:column;min-width:0}
+.fund .tag{display:inline-block;font-size:11px;letter-spacing:.1em;color:var(--fc);border:1px solid var(--fc);border-radius:20px;padding:2px 10px;margin-bottom:10px;align-self:flex-start}
+.fund .t{font-size:19px;font-weight:800;color:var(--navy);line-height:1.35}
+.fund .en{font-size:12px;color:var(--muted);margin-top:2px}
+.fund .one{font-size:14px;color:#3B4358;margin-top:10px;line-height:1.7;min-height:48px}
+.fund .big{margin-top:14px;display:flex;align-items:baseline;gap:8px}
+.fund .big b{font-size:40px;font-weight:900;color:var(--fc);line-height:1}
+.fund .big span{font-size:12.5px;color:var(--muted)}
+.fund .perf{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:12px}
+.fund .perf div{background:var(--navy-tint);border-radius:10px;padding:8px 6px;text-align:center}
+.fund .perf .l{font-size:11px;color:var(--muted)}
+.fund .perf .v{font-size:15px;font-weight:800;color:var(--navy)}
+.fund .mix{margin-top:12px;font-size:12.5px;color:var(--muted);line-height:1.7}
+.fund .mix b{color:var(--navy)}
+.fund .fee{margin-top:auto;padding-top:12px;font-size:12px;color:var(--muted);border-top:1px dashed var(--line);margin-top:14px}
+.calcard{background:#fff;border:1px solid var(--line);border-radius:20px;padding:20px 18px 12px;margin-top:16px}
+.calcard .t{font-size:17px;font-weight:800;color:var(--navy)}
+.calcard .d{font-size:13.5px;color:var(--muted);margin:2px 0 8px}
+.fnote{font-size:12px;color:var(--muted);margin-top:12px;line-height:1.7}
+
+/* ---------- 04 够不够 ---------- */
 .controls{display:flex;flex-wrap:wrap;gap:12px 22px;margin-bottom:20px}
 .seg-group{display:flex;flex-direction:column;gap:6px}
 .seg-label{font-size:12px;color:var(--muted);letter-spacing:.08em}
@@ -275,13 +305,13 @@ a.pw-c:hover{border-color:#C7A15A;background:rgba(199,161,90,.07)}
     <div class="pw-left">
       <div class="pw-top">
         <span class="pw-chip"><img src="/avatar-round.png" alt="">
-          <b data-zh="新加坡小圆姐 · 客户专属" data-en="Yuan Yuan SG · client only">新加坡小圆姐 · 客户专属</b>
+          <b data-zh="新加坡小圆姐 · 自家方案" data-en="Yuan Yuan SG · my own plan">新加坡小圆姐 · 自家方案</b>
         </span>
         <button type="button" id="pwLang" data-zh="EN" data-en="中文">EN</button>
       </div>
 
-      <h2 data-zh="双宝教育金案例" data-en="Education fund case: two kids">双宝教育金案例</h2>
-      <p class="pw-sub" data-zh="这是小圆姐整理的客户教育金案例。&lt;br&gt;为保护客户资料，请输入访问密码。" data-en="An education-fund case prepared by Yuan Yuan.&lt;br&gt;Enter the access password to view it.">这是小圆姐整理的客户教育金案例。<br>为保护客户资料，请输入访问密码。</p>
+      <h2 data-zh="小圆姐家庭教育金方案" data-en="My family education fund plan">小圆姐家庭教育金方案</h2>
+      <p class="pw-sub" data-zh="这是小圆姐自家两个孩子的教育金方案。&lt;br&gt;请输入访问密码查看。" data-en="An education-fund case prepared by Yuan Yuan.&lt;br&gt;Enter the access password to view it.">这是小圆姐整理的客户教育金案例。<br>为保护客户资料，请输入访问密码。</p>
 
       <form id="pwForm">
         <label class="pw-label" for="pwInput" data-zh="访问密码" data-en="Access password">访问密码</label>
@@ -327,14 +357,14 @@ a.pw-c:hover{border-color:#C7A15A;background:rgba(199,161,90,.07)}
   <div class="hd-in">
     <div>
       <a class="hd-back" href="https://www.singaporeyuan.com/zh/cases">← 返回案例库</a>
-      <p class="hd-tag">CASE · 双宝家庭 · 教育金</p>
-      <h1>每月 S$3,000，存 5 年<br><em>两个孩子的大学，够不够？</em></h1>
-      <p class="hd-sub">老大 6.5 岁，老二 3.5 岁。爸妈用 5 年把钱存好，之后不再投；孩子上大学时按年取。往下拨一拨，看这笔钱撑到哪。</p>
+      <p class="hd-tag">小圆姐自家的方案 · 教育金</p>
+      <h1>小圆姐家庭<br><em>两个孩子的教育金方案</em></h1>
+      <p class="hd-sub">2019 年出生的哥哥，2022 年出生的妹妹。每月 S$3,000，存 5 年，之后不再投；孩子上大学时按年取。往下拨一拨，看这笔钱撑到哪。</p>
       <div class="hd-stats">
         <div class="hs"><div class="l">每月存</div><div class="v">S$3,000</div><div class="s">两个孩子各 1,500</div></div>
         <div class="hs"><div class="l">存多久</div><div class="v">5 年</div><div class="s">2026 到 2031</div></div>
         <div class="hs"><div class="l">一共投入</div><div class="v">S$18 万</div><div class="s">之后不再加</div></div>
-        <div class="hs"><div class="l">老大上大学时</div><div class="v">S$35.1 万</div><div class="s">8% 演示 · 4% 为 22.4 万</div></div>
+        <div class="hs"><div class="l">哥哥上大学时</div><div class="v">S$35.1 万</div><div class="s">8% 演示 · 4% 为 22.4 万</div></div>
       </div>
     </div>
     <svg class="hd-art" viewBox="0 0 460 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="两个孩子与大学">
@@ -377,7 +407,7 @@ a.pw-c:hover{border-color:#C7A15A;background:rgba(199,161,90,.07)}
     <div class="ph" style="--pc:#2E7D5B;--pb:#EDF5F0">
       <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-4 9 4-9 4-9-4z"/><path d="M7 11v4c0 1.5 2.5 3 5 3s5-1.5 5-3v-4"/><path d="M21 9v5"/></svg></div>
       <div class="t">取 5 年</div><div class="y">2040 到 2044</div>
-      <div class="d">老大先用，老二跟上，一年取一次。</div>
+      <div class="d">哥哥先用，妹妹跟上，一年取一次。</div>
     </div>
   </div>
   <div class="phasebar"><div style="background:#C9A86A"></div><div style="background:#2E4068"></div><div style="background:#2E7D5B"></div></div>
@@ -385,12 +415,12 @@ a.pw-c:hover{border-color:#C7A15A;background:rgba(199,161,90,.07)}
   <div class="kids">
     <div class="kid">
       <svg viewBox="0 0 64 64" fill="none" stroke="#A8874C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="32" cy="22" r="12"/><path d="M22 16c2-6 18-6 20 0"/><path d="M14 58v-10c0-10 36-10 36 0v10"/><path d="M26 30l-2 8M38 30l2 8"/></svg>
-      <div><div class="t">老大 · 6.5 岁</div><div class="d">男孩，服完兵役 20 岁上大学</div></div>
+      <div><div class="t">哥哥 · 2019 年出生</div><div class="d">服完兵役 20 岁上大学</div></div>
       <div class="big">2040<small>第 14 年提第一笔</small></div>
     </div>
     <div class="kid">
       <svg viewBox="0 0 64 64" fill="none" stroke="#A8874C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="32" cy="24" r="11"/><path d="M21 22c0-10 22-10 22 0"/><path d="M21 22l-3 14M43 22l3 14"/><path d="M16 58v-8c0-10 32-10 32 0v8"/></svg>
-      <div><div class="t">老二 · 3.5 岁</div><div class="d">女孩，18 岁上大学，和哥哥有 3 年一起读</div></div>
+      <div><div class="t">妹妹 · 2022 年出生</div><div class="d">18 岁上大学，和哥哥有 3 年一起读</div></div>
       <div class="big">2041<small>第 15 年开始一起用</small></div>
     </div>
   </div>
@@ -402,7 +432,7 @@ a.pw-c:hover{border-color:#C7A15A;background:rgba(199,161,90,.07)}
   <p class="sec-sub">拖动滑块看任意一年。数字来自 AIA 保单说明书，8% 和 4% 都是演示，不保证。</p>
   <div class="growcard">
     <div class="gstats">
-      <div class="gs year"><div class="l" id="gYearL">第 14 年 · 2040</div><div class="v" id="gYearV">老大上大学</div><div class="s" id="gYearS">投保人 49 岁</div></div>
+      <div class="gs year"><div class="l" id="gYearL">第 14 年 · 2040</div><div class="v" id="gYearV">哥哥上大学</div><div class="s" id="gYearS">投保人 49 岁</div></div>
       <div class="gs"><div class="l">已投入</div><div class="v num" id="gPaid">S$180,000</div><div class="s">本金</div></div>
       <div class="gs g4"><div class="l">4% 演示</div><div class="v num" id="g4">S$223,500</div><div class="s" id="g4s">本金的 1.2 倍</div></div>
       <div class="gs g8"><div class="l">8% 演示</div><div class="v num" id="g8">S$351,400</div><div class="s" id="g8s">本金的 2.0 倍</div></div>
@@ -429,9 +459,62 @@ a.pw-c:hover{border-color:#C7A15A;background:rgba(199,161,90,.07)}
   </div>
 </section>
 
-<!-- 03 -->
+<!-- 03 基金 -->
+<section>
+  <div class="sec-head"><div class="sec-n">3</div><h2 class="sec-title">AIA 基金的 8%，怎么做到？</h2></div>
+  <p class="sec-sub">8% 不是承诺，是监管允许的演示上限。能不能做到，靠的是选什么基金、放多久。这是最受欢迎的三只。</p>
+
+  <div class="hows">
+    <div class="how"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19h16"/><path d="M6 16V9M11 16V5M16 16v-6"/></svg></div><div class="t">九成股票</div><div class="d">长期回报主要来自股票，债券只占一成</div></div>
+    <div class="how"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/></svg></div><div class="t">全球分散</div><div class="d">美国、欧洲、日本、亚洲一起买，不押单一市场</div></div>
+    <div class="how"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div><div class="t">放够 14 年</div><div class="d">时间越长，某一年的涨跌越不重要</div></div>
+    <div class="how"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 18l5-6 4 3 7-9"/><path d="M16 6h4v4"/></svg></div><div class="t">跌了不跑</div><div class="d">2022 年跌两成多，接下来三年涨回并创新高</div></div>
+  </div>
+
+  <div class="funds">
+    <div class="fund" style="--fc:#1B2A4A">
+      <span class="tag">主动管理 · 全球股票</span>
+      <div class="t">AIA 精英进取基金</div>
+      <div class="en">AIA Elite Adventurous Fund (SGD)</div>
+      <div class="one">九成股票、一成债券，AIA 投资团队把钱分给多家全球知名基金经理管。三只里历史最长，是这份方案的主力。</div>
+      <div class="big"><b>9.2%</b><span>成立以来年化</span></div>
+      <div class="perf"><div><div class="l">近 1 年</div><div class="v">+12.3%</div></div><div><div class="l">近 3 年（年化）</div><div class="v">+12.4%</div></div><div><div class="l">近 5 年（年化）</div><div class="v">+4.1%</div></div></div>
+      <div class="mix">对标 <b>90% MSCI 全球股票 + 10% 全球公司债</b></div>
+      <div class="fee">管理费 1.45% / 年 · 基金价格 1.869（发行价 1.000）</div>
+    </div>
+    <div class="fund" style="--fc:#A8874C">
+      <span class="tag">被动跟踪 · 指数 ETF</span>
+      <div class="t">AIA 进取指数基金</div>
+      <div class="en">AIA Adventurous Index Fund</div>
+      <div class="one">不选股，直接买指数 ETF：标普 500、欧洲 600、日经 225、亚洲（除日本），再配少量债券和黄金。费用最低。</div>
+      <div class="big"><b>14.0%</b><span>成立以来年化</span></div>
+      <div class="perf"><div><div class="l">近 1 年</div><div class="v">+17.4%</div></div><div><div class="l">2025 全年</div><div class="v">+13.4%</div></div><div><div class="l">2026 至今</div><div class="v">+10.5%</div></div></div>
+      <div class="mix">基金 2024 年才成立，记录短；但它跟的<b>标普 500 指数有近 70 年记录，长期年均约 10%</b>（美元、含股息）</div>
+      <div class="fee">管理费 1.00% / 年 · 基金价格 1.288（发行价 1.000）</div>
+    </div>
+    <div class="fund" style="--fc:#2E7D5B">
+      <span class="tag">收益型 · 股债混合</span>
+      <div class="t">AIA 环球进取收益基金</div>
+      <div class="en">AIA Global Adventurous Income Fund</div>
+      <div class="one">买 Allianz Income &amp; Growth、Franklin Income 这类收益型基金，股票加债券加期权收入，每月派息。波动比纯股票小。</div>
+      <div class="big"><b>9.0%</b><span>成立以来年化</span></div>
+      <div class="perf"><div><div class="l">近 1 年</div><div class="v">+8.1%</div></div><div><div class="l">2024 全年</div><div class="v">+12.5%</div></div><div><div class="l">2025 全年</div><div class="v">+6.0%</div></div></div>
+      <div class="mix">适合<b>临近提款的几年</b>：哥哥入学前 2 到 3 年，可以把一部分从股票基金切到这里</div>
+      <div class="fee">管理费 1.50% / 年 · 基金价格 1.069（按月派息，价格不累积）</div>
+    </div>
+  </div>
+
+  <div class="calcard">
+    <div class="t">精英进取基金：每一年涨了还是跌了</div>
+    <div class="d">六年里跌了一年，其余五年都在涨。把时间拉长，8% 是这样平均出来的。</div>
+    <svg id="calChart" viewBox="0 0 760 240" role="img" aria-label="AIA 精英进取基金逐年回报"></svg>
+  </div>
+  <p class="fnote">数据来源：AIA 新加坡官网基金页面，截至 2026 年 9 月 10 日，新币计价、买入价对买入价、股息再投资，已扣基金管理费、未扣保单费用。过往表现不代表未来，基金价格可升可跌。方案里的 8% 是保单说明书的演示假设，不等于任何一只基金的承诺回报。</p>
+</section>
+
+<!-- 04 -->
 <section id="calc">
-  <div class="sec-head"><div class="sec-n">3</div><h2 class="sec-title">上大学时，够不够？</h2></div>
+  <div class="sec-head"><div class="sec-n">4</div><h2 class="sec-title">上大学时，够不够？</h2></div>
   <p class="sec-sub">选一条路、一个情景，答案马上出来。</p>
 
   <div class="controls">
@@ -498,17 +581,17 @@ a.pw-c:hover{border-color:#C7A15A;background:rgba(199,161,90,.07)}
 
 <!-- 04 -->
 <section>
-  <div class="sec-head"><div class="sec-n">4</div><h2 class="sec-title">三条路，一眼看完</h2></div>
+  <div class="sec-head"><div class="sec-n">5</div><h2 class="sec-title">三条路，一眼看完</h2></div>
   <p class="sec-sub" id="routesSub">按今天的价格。点卡片可切换上面的测算。</p>
   <div class="routes" id="routes"></div>
 </section>
 
 <!-- 05 -->
 <section>
-  <div class="sec-head"><div class="sec-n">5</div><h2 class="sec-title">三个提醒</h2></div>
+  <div class="sec-head"><div class="sec-n">6</div><h2 class="sec-title">三个提醒</h2></div>
   <div class="tips">
     <div class="tip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/><path d="M12 15v2"/></svg><div><div class="t">2034 年前别动</div><div class="d">前 7 年取出来有折价。应急钱另外备，别指望这笔。</div></div></div>
-    <div class="tip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19h16"/><path d="M5 14l4-5 3 3 3-6 4 4"/></svg><div><div class="t">8% 是演示，不是承诺</div><div class="d">实际可能高也可能低。到老大入学时，8% 演示扣完费用实际约 5.7% 一年。</div></div></div>
+    <div class="tip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19h16"/><path d="M5 14l4-5 3 3 3-6 4 4"/></svg><div><div class="t">8% 是演示，不是承诺</div><div class="d">实际可能高也可能低。到哥哥入学时，8% 演示扣完费用实际约 5.7% 一年。</div></div></div>
     <div class="tip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><div><div class="t">想读医科或出国，第 6 年接着投</div><div class="d">上面会算出每月要再投多少。本地学费还可以用爸妈的 CPF 兜底。</div></div></div>
   </div>
 </section>
@@ -519,7 +602,7 @@ a.pw-c:hover{border-color:#C7A15A;background:rgba(199,161,90,.07)}
 </div>
 
 <div class="disc">
-  <p>本页为匿名客户案例，仅供说明，不构成保险合同的一部分，也不构成投资、税务或法律建议。账户价值取自 AIA Singapore 保单说明书的退保价值表（投保 35 岁、年缴 S$36,000 × 5 年）；4% 与 8% 为监管规定的演示回报率，均为非保证，实际回报可能高于或低于演示值，也可能为负。大学期间的提款测算为本页推算，起点取第 14 年末账户价值，剩余按说明书第 8 年后的净增长滚存，未计基金波动顺序与部分提款限制。</p>
+  <p>本页为小圆姐自家的教育金规划，仅供说明，不构成保险合同的一部分，也不构成投资、税务或法律建议。账户价值取自 AIA Singapore 保单说明书的退保价值表（投保 35 岁、年缴 S$36,000 × 5 年）；4% 与 8% 为监管规定的演示回报率，均为非保证，实际回报可能高于或低于演示值，也可能为负。大学期间的提款测算为本页推算，起点取第 14 年末账户价值，剩余按说明书第 8 年后的净增长滚存，未计基金波动顺序与部分提款限制。</p>
   <p>学费为规划估算：本地大学取 2025/26 学年公民补贴后学费，医科约 S$36,000 至 37,000，出国按英国、澳洲均值，美国私立更高。学费涨价 3% 为假设。该保单由 AIA Singapore 承保，受 SDIC 保障。正式建议须完成财务需求分析后提供；投保前请阅读产品说明书，可通过 www.comparefirst.sg 比较同类产品。</p>
 </div>
 
@@ -652,7 +735,7 @@ const scenarios={
   localHigh:{ name:"本地医科", sub:"医科、牙科", tuition:40000, living:15000, tip:"学费是一般专业的 3 到 4 倍" },
   abroad:{ name:"出国留学", sub:"英国、澳洲口径", tuition:55000, living:25000, tip:"美国私立还要再高四成" }
 };
-const YEAR_TAG={5:"缴完",8:"可取",14:"老大上大学",15:"老二上大学"};
+const YEAR_TAG={5:"缴完",8:"可取",14:"哥哥上大学",15:"妹妹上大学"};
 let mode="localAvg", rate=8, infl=0;
 const fmt=n=>"S$"+Math.round(n).toLocaleString("en-SG");
 const fmtW=n=>{const w=n/10000;const t=w>=100?Math.round(w):Math.round(w*10)/10;return "S$"+t+" 万"};
@@ -664,7 +747,7 @@ const $=id=>document.getElementById(id);
 /* ---------- 模拟 ---------- */
 function simulate(m,r,inflPct){
   const s=scenarios[m], annual=s.tuition+s.living, f=1+inflPct/100, pattern=[1,2,2,2,1];
-  const study=["老大","老大 + 老二","老大 + 老二","老大 + 老二","老二"];
+  const study=["哥哥","哥哥 + 妹妹","哥哥 + 妹妹","哥哥 + 妹妹","妹妹"];
   let bal=START_FUND[r], taken=0, gap=0; const rows=[];
   pattern.forEach((n,i)=>{
     const cost=annual*n*Math.pow(f,ENTRY_YEAR+i), w=Math.min(cost,bal), g=cost-w;
@@ -704,11 +787,11 @@ function updateView(){
   const sb=$("statusBox"); sb.className="status "+st.cls; sb.innerHTML=STATUS_ICON[st.cls]+st.text;
   $("vline").innerHTML = res.gap>0.5
     ? "两个孩子 8 年学费 <b>"+fmtW(res.need)+"</b>，这笔钱能出 <b>"+fmtW(res.taken)+"</b>，还差 <b>"+fmtW(res.gap)+"</b>。"
-    : "两个孩子 8 年学费 <b>"+fmtW(res.need)+"</b>，全部由这笔钱出，老二毕业时还剩 <b>"+fmtW(res.finalBal)+"</b>。";
+    : "两个孩子 8 年学费 <b>"+fmtW(res.need)+"</b>，全部由这笔钱出，妹妹毕业时还剩 <b>"+fmtW(res.finalBal)+"</b>。";
   $("mNeed").textContent=fmtW(res.need); $("mCover").textContent=fmtW(res.taken);
   const gt=$("mGapTile");
   if(res.gap>0.5){gt.className="tn gap";$("mGapLabel").textContent="还差";$("mGap").textContent=fmtW(res.gap)}
-  else{gt.className="tn left";$("mGapLabel").textContent="老二毕业时还剩";$("mGap").textContent=fmtW(res.finalBal)}
+  else{gt.className="tn left";$("mGapLabel").textContent="妹妹毕业时还剩";$("mGap").textContent=fmtW(res.finalBal)}
   const tu=$("topupBox");
   if(res.gap>0.5){
     const m=Math.ceil(topupMonthly(mode,rate,infl)/50)*50;
@@ -779,7 +862,7 @@ function drawBI(){
   svg.appendChild(el("text",{x:(gx(1)+gx(8))/2,y:G.pt+16,"text-anchor":"middle","font-size":12,fill:"#B5433C","font-weight":700},"前 7 年别动"));
   const line=(arr,color,w,dash)=>{const a={points:arr.slice(0,G.N).map((v,i)=>gx(i+1)+","+gy(v)).join(" "),fill:"none",stroke:color,"stroke-width":w,"stroke-linejoin":"round"};if(dash)a["stroke-dasharray"]=dash;svg.appendChild(el("polyline",a))};
   line(BI.paid,"#9AA1AE",1.5,"5 5"); line(BI.sv4,"#C9A86A",3.5); line(BI.sv8,"#1B2A4A",3.5);
-  [[5,"缴完","middle",0],[8,"可取","middle",0],[14,"老大入学","end",-3],[15,"老二入学","start",3]].forEach(([yr,t,an,dx])=>{svg.appendChild(el("text",{x:gx(yr)+dx,y:G.H-6,"text-anchor":an,"font-size":11,fill:"#A8874C","font-weight":700},t))});
+  [[5,"缴完","middle",0],[8,"可取","middle",0],[14,"哥哥入学","end",-3],[15,"妹妹入学","start",3]].forEach(([yr,t,an,dx])=>{svg.appendChild(el("text",{x:gx(yr)+dx,y:G.H-6,"text-anchor":an,"font-size":11,fill:"#A8874C","font-weight":700},t))});
   [1,10,20].forEach(yr=>svg.appendChild(el("text",{x:gx(yr),y:G.H-6,"text-anchor":yr===1?"start":(yr===20?"end":"middle"),"font-size":11,fill:"#6B7280"},"第"+yr+"年")));
   const g=el("g",{id:"cursor"}); svg.appendChild(g);
   moveCursor(Number($("yearSlider").value));
@@ -813,7 +896,23 @@ document.querySelectorAll("#rateSwitch button").forEach(b=>b.addEventListener("c
 document.querySelectorAll("#inflSwitch button").forEach(b=>b.addEventListener("click",()=>{infl=Number(b.dataset.infl);document.querySelectorAll("#inflSwitch button").forEach(x=>x.classList.remove("active"));b.classList.add("active");updateView()}));
 $("yearSlider").addEventListener("input",e=>moveCursor(Number(e.target.value)));
 
-buildBITable(); drawBI(); updateView();
+/* ---------- 03 逐年回报柱 ---------- */
+function drawCal(){
+  const svg=$("calChart"); svg.innerHTML="";
+  const data=[["2021",15.19],["2022",-22.74],["2023",14.89],["2024",15.74],["2025",10.44],["2026 至今",7.04]];
+  const W=760,H=240,pl=44,pr=16,pt=22,pb=30,pw=W-pl-pr,ph=H-pt-pb, maxV=30, minV=-30;
+  const y=v=>pt+ph*(maxV-v)/(maxV-minV), gw=pw/data.length, bw=gw*0.5;
+  [-20,-10,0,10,20].forEach(v=>{svg.appendChild(el("line",{x1:pl,x2:W-pr,y1:y(v),y2:y(v),stroke:v===0?"#9AA1AE":"#E4E2DB","stroke-width":v===0?1.5:1}));svg.appendChild(el("text",{x:pl-6,y:y(v)+4,"text-anchor":"end","font-size":11,fill:"#6B7280"},v+"%"))});
+  svg.appendChild(el("line",{x1:pl,x2:W-pr,y1:y(8),y2:y(8),stroke:"#A8874C","stroke-width":1.5,"stroke-dasharray":"5 4"}));
+  svg.appendChild(el("text",{x:W-pr,y:y(8)-5,"text-anchor":"end","font-size":11,fill:"#A8874C","font-weight":700},"演示假设 8%"));
+  data.forEach(([lab,v],i)=>{
+    const x=pl+i*gw+(gw-bw)/2, up=v>=0, c=up?"#1B2A4A":"#B5433C";
+    svg.appendChild(el("rect",{x,y:up?y(v):y(0),width:bw,height:Math.abs(y(v)-y(0)),rx:5,fill:c}));
+    svg.appendChild(el("text",{x:x+bw/2,y:up?y(v)-7:y(v)+15,"text-anchor":"middle","font-size":13,"font-weight":800,fill:c},(up?"+":"")+v.toFixed(1)+"%"));
+    svg.appendChild(el("text",{x:x+bw/2,y:H-8,"text-anchor":"middle","font-size":12,fill:"#22293A","font-weight":700},lab));
+  });
+}
+buildBITable(); drawBI(); drawCal(); updateView();
 </script>
 </body>
 </html>
