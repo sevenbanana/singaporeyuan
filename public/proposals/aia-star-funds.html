@@ -1,0 +1,743 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<meta name="theme-color" content="#0F2A44">
+<title>AIA 三只明星基金｜新加坡小圆姐</title>
+<meta name="description" content="新加坡小圆姐整理：AIA GAIF、ELITE、INDEX 三只基金的定位、底层构成、最新数据与分红历史，一页切换，图文并茂。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=Noto+Sans+SC:wght@400;500;700;900&display=swap">
+<style>
+:root{--ink:#0A1C2E;--paper:#F4EEE1;--sail:#FCF9F2;--gold:#D6A94C;--gold-deep:#A8874C;--ember:#B5503C;--mist:#93A9BE;--slate:#51687D;--field:#0F2A44;--line:#E3DCCB;
+--gaif:#B8862E;--gaif-soft:#FBF3E1;--elite:#1F4E79;--elite-soft:#E6EEF6;--index:#1F7A6B;--index-soft:#E3F1EC;
+--wrap:1120px;--sans:"Archivo",system-ui,-apple-system,"Helvetica Neue",Arial,"Noto Sans SC","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif}
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:120px}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.8;-webkit-font-smoothing:antialiased}
+a{color:inherit}img{max-width:100%;display:block}svg{display:block}button{font:inherit;cursor:pointer}
+h1,h2,h3,h4,p{margin:0}h1,h2,h3,h4{line-height:1.3}
+.wrap{width:min(var(--wrap),calc(100% - 48px));margin:auto}
+.eyebrow{font-size:12px;letter-spacing:2.5px;font-weight:700;text-transform:uppercase;color:var(--slate)}
+.muted{color:var(--slate)}.small{font-size:13.5px;line-height:1.75}
+.src{font-size:12px;color:var(--slate);line-height:1.7;margin-top:12px}
+.neg{color:var(--ember);font-weight:700}.pos{color:#1F7A6B;font-weight:700}
+
+/* brand bar */
+.brandbar{display:flex;align-items:center;justify-content:space-between;height:70px;gap:16px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;font-weight:700;font-size:15px}
+.brand img{width:36px;height:36px;border-radius:50%}
+.brand small{display:block;font-size:10.5px;font-weight:500;letter-spacing:2px;color:var(--slate);line-height:1.3}
+.asof{font-size:12px;color:var(--slate);text-align:right;line-height:1.5}
+
+/* hero */
+.hero{background:linear-gradient(160deg,#0A1C2E,#0F2A44 55%,#1B3A5C);color:#F4EEE1;padding:56px 0 40px;position:relative;overflow:hidden}
+.hero::after{content:"";position:absolute;right:-120px;top:-120px;width:420px;height:420px;border-radius:50%;background:radial-gradient(circle,rgba(214,169,76,.28),transparent 65%)}
+.hero .eyebrow{color:var(--gold)}
+.hero h1{font-size:clamp(32px,4.4vw,54px);font-weight:800;letter-spacing:-.5px;margin-top:14px}
+.hero h1 span{color:var(--gold)}
+.hero p.lead{margin-top:16px;max-width:640px;font-size:17px;color:#D9D3C4}
+.hero-meta{display:flex;flex-wrap:wrap;gap:8px 20px;margin-top:22px;font-size:12.5px;color:#B9C4CF}
+
+/* tabs */
+.tabs-shell{position:sticky;top:0;z-index:20;background:rgba(244,238,225,.96);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.tabs{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;padding:10px 0}
+.tab{border:1px solid var(--line);background:var(--sail);border-radius:12px;padding:10px 12px;text-align:left;display:flex;flex-direction:column;gap:2px;transition:transform .2s,box-shadow .2s;color:var(--ink)}
+.tab b{font-size:15px;letter-spacing:.5px;display:flex;align-items:center;gap:8px}
+.tab b i{width:9px;height:9px;border-radius:50%;background:var(--c);display:inline-block}
+.tab span{font-size:12px;color:var(--slate)}
+.tab:hover{transform:translateY(-2px);box-shadow:0 10px 24px -16px rgba(10,28,46,.5)}
+.tab[aria-selected="true"]{background:var(--ink);color:#F4EEE1;border-color:var(--ink)}
+.tab[aria-selected="true"] span{color:#B9C4CF}
+.tab.gaif{--c:var(--gaif)}.tab.elite{--c:var(--elite)}.tab.index{--c:var(--index)}.tab.cmp{--c:var(--gold)}
+
+/* panels */
+.panel{display:none;padding:44px 0 60px}.panel.on{display:block;animation:fade .35s ease}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.panel.gaif{--acc:var(--gaif);--soft:var(--gaif-soft)}.panel.elite{--acc:var(--elite);--soft:var(--elite-soft)}.panel.index{--acc:var(--index);--soft:var(--index-soft)}.panel.cmp{--acc:var(--gold-deep);--soft:#F6EFDD}
+.ph{display:grid;grid-template-columns:1.1fr .9fr;gap:30px;align-items:end;margin-bottom:34px}
+.ph .eyebrow{color:var(--acc)}
+.ph h2{font-size:clamp(28px,3.4vw,40px);font-weight:800;margin-top:10px;letter-spacing:-.3px}
+.ph h2 small{display:block;font-size:14px;font-weight:500;color:var(--slate);letter-spacing:.3px;margin-top:6px;font-family:var(--sans)}
+.ph p{margin-top:14px;color:var(--slate);max-width:560px}
+.kpis{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.kpi{background:var(--sail);border:1px solid var(--line);border-radius:14px;padding:16px 18px}
+.kpi b{display:block;font-size:26px;font-weight:800;color:var(--acc);line-height:1.15}
+.kpi span{display:block;font-size:12.5px;color:var(--slate);margin-top:5px;line-height:1.5}
+
+.sec{margin-top:52px}
+.sec-h{display:flex;gap:14px;align-items:flex-start;margin-bottom:22px}
+.num{flex:none;width:38px;height:38px;border-radius:50%;border:1.5px solid var(--acc);color:var(--acc);display:grid;place-items:center;font-weight:800;font-size:14px}
+.sec-h h3{font-size:24px;font-weight:800}
+.sec-h p{color:var(--slate);font-size:14.5px;margin-top:4px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.card{background:var(--sail);border:1px solid var(--line);border-radius:16px;padding:22px 24px}
+.card h4{font-size:17px;font-weight:800;margin-bottom:6px}
+.card p{font-size:14px;color:var(--slate)}
+.card .k{font-size:11.5px;letter-spacing:2px;font-weight:700;color:var(--acc);margin-bottom:8px;text-transform:uppercase}
+.card.tint{background:var(--soft);border-color:transparent}
+.chart-title{font-size:15px;font-weight:800;margin-bottom:4px}
+.chart-sub{font-size:12.5px;color:var(--slate);margin-bottom:12px}
+.legend{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:13px;margin-top:10px}
+.legend span{display:inline-flex;align-items:center;gap:7px}.legend i{width:10px;height:10px;border-radius:3px;display:inline-block}
+.legend b{font-weight:700}
+.flow{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;align-items:stretch}
+.flow>div{background:var(--sail);border:1px solid var(--line);border-radius:12px;padding:14px 12px;text-align:center;font-size:13.5px;position:relative}
+.flow>div b{display:block;font-size:15px;color:var(--acc);margin-bottom:4px}
+.flow>div:not(:last-child)::after{content:"→";position:absolute;right:-13px;top:50%;transform:translateY(-50%);color:var(--mist);font-size:18px;z-index:1}
+.note{border-left:3px solid var(--acc);background:var(--soft);padding:12px 16px;border-radius:0 10px 10px 0;font-size:14px;margin-top:16px}
+.note strong{color:var(--acc)}
+.pill{display:inline-block;font-size:12px;background:var(--soft);color:var(--acc);border-radius:6px;padding:4px 9px;font-weight:700;margin:0 6px 6px 0}
+
+/* tables */
+.tbl{border:1px solid var(--line);border-radius:14px;overflow:auto;background:var(--sail)}
+table{width:100%;border-collapse:collapse;text-align:left;font-size:14px;min-width:560px}
+th,td{padding:12px 14px;border-bottom:1px solid var(--line);vertical-align:top}
+thead th{font-size:12.5px;color:var(--slate);font-weight:700;background:#F1EBDD;letter-spacing:.3px}
+tbody tr:last-child>*{border-bottom:0}
+tbody th{font-weight:700;color:var(--ink);font-size:14px}
+.hint{display:none;font-size:12px;color:var(--slate);margin-bottom:6px}
+
+/* expandable engine cards */
+.eng{background:var(--sail);border:1px solid var(--line);border-radius:16px;overflow:hidden}
+.eng summary{list-style:none;cursor:pointer;padding:18px 22px;display:grid;grid-template-columns:auto 1fr auto;gap:14px;align-items:center}
+.eng summary::-webkit-details-marker{display:none}
+.eng .w{font-size:22px;font-weight:800;color:var(--acc);min-width:76px}
+.eng .w small{display:block;font-size:11px;color:var(--slate);font-weight:600;letter-spacing:1px}
+.eng .t{font-size:16px;font-weight:800}
+.eng .t small{display:block;font-size:12.5px;color:var(--slate);font-weight:500}
+.eng .plus{width:28px;height:28px;border-radius:50%;border:1px solid var(--line);display:grid;place-items:center;color:var(--slate);font-size:18px}
+.eng[open] .plus{background:var(--ink);color:#fff;border-color:var(--ink)}
+.eng .body{padding:0 22px 20px;border-top:1px dashed var(--line);display:grid;grid-template-columns:1fr 1fr;gap:18px;padding-top:16px}
+.eng .body h5{font-size:12px;letter-spacing:2px;color:var(--acc);margin:0 0 6px;font-weight:700}
+.eng .body p{font-size:14px;color:var(--slate)}
+.eng .chain{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.eng .chain span{background:var(--soft);color:var(--acc);border-radius:6px;padding:4px 9px;font-size:12.5px;font-weight:700}
+.bar-list{display:grid;gap:10px}
+.bar-row{display:grid;grid-template-columns:150px 1fr 56px;gap:10px;align-items:center;font-size:13.5px}
+.bar-row .tr{height:10px;background:#E9E2D2;border-radius:6px;overflow:hidden}.bar-row .tr>span{display:block;height:100%;border-radius:6px;background:var(--acc)}
+.bar-row b{text-align:right;font-weight:700}
+
+/* calculator */
+.calc{background:var(--ink);color:#F4EEE1;border-radius:18px;padding:26px 28px;display:grid;grid-template-columns:1.1fr 1fr;gap:24px;align-items:center}
+.calc h4{font-size:18px;font-weight:800;color:var(--gold)}
+.calc p{font-size:13.5px;color:#B9C4CF;margin-top:6px}
+.calc input[type=range]{width:100%;margin-top:14px;accent-color:var(--gold)}
+.calc .out{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.calc .out div{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:12px;padding:14px 16px}
+.calc .out b{display:block;font-size:24px;font-weight:800;color:#fff}
+.calc .out span{font-size:12px;color:#B9C4CF}
+.calc .amt{font-size:28px;font-weight:800;color:#fff;margin-top:6px}
+
+/* toggle */
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:10px;overflow:hidden;background:var(--sail);margin-bottom:12px}
+.seg button{border:0;background:none;padding:8px 14px;font-size:13px;font-weight:700;color:var(--slate)}
+.seg button[aria-pressed="true"]{background:var(--ink);color:#fff}
+
+/* team */
+.team{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.team>div{background:var(--sail);border:1px solid var(--line);border-radius:14px;padding:16px;text-align:center}
+.team>div b{display:block;font-size:15px}.team>div span{display:block;font-size:12.5px;color:var(--acc);font-weight:700;margin:2px 0 6px}.team>div p{font-size:12.5px;color:var(--slate)}
+.team>div.coach{background:var(--ink);color:#F4EEE1;border-color:var(--ink)}.team>div.coach p{color:#B9C4CF}.team>div.coach span{color:var(--gold)}
+
+/* fit */
+.fit{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.fit ul{margin:8px 0 0;padding-left:18px;font-size:14px;color:var(--slate)}.fit li+li{margin-top:5px}
+.fit .yes h4{color:#1F7A6B}.fit .no h4{color:var(--ember)}
+
+/* spectrum */
+.spec{display:grid;grid-template-columns:repeat(4,1fr);gap:0;position:relative;margin-top:14px}
+.spec::before{content:"";position:absolute;left:5%;right:5%;top:22px;height:4px;background:linear-gradient(90deg,var(--elite),var(--index),#8BA08F,var(--gaif));border-radius:4px}
+.spec>div{text-align:center;padding-top:44px;position:relative;font-size:13px}
+.spec>div::before{content:"";position:absolute;top:14px;left:50%;transform:translateX(-50%);width:20px;height:20px;border-radius:50%;background:var(--c);border:4px solid var(--paper)}
+.spec b{display:block;font-size:15px}.spec span{color:var(--slate);font-size:12.5px;display:block}
+
+/* footer + cta */
+.cta{background:var(--sail);border:1px solid var(--line);border-radius:18px;padding:28px 32px;display:grid;grid-template-columns:1fr auto;gap:20px;align-items:center;margin-top:52px}
+.cta h4{font-size:20px;font-weight:800}.cta p{color:var(--slate);font-size:14px;margin-top:4px}
+.btn{display:inline-flex;align-items:center;gap:8px;text-decoration:none;border-radius:10px;padding:12px 18px;font-size:14.5px;font-weight:700;min-height:44px}
+.btn-primary{background:var(--ink);color:#fff}.btn-ghost{border:1px solid var(--line);background:var(--sail);color:var(--ink)}
+footer{padding:36px 0 44px;border-top:1px solid var(--line);margin-top:40px}
+.disc{font-size:12px;color:var(--slate);line-height:1.9}
+.foot-b{display:flex;justify-content:space-between;gap:12px;margin-top:16px;font-size:12px;color:var(--slate)}
+
+@media(max-width:900px){.ph,.grid2,.calc,.eng .body{grid-template-columns:1fr}.grid4{grid-template-columns:1fr 1fr}.team{grid-template-columns:1fr 1fr}.flow{grid-template-columns:1fr 1fr 1fr}.flow>div:nth-child(3)::after{display:none}.cta{grid-template-columns:1fr}}
+@media(max-width:620px){.wrap{width:calc(100% - 32px)}.brandbar{height:62px}.asof{display:none}.hero{padding:36px 0 28px}.tabs{grid-template-columns:1fr 1fr;gap:6px}.tab{padding:8px 10px}.tab span{display:none}.grid3,.grid4,.team,.fit,.kpis,.flow,.spec{grid-template-columns:1fr}.spec::before{display:none}.spec>div{padding-top:8px;text-align:left;border-left:4px solid var(--c);padding-left:12px;margin-bottom:10px}.spec>div::before{display:none}.flow>div::after{display:none!important}.card{padding:18px}.calc{padding:20px}.hint{display:block}.bar-row{grid-template-columns:110px 1fr 50px}.sec-h h3{font-size:21px}}
+
+/* ---------- password gate ---------- */
+body.locked{overflow:hidden}
+body.locked>*:not(#pwGate){visibility:hidden}
+#pwGate{position:fixed;inset:0;z-index:99;display:none;align-items:center;justify-content:center;background:#FAF7F0;padding:20px;visibility:visible;overflow:auto;font-family:-apple-system,"PingFang SC","Hiragino Sans GB","Noto Sans SC","Microsoft YaHei",sans-serif}
+body.locked #pwGate{display:flex}
+#pwGate *{box-sizing:border-box}
+.pw-card{width:100%;max-width:940px;background:#fff;border-radius:26px;overflow:hidden;text-align:left;box-shadow:0 30px 80px -40px rgba(23,39,66,.38);display:grid;grid-template-columns:1fr}
+.pw-left{padding:30px 26px;position:relative}
+.pw-top{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.pw-chip{display:inline-flex;align-items:center;gap:9px;border:1px solid rgba(199,161,90,.45);background:rgba(199,161,90,.08);border-radius:999px;padding:5px 15px 5px 5px;font-size:12.5px;font-weight:700;color:#A8874C;line-height:1.4}
+.pw-chip img{width:26px;height:26px;border-radius:50%;object-fit:cover;display:block}
+#pwLang{flex:none;border:1px solid #E2E6EC;background:#fff;color:#687386;border-radius:999px;padding:5px 13px;font-size:12px;font-weight:700;cursor:pointer;font-family:inherit;letter-spacing:.04em}
+#pwLang:hover{border-color:#C7A15A;color:#172742}
+.pw-card h2{font-size:27px;line-height:1.28;color:#172742;margin:20px 0 0;font-weight:800;letter-spacing:.01em}
+.pw-card .pw-sub{font-size:14.5px;line-height:1.9;color:#687386;margin:12px 0 0}
+.pw-label{display:block;margin:24px 0 9px;font-size:13px;font-weight:700;color:#172742}
+.pw-field{position:relative}
+.pw-field .pw-lock{position:absolute;left:15px;top:50%;transform:translateY(-50%);color:#687386;pointer-events:none}
+#pwInput{width:100%;border:1px solid #E2E6EC;border-radius:15px;background:#FCFBF7;padding:14px 46px;font-size:15px;text-align:left;letter-spacing:0;outline:none;font-family:inherit;color:#172742}
+#pwInput::placeholder{color:#A6AEBC}
+#pwInput:focus{border-color:#C7A15A;background:#fff}
+#pwEye{position:absolute;right:9px;top:50%;transform:translateY(-50%);width:34px;height:34px;display:flex;align-items:center;justify-content:center;border:0;background:none;border-radius:50%;cursor:pointer;color:#687386}
+#pwEye:hover{background:#EEF1F7;color:#172742}
+#pwForm{display:block}
+#pwSubmit{margin-top:18px;width:100%;display:flex;align-items:center;justify-content:center;gap:10px;border:0;background:#172742;color:#fff;border-radius:15px;padding:15px;font-size:15.5px;font-weight:700;cursor:pointer;font-family:inherit;transition:background .25s,box-shadow .25s}
+#pwSubmit:hover{background:#0F1C31;box-shadow:0 14px 30px -14px rgba(23,39,66,.7)}
+.pw-err{display:none;margin-top:12px;font-size:13px;color:#B4433A;font-weight:600}
+.pw-err.show{display:block}
+.pw-div{display:flex;align-items:center;gap:14px;margin-top:30px;color:#687386;font-size:13px}
+.pw-div span{flex:1;height:1px;background:#E2E6EC}
+.pw-ask{margin-top:16px;text-align:center;font-size:14.5px;font-weight:700;color:#172742}
+.pw-contact{display:grid;gap:10px;margin-top:16px}
+.pw-c{display:flex;align-items:center;gap:11px;border:1px solid #E2E6EC;background:#FCFBF7;border-radius:15px;padding:12px 14px;text-decoration:none;color:inherit;transition:border-color .25s,background .25s}
+a.pw-c:hover{border-color:#C7A15A;background:rgba(199,161,90,.07)}
+.pw-c i{flex:none;width:34px;height:34px;border-radius:50%;background:rgba(199,161,90,.16);color:#A8874C;display:flex;align-items:center;justify-content:center;font-style:normal}
+.pw-c b{display:block;font-size:13.5px;color:#172742;font-weight:700}
+.pw-c s{display:block;font-size:13.5px;color:#687386;text-decoration:none}
+.pw-art{display:none}
+.pw-art img{width:100%;max-width:280px;height:auto;display:block}
+@media(min-width:820px){.pw-card{grid-template-columns:minmax(0,1fr) minmax(0,.82fr)}.pw-left{padding:46px 44px}.pw-card h2{font-size:32px}.pw-art{display:flex;align-items:flex-end;justify-content:center;background:#F7F4EC;border-left:1px solid #E2E6EC;padding:30px 20px 46px}}
+@media(min-width:1024px){.pw-contact{grid-template-columns:1fr 1fr}.pw-art img{max-width:320px}}
+#wm{position:fixed;inset:0;z-index:9999;pointer-events:none;overflow:hidden;opacity:.032}
+#wm .row{position:absolute;white-space:nowrap;font-size:20px;color:var(--ink);font-weight:500;letter-spacing:.06em;transform:rotate(-24deg);transform-origin:left center}
+@media print{.tabs-shell,#wm{display:none}.panel{display:block!important}}
+</style>
+</head>
+<body class="locked">
+
+<div id="pwGate">
+  <div class="pw-card">
+    <div class="pw-left">
+      <div class="pw-top">
+        <span class="pw-chip"><img src="/avatar-round.png" alt=""><b data-zh="新加坡小圆姐 · 基金专题" data-en="Yuan Yuan SG · fund feature">新加坡小圆姐 · 基金专题</b></span>
+        <button type="button" id="pwLang" data-zh="EN" data-en="中文">EN</button>
+      </div>
+      <h2 data-zh="AIA 三只明星基金" data-en="Three AIA star funds">AIA 三只明星基金</h2>
+      <p class="pw-sub" data-zh="GAIF、ELITE、INDEX 的定位、底层构成与最新数据。&lt;br&gt;请输入访问密码查看。" data-en="Positioning, holdings and latest data for GAIF, ELITE and INDEX.&lt;br&gt;Enter the access password to view.">GAIF、ELITE、INDEX 的定位、底层构成与最新数据。<br>请输入访问密码查看。</p>
+      <form id="pwForm">
+        <label class="pw-label" for="pwInput" data-zh="访问密码" data-en="Access password">访问密码</label>
+        <div class="pw-field">
+          <svg class="pw-lock" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4.5" y="10.5" width="15" height="10.5" rx="2.5"></rect><path d="M8 10.5V7.8a4 4 0 0 1 8 0v2.7"></path><path d="M12 15v2.2"></path></svg>
+          <input id="pwInput" type="password" autocomplete="off" placeholder="输入密码" data-zh="输入密码" data-en="Enter password">
+          <button type="button" id="pwEye" aria-label="显示密码" aria-pressed="false"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12c0-2.5 4-7 9-7s9 4.5 9 7c0 2.5-4 7-9 7s-9-4.5-9-7z"></path><circle cx="12" cy="12" r="2.6"></circle></svg></button>
+        </div>
+        <div class="pw-err" id="pwErr" data-zh="密码不正确，再试一次；或者找我要一次新的。" data-en="That password didn’t work. Try again, or ask me for a new one.">密码不正确，再试一次；或者找我要一次新的。</div>
+        <button type="submit" id="pwSubmit"><span data-zh="进入专题" data-en="Open">进入专题</span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></button>
+      </form>
+      <div class="pw-div"><span></span><b data-zh="还没有密码？" data-en="No password yet?" style="font-weight:400">还没有密码？</b><span></span></div>
+      <p class="pw-ask" data-zh="联系小圆姐索取访问密码" data-en="Ask Yuan Yuan for the password">联系小圆姐索取访问密码</p>
+      <div class="pw-contact">
+        <div class="pw-c"><i><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.8A8.3 8.3 0 0 1 8.9 19L3.5 20.5 5 15.2A8.3 8.3 0 1 1 21 11.8z"></path><path d="M8.5 11.8h.01M12.2 11.8h.01M15.9 11.8h.01"></path></svg></i><span><b data-zh="微信" data-en="WeChat">微信</b><s>singaporeyuan</s></span></div>
+        <a class="pw-c" href="https://wa.me/6583750190?text=%E4%BD%A0%E5%A5%BD%E5%B0%8F%E5%9C%86%E5%A7%90%EF%BC%8C%E6%83%B3%E8%A6%81%E4%B8%80%E4%B8%8B%E5%9F%BA%E9%87%91%E4%B8%93%E9%A2%98%E9%A1%B5%E7%9A%84%E8%AE%BF%E9%97%AE%E5%AF%86%E7%A0%81%E3%80%82"><i><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5.5 4H9l1.6 4.3L8.5 10a12.5 12.5 0 0 0 5.5 5.5l1.7-2.1L20 15v3.6A1.6 1.6 0 0 1 18.2 20C10.8 19.2 4.8 13.2 4 5.8A1.6 1.6 0 0 1 5.5 4z"></path></svg></i><span><b>WhatsApp</b><s>+65 8375 0190</s></span></a>
+      </div>
+    </div>
+    <div class="pw-art"><img src="/password/welcome-door.webp" alt="" width="720" height="1245"></div>
+  </div>
+</div>
+
+<header><div class="wrap brandbar"><a class="brand" href="https://www.singaporeyuan.com" target="_blank" rel="noopener"><img src="/avatar-round.png" alt=""><span>新加坡小圆姐<small>SINGAPORE YUAN</small></span></a><div class="asof">基金月报 2026.07.31 · 官网估值 2026.09.14<br>整理日期 2026.09.16</div></div></header>
+
+<section class="hero"><div class="wrap">
+  <p class="eyebrow">AIA Star Funds · 三只明星基金</p>
+  <h1>一页切换，<br>看懂 AIA 的 <span>三只明星基金</span></h1>
+  <p class="lead">收益型的 GAIF、成长型的 ELITE、指数型的 INDEX。每只一页：为什么投它、钱投到了哪里、最新数据怎么看；最后一页把三只放在一起比。</p>
+  <div class="hero-meta"><span>中文整理 · 新加坡小圆姐</span><span>数据：AIA 官网与各基金月报，日期逐项标注</span><span>本金与回报不保证</span></div>
+</div></section>
+
+<div class="tabs-shell"><div class="wrap tabs" role="tablist" aria-label="切换基金">
+  <button class="tab gaif" role="tab" aria-selected="true" data-p="gaif"><b><i></i>GAIF</b><span>收益型 · 季度派息约 7%</span></button>
+  <button class="tab elite" role="tab" aria-selected="false" data-p="elite"><b><i></i>ELITE</b><span>成长型 · 多经理全球股票</span></button>
+  <button class="tab index" role="tab" aria-selected="false" data-p="index"><b><i></i>INDEX</b><span>指数型 · 低费率 ETF 组合</span></button>
+  <button class="tab cmp" role="tab" aria-selected="false" data-p="cmp"><b><i></i>对比总结</b><span>放在一起看</span></button>
+</div></div>
+
+<main>
+
+<!-- ================= GAIF ================= -->
+<section class="panel gaif on" id="p-gaif" role="tabpanel">
+<div class="wrap">
+  <div class="ph">
+    <div><p class="eyebrow">01 · Income Fund</p><h2>GAIF：把钱定期发回来<small>AIA Global Adventurous Income Fund · 环球进取收益基金</small></h2>
+      <p>它不追求净值大涨，而是把高收益债、可转债、备兑期权和全球股息四种现金流打包，目标是每个季度把钱发到你手上。</p></div>
+    <div class="kpis">
+      <div class="kpi"><b>7.07%</b><span>成立以来 10 次派息的平均年化派息率</span></div>
+      <div class="kpi"><b>10 次</b><span>2024.03 起每季派息，从未间断</span></div>
+      <div class="kpi"><b>S$2,983M</b><span>基金规模，2026.07.31</span></div>
+      <div class="kpi"><b>9.14%</b><span>成立以来年化总回报，官网 2026.09.14</span></div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-h"><span class="num">1</span><div><h3>为什么投这只基金</h3><p>定位、目标和它的构成</p></div></div>
+    <div class="grid4">
+      <div class="card"><p class="k">目标</p><h4>季度现金流约 7%</h4><p>基金目标是持续派息，官方口径 7% 到 8% 年化。金额与频率不保证，可能来自资本。</p></div>
+      <div class="card"><p class="k">资产</p><h4>多资产、多来源</h4><p>股票、高收益债、可转债、备兑期权四路收入，不依赖任何一种资产单独表现。</p></div>
+      <div class="card"><p class="k">结构</p><h4>一只基金，三家名门</h4><p>基金中的基金：安联、富兰克林、AIA 与 Wellington 三只收益型底层基金各司其职。</p></div>
+      <div class="card"><p class="k">管理</p><h4>AIA 投资管理统筹</h4><p>AIA Investment Management 决定三只底层的比例，按宏观环境动态调仓。</p></div>
+    </div>
+
+    <div class="grid2" style="margin-top:20px">
+      <div class="card">
+        <p class="chart-title">钱投到了哪里</p><p class="chart-sub">底层配置 · 2026.07.31 基金月报</p>
+        <div id="c-gaif-alloc"></div>
+        <p class="src">来源：GAIF Fund Factsheet 2026 年 7 月。ETF 与现金部分由管理人按市况配置。</p>
+      </div>
+      <div class="card">
+        <p class="chart-title">配置一直在动</p><p class="chart-sub">三只底层基金权重变化 · 2024 初期 vs 2026.07</p>
+        <div id="c-gaif-shift"></div>
+        <div class="note"><strong>变的是引擎，不变的是现金流目标。</strong>两年多里安联三明治策略从约 78% 降到 39%，AIA 股票入息从约 8% 提到 36%，富兰克林从约 8% 提到 16%。每一次调仓之后，年化派息率仍稳定在 7% 附近。</div>
+        <p class="src">2024 初期权重为管理人战术配置口径，示意；2026.07 为月报实际持仓。</p>
+      </div>
+    </div>
+
+    <div class="sec-h" style="margin-top:32px"><span class="num" style="border-style:dashed">+</span><div><h3 style="font-size:20px">这 7% 的钱，从四个地方来</h3><p>每一种都不是无风险利息，而是用一点风险或一点上涨空间换来的现金流</p></div></div>
+    <div class="grid4">
+      <div class="card tint"><p class="k">引擎 1</p><h4>高收益债利息</h4><p>借钱给信用一般的公司，要更高的利息补偿风险。富兰克林持有约 19% 高收益公司债。</p></div>
+      <div class="card tint"><p class="k">引擎 2</p><h4>可转债票息</h4><p>先领利息，公司做大了还能换成股票。安联约三分之一仓位、富兰克林约 29% 在可转债类资产。</p></div>
+      <div class="card tint"><p class="k">引擎 3</p><h4>备兑期权权利金</h4><p>持有股票的同时卖出看涨期权，先收一笔权利金；代价是股价大涨时让出一部分收益。</p></div>
+      <div class="card tint"><p class="k">引擎 4</p><h4>全球股票股息</h4><p>三只底层都持有股票，NVIDIA、Apple、Microsoft 这些公司的股息是最传统的收入来源。</p></div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-h"><span class="num">2</span><div><h3>三只底层基金，最新数据</h3><p>点开每张卡看策略、配置、表现和前五大持仓</p></div></div>
+    <div style="display:grid;gap:12px" id="gaif-underlying"></div>
+    <div class="note"><strong>为什么留一只回报最低的富兰克林？</strong>它持有最多的国债、机构 MBS 和投资级债，是组合里的压舱石。2026 年 7 月安联因高收益债走弱录得负回报时，富兰克林和 AIA 股票入息是正回报，把跌幅接住了一部分。选底层不是比谁单独回报高，而是看它在组合里的角色。</div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-h"><span class="num">3</span><div><h3>分红历史</h3><p>成立以来每一次派息，和它旁边的净值</p></div></div>
+    <div class="grid2">
+      <div class="card">
+        <div class="seg" role="group" aria-label="切换图表"><button aria-pressed="true" data-v="rate">年化派息率</button><button aria-pressed="false" data-v="amt">每单位派息</button><button aria-pressed="false" data-v="nav">除息日净值</button><button aria-pressed="false" data-v="mnav">月末买入价</button></div>
+        <div id="c-gaif-div"></div>
+        <p class="src" id="gaif-div-note">年化派息率 = 每单位派息 ÷ 除息日净值 × 4。十次派息的平均为 7.07%，区间 6.99% 到 7.25%。首期覆盖约 5 个月，按 5 个月折算。</p>
+      </div>
+      <div>
+        <div class="kpis" style="grid-template-columns:1fr 1fr 1fr">
+          <div class="kpi"><b>S$0.1975</b><span>成立以来累计每单位派息</span></div>
+          <div class="kpi"><b>1.000 → 1.073</b><span>成立时买入价 → 2026.09.14</span></div>
+          <div class="kpi"><b>0.998</b><span>唯一一次除息日净值跌破面值，2025.06</span></div>
+        </div>
+        <div class="calc" style="margin-top:12px">
+          <div><h4>算一算：每季大约能收到多少</h4><p>按 7% 年化派息率折算，仅为示意；实际以每期公布为准，派息不保证。</p>
+            <div class="amt" id="calc-amt">S$100,000</div>
+            <input type="range" id="calc-range" min="10000" max="500000" step="10000" value="100000" aria-label="投入金额">
+          </div>
+          <div class="out"><div><b id="calc-q">S$1,750</b><span>每季约收到</span></div><div><b id="calc-y">S$7,000</b><span>每年约收到</span></div></div>
+        </div>
+      </div>
+    </div>
+
+    <p class="hint">左右滑动查看完整表格 →</p>
+    <div class="tbl" style="margin-top:16px"><table id="gaif-div-table"><thead><tr><th>除息日</th><th>每单位派息</th><th>除息日净值</th><th>年化派息率</th><th>每 S$10,000 约得（按除息日净值折算）</th></tr></thead><tbody></tbody></table></div>
+    <p class="src">来源：AIA GAIF Dividend Distribution 表（更新至 2026.06.18）。2026 年 9 月派息待官方公布。首期 2024.03.15 覆盖 2023.10.05 起约 5 个月的可分配收益。</p>
+
+    <div class="grid2" style="margin-top:20px">
+      <div class="card"><h4>派得更多，百分比反而更低？</h4><p>2026 年 6 月每单位派 S$0.01900，比 3 月的 S$0.01810 多约 5%，到手的钱更多；但除息日净值从 1.030 涨到 1.0927，分母涨得更快，年化派息率从 7.03% 略降到 7.0%。就像房租从 2,000 涨到 2,100，房价却从 50 万涨到 55 万，租金更多，租金回报率反而显得低。</p></div>
+      <div class="card"><h4>净值跌破 1.000 意味着什么？</h4><p>2025 年 6 月 16 日除息日净值 0.998，只比面值低 0.2%，当期派息照常。这是底层资产短期波动，不是派息机制出了问题。真正要警惕的是长期持续在面值以下同时还在派息，那说明分红在吃本金。截至 2026.09.14 买入价 1.073，高于面值。</p></div>
+    </div>
+
+    <div class="grid3" style="margin-top:20px">
+      <div class="card"><p class="k">阶段一 · 2023.10 至 2024</p><h4>建仓，高利率环境</h4><p>派息率 7.0% 到 7.25%，净值稳步走到 1.082。</p></div>
+      <div class="card"><p class="k">阶段二 · 2025</p><h4>利率反复，波动加大</h4><p>4 月关税冲击，买入价一度 0.959；6 月除息日净值 0.998；派息率仍约 7%。</p></div>
+      <div class="card"><p class="k">阶段三 · 2026 至今</p><h4>企稳回升</h4><p>6 月除息日净值 1.0927 创新高；7 月单月 -1.65%，近一年 +10.19%（月报）。</p></div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-h"><span class="num">4</span><div><h3>风险与适合的人</h3><p>说清楚，再决定</p></div></div>
+    <div class="grid4">
+      <div class="card"><p class="k">风险 1</p><h4>派息可能来自资本</h4><p>AIA 保留从资本中派息的权利，若长期如此会侵蚀本金。</p></div>
+      <div class="card"><p class="k">风险 2</p><h4>高收益债违约</h4><p>富兰克林可持有低至 CCC 评级的债券，违约与流动性风险高于投资级。</p></div>
+      <div class="card"><p class="k">风险 3</p><h4>期权限制上涨</h4><p>牛市里备兑期权会让基金跑输不用期权的纯股票基金。</p></div>
+      <div class="card"><p class="k">风险 4</p><h4>历史尚短</h4><p>成立不到三年，没经历过 2022 年那种股债双杀的完整压力测试。</p></div>
+    </div>
+    <div class="fit" style="margin-top:16px">
+      <div class="card yes"><h4>比较适合</h4><ul><li>需要稳定季度现金流的人</li><li>已持有成长型基金，想搭配一部分收益型资产</li><li>能接受本金随市场波动、追求票息加分散的中长期投资者</li></ul></div>
+      <div class="card no"><h4>不太适合</h4><ul><li>希望资本长期最大化增值的人（看 ELITE）</li><li>不能接受派息可能来自本金的人</li><li>五年内要动用本金、无法承受净值阶段性跌破面值的人</li></ul></div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ================= ELITE ================= -->
+<section class="panel elite" id="p-elite" role="tabpanel">
+<div class="wrap">
+  <div class="ph">
+    <div><p class="eyebrow">02 · Growth Fund</p><h2>ELITE：全球投资引擎<small>AIA Elite Adventurous Fund (SGD) · 精英进取基金</small></h2>
+      <p>约九成全球股票、一成债券。AIA 把钱分给多位世界级基金经理，各用一套方法赚钱，再由 AIA 动态调整他们之间的比重。三只里历史最长。</p></div>
+    <div class="kpis">
+      <div class="kpi"><b>9.34%</b><span>成立以来年化，2026.07.31 月报</span></div>
+      <div class="kpi"><b>+14.57%</b><span>近 1 年，2026.07.31 月报</span></div>
+      <div class="kpi"><b>S$2,982M</b><span>基金规模，2026.07.31</span></div>
+      <div class="kpi"><b>2019.07</b><span>成立，可用现金或 SRS</span></div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-h"><span class="num">1</span><div><h3>ELITE 到底怎么赚钱</h3><p>不押注任何一个市场，而是同时用多种赚钱方式</p></div></div>
+    <div class="flow">
+      <div><b>客户资金</b>保单里的投资部分</div>
+      <div><b>AIA 投资管理</b>选经理、定比例、做监督</div>
+      <div><b>多位基金经理</b>BlackRock、Wellington、Capital Group、GMO、M&amp;G</div>
+      <div><b>全球股票 91%</b>固定收益 8.5%，现金 0.5%</div>
+      <div><b>长期财富增长</b>股息、利息与复利滚动积累</div>
+    </div>
+    <div class="grid4" style="margin-top:20px">
+      <div class="card tint"><p class="k">01 全球化</p><h4>全球企业盈利增长</h4><p>Microsoft、TSMC、Meta、Alphabet、Visa 这些公司的利润和现金流长期增长，推动公司价值提升。</p></div>
+      <div class="card tint"><p class="k">02 专业化</p><h4>专业经理选股</h4><p>基本面、量化模型、质量筛选、主题研究，不同经理用不同方法争取超过市场平均的收益。</p></div>
+      <div class="card tint"><p class="k">03 动态化</p><h4>AIA 动态配置</h4><p>按宏观、估值、市场情绪持续调整底层基金和股债比例，不是买完就不管。</p></div>
+      <div class="card tint"><p class="k">04 长期化</p><h4>时间与复利</h4><p>收益不派出来，全部累积在净值里滚动，让时间发挥复利的力量。</p></div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-h"><span class="num">2</span><div><h3>七个投资引擎</h3><p>点开每个引擎看它怎么赚钱，以及一个真实持仓例子</p></div></div>
+    <div class="grid2">
+      <div class="card"><p class="chart-title">底层基金配置</p><p class="chart-sub">2026.07.31 月报 · 按管理人合并</p><div id="c-elite-mgr"></div><p class="src">BlackRock 同时管理股票与债券两只底层。Baillie Gifford 仍在管理人库中，当前权重接近零。</p></div>
+      <div class="card"><p class="chart-title">股票与债券</p><p class="chart-sub">资产类别 · 2026.07.31</p><div id="c-elite-asset"></div><div class="note" style="margin-top:14px"><strong>权重两个月就能变。</strong>2026 年 5 月月报里 Wellington 约 9.8%、Capital Group 约 23.7%；到 7 月 Wellington 已提到 20.5%，Capital Group 降到 18.9%。这是 AIA 动态再平衡的真实痕迹。</div></div>
+    </div>
+    <div style="display:grid;gap:10px;margin-top:16px" id="elite-engines"></div>
+    <div class="sec-h" style="margin-top:32px"><span class="num" style="border-style:dashed">+</span><div><h3 style="font-size:20px">像一支足球队，每个位置有专属球员</h3><p>AIA 根据市场变化，持续调整各经理的配置比重</p></div></div>
+    <div class="team">
+      <div class="coach"><b>AIA</b><span>主教练</span><p>统筹全局，动态调整阵型与资金分工</p></div>
+      <div><b>BlackRock</b><span>数据分析师</span><p>每天用数据在数千家公司里找越来越优秀的那批</p></div>
+      <div><b>Wellington</b><span>稳定得分前锋</span><p>只选护城河深的生意，长期持有优质现金流</p></div>
+      <div><b>Capital Group</b><span>产业趋势专家</span><p>只看谁真的靠 AI 赚到了钱，不追概念</p></div>
+      <div><b>GMO</b><span>价值守门员</span><p>只认真实利润，剔除过度炒作标的</p></div>
+      <div><b>Baillie Gifford</b><span>未来新星发现者</span><p>在趋势成形前提前布局，当前暂时坐替补席</p></div>
+      <div><b>M&amp;G</b><span>防守后卫</span><p>用投资级企业债稳住组合下限</p></div>
+      <div><b>被动 ETF</b><span>补位</span><p>约 13.5% 用指数工具低成本覆盖主要市场</p></div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-h"><span class="num">3</span><div><h3>三个维度看持仓</h3><p>地域、行业、前五大重仓 · 2026.07.31</p></div></div>
+    <div class="grid2">
+      <div class="card"><p class="chart-title">地域配置</p><p class="chart-sub">美洲为主，欧洲其次</p><div id="c-elite-region"></div></div>
+      <div class="card"><p class="chart-title">行业配置</p><p class="chart-sub">股票部分</p><div id="c-elite-sector"></div></div>
+      <div class="card" style="grid-column:1/-1"><p class="chart-title">前五大重仓股的变化</p><p class="chart-sub">2025.07 → 2026.07 · 整体基金层面，非单一管理人</p><div id="c-elite-top5"></div><p class="src">2025.07 数据引自 AIA 月报（同事整理）；2026.07 为当期月报。</p></div>
+    </div>
+    <div class="note"><strong>一年间 NVIDIA、Broadcom 跌出前五，Alphabet、Visa 进入前五。</strong>AI 叙事的重心从芯片供给转向云端与应用变现，同时组合把一部分仓位挪到了金融、医疗这些盈利稳定的行业。前五大合计从 13.45% 升到 14.38%，龙头集中度略有提高。</div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-h"><span class="num">4</span><div><h3>表现：每一年涨了还是跌了</h3><p>七年里跌了一年，其余都在涨；也要知道跌的那年跌了多少</p></div></div>
+    <div class="grid2">
+      <div class="card"><p class="chart-title">逐年回报</p><p class="chart-sub">新币、买入价对买入价、分红再投资 · 2026 为截至 09.14</p><div id="c-elite-cal"></div></div>
+      <div class="card"><p class="chart-title">与基准对比</p><p class="chart-sub">2026.07.31 月报 · 3 年以上为年化</p>
+        <div class="tbl"><table style="min-width:0"><thead><tr><th></th><th>1 年</th><th>3 年</th><th>5 年</th><th>成立以来</th></tr></thead><tbody>
+          <tr><th>ELITE</th><td class="pos">+14.57%</td><td class="pos">+12.04%</td><td class="pos">+4.46%</td><td class="pos">+9.34%</td></tr>
+          <tr><th>基准</th><td>+17.30%</td><td>+15.50%</td><td>+8.87%</td><td>+11.37%</td></tr></tbody></table></div>
+        <p class="src">基准：90% MSCI World 全球股票 + 10% 彭博全球公司债。基金回报已扣 1.45% 管理费，未扣保单费用。</p>
+      </div>
+    </div>
+    <div class="card" style="margin-top:16px"><p class="chart-title">成立以来月末买入价</p><p class="chart-sub">2019.07 至 2026.09.14 · 官网数据 · 三次明显回撤都在图上</p><div id="c-elite-nav"></div><p class="src">买入价 1.000（2019.07.19）→ 1.879（2026.09.14），不含派息（ELITE 不派息，全部累积在净值里）。</p></div>
+    <div class="card" style="margin-top:16px"><p class="chart-title">最狠的时候跌过多少</p><p class="chart-sub">按官网每日买入价计算，从前高到最低点，以及回到前高用时</p>
+      <div class="tbl"><table><thead><tr><th>事件</th><th>前高</th><th>最低</th><th>跌幅</th><th>收复用时</th></tr></thead><tbody>
+        <tr><th>2020 疫情</th><td>2020.02.20 · 1.137</td><td>2020.03.23 · 0.788</td><td class="neg">-30.7%</td><td>约 4 个半月</td></tr>
+        <tr><th>2022 加息</th><td>2021.11.15 · 1.563</td><td>2022.10.13 · 1.112</td><td class="neg">-28.9%</td><td>约 3 年，2024.11 收复</td></tr>
+        <tr><th>2025 关税</th><td>2025.01.31 · 1.633</td><td>2025.04.07 · 1.389</td><td class="neg">-14.9%</td><td>约 6 个月</td></tr></tbody></table></div>
+      <p class="src">小圆姐按 AIA 官网每日买入价（新币）计算，截至 2026.09.14。能不能扛住这样的过程，比年化多一点少一点更重要。</p></div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-h"><span class="num">5</span><div><h3>适合的人</h3></div></div>
+    <div class="fit">
+      <div class="card yes"><h4>比较适合</h4><ul><li>十年内不用这笔钱，要的就是股票的长期增长</li><li>能接受某一年跌两成、两三年才涨回来</li><li>有 SRS 闲钱：三只里只有它能用 SRS</li></ul></div>
+      <div class="card no"><h4>不太适合</h4><ul><li>需要定期现金流的人（看 GAIF）</li><li>看到账户跌 20% 会睡不着的人</li><li>三五年内有明确大额支出的人</li></ul></div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ================= INDEX ================= -->
+<section class="panel index" id="p-index" role="tabpanel">
+<div class="wrap">
+  <div class="ph">
+    <div><p class="eyebrow">03 · Index Fund</p><h2>INDEX：用指数工具，布局全球<small>AIA Adventurous Index Fund · 进取指数基金</small></h2>
+      <p>不选股，直接买 ETF：标普 500、欧洲 600、亚洲（除日本）、日本、加拿大。三只里费用最低，成立最晚。</p></div>
+    <div class="kpis">
+      <div class="kpi"><b>1.00%</b><span>年度管理费，三只里最低</span></div>
+      <div class="kpi"><b>14.47%</b><span>成立以来年化，2026.07.31 月报</span></div>
+      <div class="kpi"><b>+19.20%</b><span>近 1 年，2026.07.31 月报</span></div>
+      <div class="kpi"><b>S$215M</b><span>基金规模，2024.10 成立</span></div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-h"><span class="num">1</span><div><h3>为什么投这只基金</h3><p>指数投资的三个理由</p></div></div>
+    <div class="grid3">
+      <div class="card"><p class="k">理由 1</p><h4>费用低，长期差很多</h4><p>管理费 1.00%，比 ELITE 的 1.45% 低 0.45 个百分点。十年下来，同样的市场回报，费用差异会累积成看得见的差距。</p></div>
+      <div class="card"><p class="k">理由 2</p><h4>不赌经理，赌市场</h4><p>主动经理有跑赢也有跑输的年份。指数工具放弃跑赢，换来的是不会因选错股而明显跑输。</p></div>
+      <div class="card"><p class="k">理由 3</p><h4>标普 500 有近 70 年记录</h4><p>基金本身 2024 年才成立，但它六成仓位跟的标普 500，长期年均回报约 10%（美元、含股息）。</p></div>
+    </div>
+    <div class="note"><strong>指数二字描述的是工具，不代表只买一个指数。</strong>基金章程允许配置股票、债券、商品和黄金，管理人按宏观判断调整比例。截至 2026.07.31，它把 99% 放在股票 ETF，债券和商品接近零。</div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-h"><span class="num">2</span><div><h3>持有什么</h3><p>底层 ETF 清单 · 2026.07.31 月报</p></div></div>
+    <div class="grid2">
+      <div class="card"><p class="chart-title">按地区看</p><p class="chart-sub">把 15 只 ETF 按跟踪市场归类</p><div id="c-index-region"></div></div>
+      <div class="card"><p class="chart-title">15 只底层 ETF</p><p class="chart-sub">四只标普 500 ETF 合计约 60%</p><div id="c-index-etf"></div></div>
+    </div>
+    <div class="grid2" style="margin-top:16px">
+      <div class="card"><h4>为什么同一个标普 500 买了四只 ETF？</h4><p>Vanguard、iShares、SPDR、Xtrackers 各 18.6%、18.6%、18.5%、4.3%。跟踪同一个指数，分散在不同发行商，降低单一 ETF 的交易对手与流动性风险，也方便大额资金进出。</p></div>
+      <div class="card"><h4>和 ELITE 的重合有多大？</h4><p>ELITE 前五大是 Microsoft、TSMC、Meta、Alphabet、Visa；标普 500 的前排也是这些公司。两只基金同时持有时，美国科技龙头的敞口会叠加，搭配时要有意识。</p></div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-h"><span class="num">3</span><div><h3>表现与回撤</h3><p>记录短，但已经经历过一次 15% 的回调</p></div></div>
+    <div class="grid2">
+      <div class="card"><p class="chart-title">成立以来</p><p class="chart-sub">官网 2026.09.14 · 新币、买入价对买入价</p>
+        <div class="kpis" style="grid-template-columns:1fr 1fr"><div class="kpi"><b>+16.62%</b><span>近 1 年</span></div><div class="kpi"><b>+14.04%</b><span>成立以来年化</span></div><div class="kpi"><b>+13.42%</b><span>2025 全年</span></div><div class="kpi"><b>+10.72%</b><span>2026 至 09.14</span></div></div>
+        <p class="src">买入价 1.000（2024.10.04）→ 1.291（2026.09.14）。2025 年费用比率 1.06%。</p></div>
+      <div class="card"><p class="chart-title">成立以来月末买入价</p><p class="chart-sub">2024.10 至 2026.09.14 · 官网数据</p><div id="c-index-dd"></div>
+        <p class="src">2025.02.17 前高 1.050 → 2025.04.07 最低 0.885，跌 15.7%；2025.07.17 收复，约 5 个月。同一时期 ELITE 跌 14.9%。</p></div>
+    </div>
+    <div class="note"><strong>成立以来年化 14% 含金量要打折。</strong>它 2024 年底成立，赶上的是一段上涨；ELITE 的 9.3% 则经历过疫情和 2022 年加息。同样叫成立以来年化，起点不同，不能直接比大小。</div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-h"><span class="num">4</span><div><h3>适合的人</h3></div></div>
+    <div class="fit">
+      <div class="card yes"><h4>比较适合</h4><ul><li>认同指数投资逻辑，不想押注选股</li><li>在意费用，打算放十年以上</li><li>接受它成立不久、记录还短</li></ul></div>
+      <div class="card no"><h4>不太适合</h4><ul><li>需要现金流的人（看 GAIF）</li><li>想要 SRS 投资的人（它只接受现金）</li><li>以为指数基金就是低风险的人：它和另外两只同属 Higher risk</li></ul></div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ================= COMPARE ================= -->
+<section class="panel cmp" id="p-cmp" role="tabpanel">
+<div class="wrap">
+  <div class="ph">
+    <div><p class="eyebrow">04 · Side by side</p><h2>三只放在一起看<small>同属 Higher risk，侧重点完全不同</small></h2>
+      <p>收益、成长、指数是三种不同的工具，不是三个档次。先确认自己要的是现金流还是增值，再看费用和历史。</p></div>
+    <div class="kpis">
+      <div class="kpi"><b>3 × Higher risk</b><span>AIA 官网风险分级，三只相同</span></div>
+      <div class="kpi"><b>仅 ELITE</b><span>可用 SRS 投资</span></div>
+      <div class="kpi"><b>仅 GAIF</b><span>按季派息，其余两只累积</span></div>
+      <div class="kpi"><b>1.00 至 1.50%</b><span>年度管理费区间</span></div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-h"><span class="num">1</span><div><h3>一张表看差异</h3></div></div>
+    <p class="hint">左右滑动查看完整表格 →</p>
+    <div class="tbl"><table><thead><tr><th>比较维度</th><th style="color:var(--gaif)">GAIF 收益</th><th style="color:var(--elite)">ELITE 成长</th><th style="color:var(--index)">INDEX 指数</th></tr></thead><tbody>
+      <tr><th>投资目标</th><td>定期收入 + 长期总回报</td><td>长期总回报</td><td>长期资本增值</td></tr>
+      <tr><th>主要资产</th><td>高收益债、可转债、股票、备兑期权</td><td>约 91% 全球股票 + 8.5% 债券</td><td>99% 股票 ETF（章程允许债券、商品）</td></tr>
+      <tr><th>管理方式</th><td>三只收益型底层基金</td><td>多经理主动管理 + 13.5% ETF</td><td>被动指数工具，管理人定比例</td></tr>
+      <tr><th>收益安排</th><td>拟按季派息，历史约 7%，不保证</td><td>累积于净值</td><td>累积于净值</td></tr>
+      <tr><th>年度管理费</th><td>1.50%</td><td>1.45%</td><td>1.00%</td></tr>
+      <tr><th>2025 年费用比率</th><td>1.74%</td><td>1.50%</td><td>1.06%</td></tr>
+      <tr><th>基金规模 2026.07</th><td>S$2,983M</td><td>S$2,982M</td><td>S$215M</td></tr>
+      <tr><th>成立</th><td>2023.10</td><td>2019.07</td><td>2024.10</td></tr>
+      <tr><th>资金来源</th><td>现金</td><td>现金 / SRS</td><td>现金</td></tr>
+      <tr><th>近 1 年（官网 09.14）</th><td class="pos">+8.33%</td><td class="pos">+12.31%</td><td class="pos">+16.62%</td></tr>
+      <tr><th>成立以来年化（官网 09.14）</th><td class="pos">+9.14%</td><td class="pos">+9.23%</td><td class="pos">+14.04%</td></tr>
+      <tr><th>2025 全年</th><td>+6.03%</td><td>+10.44%</td><td>+13.42%</td></tr>
+      <tr><th>2022 全年</th><td>尚未成立</td><td class="neg">-22.74%</td><td>尚未成立</td></tr>
+      <tr><th>成立以来最大回撤</th><td class="neg">-12.8%</td><td class="neg">-30.7%</td><td class="neg">-15.7%</td></tr>
+      <tr><th>本金保证</th><td>无</td><td>无</td><td>无</td></tr>
+    </tbody></table></div>
+    <p class="src">回报：AIA 官网 2026.09.14，新币、买入价对买入价、分红再投资，已扣基金管理费、未扣保单费用。最大回撤由小圆姐按官网每日买入价计算，GAIF 买入价已扣派出的分红，按价格算会偏深。三只成立时间不同，经历的市场不同，成立以来年化不宜直接比大小。</p>
+  </div>
+
+  <div class="sec">
+    <div class="sec-h"><span class="num">2</span><div><h3>三张图</h3><p>回报、费用、回撤</p></div></div>
+    <div class="grid2">
+      <div class="card"><p class="chart-title">近 1 年 与 成立以来年化</p><p class="chart-sub">官网 2026.09.14</p><div id="c-cmp-ret"></div></div>
+      <div class="card"><p class="chart-title">费用</p><p class="chart-sub">年度管理费 与 2025 年费用比率</p><div id="c-cmp-fee"></div></div>
+      <div class="card" style="grid-column:1/-1"><p class="chart-title">成立以来最大回撤</p><p class="chart-sub">按官网每日买入价计算。数字越小越好，但要看它经历过什么市场：ELITE 的 30.7% 发生在 2020 年疫情，另外两只成立时还没有经历过那种级别的下跌</p><div id="c-cmp-dd"></div></div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-h"><span class="num">3</span><div><h3>在 AIA 的基金光谱里，它们各在哪</h3><p>从追求增值到追求现金流</p></div></div>
+    <div class="spec">
+      <div style="--c:var(--elite)"><b>ELITE</b><span>成长，几乎不派息</span><span>Higher risk</span></div>
+      <div style="--c:var(--index)"><b>INDEX</b><span>成长，指数工具</span><span>Higher risk</span></div>
+      <div style="--c:#8BA08F"><b>GDIF</b><span>收益，约 5% 派息</span><span>Medium to High risk</span></div>
+      <div style="--c:var(--gaif)"><b>GAIF</b><span>收益，约 7% 派息</span><span>Higher risk</span></div>
+    </div>
+    <p class="src">GDIF 为 AIA Global Dynamic Income Fund，2020.09 成立，平均年化派息约 5%（2026.06），成立以来年化总回报 4.07%（Morningstar，2026.05.31）；本页不展开，仅用于定位。</p>
+  </div>
+
+  <div class="sec">
+    <div class="sec-h"><span class="num">4</span><div><h3>对号入座，也可以搭配</h3></div></div>
+    <div class="grid3">
+      <div class="card" style="border-top:3px solid var(--gaif)"><p class="k" style="color:var(--gaif)">如果你</p><h4>想要看得见的现金流</h4><p>希望每季有钱进账，能接受本金随市场上下，更在意波动小一点。</p><p style="margin-top:10px;font-weight:700;color:var(--gaif)">先看 GAIF</p></div>
+      <div class="card" style="border-top:3px solid var(--elite)"><p class="k" style="color:var(--elite)">如果你</p><h4>十年内不用这笔钱</h4><p>要的就是股票的长期增长，能接受某一年跌两成，或者有 SRS 闲钱。</p><p style="margin-top:10px;font-weight:700;color:var(--elite)">先看 ELITE</p></div>
+      <div class="card" style="border-top:3px solid var(--index)"><p class="k" style="color:var(--index)">如果你</p><h4>在意费用，也想分散</h4><p>认同指数逻辑，不想押注选股，接受它记录还短。</p><p style="margin-top:10px;font-weight:700;color:var(--index)">先看 INDEX</p></div>
+    </div>
+    <div class="grid2" style="margin-top:16px">
+      <div class="card tint"><h4>搭配思路一：核心 + 卫星</h4><p>核心用 ELITE 或 INDEX 做长期增值，卫星放一部分 GAIF 提供现金流。两边的美国科技龙头敞口会叠加，比例要有意识。</p></div>
+      <div class="card tint"><h4>搭配思路二：按时间切换</h4><p>离用钱还远时以 ELITE 或 INDEX 为主；临近提款前两三年，把一部分切到 GAIF，用派息替代卖出。</p></div>
+    </div>
+    <div class="note"><strong>不急着拿分红，选 ELITE 还是 GAIF 再投资？</strong>这是风险与策略的选择，不是身故能拿多少的选择。GAIF 的派息可能来自资本，再投资只是把这部分从净值转成单位，不会凭空增厚总回报；要纯积累、时间够长，ELITE 结构更简单。两者都是 ILP 子基金，身故赔付由保单条款决定，不因选了谁而改变。</div>
+  </div>
+
+  <div class="cta">
+    <div><h4>手里有现金、还在观望？</h4><p>另一页专门写给观望的人：持币的成本、分批投入、三只基金的历史回撤、拿到保单文件后该问的四个问题。</p></div>
+    <div style="display:flex;gap:10px;flex-wrap:wrap"><a class="btn btn-primary" href="/proposals/aia-funds-guide.html">观望必读 →</a><a class="btn btn-ghost" href="https://wa.me/6583750190?text=%E4%BD%A0%E5%A5%BD%E5%B0%8F%E5%9C%86%E5%A7%90%EF%BC%8C%E7%9C%8B%E5%AE%8C%E4%B8%89%E5%8F%AA%E6%98%8E%E6%98%9F%E5%9F%BA%E9%87%91%E4%B8%93%E9%A2%98%EF%BC%8C%E6%83%B3%E8%A6%81%E6%9C%80%E6%96%B0%E6%9C%88%E6%8A%A5%E5%92%8C%E4%BF%9D%E5%8D%95%E8%B4%B9%E7%94%A8%E8%A1%A8%E3%80%82" target="_blank" rel="noopener">WhatsApp 小圆姐</a></div>
+  </div>
+</div>
+</section>
+
+</main>
+
+<footer><div class="wrap">
+  <div class="disc"><strong>资料说明</strong><br>本页为新加坡小圆姐整理的中文阅读导引，并非 AIA 官方网页或针对个人的投资建议。GAIF、ELITE、INDEX 为本页使用的简称。三只基金均为 AIA 投资连结保单子基金，管理人为 AIA Investment Management Private Limited。基金层面数据取自各基金 2026 年 7 月月报（Morningstar 托管）及 AIA 官网 2026.09.14 估值；底层基金数据取自 Allianz Global Investors（2026.06.30 表现、2026.07.31 派息）、Franklin Templeton（2026.08.31）、AIA Investment Funds（2025.06.30 表现，2026.07.31 持仓）。最大回撤由小圆姐按官网每日买入价计算，非官方披露数字。部分定性描述参考 AIA 团队内部整理材料。<br><br><strong>投资风险</strong><br>基金单位价值及收入可升可跌，可能损失部分或全部本金。历史表现及分红不代表未来结果；本金、投资回报和分红均不保证。派息可能来自资本。购买前应阅读相关基金摘要、产品重点说明及所选保单计划的文件，理解投资风险、全部适用费用和退出安排。</div>
+  <div class="foot-b"><span>© 2026 新加坡小圆姐 · singaporeyuan.com</span><span>三只明星基金专题 · 整理日期 2026.09.16</span></div>
+</div></footer>
+
+<script>
+/* ============ data ============ */
+const D={
+ gaifAlloc:[["Allianz Income and Growth",39.22,"#B8862E"],["AIA Equity Income Fund",35.76,"#D6A94C"],["Franklin Income Fund",15.97,"#8C6B2F"],["ETF / 指数基金",8.85,"#C9BCA0"],["现金及衍生品",0.20,"#E3DCCB"]],
+ gaifShift:[["安联 Income & Growth",78,39.22],["AIA 股票入息",8,35.76],["富兰克林 Income",8,15.97],["ETF / 现金",6,9.05]],
+ gaifDiv:[["2024.03.15",0.03160,1.046,7.25,true],["2024.06.18",0.01930,1.066,7.24],["2024.09.16",0.01800,1.024,7.03],["2024.12.16",0.01900,1.082,7.02],["2025.03.17",0.01780,1.018,6.99],["2025.06.16",0.01755,0.998,7.03],["2025.09.15",0.01840,1.046,7.04],["2025.12.15",0.01875,1.056,7.10],["2026.03.16",0.01810,1.030,7.03],["2026.06.15",0.01900,1.0927,7.00]],
+ under:[
+  {name:"Allianz Income and Growth",mgr:"Allianz Global Investors · 实际操盘 Voya Investment Management",w:39.22,role:"高转速引擎 · 美股三明治",
+   strat:"三分之一美国高收益债、三分之一美国可转债、三分之一美国股票并卖出备兑看涨期权。七种收入来源：三类资产的票息或股息，三类资产的价差收益，加上期权权利金。",
+   alloc:[["美国高收益债",33.3,"#B8862E"],["美国可转债",33.3,"#D6A94C"],["美国股票 + 备兑期权",33.4,"#8C6B2F"]],allocNote:"目标等权配置，示意",
+   stats:[["7.85%","年化派息率 AM USD，2026.07.31"],["+14.72%","近 1 年，AT USD，2026.06.30"],["+11.77%","3 年年化"],["+8.14%","成立以来年化，2011.11 起"],["US$58.2B","基金规模，2026.06.30"],["1.50%","基金总费用（All-in）"]],
+   top:[["NVIDIA",2.80],["Apple",2.50],["Amazon",1.70],["Microsoft",1.50],["Alphabet 可转债 6.25% 2029",1.30]],topDate:"2026.07.31，GAIF 月报",
+   src:"Allianz Global Investors 新加坡 placemat，表现截至 2026.06.30，派息率截至 2026.07.31。美元计价，新币投资者承担汇率波动。"},
+  {name:"AIA Equity Income Fund",mgr:"AIA Investment Management · 次委托 Wellington Management",w:35.76,role:"高转速引擎 · 股票 + 备兑期权",
+   strat:"投资全球股票，至少一半仓位在股票及股票相关证券，同时卖出个股看涨期权收取权利金。以股息加权利金创造收入，其次才是资本增长。",
+   alloc:[["美国",61.7,"#B8862E"],["日本",6.2,"#D6A94C"],["中国",4.5,"#8C6B2F"],["英国",3.2,"#C9BCA0"],["其他",24.4,"#E3DCCB"]],allocNote:"国家配置，2025.06.30",
+   stats:[["+13.46%","近 1 年，IDQ 类，2025.06.30"],["+15.87%","3 年年化"],["+10.94%","成立以来年化，2020.09 起"],["MSCI ACWI","参考指数"],["23.2%","信息科技占比，最大行业"],["16.1%","金融占比"]],
+   top:[["NVIDIA",4.66],["Apple",4.04],["Microsoft",3.61],["Alphabet",3.56],["Amazon",2.90]],topDate:"2026.07.31，GAIF 月报",
+   src:"AIA Investment Funds 月报 2025 年 6 月（机构类，最新公开版本）；前五大持仓取自 GAIF 2026 年 7 月月报。"},
+  {name:"Franklin Income Fund",mgr:"Franklin Templeton · Franklin Advisers, Inc.",w:15.97,role:"压舱石 · 全球股债混合",
+   strat:"1999 年成立的老牌收益基金。美国股票加长短期债券，最多四分之一非美资产，可持有低至 CCC 评级的高收益债；目标是在保留增值空间的同时最大化派息。421 只持仓。",
+   alloc:[["固定收益",44.45,"#8C6B2F"],["可转债 / 股票挂钩票据",29.04,"#D6A94C"],["股票",23.08,"#B8862E"],["现金",3.44,"#E3DCCB"]],allocNote:"资产配置，2026.08.31",
+   stats:[["8.02%","派息率 A(Mdis) USD，2026.08.31"],["+11.27%","近 1 年"],["+9.51%","3 年年化"],["+5.46%","成立以来年化，1999.07 起"],["US$14.0B","基金规模"],["6.44%","债券部分到期收益率"]],
+   top:[["美国国债",5.80],["Community Health Systems 债券",2.39],["Alphabet",2.11],["Amazon",2.08],["Microsoft",1.93]],topDate:"2026.08.31，Franklin 月报",
+   src:"Franklin Templeton 月报，A (Mdis) USD 类，截至 2026.08.31。固定收益中高收益公司债 19.35%、投资级 13.94%、美国国债 6.86%、MBS 4.30%。"}
+ ],
+ eliteMgr:[["BlackRock",23.71,"#1F4E79"],["Wellington",20.50,"#2E6DA4"],["GMO",19.39,"#4C8BC9"],["Capital Group",18.92,"#7FB0DE"],["被动 ETF",13.54,"#B7CFE6"],["M&G",3.43,"#8C9BAA"],["货币市场 / 现金",0.51,"#D9DEE4"]],
+ eliteAsset:[["股票",90.99,"#1F4E79"],["固定收益",8.50,"#7FB0DE"],["现金及衍生品",0.51,"#D9DEE4"]],
+ eliteRegion:[["美洲",72.44,"#1F4E79"],["欧洲",17.92,"#4C8BC9"],["亚洲",8.72,"#7FB0DE"],["大洋洲",0.77,"#B7CFE6"],["非洲",0.15,"#D9DEE4"]],
+ eliteSector:[["信息科技",28.60],["金融",15.29],["医疗保健",14.81],["工业",11.13],["非必需消费",9.31],["通信服务",6.64],["必需消费",5.26],["其他",3.49],["能源",2.91],["原材料",2.56]],
+ eliteTop:{a:[["Microsoft",4.55],["TSMC",2.78],["Meta",2.42],["NVIDIA",1.89],["Broadcom",1.81]],b:[["Microsoft",5.37],["TSMC",3.20],["Meta",2.06],["Alphabet",1.90],["Visa",1.85]]},
+ eliteCal:[["2021",15.19],["2022",-22.74],["2023",14.89],["2024",15.74],["2025",10.44],["2026 至今",7.62]],
+ engines:[
+  {mgr:"BlackRock",w:"23.7%",fund:"AIA Global Systematic Equity Fund 20.1% + AIA Diversified Fixed Income Fund 3.6%",where:"全球股票 + 部分固定收益",how:["数据驱动，每天扫描全市场数千家公司","越赚钱、越受关注，就买入更多"],case:"Microsoft：云服务与 AI 变现能力持续被模型捕捉到盈利改善信号（前五大持仓，2026.07）",chain:["企业越来越赚钱","市场重新认可","股价上涨","ELITE 分享成长"]},
+  {mgr:"Wellington Management",w:"20.5%",fund:"AIA New Multinationals Fund",where:"全球优质龙头股票",how:["只选护城河深、难被复制的生意","长期持有，让复利慢慢滚大"],case:"TSMC：全球晶圆代工护城河深厚，资本回报率长期跑赢资本成本（前五大持仓，2026.07）",chain:["找到持续赚钱的生意","长期持有","现金流累积","复利回报"]},
+  {mgr:"GMO",w:"19.4%",fund:"AIA World Quality Equity Fund",where:"全球高质量股票",how:["只认真实利润，不追市场热点","严选高质量企业，纪律优先"],case:"Alphabet：盈利质量高、现金流稳健，Google Cloud 属于 AI 基础设施核心层（前五大持仓，2026.07）",chain:["筛选真正赚钱的企业","剔除过度炒作","等市场回归理性","价值被重新定价"]},
+  {mgr:"Capital Group",w:"18.9%",fund:"AIA Global Select Equity Fund",where:"全球成长型股票",how:["不追概念炒作，只看利润能否兑现","覆盖芯片、云计算到应用的全链条"],case:"Broadcom：为云厂商设计定制 AI 芯片，直接受益于 AI 基础设施资本开支（2026.05 前五大）",chain:["AI 落地应用","企业效率与营收提升","利润持续兑现","ELITE 分享红利"]},
+  {mgr:"被动 ETF / 指数基金",w:"13.5%",fund:"ETFs / Index Funds",where:"全球主要市场与行业",how:["低成本覆盖主要市场","作为主动经理之外的补位仓位"],case:"当某个市场没有合适的主动经理，或需要快速调整地区权重时使用",chain:["低成本","快速调仓","覆盖广"]},
+  {mgr:"M&G",w:"3.4%",fund:"AIA Global Corporate Bond Fund",where:"全球投资级企业债",how:["只选财务稳健、信用质量高的债券","利息不划算时，就换更安全的债"],case:"ELITE 债券部分约九成为投资级，AAA 到 BBB- 分布均衡，防守优先",chain:["精选优质企业债","持续评估风险回报","动态调整结构","稳定利息收入"]},
+  {mgr:"Baillie Gifford",w:"≈0%",fund:"AIA Global Quality Growth Fund（管理人库内，当前权重接近零）",where:"全球颠覆式成长股",how:["专找能改变行业格局的企业","趋势没被市场发现前，提前上车"],case:"Zoom：疫情前就已建仓的经典案例（历史案例，非当期持仓）。它的打法是高度集中押注少数美股科技成长股，市场从押注 AI 基建转向均衡时最先被减仓，是逐步下降而非一夜清零",chain:["提前发现趋势","早期建仓","陪伴穿越周期","分享指数级成长"]}
+ ],
+ indexEtf:[["Vanguard S&P 500",18.58,"美国"],["iShares Core S&P 500",18.55,"美国"],["SPDR S&P 500",18.54,"美国"],["Amundi Stoxx Europe 600",12.91,"欧洲"],["iShares Core MSCI Asia ex Japan",8.30,"亚洲"],["Xtrackers S&P 500",4.34,"美国"],["Xtrackers MSCI Japan",4.24,"日本"],["iShares MSCI Canada",2.93,"加拿大"],["SPDR MSCI ACWI",2.74,"全球"],["iShares NASDAQ 100",1.67,"美国"],["iShares EM Asia",1.55,"亚洲"],["SPDR Europe Industrials",1.50,"欧洲"],["iShares MSCI Australia",1.38,"澳洲"],["SPDR Straits Times Index",1.05,"新加坡"],["Nomura TOPIX Banks",0.58,"日本"]],
+ navElite:[["19/07",0.998],["19/08",0.992],["19/09",0.982],["19/10",0.994],["19/11",1.026],["19/12",1.037],["20/01",1.065],["20/02",1.004],["20/03",0.904],["20/04",1],["20/05",1.059],["20/06",1.098],["20/07",1.167],["20/08",1.232],["20/09",1.216],["20/10",1.189],["20/11",1.294],["20/12",1.336],["21/01",1.365],["21/02",1.383],["21/03",1.398],["21/04",1.446],["21/05",1.446],["21/06",1.489],["21/07",1.505],["21/08",1.525],["21/09",1.482],["21/10",1.531],["21/11",1.519],["21/12",1.539],["22/01",1.437],["22/02",1.388],["22/03",1.427],["22/04",1.332],["22/05",1.295],["22/06",1.188],["22/07",1.261],["22/08",1.228],["22/09",1.141],["22/10",1.18],["22/11",1.226],["22/12",1.189],["23/01",1.228],["23/02",1.228],["23/03",1.246],["23/04",1.261],["23/05",1.264],["23/06",1.324],["23/07",1.331],["23/08",1.323],["23/09",1.275],["23/10",1.229],["23/11",1.305],["23/12",1.366],["24/01",1.4],["24/02",1.443],["24/03",1.494],["24/04",1.463],["24/05",1.486],["24/06",1.522],["24/07",1.517],["24/08",1.515],["24/09",1.519],["24/10",1.524],["24/11",1.587],["24/12",1.581],["25/01",1.633],["25/02",1.587],["25/03",1.508],["25/04",1.481],["25/05",1.555],["25/06",1.591],["25/07",1.634],["25/08",1.646],["25/09",1.688],["25/10",1.736],["25/11",1.733],["25/12",1.746],["26/01",1.755],["26/02",1.756],["26/03",1.66],["26/04",1.762],["26/05",1.844],["26/06",1.875],["26/07",1.872],["26/08",1.912],["26/09",1.879]],
+ navGaif:[["23/10",0.977],["23/11",1.008],["23/12",1.035],["24/01",1.056],["24/02",1.079],["24/03",1.07],["24/04",1.058],["24/05",1.065],["24/06",1.07],["24/07",1.06],["24/08",1.044],["24/09",1.025],["24/10",1.049],["24/11",1.089],["24/12",1.072],["25/01",1.094],["25/02",1.069],["25/03",1.011],["25/04",0.984],["25/05",1.008],["25/06",1.011],["25/07",1.046],["25/08",1.047],["25/09",1.051],["25/10",1.08],["25/11",1.079],["25/12",1.06],["26/01",1.06],["26/02",1.063],["26/03",1.016],["26/04",1.069],["26/05",1.106],["26/06",1.093],["26/07",1.075],["26/08",1.084],["26/09",1.073]],
+ navIndex:[["24/10",0.987],["24/11",1.029],["24/12",1.028],["25/01",1.049],["25/02",1.021],["25/03",0.978],["25/04",0.956],["25/05",1],["25/06",1.033],["25/07",1.073],["25/08",1.082],["25/09",1.123],["25/10",1.172],["25/11",1.161],["25/12",1.166],["26/01",1.176],["26/02",1.19],["26/03",1.114],["26/04",1.223],["26/05",1.292],["26/06",1.299],["26/07",1.279],["26/08",1.318],["26/09",1.291]],
+ cmpRet:[["GAIF",8.33,9.14,"#B8862E"],["ELITE",12.31,9.23,"#1F4E79"],["INDEX",16.62,14.04,"#1F7A6B"]],
+ cmpFee:[["GAIF",1.50,1.74,"#B8862E"],["ELITE",1.45,1.50,"#1F4E79"],["INDEX",1.00,1.06,"#1F7A6B"]],
+ cmpDd:[["GAIF",12.8,"2024.12 → 2025.04","#B8862E"],["ELITE",30.7,"2020.02 → 2020.03","#1F4E79"],["INDEX",15.7,"2025.02 → 2025.04","#1F7A6B"]]
+};
+
+/* ============ chart helpers (inline SVG) ============ */
+const NS="http://www.w3.org/2000/svg";
+function el(t,a,txt){const e=document.createElementNS(NS,t);for(const k in a)e.setAttribute(k,a[k]);if(txt!=null)e.textContent=txt;return e}
+function fmt(n,d=1){return (+n).toFixed(d)}
+function donut(id,data,opts={}){const host=document.getElementById(id);if(!host)return;const size=180,r=70,cx=size/2,cy=size/2,sw=26;const svg=el("svg",{viewBox:`0 0 ${size} ${size}`,width:size,height:size,role:"img","aria-label":data.map(d=>d[0]+" "+d[1]+"%").join("，")});
+ const total=data.reduce((s,d)=>s+d[1],0);let a=-Math.PI/2;data.forEach(d=>{const ang=d[1]/total*2*Math.PI;const x1=cx+r*Math.cos(a),y1=cy+r*Math.sin(a);a+=ang;const x2=cx+r*Math.cos(a),y2=cy+r*Math.sin(a);const large=ang>Math.PI?1:0;const p=el("path",{d:`M${x1} ${y1}A${r} ${r} 0 ${large} 1 ${x2} ${y2}`,fill:"none",stroke:d[2],"stroke-width":sw});p.appendChild(el("title",{},`${d[0]} ${fmt(d[1],2)}%`));svg.appendChild(p)});
+ svg.appendChild(el("text",{x:cx,y:cy-4,"text-anchor":"middle","font-size":"22","font-weight":"800",fill:"#0A1C2E"},opts.center||fmt(data[0][1],0)+"%"));
+ svg.appendChild(el("text",{x:cx,y:cy+16,"text-anchor":"middle","font-size":"10.5",fill:"#51687D"},opts.sub||data[0][0]));
+ const wrap=document.createElement("div");wrap.style.cssText="display:flex;gap:18px;align-items:center;flex-wrap:wrap";wrap.appendChild(svg);
+ const lg=document.createElement("div");lg.className="legend";lg.style.cssText="flex-direction:column;gap:6px;margin:0";data.forEach(d=>{const s=document.createElement("span");s.innerHTML=`<i style="background:${d[2]}"></i>${d[0]} <b style="margin-left:auto">${fmt(d[1],d[1]<1?2:1)}%</b>`;s.style.justifyContent="space-between";s.style.minWidth="200px";lg.appendChild(s)});wrap.appendChild(lg);host.innerHTML="";host.appendChild(wrap)}
+function hbars(id,data,opts={}){const host=document.getElementById(id);if(!host)return;const max=opts.max||Math.max(...data.map(d=>d[1]));const box=document.createElement("div");box.className="bar-list";data.forEach(d=>{const row=document.createElement("div");row.className="bar-row";row.innerHTML=`<span>${d[0]}</span><div class="tr"><span style="width:${d[1]/max*100}%;background:${d[2]||"var(--acc)"}"></span></div><b>${fmt(d[1],opts.dec??1)}%</b>`;box.appendChild(row)});host.innerHTML="";host.appendChild(box)}
+function vbars(id,data,opts={}){const host=document.getElementById(id);if(!host)return;const W=520,H=240,pl=40,pr=10,pt=24,pb=30,pw=W-pl-pr,ph=H-pt-pb;const vals=data.map(d=>d[1]);let maxV=Math.max(...vals,0),minV=Math.min(...vals,0);maxV=Math.ceil(maxV/10)*10||10;minV=Math.floor(minV/10)*10;const y=v=>pt+ph*(maxV-v)/(maxV-minV);const svg=el("svg",{viewBox:`0 0 ${W} ${H}`,width:"100%",role:"img","aria-label":data.map(d=>d[0]+" "+d[1]+"%").join("，")});
+ for(let v=minV;v<=maxV;v+=10){svg.appendChild(el("line",{x1:pl,x2:W-pr,y1:y(v),y2:y(v),stroke:v===0?"#93A9BE":"#E9E2D2","stroke-width":v===0?1.5:1}));svg.appendChild(el("text",{x:pl-6,y:y(v)+4,"text-anchor":"end","font-size":"11",fill:"#51687D"},v+"%"))}
+ const gw=pw/data.length,bw=Math.min(gw*.55,64);data.forEach((d,i)=>{const x=pl+i*gw+(gw-bw)/2,up=d[1]>=0,c=up?(d[2]||"#1F4E79"):"#B5503C";svg.appendChild(el("rect",{x,y:up?y(d[1]):y(0),width:bw,height:Math.abs(y(d[1])-y(0)),rx:5,fill:c}));svg.appendChild(el("text",{x:x+bw/2,y:up?y(d[1])-6:y(d[1])+14,"text-anchor":"middle","font-size":"12","font-weight":"800",fill:c},(up?"+":"")+fmt(d[1],1)+"%"));svg.appendChild(el("text",{x:x+bw/2,y:H-8,"text-anchor":"middle","font-size":"11.5",fill:"#0A1C2E","font-weight":"700"},d[0]))});host.innerHTML="";host.appendChild(svg)}
+function grouped(id,data,labels,opts={}){const host=document.getElementById(id);if(!host)return;const W=520,H=230,pl=38,pr=10,pt=24,pb=30,pw=W-pl-pr,ph=H-pt-pb;const max=opts.max||Math.ceil(Math.max(...data.flatMap(d=>[d[1],d[2]]))/5)*5;const y=v=>pt+ph*(1-v/max);const svg=el("svg",{viewBox:`0 0 ${W} ${H}`,width:"100%",role:"img","aria-label":data.map(d=>`${d[0]} ${labels[0]} ${d[1]}% ${labels[1]} ${d[2]}%`).join("，")});
+ const step=opts.step||5;for(let v=0;v<=max;v+=step){svg.appendChild(el("line",{x1:pl,x2:W-pr,y1:y(v),y2:y(v),stroke:v===0?"#93A9BE":"#E9E2D2"}));svg.appendChild(el("text",{x:pl-6,y:y(v)+4,"text-anchor":"end","font-size":"11",fill:"#51687D"},v+"%"))}
+ const gw=pw/data.length,bw=Math.min(gw*.28,44);data.forEach((d,i)=>{const x0=pl+i*gw+gw/2;[[d[1],x0-bw-3,d[3]],[d[2],x0+3,d[3]+"88"]].forEach(([v,x,c])=>{svg.appendChild(el("rect",{x,y:y(v),width:bw,height:y(0)-y(v),rx:4,fill:c}));svg.appendChild(el("text",{x:x+bw/2,y:y(v)-5,"text-anchor":"middle","font-size":"11.5","font-weight":"800",fill:"#0A1C2E"},fmt(v,opts.dec??2)+"%"))});svg.appendChild(el("text",{x:x0,y:H-8,"text-anchor":"middle","font-size":"12",fill:"#0A1C2E","font-weight":"700"},d[0]))});
+ host.innerHTML="";host.appendChild(svg);const lg=document.createElement("div");lg.className="legend";lg.innerHTML=`<span><i style="background:#0A1C2E"></i>${labels[0]}</span><span><i style="background:#0A1C2E88"></i>${labels[1]}</span>`;host.appendChild(lg)}
+function line(id,pts,opts={}){const host=document.getElementById(id);if(!host)return;const W=opts.W||520,H=opts.H||230,pl=44,pr=14,pt=22,pb=34,pw=W-pl-pr,ph=H-pt-pb;const vals=pts.map(p=>p[1]);let minV=opts.min??Math.min(...vals),maxV=opts.max??Math.max(...vals);const pad=opts.pad??((maxV-minV)*.15||1);minV-=pad;maxV+=pad;const x=i=>pl+i*(pw/(pts.length-1)),y=v=>pt+ph*(maxV-v)/(maxV-minV);const svg=el("svg",{viewBox:`0 0 ${W} ${H}`,width:"100%",role:"img","aria-label":pts.map(p=>p[0]+" "+p[1]).join("，")});
+ const ticks=opts.ticks||4;for(let i=0;i<=ticks;i++){const v=minV+(maxV-minV)*i/ticks;svg.appendChild(el("line",{x1:pl,x2:W-pr,y1:y(v),y2:y(v),stroke:"#E9E2D2"}));svg.appendChild(el("text",{x:pl-6,y:y(v)+4,"text-anchor":"end","font-size":"11",fill:"#51687D"},fmt(v,opts.dec??2)+(opts.unit||"")))}
+ if(opts.ref!=null){svg.appendChild(el("line",{x1:pl,x2:W-pr,y1:y(opts.ref),y2:y(opts.ref),stroke:"#B5503C","stroke-dasharray":"5 4","stroke-width":1.5}));svg.appendChild(el("text",{x:opts.dots===false?W-pr:pl+6,y:y(opts.ref)-5,"text-anchor":opts.dots===false?"end":"start","font-size":"11",fill:"#B5503C","font-weight":"700"},opts.refLabel||""))}
+ const d=pts.map((p,i)=>(i?"L":"M")+x(i)+" "+y(p[1])).join(" ");svg.appendChild(el("path",{d,fill:"none",stroke:opts.color||"#B8862E","stroke-width":2.5,"stroke-linejoin":"round"}));
+ pts.forEach((p,i)=>{if(opts.dots!==false){svg.appendChild(el("circle",{cx:x(i),cy:y(p[1]),r:4.5,fill:opts.color||"#B8862E",stroke:"#FCF9F2","stroke-width":2}));svg.appendChild(el("text",{x:x(i),y:y(p[1])-10,"text-anchor":"middle","font-size":"10.5","font-weight":"800",fill:"#0A1C2E"},fmt(p[1],opts.dec??2)+(opts.unit||"")))}else{const c=el("circle",{cx:x(i),cy:y(p[1]),r:3,fill:opts.color||"#B8862E",opacity:0});c.appendChild(el("title",{},p[0]+"  "+p[1]));svg.appendChild(c)}if(i%(opts.every||1)===0)svg.appendChild(el("text",{x:x(i),y:H-10,"text-anchor":"middle","font-size":"10",fill:"#51687D"},p[0]))});
+ if(opts.dots===false){const last=pts[pts.length-1],first=pts[0];[[0,first],[pts.length-1,last]].forEach(([i,p])=>{svg.appendChild(el("circle",{cx:x(i),cy:y(p[1]),r:4.5,fill:opts.color||"#B8862E",stroke:"#FCF9F2","stroke-width":2}));svg.appendChild(el("text",{x:x(i),y:y(p[1])-10,"text-anchor":i===0?"start":"end","font-size":"11","font-weight":"800",fill:"#0A1C2E"},fmt(p[1],3)))});
+  let mi=0,ma=0;pts.forEach((p,i)=>{if(p[1]<pts[mi][1])mi=i;if(p[1]>pts[ma][1])ma=i});[mi,ma].forEach(i=>{if(i<=1||i>=pts.length-3)return;const p=pts[i];svg.appendChild(el("circle",{cx:x(i),cy:y(p[1]),r:4,fill:i===mi?"#B5503C":"#1F7A6B",stroke:"#FCF9F2","stroke-width":2}));svg.appendChild(el("text",{x:x(i),y:i===mi?y(p[1])+16:y(p[1])-9,"text-anchor":"middle","font-size":"10.5","font-weight":"800",fill:i===mi?"#B5503C":"#1F7A6B"},p[0]+" "+fmt(p[1],3)))})}host.innerHTML="";host.appendChild(svg)}
+
+/* ============ GAIF ============ */
+donut("c-gaif-alloc",D.gaifAlloc,{center:"3 只",sub:"底层基金"});
+(function(){const host=document.getElementById("c-gaif-shift");const box=document.createElement("div");box.className="bar-list";D.gaifShift.forEach(d=>{const row=document.createElement("div");row.style.cssText="display:grid;grid-template-columns:130px 1fr;gap:10px;align-items:center;font-size:13px";row.innerHTML=`<span>${d[0]}</span><div><div style="display:flex;align-items:center;gap:8px;margin-bottom:4px"><div class="tr" style="flex:1;height:8px;background:#E9E2D2;border-radius:6px;overflow:hidden"><span style="display:block;height:100%;width:${d[1]/80*100}%;background:#C9BCA0"></span></div><b style="width:52px;text-align:right;color:#51687D">${d[1]}%</b></div><div style="display:flex;align-items:center;gap:8px"><div class="tr" style="flex:1;height:8px;background:#E9E2D2;border-radius:6px;overflow:hidden"><span style="display:block;height:100%;width:${d[2]/80*100}%;background:var(--gaif)"></span></div><b style="width:52px;text-align:right">${fmt(d[2],1)}%</b></div></div>`;box.appendChild(row)});host.appendChild(box);const lg=document.createElement("div");lg.className="legend";lg.innerHTML='<span><i style="background:#C9BCA0"></i>2024 初期（示意）</span><span><i style="background:var(--gaif)"></i>2026.07.31 月报</span>';host.appendChild(lg)})();
+
+(function(){const host=document.getElementById("gaif-underlying");D.under.forEach((u,i)=>{const det=document.createElement("details");det.className="eng";det.open=i===0;const allocId="u-alloc-"+i;det.innerHTML=`<summary><span class="w">${fmt(u.w,1)}%<small>GAIF 权重</small></span><span class="t">${u.name}<small>${u.mgr} · ${u.role}</small></span><span class="plus">+</span></summary>
+ <div class="body"><div><h5>策略</h5><p>${u.strat}</p><h5 style="margin-top:14px">关键数字</h5><div class="kpis" style="grid-template-columns:1fr 1fr 1fr;gap:8px">${u.stats.map(s=>`<div class="kpi" style="padding:10px 12px"><b style="font-size:17px">${s[0]}</b><span style="font-size:11.5px">${s[1]}</span></div>`).join("")}</div></div>
+ <div><h5>配置</h5><div id="${allocId}"></div><p class="src" style="margin-top:4px">${u.allocNote}</p><h5 style="margin-top:14px">前五大持仓 · ${u.topDate}</h5><div class="bar-list" style="gap:6px">${u.top.map(t=>`<div class="bar-row" style="grid-template-columns:1fr 90px 46px"><span style="font-size:13px">${t[0]}</span><div class="tr"><span style="width:${t[1]/6*100}%"></span></div><b>${fmt(t[1],2)}%</b></div>`).join("")}</div><p class="src">${u.src}</p></div></div>`;host.appendChild(det);donut(allocId,u.alloc,{center:fmt(u.alloc[0][1],0)+"%",sub:u.alloc[0][0]})})})();
+
+(function(){const rows=D.gaifDiv;const tb=document.querySelector("#gaif-div-table tbody");rows.forEach(r=>{const tr=document.createElement("tr");const per=Math.round(r[1]/r[2]*10000);tr.innerHTML=`<td>${r[0]}${r[4]?" ①":""}</td><td>S$${r[1].toFixed(5)}</td><td${r[2]<1?' class="neg"':''}>${r[2]}</td><td>${r[3].toFixed(2)}%</td><td class="pos">约 S$${per}</td>`;tb.appendChild(tr)});
+ const notes={rate:"年化派息率 = 每单位派息 ÷ 除息日净值 × 4。十次派息的平均为 7.07%，区间 6.99% 到 7.25%。首期覆盖约 5 个月，按 5 个月折算。",amt:"每单位派息是你实际到手的钱：持有份数 × 每单位派息。首期 S$0.0316 覆盖约 5 个月，其后每季 S$0.0176 到 S$0.0193。",nav:"除息日净值是基金那天每份值多少钱。十次里只有 2025.06 一次跌破面值 1.000，2026.06 的 1.0927 为成立以来新高。",mnav:"月末买入价，2023.10 至 2026.09.14。每次派息后买入价会相应下调，所以它不是总回报曲线；三年里绕着面值上下波动，同时每季把 7% 年化的现金派出去。"};
+ function draw(v){if(v==="mnav"){line("c-gaif-div",D.navGaif,{min:0.94,max:1.12,pad:0,dec:2,ref:1,refLabel:"面值 1.000",ticks:3,every:4,dots:false});document.getElementById("gaif-div-note").textContent=notes[v];return}const pts=rows.map(r=>[r[0].slice(2,7).replace(".","/"),v==="rate"?r[3]:v==="amt"?r[1]:r[2]]);if(v==="rate")line("c-gaif-div",pts,{min:6.4,max:7.6,pad:0,dec:2,unit:"%",ref:7,refLabel:"7% 目标",ticks:4});else if(v==="amt")line("c-gaif-div",pts,{min:0.015,max:0.035,pad:0,dec:3,ticks:4});else line("c-gaif-div",pts,{min:0.96,max:1.12,pad:0,dec:2,ref:1,refLabel:"面值 1.000",ticks:4});document.getElementById("gaif-div-note").textContent=notes[v]}
+ draw("rate");document.querySelectorAll('.seg [data-v]').forEach(b=>b.addEventListener("click",()=>{document.querySelectorAll('.seg [data-v]').forEach(x=>x.setAttribute("aria-pressed","false"));b.setAttribute("aria-pressed","true");draw(b.dataset.v)}))})();
+
+(function(){const r=document.getElementById("calc-range");const f=n=>"S$"+Math.round(n).toLocaleString("en-SG");function up(){const v=+r.value;document.getElementById("calc-amt").textContent=f(v);document.getElementById("calc-q").textContent=f(v*0.07/4);document.getElementById("calc-y").textContent=f(v*0.07)}r.addEventListener("input",up);up()})();
+
+/* ============ ELITE ============ */
+donut("c-elite-mgr",D.eliteMgr,{center:"6 家",sub:"管理人 + ETF"});
+donut("c-elite-asset",D.eliteAsset,{center:"91%",sub:"股票"});
+donut("c-elite-region",D.eliteRegion,{center:"72%",sub:"美洲"});
+hbars("c-elite-sector",D.eliteSector.map(d=>[d[0],d[1],"var(--elite)"]),{dec:1});
+(function(){const host=document.getElementById("c-elite-top5");const a=D.eliteTop.a,b=D.eliteTop.b;const box=document.createElement("div");box.style.cssText="display:grid;grid-template-columns:1fr 1fr;gap:24px;font-size:14px";const col=(title,list,other,c)=>{const names=other.map(x=>x[0]);return `<div><div style="font-size:11.5px;letter-spacing:1.5px;font-weight:700;color:var(--slate);margin-bottom:6px">${title}</div>${list.map((t,i)=>{const isNew=!names.includes(t[0]);return `<div style="display:flex;justify-content:space-between;padding:6px 8px;border-radius:8px;margin-bottom:4px;background:${isNew?"var(--soft)":"transparent"}"><span style="white-space:nowrap"><b style="color:var(--acc);margin-right:8px">${i+1}</b>${t[0]}${isNew?`<em style="font-style:normal;font-size:11px;color:var(--ember);margin-left:8px;background:#F6E3DF;padding:1px 6px;border-radius:4px">${c}</em>`:""}</span><b>${fmt(t[1],2)}%</b></div>`}).join("")}<div style="font-size:12px;color:var(--slate);padding:4px 8px">合计 ${fmt(list.reduce((s,t)=>s+t[1],0),2)}%</div></div>`};box.innerHTML=col("2025.07",a,b,"已跌出")+col("2026.07",b,a,"新进");host.appendChild(box)})();
+vbars("c-elite-cal",D.eliteCal.map(d=>[d[0],d[1],"#1F4E79"]));
+(function(){const host=document.getElementById("elite-engines");D.engines.forEach((e,i)=>{const det=document.createElement("details");det.className="eng";det.open=i===0;det.innerHTML=`<summary><span class="w">${e.w}<small>权重 2026.07</small></span><span class="t">${e.mgr}<small>${e.fund}</small></span><span class="plus">+</span></summary><div class="body"><div><h5>钱投向哪里</h5><p>${e.where}</p><h5 style="margin-top:12px">怎么赚钱</h5><p>1. ${e.how[0]}<br>2. ${e.how[1]}</p></div><div><h5>真实案例</h5><p>${e.case}</p><h5 style="margin-top:12px">赚钱逻辑</h5><div class="chain">${e.chain.map((c,j)=>`<span>${c}</span>${j<e.chain.length-1?'<span style="background:none;color:var(--mist);padding:4px 0">→</span>':''}`).join("")}</div></div></div>`;host.appendChild(det)})})();
+
+/* ============ INDEX ============ */
+(function(){const reg={};D.indexEtf.forEach(e=>{reg[e[2]]=(reg[e[2]]||0)+e[1]});reg["现金"]=1.01;const cols={"美国":"#1F7A6B","欧洲":"#3C9A8A","亚洲":"#6FB8A9","日本":"#9BD0C4","加拿大":"#B9DED5","全球":"#C9BCA0","澳洲":"#D8D0BE","新加坡":"#E3DCCB","现金":"#EEE9DD"};const data=Object.entries(reg).sort((a,b)=>b[1]-a[1]).map(([k,v])=>[k,+v.toFixed(2),cols[k]||"#ccc"]);donut("c-index-region",data,{center:fmt(reg["美国"],0)+"%",sub:"美国"});
+ hbars("c-index-etf",D.indexEtf.map(e=>[e[0],e[1],e[2]==="美国"?"var(--index)":"#9BD0C4"]),{dec:2,max:20})})();
+line("c-index-dd",D.navIndex,{min:0.9,max:1.35,pad:0,dec:2,ref:1,refLabel:"发行价 1.000",color:"#1F7A6B",ticks:3,every:3,dots:false});
+line("c-elite-nav",D.navElite,{W:1040,H:300,min:0.8,max:2.0,pad:0,dec:1,ref:1,refLabel:"发行价 1.000",color:"#1F4E79",ticks:4,every:12,dots:false});
+
+/* ============ COMPARE ============ */
+grouped("c-cmp-ret",D.cmpRet,["近 1 年","成立以来年化"],{max:20,step:5,dec:2});
+grouped("c-cmp-fee",D.cmpFee,["管理费","2025 费用比率"],{max:2,step:0.5,dec:2});
+hbars("c-cmp-dd",D.cmpDd.map(d=>[d[0]+"  "+d[2],d[1],d[3]]),{max:35,dec:1});document.querySelectorAll("#c-cmp-dd .bar-row").forEach(r=>r.style.gridTemplateColumns="220px 1fr 56px");
+
+/* ============ tabs ============ */
+(function(){const tabs=[...document.querySelectorAll(".tab")],panels={gaif:"p-gaif",elite:"p-elite",index:"p-index",cmp:"p-cmp"};function show(k,push){if(!panels[k])k="gaif";tabs.forEach(t=>t.setAttribute("aria-selected",t.dataset.p===k?"true":"false"));Object.entries(panels).forEach(([kk,id])=>document.getElementById(id).classList.toggle("on",kk===k));if(push){history.replaceState(null,"","#"+k)}const top=document.querySelector(".tabs-shell").getBoundingClientRect().top+scrollY;if(push&&scrollY>top)scrollTo({top,behavior:"smooth"})}tabs.forEach(t=>t.addEventListener("click",()=>show(t.dataset.p,true)));show((location.hash||"#gaif").slice(1),false);addEventListener("hashchange",()=>show(location.hash.slice(1),false))})();
+</script>
+
+<script>
+(function(){
+  var HASH="5647cdb5254a24d3a184f9136af8416c1ffb1050fd57c67dc133e588b73fc706", KEY="sy_star_funds_auth";
+  function sha(s){return crypto.subtle.digest("SHA-256",new TextEncoder().encode(s)).then(function(b){return Array.prototype.map.call(new Uint8Array(b),function(x){return x.toString(16).padStart(2,"0")}).join("")})}
+  try{ if(sessionStorage.getItem(KEY)===HASH){ document.body.classList.remove("locked"); } }catch(e){}
+  var eye=document.getElementById("pwEye"), inp=document.getElementById("pwInput");
+  if(eye){ eye.addEventListener("click",function(){var show=inp.type==="password";inp.type=show?"text":"password";eye.setAttribute("aria-pressed",show?"true":"false");eye.setAttribute("aria-label",show?(gateLang==="zh"?"隐藏密码":"Hide password"):(gateLang==="zh"?"显示密码":"Show password"));inp.focus();}); }
+  var gateLang="zh";
+  function applyLang(L){gateLang=L;var g=document.getElementById("pwGate");if(!g)return;g.querySelectorAll("[data-zh]").forEach(function(el){var t=el.getAttribute(L==="zh"?"data-zh":"data-en");if(t==null)return;if(el.tagName==="INPUT") el.placeholder=t; else el.innerHTML=t;});var b=document.getElementById("pwLang");if(b) b.textContent = L==="zh" ? "EN" : "中文";if(eye) eye.setAttribute("aria-label", inp.type==="password" ? (L==="zh"?"显示密码":"Show password") : (L==="zh"?"隐藏密码":"Hide password"));}
+  try{var saved=localStorage.getItem("sy_gate_lang");applyLang(saved || ((navigator.language||"").toLowerCase().indexOf("zh")===0 ? "zh" : "en"));}catch(e){ applyLang("zh"); }
+  var lb=document.getElementById("pwLang");
+  if(lb) lb.addEventListener("click",function(){var L = gateLang==="zh" ? "en" : "zh";applyLang(L);try{ localStorage.setItem("sy_gate_lang",L); }catch(e){}});
+  document.getElementById("pwForm").addEventListener("submit",function(e){e.preventDefault();var v=document.getElementById("pwInput").value.trim();sha(v).then(function(h){if(h===HASH){try{sessionStorage.setItem(KEY,HASH);}catch(e){}document.body.classList.remove("locked");window.scrollTo(0,0);}else{document.getElementById("pwErr").classList.add("show");document.getElementById("pwInput").select();}});});
+})();
+</script>
+<div id="wm" aria-hidden="true"></div>
+<script>
+(function(){var text="新加坡小圆姐　　　singaporeyuan　　　仅供阅读参考　　　　　　";var wm=document.getElementById('wm');var unit=text.repeat(6);for(var i=0;i<16;i++){var d=document.createElement('div');d.className='row';d.textContent=unit;d.style.top=(i*110-120)+'px';d.style.left='-200px';wm.appendChild(d);}})();
+</script>
+</body>
+</html>
