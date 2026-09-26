@@ -33,8 +33,10 @@ export const config = {
   //
   // clients:客户专属页(/clients/vip/xxx)。这类页面自带一层独立访问密码,
   // 直接把干净地址发给客户即可;再叠一层站点密码只会让客户输两次
+  //
+  // birthday:给老公的生日惊喜页,页面自带暗号门,不叠站点密码
   matcher: [
-    '/((?!password|api/password|api/gaobufan|_next|gaobufan|clients|.*\\..*).*)',
+    '/((?!password|api/password|api/gaobufan|_next|gaobufan|clients|birthday|.*\\..*).*)',
     '/proposals/piw-vs-platg-case.html',
   ],
 };

@@ -11,6 +11,10 @@ const nextConfig = {
       { source: '/gaobufan/english', destination: '/gaobufan/english.html' },
       { source: '/gaobufan/english/', destination: '/gaobufan/english.html' },
 
+      // 老公的生日惊喜页:静态单文件 public/birthday.html
+      { source: '/birthday', destination: '/birthday.html' },
+      { source: '/birthday/', destination: '/birthday.html' },
+
       // 客户专属页:静态单文件放在 public/clients/**,这里把干净地址映射过去
       // (public/ 不做目录索引,不加这条会 404);页面自带独立访问密码
       { source: '/clients/:path*', destination: '/clients/:path*.html' },
