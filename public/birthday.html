@@ -6,6 +6,11 @@
 <meta name="robots" content="noindex, nofollow">
 <title>老公生日快乐</title>
 <style>
+  @font-face {
+    font-family: "LXGW WenKai";
+    src: url("/birthday-wenkai.woff2") format("woff2");
+    font-display: swap;
+  }
   :root {
     --bg1: #1d1033;
     --bg2: #3b1747;
@@ -41,7 +46,7 @@
   section.on { display: flex; animation: fadeUp .7s ease both; }
   @keyframes fadeUp { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
 
-  .hand { font-family: "Kaiti SC", "STKaiti", "KaiTi", "Songti SC", serif; font-weight: 400; }
+  .hand { font-family: "LXGW WenKai", "Kaiti SC", "STKaiti", "KaiTi", serif; font-weight: 400; }
   h1 { font-size: 40px; margin: 8px 0 6px; color: var(--gold-soft); letter-spacing: 2px; }
   h2 { font-size: 30px; margin: 4px 0 8px; color: var(--gold-soft); }
   p.sub { color: var(--muted); margin: 0 0 22px; line-height: 1.7; font-size: 15px; }
@@ -120,7 +125,10 @@
   .left { display: inline-block; margin: 0 0 18px; padding: 6px 16px; border-radius: 999px; background: var(--card); border: 1px solid var(--line); font-size: 14px; }
   .left b { color: var(--gold); font-size: 18px; margin: 0 2px; }
   .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; width: 100%; perspective: 900px; }
-  .cell { position: relative; aspect-ratio: 3 / 4; cursor: pointer; }
+  .cell { position: relative; aspect-ratio: 3 / 4; cursor: pointer; transition: transform .45s cubic-bezier(.5,0,.3,1); }
+  .grid.locked .cell { pointer-events: none; }
+  .cell.jiggle { animation: jiggle .16s infinite alternate; }
+  @keyframes jiggle { from { margin-top: -3px; } to { margin-top: 3px; } }
   .cell .inner { position: absolute; inset: 0; transition: transform .7s cubic-bezier(.3,1.4,.5,1); transform-style: preserve-3d; }
   .cell.flipped .inner { transform: rotateY(180deg); }
   .face { position: absolute; inset: 0; border-radius: 14px; backface-visibility: hidden; -webkit-backface-visibility: hidden; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 8px; }
@@ -158,14 +166,14 @@
   .letter {
     width: 100%; text-align: left; background: var(--cream); color: var(--ink);
     border-radius: 18px; padding: 26px 22px 28px; box-shadow: 0 20px 50px rgba(0,0,0,.35);
-    font-family: "Songti SC", "STSong", "SimSun", serif; font-size: 16px; line-height: 1.95;
+    font-family: "LXGW WenKai", "Kaiti SC", "STKaiti", "KaiTi", serif; font-size: 17px; line-height: 1.95;
     background-image: repeating-linear-gradient(transparent 0 30px, rgba(160,110,80,.12) 30px 31px);
     background-position: 0 14px;
     min-height: 420px;
   }
-  .letter .to { font-family: "Kaiti SC", "STKaiti", "KaiTi", "Songti SC", serif; font-size: 26px; color: #b0405e; margin-bottom: 6px; }
-  .letter .sign { font-family: "Kaiti SC", "STKaiti", "KaiTi", "Songti SC", serif; font-size: 24px; color: #b0405e; text-align: right; margin-top: 14px; }
-  .letter .date { text-align: right; font-size: 13px; color: #a07a5a; }
+  .letter .to { font-family: "LXGW WenKai", "Kaiti SC", "STKaiti", "KaiTi", serif; font-size: 26px; color: #b0405e; margin-bottom: 6px; }
+  .letter .sign { font-family: "LXGW WenKai", "Kaiti SC", "STKaiti", "KaiTi", serif; font-size: 24px; color: #b0405e; text-align: right; margin-top: 14px; }
+  .letter .date { text-align: right; font-size: 15px; color: #a07a5a; }
   .letter p { margin: 0 0 12px; white-space: pre-line; }
   .cursor { display: inline-block; width: 2px; height: 1.1em; background: #b0405e; vertical-align: -3px; margin-left: 2px; animation: blink .9s infinite; }
   @keyframes blink { 50% { opacity: 0; } }
@@ -218,9 +226,10 @@
   <!-- 3. 抽奖 -->
   <section id="s-lottery">
     <h2 class="hand">生日特权大抽奖</h2>
-    <p class="sub">九张牌里藏着九份礼物<br>你有 3 次机会，翻到什么就是什么！</p>
-    <div class="left" id="leftBox">剩余 <b id="leftN">3</b> 次</div>
+    <p class="sub" id="lotSub">先看看今天的九份大礼 👀<br>看好了，老婆要洗牌啦！</p>
+    <div class="left" id="leftBox" style="display:none">剩余 <b id="leftN">3</b> 次</div>
     <div class="grid" id="grid"></div>
+    <div id="shuffleWrap" style="margin-top:20px"><button class="btn" id="shuffleBtn">看好了，洗牌！🔀</button></div>
     <div class="coupons" id="coupons">
       <div class="tip">📸 截图保存，凭图找老婆兑换</div>
       <div class="shot" id="shot">
@@ -266,12 +275,13 @@
   var CANDLES = 5;
   var LETTER = [
     "生日快乐！🎂",
-    "掰着手指算一算，这已经是我陪你过的第 15 个生日了。\n一年又一年，从恋爱时见面前的小紧张，到现在把日子过成了柴米油盐里的踏实和温暖——每一年的今天，我都在你身边，这是我心里最骄傲的一件事。",
-    "谢谢你一直以来的陪伴。\n谢谢你在我累的时候接住我的情绪，在我任性的时候包容我的小脾气，在每一个平平常常的日子里，让我觉得被爱，也被偏爱。\n和你在一起，再普通的一天，也会闪闪发光。",
-    "新的一岁，愿你身体健康，万事顺心；\n想做的事都能去做，想去的地方都能抵达；\n愿你永远保有少年的勇气，也永远有人为你留一盏灯。",
-    "最后，我有一个小小的心愿：\n往后的每一个生日，都要和我一起过哟。\n第 16 个、第 20 个、第 50 个……我都要在。"
+    "掰着手指算一算，这已经是我陪你过的第 15 个生日了。\n一年又一年，从刚恋爱时的害羞紧张，到现在一家四口的柴米油盐，每一年的今天，我都在你身边🥰",
+    "谢谢你一直以来的陪伴。谢谢你让我在普普通通的日子里总是充满欢乐的笑声。一个个平平常常的日子里，每每想起你，都觉得被偏爱着好幸福。和你在一起，不再羡慕任何人。",
+    "新的一岁，愿你身体健康，万事顺心，许的愿望早日实现哦！",
+    "往后的每一个生日，都要和我一起过哟。"
   ];
-  var STORE_KEY = "bday2026-draws";
+  var LETTER_DATE = "2026年9月27日";
+  var STORE_KEY = "bday2026-draws-v2";
 
   // ======================== 工具 ========================
   function $(id) { return document.getElementById(id); }
@@ -471,23 +481,77 @@
 
   // ======================== 3. 抽奖 ========================
   // state: { order: [九格对应的奖品下标], picked: [已翻开的格子], at: 抽奖时间 }
+  // 已经抽过(picked 非空)就直接恢复结果;否则先亮出九张牌,洗牌后再抽
   var state = load();
-  if (!state || !state.order || state.order.length !== PRIZES.length) {
-    var order = PRIZES.map(function (_, i) { return i; });
-    for (var i = order.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)); var t = order[i]; order[i] = order[j]; order[j] = t; }
-    state = { order: order, picked: [] };
-  }
+  var drawn = state && state.order && state.order.length === PRIZES.length && state.picked && state.picked.length > 0;
+  if (!drawn) state = { order: PRIZES.map(function (_, i) { return i; }), picked: [] };
   var grid = $("grid");
   var backs = ["🎁", "🎀", "💝", "🎈", "🧧", "🎁", "💌", "🎀", "🎈"];
+  function frontHtml(p) { return '<div class="em">' + PRIZES[p].em + '</div><div class="nm">' + PRIZES[p].nm + '</div>'; }
   state.order.forEach(function (p, idx) {
     var cell = document.createElement("div");
     cell.className = "cell";
     cell.innerHTML =
       '<div class="inner"><div class="face back">' + backs[idx] + '</div>' +
-      '<div class="face front"><div class="em">' + PRIZES[p].em + '</div><div class="nm">' + PRIZES[p].nm + '</div></div></div>';
+      '<div class="face front">' + frontHtml(p) + '</div></div>';
     cell.onclick = function () { pick(idx, cell); };
     grid.appendChild(cell);
   });
+  function startDrawing() {
+    $("shuffleWrap").style.display = "none";
+    $("leftBox").style.display = "";
+    $("lotSub").innerHTML = "九份大礼已经打乱啦<br>你有 3 次机会，翻到什么就是什么！";
+    grid.classList.remove("locked");
+  }
+  if (drawn) {
+    startDrawing();
+  } else {
+    // 亮牌阶段:九张全部正面朝上,不能点
+    grid.classList.add("locked");
+    Array.prototype.forEach.call(grid.children, function (c) { c.classList.add("flipped"); });
+  }
+  function shuffle() {
+    var order = PRIZES.map(function (_, i) { return i; });
+    for (var i = order.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)); var t = order[i]; order[i] = order[j]; order[j] = t; }
+    return order;
+  }
+  $("shuffleBtn").onclick = function () {
+    audio();
+    $("shuffleWrap").style.display = "none";
+    $("lotSub").innerHTML = "洗牌中…… 眼睛别眨 👀";
+    var cells = Array.prototype.slice.call(grid.children);
+    // 1) 全部翻到背面
+    cells.forEach(function (c) { c.classList.remove("flipped"); });
+    setTimeout(function () {
+      // 2) 背面朝上时换好新顺序,正面内容看不到
+      state.order = shuffle();
+      state.picked = [];
+      cells.forEach(function (c, idx) { c.querySelector(".face.front").innerHTML = frontHtml(state.order[idx]); });
+      // 3) 收到中间抖一抖,来回洗三轮,再散开
+      var g = grid.getBoundingClientRect(), cx = g.left + g.width / 2, cy = g.top + g.height / 2;
+      var rounds = 0;
+      (function gather() {
+        cells.forEach(function (c) {
+          c.style.transform = "";
+          var r = c.getBoundingClientRect();
+          var dx = cx - (r.left + r.width / 2), dy = cy - (r.top + r.height / 2);
+          c.style.transform = "translate(" + (dx + (Math.random() - .5) * 30) + "px," + (dy + (Math.random() - .5) * 30) + "px) rotate(" + ((Math.random() - .5) * 30) + "deg)";
+          c.classList.add("jiggle");
+        });
+        ding();
+        setTimeout(function () {
+          cells.forEach(function (c) {
+            c.style.transform = "translate(" + ((Math.random() - .5) * 60) + "px," + ((Math.random() - .5) * 60) + "px)";
+          });
+          setTimeout(function () {
+            if (++rounds < 3) return gather();
+            cells.forEach(function (c) { c.style.transform = ""; c.classList.remove("jiggle"); });
+            setTimeout(startDrawing, 450);
+          }, 420);
+        }, 520);
+      })();
+    }, 750);
+  };
   function refresh() {
     var left = DRAWS - state.picked.length;
     $("leftN").textContent = left;
@@ -503,6 +567,7 @@
     }
   }
   function pick(idx, cell) {
+    if (grid.classList.contains("locked")) return;
     if (state.picked.length >= DRAWS || state.picked.indexOf(idx) >= 0) return;
     audio();
     state.picked.push(idx);
@@ -547,7 +612,7 @@
       String(d.getHours()).padStart(2, "0") + ":" + String(d.getMinutes()).padStart(2, "0") + " · 老公生日专属";
     $("coupons").classList.add("show");
   }
-  refresh();
+  if (drawn) refresh();
   $("toLetter").onclick = function () { show("s-letter"); typeLetter(); };
 
   // ======================== 4. 生日信 ========================
@@ -562,8 +627,7 @@
       if (pi >= LETTER.length) {
         cursor.remove();
         $("sign").classList.remove("hidden");
-        var d = new Date();
-        $("date").textContent = d.getFullYear() + " 年 " + (d.getMonth() + 1) + " 月 " + d.getDate() + " 日";
+        $("date").textContent = LETTER_DATE;
         $("date").classList.remove("hidden");
         $("end").classList.add("show");
         confetti(120);
