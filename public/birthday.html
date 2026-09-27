@@ -238,7 +238,8 @@
         <div id="couponList"></div>
         <div class="foot">持券人：亲爱的老公 · 签发人：老婆 ❤️<br>有效期：永久有效，老婆说到做到</div>
       </div>
-      <div style="margin-top:22px"><button class="btn" id="toLetter">还有一封信给你 💌</button></div>
+      <div style="margin-top:18px"><button class="btn ghost" id="redrawBtn">不满意？重新抽 🔄</button></div>
+      <div style="margin-top:14px"><button class="btn" id="toLetter">满意了，还有一封信给你 💌</button></div>
     </div>
   </section>
 
@@ -393,12 +394,11 @@
     b.gain.gain.linearRampToValueAtTime(0, a.currentTime + .6);
     setTimeout(function () { b.gain.disconnect(); }, 800);
   }
-  var cakeDone = false;
+  var muted = false;
+  function resumeBg() { if (!muted) startBg(); }
   $("musicBtn").onclick = function () {
-    if (bg) { stopBg(); $("musicBtn").textContent = "🔇"; return; }
-    if (!cakeDone && $("s-cake").classList.contains("on")) { startBg(); return; }
-    $("musicBtn").textContent = "🎵";
-    playSong(); confetti(80);
+    if (bg) { muted = true; stopBg(); $("musicBtn").textContent = "🔇"; return; }
+    muted = false; startBg();
   };
 
   // ======================== 1. 暗号 ========================
@@ -416,7 +416,7 @@
     if (ok) {
       $("lockIcon").textContent = "🔓";
       audio();
-      setTimeout(function () { show("s-cake"); startBg(); $("musicBtn").classList.add("show"); }, 450);
+      setTimeout(function () { show("s-cake"); resumeBg(); $("musicBtn").classList.add("show"); }, 450);
     } else {
       $("hint").textContent = hints[Math.min(wrong, hints.length - 1)];
       wrong++;
@@ -452,15 +452,13 @@
   function allOut() {
     stopMic();
     stopBg();
-    cakeDone = true;
     $("micBtn").style.display = "none";
     $("micNote").style.display = "none";
     $("meter").classList.remove("show");
     $("cakeSub").innerHTML = "愿望已经收到啦 ✨<br>一定会实现的";
     setTimeout(function () {
       confetti(220);
-      playSong();
-      $("musicBtn").classList.add("show");
+      resumeBg();
       $("afterCake").style.display = "";
     }, 500);
   }
@@ -652,6 +650,25 @@
   if (drawn) refresh();
   $("toLetter").onclick = function () { show("s-letter"); typeLetter(); };
 
+  // 重新抽:清掉结果,重新亮牌 → 洗牌 → 抽 3 次,抽到满意为止
+  $("redrawBtn").onclick = function () {
+    audio();
+    state = { order: PRIZES.map(function (_, i) { return i; }), picked: [] };
+    save(state);
+    $("coupons").classList.remove("show");
+    $("leftBox").innerHTML = '剩余 <b id="leftN">3</b> 次';
+    $("leftBox").style.display = "none";
+    $("lotSub").innerHTML = "好，再来一次！先看看九份大礼 👀<br>看好了，老婆要洗牌啦！";
+    $("shuffleWrap").style.display = "";
+    grid.classList.add("locked");
+    Array.prototype.forEach.call(grid.children, function (c, idx) {
+      c.classList.remove("dim");
+      c.querySelector(".face.front").innerHTML = frontHtml(idx);
+      c.classList.add("flipped");
+    });
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
   // ======================== 4. 生日信 ========================
   var typed = false;
   function typeLetter() {
@@ -680,7 +697,7 @@
     }
     step();
   }
-  $("replay").onclick = function () { buildCandles(); cakeDone = false; show("s-cake"); startBg(); };
+  $("replay").onclick = function () { buildCandles(); show("s-cake"); resumeBg(); };
   $("seeCoupons").onclick = function () { show("s-lottery"); setTimeout(function () { $("coupons").scrollIntoView({ behavior: "smooth" }); }, 100); };
 })();
 </script>
