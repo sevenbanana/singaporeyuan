@@ -340,32 +340,66 @@
     if (actx && actx.state === "suspended") actx.resume();
     return actx;
   }
-  function playSong() {
-    var a = audio(); if (!a) return;
-    var N = { G4: 392, A4: 440, B4: 493.9, C5: 523.3, D5: 587.3, E5: 659.3, F5: 698.5, G5: 784 };
+  // 生日歌:八音盒音色 + 简单低音伴奏;dest 为输出节点(默认直接出声),返回整首时长(秒)
+  function playSong(dest) {
+    var a = audio(); if (!a) return 0;
+    dest = dest || a.destination;
+    var N = { F2: 87.3, G2: 98, C3: 130.8, G4: 392, A4: 440, B4: 493.9, C5: 523.3, D5: 587.3, E5: 659.3, F5: 698.5, G5: 784 };
     var tune = [
-      ["G4", .75], ["G4", .25], ["A4", 1], ["G4", 1], ["C5", 1], ["B4", 2],
-      ["G4", .75], ["G4", .25], ["A4", 1], ["G4", 1], ["D5", 1], ["C5", 2],
-      ["G4", .75], ["G4", .25], ["G5", 1], ["E5", 1], ["C5", 1], ["B4", 1], ["A4", 2],
-      ["F5", .75], ["F5", .25], ["E5", 1], ["C5", 1], ["D5", 1], ["C5", 2.5]
+      ["G4", .75], ["G4", .25], ["A4", 1, "C3"], ["G4", 1], ["C5", 1], ["B4", 2, "G2"],
+      ["G4", .75], ["G4", .25], ["A4", 1, "G2"], ["G4", 1], ["D5", 1], ["C5", 2, "C3"],
+      ["G4", .75], ["G4", .25], ["G5", 1, "C3"], ["E5", 1], ["C5", 1], ["B4", 1, "F2"], ["A4", 2],
+      ["F5", .75], ["F5", .25], ["E5", 1, "C3"], ["C5", 1], ["D5", 1, "G2"], ["C5", 2.5, "C3"]
     ];
-    var beat = .36, t = a.currentTime + .1;
+    var beat = .36, t0 = a.currentTime + .1, t = t0;
+    function tone(f, type, start, len, vol) {
+      var o = a.createOscillator(), g = a.createGain();
+      o.type = type; o.frequency.value = f;
+      g.gain.setValueAtTime(0, start);
+      g.gain.linearRampToValueAtTime(vol, start + .02);
+      g.gain.exponentialRampToValueAtTime(.001, start + len);
+      o.connect(g); g.connect(dest);
+      o.start(start); o.stop(start + len + .05);
+    }
     tune.forEach(function (n) {
       var dur = n[1] * beat;
-      [1, 2].forEach(function (h, k) {
-        var o = a.createOscillator(), g = a.createGain();
-        o.type = k ? "sine" : "triangle";
-        o.frequency.value = N[n[0]] * h;
-        g.gain.setValueAtTime(0, t);
-        g.gain.linearRampToValueAtTime(k ? .04 : .18, t + .02);
-        g.gain.exponentialRampToValueAtTime(.001, t + dur * .95);
-        o.connect(g); g.connect(a.destination);
-        o.start(t); o.stop(t + dur);
-      });
+      tone(N[n[0]], "triangle", t, dur * .95, .18);
+      tone(N[n[0]] * 2, "sine", t, dur * .6, .04);
+      if (n[2]) tone(N[n[2]], "sine", t, Math.max(dur, beat * 2), .12);
       t += dur;
     });
+    return t - t0 + .1;
   }
-  $("musicBtn").onclick = function () { playSong(); confetti(80); };
+
+  // 许愿页背景音乐:循环播放,开始吹蜡烛时淡出(免得音乐被麦克风当成吹气)
+  var bg = null;
+  function startBg() {
+    var a = audio(); if (!a || bg) return;
+    var gain = a.createGain(); gain.gain.value = .8; gain.connect(a.destination);
+    bg = { gain: gain, timer: 0 };
+    (function loop() {
+      if (!bg || bg.gain !== gain) return;
+      var len = playSong(gain);
+      bg.timer = setTimeout(loop, len * 1000 + 1200);
+    })();
+    $("musicBtn").textContent = "🎵";
+  }
+  function stopBg() {
+    if (!bg) return;
+    var a = audio(), b = bg; bg = null;
+    clearTimeout(b.timer);
+    b.gain.gain.cancelScheduledValues(a.currentTime);
+    b.gain.gain.setValueAtTime(b.gain.gain.value, a.currentTime);
+    b.gain.gain.linearRampToValueAtTime(0, a.currentTime + .6);
+    setTimeout(function () { b.gain.disconnect(); }, 800);
+  }
+  var cakeDone = false;
+  $("musicBtn").onclick = function () {
+    if (bg) { stopBg(); $("musicBtn").textContent = "🔇"; return; }
+    if (!cakeDone && $("s-cake").classList.contains("on")) { startBg(); return; }
+    $("musicBtn").textContent = "🎵";
+    playSong(); confetti(80);
+  };
 
   // ======================== 1. 暗号 ========================
   var wrong = 0;
@@ -382,7 +416,7 @@
     if (ok) {
       $("lockIcon").textContent = "🔓";
       audio();
-      setTimeout(function () { show("s-cake"); }, 450);
+      setTimeout(function () { show("s-cake"); startBg(); $("musicBtn").classList.add("show"); }, 450);
     } else {
       $("hint").textContent = hints[Math.min(wrong, hints.length - 1)];
       wrong++;
@@ -417,6 +451,8 @@
   }
   function allOut() {
     stopMic();
+    stopBg();
+    cakeDone = true;
     $("micBtn").style.display = "none";
     $("micNote").style.display = "none";
     $("meter").classList.remove("show");
@@ -433,6 +469,7 @@
     if (stream) { stream.getTracks().forEach(function (t) { t.stop(); }); stream = null; }
   }
   $("micBtn").onclick = function () {
+    stopBg();
     var a = audio();
     if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia || !a) {
       $("micNote").innerHTML = "这个浏览器用不了麦克风<br>直接点火苗把蜡烛吹灭吧 👆";
@@ -643,7 +680,7 @@
     }
     step();
   }
-  $("replay").onclick = function () { buildCandles(); show("s-cake"); };
+  $("replay").onclick = function () { buildCandles(); cakeDone = false; show("s-cake"); startBg(); };
   $("seeCoupons").onclick = function () { show("s-lottery"); setTimeout(function () { $("coupons").scrollIntoView({ behavior: "smooth" }); }, 100); };
 })();
 </script>
