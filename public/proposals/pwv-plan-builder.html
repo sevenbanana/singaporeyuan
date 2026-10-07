@@ -144,7 +144,8 @@ details.adv summary{cursor:pointer;font-size:13px;font-weight:700;color:var(--go
 .divbox .yrs b{display:block;font-size:15px;font-weight:800;color:var(--navy)}
 .divbox .yrs .last b{color:var(--gold-deep)}
 
-.s-foot{display:grid;grid-template-columns:auto 1fr;gap:28px;align-items:end;margin-top:24px}
+.s-foot{display:grid;gap:14px;align-items:end;margin-top:24px}
+.s-foot>div:last-child{grid-column:2/-1}
 .maker{display:flex;gap:12px;align-items:center}
 .maker img{width:84px;height:84px;border-radius:8px;background:#fff;padding:4px;border:1px solid var(--line)}
 .maker p{font-size:13px;color:var(--ink);line-height:1.7}
@@ -551,7 +552,7 @@ function render(d){
         ${msHtml}
       </div>
     </div>
-    <div class="s-foot">
+    <div class="s-foot" style="grid-template-columns:2.3fr repeat(${c.ms.length},1fr)">
       <div class="maker">
         <img src="/wechat-qr.png" alt="微信二维码">
         <p><b>@新加坡小圆姐 制作</b><br>微信：singaporeyuan<br>电话：8375 0190</p>
