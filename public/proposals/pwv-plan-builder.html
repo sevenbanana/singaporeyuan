@@ -108,8 +108,8 @@ details.adv summary{cursor:pointer;font-size:13px;font-weight:700;color:var(--go
 .strip .mute{color:var(--muted)}
 
 .tl{position:relative;margin-top:26px}
-.tl .axis{position:absolute;left:0;right:14px;top:47px;height:2px;background:linear-gradient(90deg,#E2D3B3,#D9C59C)}
-.tl .axis::after{content:"";position:absolute;right:-14px;top:-6px;border-left:14px solid #D9C59C;border-top:7px solid transparent;border-bottom:7px solid transparent}
+.tl .axis{position:absolute;left:0;right:0;top:47px;height:2px;background:linear-gradient(90deg,#E2D3B3,#D9C59C)}
+.dotrow .heart{width:26px;height:26px;filter:drop-shadow(0 0 0 var(--paper));background:var(--paper);border-radius:50%;padding:1px}
 .cols{position:relative;display:grid;gap:14px}
 .col{display:flex;flex-direction:column;align-items:center;text-align:center}
 .topv{height:36px;font-size:20px;font-weight:800;color:var(--gold-deep);white-space:nowrap;display:flex;align-items:flex-end}
@@ -493,7 +493,7 @@ function render(d){
   const msHtml = c.ms.map(m => `
     <div class="col">
       <div class="topv num">${money(m.top)}</div>
-      <div class="dotrow"><div class="dot on"></div></div>
+      <div class="dotrow">${m.death?'<svg class="heart" viewBox="0 0 24 24" fill="#C0392B"><path d="M12 21s-7.5-4.6-9.6-9.2C.9 8.4 3 4.5 6.7 4.5c2.2 0 3.6 1.2 4.3 2.4.7-1.2 2.1-2.4 4.3-2.4 3.7 0 5.8 3.9 4.3 7.3C19.5 16.4 12 21 12 21z"/></svg>':'<div class="dot on"></div>'}</div>
       <div class="age num">${m.age}</div>
       <div class="agesub">${m.n===8?"第8年":""}</div>
       ${m.death
@@ -528,7 +528,8 @@ function render(d){
       <div>
         ${wbLine}<br>
         <span class="g">7-8%</span> 稳定分红，按季度领取<br>
-        保单生效立刻开始领取季度分红
+        保单生效立刻开始领取季度分红<br>
+        从第${t}年起，每年分红达到 <span class="g num">${money(c.divs[t-1])}</span>（${money(c.divs[t-1]/12)}/月）
       </div>
       <div>
         <span class="h">第8年起：</span><br>
@@ -560,6 +561,8 @@ function render(d){
         <p class="notes">* 假设除了分红，没有其他现金价值提取。以上为演示：假设基金 0 增长、分红率 ${pct(d.rate)} 不变，分红非保证；Welcome Bonus 按 2026 Q4 促销档位；具体以 AIA 正式产品资料及 BI 为准。</p>
       </div>
     </div>`;
+  const cols = $("sheet").querySelector(".cols"), last = cols.lastElementChild;
+  $("sheet").querySelector(".axis").style.right = (cols.offsetWidth - last.offsetLeft - last.offsetWidth/2) + "px";
   fitSheet();
 }
 function fitSheet(){
