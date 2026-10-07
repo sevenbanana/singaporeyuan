@@ -475,7 +475,7 @@ function render(d){
   const yrs = new Set([1, t]);
   c.tier.y.forEach((v,i)=>{ if(v>0) yrs.add(i+1); });
   const ticks = [...yrs].sort((a,b)=>a-b);
-  const pos = i => ticks.length===1 ? 12 : 8 + i * (72 / (ticks.length-1));
+  const pos = i => 8 + (ticks[i]-1) * 18;   // 按年份等距，每年 18%
   const tickHtml = ticks.map((n,i)=>{
     const b = c.tier.y[n-1] || 0;
     return `<div class="tick" style="left:${pos(i)}%">
