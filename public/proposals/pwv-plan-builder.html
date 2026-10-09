@@ -19,11 +19,11 @@
 body{background:var(--paper);color:var(--ink);font-family:var(--font);font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased}
 .num{font-variant-numeric:tabular-nums}
 button,input{font-family:inherit}
-.wrap{max-width:1040px;margin:0 auto;padding:40px 32px}
+.wrap{max-width:1040px;margin:0 auto;padding:60px 32px 40px}
 
 /* ---------- 密码门 ---------- */
 body.locked{overflow:hidden}
-body.locked>*:not(#pwGate){visibility:hidden}
+body.locked>*:not(#pwGate):not(.lang){visibility:hidden}
 #pwGate{position:fixed;inset:0;z-index:99;display:none;align-items:center;justify-content:center;background:var(--paper);padding:20px}
 body.locked #pwGate{display:flex}
 .pw-card{width:100%;max-width:420px;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:36px 32px;box-shadow:0 20px 60px -30px rgba(19,40,107,.35)}
@@ -179,6 +179,10 @@ details.adv summary{cursor:pointer;font-size:13px;font-weight:700;color:var(--go
 .site-foot .legal{margin-top:36px;padding-top:22px;border-top:1px solid rgba(184,134,43,.2);font-size:12px;line-height:1.7;color:#7a7264}
 .site-foot .legal p+p{margin-top:10px}
 
+.lang{position:fixed;top:14px;right:16px;z-index:120;display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);background:var(--card);color:var(--navy);border-radius:999px;padding:6px 14px;font-size:13px;font-weight:700;cursor:pointer;box-shadow:var(--shadow)}
+.lang:hover{border-color:var(--gold);color:var(--gold-deep)}
+.lang svg{width:15px;height:15px}
+@media print{.lang{display:none}}
 [hidden]{display:none!important}
 @media (max-width:760px){
   .wrap{padding:26px 16px}
@@ -199,75 +203,76 @@ details.adv summary{cursor:pointer;font-size:13px;font-weight:700;color:var(--go
 </style>
 </head>
 <body class="locked">
+<button type="button" class="lang" id="langBtn" aria-label="切换语言 Switch language"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.7 3.8 5.7 3.8 9s-1.3 6.3-3.8 9c-2.5-2.7-3.8-5.7-3.8-9S9.5 5.7 12 3z"/></svg><span id="langTxt">EN</span></button>
 
 <div id="pwGate">
   <form class="pw-card" id="pwForm">
-    <span class="pw-chip"><img src="/avatar-round.png" alt="">新加坡小圆姐 · 专属方案</span>
-    <h2>PWV 基金定投方案</h2>
-    <p>为保护客户资料，请输入访问密码。</p>
-    <input id="pwInput" type="password" autocomplete="off" placeholder="输入密码">
-    <div class="pw-err" id="pwErr">密码不正确，再试一次，或者找小圆姐要密码。</div>
-    <button type="submit" id="pwSubmit">查看方案</button>
+    <span class="pw-chip"><img src="/avatar-round.png" alt=""><span data-en="Yuan Yuan SG · Your plan">新加坡小圆姐 · 专属方案</span></span>
+    <h2 data-en="PWV Investment Plan">PWV 基金定投方案</h2>
+    <p data-en="To protect client privacy, please enter the access password.">为保护客户资料，请输入访问密码。</p>
+    <input id="pwInput" type="password" autocomplete="off" placeholder="输入密码" data-en-ph="Enter password">
+    <div class="pw-err" id="pwErr" data-en="Incorrect password. Please try again or ask Yuan Yuan for it.">密码不正确，再试一次，或者找小圆姐要密码。</div>
+    <button type="submit" id="pwSubmit" data-en="View plan">查看方案</button>
   </form>
 </div>
 
 <!-- 第一页：输入 -->
 <section id="pageInput" class="wrap">
   <header class="hero">
-    <h1>PWV 方案生成器<br><span>填好资料，一键出方案图</span></h1>
-    <p>Welcome Bonus 按 2026 Q4 PWV 2.0 / 3.0 促销档位自动计算；假设基金 0 增长，分红率可调。</p>
-    <div class="steps"><span class="on">1 客户资料</span><span>2 方案预览</span></div>
+    <h1 data-en="PWV Plan Builder<br><span>Fill in the details, get the plan in one click</span>">PWV 方案生成器<br><span>填好资料，一键出方案图</span></h1>
+    <p data-en="Welcome Bonus is calculated from the 2026 Q4 PWV 2.0 / 3.0 promotion tiers. Assumes 0% fund growth; the dividend rate is adjustable.">Welcome Bonus 按 2026 Q4 PWV 2.0 / 3.0 促销档位自动计算；假设基金 0 增长，分红率可调。</p>
+    <div class="steps"><span class="on" data-en="1 Client details">1 客户资料</span><span data-en="2 Plan preview">2 方案预览</span></div>
   </header>
 
   <div class="form-grid">
     <form class="panel" id="f" novalidate>
-      <h3>客户资料</h3>
+      <h3 data-en="Client details">客户资料</h3>
       <div class="field">
-        <label for="iName">客户名字<small>留空显示 VIP</small></label>
+        <label for="iName" data-en="Client name<small>Shows VIP if left blank</small>">客户名字<small>留空显示 VIP</small></label>
         <input id="iName" placeholder="VIP" maxlength="24">
       </div>
       <div class="row2">
         <div class="field">
-          <label for="iAge">投保年龄</label>
-          <input id="iAge" type="number" inputmode="numeric" min="0" max="80" placeholder="例如 39">
+          <label for="iAge" data-en="Age at entry">投保年龄</label>
+          <input id="iAge" type="number" inputmode="numeric" min="0" max="80" placeholder="例如 39" data-en-ph="e.g. 39">
         </div>
         <div class="field">
-          <label for="iAnp">年保费 (ANP)</label>
+          <label for="iAnp" data-en="Annual premium (ANP)">年保费 (ANP)</label>
           <div class="pre"><b>S$</b><input id="iAnp" inputmode="numeric" placeholder="42,000"></div>
         </div>
       </div>
       <div class="field">
-        <label>交费年期</label>
+        <label data-en="Premium term">交费年期</label>
         <div class="seg" id="segT">
-          <button type="button" data-t="2">2 年交 (2 Pay)</button>
-          <button type="button" data-t="5" class="on">5 年交 (5 Pay)</button>
+          <button type="button" data-t="2" data-en="2 Pay (2 years)">2 年交 (2 Pay)</button>
+          <button type="button" data-t="5" class="on" data-en="5 Pay (5 years)">5 年交 (5 Pay)</button>
         </div>
       </div>
       <details class="adv">
-        <summary>更多设置</summary>
+        <summary data-en="More settings">更多设置</summary>
         <div class="row2">
           <div class="field">
-            <label for="iRate">每年分红率 %</label>
+            <label for="iRate" data-en="Annual dividend rate %">每年分红率 %</label>
             <input id="iRate" type="number" step="0.1" min="0" max="12" value="7">
           </div>
           <div class="field">
-            <label for="iFund">基金名称</label>
+            <label for="iFund" data-en="Fund name">基金名称</label>
             <input id="iFund" value="Global Adventurous Income Fund">
           </div>
         </div>
       </details>
-      <button type="submit" class="go">生成方案预览
+      <button type="submit" class="go"><span data-en="Generate plan preview">生成方案预览</span>
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
       </button>
       <div class="err" id="fErr"></div>
     </form>
 
     <aside class="panel sum">
-      <h3>即时测算</h3>
+      <h3 data-en="Live estimate">即时测算</h3>
       <dl class="num" id="sumDl"></dl>
       <div class="tier" id="tierNow"></div>
       <div class="tier up" id="tierUp" hidden></div>
-      <p class="hint">右侧内容只给你看，不会出现在方案图上。</p>
+      <p class="hint" data-en="This panel is for you only and will not appear on the plan.">右侧内容只给你看，不会出现在方案图上。</p>
     </aside>
   </div>
 </section>
@@ -276,12 +281,12 @@ details.adv summary{cursor:pointer;font-size:13px;font-weight:700;color:var(--go
 <section id="pagePlan" class="wrap" hidden>
   <div class="bar">
     <div class="l">
-      <button class="btn" id="bBack"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>返回修改</button>
+      <button class="btn" id="bBack"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg><span data-en="Edit details">返回修改</span></button>
     </div>
     <div class="l">
-      <button class="btn pri" id="bPng"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg>下载图片</button>
-      <button class="btn" id="bPdf"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h9l4 4v14H6z"/><path d="M15 3v4h4"/></svg>导出 PDF</button>
-      <button class="btn" id="bLink"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 14a5 5 0 0 0 7 0l3-3a5 5 0 0 0-7-7l-1 1"/><path d="M14 10a5 5 0 0 0-7 0l-3 3a5 5 0 0 0 7 7l1-1"/></svg>复制客户链接</button>
+      <button class="btn pri" id="bPng"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg><span data-en="Download image">下载图片</span></button>
+      <button class="btn" id="bPdf"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h9l4 4v14H6z"/><path d="M15 3v4h4"/></svg><span data-en="Export PDF">导出 PDF</span></button>
+      <button class="btn" id="bLink"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 14a5 5 0 0 0 7 0l3-3a5 5 0 0 0-7-7l-1 1"/><path d="M14 10a5 5 0 0 0-7 0l-3 3a5 5 0 0 0 7 7l1-1"/></svg><span data-en="Copy client link">复制客户链接</span></button>
     </div>
   </div>
   <div class="fit" id="fit"><div class="sheet" id="sheet"></div></div>
@@ -291,41 +296,41 @@ details.adv summary{cursor:pointer;font-size:13px;font-weight:700;color:var(--go
   <div class="in">
     <div class="grid">
       <div>
-        <p class="brand">新加坡小圆姐</p>
-        <p class="tagl">用专业和耐心，陪你一起日富一日</p>
-        <p class="cred">新加坡财富规划经理<br>RNF：YY-300823216</p>
+        <p class="brand" data-en="Yuan Yuan SG">新加坡小圆姐</p>
+        <p class="tagl" data-en="With expertise and patience, growing richer with you, day by day">用专业和耐心，陪你一起日富一日</p>
+        <p class="cred" data-en="Prestige Wealth Manager<br>RNF: YY-300823216">新加坡财富规划经理<br>RNF：YY-300823216</p>
       </div>
       <div>
-        <h4>联系方式</h4>
+        <h4 data-en="Contact">联系方式</h4>
         <ul>
-          <li><a href="/wechat-qr.png" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>微信 · singaporeyuan</a></li>
+          <li><a href="/wechat-qr.png" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg><span data-en="WeChat · singaporeyuan">微信 · singaporeyuan</span></a></li>
           <li><a href="https://wa.me/6583750190" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>+65 8375 0190</a></li>
           <li><a href="mailto:yuanyuan@aia.com.sg"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 5L2 7"/></svg>yuanyuan@aia.com.sg</a></li>
         </ul>
       </div>
       <div>
-        <h4>关注我</h4>
+        <h4 data-en="Follow">关注我</h4>
         <ul>
-          <li><a href="https://xhslink.com/m/9KS9V4ytFmj" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>小红书 · 新加坡小圆姐</a></li>
-          <li><a href="https://xhslink.com/m/2eFS3jpJutg" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>小红书 · 图文笔记</a></li>
+          <li class="zh-only"><a href="https://xhslink.com/m/9KS9V4ytFmj" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>小红书 · 新加坡小圆姐</a></li>
+          <li class="zh-only"><a href="https://xhslink.com/m/2eFS3jpJutg" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>小红书 · 图文笔记</a></li>
           <li><a href="https://www.linkedin.com/in/singaporeyuan/" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>LinkedIn</a></li>
         </ul>
       </div>
       <div>
-        <h4>新加坡小圆姐</h4>
+        <h4 data-en="Yuan Yuan SG">新加坡小圆姐</h4>
         <ul>
-          <li><a href="/zh/about">关于我</a></li>
-          <li><a href="/zh/cases">规划案例</a></li>
-          <li><a href="/zh/services">业务范围</a></li>
-          <li><a href="/zh/corporate">企业团险</a></li>
-          <li><a href="/zh/resources">资源中心</a></li>
-          <li><a href="/zh/consult">预约咨询</a></li>
+          <li><a href="/zh/about" data-nav="about" data-en="About">关于我</a></li>
+          <li><a href="/zh/cases" data-nav="cases" data-en="Case Studies">规划案例</a></li>
+          <li><a href="/zh/services" data-nav="services" data-en="Services">业务范围</a></li>
+          <li><a href="/zh/corporate" data-nav="corporate" data-en="Corporate">企业团险</a></li>
+          <li><a href="/zh/resources" data-nav="resources" data-en="Resources">资源中心</a></li>
+          <li><a href="/zh/consult" data-nav="consult" data-en="Get in Touch">预约咨询</a></li>
         </ul>
       </div>
     </div>
     <div class="legal">
-      <p>本网站内容仅供参考，不构成任何投资、保险、法律或税务建议。保险产品涉及条款与风险，部分收益为非保证。具体以保险公司正式文件及相关专业意见为准。</p>
-      <p>© 2026 袁媛 Yuan Yuan. 版权所有。</p>
+      <p data-en="The content of this site is for reference only and does not constitute any investment, insurance, legal or tax advice. Insurance products involve terms and risks, and some returns are non-guaranteed. The insurer&rsquo;s official documents and relevant professional advice prevail.">本网站内容仅供参考，不构成任何投资、保险、法律或税务建议。保险产品涉及条款与风险，部分收益为非保证。具体以保险公司正式文件及相关专业意见为准。</p>
+      <p data-en="© 2026 Yuan Yuan. All rights reserved.">© 2026 袁媛 Yuan Yuan. 版权所有。</p>
     </div>
   </div>
 </footer>
@@ -347,6 +352,36 @@ details.adv summary{cursor:pointer;font-size:13px;font-weight:700;color:var(--go
     });
   });
 })();
+
+/* ---------- 中英切换 ---------- */
+let LANG = "zh";
+try{ LANG = localStorage.getItem("sy_gate_lang") || ((navigator.language||"").toLowerCase().startsWith("zh") ? "zh" : "en"); }catch(e){}
+{ const m = location.hash.match(/[#&]l=(zh|en)/); if (m) LANG = m[1]; }
+const L = (zh, en) => LANG === "en" ? en : zh;
+function applyStatic(){
+  document.documentElement.lang = L("zh-CN","en");
+  document.title = L("PWV 方案生成器","PWV Plan Builder");
+  document.querySelectorAll("[data-en]").forEach(el => {
+    if (el.dataset.zh == null) el.dataset.zh = el.innerHTML;
+    el.innerHTML = LANG === "en" ? el.dataset.en : el.dataset.zh;
+  });
+  document.querySelectorAll("[data-en-ph]").forEach(el => {
+    if (el.dataset.zhPh == null) el.dataset.zhPh = el.placeholder;
+    el.placeholder = LANG === "en" ? el.dataset.enPh : el.dataset.zhPh;
+  });
+  document.querySelectorAll("[data-nav]").forEach(a => a.href = `/${LANG}/${a.dataset.nav}`);
+  document.querySelectorAll(".zh-only").forEach(el => el.hidden = LANG === "en");
+  document.getElementById("langTxt").textContent = L("EN","中文");
+}
+applyStatic();
+document.getElementById("langBtn").addEventListener("click", () => {
+  const d = decode(location.hash);   // 先读旧链接，再切语言
+  LANG = L("en","zh");
+  try{ localStorage.setItem("sy_gate_lang", LANG); }catch(e){}
+  applyStatic();
+  if (d) history.replaceState(null, "", "#" + encode(d));
+  route();
+});
 
 /* ---------- 规则数据（改促销只改这里） ---------- */
 // Welcome Bonus：2026 Q4 PWV 2.0 / 3.0，按年保费档位，每档是各年比例(%)
@@ -432,32 +467,34 @@ function fill(d){
 }
 function live(){
   const d = read();
-  if (!d.anp){ $("sumDl").innerHTML = '<dt>先填年保费</dt><dd></dd>'; $("tierNow").textContent = "填好年保费后，这里会显示 Welcome Bonus 档位。"; $("tierUp").hidden = true; return; }
+  if (!d.anp){ $("sumDl").innerHTML = `<dt>${L("先填年保费","Enter the annual premium first")}</dt><dd></dd>`; $("tierNow").textContent = L("填好年保费后，这里会显示 Welcome Bonus 档位。","The Welcome Bonus tier will show here once the premium is filled in."); $("tierUp").hidden = true; return; }
   const c = calc({...d, age: isNaN(d.age)?40:d.age, rate: isNaN(d.rate)?7:d.rate});
   $("sumDl").innerHTML =
-    `<dt>总投入</dt><dd>${money(d.anp)} × ${d.t} 年 = ${money(c.total)}</dd>
+    `<dt>${L("总投入","Total premium")}</dt><dd>${money(d.anp)} × ${d.t} ${L("年","yrs")} = ${money(c.total)}</dd>
      <dt>Welcome Bonus</dt><dd class="g">${pct(c.wbPct)}　${money(c.wbAmt)}</dd>
-     <dt>投资红利 (第8至11年)</dt><dd>${money(c.ibYr)} × 4 = ${money(c.ibYr*4)}</dd>
-     <dt>保证基金红利</dt><dd>${money(c.gb)} / 年</dd>
-     <dt>每年分红 (第${d.t}年起)</dt><dd class="g">${money(c.divs[d.t-1])}</dd>`;
-  const y = c.tier.y.map((v,i)=>`第${i+1}年 ${v}%`).join("，");
+     <dt>${L("投资红利 (第8至11年)","Investment Bonus (Y8 to Y11)")}</dt><dd>${money(c.ibYr)} × 4 = ${money(c.ibYr*4)}</dd>
+     <dt>${L("保证基金红利","Guaranteed bonus")}</dt><dd>${money(c.gb)} ${L("/ 年","/ yr")}</dd>
+     <dt>${L(`每年分红 (第${d.t}年起)`,`Annual dividend (Y${d.t} onward)`)}</dt><dd class="g">${money(c.divs[d.t-1])}</dd>`;
+  const y = c.tier.y.map((v,i)=>L(`第${i+1}年 ${v}%`,`Y${i+1} ${v}%`)).join(L("，",", "));
   $("tierNow").innerHTML = c.wbPct
-    ? `当前档位：年保费 ≥ ${money(c.tier.min)}，${y}${c.tier.promo?"（第1年含 Promo）":""}${c.tier.extra?`，🎁 第1年额外送 ${c.tier.extra}%`:""}，累计 <b>${pct(c.wbPct)}</b>。`
-    : `当前年保费未达 Welcome Bonus 门槛，累计 <b>0%</b>。`;
+    ? L(`当前档位：年保费 ≥ ${money(c.tier.min)}，${y}${c.tier.extra?`，🎁 第1年额外送 ${c.tier.extra}%`:""}，累计 <b>${pct(c.wbPct)}</b>。`,
+        `Current tier: premium ≥ ${money(c.tier.min)}, ${y}${c.tier.extra?`, 🎁 extra ${c.tier.extra}% in Y1`:""}, total <b>${pct(c.wbPct)}</b>.`)
+    : L(`当前年保费未达 Welcome Bonus 门槛，累计 <b>0%</b>。`,`This premium is below the Welcome Bonus threshold, total <b>0%</b>.`);
   const nx = nextTier(d.t, d.anp);
   if (nx){
     const s = sumOf(nx);
     $("tierUp").hidden = false;
-    $("tierUp").innerHTML = `年保费再加 <b>${money(nx.min - d.anp)}</b>（到 ${money(nx.min)}），累计比例升到 <b>${s}%</b>，Welcome Bonus 变成 <b>${money(nx.min*s/100)}</b>。`;
+    $("tierUp").innerHTML = L(`年保费再加 <b>${money(nx.min - d.anp)}</b>（到 ${money(nx.min)}），累计比例升到 <b>${s}%</b>，Welcome Bonus 变成 <b>${money(nx.min*s/100)}</b>。`,
+      `Add <b>${money(nx.min - d.anp)}</b> to the premium (to ${money(nx.min)}) and the total rises to <b>${s}%</b>, a Welcome Bonus of <b>${money(nx.min*s/100)}</b>.`);
   } else $("tierUp").hidden = true;
 }
 
 $("f").addEventListener("submit", e => {
   e.preventDefault();
   const d = read(), err = $("fErr");
-  const msg = isNaN(d.age) || d.age < 0 || d.age > 80 ? "请填投保年龄（0 到 80 岁）。"
-            : !d.anp ? "请填年保费。"
-            : isNaN(d.rate) || d.rate < 0 ? "分红率要填数字。" : "";
+  const msg = isNaN(d.age) || d.age < 0 || d.age > 80 ? L("请填投保年龄（0 到 80 岁）。","Please enter an age from 0 to 80.")
+            : !d.anp ? L("请填年保费。","Please enter the annual premium.")
+            : isNaN(d.rate) || d.rate < 0 ? L("分红率要填数字。","The dividend rate must be a number.") : "";
   if (msg){ err.textContent = msg; err.style.display = "block"; return; }
   err.style.display = "none";
   location.hash = encode(d);
@@ -465,11 +502,12 @@ $("f").addEventListener("submit", e => {
 
 /* ---------- 链接编码（只存在 # 后面，不会发到服务器） ---------- */
 function encode(d){
-  return "p=" + btoa(unescape(encodeURIComponent(JSON.stringify({n:d.name,a:d.age,p:d.anp,t:d.t,r:d.rate,f:d.fund}))));
+  return "p=" + btoa(unescape(encodeURIComponent(JSON.stringify({n:d.name,a:d.age,p:d.anp,t:d.t,r:d.rate,f:d.fund})))) + "&l=" + LANG;
 }
 function decode(h){
   try{
     const m = h.match(/p=([^&]+)/); if(!m) return null;
+    const lm = h.match(/&l=(zh|en)/); if (lm && lm[1] !== LANG){ LANG = lm[1]; applyStatic(); }
     const o = JSON.parse(decodeURIComponent(escape(atob(m[1]))));
     if (!(o.t===2||o.t===5) || !(o.p>0)) return null;
     return {name:o.n||"", age:+o.a, anp:+o.p, t:o.t, rate:+o.r, fund:o.f||"Global Adventurous Income Fund"};
@@ -495,12 +533,12 @@ function render(d){
       <div class="tv">${b?"+"+b+"%":""}</div>
       <div class="dotrow">${b?'<div class="coin">$</div>':'<div class="dot'+(n===1?" on":"")+'"></div>'}</div>
       <div class="age num">${d.age+n-1}</div>
-      <div class="agesub">${n===t?"交完":""}</div></div>`;
+      <div class="agesub">${n===t?L("交完","Paid up"):""}</div></div>`;
   }).join("");
 
   const divList = c.divs.map((v,i)=>{
     const last = i===t-1;
-    return `<div class="${last?"last":""}"><span>第${i+1}年${last?"起":""}</span><b class="num">${money(v)}</b></div>`;
+    return `<div class="${last?"last":""}"><span>${L(`第${i+1}年${last?"起":""}`,`Year ${i+1}${last?"+":""}`)}</span><b class="num">${money(v)}</b></div>`;
   }).join("");
 
   const msHtml = c.ms.map(m => `
@@ -508,19 +546,19 @@ function render(d){
       <div class="topv num">${money(m.top)}</div>
       <div class="dotrow">${m.death?'<svg class="heart" viewBox="0 0 24 24" fill="#C0392B"><path d="M12 21s-7.5-4.6-9.6-9.2C.9 8.4 3 4.5 6.7 4.5c2.2 0 3.6 1.2 4.3 2.4.7-1.2 2.1-2.4 4.3-2.4 3.7 0 5.8 3.9 4.3 7.3C19.5 16.4 12 21 12 21z"/></svg>':'<div class="dot on"></div>'}</div>
       <div class="age num">${m.age}</div>
-      <div class="agesub">${m.n===8?"第8年":""}</div>
+      <div class="agesub">${m.n===8?L("第8年","Year 8"):""}</div>
       ${m.death
-        ? `<div class="box death"><b>身故利益<br><span class="nw">家人收到100%本金*</span></b></div>
-           <div class="box fill"><span>累计分红</span><b class="num">${money(m.div)}</b></div>`
-        : `<div class="box line"><span>保单价值</span><b class="num">${money(c.total)}</b></div>
-           <div class="box fill"><span>到手分红</span><b class="num">${money(m.div)}</b></div>`}
-      <div class="cap">（${m.n}年，第1至${m.n}年）</div>
+        ? `<div class="box death"><b>${L("身故利益","Death benefit")}<br><span class="nw">${L("家人收到100%本金*","100% capital to family*")}</span></b></div>
+           <div class="box fill"><span>${L("累计分红","Total dividends")}</span><b class="num">${money(m.div)}</b></div>`
+        : `<div class="box line"><span>${L("保单价值","Policy value")}</span><b class="num">${money(c.total)}</b></div>
+           <div class="box fill"><span>${L("到手分红","Dividends received")}</span><b class="num">${money(m.div)}</b></div>`}
+      <div class="cap">${L(`（${m.n}年，第1至${m.n}年）`,`(${m.n} years, Y1 to Y${m.n})`)}</div>
     </div>`).join("");
 
   const wbLine = c.wbPct
-    ? `<span class="g">${pct(c.wbPct)}</span> Welcome Bonus 迎新红利：<span class="g num">${money(c.wbAmt)}</span>${c.tier.promo?' <small>（第1年含 Promo）</small>':""}`
-      + (c.tier.extra ? `<br><span class="hl">🎁 限时促销：第1年额外送 <b>${c.tier.extra}%</b>，即 <b class="num">${money(c.extraAmt)}</b></span>` : "")
-    : `<span class="mute">Welcome Bonus 迎新红利：此保费档位暂无</span>`;
+    ? `<span class="g">${pct(c.wbPct)}</span> Welcome Bonus${L(" 迎新红利：",": ")}<span class="g num">${money(c.wbAmt)}</span>`
+      + (c.tier.extra ? `<br><span class="hl">${L(`🎁 限时促销：第1年额外送 <b>${c.tier.extra}%</b>，即 <b class="num">${money(c.extraAmt)}</b>`,`🎁 Limited-time promo: extra <b>${c.tier.extra}%</b> in Year 1, i.e. <b class="num">${money(c.extraAmt)}</b>`)}</span>` : "")
+    : `<span class="mute">${L("Welcome Bonus 迎新红利：此保费档位暂无","Welcome Bonus: not available at this premium level")}</span>`;
 
   $("sheet").classList.toggle("t2", t===2);
   $("sheet").innerHTML = `
@@ -529,27 +567,27 @@ function render(d){
       <polygon points="130,0 220,0 220,90" fill="#E4D3AE" opacity=".6"/>
     </svg>
     <div class="s-head">
-      <div class="tag"><i>#</i>基金<br>定投</div>
+      <div class="tag"><i>#</i>${L("基金<br>定投","Fund<br>Plan")}</div>
       <div class="s-title">
         <h2>${esc(d.fund)} <span>For ${esc(name)}</span><svg viewBox="0 0 24 24" fill="#C0392B"><path d="M12 21s-7.5-4.6-9.6-9.2C.9 8.4 3 4.5 6.7 4.5c2.2 0 3.6 1.2 4.3 2.4.7-1.2 2.1-2.4 4.3-2.4 3.7 0 5.8 3.9 4.3 7.3C19.5 16.4 12 21 12 21z"/></svg></h2>
-        <p class="prod">AIA Platinum Wealth Venture · ${t} Pay（缴费 ${t} 年）</p>
+        <p class="prod">AIA Platinum Wealth Venture · ${t} Pay${L(`（缴费 ${t} 年）`,` (${t}-year premium term)`)}</p>
       </div>
     </div>
     <div class="s-intro num">
-      <p>年保费 <b>${money(d.anp)}</b> × ${t}年 = <b>${money(c.total)}</b></p>
-      <p>Capital is protected upon death benefits 身故赔偿本金</p>
+      <p>${L("年保费","Annual premium")} <b>${money(d.anp)}</b> × ${t}${L("年"," years")} = <b>${money(c.total)}</b></p>
+      <p>Capital is protected upon death benefits${L(" 身故赔偿本金","")}</p>
     </div>
     <div class="strip num">
       <div>
         ${wbLine}<br>
-        <span class="g">7-8%</span> 目标分红，按季度领取<br>
-        保单生效立刻开始领取季度分红<br>
-        从第${t}年起，每年分红达到 <span class="g num">${money(c.divs[t-1])}</span>（${money(c.divs[t-1]/12)}/月）
+        <span class="g">7-8%</span> ${L("目标分红，按季度领取","target dividend, paid quarterly")}<br>
+        ${L("保单生效立刻开始领取季度分红","Quarterly dividends start as soon as the policy is in force")}<br>
+        ${L(`从第${t}年起，每年分红达到`,`From Year ${t}: dividend of`)} <span class="g num">${money(c.divs[t-1])}</span>${L(`（${money(c.divs[t-1]/12)}/月）`,` a year (${money(c.divs[t-1]/12)}/month)`)}
       </div>
       <div>
-        <span class="h">第8年起：</span><br>
-        ${pct(c.ibPct*4)} 投资红利 Investment Bonus：Y8 至 Y11 每年 ${pct(c.ibPct)} of AP<br>${money(c.ibYr)} × 4 = <span class="g">${money(c.ibYr*4)}</span><br>
-        0.4% p.a. guaranteed bonus of Policy Value 每年保证基金红利：<span class="g">${money(c.gb)}</span>
+        <span class="h">${L("第8年起：","From Year 8:")}</span><br>
+        ${L(`${pct(c.ibPct*4)} 投资红利 Investment Bonus：Y8 至 Y11 每年 ${pct(c.ibPct)} of AP`,`${pct(c.ibPct*4)} Investment Bonus: ${pct(c.ibPct)} of AP each year, Y8 to Y11`)}<br>${money(c.ibYr)} × 4 = <span class="g">${money(c.ibYr*4)}</span><br>
+        0.4% p.a. guaranteed bonus of Policy Value${L(" 每年保证基金红利：",": ")}<span class="g">${money(c.gb)}</span>
       </div>
     </div>
     <div class="tl${c.tier.extra?" has-gift":""}">
@@ -557,9 +595,9 @@ function render(d){
       <div class="cols" style="grid-template-columns:2.3fr repeat(${c.ms.length},1fr)">
         <div class="col early">
           <div class="ticks">${tickHtml}</div>
-          <div class="assume">假设<br>基金 0 增长</div>
+          <div class="assume">${L("假设<br>基金 0 增长","Assumes<br>0% fund growth")}</div>
           <div class="divbox">
-            <h4>按照每年分红 ${pct(d.rate)}</h4>
+            <h4>${L(`按照每年分红 ${pct(d.rate)}`,`Dividend at ${pct(d.rate)} a year`)}</h4>
             <div class="yrs num">${divList}</div>
           </div>
         </div>
@@ -568,12 +606,12 @@ function render(d){
     </div>
     <div class="s-foot" style="grid-template-columns:2.3fr repeat(${c.ms.length},1fr)">
       <div class="maker">
-        <img src="/wechat-qr.png" alt="微信二维码">
-        <p><b>@新加坡小圆姐 制作</b><br>微信：singaporeyuan<br>电话：8375 0190<br>RNF：YY-300823216</p>
+        <img src="/wechat-qr.png" alt="${L("微信二维码","WeChat QR code")}">
+        <p>${L("<b>@新加坡小圆姐 制作</b><br>微信：singaporeyuan<br>电话：8375 0190<br>RNF：YY-300823216","<b>Prepared by Yuan Yuan SG</b><br>WeChat: singaporeyuan<br>Phone: 8375 0190<br>RNF: YY-300823216")}</p>
       </div>
       <div>
-        <div class="flex">第8年起自由灵活，随时都可以提取现金价值<span>（保单100岁到期）</span></div>
-        <p class="notes">* 假设除了分红，没有其他现金价值提取。以上为演示：假设基金 0 增长、分红率 ${pct(d.rate)} 不变，分红非保证；Welcome Bonus 按 2026 Q4 促销档位；具体以 AIA 正式产品资料及 BI 为准。</p>
+        <div class="flex">${L("第8年起自由灵活，随时都可以提取现金价值<span>（保单100岁到期）</span>","From Year 8, withdraw cash value flexibly at any time<span>(policy matures at age 100)</span>")}</div>
+        <p class="notes">${L(`* 假设除了分红，没有其他现金价值提取。以上为演示：假设基金 0 增长、分红率 ${pct(d.rate)} 不变，分红非保证；Welcome Bonus 按 2026 Q4 促销档位；具体以 AIA 正式产品资料及 BI 为准。`,`* Assumes no withdrawals other than dividends. Illustration only: assumes 0% fund growth and a constant ${pct(d.rate)} dividend rate; dividends are not guaranteed. Welcome Bonus follows the 2026 Q4 promotion tiers. AIA's official product documents and BI prevail.`)}</p>
       </div>
     </div>`;
   const cols = $("sheet").querySelector(".cols"), last = cols.lastElementChild;
@@ -616,7 +654,7 @@ function loadH2C(){
 }
 $("bPng").addEventListener("click", async () => {
   const d = decode(location.hash); if(!d) return;
-  toast("正在生成图片…");
+  toast(L("正在生成图片…","Generating image…"));
   try{
     await loadH2C();
     const canvas = await html2canvas($("sheet"), {
@@ -624,17 +662,17 @@ $("bPng").addEventListener("click", async () => {
       onclone: doc => { const s = doc.getElementById("sheet"); s.style.transform = "none"; s.style.boxShadow = "none"; }
     });
     const a = document.createElement("a");
-    a.download = `PWV方案_${(d.name||"VIP").replace(/[\\/:*?"<>|]/g,"")}_${d.t}Pay.png`;
+    a.download = `${L("PWV方案","PWV-plan")}_${(d.name||"VIP").replace(/[\\/:*?"<>|]/g,"")}_${d.t}Pay.png`;
     a.href = canvas.toDataURL("image/png");
     a.click();
-    toast("图片已下载");
-  }catch(e){ toast("图片生成失败，请改用截图或导出 PDF"); }
+    toast(L("图片已下载","Image downloaded"));
+  }catch(e){ toast(L("图片生成失败，请改用截图或导出 PDF","Could not create the image. Please take a screenshot or export a PDF.")); }
 });
 $("bPdf").addEventListener("click", () => window.print());
 $("bLink").addEventListener("click", async () => {
   const url = location.origin + location.pathname + location.hash;
-  try{ await navigator.clipboard.writeText(url); toast("客户链接已复制，客户打开需输入访问密码"); }
-  catch(e){ prompt("复制这个链接发给客户：", url); }
+  try{ await navigator.clipboard.writeText(url); toast(L("客户链接已复制，客户打开需输入访问密码","Client link copied. The client will need the access password.")); }
+  catch(e){ prompt(L("复制这个链接发给客户：","Copy this link for your client:"), url); }
 });
 
 route();
