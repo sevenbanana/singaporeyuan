@@ -135,6 +135,10 @@ details.adv summary{cursor:pointer;font-size:13px;font-weight:700;color:var(--go
 .early{position:relative;align-items:stretch}
 .ticks{position:relative;height:118px}
 .tick{position:absolute;top:0;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center}
+.tl.has-gift{margin-top:58px}
+.tick .gift{position:absolute;bottom:100%;margin-bottom:-2px;white-space:nowrap;background:#FBE3DC;color:#B03A2E;border:1px solid #F2C2B5;border-radius:999px;padding:2px 10px 2px 8px;font-size:14px;font-weight:800}
+.strip .hl{display:inline-block;margin:3px 0 2px;background:#FBE3DC;color:#B03A2E;border:1px solid #F2C2B5;border-radius:999px;padding:1px 12px 1px 10px;font-weight:600}
+.strip .hl b{font-weight:800}
 .tick .tv{height:36px;display:flex;align-items:flex-end;font-size:15px;font-weight:800;color:var(--gold-deep)}
 .coin{width:26px;height:26px;border-radius:50%;background:linear-gradient(180deg,#D8AC52,#A9781F);color:#fff;font-size:14px;font-weight:800;display:grid;place-items:center;box-shadow:0 0 0 3px var(--paper)}
 .coin + .age,.dotrow + .age{margin-top:0}
@@ -345,7 +349,8 @@ details.adv summary{cursor:pointer;font-size:13px;font-weight:700;color:var(--go
 /* ---------- 规则数据（改促销只改这里） ---------- */
 // Welcome Bonus：2026 Q4 PWV 2.0 / 3.0，按年保费档位，每档是各年比例(%)
 const WB = {
-  2: [ {min:48000,  y:[0,0]}, {min:84000, y:[2,0]}, {min:138000, y:[2,3]} ],
+  2: [ {min:48000,  y:[0,0]}, {min:84000, y:[2,0]}, {min:138000, y:[2,3]},
+       {min:150000, y:[2,3], extra:10} ],   // extra：2 Pay 限时促销，第1年额外送
   5: [ {min:18000,  y:[0,0,0]}, {min:24000, y:[3,0,0]}, {min:42000, y:[3,4,5]},
        {min:48000,  y:[8,4,5], promo:true}, {min:60000, y:[13,4,5], promo:true} ]
 };
@@ -358,20 +363,21 @@ const MATURE = 100;
 /* ---------- 计算 ---------- */
 const money = n => "S$" + Math.round(n).toLocaleString("en-US");
 const pct = n => (Math.round(n*100)/100) + "%";
+const sumOf = tr => tr.y.reduce((a,b)=>a+b,0) + (tr.extra||0);
 function tierOf(t, anp){
   let hit = null;
   for (const tr of WB[t]) if (anp >= tr.min) hit = tr;
   return hit || {min:0, y:WB[t][0].y.map(()=>0)};
 }
 function nextTier(t, anp){
-  const cur = tierOf(t, anp), curSum = cur.y.reduce((a,b)=>a+b,0);
-  return WB[t].find(tr => tr.min > anp && tr.y.reduce((a,b)=>a+b,0) > curSum) || null;
+  const cur = tierOf(t, anp), curSum = sumOf(cur);
+  return WB[t].find(tr => tr.min > anp && sumOf(tr) > curSum) || null;
 }
 function calc(d){
   const {anp, t, age, rate} = d;
   const total = anp * t;
   const tier = tierOf(t, anp);
-  const wbPct = tier.y.reduce((a,b)=>a+b,0);
+  const wbPct = sumOf(tier);
   const divOf = n => Math.min(n, t) * anp * rate / 100;          // 第 n 年分红
   const cumDiv = n => { let s=0; for(let k=1;k<=n;k++) s+=divOf(k); return s; };
   const yearAt = a => a - age + 1;
@@ -382,7 +388,7 @@ function calc(d){
   ms.push({age:MATURE, n:yearAt(MATURE), death:true});
   ms.forEach(m => { m.div = cumDiv(m.n); m.top = total + m.div; });
   return {
-    total, tier, wbPct, wbAmt: anp*wbPct/100,
+    total, tier, wbPct, wbAmt: anp*wbPct/100, extraAmt: anp*(tier.extra||0)/100,
     ibYr: anp*IB[t]/100, ibPct: IB[t], gb: total*GB/100,
     divs: Array.from({length:t}, (_,i)=>divOf(i+1)), ms
   };
@@ -434,11 +440,11 @@ function live(){
      <dt>每年分红 (第${d.t}年起)</dt><dd class="g">${money(c.divs[d.t-1])}</dd>`;
   const y = c.tier.y.map((v,i)=>`第${i+1}年 ${v}%`).join("，");
   $("tierNow").innerHTML = c.wbPct
-    ? `当前档位：年保费 ≥ ${money(c.tier.min)}，${y}${c.tier.promo?"（第1年含 Promo）":""}，累计 <b>${pct(c.wbPct)}</b>。`
+    ? `当前档位：年保费 ≥ ${money(c.tier.min)}，${y}${c.tier.promo?"（第1年含 Promo）":""}${c.tier.extra?`，🎁 第1年额外送 ${c.tier.extra}%`:""}，累计 <b>${pct(c.wbPct)}</b>。`
     : `当前年保费未达 Welcome Bonus 门槛，累计 <b>0%</b>。`;
   const nx = nextTier(d.t, d.anp);
   if (nx){
-    const s = nx.y.reduce((a,b)=>a+b,0);
+    const s = sumOf(nx);
     $("tierUp").hidden = false;
     $("tierUp").innerHTML = `年保费再加 <b>${money(nx.min - d.anp)}</b>（到 ${money(nx.min)}），累计比例升到 <b>${s}%</b>，Welcome Bonus 变成 <b>${money(nx.min*s/100)}</b>。`;
   } else $("tierUp").hidden = true;
@@ -483,6 +489,7 @@ function render(d){
   const tickHtml = ticks.map((n,i)=>{
     const b = c.tier.y[n-1] || 0;
     return `<div class="tick" style="left:${pos(i)}%">
+      ${n===1&&c.tier.extra?`<div class="gift">🎁 +${c.tier.extra}%</div>`:""}
       <div class="tv">${b?"+"+b+"%":""}</div>
       <div class="dotrow">${b?'<div class="coin">$</div>':'<div class="dot'+(n===1?" on":"")+'"></div>'}</div>
       <div class="age num">${d.age+n-1}</div>
@@ -510,6 +517,7 @@ function render(d){
 
   const wbLine = c.wbPct
     ? `<span class="g">${pct(c.wbPct)}</span> Welcome Bonus 迎新红利：<span class="g num">${money(c.wbAmt)}</span>${c.tier.promo?' <small>（第1年含 Promo）</small>':""}`
+      + (c.tier.extra ? `<br><span class="hl">🎁 限时促销：第1年额外送 <b>${c.tier.extra}%</b>，即 <b class="num">${money(c.extraAmt)}</b></span>` : "")
     : `<span class="mute">Welcome Bonus 迎新红利：此保费档位暂无</span>`;
 
   $("sheet").classList.toggle("t2", t===2);
@@ -542,7 +550,7 @@ function render(d){
         0.4% p.a. guaranteed bonus of Policy Value 每年保证基金红利：<span class="g">${money(c.gb)}</span>
       </div>
     </div>
-    <div class="tl">
+    <div class="tl${c.tier.extra?" has-gift":""}">
       <div class="axis"></div>
       <div class="cols" style="grid-template-columns:2.3fr repeat(${c.ms.length},1fr)">
         <div class="col early">
