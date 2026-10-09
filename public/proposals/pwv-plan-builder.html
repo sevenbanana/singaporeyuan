@@ -129,7 +129,7 @@ details.adv summary{cursor:pointer;font-size:13px;font-weight:700;color:var(--go
 .box.fill b{color:var(--gold-deep)}
 .box.death{border:1.5px dashed #D9C59C;background:transparent;padding:9px 4px}
 .box.death b{font-size:15px;line-height:1.45}
-.box.death .nw{display:inline;white-space:nowrap;font-size:15px;color:var(--navy)}
+.box.death .nw{display:inline;white-space:nowrap;font-size:13.5px;color:var(--navy)}
 .cap{margin-top:6px;font-size:12.5px;color:var(--muted)}
 
 .early{position:relative;align-items:stretch}
@@ -354,7 +354,7 @@ const WB = {
   2: [ {min:48000,  y:[0,0]}, {min:84000, y:[2,0]}, {min:138000, y:[2,3]},
        {min:150000, y:[2,3], extra:10} ],   // extra：2 Pay 限时促销，第1年额外送
   5: [ {min:18000,  y:[0,0,0]}, {min:24000, y:[3,0,0]}, {min:42000, y:[3,4,5]},
-       {min:48000,  y:[8,4,5], promo:true}, {min:60000, y:[13,4,5], promo:true} ]
+       {min:48000,  y:[3,4,5], extra:5}, {min:60000, y:[3,4,5], extra:10} ]   // 第1年 3% 默认 + 限时送
 };
 // 投资红利：第 8 到 11 年，每年为年保费的百分比，按交期固定
 const IB = { 2: 1, 5: 2.5 };
@@ -510,7 +510,7 @@ function render(d){
       <div class="age num">${m.age}</div>
       <div class="agesub">${m.n===8?"第8年":""}</div>
       ${m.death
-        ? `<div class="box death"><b>身故利益<br>家人收到<br><span class="nw">100% 本金*</span></b></div>
+        ? `<div class="box death"><b>身故利益<br><span class="nw">家人收到100%本金*</span></b></div>
            <div class="box fill"><span>累计分红</span><b class="num">${money(m.div)}</b></div>`
         : `<div class="box line"><span>保单价值</span><b class="num">${money(c.total)}</b></div>
            <div class="box fill"><span>到手分红</span><b class="num">${money(m.div)}</b></div>`}
