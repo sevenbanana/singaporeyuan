@@ -366,6 +366,75 @@ html.deck .modebtn{display:none}
 .emo-fig.act .fig-bob{animation:figbob 1.1s ease-in-out infinite}
 @keyframes figbob{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
 @media (prefers-reduced-motion:reduce){.emo-fig.act .fig-bob{animation:none}}
+
+/* ───────────────── 方案示例 ───────────────── */
+.toggle.tg-dark{background:rgba(244,238,225,.08)}
+.toggle.tg-dark button{color:#C3D3E0}
+.toggle.tg-dark button.on{background:var(--gold);color:#20180A}
+.plan-head{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:18px;align-items:center}
+.plan-tag{background:linear-gradient(160deg,#173B5E,#0F2A44);border:1px solid rgba(214,169,76,.45);border-radius:16px;padding:14px 16px;
+  font-size:1.15rem;font-weight:900;line-height:1.25;color:var(--paper)}
+.plan-tag i{display:block;font-style:normal;color:var(--gold);font-size:.95rem}
+.plan-ttl .h-sec{font-size:clamp(1.5rem,3.4vw,2.3rem);line-height:1.15}
+.plan-ttl em{font-style:normal;color:var(--gold)}
+.plan-heart{color:#D9765F}
+.plan-sub{color:var(--mist);font-size:.92rem;margin-top:4px}
+.plan-prem{margin-top:16px;font-size:1.35rem;font-weight:800}
+.plan-prem b{color:var(--gold);font-variant-numeric:tabular-nums}
+.plan-prem small{display:block;font-size:.92rem;font-weight:500;color:#C3D3E0;margin-top:2px}
+.plan-info{display:grid;grid-template-columns:1fr 1fr;gap:0 26px;margin-top:14px;padding:18px 22px}
+.plan-info>div+div{border-left:1px solid rgba(244,238,225,.14);padding-left:26px}
+.plan-info p{margin:0 0 7px;font-size:.95rem;color:#DCE6EE;line-height:1.55}
+.plan-info .g{color:var(--gold)}
+.plan-info .hd{color:var(--gold);font-weight:800}
+.plan-info .promo{display:inline-block;background:rgba(181,80,60,.22);border:1px solid rgba(217,118,95,.6);color:#F2B7A9;border-radius:999px;padding:3px 14px;font-weight:700;font-size:.9rem}
+.tl,.tl-cards{display:grid;grid-template-columns:minmax(0,1.3fr) repeat(4,minmax(0,1fr));gap:0 12px}
+.tl{position:relative;margin-top:22px;align-items:end}
+.tl::before{content:"";position:absolute;left:0;right:0;top:62px;height:2px;background:rgba(244,238,225,.22)}
+.tl-left{display:flex;justify-content:space-around;align-items:flex-end}
+.tn,.tm{position:relative;display:flex;flex-direction:column;align-items:center;text-align:center}
+.tn .pct{font-weight:800;color:var(--gold);font-size:1.05rem;height:24px}
+.tn .pct.big{color:#E58B76}
+.tn .call{position:absolute;top:-30px;white-space:nowrap;font-size:.78rem;font-weight:800;color:#F2B7A9;background:rgba(181,80,60,.22);border:1px solid rgba(217,118,95,.6);border-radius:999px;padding:1px 10px}
+.tn .coin{width:28px;height:28px;border-radius:50%;background:var(--gold);color:#20180A;font-weight:900;font-size:.85rem;display:grid;place-items:center;margin:6px 0 4px;box-shadow:0 0 0 3px rgba(214,169,76,.25)}
+.tn .hollow{width:18px;height:18px;border-radius:50%;border:2px solid rgba(244,238,225,.6);background:var(--ink);margin:11px 0 9px}
+.tm .tot{font-weight:800;color:var(--gold);font-size:1.2rem;height:24px;font-variant-numeric:tabular-nums;white-space:nowrap}
+.tm .dot{width:16px;height:16px;border-radius:50%;background:var(--gold);margin:12px 0 6px;box-shadow:0 0 0 4px rgba(214,169,76,.22)}
+.tm .heart{color:#D9765F;font-size:1.25rem;line-height:1;margin:8px 0 3px}
+.tn b,.tm b{font-size:1.9rem;font-weight:900;line-height:1.1;font-variant-numeric:tabular-nums}
+.tn small,.tm small{display:block;font-size:.8rem;color:var(--mist);font-weight:700;min-height:1.2em}
+.tl-cards{margin-top:10px;align-items:start}
+.pl-left{display:flex;flex-direction:column;gap:10px}
+.pl-assume{text-align:right;font-size:.85rem;font-weight:700;color:#C3D3E0;line-height:1.45;min-height:74px;display:flex;align-items:center;justify-content:flex-end}
+.divtab{border-radius:16px;background:rgba(214,169,76,.1);border:1px solid rgba(214,169,76,.35);padding:12px 12px;text-align:center}
+.divtab h4{font-size:.98rem;color:var(--gold);margin:0 0 8px}
+.divtab .yrs{display:grid;gap:8px 6px}
+.divtab .yrs span{font-size:.72rem;color:var(--mist);display:block}
+.divtab .yrs b{font-size:.84rem;font-variant-numeric:tabular-nums;white-space:nowrap}
+.divtab .yrs .last b{color:var(--gold)}
+.mc{display:flex;flex-direction:column;gap:10px;text-align:center}
+.mc .pv,.mc .dv{border-radius:14px;padding:12px 6px;min-height:74px;display:flex;flex-direction:column;justify-content:center}
+.mc .pv{border:1px solid rgba(244,238,225,.35);background:rgba(255,255,255,.04)}
+.mc .pv.death{border:1.5px dashed var(--gold);background:rgba(214,169,76,.06)}
+.mc .dv{border:1px solid rgba(214,169,76,.4);background:rgba(214,169,76,.14)}
+.mc span{font-size:.8rem;color:#C3D3E0}
+.mc .pv b{font-size:1.15rem;font-variant-numeric:tabular-nums}
+.mc .pv.death b{font-size:.9rem;color:var(--gold)}
+.mc .dv b{font-size:1.15rem;color:var(--gold);font-variant-numeric:tabular-nums}
+.mc small{font-size:.74rem;color:var(--mist)}
+.plan-free{margin-top:14px;display:flex;justify-content:space-between;align-items:center;gap:12px;border-radius:999px;padding:10px 22px;
+  border:1px solid rgba(214,169,76,.5);background:rgba(214,169,76,.08);font-weight:800;color:var(--paper)}
+.plan-free span{font-weight:600;color:var(--mist)}
+.plan-body.swap{animation:planIn .45s ease}
+@keyframes planIn{from{opacity:.2;transform:translateY(6px)}to{opacity:1;transform:none}}
+@media(max-width:860px){
+  html:not(.deck) .plan-head{grid-template-columns:auto 1fr}
+  html:not(.deck) .plan-head .toggle{grid-column:1/-1}
+  html:not(.deck) .plan-info{grid-template-columns:1fr}
+  html:not(.deck) .plan-info>div+div{border-left:0;padding-left:0;margin-top:8px}
+  html:not(.deck) .plan-body{overflow-x:auto}
+  html:not(.deck) .tl,html:not(.deck) .tl-cards{min-width:760px}
+}
 </style>
 </head>
 <body>
@@ -1241,6 +1310,26 @@ body.locked #pwGate{display:flex}
   </div>
 </section>
 
+
+<!-- ══════════ 方案示例 ══════════ -->
+<section class="scene" id="s-plan" data-title="方案示例" data-tint="#10314E">
+  <div class="inner">
+    <div class="plan-head rise">
+      <div class="plan-tag"><i>#</i>基金<br>定投</div>
+      <div class="plan-ttl">
+        <h2 class="h-sec">Global Adventurous Income Fund <em>For You</em> <span class="plan-heart" aria-hidden="true">♥</span></h2>
+        <p class="plan-sub" id="plSub"></p>
+      </div>
+      <div class="toggle tg-dark" id="plToggle" role="group" aria-label="切换缴费年期">
+        <button type="button" data-p="5" class="on">5 年缴</button>
+        <button type="button" data-p="2">2 年缴</button>
+      </div>
+    </div>
+    <div class="plan-body rise" id="plBody" style="--d:.1s"></div>
+    <p class="src rise" style="margin-top:12px">* 假设除了分红，没有其他现金价值提取。以上为演示：假设基金 0 增长、分红率 7% 不变，分红非保证；Welcome Bonus 按 2026 Q4 促销档位；具体以 AIA 正式产品资料及 BI 为准。</p>
+  </div>
+</section>
+
 <!-- ══════════ 联系 ══════════ -->
 <section class="scene" id="s-contact" data-title="预约面谈" data-tint="#0D2A42">
   <div class="scene__art"><div style="position:absolute;right:-6%;top:8%;width:min(52vw,520px);opacity:.22" data-depth="-0.34">
@@ -2071,6 +2160,57 @@ const arm=svg=>{ if(W.armPaths) W.armPaths(svg); };
   }
   new MutationObserver(sync).observe(nav,{subtree:true,attributes:true,attributeFilter:["class"]});
   sync();
+})();
+
+/* ───── 方案示例：5 年缴 / 2 年缴 ───── */
+(function(){
+  const body=document.getElementById("plBody"); if(!body) return;
+  const PL={
+    "5":{ap:200000,n:5,sub:"AIA Platinum Wealth Venture · 5 Pay（缴费 5 年）",wbPct:22,promoPct:10,
+      coins:[[40,"+13%","3% + 🎁 10%"],[41,"+4%"],[42,"+5%"]],paid:44,invPct:"10%",invRate:"2.5%"},
+    "2":{ap:500000,n:2,sub:"AIA Platinum Wealth Venture · 2 Pay（缴费 2 年）",wbPct:15,promoPct:10,
+      coins:[[40,"+12%","2% + 🎁 10%"],[41,"+3%"]],paid:41,invPct:"4%",invRate:"1%"}
+  };
+  const S=v=>"S$"+Math.round(v).toLocaleString("en-US");
+  const START=40, DIV=.07, TOTAL=1000000;
+  function cumDiv(p,years){ let c=0; for(let y=1;y<=years;y++) c+=DIV*Math.min(y,p.n)*p.ap; return c; }
+  function render(key){
+    const p=PL[key], full=DIV*TOTAL, inv=p.ap*parseFloat(p.invRate)/100;
+    document.getElementById("plSub").textContent=p.sub;
+    const ms=[[47,8,"第8年"],[60,21,""],[70,31,""],[100,61,""]];
+    const coins=p.coins.map(c=>'<div class="tn">'+(c[2]?'<span class="call">'+c[2]+'</span>':'')+'<span class="pct'+(c[2]?' big':'')+'">'+c[1]+'</span><span class="coin">$</span><b>'+c[0]+'</b><small>'+(c[0]===p.paid?'交完':'')+'</small></div>').join("")
+      +(p.coins.some(c=>c[0]===p.paid)?'':'<div class="tn"><span class="pct"></span><span class="hollow"></span><b>'+p.paid+'</b><small>交完</small></div>');
+    const mHead=ms.map(m=>'<div class="tm"><span class="tot">'+S(TOTAL+cumDiv(p,m[1]))+'</span>'+(m[0]===100?'<span class="heart">♥</span>':'<span class="dot"></span>')+'<b>'+m[0]+'</b><small>'+m[2]+'</small></div>').join("");
+    const yrs=[]; for(let y=1;y<=p.n;y++) yrs.push('<div'+(y===p.n?' class="last"':'')+'><span>'+(y===p.n?'第'+y+'年起':'第'+y+'年')+'</span><b>'+S(DIV*y*p.ap)+'</b></div>');
+    const mCards=ms.map(m=>{ const d=cumDiv(p,m[1]), last=m[0]===100;
+      return '<div class="mc">'+(last?'<div class="pv death"><span style="color:var(--gold);font-weight:800;font-size:.95rem">身故利益</span><b>家人收到100%本金*</b></div>':'<div class="pv"><span>保单价值</span><b>'+S(TOTAL)+'</b></div>')
+        +'<div class="dv"><span>'+(last?'累计分红':'到手分红')+'</span><b>'+S(d)+'</b></div><small>（'+m[1]+'年，第1至'+m[1]+'年）</small></div>'; }).join("");
+    body.innerHTML=
+      '<p class="plan-prem">年保费 <b>'+S(p.ap)+'</b> × '+p.n+'年 = <b>'+S(TOTAL)+'</b><small>Capital is protected upon death benefits 身故赔偿本金</small></p>'
+      +'<div class="plan-info card card--dark"><div>'
+        +'<p><b class="g">'+p.wbPct+'%</b> Welcome Bonus 迎新红利：<b class="g">'+S(p.ap*p.wbPct/100)+'</b></p>'
+        +'<p class="promo">🎁 限时促销：第1年额外送 '+p.promoPct+'%，即 '+S(p.ap*p.promoPct/100)+'</p>'
+        +'<p><b class="g">7-8%</b> 稳定分红，按季度领取</p><p>保单生效立刻开始领取季度分红</p>'
+        +'<p>从第'+p.n+'年起，每年分红达到 <b class="g">'+S(full)+'</b>（'+S(full/12)+'/月）</p>'
+      +'</div><div>'
+        +'<p class="hd">第8年起：</p>'
+        +'<p>'+p.invPct+' 投资红利 Investment Bonus：Y8 至 Y11 每年 '+p.invRate+' of AP</p>'
+        +'<p>'+S(inv)+' × 4 = <b class="g">'+S(inv*4)+'</b></p>'
+        +'<p>0.4% p.a. guaranteed bonus of Policy Value 每年保证基金红利：<b class="g">'+S(TOTAL*.004)+'</b></p>'
+      +'</div></div>'
+      +'<div class="tl"><div class="tl-left">'+coins+'</div>'+mHead+'</div>'
+      +'<div class="tl-cards"><div class="pl-left"><div class="pl-assume">假设<br>基金 0 增长</div>'
+        +'<div class="divtab"><h4>按照每年分红 7%</h4><div class="yrs" style="grid-template-columns:repeat('+Math.min(p.n,3)+',1fr)">'+yrs.join("")+'</div></div></div>'
+        +mCards+'</div>'
+      +'<div class="plan-free">第8年起自由灵活，随时都可以提取现金价值<span>（保单100岁到期）</span></div>';
+    body.classList.remove("swap"); void body.offsetWidth; body.classList.add("swap");
+  }
+  document.getElementById("plToggle").addEventListener("click",e=>{
+    const b=e.target.closest("button"); if(!b) return;
+    [...b.parentNode.children].forEach(c=>c.classList.toggle("on",c===b));
+    render(b.dataset.p);
+  });
+  render("5");
 })();
 
 /* ═════════════ PPT 演示模式 ═════════════ */
