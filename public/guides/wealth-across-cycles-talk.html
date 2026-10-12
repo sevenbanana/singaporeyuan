@@ -1852,7 +1852,7 @@ function armPaths(root){
   });
 })();
 
-window.__wac=Object.assign(window.__wac||{},{countUp:countUp,armPaths:armPaths});
+window.__wac=Object.assign(window.__wac||{},{countUp:countUp,armPaths:armPaths,frame:frame});
 frame();
 })();
 </script>
@@ -2224,7 +2224,9 @@ const arm=svg=>{ if(W.armPaths) W.armPaths(svg); };
 
   function fit(s){
     const inner=s.querySelector(":scope > .inner"); if(!inner) return;
-    const k=Math.min((innerWidth-130)/inner.offsetWidth,(innerHeight-92)/inner.offsetHeight,1.45);
+    // 以 .inner 实际中心缩放：章节页有 margin-right 偏左，按两侧各留 65px 计算，避免 iPad 等宽度下左侧被裁切
+    const w=inner.offsetWidth, cx=inner.offsetLeft+w/2;
+    const k=Math.min((innerWidth-130)/w,(innerHeight-92)/inner.offsetHeight,1.45,(cx-65)*2/w,(innerWidth-65-cx)*2/w);
     s.style.setProperty("--s",Math.max(.3,k).toFixed(4));
   }
   function activate(s){
@@ -2253,6 +2255,7 @@ const arm=svg=>{ if(W.armPaths) W.armPaths(svg); };
   function setDeck(v){
     on=v; html.classList.toggle("deck",v);
     scenes.forEach(s=>s.classList.remove("cur"));
+    if(W.frame) W.frame(); // 切换模式后重算视差偏移，避免章节插图沿用滚动模式的位置
     if(v){ show(cur); kick(); }
     else{ scenes[cur].scrollIntoView({behavior:"instant",block:"start"}); }
   }
