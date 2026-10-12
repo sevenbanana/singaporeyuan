@@ -308,11 +308,11 @@ footer .inner{display:flex;flex-wrap:wrap;gap:12px 28px;justify-content:space-be
 .ticks b{display:block;color:var(--ink)}
 
 /* ───────────────── PPT 演示模式 ───────────────── */
-html.deck,html.deck body{height:100%;overflow:hidden;scroll-behavior:auto}
+html.deck,html.deck body{height:100%;overflow:hidden;scroll-behavior:auto;overscroll-behavior:none}
 html.deck .scene{position:fixed;inset:0;padding:0;min-height:0;display:flex;align-items:center;justify-content:center;overflow:hidden;
   opacity:0;visibility:hidden;transition:opacity .55s ease,visibility 0s linear .55s}
 html.deck .scene.cur{opacity:1;visibility:visible;transition:opacity .55s ease}
-html.deck .scene>.inner{flex:none;width:1080px;max-width:none;margin:0;transform:scale(var(--s,1));transform-origin:center center}
+html.deck .scene>.inner{flex:none;width:var(--w,1080px);max-width:none;margin:0;transform:scale(var(--s,1));transform-origin:center center}
 html.deck .scene>.inner.narrow{width:640px;transform-origin:center center}
 html.deck .chapter>.inner.narrow{margin-right:340px}
 html.deck .brandbar{opacity:1;transform:none}
@@ -323,6 +323,23 @@ html.deck .scene>.inner>.chartbox .scroller svg,html.deck .scene>.inner>.chartbo
 html.deck .scene .rule{margin:14px 0 18px}
 html.deck .scene .takeaway{margin-top:18px}
 html.deck .scene .src{margin-top:14px}
+/* 宽屏横排：fit() 判断横排能放得更大时，给带 data-wide 的页面加 .wide */
+html.deck .scene.wide>.inner{display:grid;grid-template-columns:minmax(0,var(--wm,2.3fr)) minmax(0,1fr);column-gap:24px}
+html.deck .scene.wide>.inner>*{grid-column:1/-1}
+html.deck .scene.wide>.inner>.rule+*{margin-top:0!important}
+html.deck .scene.wide .split{display:contents}
+html.deck .scene.wide [data-wide=main]{grid-column:1;align-self:start}
+html.deck .scene.wide [data-wide=side]{grid-column:2;grid-row:span 2;margin-top:0!important;align-self:center}
+html.deck .scene.wide [data-wide=under]{grid-column:1;align-self:end}
+html.deck .scene.wide .grid[data-wide=side]{grid-template-columns:1fr}
+html.deck .scene.wide .emo{display:grid;grid-template-columns:minmax(0,2.3fr) minmax(0,1fr);column-gap:24px;align-items:center}
+html.deck .scene.wide .emo>.scroller{grid-row:1/span 2}
+html.deck .scene.wide .emo>.emo__nav{grid-column:2;align-self:end;margin-top:0}
+html.deck .scene.wide .emo>.emo__note{grid-column:2;align-self:start}
+html.deck .scene.wide .plan-body{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2.1fr);column-gap:22px;align-items:center}
+html.deck .scene.wide .plan-body>*{grid-column:1/-1}
+html.deck .scene.wide .plan-body>.plan-prem{grid-column:1}
+html.deck .scene.wide .plan-body>.plan-info{grid-column:2}
 
 .deckbar{position:fixed;right:18px;bottom:16px;z-index:70;display:none;align-items:center;gap:2px;padding:5px;border-radius:999px;
   background:rgba(8,22,38,.9);border:1px solid rgba(214,169,76,.3);box-shadow:0 10px 30px -12px rgba(0,0,0,.7);font-size:14px;line-height:1;transition:opacity .4s ease}
@@ -763,16 +780,16 @@ body.locked #pwGate{display:flex}
 </section>
 
 <!-- ══════════ MSCI 长期趋势 ══════════ -->
-<section class="scene" id="s-crisis" data-title="历经危机" data-tint="#102D49">
+<section class="scene" id="s-crisis" data-title="历经危机" data-tint="#102D49" data-wide style="--wm:3fr">
   <div class="inner">
     <p class="eyebrow rise">Through every crisis</p>
     <h2 class="h-sec rise" style="--d:.06s">市场历经危机，长期趋势始终向上</h2>
     <div class="rule rise" style="--d:.1s"></div>
-    <div class="chartbox chartbox--dark dark-chart rise" data-live style="--d:.14s;margin-top:8px">
+    <div class="chartbox chartbox--dark dark-chart rise" data-live data-wide="main" style="--d:.14s;margin-top:8px">
       <p class="chart-title">MSCI 全球指数走势示意（对数刻度）</p>
       <div class="scroller scroller--wide"><svg id="ch-msci" viewBox="0 0 980 440" role="img" aria-label="MSCI 全球指数 1987 至 2023 年走势，历经多次重大危机，长期趋势向上（示意）"></svg></div>
     </div>
-    <div class="grid g2" data-live style="margin-top:24px">
+    <div class="grid g2" data-live data-wide="side" style="margin-top:24px">
       <div class="stat rise"><div class="stat__n"><span data-count="37">0</span> 年</div><div class="stat__l">时间跨度</div></div>
       <div class="stat rise" style="--d:.1s"><div class="stat__n"><span data-count="9">0</span> 次</div><div class="stat__l">重大危机</div></div>
     </div>
@@ -803,16 +820,16 @@ body.locked #pwGate{display:flex}
 </section>
 
 <!-- ══════════ 牛熊 ══════════ -->
-<section class="scene" id="s-bull" data-title="牛长熊短" data-tint="#11324F">
+<section class="scene" id="s-bull" data-title="牛长熊短" data-tint="#11324F" data-wide style="--wm:2.1fr">
   <div class="inner">
     <p class="eyebrow rise">Bulls run longer</p>
     <h2 class="h-sec rise" style="--d:.06s">牛市绵长丰厚，熊市短暂有限</h2>
     <div class="rule rise" style="--d:.1s"></div>
-    <div class="chartbox chartbox--dark dark-chart rise" data-live style="--d:.14s;margin-top:8px">
+    <div class="chartbox chartbox--dark dark-chart rise" data-live data-wide="main" style="--d:.14s;margin-top:8px">
       <p class="chart-title">牛市累计涨幅 vs 熊市跌幅（示意）</p>
       <div class="scroller scroller--wide"><svg id="ch-bull" viewBox="0 0 900 420" role="img" aria-label="1970 年以来牛市与熊市交替，牛市持续时间与涨幅远大于熊市"></svg></div>
     </div>
-    <div class="grid g2" style="margin-top:18px">
+    <div class="grid g2" data-wide="side" style="margin-top:18px">
       <div class="card rise" style="--d:.2s">
         <h3 style="color:var(--gold-2)">牛市 · 平均持续约 5 年</h3>
         <p style="margin-top:6px">平均累计回报数倍于熊市跌幅，且往往在最悲观的时点起步。</p>
@@ -850,7 +867,7 @@ body.locked #pwGate{display:flex}
 </section>
 
 <!-- ══════════ 情绪陷阱（互动） ══════════ -->
-<section class="scene" id="s-emo" data-title="情绪陷阱" data-tint="#122F3F">
+<section class="scene" id="s-emo" data-title="情绪陷阱" data-tint="#122F3F" data-wide>
   <div class="inner">
     <p class="eyebrow rise">Emotions cost returns</p>
     <h2 class="h-sec rise" style="--d:.06s">追涨杀跌：个人投资者的情绪陷阱</h2>
@@ -866,23 +883,23 @@ body.locked #pwGate{display:flex}
 </section>
 
 <!-- ══════════ 历史新高 ══════════ -->
-<section class="scene" id="s-high" data-title="历史新高" data-tint="#0E2B45">
+<section class="scene" id="s-high" data-title="历史新高" data-tint="#0E2B45" data-wide style="--wm:.67fr">
   <div class="inner">
     <p class="eyebrow rise">All-time highs are normal</p>
     <h2 class="h-sec rise" style="--d:.06s">即使买在历史新高，长期回报依然可观</h2>
     <div class="rule rise" style="--d:.1s"></div>
     <div class="split" style="margin-top:8px;grid-template-columns:minmax(0,1fr) minmax(0,1.5fr)">
-      <div class="card card--dark rise" style="--d:.14s">
+      <div class="card card--dark rise" data-wide="main" style="--d:.14s">
         <p class="eyebrow" style="margin-bottom:0">最常听到的一句话</p>
         <p style="margin-top:14px;padding-left:16px;border-left:3px solid var(--gold);font-size:1.15rem;font-weight:700;color:var(--paper);line-height:1.7">现在都历史新高了，<br>我想等回调再进。</p>
         <p style="margin-top:18px"><b style="color:var(--gold)">数据的回答：</b>对长期上行的市场而言，新高是常态，不是风险信号。大多数新高之后，还有更多新高。</p>
       </div>
-      <div class="chartbox rise" data-live style="--d:.22s">
+      <div class="chartbox rise" data-live data-wide="side" style="--d:.22s">
         <p class="chart-title">买在历史新高之后的平均累计回报</p>
         <div class="scroller"><svg id="ch-high" viewBox="0 0 620 420" role="img" aria-label="买在历史新高后，一年平均回报 15.5%，五年 80.3%，十年 190.9%"></svg></div>
       </div>
     </div>
-    <div class="takeaway rise">不必为等待回调而停止投资，<b>等待的成本通常高于回调本身</b>。</div>
+    <div class="takeaway rise" data-wide="under">不必为等待回调而停止投资，<b>等待的成本通常高于回调本身</b>。</div>
     <p class="src rise">来源：资本集团，截至 2025 年 12 月底；模拟区间 1976 年 1 月–2025 年 12 月，使用 MSCI 世界指数。仅供说明用途。</p>
   </div>
 </section>
@@ -935,17 +952,17 @@ body.locked #pwGate{display:flex}
 </section>
 
 <!-- ══════════ 早开始 + 计算器 ══════════ -->
-<section class="scene" id="s-early" data-title="早开始 10 年" data-tint="#11324F">
+<section class="scene" id="s-early" data-title="早开始 10 年" data-tint="#11324F" data-wide style="--wm:1.62fr">
   <div class="inner">
     <p class="eyebrow rise">Start early</p>
     <h2 class="h-sec rise" style="--d:.06s">早开始 10 年：少投 10 万，最终多出约 17.5 万</h2>
     <div class="rule rise" style="--d:.1s"></div>
     <div class="split" style="margin-top:8px">
-      <div class="chartbox rise" data-live style="--d:.14s">
+      <div class="chartbox rise" data-live data-wide="main" style="--d:.14s">
         <p class="chart-title">两位投资者的资产曲线（年化 8%）</p>
         <div class="scroller scroller--wide"><svg id="ch-early" viewBox="0 0 700 430" role="img" aria-label="25 岁开始只投十年，65 岁时反而多于 35 岁开始连投三十年"></svg></div>
       </div>
-      <div style="display:flex;flex-direction:column;gap:16px">
+      <div data-wide="side" style="display:flex;flex-direction:column;gap:16px">
         <div class="card rise" style="--d:.2s;border:2px solid var(--gold)">
           <h3>小 A · 25 岁开始</h3>
           <p style="margin-top:6px">总成本 <b style="color:var(--ink)">$50,000</b> · 只投 10 年便停止</p>
@@ -963,7 +980,7 @@ body.locked #pwGate{display:flex}
       </div>
     </div>
 
-    <p class="src rise">图表示意测算：年化 8%、每年年初投入 US$5,000，复利滚存至 65 岁。仅供说明用途，不构成任何回报承诺。</p>
+    <p class="src rise" data-wide="under">图表示意测算：年化 8%、每年年初投入 US$5,000，复利滚存至 65 岁。仅供说明用途，不构成任何回报承诺。</p>
   </div>
 </section>
 
@@ -1105,13 +1122,13 @@ body.locked #pwGate{display:flex}
 </section>
 
 <!-- ══════════ 问题一 · 互动曲线 ══════════ -->
-<section class="scene" id="s-q1b" data-title="问题一 · 成本对比" data-tint="#0E2B45">
+<section class="scene" id="s-q1b" data-title="问题一 · 成本对比" data-tint="#0E2B45" data-wide style="--wm:1.62fr">
   <div class="inner">
     <p class="eyebrow rise">问题一 · 互动</p>
     <h2 class="h-sec rise" style="--d:.06s">前 7 年多付，第 8 年起每年少付</h2>
     <div class="rule rise" style="--d:.1s"></div>
     <div class="split" style="margin-top:8px">
-      <div class="chartbox rise" data-live style="--d:.14s">
+      <div class="chartbox rise" data-live data-wide="main" style="--d:.14s">
         <div style="display:flex;flex-wrap:wrap;gap:8px 14px;justify-content:space-between;align-items:center">
           <div class="toggle" id="q1View" role="group" aria-label="切换视图" style="margin-bottom:6px">
             <button type="button" data-v="rate" class="on">每年费用率</button>
@@ -1126,7 +1143,7 @@ body.locked #pwGate{display:flex}
         <div class="scroller scroller--wide"><svg id="ch-q1" viewBox="0 0 700 400" role="img" aria-label="PWV 与其他渠道每年费用率及账户价值的 30 年对比"></svg></div>
         <div class="q1legend" id="q1Legend"></div>
       </div>
-      <div style="display:flex;flex-direction:column;gap:12px">
+      <div data-wide="side" style="display:flex;flex-direction:column;gap:12px">
         <div class="card card--dark rise q1panel" style="--d:.2s">
           <div class="toggle" id="q1Cmp" role="group" aria-label="对比渠道">
             <button type="button" data-p="web" class="on">网上平台</button>
@@ -1148,7 +1165,7 @@ body.locked #pwGate{display:flex}
         <p class="kicker rise" id="q1Cross" style="font-size:.98rem;line-height:1.55"></p>
       </div>
     </div>
-    <p class="src rise">两边用同一个扣费前回报假设。PWV 按本方案 Policy Illustration 的退保价值（圆点为 BI 原数，虚线为估算，6% 整条为按产品摘要规则推算并用 BI 校准）；PWV 新币计价，保费 100% 投入，无认购费与换汇。其他渠道费率参考：同类收益基金持续费用约 1.55% 至 1.67%；网上平台年费约 0.25% 至 0.60%（如 FSMOne 股票与混合基金 0.35%）；银行网上认购费约 0.8% 至 0.9%；CSPX 总费用率 0.07%；换汇按 0.5% 估算，各家不同。均为示意。</p>
+    <p class="src rise" data-wide="under">两边用同一个扣费前回报假设。PWV 按本方案 Policy Illustration 的退保价值（圆点为 BI 原数，虚线为估算，6% 整条为按产品摘要规则推算并用 BI 校准）；PWV 新币计价，保费 100% 投入，无认购费与换汇。其他渠道费率参考：同类收益基金持续费用约 1.55% 至 1.67%；网上平台年费约 0.25% 至 0.60%（如 FSMOne 股票与混合基金 0.35%）；银行网上认购费约 0.8% 至 0.9%；CSPX 总费用率 0.07%；换汇按 0.5% 估算，各家不同。均为示意。</p>
   </div>
 </section>
 
@@ -1221,17 +1238,17 @@ body.locked #pwGate{display:flex}
 </section>
 
 <!-- ══════════ 问题三 · 底层基金 ══════════ -->
-<section class="scene" id="s-q3" data-title="问题三 · 底层基金" data-tint="#11324F">
+<section class="scene" id="s-q3" data-title="问题三 · 底层基金" data-tint="#11324F" data-wide style="--wm:1.25fr">
   <div class="inner">
     <p class="eyebrow rise">客户最常问 · 问题三</p>
     <h2 class="h-sec rise" style="--d:.06s">底层基金外面买得到，为什么要多一层</h2>
     <div class="rule rise" style="--d:.1s"></div>
     <div class="split" style="margin-top:8px;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr)">
-      <div class="chartbox chartbox--dark dark-chart rise" data-live style="--d:.14s">
+      <div class="chartbox chartbox--dark dark-chart rise" data-live data-wide="main" style="--d:.14s">
         <p class="chart-title">以你方案里的子基金为例</p>
         <div class="scroller"><svg id="ch-layers" viewBox="0 0 600 430" role="img" aria-label="三只底层基金由 AIA Investment Management 组合成 AIA Global Adventurous Income Fund，再放进 PWV 保单。"></svg></div>
       </div>
-      <div class="card rise" style="--d:.22s">
+      <div class="card rise" data-wide="side" style="--d:.22s">
         <h3 style="color:var(--gold-2)">多出来的这一层，具体是什么</h3>
         <ul class="ticks">
           <li><b>组合与配置</b>三只底层基金由 AIA Investment Management 自上而下调配</li>
@@ -1242,7 +1259,7 @@ body.locked #pwGate{display:flex}
         </ul>
       </div>
     </div>
-    <div class="takeaway rise">自己买底层基金，当然可以比较。<b>这一层多出来的是组合管理、保单利益和奖金</b>，要看你需不需要。</div>
+    <div class="takeaway rise" data-wide="under">自己买底层基金，当然可以比较。<b>这一层多出来的是组合管理、保单利益和奖金</b>，要看你需不需要。</div>
     <p class="src rise">资料来源 AIA Platinum Wealth Venture 3.0 Product Summary（2026 年 10 月版）；AIA Global Adventurous Income Fund 基金摘要（2026 年 4 月），底层基金管理人为 Voya Investment Management、Franklin Advisers 与 AIA Investment Management。利益与条件以保单条款为准。</p>
   </div>
 </section>
@@ -1312,7 +1329,7 @@ body.locked #pwGate{display:flex}
 
 
 <!-- ══════════ 方案示例 ══════════ -->
-<section class="scene" id="s-plan" data-title="方案示例" data-tint="#10314E">
+<section class="scene" id="s-plan" data-title="方案示例" data-tint="#10314E" data-wide>
   <div class="inner">
     <div class="plan-head rise">
       <div class="plan-tag"><i>#</i>基金<br>定投</div>
@@ -2223,12 +2240,29 @@ const arm=svg=>{ if(W.armPaths) W.armPaths(svg); };
   let cur=0, on=false;
   const hi=scenes.findIndex(s=>"#"+s.id===location.hash); if(hi>0) cur=hi;
 
+  const WIDTHS=[1080,1160,1240,1320,1400,1480];
+  // 以 .inner 实际中心缩放：章节页有 margin-right 偏左，按两侧各留 65px 计算，避免 iPad 等宽度下左侧被裁切
+  function scaleOf(inner){
+    const w=inner.offsetWidth, cx=inner.offsetLeft+w/2;
+    return Math.min((innerWidth-130)/w,(innerHeight-92)/inner.offsetHeight,1.45,(cx-65)*2/w,(innerWidth-65-cx)*2/w);
+  }
   function fit(s){
     const inner=s.querySelector(":scope > .inner"); if(!inner) return;
-    // 以 .inner 实际中心缩放：章节页有 margin-right 偏左，按两侧各留 65px 计算，避免 iPad 等宽度下左侧被裁切
-    const w=inner.offsetWidth, cx=inner.offsetLeft+w/2;
-    const k=Math.min((innerWidth-130)/w,(innerHeight-92)/inner.offsetHeight,1.45,(cx-65)*2/w,(innerWidth-65-cx)*2/w);
-    s.style.setProperty("--s",Math.max(.3,k).toFixed(4));
+    if(!inner.classList.contains("narrow")){
+      // 宽屏下多数页面被高度卡住：逐档试版心宽度，带 data-wide 的页面再试横排，取放大倍数最大的一种（明显更大才换）
+      let best=null;
+      (s.hasAttribute("data-wide")?[false,true]:[false]).forEach(wide=>{
+        s.classList.toggle("wide",wide);
+        WIDTHS.forEach(w=>{
+          s.style.setProperty("--w",w+"px");
+          const k=scaleOf(inner);
+          if(!best||k>best.k*1.01) best={k:k,w:w,wide:wide};
+        });
+      });
+      s.classList.toggle("wide",best.wide);
+      s.style.setProperty("--w",best.w+"px");
+    }
+    s.style.setProperty("--s",Math.max(.3,scaleOf(inner)).toFixed(4));
   }
   function activate(s){
     const rs=[...s.querySelectorAll(".rise")];
@@ -2305,6 +2339,8 @@ const arm=svg=>{ if(W.armPaths) W.armPaths(svg); };
   },{passive:true});
   let tx0=null;
   addEventListener("touchstart",e=>{ tx0=e.target.closest("input")?null:e.touches[0].clientX; },{passive:true});
+  // 演示模式下禁止单指拖动页面（iPad Safari 会把整页上推，顶部品牌栏被工具栏挡住）；滑块与双指缩放不受影响
+  addEventListener("touchmove",e=>{ if(on&&e.touches.length===1&&!e.target.closest("input")) e.preventDefault(); },{passive:false});
   addEventListener("touchend",e=>{
     if(!on||tx0===null) return;
     const dx=e.changedTouches[0].clientX-tx0;
