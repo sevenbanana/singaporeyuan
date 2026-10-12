@@ -551,6 +551,11 @@ html.deck .pl-assume{min-height:54px}
 /* 方案示例页：单色背景，盖住波纹与光晕 */
 #s-plan{background:#0D2640}
 html.deck #s-plan{background:#0D2640}
+
+/* 早开始分步 */
+.er-take{opacity:.25;transition:opacity .5s ease}
+.er-take.on{opacity:1;border-color:var(--gold)}
+#erA.hi{border-color:var(--gold)}
 </style>
 </head>
 <body>
@@ -1078,35 +1083,44 @@ body.locked #pwGate{display:flex}
   </div>
 </section>
 
-<!-- ══════════ 早开始 + 计算器 ══════════ -->
+<!-- ══════════ 早开始 10 年（分步讲解） ══════════ -->
 <section class="scene" id="s-early" data-title="早开始 10 年" data-tint="#11324F">
   <div class="inner">
     <p class="eyebrow rise">Start early</p>
     <h2 class="h-sec rise" style="--d:.06s">早开始 10 年：少投 10 万，最终多出约 17.5 万</h2>
     <div class="rule rise" style="--d:.1s"></div>
-    <div class="split" style="margin-top:8px">
+    <div class="split" style="margin-top:8px;grid-template-columns:minmax(0,1.55fr) minmax(0,1fr)">
       <div class="chartbox rise" data-live style="--d:.14s">
-        <p class="chart-title">两位投资者的资产曲线（年化 8%）</p>
-        <div class="scroller scroller--wide"><svg id="ch-early" viewBox="0 0 700 430" role="img" aria-label="25 岁开始只投十年，65 岁时反而多于 35 岁开始连投三十年"></svg></div>
+        <div class="dca-bar">
+          <div class="dca-dots" id="erDots" aria-hidden="true"></div>
+          <div class="dca-btns">
+            <button type="button" id="erPrev">‹ 上一步</button>
+            <button type="button" class="go" id="erNext">下一步 ›</button>
+            <button type="button" id="erPlay">自动播放</button>
+          </div>
+        </div>
+        <div class="scroller scroller--wide"><svg id="ch-early2" viewBox="0 0 700 400" role="img" aria-label="小A 25 岁起每年年初投入 5000 美元共 10 年，小B 35 岁起投 30 年。年化 8% 假设下，65 岁时小A 约 787,176 美元，小B 约 611,729 美元。"></svg></div>
+        <p class="dca-say" id="erSay" aria-live="polite"></p>
       </div>
-      <div style="display:flex;flex-direction:column;gap:16px">
-        <div class="card rise" style="--d:.2s;border:2px solid var(--gold)">
-          <h3>小 A · 25 岁开始</h3>
-          <p style="margin-top:6px">总成本 <b style="color:var(--ink)">$50,000</b> · 只投 10 年便停止</p>
-          <p style="margin-top:8px;font-size:1.6rem;font-weight:800;color:var(--gold-2);font-variant-numeric:tabular-nums">65 岁时 $787,176</p>
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <div class="resultcard dca-card er-a" id="erA">
+          <h4>小A · 25 岁开始，只投 10 年</h4>
+          <div class="dca-row"><span>现在</span><b data-k="age">25 岁</b></div>
+          <div class="dca-row"><span>累计投入</span><b data-k="inv">US$0</b></div>
+          <div class="dca-row tot"><span>账户价值</span><b data-k="val">US$0</b></div>
         </div>
-        <div class="card rise" style="--d:.28s">
-          <h3>小 B · 35 岁开始</h3>
-          <p style="margin-top:6px">总成本 <b style="color:var(--ink)">$150,000</b> · 连续投满 30 年</p>
-          <p style="margin-top:8px;font-size:1.6rem;font-weight:800;color:var(--ink-2);font-variant-numeric:tabular-nums">65 岁时 $611,729</p>
+        <div class="resultcard dca-card" id="erB">
+          <h4>小B · 35 岁开始，连投 30 年</h4>
+          <div class="dca-row"><span>现在</span><b data-k="age">25 岁</b></div>
+          <div class="dca-row"><span>累计投入</span><b data-k="inv">US$0</b></div>
+          <div class="dca-row tot"><span>账户价值</span><b data-k="val">US$0</b></div>
         </div>
-        <div class="card card--dark rise" style="--d:.34s">
+        <div class="card card--dark er-take" id="erTake">
           <h3 style="color:var(--gold)">复利最大的成本是晚开始</h3>
           <p style="margin-top:6px">本金可以追，时间无法补。</p>
         </div>
       </div>
     </div>
-
     <p class="src rise">图表示意测算：年化 8%、每年年初投入 US$5,000，复利滚存至 65 岁。仅供说明用途，不构成任何回报承诺。</p>
   </div>
 </section>
@@ -1933,7 +1947,7 @@ function armPaths(root){
 
 /* ───── 9. 早开始 10 年 ───── */
 (function(){
-  const svg=document.getElementById("ch-early");
+  const svg=document.getElementById("ch-early"); if(!svg) return;
   const W=700,H=430,L=46,R=120,T=44,B=60;
   const cA=[],cB=[]; let va=0,vb=0;
   for(let t=0;t<=40;t++){
@@ -2483,6 +2497,78 @@ const arm=svg=>{ if(W.armPaths) W.armPaths(svg); };
     timer=setInterval(()=>{ if(step>=MAX){stop();return;} go(step+1); },1700);
   });
   // 翻页笔：在这一页按 → 先走下一步，走完再翻页
+  const scene=svg.closest(".scene");
+  scene._next=()=>{ if(step<MAX){stop();go(step+1);return true;} return false; };
+  scene._prev=()=>{ if(step>0){stop();go(step-1);return true;} return false; };
+  go(0);
+})();
+
+/* ───── 早开始 10 年：分步讲解 ───── */
+(function(){
+  const svg=document.getElementById("ch-early2"); if(!svg) return;
+  const A=[],B=[]; let va=0,vb=0;
+  for(let t=0;t<=40;t++){ A.push(va); B.push(vb); if(t<10) va+=5000; if(t>=10&&t<40) vb+=5000; va*=1.08; vb*=1.08; }
+  const W=700,H=400,L=74,R=118,T=20,Bm=44, max=850000;
+  const x=a=>L+(a-25)/40*(W-L-R), y=v=>H-Bm-v/max*(H-T-Bm);
+  const fmt=v=>"US$"+Math.round(v).toLocaleString("en-US");
+  const invA=a=>5000*Math.min(10,Math.max(0,a-25)), invB=a=>5000*Math.max(0,Math.min(30,a-35));
+  // 底图
+  el("rect",{x:x(25),y:T,width:x(35)-x(25),height:H-T-Bm,fill:"rgba(201,162,76,.16)"},svg);
+  el("rect",{x:x(35),y:T,width:x(65)-x(35),height:H-T-Bm,fill:"rgba(23,62,99,.05)"},svg);
+  tx((x(25)+x(35))/2,T+20,"小A 投入期","tick",{"text-anchor":"middle",fill:"#8A6A26","font-weight":"700"},svg);
+  tx((x(35)+x(65))/2,T+20,"小B 投入期","tick",{"text-anchor":"middle",fill:"#173E63","font-weight":"700"},svg);
+  [200000,400000,600000,800000].forEach(v=>{ el("line",{class:"gl",x1:L,x2:W-R,y1:y(v),y2:y(v)},svg); tx(L-10,y(v)+6,"$"+(v/1000)+"k","tick",{"text-anchor":"end"},svg); });
+  [25,35,45,55,65].forEach(a=>tx(x(a),H-Bm+28,a+" 岁","tick",{"text-anchor":"middle"},svg));
+  el("line",{class:"ax",x1:L,x2:W-R,y1:y(0),y2:y(0)},svg);
+  const now=el("line",{y1:T,y2:H-Bm,stroke:"rgba(10,28,46,.4)","stroke-width":1.4,"stroke-dasharray":"4 5"},svg);
+  const pB=el("path",{stroke:"#173E63","stroke-width":3.6,fill:"none","stroke-linejoin":"round","stroke-linecap":"round"},svg);
+  const pA=el("path",{stroke:"#C9A24C","stroke-width":4.2,fill:"none","stroke-linejoin":"round","stroke-linecap":"round"},svg);
+  const dA=el("circle",{r:7,fill:"#C9A24C",stroke:"#fff","stroke-width":2},svg), dB=el("circle",{r:7,fill:"#173E63",stroke:"#fff","stroke-width":2},svg);
+  const lA=tx(0,0,"","val",{fill:"#8A6A26","font-size":"20"},svg), lB=tx(0,0,"","val",{fill:"#173E63","font-size":"20"},svg);
+  const stopTag=tx(x(35)+8,y(A[10])-14,"小A 停止投入","tick",{fill:"#8A6A26","font-weight":"700","font-size":"15"},svg);
+  const STEPS=[
+    {age:25,say:"两个人每年都投 <b>US$5,000</b>，年化回报都假设 8%。小A 从 25 岁开始，只投 10 年；小B 从 35 岁开始，一直投到 65 岁。猜一猜，65 岁时谁的钱更多？"},
+    {age:35,say:"25 至 34 岁：小A 每年投入，10 年共投 <b>US$50,000</b>，35 岁时账户约 <b>"+fmt(A[10])+"</b>。小B 还没开始。"},
+    {age:45,say:"35 岁起，小A <b>不再投入</b>，钱自己继续长；小B 开始每年投入。到 45 岁，小A 约 <b>"+fmt(A[20])+"</b>，小B 约 <b>"+fmt(B[20])+"</b>。"},
+    {age:55,say:"到 55 岁，小B 已经投了 US$100,000，账户约 <b>"+fmt(B[30])+"</b>；小A 一分没再投，账户约 <b>"+fmt(A[30])+"</b>。"},
+    {age:65,say:"到 65 岁，小A 约 <b>"+fmt(A[40])+"</b>，小B 约 <b>"+fmt(B[40])+"</b>。小A 少投 10 万，最终多出约 <b>"+fmt(A[40]-B[40])+"</b>。"},
+    {age:65,say:"差别不在投了多少，而在钱在市场里待了多久。<b>复利最大的成本是晚开始</b>，本金可以追，时间无法补。"}
+  ];
+  const MAX=STEPS.length-1, dots=document.getElementById("erDots");
+  for(let k=0;k<=MAX;k++) dots.appendChild(document.createElement("i"));
+  const path=(arr,to,from)=>{ let d=""; for(let a=from;a<=to;a++) d+=(a===from?"M":"L")+x(a).toFixed(1)+" "+y(arr[a-25]).toFixed(1); return d; };
+  function card(id,age,inv,val,on){
+    const c=document.getElementById(id), q=k=>c.querySelector('[data-k="'+k+'"]');
+    q("age").textContent=age+" 岁"; q("inv").textContent="US$"+inv.toLocaleString("en-US"); q("val").textContent=fmt(val);
+    c.classList.toggle("hi",on);
+  }
+  let step=0, timer=null;
+  function go(k){
+    step=Math.max(0,Math.min(MAX,k));
+    const age=STEPS[step].age;
+    pA.setAttribute("d",age>25?path(A,age,25):""); pB.setAttribute("d",age>35?path(B,age,35):"");
+    const show=(e,on)=>{ e.style.opacity=on?"1":"0"; e.style.transition="opacity .4s ease"; };
+    dA.setAttribute("cx",x(age)); dA.setAttribute("cy",y(A[age-25])); show(dA,age>25);
+    dB.setAttribute("cx",x(age)); dB.setAttribute("cy",y(B[age-25])); show(dB,age>35);
+    now.setAttribute("x1",x(age)); now.setAttribute("x2",x(age)); show(now,step>0&&step<4);
+    const end=step>=4;
+    lA.setAttribute("x",x(age)+12); lA.setAttribute("y",y(A[age-25])+7); lA.textContent=end?"$"+Math.round(A[40]).toLocaleString("en-US"):""; 
+    lB.setAttribute("x",x(age)+12); lB.setAttribute("y",y(B[age-25])+7); lB.textContent=end?"$"+Math.round(B[40]).toLocaleString("en-US"):"";
+    show(stopTag,step>=2);
+    card("erA",age,invA(age),A[age-25],end); card("erB",age,invB(age),B[age-25],false);
+    document.getElementById("erTake").classList.toggle("on",step>=MAX);
+    document.getElementById("erSay").innerHTML=STEPS[step].say;
+    [...dots.children].forEach((d,i)=>{d.classList.toggle("on",i<=step);d.classList.toggle("cur",i===step);});
+    document.getElementById("erPrev").disabled=step===0; document.getElementById("erNext").disabled=step===MAX;
+  }
+  function stop(){ clearInterval(timer); timer=null; document.getElementById("erPlay").textContent="自动播放"; }
+  document.getElementById("erPrev").addEventListener("click",()=>{stop();go(step-1);});
+  document.getElementById("erNext").addEventListener("click",()=>{stop();go(step+1);});
+  document.getElementById("erPlay").addEventListener("click",()=>{
+    if(timer){stop();return;} if(step>=MAX) go(0);
+    document.getElementById("erPlay").textContent="暂停";
+    timer=setInterval(()=>{ if(step>=MAX){stop();return;} go(step+1); },2600);
+  });
   const scene=svg.closest(".scene");
   scene._next=()=>{ if(step<MAX){stop();go(step+1);return true;} return false; };
   scene._prev=()=>{ if(step>0){stop();go(step-1);return true;} return false; };
