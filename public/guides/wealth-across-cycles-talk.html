@@ -524,6 +524,28 @@ html.deck .tl{margin-top:24px}
 html.deck .mc{gap:6px}
 html.deck .mc .pv,html.deck .mc .dv{min-height:54px;padding:6px}
 html.deck .pl-assume{min-height:54px}
+
+/* Stewardship 改版 */
+.stw-quote{display:grid;grid-template-columns:auto minmax(0,1fr);gap:24px;align-items:center;border-radius:22px;padding:20px 26px;
+  background:var(--paper);color:var(--ink);box-shadow:var(--shadow);border-left:6px solid var(--gold)}
+.stw-art{width:220px;height:auto;color:var(--ink-2)}
+.stw-zh{font-size:1.25rem;font-weight:800;line-height:1.5}
+.stw-en{font-size:.85rem;color:var(--slate);margin-top:6px;font-style:italic}
+.stw-pillars{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:16px}
+.stw-p{position:relative;border-radius:18px;padding:18px 20px 16px;border-top:3px solid var(--gold);background:rgba(255,255,255,.04)}
+.stw-p svg{width:44px;height:44px;color:var(--gold)}
+.stw-p>span{position:absolute;right:16px;top:12px;font-size:2rem;font-weight:800;color:rgba(214,169,76,.25)}
+.stw-p h3{font-size:1.1rem;margin-top:8px}
+.stw-p p{font-size:.88rem;color:#C3D3E0;margin-top:4px;line-height:1.6}
+.stw-stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));margin-top:16px;border-top:1px solid rgba(244,238,225,.14);border-bottom:1px solid rgba(244,238,225,.14)}
+.stw-stats>div{padding:12px 10px;text-align:center}
+.stw-stats>div+div{border-left:1px solid rgba(244,238,225,.14)}
+.stw-stats b{display:block;font-size:1.9rem;font-weight:800;color:var(--gold);font-variant-numeric:tabular-nums;line-height:1.2}
+.stw-stats span{font-size:.82rem;color:var(--mist)}
+@media(max-width:860px){html:not(.deck) .stw-quote{grid-template-columns:1fr} html:not(.deck) .stw-pillars,html:not(.deck) .stw-stats{grid-template-columns:1fr 1fr}}
+/* 方案页：底部说明与第 8 年的保单价值格左对齐 */
+.plan-free-row{display:grid;grid-template-columns:minmax(0,1.3fr) repeat(4,minmax(0,1fr));gap:0 12px}
+.plan-free-row .plan-free{grid-column:2/-1}
 </style>
 </head>
 <body>
@@ -787,6 +809,26 @@ body.locked #pwGate{display:flex}
         <path d="M8 22L32 9l24 13z"/><path d="M10 26h44"/><path d="M16 30v18M27 30v18M37 30v18M48 30v18"/><path d="M10 52h44M6 57h52"/>
       </g>
     </symbol>
+
+    <!-- Stewardship：两股水汇成一条河 -->
+    <symbol id="ill-streams" viewBox="0 0 340 150">
+      <g filter="url(#rough)" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M10 30q60 0 100 30t90 40h130" stroke="var(--gold)" stroke-width="3"/>
+        <path d="M10 125q60 0 100-25t90-0h130" stroke="currentColor" stroke-width="3"/>
+        <path d="M200 100h130" stroke="var(--gold)" stroke-width="7" opacity=".35"/>
+        <path d="M300 88l24 12-24 12" stroke="var(--gold)" stroke-width="3"/>
+      </g>
+      <g font-family="Archivo,system-ui,'Noto Sans SC','PingFang SC',sans-serif" font-size="15" font-weight="700">
+        <text x="12" y="20" fill="var(--gold)">你的保费</text>
+        <text x="12" y="146" fill="currentColor">AIA 自己的资金</text>
+      </g>
+    </symbol>
+    <symbol id="ic-hands" viewBox="0 0 64 64"><g filter="url(#rough-s)" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M4 26l12-6 10 4 8-4 10 2 16 6"/><path d="M60 28l-8 14-14 8-8-6"/><path d="M4 26l6 16 10 6"/><path d="M26 30l8 8M30 26l10 10M22 34l8 8"/></g></symbol>
+    <symbol id="ic-lens" viewBox="0 0 64 64"><g filter="url(#rough-s)" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="27" cy="27" r="17"/><path d="M40 40l16 16"/><path d="M19 28l6 6 11-12"/></g></symbol>
+    <symbol id="ic-glass" viewBox="0 0 64 64"><g filter="url(#rough-s)" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M16 8h32M16 56h32"/><path d="M21 8q0 15 11 24 11-9 11-24M21 56q0-15 11-24 11 9 11 24"/><path d="M26 51q6-6 12 0"/></g></symbol>
   </defs>
 </svg>
 
@@ -1262,7 +1304,7 @@ body.locked #pwGate{display:flex}
         <p class="kicker rise" id="q1Cross" style="font-size:.98rem;line-height:1.55"></p>
       </div>
     </div>
-    <p class="src rise">两边用同一个扣费前回报假设，并把 PWV 子基金 1.5% 管理费与平台基金的持续费用视为同一层基金费用。PWV 取自两份方案 BI 的退保价值（5 年缴每年 S$60,000；2 年缴每年 S$500,000），圆点为 BI 原数，虚线为估算；6% 及加入限时促销后的数值按产品摘要规则推算并用 BI 校准。PWV 新币计价、保费 100% 投入、无认购费与换汇，费用已含顾问服务。各渠道费率见右侧说明，均为示意。</p>
+    <p class="src rise">两边用同一个扣费前回报假设，并把 PWV 子基金 1.5% 管理费与平台基金的持续费用视为同一层基金费用。PWV 取自两份方案 BI 的退保价值（5 年缴每年 S$60,000；2 年缴每年 S$150,000，按 S$500,000 方案的 BI 等比换算，同一欢迎奖金档位），圆点为 BI 原数，虚线为估算；6% 及加入限时促销后的数值按产品摘要规则推算并用 BI 校准。PWV 新币计价、保费 100% 投入、无认购费与换汇，费用已含顾问服务。各渠道费率见右侧说明，均为示意。</p>
   </div>
 </section>
 
@@ -1404,25 +1446,28 @@ body.locked #pwGate{display:flex}
     <p class="eyebrow rise">AIA Stewardship</p>
     <h2 class="h-sec rise" style="--d:.06s">和 AIA 自己的钱，放在一起投资</h2>
     <div class="rule rise" style="--d:.1s"></div>
-    <div class="split" style="margin-top:8px;grid-template-columns:minmax(0,1.45fr) minmax(0,1fr)">
-      <div class="chartbox chartbox--dark dark-chart rise" data-live style="--d:.14s">
-        <div class="scroller"><svg id="ch-steward" viewBox="0 0 640 380" role="img" aria-label="你的保费与 AIA 自己的保险资金，一起交给 AIA Investment Management，再由全球策略资产管理伙伴管理，并接受专业监督。"></svg></div>
-      </div>
-      <div style="display:flex;flex-direction:column;gap:12px">
-        <div class="card card--dark rise" style="--d:.2s"><h3 style="color:var(--gold)">长期合作</h3><p style="margin-top:4px">与全球策略资产管理伙伴建立长期合作关系</p></div>
-        <div class="card card--dark rise" style="--d:.26s"><h3 style="color:var(--gold)">专业监督</h3><p style="margin-top:4px">委任业绩记录经过验证的管理人，并持续监督</p></div>
-        <div class="card card--dark rise" style="--d:.32s"><h3 style="color:var(--gold)">长期视角</h3><p style="margin-top:4px">保险公司为长期投资，不追短期热点</p></div>
+    <div class="stw-quote rise" style="--d:.14s">
+      <svg class="stw-art" viewBox="0 0 340 150" aria-hidden="true"><use href="#ill-streams"/></svg>
+      <div>
+        <p class="stw-zh">你的保费和 AIA 自己的保险资金，交给同一套投资体系，用同样的标准管理。</p>
+        <p class="stw-en">Customers can now invest their savings alongside our own. · AIA Group</p>
       </div>
     </div>
-    <div class="grid g4" data-live style="margin-top:22px">
-      <div class="stat rise"><div class="stat__n"><span data-count="3600">0</span> 亿+</div><div class="stat__l">AIA 总资产（美元）</div></div>
-      <div class="stat rise" style="--d:.08s"><div class="stat__n"><span data-count="250">0</span>+</div><div class="stat__l">持牌投资专业人员</div></div>
-      <div class="stat rise" style="--d:.16s"><div class="stat__n"><span data-count="5">0</span> 家</div><div class="stat__l">AIA 自有资产管理公司</div></div>
-      <div class="stat rise" style="--d:.24s"><div class="stat__n"><span data-count="600">0</span>+</div><div class="stat__l">投资团队员工</div></div>
+    <div class="stw-pillars">
+      <div class="stw-p rise" style="--d:.2s"><svg viewBox="0 0 64 64" aria-hidden="true"><use href="#ic-hands"/></svg><span>01</span><h3>长期合作</h3><p>与全球策略资产管理伙伴建立长期合作关系，下一页就是其中 6 家</p></div>
+      <div class="stw-p rise" style="--d:.27s"><svg viewBox="0 0 64 64" aria-hidden="true"><use href="#ic-lens"/></svg><span>02</span><h3>专业监督</h3><p>委任业绩记录经过验证的管理人，并持续监督</p></div>
+      <div class="stw-p rise" style="--d:.34s"><svg viewBox="0 0 64 64" aria-hidden="true"><use href="#ic-glass"/></svg><span>03</span><h3>长期视角</h3><p>保险公司为长期投资，不追短期热点</p></div>
+    </div>
+    <div class="stw-stats" data-live>
+      <div class="rise"><b><span data-count="3600">0</span> 亿+</b><span>AIA 总资产（美元）</span></div>
+      <div class="rise" style="--d:.08s"><b><span data-count="250">0</span>+</b><span>持牌投资专业人员</span></div>
+      <div class="rise" style="--d:.16s"><b><span data-count="5">0</span> 家</b><span>AIA 自有资产管理公司</span></div>
+      <div class="rise" style="--d:.24s"><b><span data-count="600">0</span>+</b><span>投资团队员工</span></div>
     </div>
     <p class="src rise">资料来源 AIA Group, AIA Investments（aia.com），数据截至 2026 年 6 月 30 日；AIA Singapore, Our Expertise。</p>
   </div>
 </section>
+
 <!-- ══════════ 合作伙伴 ══════════ -->
 <section class="scene" id="s-partners" data-title="合作伙伴" data-tint="#0E2B45">
   <div class="inner">
@@ -1488,39 +1533,6 @@ body.locked #pwGate{display:flex}
         <p class="qr-cap">扫码加我微信</p>
       </div>
     </div>
-  </div>
-</section>
-
-<!-- ══════════ 50 年验证 ══════════ -->
-<section class="scene" id="s-fifty" data-title="附录 · 50 年验证" data-tint="#0C2439">
-  <div class="inner">
-    <p class="eyebrow rise">附录 · 来源待核实</p>
-    <h2 class="h-sec rise" style="--d:.06s">50 年验证：持续投入，胜过完美抄底</h2>
-    <p class="lede rise" style="--d:.1s">同样累计投入 600 新币 · 1976–2025 · MSCI 世界指数模拟</p>
-    <div class="rule rise" style="--d:.12s"></div>
-    <div class="grid g2" data-live style="margin-top:8px">
-      <div class="chartbox chartbox--dark dark-chart rise" style="--d:.16s;border-color:var(--gold)">
-        <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
-          <h3 style="font-size:1.1rem">每月持续投入 1 新币</h3>
-          <span class="pill pill--star">★ 胜出 +85%</span>
-        </div>
-        <div style="font-size:clamp(2.4rem,6vw,3.4rem);font-weight:800;color:var(--gold);margin-top:10px;font-variant-numeric:tabular-nums">S$<span data-count="8039">0</span></div>
-        <p style="color:var(--mist);font-size:.9rem">最终总资产</p>
-        <div class="scroller"><svg id="ch-sp1" viewBox="0 0 420 170" role="img" aria-label="定投资产曲线持续上升"></svg></div>
-        <p style="margin-top:10px"><b style="color:var(--gold)">✓ 始终在场</b><br><span style="color:#C3D3E0;font-size:.94rem">波动被时间和纪律慢慢消化</span></p>
-      </div>
-      <div class="chartbox chartbox--dark dark-chart rise" style="--d:.26s">
-        <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
-          <h3 style="font-size:1.1rem">完美择时：攒钱只买大底</h3>
-        </div>
-        <div style="font-size:clamp(2.4rem,6vw,3.4rem);font-weight:800;color:var(--paper);margin-top:10px;font-variant-numeric:tabular-nums">S$<span data-count="4357">0</span></div>
-        <p style="color:var(--mist);font-size:.9rem">最终总资产</p>
-        <div class="scroller"><svg id="ch-sp2" viewBox="0 0 420 170" role="img" aria-label="择时策略资产曲线，四次抄底后仍显著落后"></svg></div>
-        <p style="margin-top:10px"><b style="color:var(--ember)">✗ 长期空仓等待</b><br><span style="color:#C3D3E0;font-size:.94rem">精准抄到四次大底，仍错过大段涨幅</span></p>
-      </div>
-    </div>
-    <div class="takeaway rise">差距的来源不是眼光，而是<b>在场时间</b>。等待大底的日子里，钱不在市场里。</div>
-    <p class="src rise">曲线为示意，按原资料的终值缩放绘制，原始研究待核实。来源：资本集团，截至 2025 年 12 月底。定投：每月 1 新币；择时：每月储蓄 1 新币，分别于 1990 年 9 月、2002 年 9 月、2009 年 2 月及 2020 年 3 月一次性投入。仅供说明用途。</p>
   </div>
 </section>
 
@@ -2008,10 +2020,10 @@ const arm=svg=>{ if(W.armPaths) W.armPaths(svg); };
 (function(){
   const svg=document.getElementById("ch-gantt"); if(!svg) return;
   const PLAN={
-    "5":{title:"AIA Platinum Wealth Venture 3.0 · 5 年缴 · 每年 S$60,000",
+    "5":{title:"AIA Platinum Wealth Venture 3.0 · 5 年缴 · 每年 S$60,000",supp:"3.6%",suppColor:"#B5503C",
       wb:["年缴保费 × 3%、4%、5%",1,3,"共 S$7,200，另加第 1 年限时促销 10%"],inv:["年缴保费 × 2.5%","每年 S$1,500"]},
-    "2":{title:"AIA Platinum Wealth Venture 3.0 · 2 年缴 · 每年 S$500,000",
-      wb:["年缴保费 × 2%、3%",1,2,"共 S$25,000，另加第 1 年限时促销 10%"],inv:["年缴保费 × 1%","每年 S$5,000"]}
+    "2":{title:"AIA Platinum Wealth Venture 3.0 · 2 年缴 · 每年 S$150,000",supp:"2.9%",suppColor:"#C8743A",
+      wb:["年缴保费 × 2%、3%",1,2,"共 S$7,500，另加第 1 年限时促销 10%"],inv:["年缴保费 × 1%","每年 S$1,500"]}
   };
   const L=190,R=24,T=44,RH=46,cols=15,cw=(1000-L-R)/cols, x=y=>L+(y-1)*cw;
   function draw(key){
@@ -2026,7 +2038,7 @@ const arm=svg=>{ if(W.armPaths) W.armPaths(svg); };
     tx(x(1)+4,T+RH*6+30,"第 1 至 7 年 · 锁定期","lab",{fill:"#B5503C","font-size":"17"},svg);
     const rows=[
       ["欢迎奖金",p.wb[0],p.wb[1],p.wb[2],"#C9A24C",p.wb[3],"#8A6A26"],
-      ["补充费","保单价值 × 3.6%",1,7,"#B5503C","每年 3.6%，第 8 年起 0","#B5503C"],
+      ["补充费","保单价值 × "+p.supp,1,7,p.suppColor,"每年 "+p.supp+"，第 8 年起 0",p.suppColor],
       ["退保费","保单价值 × 比例",0,0,"#B5503C","60% 逐年降到 10%，第 8 年起 0","#B5503C"],
       ["投资奖金",p.inv[0],8,11,"#C9A24C",p.inv[1],"#8A6A26"],
       ["表现奖金","保单价值 × 0.4%",8,15,"#C9A24C","每年 0.4%，一直持续","#8A6A26"],
@@ -2063,15 +2075,15 @@ const arm=svg=>{ if(W.armPaths) W.armPaths(svg); };
   const svg=document.getElementById("ch-q1"); if(!svg) return;
   const all=n=>Array.from({length:n},(_,i)=>i+1);
   const PLANS={
-    "5":{AP:60000,n:5,wb:[0,.03,.04,.05],inv:.025,biYears:all(20).concat([25,30]),BI:{
+    "5":{AP:60000,n:5,supp:.036,wb:[0,.03,.04,.05],inv:.025,biYears:all(20).concat([25,30]),BI:{
       "4":[24400,48800,91500,144200,207800,234800,261200,300200,310400,321000,331900,341500,351500,361700,372200,383100,394200,405700,417500,429600,442100,455000,468200,481900,495900,510300,525200,540500,556200,572400],
       "6":[24900,50200,95100,151400,220300,253700,287800,337100,355100,374200,394200,413500,433900,455200,477600,501100,525800,551600,578800,607200,637100,668400,701300,735800,772000,809900,849800,891600,935400,981400],
       "8":[25400,51700,98800,158800,233400,274000,316700,377900,405600,435300,467100,499400,534000,571000,610600,652800,698100,746400,798100,853400,912500,975700,1043300,1115500,1192800,1275400,1363700,1458200,1559100,1667100]}},
-    "2":{AP:500000,n:2,wb:[0,.02,.03],inv:.01,biYears:all(30),BI:{"4": [203100, 407300, 507000, 605700, 703600, 800700, 896800, 1030600, 1065700, 1101900, 1139000, 1172200, 1206300, 1241400, 1277500, 1314700, 1353000, 1392300, 1432900, 1474600, 1517500, 1561600, 1607100, 1653800, 1702000, 1751500, 1802400, 1854900, 1908900, 1964400], "6": [207100, 419300, 532100, 648100, 767500, 890500, 1016900, 1190700, 1254500, 1321500, 1391600, 1460000, 1531900, 1607200, 1686200, 1769200, 1856200, 1947400, 2043300, 2143800, 2249200, 2359800, 2475800, 2597600, 2725400, 2859400, 3000000, 3147500, 3302300, 3464700], "8": [211000, 431400, 557900, 692600, 835900, 988300, 1150300, 1371900, 1472300, 1579600, 1694300, 1811600, 1937100, 2071300, 2214700, 2368100, 2532100, 2707500, 2895000, 3095600, 3310000, 3539200, 3784300, 4046400, 4326700, 4626400, 4946800, 5289400, 5655700, 6047400]}}
+    "2":{AP:150000,n:2,supp:.029,wb:[0,.02,.03],inv:.01,biYears:all(30),scaled:true,BI:{"4": [60900, 122200, 152100, 181700, 211100, 240200, 269000, 309200, 319700, 330600, 341700, 351700, 361900, 372400, 383200, 394400, 405900, 417700, 429900, 442400, 455200, 468500, 482100, 496100, 510600, 525400, 540700, 556500, 572700, 589300], "6": [62100, 125800, 159600, 194400, 230300, 267100, 305100, 357200, 376300, 396400, 417500, 438000, 459600, 482200, 505900, 530700, 556900, 584200, 613000, 643100, 674800, 707900, 742700, 779300, 817600, 857800, 900000, 944300, 990700, 1039400], "8": [63300, 129400, 167400, 207800, 250800, 296500, 345100, 411600, 441700, 473900, 508300, 543500, 581100, 621400, 664400, 710400, 759600, 812200, 868500, 928700, 993000, 1061800, 1135300, 1213900, 1298000, 1387900, 1484000, 1586800, 1696700, 1814200]}}
   };
-  const PRESET={web:{ocf:1.6,pf:.35,load:0,fx:.5,note:"参考网上平台：同类收益基金持续费用约 1.6%，平台年费 0.35%（如 FSMOne 股票与混合基金），无认购费，换汇按 0.5% 估算。"},
-    bank:{ocf:1.6,pf:0,load:.85,fx:.5,note:"参考银行渠道：基金持续费用约 1.6%，网上认购费约 0.85%（各行约 0.8% 至 0.9%，柜台可能更高），无平台年费，换汇按 0.5% 估算。"},
-    adv:{ocf:1.6,pf:1,load:0,fx:.5,note:"如果在其他平台也请顾问打理：基金持续费用约 1.6%，另收顾问或全权管理费，常见约 0.25% 至 1% 以上，这里按 1% 估算，可调。PWV 的费用里已含顾问服务。"},
+  const PRESET={web:{ocf:1.5,pf:.35,load:0,fx:.5,note:"参考网上平台：基金持续费用按 1.5% 计（与 PWV 子基金管理费相同），平台年费 0.35%（如 FSMOne 股票与混合基金），无认购费，换汇按 0.5% 估算。"},
+    bank:{ocf:1.5,pf:0,load:.85,fx:.5,note:"参考银行渠道：基金持续费用按 1.5% 计，网上认购费约 0.85%（各行约 0.8% 至 0.9%，柜台可能更高），无平台年费，换汇按 0.5% 估算。"},
+    adv:{ocf:1.5,pf:1,load:0,fx:.5,note:"如果在其他平台也请顾问打理：基金持续费用按 1.5% 计，另收顾问或全权管理费，常见约 0.25% 至 1% 以上，这里按 1% 估算，可调。PWV 的费用里已含顾问服务。"},
     etf:{ocf:.07,pf:0,load:0,fx:.5,note:"参考低成本 ETF：如 CSPX 总费用率 0.07%，换汇按 0.5% 估算。它只投一个指数，风险和多元基金不同，见问题二。"}};
   const SC=[0,.6,.6,.5,.4,.3,.2,.1], PROMO=.10, Wd=700,Ht=400,L=64,R=110,T=24,B=44;
   let view="rate", rate="6", plan="5", promo=true, preset="web", year=20, C=Object.assign({},PRESET.web);
@@ -2088,7 +2100,7 @@ const arm=svg=>{ if(W.armPaths) W.armPaths(svg); };
       if(t>=8&&t<=11) bonus+=p.inv*p.AP;
       const base=pv; pv+=bonus;
       if(t>=8){ const pb=pv*.004; bonus+=pb; pv+=pb; }
-      const chg=pv*(.015+(t<=7?.036:0));
+      const chg=pv*(.015+(t<=7?p.supp:0));
       rt.push((chg-bonus+wb)/base); amt.push(chg-bonus);
       pv=pv*(1+r)-chg; sv.push(pv*(1-(SC[t]||0)));
     }
@@ -2130,7 +2142,10 @@ const arm=svg=>{ if(W.armPaths) W.armPaths(svg); };
     return y;
   }
   function draw(){
-    const r=+rate/100, p=PLANS[plan], pm=model(r,p,promo), pl=plat(r);
+    const r=+rate/100, p=PLANS[plan], pm=model(r,p,promo), pl=plat(r), ref=grow(r), pwv=pwvSeries(r);
+    let cy=null;
+    for(let t=1;t<=30;t++){ let ok=true; for(let k=t;k<=30;k++) if(pwv[k]<pl.val[k]){ok=false;break;} if(ok){cy=t;break;} }
+    const crossTxt=cy?"第 "+cy+" 年追平":"30 年内未追平";
     body.innerHTML=""; marks.innerHTML="";
     $("q1A2").style.color="";
     $("q1H2").textContent={web:"网上平台",bank:"银行",adv:"顾问账户",etf:"ETF",x:"自定义"}[preset];
@@ -2156,13 +2171,12 @@ const arm=svg=>{ if(W.armPaths) W.armPaths(svg); };
       $("q1R3").style.display="";
       $("q1L1").textContent="第 "+year+" 年费用率"; $("q1A1").textContent=(pm.rt[year]*100).toFixed(1)+"%"; $("q1B1").textContent=(pl.rt[year]*100).toFixed(2)+"%";
       $("q1L2").textContent="当年费用"; $("q1A2").textContent=S(pm.amt[year]); $("q1B2").textContent=S(pl.amt[year]);
-      $("q1L3").innerHTML="累计费用<small>第 1 至 "+year+" 年，已扣全部奖金</small>"; $("q1A3").textContent=S(cp); $("q1B3").textContent=S(cq);
+      $("q1L3").innerHTML="累计扣费影响<small>第 1 至 "+year+" 年，含少赚的增长</small>"; $("q1A3").textContent=S(ref[year]-pwv[year]); $("q1B3").textContent=S(ref[year]-pl.val[year]);
       const late=pm.rt[20], pc=pl.rt[20];
       $("q1Cross").textContent= pc>late
-        ? "第 8 年起，PWV 每年净费用率约 "+(late*100).toFixed(1)+"%，比这个渠道低约 "+((pc-late)*100).toFixed(1)+" 个百分点。账户越大，每年少付的金额越多。"
-        : "这个渠道的费用率一直低于 PWV。它和 PWV 是不同的投资，差别见问题二。";
+        ? "第 8 年起，PWV 每年费用率约 "+(late*100).toFixed(1)+"%，比这个渠道低约 "+((pc-late)*100).toFixed(1)+" 个百分点。累计扣费影响"+crossTxt+"，与账户价值视图一致。"
+        : "这个渠道的费用率一直低于 PWV，"+crossTxt+"。它和 PWV 是不同的投资，差别见问题二。";
     }else{
-      const ref=grow(r), pwv=pwvSeries(r);
       const top=ref[30]*1.04, stp=top>8e6?2e6:top>4e6?1e6:top>2e6?500000:top>1e6?250000:200000, ymax=Math.ceil(top/stp)*stp;
       const y=axis(0,ymax,stp,v=>v===0?"0":v>=1e6?"$"+(v/1e6).toFixed(2).replace(/\.?0+$/,"")+"M":"$"+v/1000+"k");
       const pd=(a,f,t2)=>a.slice(f,t2+1).map((v,i)=>(i?"L":"M")+x(f+i).toFixed(1)+" "+y(v).toFixed(1)).join(" ");
@@ -2178,15 +2192,13 @@ const arm=svg=>{ if(W.armPaths) W.armPaths(svg); };
       const yo=y(pl.val[30]), yp=y(pwv[30]), ap=Math.abs(yo-yp)<20?(yo>yp?11:-11):0;
       tx(x(30)+8,yo+5+ap,"$"+money(pl.val[30]),"val",{"font-size":"16",fill:"#173E63"},marks);
       tx(x(30)+8,yp+5-ap,"$"+money(pwv[30]),"val",{"font-size":"16",fill:"#8A6A26"},marks);
-      let cy=null;
-      for(let t=1;t<=30;t++){ let ok=true; for(let k=t;k<=30;k++) if(pwv[k]<pl.val[k]){ok=false;break;} if(ok){cy=t;break;} }
       if(cy){ el("circle",{cx:x(cy),cy:y(pwv[cy]),r:11,fill:"none",stroke:"#51687D","stroke-width":2},marks);
         tx(x(cy),y(pwv[cy])-18,"第 "+cy+" 年追平","tick",{"text-anchor":"middle","font-size":"14","font-weight":"700",fill:"#51687D"},marks); }
       el("line",{x1:x(year),x2:x(year),y1:T,y2:Ht-B,stroke:"rgba(10,28,46,.35)","stroke-width":1.2,"stroke-dasharray":"3 4"},marks);
       $("q1Legend").innerHTML='<span><i style="background:#C9A24C"></i>PWV 退保价值</span><span><i style="background:#173E63"></i>对比渠道（成本扣齐，取出已换汇）</span><span><i class="dash"></i>不扣费参考</span>'+(est?'<span><i class="est"></i>估算</span>':'<span><i class="dot"></i>BI 原数</span><span><i class="est"></i>估算</span>');
       const g=pwv[year]-pl.val[year];
       $("q1R3").style.display="none";
-      $("q1L1").textContent="第 "+year+" 年价值"; $("q1A1").innerHTML=S(pwv[year])+'<small>'+(isBI(year)?"BI 原数":"估算")+'</small>'; $("q1B1").textContent=S(pl.val[year]);
+      $("q1L1").textContent="第 "+year+" 年价值"; $("q1A1").innerHTML=S(pwv[year])+'<small>'+(isBI(year)?(PLANS[plan].scaled?"BI 等比换算":"BI 原数"):"估算")+'</small>'; $("q1B1").textContent=S(pl.val[year]);
       $("q1L2").textContent="差额"; $("q1A2").textContent=(g>=0?"多 ":"少 ")+S(Math.abs(g)); $("q1A2").style.color=g>=0?"var(--gold)":"#D9765F"; $("q1B2").textContent="";
       const g30=pwv[30]-pl.val[30];
       $("q1Cross").textContent=(cy ? "按目前设置，账户价值在第 "+cy+" 年追平，第 30 年 PWV 多约 "+S(g30)+"。"
@@ -2376,7 +2388,7 @@ const arm=svg=>{ if(W.armPaths) W.armPaths(svg); };
       +'<div class="tl-cards"><div class="pl-left"><div class="pl-assume">假设<br>基金 0 增长</div>'
         +'<div class="divtab"><h4>按照每年分红 7%</h4><div class="yrs" style="grid-template-columns:repeat('+Math.min(p.n,3)+',1fr)">'+yrs.join("")+'</div></div></div>'
         +mCards+'</div>'
-      +'<div class="plan-free">第8年起自由灵活，随时都可以提取现金价值<span>（保单100岁到期）</span></div>';
+      +'<div class="plan-free-row"><div></div><div class="plan-free">第8年起自由灵活，随时都可以提取现金价值<span>（保单100岁到期）</span></div></div>';
     body.classList.remove("swap"); void body.offsetWidth; body.classList.add("swap");
   }
   document.getElementById("plToggle").addEventListener("click",e=>{
