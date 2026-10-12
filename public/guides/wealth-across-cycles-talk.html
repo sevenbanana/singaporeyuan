@@ -468,6 +468,62 @@ html.deck .modebtn{display:none}
 .pt-aum span{display:block;font-size:.78rem;color:var(--mist)}
 .pt-aum b{font-size:1.5rem;color:var(--gold);font-variant-numeric:tabular-nums;line-height:1.2}
 .q1sub{font-size:.8rem;color:#C3D3E0;font-weight:500}
+
+/* 收费对比：成本明细可展开 */
+.costs{margin:2px 0 4px;border-radius:12px;background:rgba(244,238,225,.05);border:1px solid rgba(244,238,225,.12)}
+.costs summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:10px;padding:8px 12px;font-size:.8rem;color:#DCE6EE}
+.costs summary::-webkit-details-marker{display:none}
+.costs summary em{font-style:normal;color:var(--gold);font-weight:700;white-space:nowrap}
+.costs[open] summary em{opacity:.6}
+.costs .crow{padding:0 12px 6px}
+
+/* 方案页时间轴：每个节点固定四行，圆点与线对齐 */
+.tl{align-items:start}
+.tl-left{align-items:flex-start}
+.tn,.tm{display:grid;grid-template-rows:28px 30px auto 18px;justify-items:center;align-items:center}
+.tl::before{top:43px}
+.tn .pct,.tm .tot{height:auto;align-self:end;line-height:1.2}
+.tn .coin,.tn .hollow,.tm .dot,.tm .heart{margin:0}
+.tn small,.tm small{min-height:0;line-height:18px}
+
+/* ───── 演示模式：高页面改紧凑排版，让缩放接近其他页 ───── */
+html.deck #s-crisis>.inner,html.deck #s-bull>.inner{display:grid;grid-template-columns:minmax(0,1.75fr) minmax(0,1fr);column-gap:22px;align-items:start}
+html.deck #s-crisis>.inner>*,html.deck #s-bull>.inner>*{grid-column:1/-1}
+html.deck #s-crisis>.inner>.chartbox,html.deck #s-bull>.inner>.chartbox{grid-column:1}
+html.deck #s-crisis>.inner>.grid,html.deck #s-bull>.inner>.grid{grid-column:2;grid-template-columns:1fr;margin-top:8px!important;align-self:center}
+html.deck #s-emo .emo{display:grid;grid-template-columns:minmax(0,1.75fr) minmax(0,1fr);column-gap:20px;align-items:center}
+html.deck #s-emo .emo>.scroller{grid-row:1/3}
+html.deck #s-emo .emo__nav{grid-column:2;margin-top:0;align-self:end}
+html.deck #s-emo .emo__note{grid-column:2;align-self:start}
+html.deck #s-emo .emo__nav button{font-size:.8rem;padding:6px 11px}
+html.deck #ch-layers{max-height:320px}
+html.deck #s-q3 .ticks{gap:6px;margin-top:8px}
+html.deck #s-q3 .ticks li{font-size:.86rem;line-height:1.5}
+html.deck .plan-prem{margin-top:8px;font-size:1.2rem}
+html.deck .plan-info{padding:12px 20px;margin-top:8px}
+html.deck .plan-info p{font-size:.88rem;margin-bottom:3px}
+html.deck .tl{margin-top:28px}
+html.deck .mc{gap:8px}
+html.deck .mc .pv,html.deck .mc .dv{min-height:60px;padding:7px 6px}
+html.deck .pl-assume{min-height:60px}
+html.deck .divtab{padding:8px 10px}
+html.deck .plan-free{margin-top:10px;padding:8px 20px}
+html.deck .plan-sub{margin-top:2px}
+
+.q1tab{width:100%;border-collapse:collapse;font-size:.88rem}
+.q1tab th{font-size:.74rem;letter-spacing:.06em;color:var(--mist);text-align:right;padding:2px 4px 6px;font-weight:700}
+.q1tab th:nth-child(2){color:var(--gold)}
+.q1tab td{padding:6px 4px;border-top:1px solid rgba(244,238,225,.12);text-align:right;font-weight:800;font-variant-numeric:tabular-nums;white-space:nowrap}
+.q1tab td:first-child{text-align:left;font-weight:500;color:#C3D3E0;white-space:normal}
+.q1tab td small{display:block;font-size:.66rem;font-weight:500;color:var(--mist)}
+.q1tab td.g{color:var(--gold)}
+html.deck .plan-tag{padding:9px 13px;font-size:1rem}
+html.deck .plan-ttl .h-sec{font-size:2rem}
+html.deck .plan-prem{margin-top:6px}
+html.deck .tl{margin-top:24px}
+html.deck .mc{gap:6px}
+html.deck .mc .pv,html.deck .mc .dv{min-height:54px;padding:6px}
+html.deck .pl-assume{min-height:54px}
 </style>
 </head>
 <body>
@@ -1184,23 +1240,29 @@ body.locked #pwGate{display:flex}
             <button type="button" data-p="adv">顾问管理账户</button>
             <button type="button" data-p="etf">低成本 ETF</button>
           </div>
+          <details class="costs"><summary><span id="q1Sum"></span><em>调整</em></summary>
           <div class="crow"><label for="cOcf">基金持续费用</label><b id="vOcf"></b><input id="cOcf" type="range" min="0" max="2.5" step="0.05"></div>
           <div class="crow"><label for="cPf">平台或顾问年费</label><b id="vPf"></b><input id="cPf" type="range" min="0" max="1.5" step="0.05"></div>
           <div class="crow"><label for="cLoad">认购费或买卖价差</label><b id="vLoad"></b><input id="cLoad" type="range" min="0" max="5" step="0.05"></div>
           <div class="crow"><label for="cFx">换汇（买入与取出各一次）</label><b id="vFx"></b><input id="cFx" type="range" min="0" max="1.5" step="0.05"></div>
+          </details>
           <div class="crow"><label for="q1Year">看第几年</label><b id="q1YearV"></b><input id="q1Year" type="range" min="1" max="30" step="1" value="20"></div>
           <p id="q1CmpNote" class="q1note"></p>
         </div>
-        <div class="resultcard hi rise" style="--d:.26s;padding:16px 18px">
-          <div class="q1row"><span id="q1L1"></span><b id="q1V1" style="color:var(--gold)"></b></div>
-          <div class="q1row"><span id="q1L2"></span><b id="q1V2"></b></div>
-          <div class="q1row"><span id="q1L3"></span><b id="q1V3"></b></div>
-          <div class="q1row" style="border:0" id="q1R4"><span id="q1L4"></span><b id="q1V4"></b></div>
+        <div class="resultcard hi rise" style="--d:.26s;padding:12px 16px">
+          <table class="q1tab">
+            <thead><tr><th></th><th>PWV</th><th id="q1H2">对比渠道</th></tr></thead>
+            <tbody>
+              <tr><td id="q1L1"></td><td id="q1A1" class="g"></td><td id="q1B1"></td></tr>
+              <tr><td id="q1L2"></td><td id="q1A2" class="g"></td><td id="q1B2"></td></tr>
+              <tr id="q1R3"><td id="q1L3"></td><td id="q1A3" class="g"></td><td id="q1B3"></td></tr>
+            </tbody>
+          </table>
         </div>
         <p class="kicker rise" id="q1Cross" style="font-size:.98rem;line-height:1.55"></p>
       </div>
     </div>
-    <p class="src rise">两边用同一个扣费前回报假设，并假设 PWV 子基金 1.5% 管理费与平台基金的持续费用属于同一层基金费用。PWV 取自两份方案的 Policy Illustration 退保价值（5 年缴每年 S$60,000；2 年缴每年 S$500,000）：圆点为 BI 原数，虚线为估算，6% 与加入限时促销后的数值按产品摘要规则推算并用 BI 校准。PWV 新币计价、保费 100% 投入、无认购费与换汇，费用已含顾问服务。其他渠道费率参考：同类收益基金持续费用约 1.55% 至 1.67%；网上平台年费约 0.25% 至 0.60%（如 FSMOne 0.35%）；银行网上认购费约 0.8% 至 0.9%；顾问或全权管理费按 1% 估算；CSPX 总费用率 0.07%；换汇按 0.5% 估算。均为示意。</p>
+    <p class="src rise">两边用同一个扣费前回报假设，并把 PWV 子基金 1.5% 管理费与平台基金的持续费用视为同一层基金费用。PWV 取自两份方案 BI 的退保价值（5 年缴每年 S$60,000；2 年缴每年 S$500,000），圆点为 BI 原数，虚线为估算；6% 及加入限时促销后的数值按产品摘要规则推算并用 BI 校准。PWV 新币计价、保费 100% 投入、无认购费与换汇，费用已含顾问服务。各渠道费率见右侧说明，均为示意。</p>
   </div>
 </section>
 
@@ -1928,7 +1990,7 @@ function armPaths(root){
   });
 })();
 
-window.__wac=Object.assign(window.__wac||{},{countUp:countUp,armPaths:armPaths});
+window.__wac=Object.assign(window.__wac||{},{countUp:countUp,armPaths:armPaths,frame:frame});
 frame();
 })();
 </script>
@@ -1985,7 +2047,8 @@ const arm=svg=>{ if(W.armPaths) W.armPaths(svg); };
       }
       el("rect",{class:"hb",x:x(r[2])+4,y:y0,width:cw*(r[3]-r[2]+1)-8,height:h,fill:r[4],rx:8,style:"--d:"+d},svg);
       const inside=(r[3]-r[2])>=3, tx0=inside?x(r[2])+16:x(r[3]+1)+8;
-      tx(tx0,y0+h/2+6,r[5],"tick",{class:"tick fade",style:"--d:"+(.8+i*.1).toFixed(2)+"s",fill:inside?"#fff":"#51687D","font-size":"15","font-weight":"700"},svg);
+      // 补充费红条上的字用白色：.tick 的 CSS fill 会盖过 fill 属性，需写在 style 里
+      tx(tx0,y0+h/2+6,r[5],"tick",{class:"tick fade",style:"--d:"+(.8+i*.1).toFixed(2)+"s"+(i===1?";fill:#fff":""),fill:inside?"#fff":"#51687D","font-size":"15","font-weight":"700"},svg);
     });
   }
   document.getElementById("gPlan").addEventListener("click",e=>{
@@ -2069,7 +2132,8 @@ const arm=svg=>{ if(W.armPaths) W.armPaths(svg); };
   function draw(){
     const r=+rate/100, p=PLANS[plan], pm=model(r,p,promo), pl=plat(r);
     body.innerHTML=""; marks.innerHTML="";
-    $("q1R4").style.display=view==="rate"?"":"none";
+    $("q1A2").style.color="";
+    $("q1H2").textContent={web:"网上平台",bank:"银行",adv:"顾问账户",etf:"ETF",x:"自定义"}[preset];
     if(view==="rate"){
       const lo=0;
       const y=axis(lo,.06,.01,v=>Math.round(v*100)+"%");
@@ -2089,11 +2153,10 @@ const arm=svg=>{ if(W.armPaths) W.armPaths(svg); };
       el("line",{x1:x(year-.5),x2:x(year-.5),y1:T,y2:Ht-B,stroke:"rgba(10,28,46,.35)","stroke-width":1.2,"stroke-dasharray":"3 4"},marks);
       $("q1Legend").innerHTML='<span><i style="background:#C9A24C"></i>PWV 每年费用率（扣持续奖金，迎新红利另计）</span><span><i style="background:#173E63"></i>对比渠道每年费用率</span><span><i style="background:rgba(201,162,76,.5)"></i>PWV 少付</span><span><i style="background:rgba(181,80,60,.35)"></i>PWV 多付</span>';
       let cp=0,cq=0; for(let t=1;t<=year;t++){cp+=pm.amt[t];cq+=pl.amt[t];}
-      $("q1L1").textContent="第 "+year+" 年 · PWV 净费用率"; $("q1V1").textContent=(pm.rt[year]*100).toFixed(1)+"%";
-      $("q1L2").textContent="第 "+year+" 年 · 对比渠道"; $("q1V2").textContent=(pl.rt[year]*100).toFixed(2)+"%";
-      $("q1L3").textContent="当年费用约"; $("q1V3").innerHTML='<span class="q1sub">PWV</span> '+S(pm.amt[year])+' <span class="q1sub">· 对比</span> '+S(pl.amt[year]);
-      $("q1L4").textContent="累计费用（第 1 至 "+year+" 年，已扣全部奖金）"; $("q1V4").innerHTML='<span class="q1sub">PWV</span> '+S(cp)+' <span class="q1sub">· 对比</span> '+S(cq);
-      $("q1V3").style.color=$("q1V4").style.color="var(--paper)";
+      $("q1R3").style.display="";
+      $("q1L1").textContent="第 "+year+" 年费用率"; $("q1A1").textContent=(pm.rt[year]*100).toFixed(1)+"%"; $("q1B1").textContent=(pl.rt[year]*100).toFixed(2)+"%";
+      $("q1L2").textContent="当年费用"; $("q1A2").textContent=S(pm.amt[year]); $("q1B2").textContent=S(pl.amt[year]);
+      $("q1L3").innerHTML="累计费用<small>第 1 至 "+year+" 年，已扣全部奖金</small>"; $("q1A3").textContent=S(cp); $("q1B3").textContent=S(cq);
       const late=pm.rt[20], pc=pl.rt[20];
       $("q1Cross").textContent= pc>late
         ? "第 8 年起，PWV 每年净费用率约 "+(late*100).toFixed(1)+"%，比这个渠道低约 "+((pc-late)*100).toFixed(1)+" 个百分点。账户越大，每年少付的金额越多。"
@@ -2122,9 +2185,9 @@ const arm=svg=>{ if(W.armPaths) W.armPaths(svg); };
       el("line",{x1:x(year),x2:x(year),y1:T,y2:Ht-B,stroke:"rgba(10,28,46,.35)","stroke-width":1.2,"stroke-dasharray":"3 4"},marks);
       $("q1Legend").innerHTML='<span><i style="background:#C9A24C"></i>PWV 退保价值</span><span><i style="background:#173E63"></i>对比渠道（成本扣齐，取出已换汇）</span><span><i class="dash"></i>不扣费参考</span>'+(est?'<span><i class="est"></i>估算</span>':'<span><i class="dot"></i>BI 原数</span><span><i class="est"></i>估算</span>');
       const g=pwv[year]-pl.val[year];
-      $("q1L1").textContent="第 "+year+" 年 · PWV 退保价值"; $("q1V1").innerHTML=S(pwv[year])+'<small style="display:block;font-size:.68rem;color:#93A9BE;text-align:right">'+(isBI(year)?"BI 原数":"估算")+'</small>';
-      $("q1L2").textContent="第 "+year+" 年 · 对比渠道"; $("q1V2").textContent=S(pl.val[year]);
-      $("q1L3").textContent="差额"; $("q1V3").textContent=(g>=0?"PWV 多 ":"PWV 少 ")+S(Math.abs(g)); $("q1V3").style.color=g>=0?"var(--gold)":"#D9765F";
+      $("q1R3").style.display="none";
+      $("q1L1").textContent="第 "+year+" 年价值"; $("q1A1").innerHTML=S(pwv[year])+'<small>'+(isBI(year)?"BI 原数":"估算")+'</small>'; $("q1B1").textContent=S(pl.val[year]);
+      $("q1L2").textContent="差额"; $("q1A2").textContent=(g>=0?"多 ":"少 ")+S(Math.abs(g)); $("q1A2").style.color=g>=0?"var(--gold)":"#D9765F"; $("q1B2").textContent="";
       const g30=pwv[30]-pl.val[30];
       $("q1Cross").textContent=(cy ? "按目前设置，账户价值在第 "+cy+" 年追平，第 30 年 PWV 多约 "+S(g30)+"。"
                                     : "按目前设置，30 年内没有追平，第 30 年 PWV 少约 "+S(-g30)+"。")+(promo?"（已含第 1 年限时促销）":"（未含限时促销）");
@@ -2132,6 +2195,7 @@ const arm=svg=>{ if(W.armPaths) W.armPaths(svg); };
     $("vOcf").textContent=C.ocf.toFixed(2)+"%"; $("vPf").textContent=C.pf.toFixed(2)+"%";
     $("vLoad").textContent=C.load.toFixed(2)+"%"; $("vFx").textContent=C.fx.toFixed(2)+"%";
     $("q1YearV").textContent="第 "+year+" 年";
+    $("q1Sum").textContent="基金 "+C.ocf.toFixed(2)+"% · 平台或顾问 "+C.pf.toFixed(2)+"% · 认购 "+C.load.toFixed(2)+"% · 换汇 "+C.fx.toFixed(2)+"%";
     $("q1CmpNote").textContent=preset==="x"?"自定义：已按你调整的费率计算。":PRESET[preset].note;
   }
   const sliders={cOcf:"ocf",cPf:"pf",cLoad:"load",cFx:"fx"};
@@ -2421,7 +2485,9 @@ const arm=svg=>{ if(W.armPaths) W.armPaths(svg); };
 
   function fit(s){
     const inner=s.querySelector(":scope > .inner"); if(!inner) return;
-    const k=Math.min((innerWidth-130)/inner.offsetWidth,(innerHeight-92)/inner.offsetHeight,1.45);
+    // 以 .inner 实际中心缩放：章节页有 margin-right 偏左，按两侧各留 65px 计算，避免 iPad 等宽度下左侧被裁切
+    const w=inner.offsetWidth, cx=inner.offsetLeft+w/2;
+    const k=Math.min((innerWidth-130)/w,(innerHeight-92)/inner.offsetHeight,1.45,(cx-65)*2/w,(innerWidth-65-cx)*2/w);
     s.style.setProperty("--s",Math.max(.3,k).toFixed(4));
   }
   function activate(s){
@@ -2450,6 +2516,7 @@ const arm=svg=>{ if(W.armPaths) W.armPaths(svg); };
   function setDeck(v){
     on=v; html.classList.toggle("deck",v);
     scenes.forEach(s=>s.classList.remove("cur"));
+    if(W.frame) W.frame(); // 切换模式后重算视差偏移，避免章节插图沿用滚动模式的位置
     if(v){ show(cur); kick(); }
     else{ scenes[cur].scrollIntoView({behavior:"instant",block:"start"}); }
   }
