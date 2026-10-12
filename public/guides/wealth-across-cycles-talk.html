@@ -546,6 +546,10 @@ html.deck .pl-assume{min-height:54px}
 /* 方案页：底部说明与第 8 年的保单价值格左对齐 */
 .plan-free-row{display:grid;grid-template-columns:minmax(0,1.3fr) repeat(4,minmax(0,1fr));gap:0 12px}
 .plan-free-row .plan-free{grid-column:2/-1}
+
+/* 方案示例页：单色背景，盖住波纹与光晕 */
+#s-plan{background:#0D2640}
+html.deck #s-plan{background:#0D2640}
 </style>
 </head>
 <body>
@@ -1907,6 +1911,7 @@ function armPaths(root){
   const kA=8039/A[months], kB=4357/B[months];
   function spark(id,data,k,color,marks){
     const svg=document.getElementById(id),W=420,H=170,P=10;
+    if(!svg) return;
     const max=8039;
     const x=i=>P+i/months*(W-P*2), y=v=>H-P-(v*k)/max*(H-P*2);
     const d=data.map((v,i)=>(i?"L":"M")+x(i).toFixed(1)+" "+y(v).toFixed(1)).join(" ");
@@ -2509,7 +2514,12 @@ const arm=svg=>{ if(W.armPaths) W.armPaths(svg); };
     s.querySelectorAll("[data-live]").forEach(n=>{
       if(n.classList.contains("is-live")) return;
       n.classList.add("is-live");
-      n.querySelectorAll("[data-count]").forEach(c=>{ if(W.countUp) W.countUp(c); });
+      n.querySelectorAll("[data-count]").forEach(c=>{
+        if(W.countUp) W.countUp(c);
+        // 兜底：动画结束后一定写入最终数值（标签页在后台或动画被暂停时也正确）
+        const to=parseFloat(c.dataset.count), fin=c.dataset.plain==="1"?String(to):to.toLocaleString("en-US");
+        setTimeout(()=>{ c.textContent=fin; },(+(c.dataset.dur||1500))+150);
+      });
     });
     if(s.querySelector(".emo")&&W.startEmo) W.startEmo();
     field.style.setProperty("--field",s.dataset.tint);
