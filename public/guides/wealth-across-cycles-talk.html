@@ -1901,7 +1901,8 @@ const arm=svg=>{ if(W.armPaths) W.armPaths(svg); };
     }
     el("rect",{class:"hb",x:x(r[2])+4,y:y0,width:cw*(r[3]-r[2]+1)-8,height:h,fill:r[4],rx:8,style:"--d:"+d},svg);
     const inside=(r[3]-r[2])>=3, tx0=inside?x(r[2])+16:x(r[3]+1)+8;
-    tx(tx0,y0+h/2+6,r[5],"tick",{class:"tick fade",style:"--d:"+(.8+i*.1).toFixed(2)+"s",fill:inside?"#fff":"#51687D","font-size":"15","font-weight":"700"},svg);
+    // 补充费红条上的字用白色：.tick 的 CSS fill 会盖过 fill 属性，需写在 style 里
+    tx(tx0,y0+h/2+6,r[5],"tick",{class:"tick fade",style:"--d:"+(.8+i*.1).toFixed(2)+"s"+(i===1?";fill:#fff":""),fill:inside?"#fff":"#51687D","font-size":"15","font-weight":"700"},svg);
   });
 })();
 
