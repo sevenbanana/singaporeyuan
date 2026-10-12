@@ -540,8 +540,9 @@ html.deck .pl-assume{min-height:54px}
 .stw-stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));margin-top:16px;border-top:1px solid rgba(244,238,225,.14);border-bottom:1px solid rgba(244,238,225,.14)}
 .stw-stats>div{padding:12px 10px;text-align:center}
 .stw-stats>div+div{border-left:1px solid rgba(244,238,225,.14)}
-.stw-stats b{display:block;font-size:1.9rem;font-weight:800;color:var(--gold);font-variant-numeric:tabular-nums;line-height:1.2}
-.stw-stats span{font-size:.82rem;color:var(--mist)}
+.stw-stats b{display:block;font-size:2.4rem;font-weight:800;color:var(--gold);font-variant-numeric:tabular-nums;line-height:1.2}
+.stw-stats>div>span{font-size:.82rem;color:var(--mist)}
+.stw-stats b span{font-size:inherit;color:inherit}
 @media(max-width:860px){html:not(.deck) .stw-quote{grid-template-columns:1fr} html:not(.deck) .stw-pillars,html:not(.deck) .stw-stats{grid-template-columns:1fr 1fr}}
 /* 方案页：底部说明与第 8 年的保单价值格左对齐 */
 .plan-free-row{display:grid;grid-template-columns:minmax(0,1.3fr) repeat(4,minmax(0,1fr));gap:0 12px}
@@ -1265,8 +1266,8 @@ body.locked #pwGate{display:flex}
             <button type="button" data-v="value">账户价值</button>
           </div>
           <div class="toggle" id="q1Plan" role="group" aria-label="切换缴费年期" style="margin-bottom:6px">
-            <button type="button" data-p="5" class="on">5 年缴</button>
-            <button type="button" data-p="2">2 年缴</button>
+            <button type="button" data-p="5">5 年缴</button>
+            <button type="button" data-p="2" class="on">2 年缴</button>
           </div>
           <div class="toggle" id="q1Rate" role="group" aria-label="切换假设回报" style="margin-bottom:6px">
             <button type="button" data-r="4">4%</button>
@@ -1281,10 +1282,8 @@ body.locked #pwGate{display:flex}
       <div style="display:flex;flex-direction:column;gap:12px">
         <div class="card card--dark rise q1panel" style="--d:.2s">
           <div class="toggle" id="q1Cmp" role="group" aria-label="对比渠道">
-            <button type="button" data-p="web" class="on">网上平台</button>
-            <button type="button" data-p="bank">银行</button>
-            <button type="button" data-p="adv">顾问管理账户</button>
-            <button type="button" data-p="etf">低成本 ETF</button>
+            <button type="button" data-p="adv" class="on">资管机构（顾问管理账户）</button>
+            <button type="button" data-p="web">网上平台（自己买）</button>
           </div>
           <details class="costs"><summary><span id="q1Sum"></span><em>调整</em></summary>
           <div class="crow"><label for="cOcf">基金持续费用</label><b id="vOcf"></b><input id="cOcf" type="range" min="0" max="2.5" step="0.05"></div>
@@ -1308,7 +1307,7 @@ body.locked #pwGate{display:flex}
         <p class="kicker rise" id="q1Cross" style="font-size:.98rem;line-height:1.55"></p>
       </div>
     </div>
-    <p class="src rise">两边用同一个扣费前回报假设，并把 PWV 子基金 1.5% 管理费与平台基金的持续费用视为同一层基金费用。PWV 取自两份方案 BI 的退保价值（5 年缴每年 S$60,000；2 年缴每年 S$150,000，按 S$500,000 方案的 BI 等比换算，同一欢迎奖金档位），圆点为 BI 原数，虚线为估算；6% 及加入限时促销后的数值按产品摘要规则推算并用 BI 校准。PWV 新币计价、保费 100% 投入、无认购费与换汇，费用已含顾问服务。各渠道费率见右侧说明，均为示意。</p>
+    <p class="src rise">两边用同一个扣费前回报假设，并把 PWV 子基金 1.5% 管理费与平台基金的持续费用视为同一层基金费用。PWV 取自两份方案 BI 的退保价值（5 年缴每年 S$60,000；2 年缴每年 S$150,000，按 S$500,000 方案的 BI 等比换算，同一欢迎奖金档位），圆点为 BI 原数，虚线为估算；6% 及加入限时促销后的数值按产品摘要规则推算并用 BI 校准。PWV 新币计价、保费 100% 投入、无认购费与换汇，费用已含顾问服务。网上平台与资管机构的费率见右侧说明，均为示意。</p>
   </div>
 </section>
 
@@ -2086,12 +2085,11 @@ const arm=svg=>{ if(W.armPaths) W.armPaths(svg); };
       "8":[25400,51700,98800,158800,233400,274000,316700,377900,405600,435300,467100,499400,534000,571000,610600,652800,698100,746400,798100,853400,912500,975700,1043300,1115500,1192800,1275400,1363700,1458200,1559100,1667100]}},
     "2":{AP:150000,n:2,supp:.029,wb:[0,.02,.03],inv:.01,biYears:all(30),scaled:true,BI:{"4": [60900, 122200, 152100, 181700, 211100, 240200, 269000, 309200, 319700, 330600, 341700, 351700, 361900, 372400, 383200, 394400, 405900, 417700, 429900, 442400, 455200, 468500, 482100, 496100, 510600, 525400, 540700, 556500, 572700, 589300], "6": [62100, 125800, 159600, 194400, 230300, 267100, 305100, 357200, 376300, 396400, 417500, 438000, 459600, 482200, 505900, 530700, 556900, 584200, 613000, 643100, 674800, 707900, 742700, 779300, 817600, 857800, 900000, 944300, 990700, 1039400], "8": [63300, 129400, 167400, 207800, 250800, 296500, 345100, 411600, 441700, 473900, 508300, 543500, 581100, 621400, 664400, 710400, 759600, 812200, 868500, 928700, 993000, 1061800, 1135300, 1213900, 1298000, 1387900, 1484000, 1586800, 1696700, 1814200]}}
   };
-  const PRESET={web:{ocf:1.5,pf:.35,load:0,fx:.5,note:"参考网上平台：基金持续费用按 1.5% 计（与 PWV 子基金管理费相同），平台年费 0.35%（如 FSMOne 股票与混合基金），无认购费，换汇按 0.5% 估算。"},
-    bank:{ocf:1.5,pf:0,load:.85,fx:.5,note:"参考银行渠道：基金持续费用按 1.5% 计，网上认购费约 0.85%（各行约 0.8% 至 0.9%，柜台可能更高），无平台年费，换汇按 0.5% 估算。"},
-    adv:{ocf:1.5,pf:1,load:0,fx:.5,note:"如果在其他平台也请顾问打理：基金持续费用按 1.5% 计，另收顾问或全权管理费，常见约 0.25% 至 1% 以上，这里按 1% 估算，可调。PWV 的费用里已含顾问服务。"},
-    etf:{ocf:.07,pf:0,load:0,fx:.5,note:"参考低成本 ETF：如 CSPX 总费用率 0.07%，换汇按 0.5% 估算。它只投一个指数，风险和多元基金不同，见问题二。"}};
+  const PRESET={
+    adv:{ocf:1.5,pf:1,load:0,fx:.5,note:"交给资管机构或顾问打理：基金持续费用按 1.5% 计，另收管理费，常见约 0.25% 至 1% 以上，这里按 1% 估算，可调。PWV 的费用里已含顾问服务，这是对等的比较。"},
+    web:{ocf:1.5,pf:.35,load:0,fx:.5,note:"自己在网上平台买：基金持续费用按 1.5% 计（与 PWV 子基金管理费相同），平台年费 0.35%（如 FSMOne 股票与混合基金），无认购费，换汇按 0.5% 估算。"}};
   const SC=[0,.6,.6,.5,.4,.3,.2,.1], PROMO=.10, Wd=700,Ht=400,L=64,R=110,T=24,B=44;
-  let view="rate", rate="6", plan="5", promo=true, preset="web", year=20, C=Object.assign({},PRESET.web);
+  let view="rate", rate="6", plan="2", promo=true, preset="adv", year=20, C=Object.assign({},PRESET.adv);
   const $=id=>document.getElementById(id);
   const x=t=>L+t/30*(Wd-L-R);
   const S=v=>(v<0?"−S$":"S$")+money(Math.abs(v));
@@ -2153,7 +2151,7 @@ const arm=svg=>{ if(W.armPaths) W.armPaths(svg); };
     const crossTxt=cy?"第 "+cy+" 年追平":"30 年内未追平";
     body.innerHTML=""; marks.innerHTML="";
     $("q1A2").style.color="";
-    $("q1H2").textContent={web:"网上平台",bank:"银行",adv:"顾问账户",etf:"ETF",x:"自定义"}[preset];
+    $("q1H2").textContent={web:"网上平台",adv:"资管机构",x:"自定义"}[preset];
     if(view==="rate"){
       const lo=0;
       const y=axis(lo,.06,.01,v=>Math.round(v*100)+"%");
@@ -2511,15 +2509,19 @@ const arm=svg=>{ if(W.armPaths) W.armPaths(svg); };
     const rs=[...s.querySelectorAll(".rise")];
     rs.forEach(r=>r.classList.remove("in")); void s.offsetWidth;
     setTimeout(()=>rs.forEach(r=>r.classList.add("in")),40);
-    s.querySelectorAll("[data-live]").forEach(n=>{
-      if(n.classList.contains("is-live")) return;
-      n.classList.add("is-live");
-      n.querySelectorAll("[data-count]").forEach(c=>{
-        if(W.countUp) W.countUp(c);
-        // 兜底：动画结束后一定写入最终数值（标签页在后台或动画被暂停时也正确）
-        const to=parseFloat(c.dataset.count), fin=c.dataset.plain==="1"?String(to):to.toLocaleString("en-US");
-        setTimeout(()=>{ c.textContent=fin; },(+(c.dataset.dur||1500))+150);
-      });
+    s.querySelectorAll("[data-live]").forEach(n=>n.classList.add("is-live"));
+    // 数字从 0 滚到目标值：等页面淡入后再开始，每次翻到这一页都重播；结束时兜底写入最终值
+    s.querySelectorAll("[data-count]").forEach(c=>{
+      const to=parseFloat(c.dataset.count), fin=c.dataset.plain==="1"?String(to):to.toLocaleString("en-US");
+      const dur=+(c.dataset.dur||1600);
+      clearTimeout(c._t1); clearTimeout(c._t2); clearInterval(c._iv);
+      c.textContent="0";
+      c._t1=setTimeout(()=>{
+        const t0=Date.now();
+        c._iv=setInterval(()=>{ const p=Math.min(1,(Date.now()-t0)/dur), e=1-Math.pow(1-p,3), v=Math.round(to*e);
+          c.textContent=c.dataset.plain==="1"?String(v):v.toLocaleString("en-US"); if(p>=1) clearInterval(c._iv); },30);
+      },650);
+      c._t2=setTimeout(()=>{ clearInterval(c._iv); c.textContent=fin; },650+dur+200);
     });
     if(s.querySelector(".emo")&&W.startEmo) W.startEmo();
     field.style.setProperty("--field",s.dataset.tint);
