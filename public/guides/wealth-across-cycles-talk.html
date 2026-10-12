@@ -355,6 +355,17 @@ html.deck .modebtn{display:none}
 .voltab td{padding:9px 6px;border-bottom:1px solid rgba(10,28,46,.08);color:var(--slate);font-variant-numeric:tabular-nums}
 .voltab td:first-child{color:var(--ink);font-weight:600}
 .voltab td.g{color:var(--gold-2);font-weight:800}
+
+.agenda__item{position:relative}
+.agenda__ic{position:absolute;right:20px;top:20px;width:52px;height:52px;color:var(--gold)}
+/* 情绪曲线：火柴小人 */
+.emo-fig{cursor:pointer;transition:opacity .4s ease}
+.emo-fig .fig-in{transform:scale(1.6);transition:transform .45s cubic-bezier(.3,1.4,.5,1);transform-box:fill-box;transform-origin:50% 100%}
+.emo-fig.dim{opacity:.62}
+.emo-fig.act .fig-in{transform:scale(2.1)}
+.emo-fig.act .fig-bob{animation:figbob 1.1s ease-in-out infinite}
+@keyframes figbob{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+@media (prefers-reduced-motion:reduce){.emo-fig.act .fig-bob{animation:none}}
 </style>
 </head>
 <body>
@@ -599,6 +610,25 @@ body.locked #pwGate{display:flex}
         <path d="M20 316h300" stroke-width="3"/>
       </g>
     </symbol>
+
+    <!-- 议程图标 -->
+    <symbol id="ic-learn" viewBox="0 0 64 64">
+      <g filter="url(#rough-s)" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M8 54h48"/><path d="M12 46l12-12 9 7 17-19"/><path d="M42 22h8v8"/>
+        <path d="M14 54V40M26 54V36M38 54V42M50 54V30" opacity=".45"/>
+      </g>
+    </symbol>
+    <symbol id="ic-askq" viewBox="0 0 64 64">
+      <g filter="url(#rough-s)" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M8 12h40v28H26l-10 9v-9H8z"/><path d="M22 22q0-6 6-6t6 6q0 5-6 6v3"/><circle cx="28" cy="35" r="1.4"/>
+        <path d="M52 24h4v22h-6v7l-8-7H32" opacity=".55"/>
+      </g>
+    </symbol>
+    <symbol id="ic-pillar" viewBox="0 0 64 64">
+      <g filter="url(#rough-s)" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M8 22L32 9l24 13z"/><path d="M10 26h44"/><path d="M16 30v18M27 30v18M37 30v18M48 30v18"/><path d="M10 52h44M6 57h52"/>
+      </g>
+    </symbol>
   </defs>
 </svg>
 
@@ -642,9 +672,9 @@ body.locked #pwGate{display:flex}
     <h2 class="h-sec rise" style="--d:.06s">今天我们聊三件事</h2>
     <div class="rule rise" style="--d:.1s"></div>
     <div class="agenda agenda--3">
-      <div class="agenda__item rise" style="--d:.14s"><span>01</span><h3>投资的科普</h3><p>市场、方法与配置</p></div>
-      <div class="agenda__item rise" style="--d:.22s"><span>02</span><h3>客户最关心的三个问题</h3><p>收费、标普 500、底层基金</p></div>
-      <div class="agenda__item rise" style="--d:.3s"><span>03</span><h3>为什么 Invest with AIA</h3><p>实力与 AIA Stewardship</p></div>
+      <div class="agenda__item rise" style="--d:.14s"><svg class="agenda__ic" viewBox="0 0 64 64" aria-hidden="true"><use href="#ic-learn"/></svg><span>01</span><h3>投资的科普</h3><p>市场、方法与配置</p></div>
+      <div class="agenda__item rise" style="--d:.22s"><svg class="agenda__ic" viewBox="0 0 64 64" aria-hidden="true"><use href="#ic-askq"/></svg><span>02</span><h3>客户最关心的三个问题</h3><p>收费、标普 500、底层基金</p></div>
+      <div class="agenda__item rise" style="--d:.3s"><svg class="agenda__ic" viewBox="0 0 64 64" aria-hidden="true"><use href="#ic-pillar"/></svg><span>03</span><h3>为什么 Invest with AIA</h3><p>实力与 AIA Stewardship</p></div>
     </div>
   </div>
 </section>
@@ -760,7 +790,7 @@ body.locked #pwGate{display:flex}
     <div class="chartbox chartbox--dark dark-chart emo rise" data-live style="--d:.18s;margin-top:22px">
       <div class="scroller scroller--wide"><svg id="ch-emo" viewBox="0 0 900 340" role="img" aria-label="投资者情绪曲线，从观望到追涨、贪婪、恐慌、割肉再到追涨"></svg></div>
       <div class="emo__nav" id="emoNav"></div>
-      <div class="emo__note" id="emoNote"><b>观望 · 再等等看</b><span>市场刚刚回暖，账户里的钱还没动。心里想的是再看看，等确定了再进。</span></div>
+      <div class="emo__note" id="emoNote"><b>🤔 观望 · 再等等看</b><span>市场刚刚回暖，账户里的钱还没动。心里想的是再看看，等确定了再进。</span></div>
     </div>
     <div class="takeaway rise"><span><b>金色 = 买入冲动，暗红 = 恐慌卖出：</b>每一步都合乎人性，却步步亏钱。</span></div>
   </div>
@@ -1519,12 +1549,12 @@ function armPaths(root){
   svg.appendChild(el("path",{class:"fade",d:dPath+" L872 320 L30 320 Z",fill:"rgba(186,203,218,.09)",style:"--d:.9s"}));
   svg.appendChild(path);
   const steps=[
-    {t:0.02,tone:"wait",label:"观望 · 再等等看",note:"市场刚刚回暖，账户里的钱还没动。心里想的是再看看，等确定了再进。"},
-    {t:0.22,tone:"buy",label:"追涨 · 不能再等了",note:"涨了一大段，身边的人都在赚钱。冲动第一次战胜了计划。"},
-    {t:0.37,tone:"buy",label:"贪婪 · 这次我看对了",note:"账户浮盈最漂亮的时刻，也常常是风险最高的时刻。"},
-    {t:0.56,tone:"sell",label:"恐慌 · 怎么又跌了",note:"回撤开始侵蚀浮盈，每天打开账户都比前一天难受。"},
-    {t:0.68,tone:"sell",label:"割肉 · 卖了不玩了",note:"在最接近底部的位置离场，亏损从浮亏变成了实亏。"},
-    {t:0.88,tone:"buy",label:"再次追涨 · 该我赚钱了",note:"市场重回高位，同样的循环，又开始了一次。"}
+    {t:0.02,tone:"wait",label:"🤔 观望 · 再等等看",note:"市场刚刚回暖，账户里的钱还没动。心里想的是再看看，等确定了再进。"},
+    {t:0.22,tone:"buy",label:"😃 追涨 · 不能再等了",note:"涨了一大段，身边的人都在赚钱。冲动第一次战胜了计划。"},
+    {t:0.37,tone:"buy",label:"🤑 贪婪 · 这次我看对了",note:"账户浮盈最漂亮的时刻，也常常是风险最高的时刻。"},
+    {t:0.56,tone:"sell",label:"😱 恐慌 · 怎么又跌了",note:"回撤开始侵蚀浮盈，每天打开账户都比前一天难受。"},
+    {t:0.68,tone:"sell",label:"😭 割肉 · 卖了不玩了",note:"在最接近底部的位置离场，亏损从浮亏变成了实亏。"},
+    {t:0.88,tone:"buy",label:"🤩 再次追涨 · 该我赚钱了",note:"市场重回高位，同样的循环，又开始了一次。"}
   ];
   const dots=[],len=path.getTotalLength();
   steps.forEach((s,i)=>{
@@ -2003,6 +2033,44 @@ const arm=svg=>{ if(W.armPaths) W.armPaths(svg); };
   tx(326,290,"同一套体系，一起投资","lab",{"text-anchor":"middle","font-size":"16",fill:"#D6A94C",class:"lab fade",style:"--d:1.2s"},svg);
   tx(326,316,"Customers invest their savings alongside our own","tick",{"text-anchor":"middle","font-size":"12",class:"tick fade",style:"--d:1.3s"},svg);
   arm(svg);
+})();
+
+/* ───── 情绪曲线：投资火柴小人 + 情绪 emoji ───── */
+(function(){
+  const svg=document.getElementById("ch-emo"); if(!svg) return;
+  const dots=[...svg.querySelectorAll(".emo-dot")]; if(dots.length!==6) return;
+  svg.setAttribute("viewBox","0 -78 900 418");
+  const POSE={
+    wait:{h:[0,-41],d:"M0 -34L0 -15M0 -15L-6 0M0 -15L6 0M0 -29L-7 -19M0 -29L7 -24L3 -35"},
+    up:{h:[5,-40],d:"M3 -33L-2 -15M-2 -15L6 -7L5 0M-2 -15L-9 -6L-15 -3M2 -28L11 -22M2 -28L-6 -33"},
+    greed:{h:[0,-41],d:"M0 -34L0 -15M0 -15L-8 0M0 -15L8 0M0 -30L-11 -42M0 -30L11 -42"},
+    panic:{h:[0,-39],d:"M0 -32L0 -15M0 -15L-7 -8L-5 0M0 -15L7 -8L5 0M0 -28L-10 -34L-6 -43M0 -28L10 -34L6 -43"},
+    cut:{h:[7,-24],d:"M3 -18L-6 -6M-6 -6L4 -4L7 0M-6 -6L-11 0M1 -15L9 -9"},
+    again:{h:[5,-40],d:"M3 -33L-2 -15M-2 -15L6 -7L5 0M-2 -15L-9 -6L-15 -3M2 -29L12 -39M2 -29L-6 -39"}
+  };
+  const STAGES=[["wait","🤔"],["up","😃"],["greed","🤑"],["panic","😱"],["cut","😭"],["again","🤩"]];
+  const nav=document.getElementById("emoNav");
+  const figs=dots.map((dot,i)=>{
+    const cx=+dot.getAttribute("cx"), cy=+dot.getAttribute("cy"), tone=dot.getAttribute("fill");
+    const [pose,emo]=STAGES[i], P=POSE[pose];
+    const wrap=el("g",{class:"fade",style:"--d:"+(1.7+i*.12).toFixed(2)+"s",transform:"translate("+cx+" "+(cy-8)+")"},svg);
+    const fig=el("g",{class:"emo-fig",role:"button",tabindex:"0","aria-label":nav.children[i]?nav.children[i].textContent:emo},wrap);
+    const bob=el("g",{class:"fig-bob"},fig), inn=el("g",{class:"fig-in"},bob);
+    el("path",{d:P.d,stroke:"#F4EEE1","stroke-width":2.4,"stroke-linecap":"round","stroke-linejoin":"round",fill:"none"},inn);
+    el("circle",{cx:P.h[0],cy:P.h[1],r:7,fill:tone,stroke:"#F4EEE1","stroke-width":2.4},inn);
+    el("circle",{cx:P.h[0]+18,cy:P.h[1]-16,r:14,fill:"#0B1E31",stroke:tone==="#F4EEE1"?"#93A9BE":tone,"stroke-width":2},inn);
+    const t=el("text",{x:P.h[0]+18,y:P.h[1]-9.5,"text-anchor":"middle","font-size":"17"},inn); t.textContent=emo;
+    const pick=()=>{ const b=nav.children[i]; if(b) b.click(); };
+    fig.addEventListener("click",pick);
+    fig.addEventListener("keydown",e=>{ if(e.key==="Enter"||e.key===" "){ e.preventDefault(); e.stopPropagation(); pick(); } });
+    return fig;
+  });
+  function sync(){
+    const i=[...nav.children].findIndex(b=>b.classList.contains("on"));
+    figs.forEach((f,k)=>{ f.classList.toggle("act",k===i); f.classList.toggle("dim",i>=0&&k!==i); });
+  }
+  new MutationObserver(sync).observe(nav,{subtree:true,attributes:true,attributeFilter:["class"]});
+  sync();
 })();
 
 /* ═════════════ PPT 演示模式 ═════════════ */
