@@ -556,9 +556,146 @@ html.deck #s-plan{background:#0D2640}
 .er-take{opacity:.25;transition:opacity .5s ease}
 .er-take.on{opacity:1;border-color:var(--gold)}
 #erA.hi{border-color:var(--gold)}
+
+/* ═════════════ 浅色主题（封面可切换） ═════════════ */
+html.light{--l-bg:#FBF6EC;--l-ink:#1E2A5E;--l-gold:#B07A26;--l-card:#FFFDF8;--l-tan:#F6ECDA;--l-line:#E6D9C2;--l-sub:#5B6577;--l-red:#C0392B;color-scheme:light}
+html.light body{background:var(--l-bg);color:var(--l-ink)}
+html.light .field{background:var(--l-bg)}
+html.light .field__glow{background:radial-gradient(58% 42% at 22% 12%,rgba(30,42,94,.05) 0%,transparent 62%),radial-gradient(50% 40% at 86% 78%,rgba(176,122,38,.10) 0%,transparent 60%)}
+html.light .field__grain{opacity:0}
+html.light .field__waves{opacity:.4}
+html.light .brandbar{background:linear-gradient(180deg,rgba(251,246,236,.94),rgba(251,246,236,0))}
+html.light .brandbar span,html.light .hero__brand i,html.light .hero__meta{color:var(--l-sub)}
+html.light .dots a{background:rgba(30,42,94,.2)}
+html.light .dots a.on{background:var(--l-gold)}
+html.light .dots a::after{background:var(--l-card);color:var(--l-sub)}
+html.light .eyebrow,html.light .kicker,html.light .hero h1 em{color:var(--l-gold)}
+html.light .rule{background:var(--l-gold)}
+html.light .lede,html.light .hero__sub{color:#3D4A6B}
+html.light .src{color:#7A8299}
+html.light .chapter__no{color:rgba(176,122,38,.12)}
+html.light .stat__n,html.light .ctrl__v,html.light .calc__big{color:var(--l-gold)}
+html.light .stat__d{color:var(--l-sub)}
+/* 卡片与图表框 */
+html.light .card,html.light .chartbox{background:var(--l-card);border:1px solid var(--l-line);box-shadow:0 18px 40px -30px rgba(30,42,94,.4)}
+html.light .card--dark,html.light .safety{background:var(--l-tan);color:var(--l-ink);border:1px solid var(--l-line);box-shadow:none}
+html.light .card--dark p,html.light .card--dark .q1note{color:#4A5470}
+html.light .chartbox--dark{background:var(--l-card);color:var(--l-ink)}
+html.light .chartbox--dark .chart-title,html.light .chart-title{color:var(--l-sub)}
+html.light .dark-chart .ax{stroke:rgba(30,42,94,.3)}
+html.light .dark-chart .gl{stroke:rgba(30,42,94,.13)}
+html.light .dark-chart .tick{fill:var(--l-sub)}
+html.light .dark-chart .lab,html.light .dark-chart .val{fill:var(--l-ink)}
+html.light .takeaway{background:rgba(176,122,38,.10);border-left-color:var(--l-gold)}
+html.light .takeaway b{color:var(--l-gold)}
+html.light .pill--dark{background:rgba(176,122,38,.12);border-color:rgba(176,122,38,.4);color:var(--l-ink)}
+html.light .resultcard{background:var(--l-card);border-color:var(--l-line)}
+html.light .resultcard p,html.light .resultcard .dca-row span{color:#4A5470}
+html.light .resultcard.hi{background:rgba(176,122,38,.08);border-color:var(--l-gold)}
+html.light .dca-row,html.light .q1row,html.light .q1tab td{border-color:rgba(30,42,94,.1)}
+html.light .dca-row.tot b,html.light .q1tab td.g,html.light .q1tab th:nth-child(2){color:var(--l-gold)}
+html.light .q1tab th,html.light .q1tab td:first-child,html.light .q1tab td small,html.light .q1row span,html.light .crow label,html.light .q1note{color:var(--l-sub)}
+html.light .costs{background:rgba(30,42,94,.04);border-color:var(--l-line)}
+html.light .costs summary{color:var(--l-ink)}
+/* 互动控件 */
+html.light .emo__nav button{color:var(--l-ink);border-color:rgba(30,42,94,.22)}
+html.light .emo__nav button.on{color:#20180A}
+html.light .emo__nav button.on.bad{color:#fff}
+html.light .emo__note span{color:#4A5470}
+html.light .toggle.tg-dark,html.light .card--dark .toggle{background:rgba(30,42,94,.07)}
+html.light .toggle.tg-dark button,html.light .card--dark .toggle button{color:var(--l-sub)}
+html.light .toggle.tg-dark button.on,html.light .card--dark .toggle button.on{background:var(--l-gold);color:#fff}
+html.light input[type=range]{background:rgba(30,42,94,.15)}
+html.light input[type=range]::-webkit-slider-thumb{border-color:#fff;background:var(--l-gold)}
+html.light input[type=range]::-moz-range-thumb{border-color:#fff;background:var(--l-gold)}
+html.light .cbar__track{background:rgba(30,42,94,.08)}
+html.light .bag{background:var(--l-card);border-color:var(--l-line)}
+html.light .bag__use{color:var(--l-sub)}
+html.light .bag.on{background:var(--l-tan);border-color:var(--l-gold);color:var(--l-ink)}
+html.light .bag__yrs{color:var(--l-gold)}
+html.light .agenda__item{background:var(--l-card);border-color:var(--l-line)}
+html.light .agenda__item p{color:var(--l-sub)}
+html.light .agenda__item span{color:var(--l-gold)}
+html.light .contact__lines a{border-color:rgba(176,122,38,.5)}
+/* Stewardship 与合作伙伴 */
+html.light .stw-quote{background:var(--l-card);border:1px solid var(--l-line);border-left:6px solid var(--l-gold)}
+html.light .stw-p{background:var(--l-card);border:1px solid var(--l-line);border-top:3px solid var(--l-gold)}
+html.light .stw-p p{color:var(--l-sub)}
+html.light .stw-p svg{color:var(--l-gold)}
+html.light .stw-stats,html.light .stw-stats>div+div{border-color:var(--l-line)}
+html.light .stw-stats b{color:var(--l-gold)}
+html.light .stw-stats>div>span{color:var(--l-sub)}
+html.light .pt{background:var(--l-card);border-color:var(--l-line)}
+html.light .pt-logo img{filter:invert(1) brightness(.85)}
+html.light .pt p,html.light .pt-aum span{color:var(--l-sub)}
+html.light .pt-aum b{color:var(--l-gold)}
+/* 方案示例页：照附图配色 */
+html.light #s-plan{background:var(--l-bg)}
+html.light .plan-tag{background:#1E2A6E;border-color:#1E2A6E;color:#fff}
+html.light .plan-tag i{color:#E2B864}
+html.light .plan-ttl em{color:var(--l-gold)}
+html.light .plan-heart,html.light .tm .heart{color:var(--l-red)}
+html.light .plan-sub{color:var(--l-sub)}
+html.light .plan-prem b{color:var(--l-ink)}
+html.light .plan-prem small{color:var(--l-ink)}
+html.light .plan-info{background:var(--l-tan);border-color:var(--l-line)}
+html.light .plan-info p{color:#2E3A63}
+html.light .plan-info .g{color:var(--l-gold)}
+html.light .plan-info .hd{color:var(--l-ink)}
+html.light .plan-info>div+div{border-color:rgba(176,122,38,.3)}
+html.light .plan-info .promo,html.light .tn .call{background:#FBE3DF;border-color:#F2C1B8;color:var(--l-red)}
+html.light .tl::before{background:#E3D3B5}
+html.light .tn .pct{color:var(--l-gold)}
+html.light .tn .pct.big{color:var(--l-red)}
+html.light .tn .coin{background:#C9963A;color:#fff;box-shadow:0 0 0 3px rgba(201,150,58,.2)}
+html.light .tn .hollow{background:#FFFDF8;border-color:#E3D3B5}
+html.light .tm .tot{color:var(--l-gold)}
+html.light .tm .dot{background:#C9963A;box-shadow:0 0 0 4px rgba(201,150,58,.2)}
+html.light .tn b,html.light .tm b{color:var(--l-ink)}
+html.light .tn small,html.light .tm small,html.light .pl-assume{color:var(--l-ink)}
+html.light .divtab{background:var(--l-tan);border-color:var(--l-line)}
+html.light .divtab h4{color:var(--l-ink)}
+html.light .divtab .yrs span{color:var(--l-sub)}
+html.light .divtab .yrs b{color:var(--l-ink)}
+html.light .divtab .yrs .last b{color:var(--l-gold)}
+html.light .mc .pv{background:var(--l-card);border-color:var(--l-line)}
+html.light .mc .pv.death{background:var(--l-card);border-color:#D9C49B}
+html.light .mc .dv{background:var(--l-tan);border-color:var(--l-line)}
+html.light .mc span,html.light .mc small{color:var(--l-sub)}
+html.light .mc .pv b{color:var(--l-ink)}
+html.light .mc .dv b{color:var(--l-gold)}
+html.light .plan-free{background:var(--l-card);border-color:var(--l-line);color:var(--l-ink)}
+html.light .plan-free span{color:var(--l-sub)}
+/* 行内写死的浅色文字 */
+html.light [style*="color:#C3D3E0"],html.light [style*="color:var(--mist)"]{color:var(--l-sub)!important}
+html.light [style*="color:var(--paper)"]{color:var(--l-ink)!important}
+html.light [style*="color:rgba(244,238,225"]{color:rgba(30,42,94,.38)!important}
+/* SVG 里写死的浅色线条与填充 */
+html.light [stroke="#F4EEE1"]{stroke:var(--l-ink)}
+html.light [fill="#F4EEE1"]{fill:var(--l-ink)}
+html.light [stroke="#BACBDA"]{stroke:#3A4A7A}
+html.light [fill="rgba(186,203,218,.09)"]{fill:rgba(30,42,94,.06)}
+html.light [fill="#0B1E31"]{fill:#FFFDF8}
+html.light [stroke="#0B1E31"]{stroke:#FFFDF8}
+html.light [fill="#C3D3E0"]{fill:var(--l-sub)}
+html.light [stroke="#93A9BE"]{stroke:#6B7A99}
+html.light [fill="rgba(147,169,190,.22)"]{fill:rgba(107,122,153,.18)}
+html.light [stroke^="rgba(244,238,225"]{stroke:rgba(30,42,94,.35)}
+html.light [fill^="rgba(255,255,255"]{fill:rgba(30,42,94,.04)}
+html.light [stroke="#D6A94C"]{stroke:#B8862E}
+html.light [fill="#D6A94C"]{fill:#B8862E}
+
+/* 封面：深浅切换 */
+.theme-switch{display:inline-flex;gap:4px;padding:4px;margin-top:28px;border-radius:999px;background:rgba(244,238,225,.08);border:1px solid rgba(214,169,76,.35)}
+.theme-switch button{font:inherit;font-size:.85rem;font-weight:700;cursor:pointer;border:0;border-radius:999px;padding:7px 16px;background:transparent;color:#C3D3E0}
+.theme-switch button.on{background:var(--gold);color:#20180A}
+html.light .theme-switch{background:rgba(30,42,94,.06);border-color:var(--l-line)}
+html.light .theme-switch button{color:var(--l-sub)}
+html.light .theme-switch button.on{background:var(--l-ink);color:#fff}
 </style>
 </head>
 <body>
+<script>try{if(localStorage.getItem("wac_theme")==="light")document.documentElement.classList.add("light")}catch(e){}</script>
 <style>
 /* ---------- password gate ---------- */
 body.locked{overflow:hidden}
@@ -871,6 +1008,7 @@ body.locked #pwGate{display:flex}
       <span>2026 年 8 月</span>
       <span>现场分享版 · 按 → 翻页</span>
     </div>
+    <div class="theme-switch rise" style="--d:.42s" role="group" aria-label="配色"><button type="button" data-theme="dark">深色</button><button type="button" data-theme="light">浅色</button></div>
   </div>
   <div class="scroll-hint" aria-hidden="true">向下滑动<span></span></div>
 </section>
@@ -2573,6 +2711,20 @@ const arm=svg=>{ if(W.armPaths) W.armPaths(svg); };
   scene._next=()=>{ if(step<MAX){stop();go(step+1);return true;} return false; };
   scene._prev=()=>{ if(step>0){stop();go(step-1);return true;} return false; };
   go(0);
+})();
+
+/* ───── 封面：深色 / 浅色切换（记住上次选择） ───── */
+(function(){
+  const box=document.querySelector(".theme-switch"); if(!box) return;
+  const html=document.documentElement;
+  const sync=()=>[...box.children].forEach(b=>b.classList.toggle("on",(b.dataset.theme==="light")===html.classList.contains("light")));
+  box.addEventListener("click",e=>{
+    const b=e.target.closest("button"); if(!b) return;
+    html.classList.toggle("light",b.dataset.theme==="light");
+    try{ localStorage.setItem("wac_theme",b.dataset.theme); }catch(err){}
+    sync();
+  });
+  sync();
 })();
 
 /* ═════════════ PPT 演示模式 ═════════════ */
