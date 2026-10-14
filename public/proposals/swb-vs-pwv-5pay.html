@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex">
-<title>储蓄投资方案对比 · SWB vs PWV | 新加坡小圆姐</title>
+<title>稳健分红储蓄 vs 指数基金定投 方案对比 | 新加坡小圆姐</title>
 <style>
 :root{
   --paper:#FBF6EA; --card:#FFFDF8;
@@ -285,13 +285,61 @@ body.locked #pwGate{display:flex}
 .ruler-tips b{color:var(--navy)}
 @media (max-width:760px){.ruler-tips{grid-template-columns:1fr}.ruler-card{padding:18px 14px}}
 
+/* ---------- 竖版左右对比时间轴 ---------- */
+.vtl-head,.vrow{display:grid;grid-template-columns:minmax(0,1fr) 112px minmax(0,1fr);gap:14px;align-items:center}
+.vtl-head{margin-bottom:10px}
+.vh{display:inline-flex;align-items:center;justify-content:center;gap:7px;border-radius:999px;padding:9px 12px;font-size:14.5px;font-weight:800;color:#fff}
+.vh .ic{color:#fff;width:16px;height:16px}
+.vh.a{background:var(--navy)}.vh.b{background:var(--gold)}
+.vh.mid{background:none;color:var(--muted);font-size:13px;font-weight:700}
+.vtl{position:relative}
+.vtl::before{content:"";position:absolute;left:50%;top:8px;bottom:8px;width:2px;transform:translateX(-50%);background:linear-gradient(180deg,#E2D3B3,#D9C59C)}
+.vrow{position:relative;margin-bottom:12px}
+.vmid{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;text-align:center;background:var(--paper);padding:6px 0}
+.vmid .dot{width:16px;height:16px;border-radius:50%;background:var(--gold-tint);border:3px solid var(--card);box-shadow:0 0 0 1px #D9C59C;margin-bottom:4px}
+.vrow.ms .vmid .dot{background:var(--gold);width:18px;height:18px}
+.vmid b{font-size:15.5px;font-weight:800;color:var(--navy);line-height:1.3}
+.vmid small{font-size:12px;color:var(--muted);font-weight:600}
+.vmid .paid{margin-top:3px;font-size:11.5px;font-weight:700;color:var(--gold-deep);background:var(--gold-tint-2);border-radius:999px;padding:1px 8px}
+.vcard{position:relative;z-index:1;background:var(--card);border:1.5px solid var(--line);border-radius:12px;padding:11px 14px;display:flex;flex-direction:column;gap:2px;box-shadow:var(--shadow)}
+.vcard.a{align-items:flex-end;text-align:right}
+.vcard.b{align-items:flex-start;text-align:left}
+.vcard b{font-size:18px;font-weight:800;color:var(--navy);letter-spacing:.04em;line-height:1.3}
+.vcard .tags{display:flex;flex-wrap:wrap;gap:5px}
+.vcard.a .tags{justify-content:flex-end}
+.vcard .chip{margin-top:2px}
+.vcard .ms{display:inline-block;margin-top:2px;font-size:12px;font-weight:800;border-radius:999px;padding:2px 10px;color:#fff}
+.vcard .ms.be{background:var(--green)}
+.vcard .ms.db{background:var(--gold)}
+.vcard.hit{border-color:#D9C59C;background:var(--gold-tint-2)}
+.vtl-note{margin-top:4px;text-align:center;font-size:12.5px;color:var(--muted)}
+@media (max-width:760px){
+  .vtl-head,.vrow{grid-template-columns:minmax(0,1fr) 66px minmax(0,1fr);gap:8px}
+  .vh{font-size:12.5px;padding:7px 8px;gap:5px}
+  .vh .ic{display:none}
+  .vcard{padding:9px 10px}
+  .vcard b{font-size:15px;letter-spacing:.02em}
+  .vmid b{font-size:14px}
+  .vmid small{font-size:11px}
+  .vcard .ms,.vcard .chip{font-size:11px;padding:1px 7px}
+}
+
+/* ---------- 对比表小标题行 ---------- */
+.ctable tr.sec td{background:var(--gold-tint-2)!important;color:var(--navy);font-weight:800;font-size:14.5px;padding:10px 16px}
+.ctable tr.sec td .ic{width:17px;height:17px;vertical-align:-3px;margin-right:6px}
+.ctable tr.sec td small{display:inline;margin-left:10px;font-size:12.5px;font-weight:600;color:var(--muted)}
+.ctable tr.sec.hi td{background:var(--gold-tint)!important;color:var(--gold-deep)}
+.ctable tr.sec.hi td .ic{color:var(--gold-deep)}
+.ctable tr.sec.lo td{background:var(--blue-tint)!important}
+.ctable tr.sec.lo td .ic{color:var(--navy)}
+
 </style>
 </head>
 <body class="locked">
 <div id="pwGate">
   <form class="pw-card" id="pwForm">
     <span class="pw-chip"><img src="/avatar-round.png" alt="">新加坡小圆姐 · 专属方案</span>
-    <h2>储蓄投资方案对比</h2>
+    <h2>稳健分红储蓄 vs 指数基金定投</h2>
     <p>为保护客户资料，请输入访问密码。</p>
     <input id="pwInput" type="password" autocomplete="off" placeholder="输入密码">
     <div class="pw-err" id="pwErr">密码不正确，再试一次，或者找小圆姐要密码。</div>
@@ -336,19 +384,19 @@ body.locked #pwGate{display:flex}
     <polygon points="130,0 220,0 220,90" fill="#E4D3AE" opacity=".6"/>
   </svg>
   <header class="hero">
-    <h1>每年存 9.8 万 · 存 5 年<span class="l2">稳健分红 SWB vs 指数基金 PWV</span></h1>
+    <h1><span style="white-space:nowrap">稳健分红储蓄 vs</span> <span style="white-space:nowrap">指数基金定投</span><span class="l2">方案对比（9.8 万新币 × 5 年）</span></h1>
     <div class="meta">
       <span class="who"><svg class="ic" style="color:#fff"><use href="#i-user"/></svg>谢女士 · 33 岁 · 女</span>
+      <span><svg class="ic"><use href="#i-coins"/></svg>两个方案都是 S$98,000 × 5 年 = S$490,000</span>
       <span><svg class="ic"><use href="#i-cal"/></svg>报价 2026 年 9 至 10 月</span>
-      <span><svg class="ic"><use href="#i-coins"/></svg>新币</span>
     </div>
   </header>
 
   <div class="switch" role="group" aria-label="情况切换">
     <div class="in">
       <span class="lb"><svg class="ic"><use href="#i-chart"/></svg>看哪种情况</span>
-      <button type="button" data-s="m" class="on">保守</button>
-      <button type="button" data-s="h">乐观</button>
+      <button type="button" data-s="h" class="on">乐观</button>
+      <button type="button" data-s="m">保守</button>
     </div>
   </div>
   <p class="scen-desc" id="scenDesc"></p>
@@ -357,17 +405,17 @@ body.locked #pwGate{display:flex}
   <div class="sub-head"><svg class="ic ic-md"><use href="#i-bulb"/></svg>先看结论</div>
   <div class="kpis">
     <div class="kpi">
-      <div class="top"><div class="badge"><svg class="ic ic-md"><use href="#i-coins"/></svg></div><div class="label">一共交多少</div></div>
-      <div class="rows num">
-        <div><span class="who a">SWB</span><span class="v">S$490,000<small>S$98,000 × 5 年</small></span></div>
-        <div><span class="who b">PWV</span><span class="v">S$490,000<small>S$98,000 × 5 年</small></span></div>
-      </div>
-    </div>
-    <div class="kpi">
       <div class="top"><div class="badge"><svg class="ic ic-md"><use href="#i-check"/></svg></div><div class="label">第几年回本</div></div>
       <div class="rows num">
         <div><span class="who a">SWB</span><span class="v" id="kBeA"></span></div>
         <div><span class="who b">PWV</span><span class="v" id="kBeB"></span></div>
+      </div>
+    </div>
+    <div class="kpi">
+      <div class="top"><div class="badge"><svg class="ic ic-md"><use href="#i-trend"/></svg></div><div class="label">第几年翻倍</div></div>
+      <div class="rows num">
+        <div><span class="who a">SWB</span><span class="v" id="kDbA"></span></div>
+        <div><span class="who b">PWV</span><span class="v" id="kDbB"></span></div>
       </div>
     </div>
     <div class="kpi blue">
@@ -381,7 +429,7 @@ body.locked #pwGate{display:flex}
 
   <!-- ===== 方案一 SWB ===== -->
   <div class="pill-head">
-    <div class="pill navy">方案一 · SWB 稳健分红</div>
+    <div class="pill navy">方案一 · 稳健分红储蓄 SWB</div>
     <div class="formula"><svg class="ic"><use href="#i-cal"/></svg>每年 S$98,000 × 5 年 = S$490,000</div>
   </div>
   <div class="cards2">
@@ -394,16 +442,15 @@ body.locked #pwGate{display:flex}
     <span class="nv" style="flex:1"><svg class="ic"><use href="#i-cal"/></svg>交 5 年</span>
     <span class="gd" style="flex:3"><svg class="ic"><use href="#i-gift"/></svg>不用再交 · 分红慢慢滚 · 可放到 125 岁</span>
   </div>
-  <div class="tl num" style="--n:5" id="tlA"></div>
   <div class="strip num">
-    <div><svg class="ic"><use href="#i-cash"/></svg><div><span class="lb">30 年后（63 岁）</span><b id="sA30"></b></div></div>
-    <div><svg class="ic"><use href="#i-shield"/></svg><div><span class="lb">其中合同保证</span><b>S$626,750</b></div></div>
+    <div><svg class="ic"><use href="#i-shield"/></svg><div><span class="lb">第 15 年合同保证</span><b>S$508,750<small>已回本</small></b></div></div>
+    <div><svg class="ic"><use href="#i-shield"/></svg><div><span class="lb">第 30 年合同保证</span><b>S$626,750<small>1.28×</small></b></div></div>
   </div>
   <div class="tip warn"><svg class="ic"><use href="#i-door"/></svg>前 15 年退出会亏；第 1、2 年退出拿回 S$0</div>
 
   <!-- ===== 方案二 PWV ===== -->
   <div class="pill-head">
-    <div class="pill gold">方案二 · PWV 指数基金</div>
+    <div class="pill gold">方案二 · 指数基金定投 PWV</div>
     <div class="formula"><svg class="ic"><use href="#i-cal"/></svg>每年 S$98,000 × 5 年 = S$490,000</div>
   </div>
   <div class="cards2">
@@ -412,17 +459,25 @@ body.locked #pwGate{display:flex}
     <div class="explain"><div class="ico"><svg class="ic ic-lg"><use href="#i-alert"/></svg></div>
       <div><b>没有保底</b><span>账户价值不保证，可能低于本金</span></div></div>
   </div>
-  <div class="giftline num"><svg class="ic ic-md"><use href="#i-gift"/></svg><span>公司奖励：迎新 <b>S$11,760</b>（前 3 年）+ 投资奖励 <b>S$9,800</b>（第 8 至 11 年）+ 第 8 年起每年 <b>0.4%</b></span></div>
   <div class="band">
     <span class="gd" style="flex:1"><svg class="ic"><use href="#i-cal"/></svg>交 5 年</span>
     <span class="nv" style="flex:3"><svg class="ic"><use href="#i-trend"/></svg>账户跟基金涨跌 · 保到 100 岁</span>
   </div>
-  <div class="tl num" style="--n:5" id="tlB"></div>
   <div class="strip num">
-    <div><svg class="ic"><use href="#i-cash"/></svg><div><span class="lb">30 年后（63 岁）</span><b id="sB30"></b></div></div>
-    <div><svg class="ic red"><use href="#i-alert"/></svg><div><span class="lb">其中合同保证</span><b class="red">S$0</b></div></div>
+    <div><svg class="ic"><use href="#i-gift"/></svg><div><span class="lb">公司奖励（迎新 + 投资奖励）</span><b>S$21,560<small>第 8 年起每年再加 0.4%</small></b></div></div>
+    <div><svg class="ic red"><use href="#i-alert"/></svg><div><span class="lb">合同保证</span><b class="red">S$0</b></div></div>
   </div>
   <div class="tip"><svg class="ic"><use href="#i-check"/></svg>第 8 年起没有退保费，随时可以提取；前 7 年退出要扣费</div>
+
+  <!-- ===== 竖版时间轴 ===== -->
+  <div class="sub-head"><svg class="ic ic-md"><use href="#i-clock"/></svg>关键年份，左右对比</div>
+  <div class="vtl-head">
+    <span class="vh a"><svg class="ic"><use href="#i-shield"/></svg>SWB 稳健分红</span>
+    <span class="vh mid">年份</span>
+    <span class="vh b"><svg class="ic"><use href="#i-chart"/></svg>PWV 指数基金</span>
+  </div>
+  <div class="vtl num" id="vtl"></div>
+  <p class="vtl-note">卡片里是那一年退出能拿回的钱，倍数 = 拿回 ÷ 本金 S$490,000。</p>
 
   <!-- ===== 分水岭 ===== -->
   <div class="sub-head"><svg class="ic ic-md"><use href="#i-scale"/></svg>PWV 基金每年要赚多少，才比 SWB 划算？</div>
@@ -452,8 +507,24 @@ body.locked #pwGate{display:flex}
         <tr class="top"><td>一共交</td><td class="p1">S$490,000</td><td class="p2">S$490,000</td></tr>
         <tr><td>钱放在哪</td><td class="p1">AIA 分红基金</td><td class="p2">进取指数基金<small>股票占 45% 至 100%</small></td></tr>
         <tr><td>保证回本</td><td class="p1"><span class="yes"><svg class="ic"><use href="#i-check"/></svg>第 15 年</span></td><td class="p2"><span class="no"><svg class="ic"><use href="#i-x"/></svg>没有保证</span></td></tr>
-        <tr><td id="tBeL">回本（当前情况）</td><td class="p1" id="tBeA"></td><td class="p2" id="tBeB"></td></tr>
-        <tr class="top"><td id="t30L">30 年后（当前情况）</td><td class="p1" id="t30A"></td><td class="p2" id="t30B"></td></tr>
+
+        <tr class="sec hi"><td colspan="3"><svg class="ic"><use href="#i-trend"/></svg>关键年份 · 乐观<small>SWB 分红基金 4.25% · PWV 基金 8%</small></td></tr>
+        <tr><td>回本</td><td class="p1">第 15 年（48 岁）</td><td class="p2 green">第 7 年（40 岁）</td></tr>
+        <tr><td>翻倍</td><td class="p1">第 23 年（56 岁）</td><td class="p2 green">第 14 年（47 岁）</td></tr>
+        <tr><td>第 15 年 · 48 岁</td><td class="p1">S$643,202<small>1.31×</small></td><td class="p2">S$1,059,700<small>2.16×</small></td></tr>
+        <tr><td>第 20 年 · 53 岁</td><td class="p1">S$889,001<small>1.81×</small></td><td class="p2">S$1,516,300<small>3.09×</small></td></tr>
+        <tr class="top"><td>第 30 年 · 63 岁</td><td class="p1">S$1,326,397<small>2.71×</small></td><td class="p2">S$3,104,300<small>6.34×</small></td></tr>
+        <tr><td>第 40 年 · 73 岁</td><td class="p1">S$1,942,296<small>3.96×</small></td><td class="p2">S$6,355,400<small>12.97×</small></td></tr>
+
+        <tr class="sec lo"><td colspan="3"><svg class="ic"><use href="#i-shield"/></svg>关键年份 · 保守<small>SWB 分红基金 3% · PWV 基金 4%</small></td></tr>
+        <tr><td>回本</td><td class="p1">第 15 年（48 岁）</td><td class="p2 green">第 8 年（41 岁）</td></tr>
+        <tr><td>翻倍</td><td class="p1">约第 33 年（66 岁）</td><td class="p2 green">第 28 年（61 岁）</td></tr>
+        <tr><td>第 15 年 · 48 岁</td><td class="p1">S$575,585<small>1.17×</small></td><td class="p2">S$647,400<small>1.32×</small></td></tr>
+        <tr><td>第 20 年 · 53 岁</td><td class="p1">S$704,734<small>1.44×</small></td><td class="p2">S$765,600<small>1.56×</small></td></tr>
+        <tr class="top"><td>第 30 年 · 63 岁</td><td class="p1">S$928,760<small>1.90×</small></td><td class="p2">S$1,070,800<small>2.19×</small></td></tr>
+        <tr><td>第 40 年 · 73 岁</td><td class="p1">S$1,199,117<small>2.45×</small></td><td class="p2">S$1,497,700<small>3.06×</small></td></tr>
+
+        <tr class="sec"><td colspan="3"><svg class="ic"><use href="#i-doc"/></svg>其他</td></tr>
         <tr><td>第 1 年就退出</td><td class="p1">拿回 S$0</td><td class="p2">拿回约 4 成</td></tr>
         <tr><td>残疾 / 末期疾病</td><td class="p1"><span class="yes"><svg class="ic"><use href="#i-check"/></svg>赔</span></td><td class="p2"><span class="no"><svg class="ic"><use href="#i-x"/></svg>不赔</span></td></tr>
         <tr><td>公司奖励</td><td class="p1">靠分红</td><td class="p2">S$21,560 + 每年 0.4%</td></tr>
@@ -496,8 +567,9 @@ body.locked #pwGate{display:flex}
   </div>
 
   <div class="notes">
-    <p>整理自 AIA 计划书：AIA Smart Wealth Builder (II) 5-Pay（2026-09-19）、AIA Platinum Wealth Venture 3.0 5-Pay（每年 S$98,000），被保人 33 岁（ALB）、女。仅作对比参考，不构成投资或投保建议。倍数 = 退出能拿回的钱 ÷ 已交本金。</p>
-    <p><b>保守</b> = SWB 分红基金 3.00% · PWV 基金 4%；<b>乐观</b> = SWB 分红基金 4.25% · PWV 基金 8%。都是计划书的演示假设，不是回报上下限，市场差时 PWV 可能亏损。</p>
+    <p>整理自 AIA 计划书：AIA Smart Wealth Builder (II) 5-Pay（2026-09-19）、AIA Platinum Wealth Venture 3.0 5-Pay，两份都是每年 S$98,000，被保人 33 岁（ALB）、女。仅作对比参考，不构成投资或投保建议。倍数 = 退出能拿回的钱 ÷ 已交本金。</p>
+    <p><b>乐观</b> = SWB 分红基金 4.25% · PWV 基金 8%；<b>保守</b> = SWB 分红基金 3.00% · PWV 基金 4%。都是计划书的演示假设，不是回报上下限，市场差时 PWV 可能亏损。</p>
+    <p>计划书第 25 年后只列每 5 年的数字。SWB 保守情况的第 28、33 年数字按第 25、30、35 年推算，标为约；PWV 第 23、28、33 年按同产品 S$100,000 计划书逐年表 × 98% 换算（已核对第 25、30 年与本计划书一致）。</p>
     <p><b>SWB</b> 年度红利派发后锁定，终期红利不保证。<b>PWV</b> 演示数据已扣除所有费用，并已计入迎新奖励、投资奖励与表现奖励。</p>
     <p>分水岭回报用两份计划书第 20、30、40 年数字推算，仅供参考。本页假设不提取、不贷款、不暂停交费；计划书未含的限时促销未计入。过去表现不代表将来，提前退保成本很高。</p>
   </div>
@@ -562,49 +634,45 @@ body.locked #pwGate{display:flex}
 })();
 
 (function(){
-  // 退保价值，取自两份计划书（保单年度末）。换新计划书时只改这里。
-  var AGE0=33, YR=[1,8,15,30,40];
-  var A={prem:98000, m:[0,253711,575585,928760,1199117], h:[0,269796,643202,1326397,1942296]};
-  var B={prem:98000,  m:[40100,504800,647400,1070800,1497700], h:[41700,634900,1059700,3104300,6355400]};
-  var NAME={m:'保守',h:'乐观'};
-  var DESC={m:'<b>保守：</b>SWB 分红基金 3% · PWV 基金 4%',
-            h:'<b>乐观：</b>SWB 分红基金 4.25% · PWV 基金 8%'};
-  var BE_B={m:8,h:7};
+  // 关键年份退保价值（每年 S$98,000 × 5 年）。乐观 = SWB 4.25% · PWV 8%；保守 = SWB 3% · PWV 4%。
+  // aa / ab = 推算值，显示约。换计划书时只改这里。
+  var AGE0=33, PAID=490000;
+  var ROWS={
+    h:[{y:5,a:188356,b:386800,note:'交完'},{y:7,a:235911,b:529700},{y:14,a:476848,b:986500},{y:15,a:643202,b:1059700},
+       {y:20,a:889001,b:1516300},{y:23,a:997908,b:1879900},{y:30,a:1326397,b:3104300},{y:40,a:1942296,b:6355400}],
+    m:[{y:5,a:180731,b:344400,note:'交完'},{y:8,a:253711,b:504800},{y:15,a:575585,b:647400},{y:20,a:704734,b:765600},
+       {y:28,a:873900,b:1001300,aa:true},{y:30,a:928760,b:1070800},{y:33,a:1004100,b:1184200,aa:true},{y:40,a:1199117,b:1497700}]
+  };
+  var MS={h:{beA:15,dbA:23,beB:7,dbB:14},m:{beA:15,dbA:33,beB:8,dbB:28}};
+  var DB_APPROX_A={h:false,m:true};
+  var DESC={h:'<b>乐观：</b>SWB 分红基金 4.25% · PWV 基金 8%',m:'<b>保守：</b>SWB 分红基金 3% · PWV 基金 4%'};
   var $=function(id){return document.getElementById(id)};
   function sgd(n){return 'S$'+n.toLocaleString('en-US');}
-  function x(v,p){return (v/p).toFixed(2)+'×';}
-  function timeline(P,key,label,icon){
-    var total=P.prem*5;
-    return YR.map(function(y,i){
-      var age=AGE0+y;
-      if(i===0) return '<div class="node"><div class="mk"><svg class="ic"><use href="#i-coins"/></svg></div><div class="when">'+age+' 岁<small>第 1 年</small></div>'+
-        '<div class="box first"><svg class="ic"><use href="#i-cal"/></svg><span class="lb">每年交</span><b>'+sgd(P.prem)+'</b><small>5 年共 '+sgd(total)+'</small></div></div>';
-      var v=P[key][i], ok=v>=total, last=y===30;
-      var mk=last?'<div class="ring"></div>':'<div class="dot'+(ok?' on':'')+'"></div>';
-      var chip=ok?'<span class="chip ok">回本 · '+x(v,total)+'</span>':'<span class="chip bad">未回本 · '+x(v,total)+'</span>';
-      return '<div class="node"><div class="mk">'+mk+'</div><div class="when">'+age+' 岁<small>第 '+y+' 年</small></div>'+
-        '<div class="box'+(last?' hl':'')+'"><svg class="ic"><use href="#'+icon+'"/></svg><span class="lb">'+label+'</span><b>'+sgd(v)+'</b>'+chip+'</div></div>';
-    }).join('');
+  function x(v){return (v/PAID).toFixed(2)+'×';}
+  function card(side,v,approx,be,db){
+    var tags='';
+    if(be) tags+='<span class="ms be">回本</span>';
+    if(db) tags+='<span class="ms db">翻倍</span>';
+    tags+='<span class="chip'+(v<PAID?' bad':'')+'">'+x(v)+'</span>';
+    return '<div class="vcard '+side+((be||db)?' hit':'')+'"><b>'+(approx?'约 ':'')+sgd(v)+'</b><div class="tags">'+tags+'</div></div>';
   }
+  function yrLabel(y,ms){ return (ms&&ms.approx?'约':'')+'第 '+y+' 年 · '+(AGE0+y)+' 岁'; }
   function render(s){
-    var ka=s, kb=s;
+    var m=MS[s];
     $('scenDesc').innerHTML=DESC[s];
-    $('tlA').innerHTML=timeline(A,ka,'保单价值','i-shield');
-    $('tlB').innerHTML=timeline(B,kb,'账户价值','i-chart');
-    var a30=A[ka][3], b30=B[kb][3];
-    $('kBeA').innerHTML='第 15 年 · 48 岁<small>保证，各种情况都一样</small>';
-    var be=BE_B[kb];
-    $('kBeB').innerHTML='第 '+be+' 年 · '+(AGE0+be)+' 岁<small>不保证</small>';
-    $('k30A').innerHTML=sgd(a30)+'<small>本金的 '+x(a30,490000)+'</small>';
-    $('k30B').innerHTML=sgd(b30)+'<small>本金的 '+x(b30,490000)+'</small>';
-    $('sA30').innerHTML=sgd(a30)+'<small>'+x(a30,490000)+'</small>';
-    $('sB30').innerHTML=sgd(b30)+'<small>'+x(b30,490000)+'</small>';
-    $('tBeL').textContent='回本（'+NAME[s]+'）';
-    $('t30L').textContent='30 年后（'+NAME[s]+'）';
-    $('tBeA').textContent='第 15 年';
-    $('tBeB').textContent='第 '+be+' 年';
-    $('t30A').innerHTML=sgd(a30)+'<small>'+x(a30,490000)+'</small>';
-    $('t30B').innerHTML=sgd(b30)+'<small>'+x(b30,490000)+'</small>';
+    $('vtl').innerHTML=ROWS[s].map(function(r){
+      var beA=r.y===m.beA, dbA=r.y===m.dbA, beB=r.y===m.beB, dbB=r.y===m.dbB, hit=beA||dbA||beB||dbB;
+      return '<div class="vrow'+(hit?' ms':'')+'">'+card('a',r.a,r.aa,beA,dbA)+
+        '<div class="vmid"><span class="dot"></span><b>第 '+r.y+' 年</b><small>'+(AGE0+r.y)+' 岁</small>'+(r.note?'<span class="paid">'+r.note+'</span>':'')+'</div>'+
+        card('b',r.b,false,beB,dbB)+'</div>';
+    }).join('');
+    $('kBeA').innerHTML='第 '+m.beA+' 年 · '+(AGE0+m.beA)+' 岁<small>保证，两种情况都一样</small>';
+    $('kBeB').innerHTML='第 '+m.beB+' 年 · '+(AGE0+m.beB)+' 岁<small>不保证</small>';
+    $('kDbA').innerHTML=(DB_APPROX_A[s]?'约':'')+'第 '+m.dbA+' 年 · '+(AGE0+m.dbA)+' 岁<small>拿回 ≥ S$980,000</small>';
+    $('kDbB').innerHTML='第 '+m.dbB+' 年 · '+(AGE0+m.dbB)+' 岁<small>拿回 ≥ S$980,000</small>';
+    var r30=ROWS[s].filter(function(r){return r.y===30})[0];
+    $('k30A').innerHTML=sgd(r30.a)+'<small>本金的 '+x(r30.a)+'</small>';
+    $('k30B').innerHTML=sgd(r30.b)+'<small>本金的 '+x(r30.b)+'</small>';
   }
   var btns=[].slice.call(document.querySelectorAll('.switch button'));
   btns.forEach(function(b){
@@ -613,7 +681,7 @@ body.locked #pwGate{display:flex}
       render(b.getAttribute('data-s'));
     });
   });
-  render('m');
+  render('h');
 })();
 
 (function(){
