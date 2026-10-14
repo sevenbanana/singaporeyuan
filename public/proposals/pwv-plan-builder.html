@@ -187,18 +187,17 @@ details.adv summary{cursor:pointer;font-size:13px;font-weight:700;color:var(--go
 .vlink{display:inline-block;margin-top:6px;font-size:12px;font-weight:700;color:var(--gold-deep);cursor:pointer;text-decoration:underline}
 .src{font-weight:500;color:var(--muted);margin-left:6px;font-size:12px}
 .src.man{color:#B03A2E}
-.sheet.growth .s-title h2{font-size:27px}
-.sheet.growth .s-title h2 span{display:block}
-.tl.growth{padding-top:40px}
-.tl.growth.has-gift{padding-top:62px;margin-top:20px}
-.tl.growth .axis{top:87px}
-.tl.growth.has-gift .axis{top:109px}
-.band{position:absolute;left:0;right:0;top:0;height:32px;display:grid;font-size:14px}
-.band>div{display:flex;align-items:center;justify-content:space-between;padding:0 14px;border-radius:8px}
-.band .b1{background:var(--gold-tint-2);border:1px solid var(--line);margin-right:6px}
-.band .b2{background:var(--gold-tint);border:1px solid #E3CFA4}
-.band b{color:var(--navy);font-weight:800}
-.band span{font-size:12.5px;font-weight:700;color:var(--gold-deep)}
+.sheet.growth .s-title .prod{line-height:1.6}
+.tl.growth{padding-top:50px}
+.tl.growth.has-gift{padding-top:74px;margin-top:20px}
+.tl.growth .axis{top:97px}
+.tl.growth.has-gift .axis{top:121px}
+.band{position:absolute;left:0;right:0;top:0;height:40px;display:grid;column-gap:10px}
+.band>div{display:flex;align-items:center;justify-content:center;gap:10px;border-radius:999px;color:#fff;font-size:15.5px;font-weight:800;white-space:nowrap;overflow:hidden}
+.band .b1{background:var(--gold)}
+.band .b2{background:var(--navy)}
+.band svg{width:20px;height:20px;flex:0 0 auto}
+.band small{font-size:12.5px;font-weight:600;opacity:.85}
 .cap.as{color:var(--gold-deep);font-weight:600}
 .box.fill small{font-size:12px;color:var(--muted);font-weight:600}
 [hidden]{display:none!important}
@@ -456,8 +455,8 @@ const ELITE_5 = {
       200000: [2117,4314,6592,8830,11131,11440,11758,12631,13566,14566,15635,16726,17893,19141,20476,21905,23433,25067,26816,28687,30688,32829,35119,37569,40190,42994,45993,49202,52634,56306,60234,64436,68931,73740,78884,84388,90275,96572,103309,110516,118226,126474,135297,154833,165634,177189,189550,216919,232052,248241,265558,303903,325103,347783,372045,398000,425765,455467,487242,521233,557595,596494,638106,682622,730243]
     };
 const GROW_BI = {
-  elite: { name:"AIA Elite Adventurous Fund", 5: ELITE_5 },
-  index: { name:"Adventurous Index Fund",     5: ELITE_5 }   // TODO：暂用 Elite 数值，等 Index BI 到了替换
+  elite: { name:"AIA Elite Adventurous Fund", short:"ELITE", 5: ELITE_5 },
+  index: { name:"Adventurous Index Fund",     short:"INDEX", 5: ELITE_5 }   // TODO：暂用 Elite 数值，等 Index BI 到了替换
 };
 const baseSum = (t, anp) => tierOf(t, anp).y.reduce((a,b)=>a+b,0);
 // 第 n 个保单年度末的保单价值（BI 缩放 + Q4 额外送本金）；没有 BI 时返回 null
@@ -494,7 +493,8 @@ function calcGrowth(d){
   ms.push({kind:"switch", age:ret, pv:V, top:V});
   ms.push({kind:"hold", age:85, pv:V, div:divYr*(85-ret), top:V+divYr*(85-ret)});
   ms.push({kind:"death", age:MATURE, div:divYr*(MATURE-ret), top:V+divYr*(MATURE-ret)});
-  return {V, divYr, ms, gname: GROW_BI[g].name};
+  const iname = d.fund, ishort = iname === "Global Adventurous Income Fund" ? "GAIF" : iname;
+  return {V, divYr, ms, gname: GROW_BI[g].name, gshort: GROW_BI[g].short, iname, ishort};
 }
 function calc(d){
   const {anp, t, age, rate} = d;
@@ -728,8 +728,8 @@ function render(d){
     <div class="s-head">
       <div class="tag"><i>#</i>${GR ? L("先增值<br>× 后分红","Grow first<br>× income") : L("基金<br>定投","Fund<br>Plan")}</div>
       <div class="s-title">
-        <h2>${GR ? esc(GR.gname) + " × " : ""}${esc(d.fund)} <span>For ${esc(name)}<svg viewBox="0 0 24 24" fill="#C0392B"><path d="M12 21s-7.5-4.6-9.6-9.2C.9 8.4 3 4.5 6.7 4.5c2.2 0 3.6 1.2 4.3 2.4.7-1.2 2.1-2.4 4.3-2.4 3.7 0 5.8 3.9 4.3 7.3C19.5 16.4 12 21 12 21z"/></svg></span></h2>
-        <p class="prod">AIA Platinum Wealth Venture · ${t} Pay${L(`（缴费 ${t} 年）`,` (${t}-year premium term)`)}</p>
+        <h2>${GR ? esc(GR.gshort) + " × " + esc(GR.ishort) : esc(d.fund)} <span>For ${esc(name)}<svg viewBox="0 0 24 24" fill="#C0392B"><path d="M12 21s-7.5-4.6-9.6-9.2C.9 8.4 3 4.5 6.7 4.5c2.2 0 3.6 1.2 4.3 2.4.7-1.2 2.1-2.4 4.3-2.4 3.7 0 5.8 3.9 4.3 7.3C19.5 16.4 12 21 12 21z"/></svg></span></h2>
+        <p class="prod">AIA Platinum Wealth Venture · ${t} Pay${L(`（缴费 ${t} 年）`,` (${t}-year premium term)`)}${GR ? `<br>${esc(GR.gshort)} = ${esc(GR.gname)}${GR.ishort !== GR.iname ? ` · ${esc(GR.ishort)} = ${esc(GR.iname)}` : ""}` : ""}</p>
       </div>
     </div>
     <div class="s-intro num">
@@ -752,7 +752,10 @@ function render(d){
       </div>
     </div>
     <div class="tl${c.tier.extra?" has-gift":""}${GR?" growth":""}">
-      ${GR ? `<div class="band"><div class="b1"><b>${esc(GR.gname)} 📈</b><span>Fund switch →</span></div><div class="b2"><b>${esc(d.fund)} 💰</b></div></div>` : ""}
+      ${GR ? `<div class="band">
+        <div class="b1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8"/><path d="M15 7h6v6"/></svg>${L(`积累期 · ${esc(GR.gshort)} 增值`,`Growth · ${esc(GR.gshort)}`)}<small>${L(`${d.age}至${d.ret}岁`,`age ${d.age} to ${d.ret}`)}</small></div>
+        <div class="b2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="9" cy="6" rx="6" ry="2.5"/><path d="M3 6v4c0 1.4 2.7 2.5 6 2.5s6-1.1 6-2.5V6"/><ellipse cx="15" cy="14" rx="6" ry="2.5"/><path d="M9 14v4c0 1.4 2.7 2.5 6 2.5s6-1.1 6-2.5v-4"/></svg>${L(`分红期 · ${esc(GR.ishort)} 每年领 ${pct(d.rate)}`,`Income · ${esc(GR.ishort)} ${pct(d.rate)} a year`)}<small>${L(`${d.ret}至100岁`,`age ${d.ret} to 100`)}</small></div>
+      </div>` : ""}
       <div class="axis"></div>
       <div class="cols" style="grid-template-columns:2.3fr repeat(${ms.length},1fr)">
         <div class="col early">
