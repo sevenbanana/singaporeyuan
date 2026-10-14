@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex">
-<title>百万美元寿险方案对比 · Term vs IUL | 新加坡小圆姐</title>
+<title>百万美元消费型寿险 · 指数万能寿险 方案对比 | 新加坡小圆姐</title>
 <style>
 :root{
   --paper:#FBF6EA; --card:#FFFDF8;
@@ -274,6 +274,26 @@ body.locked #pwGate{display:flex}
 body:not(.sa130) .v130{display:none!important}
 body.sa130 .v100{display:none!important}
 
+/* 方案总结 */
+.sum3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.sumc{background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden;box-shadow:var(--shadow)}
+.sum-hd{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:12px 16px;color:#fff;font-size:15.5px;font-weight:800}
+.sum-hd small{font-size:12px;font-weight:600;opacity:.85;border:1px solid rgba(255,255,255,.5);border-radius:999px;padding:1px 9px}
+.sumc.p1 .sum-hd{background:var(--navy)}.sumc.p2 .sum-hd{background:var(--gold)}.sumc.p3 .sum-hd{background:var(--green)}
+.sumc .row{display:grid;grid-template-columns:78px minmax(0,1fr);gap:10px;padding:13px 16px;border-top:1px solid var(--line)}
+.sumc .row.r1{border-top:0;min-height:84px}.sumc .row.r2{min-height:104px}.sumc .row.r3{min-height:142px}
+.sumc .rl{display:flex;align-items:flex-start;gap:6px;font-size:13px;font-weight:700;color:var(--muted);line-height:1.5}
+.sumc .rl .ic{width:16px;height:16px;margin-top:2px}
+.sumc .rv b{display:block;font-size:18px;font-weight:800;color:var(--navy);line-height:1.35;letter-spacing:.03em}
+.sumc .rv small{display:block;font-size:12.5px;color:var(--muted);line-height:1.6}
+.sumc .rv .chip{margin:4px 0 2px}
+.ttag{display:inline-block;font-size:15px;font-weight:800;border-radius:8px;padding:3px 12px;margin-bottom:4px}
+.ttag.t1{background:var(--blue-tint);color:var(--navy)}
+.ttag.t2{background:var(--gold-tint);color:var(--gold-deep)}
+.ttag.t3{background:var(--green-tint);color:var(--green)}
+.sum-note{margin-top:10px;font-size:12.5px;color:var(--muted);text-align:center}
+@media (max-width:760px){.sum3{grid-template-columns:1fr}.sumc .row.r1,.sumc .row.r2,.sumc .row.r3{min-height:0}}
+
 </style>
 </head>
 <body class="locked">
@@ -325,7 +345,7 @@ body.sa130 .v100{display:none!important}
     <polygon points="130,0 220,0 220,90" fill="#E4D3AE" opacity=".6"/>
   </svg>
   <header class="hero">
-    <h1>百万美元寿险 · 方案对比<span class="l2">130 万新币 Term vs 100 万美元 IUL</span></h1>
+    <h1><span style="white-space:nowrap">百万美元消费型寿险 ·</span> <span style="white-space:nowrap">指数万能寿险</span><span class="l2">方案对比</span></h1>
     <div class="meta">
       <span class="who"><svg class="ic" style="color:#fff"><use href="#i-user"/></svg>谢女士 · 33 岁 · 女 · 不吸烟</span>
       <span><svg class="ic"><use href="#i-cal"/></svg>报价 2026.10.13 至 10.15</span>
@@ -342,26 +362,38 @@ body.sa130 .v100{display:none!important}
     </div>
   </div>
 
-  <!-- ===== 两个问题 ===== -->
-  <div class="sub-head"><svg class="ic ic-md"><use href="#i-bulb"/></svg>先回答您的两个问题</div>
-  <div class="kpis two">
-    <div class="kpi blue">
-      <div class="top"><div class="badge"><svg class="ic ic-md"><use href="#i-cal"/></svg></div>
-        <div><div class="label">① 65 岁前，Term 一共交多少？</div>
-          <div class="big-row num"><span class="big navy"><span class="v100">S$26,656</span><span class="v130">S$34,653</span></span><em><span class="v100">S$833 × 32 年</span><span class="v130">S$1,082.90 × 32 年</span></em></div></div></div>
-      <div class="eg"><svg class="ic red"><use href="#i-x"/></svg>65 岁平安健在，拿回 <b class="red">S$0</b></div>
-      <div class="cond">首年 9 折；坚持 Vitality 运动，最低约 <span class="v100">S$22,866</span><span class="v130">S$29,726</span></div>
+  <!-- ===== 方案总结 ===== -->
+  <div class="sub-head"><svg class="ic ic-md"><use href="#i-doc"/></svg>方案总结</div>
+  <div class="sum3 num">
+    <div class="sumc p1">
+      <div class="sum-hd">A · 定期 Term<small>新币</small></div>
+      <div class="row r1"><div class="rl"><svg class="ic"><use href="#i-doc"/></svg>寿险类型</div>
+        <div class="rv"><span class="ttag t1">消费型寿险</span><small>保到 65 岁，到期不退钱</small></div></div>
+      <div class="row r2"><div class="rl"><svg class="ic"><use href="#i-shield"/></svg>保障总结</div>
+        <div class="rv"><b><span class="v100">S$100 万</span><span class="v130">S$130 万</span></b><small>身故 · 末期疾病 · 末期癌症 · 残疾 TPD</small><small>保到 65 岁</small></div></div>
+      <div class="row r3"><div class="rl"><svg class="ic"><use href="#i-coins"/></svg>保费总结</div>
+        <div class="rv"><b><span class="v100">S$833</span><span class="v130">S$1,082.90</span> / 年</b><small>交 32 年，原价共 <span class="v100">S$26,656</span><span class="v130">S$34,653</span></small><span class="chip">首年八折</span><small class="red">65 岁平安拿回 S$0</small></div></div>
     </div>
-    <div class="kpi">
-      <div class="top"><div class="badge"><svg class="ic ic-md"><use href="#i-coins"/></svg></div>
-        <div><div class="label">② 65 岁平安健在，IUL 拿回 − 已交 ≈ 多少？</div></div></div>
-      <div class="pair num">
-        <div><span class="who">标普 500 版</span><span class="big sm">+US$152,501</span><em>约 +S$19.8 万 · 本金 3.3 倍</em></div>
-        <div class="g2"><span class="who">MSCI 版</span><span class="big sm" style="background:none;color:var(--green)">+US$125,396</span><em>约 +S$16.3 万 · 本金 3.5 倍</em></div>
-      </div>
-      <div class="cond">演示数字，不保证。拿走 = 退保，保障同时结束；不拿就继续保。</div>
+    <div class="sumc p2">
+      <div class="sum-hd">B · IUL 标普 500 版<small>美元</small></div>
+      <div class="row r1"><div class="rl"><svg class="ic"><use href="#i-doc"/></svg>寿险类型</div>
+        <div class="rv"><span class="ttag t2">指数万能险</span><small>保终身，账户跟标普 500 计息</small></div></div>
+      <div class="row r2"><div class="rl"><svg class="ic"><use href="#i-shield"/></svg>保障总结</div>
+        <div class="rv"><b>US$100 万</b><small>身故 · 末期疾病</small><small>保终身</small></div></div>
+      <div class="row r3"><div class="rl"><svg class="ic"><use href="#i-coins"/></svg>保费总结</div>
+        <div class="rv"><b>US$66,566</b><small>一次交清，约 S$86,536</small><span class="chip ok">65 岁演示 +US$152,501</span><small>约 +S$19.8 万 · 本金 3.3 倍</small></div></div>
+    </div>
+    <div class="sumc p3">
+      <div class="sum-hd">C · IUL MSCI 版<small>美元</small></div>
+      <div class="row r1"><div class="rl"><svg class="ic"><use href="#i-doc"/></svg>寿险类型</div>
+        <div class="rv"><span class="ttag t3">指数万能险</span><small>保终身，账户跟 MSCI 指数计息</small></div></div>
+      <div class="row r2"><div class="rl"><svg class="ic"><use href="#i-shield"/></svg>保障总结</div>
+        <div class="rv"><b>US$100 万</b><small>身故 · 末期疾病</small><small>保终身</small></div></div>
+      <div class="row r3"><div class="rl"><svg class="ic"><use href="#i-coins"/></svg>保费总结</div>
+        <div class="rv"><b>US$50,444</b><small>一次交清，约 S$65,577</small><span class="chip ok">65 岁演示 +US$125,396</span><small>约 +S$16.3 万 · 本金 3.5 倍</small></div></div>
     </div>
   </div>
+  <p class="sum-note">IUL 的 65 岁数字是演示，不保证。拿走等于退保，保障同时结束；不拿就继续保。</p>
 
   <!-- ===== 方案 A ===== -->
   <div class="pill-head">
@@ -380,7 +412,7 @@ body.sa130 .v100{display:none!important}
   </div>
   <div class="tl num" style="--n:5">
     <div class="node"><div class="mk"><svg class="ic"><use href="#i-coins"/></svg></div><div class="when">34 岁<small>第 1 年</small></div>
-      <div class="box first"><svg class="ic"><use href="#i-cal"/></svg><span class="lb">每年交</span><b><span class="v100">S$833</span><span class="v130">S$1,082.90</span></b><small>月缴 <span class="v100">S$72.47</span><span class="v130">S$94.21</span></small></div></div>
+      <div class="box first"><svg class="ic"><use href="#i-cal"/></svg><span class="lb">每年交</span><b><span class="v100">S$833</span><span class="v130">S$1,082.90</span></b><span class="chip">首年八折</span></div></div>
     <div class="node"><div class="mk"><div class="dot"></div></div><div class="when">43 岁<small>第 10 年</small></div>
       <div class="box"><svg class="ic"><use href="#i-coins"/></svg><span class="lb">已交</span><b><span class="v100">S$8,330</span><span class="v130">S$10,829</span></b><span class="chip">保障 <span class="v100">100</span><span class="v130">130</span> 万</span></div></div>
     <div class="node"><div class="mk"><div class="dot"></div></div><div class="when">53 岁<small>第 20 年</small></div>
@@ -529,7 +561,7 @@ body.sa130 .v100{display:none!important}
     <p><b>Term 保额 130 万新币</b>（2026-10-15 报价），与 IUL 的 100 万美元保额相当，方便横向比较。汇率 1.30 只为方便比较。</p>
     <p><b>IUL 演示</b>按指数账户假设回报 6.35% / 7.50% 与现行收费，第 11 年起另有 0.35% 保证特别红利；<b>最差</b>按指数 0%、最高收费、最低退保价值保证计算。假设回报基于指数过去表现（MSCI 版含回测），上限与参与率不保证。</p>
     <p>IUL 前 15 年退保或部分提取有退保费；保费在 12 个月内分批转入指数账户，计划书按一次性演示。身故赔付取 100 万与账户价值中较高者。</p>
-    <p>Term 基本保费 32 年保证不变，TPD 附加费率不保证；Vitality 折扣首年 9 折，之后在 85% 至 100% 间浮动。末期癌症赔付每人限额 S$100 万，IUL 末期疾病每人限额 US$200 万。具体以保单条款为准。</p>
+    <p>Term 基本保费 32 年保证不变，TPD 附加费率不保证；首年八折（首年实付 <span class="v100">S$666.40</span><span class="v130">S$866.32</span>），之后按 Vitality 健康状态在原价的 85% 至 100% 间浮动；本页 65 岁前共交按原价合计。末期癌症赔付每人限额 S$100 万，IUL 末期疾病每人限额 US$200 万。具体以保单条款为准。</p>
   </div>
 
 </div>
