@@ -1,0 +1,620 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>百万美元寿险方案对比 · Term vs IUL | 新加坡小圆姐</title>
+<style>
+:root{
+  --paper:#FBF6EA; --card:#FFFDF8;
+  --navy:#13286B; --navy-2:#1C3A8F;
+  --gold:#B8862B; --gold-deep:#9A6B17; --gold-light:#C9973A;
+  --gold-tint:#F5EAD2; --gold-tint-2:#FAF2E1; --blue-tint:#EEF3FB;
+  --green:#1E4D3B; --green-tint:#E7F0EA;
+  --red:#B4433A; --red-tint:#FBEAE6;
+  --line:#EADFC8; --ink:#2B2B2B; --muted:#6B6458;
+  --shadow:0 1px 6px rgba(120,90,30,.06);
+  --font:"Helvetica Neue","Avenir Next",Arial,"Hiragino Sans GB","PingFang SC",sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--paper);color:var(--ink);font-family:var(--font);font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased}
+button,input{font-family:inherit}
+[hidden]{display:none!important}
+.num{font-variant-numeric:tabular-nums;letter-spacing:.03em}
+.page{position:relative;max-width:1040px;margin:0 auto;padding:44px 32px 40px;overflow:hidden}
+.deco{position:absolute;top:0;right:0;width:180px;height:130px;pointer-events:none}
+.ic{width:18px;height:18px;color:var(--gold);flex:0 0 auto}
+.ic-md{width:22px;height:22px}.ic-lg{width:30px;height:30px}
+.red{color:var(--red)!important}.green{color:var(--green)!important}
+
+/* ---------- 标题 ---------- */
+.hero{position:relative;z-index:1}
+.hero h1{font-size:36px;line-height:1.2;font-weight:800;letter-spacing:-.3px;color:var(--navy)}
+.hero h1 .l2{display:block;color:var(--gold)}
+.meta{margin-top:16px;display:flex;flex-wrap:wrap;gap:8px}
+.meta span{display:inline-flex;align-items:center;gap:6px;background:var(--card);border:1px solid var(--line);border-radius:999px;padding:5px 13px;font-size:13px;color:var(--ink)}
+.meta span.who{background:var(--navy);border-color:var(--navy);color:#fff;font-weight:700}
+.meta .ic{width:15px;height:15px}
+
+/* ---------- 吸顶切换 ---------- */
+.switch{position:sticky;top:10px;z-index:20;display:flex;justify-content:center;margin:24px 0 0}
+.switch .in{display:inline-flex;align-items:center;gap:3px;background:var(--card);border:1px solid var(--line);border-radius:999px;padding:4px;box-shadow:0 10px 26px -12px rgba(19,40,107,.35)}
+.switch .lb{display:inline-flex;align-items:center;gap:5px;font-size:12.5px;color:var(--muted);padding:0 6px 0 10px;white-space:nowrap}
+.switch .lb .ic{width:15px;height:15px}
+.switch button{border:0;background:transparent;border-radius:999px;padding:7px 13px;font-size:13.5px;font-weight:700;color:var(--navy);cursor:pointer;white-space:nowrap}
+.switch button.on{background:var(--navy);color:#fff}
+.scen-desc{margin:10px auto 0;max-width:640px;text-align:center;font-size:13px;color:var(--muted)}
+.scen-desc b{color:var(--navy)}
+
+/* ---------- 小节标题 ---------- */
+.sub-head{display:flex;align-items:center;gap:10px;margin:40px 0 16px;font-size:19px;font-weight:800;color:var(--navy)}
+.sub-head::after{content:"";flex:1;height:1px;background:var(--gold);opacity:.4}
+
+/* ---------- KPI 卡 ---------- */
+.kpis{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.kpis.two{grid-template-columns:minmax(0,1fr) minmax(0,1.15fr)}
+.kpi{border:1px solid var(--line);border-radius:14px;padding:18px 20px;background:var(--card);box-shadow:var(--shadow)}
+.kpi.blue{background:var(--blue-tint);border-color:#D9E2F2}
+.kpi .top{display:flex;gap:14px;align-items:flex-start}
+.badge{flex:0 0 44px;height:44px;border-radius:50%;background:var(--gold-tint);display:grid;place-items:center}
+.kpi .label{font-size:14px;font-weight:700;color:var(--navy)}
+.big{font-size:36px;line-height:1.15;font-weight:800;letter-spacing:.04em;background:linear-gradient(180deg,var(--gold-light),var(--gold-deep));-webkit-background-clip:text;background-clip:text;color:transparent}
+.big.navy{background:none;color:var(--navy)}
+.big.sm{font-size:25px;letter-spacing:.04em}
+.big-row{display:flex;flex-wrap:wrap;align-items:baseline;column-gap:8px;margin-top:4px}
+.big-row em{white-space:nowrap;font-style:normal;font-size:13px;color:var(--muted)}
+.kpi .eg{margin-top:10px;font-size:13.5px;color:var(--ink);display:flex;align-items:center;gap:7px}
+.kpi .eg b{font-weight:800}
+.kpi .cond{margin-top:6px;font-size:12.5px;color:var(--muted)}
+.kpi .pair{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}
+.kpi .pair>div{border-radius:12px;padding:10px 12px;background:var(--gold-tint-2);border:1px solid var(--line)}
+.kpi .pair>div.g2{background:var(--green-tint);border-color:#D3E3D9}
+.kpi .pair .who{display:block;font-size:12.5px;font-weight:700;color:var(--gold-deep)}
+.kpi .pair .g2 .who{color:var(--green)}
+.kpi .pair em{display:block;font-style:normal;font-size:12.5px;color:var(--muted)}
+.kpi .rows{margin-top:8px}
+.kpi .rows>div{display:flex;align-items:baseline;justify-content:space-between;gap:10px;padding:7px 0;border-top:1px dashed var(--line)}
+.kpi .rows>div:first-child{border-top:0}
+.kpi .rows .who{font-size:13px;font-weight:800}
+.kpi .rows .who.a{color:var(--navy)}.kpi .rows .who.b{color:var(--gold-deep)}
+.kpi .rows .v{text-align:right;font-size:17px;letter-spacing:.04em;font-weight:800;color:var(--navy);line-height:1.3}
+.kpi .rows .v small{display:block;font-size:11.5px;font-weight:600;color:var(--muted)}
+
+/* ---------- 方案胶囊标题 ---------- */
+.pill-head{display:flex;align-items:center;gap:16px;margin:46px 0 14px;background:linear-gradient(90deg,transparent 0,var(--gold-tint-2) 30%);border-radius:999px}
+.pill{flex:0 0 auto;padding:8px 24px 8px 20px;border-radius:999px;color:#fff;font-size:18px;font-weight:700;letter-spacing:.3px;white-space:nowrap}
+.pill.navy{background:var(--navy)}.pill.gold{background:var(--gold)}.pill.teal{background:var(--green)}
+.pill-head .formula{display:flex;align-items:center;gap:8px;font-size:14px;font-weight:600;color:var(--ink);padding-right:16px}
+
+/* ---------- 说明卡 ---------- */
+.cards2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.explain{display:flex;align-items:center;gap:16px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 20px;box-shadow:var(--shadow)}
+.explain .ico{display:flex;padding-right:16px;border-right:1px solid var(--line)}
+.explain b{display:block;font-size:15px;color:var(--navy)}
+.explain span{font-size:13.5px;color:var(--muted)}
+.giftline{margin-top:12px;display:flex;align-items:center;gap:10px;background:var(--gold-tint);border:1px solid #E3CFA4;border-radius:12px;padding:10px 18px;font-size:14px;font-weight:600;color:var(--ink)}
+.giftline b{color:var(--gold-deep)}
+
+/* ---------- 色带 ---------- */
+.band{display:flex;gap:6px;margin-top:16px}
+.band span{display:flex;align-items:center;justify-content:center;gap:8px;border-radius:999px;padding:10px 14px;color:#fff;font-weight:700;font-size:14.5px;white-space:nowrap;overflow:hidden}
+.band .nv{background:var(--navy)}.band .gd{background:var(--gold)}.band .gn{background:var(--green)}
+.band .gy{background:#E4DACA;color:var(--muted)}
+.band .ic{color:currentColor;width:16px;height:16px}
+
+/* ---------- 时间轴 ---------- */
+.tl{position:relative;display:grid;grid-template-columns:repeat(var(--n),1fr);gap:12px;margin-top:22px}
+.tl::before{content:"";position:absolute;left:calc(50% / var(--n));right:calc(50% / var(--n));top:17px;height:2px;background:linear-gradient(90deg,#E2D3B3,#D9C59C)}
+.node{position:relative;display:flex;flex-direction:column;align-items:center;text-align:center}
+.mk{position:relative;width:36px;height:36px;border-radius:50%;background:var(--paper);display:grid;place-items:center}
+.mk .dot{width:20px;height:20px;border-radius:50%;background:var(--gold-tint);border:3px solid var(--card);box-shadow:0 0 0 1px #D9C59C}
+.mk .dot.on{background:var(--gold)}
+.mk .ring{width:22px;height:22px;border-radius:50%;border:4px solid var(--navy);background:var(--card)}
+.mk svg{width:26px;height:26px}
+.when{margin-top:6px;font-size:16px;font-weight:800;color:var(--navy);line-height:1.25}
+.when small{display:block;font-size:12px;font-weight:600;color:var(--muted)}
+.box{width:100%;margin-top:10px;border-radius:12px;padding:12px 8px;background:var(--card);border:1.5px solid var(--line);display:flex;flex-direction:column;align-items:center;gap:1px;min-height:122px;justify-content:center}
+.box .ic{width:18px;height:18px;color:var(--navy);margin-bottom:2px}
+.box .lb{font-size:12.5px;color:var(--muted)}
+.box b{font-size:17px;letter-spacing:.04em;font-weight:800;color:var(--navy);line-height:1.3}
+.box small{font-size:11.5px;color:var(--muted)}
+.box .worst{font-size:11.5px;color:#9A9384}
+.chip{display:inline-block;margin-top:5px;font-size:12px;font-weight:700;border-radius:999px;padding:2px 10px;background:var(--gold-tint);color:var(--gold-deep);white-space:nowrap}
+.chip.ok{background:var(--green-tint);color:var(--green)}
+.chip.bad{background:var(--red-tint);color:var(--red)}
+.box.first{background:var(--blue-tint);border-color:#D9E2F2}
+.box.hl{background:var(--gold-tint-2);border-color:#E3CFA4}
+.box.end{border:1.5px dashed #D9C59C;background:transparent}
+.box.end b{font-size:16px}
+.box.gone b{color:var(--red)}
+
+/* ---------- 金底 KPI 条 ---------- */
+.strip{margin-top:16px;display:grid;grid-template-columns:1fr 1fr;background:var(--gold-tint);border:1px solid #E3CFA4;border-radius:14px;padding:16px 22px}
+.strip>div{display:flex;align-items:center;gap:14px}
+.strip>div+div{border-left:1px solid #DCC9A2;padding-left:22px;margin-left:22px}
+.strip .ic{width:30px;height:30px;color:var(--gold-deep)}
+.strip .lb{font-size:13px;color:var(--ink)}
+.strip b{display:block;font-size:23px;letter-spacing:.04em;font-weight:800;color:var(--gold-deep);line-height:1.2}
+.strip b small{font-size:12.5px;letter-spacing:.02em;color:var(--muted);font-weight:600;margin-left:6px}
+.tip{margin-top:12px;display:flex;align-items:center;justify-content:center;gap:8px;text-align:center;font-size:13.5px;color:var(--ink);background:var(--gold-tint-2);border-radius:12px;padding:10px 14px}
+.tip .ic{width:17px;height:17px}
+.tip.warn{background:var(--red-tint)}
+.tip.warn .ic{color:var(--red)}
+
+/* ---------- 对比表 ---------- */
+.ctable{background:var(--card);border:1px solid var(--line);border-radius:12px;overflow-x:auto;box-shadow:var(--shadow)}
+.ctable table{width:100%;border-collapse:collapse;min-width:620px}
+.ctable th,.ctable td{text-align:left;padding:12px 16px;border-top:1px solid var(--line);font-size:14.5px;vertical-align:middle}
+.ctable th{border-top:0;font-size:14px;font-weight:700;color:#fff;white-space:nowrap}
+.ctable th:first-child{background:var(--gold-tint-2);color:var(--navy);width:24%}
+.ctable th.p1{background:var(--navy)}.ctable th.p2{background:var(--gold)}.ctable th.p3{background:var(--green)}
+.ctable td:first-child{color:var(--ink);font-weight:600}
+.ctable td{font-weight:600;color:var(--navy)}
+.ctable td.p1{background:#F7F9FD}.ctable td.p2{background:#FDF8EE}.ctable td.p3{background:#F4F8F5}
+.ctable td small{display:block;font-size:12px;font-weight:500;color:var(--muted)}
+.ctable tr.top td{background:var(--gold-tint)!important;font-weight:800}
+.ctable .yes,.ctable .no{display:inline-flex;align-items:center;gap:6px}
+.ctable .yes{color:var(--green)}.ctable .no{color:var(--red)}
+.ctable .yes .ic{color:var(--green)}.ctable .no .ic{color:var(--red)}
+
+/* ---------- 图标小卡 ---------- */
+.chips{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.ccard{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 16px;display:flex;gap:12px;align-items:center;box-shadow:var(--shadow)}
+.ccard .badge{flex:0 0 40px;height:40px}
+.ccard b{display:block;font-size:14.5px;color:var(--navy);line-height:1.4}
+.ccard span{font-size:13px;color:var(--muted);line-height:1.55}
+
+/* ---------- 怎么选 ---------- */
+.pick{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.pk{border-radius:14px;padding:18px;border:1px solid var(--line)}
+.pk.a{background:var(--blue-tint);border-color:#D9E2F2}.pk.b{background:var(--gold-tint-2)}.pk.c{background:var(--green-tint);border-color:#D3E3D9}
+.pk .hd{display:flex;align-items:center;gap:10px;font-size:16px;font-weight:800;color:var(--navy);margin-bottom:10px}
+.pk .hd .badge{flex:0 0 38px;height:38px;background:var(--card)}
+.pk ul{list-style:none;font-size:13.5px;color:var(--ink)}
+.pk li{display:flex;gap:8px;align-items:flex-start;margin-bottom:7px;line-height:1.55}
+.pk li .ic{width:16px;height:16px;margin-top:3px;color:var(--gold-deep)}
+
+/* ---------- 页尾小字 ---------- */
+.notes{margin-top:40px;padding-top:18px;border-top:1px solid var(--line);font-size:12px;color:var(--muted);line-height:1.8}
+.notes p{margin-bottom:5px;padding-left:12px;position:relative}
+.notes p::before{content:"";position:absolute;left:0;top:9px;width:4px;height:4px;border-radius:50%;background:var(--gold)}
+
+/* ---------- 密码门（同 pwv-plan-builder） ---------- */
+body.locked{overflow:hidden}
+body.locked>*:not(#pwGate){visibility:hidden}
+#pwGate{position:fixed;inset:0;z-index:99;display:none;align-items:center;justify-content:center;background:var(--paper);padding:20px}
+body.locked #pwGate{display:flex}
+.pw-card{width:100%;max-width:420px;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:36px 32px;box-shadow:0 20px 60px -30px rgba(19,40,107,.35)}
+.pw-chip{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);background:var(--gold-tint-2);border-radius:999px;padding:4px 14px 4px 4px;font-size:12.5px;font-weight:700;color:var(--gold-deep)}
+.pw-chip img{width:26px;height:26px;border-radius:50%;object-fit:cover}
+.pw-card h2{margin-top:18px;font-size:24px;font-weight:800;color:var(--navy)}
+.pw-card p{margin-top:6px;font-size:14px;color:var(--muted)}
+#pwInput{margin-top:20px;width:100%;border:1px solid var(--line);border-radius:12px;background:#fff;padding:13px 16px;font-size:15px;outline:none}
+#pwInput:focus{border-color:var(--gold)}
+#pwSubmit{margin-top:12px;width:100%;border:0;border-radius:12px;background:var(--navy);color:#fff;padding:13px;font-size:15px;font-weight:700;cursor:pointer}
+.pw-err{display:none;margin-top:10px;font-size:13px;color:#B4433A;font-weight:600}
+.pw-err.show{display:block}
+
+/* ---------- 网站页脚（同样板页） ---------- */
+.site-foot{border-top:1px solid rgba(184,134,43,.2);background:#F4ECDB;margin-top:48px}
+.site-foot .in{max-width:1040px;margin:0 auto;padding:48px 32px 36px}
+.site-foot .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:32px}
+.site-foot .brand{font-size:19px;font-weight:700;color:var(--navy)}
+.site-foot .tag{margin-top:10px;font-size:14px;color:var(--gold-deep)}
+.site-foot .cred{margin-top:20px;font-size:14px;line-height:1.7;color:rgba(19,40,107,.7)}
+.site-foot h4{font-size:12px;font-weight:600;letter-spacing:.18em;color:var(--gold-deep)}
+.site-foot ul{list-style:none;margin-top:14px;font-size:14px}
+.site-foot li{line-height:1.9}
+.site-foot a{color:rgba(19,40,107,.8);text-decoration:none;display:inline-flex;align-items:center;gap:9px}
+.site-foot a:hover{color:var(--gold-deep)}
+.site-foot a svg{width:16px;height:16px;color:var(--gold-deep);flex:0 0 auto}
+.site-foot .legal{margin-top:40px;padding-top:24px;border-top:1px solid rgba(184,134,43,.2);font-size:12px;line-height:1.7;color:#7a7264}
+.site-foot .legal p+p{margin-top:12px}
+
+/* ---------- 手机 ---------- */
+@media (max-width:760px){
+  .page{padding:28px 16px}
+  .hero h1{font-size:26px}
+  .kpis,.kpis.two,.cards2,.chips,.pick{grid-template-columns:1fr}
+  .big{font-size:30px}.big.sm{font-size:23px}
+  .kpi,.kpi .top>div{min-width:0}
+  .kpi .pair{grid-template-columns:1fr}
+  .big-row em{white-space:normal}
+  .pill-head{flex-direction:column;align-items:flex-start;gap:6px;background:none}
+  .pill{font-size:16px;padding:7px 18px}
+  .pill-head .formula{font-size:13.5px;padding-left:6px}
+  .explain{padding:12px 14px;gap:12px}.explain .ico{padding-right:12px}
+  .band span{font-size:13px;padding:9px 10px}
+  .tl{grid-template-columns:1fr;gap:10px}
+  .tl::before{left:17px;right:auto;top:18px;bottom:18px;width:2px;height:auto;background:linear-gradient(180deg,#E2D3B3,#D9C59C)}
+  .node{display:grid;grid-template-columns:36px 70px 1fr;align-items:center;text-align:left;gap:10px}
+  .when{margin-top:0;font-size:15px}
+  .box{margin-top:0;min-height:0;align-items:flex-start;padding:10px 12px}
+  .box .ic{display:none}
+  .strip{grid-template-columns:1fr;padding:14px 16px}
+  .strip>div+div{border-left:0;padding-left:0;margin-left:0;border-top:1px solid #DCC9A2;padding-top:12px;margin-top:12px}
+  .strip b{font-size:21px}
+  .tip{justify-content:flex-start;text-align:left}
+  .site-foot .in{padding:36px 16px 28px}
+  .site-foot .grid{grid-template-columns:1fr 1fr;gap:28px 20px}
+}
+@media (max-width:420px){.site-foot .grid{grid-template-columns:1fr}.switch .lb{display:none}}
+@media print{body{background:#fff}.switch{position:static}.site-foot{display:none}}
+
+/* ---------- 行动区块：微信约咖啡 ---------- */
+.cta{margin-top:44px;display:grid;grid-template-columns:1fr auto;gap:28px;align-items:center;background:var(--navy);border-radius:18px;padding:28px 32px;color:#fff;position:relative;overflow:hidden}
+.cta::after{content:"";position:absolute;right:-60px;top:-60px;width:220px;height:220px;border-radius:50%;border:1px solid rgba(201,151,58,.35);pointer-events:none}
+.cta .who-row{display:flex;align-items:center;gap:14px}
+.cta .who-row img{width:56px;height:56px;border-radius:50%;object-fit:cover;border:2px solid var(--gold-light);background:#fff}
+.cta h3{font-size:24px;font-weight:800;line-height:1.3}
+.cta h3 span{color:var(--gold-light)}
+.cta p.sub{margin-top:4px;font-size:14.5px;color:rgba(255,255,255,.8)}
+.cta .perks{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.cta .perks span{display:inline-flex;align-items:center;gap:6px;border:1px solid rgba(201,151,58,.5);border-radius:999px;padding:5px 12px;font-size:13px;color:#F3E4C4}
+.cta .perks .ic{width:15px;height:15px;color:var(--gold-light)}
+.cta .acts{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
+.cta .btn{display:inline-flex;align-items:center;gap:8px;border-radius:999px;padding:11px 20px;font-size:15px;font-weight:700;cursor:pointer;text-decoration:none;border:0}
+.cta .btn .ic{width:18px;height:18px;color:currentColor}
+.cta .btn.wx{background:var(--gold);color:#fff}
+.cta .btn.wx:hover{background:var(--gold-deep)}
+.cta .btn.wx b{letter-spacing:.04em}
+.cta .btn.wa{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.45)}
+.cta .btn.wa:hover{border-color:var(--gold-light);color:var(--gold-light)}
+.cta .qr{position:relative;z-index:1;background:#fff;border-radius:14px;padding:10px 10px 8px;text-align:center}
+.cta .qr img{display:block;width:132px;height:132px;object-fit:contain}
+.cta .qr span{display:block;margin-top:4px;font-size:12.5px;font-weight:700;color:var(--navy)}
+@media (max-width:760px){
+  .cta{grid-template-columns:1fr;padding:22px 18px;gap:18px}
+  .cta h3{font-size:20px}
+  .cta .qr{justify-self:center}
+  .cta .btn{flex:1 1 auto;justify-content:center}
+}
+
+body:not(.sa130) .v130{display:none!important}
+body.sa130 .v100{display:none!important}
+
+</style>
+</head>
+<body class="locked">
+<div id="pwGate">
+  <form class="pw-card" id="pwForm">
+    <span class="pw-chip"><img src="/avatar-round.png" alt="">新加坡小圆姐 · 专属方案</span>
+    <h2>百万美元寿险方案对比</h2>
+    <p>为保护客户资料，请输入访问密码。</p>
+    <input id="pwInput" type="password" autocomplete="off" placeholder="输入密码">
+    <div class="pw-err" id="pwErr">密码不正确，再试一次，或者找小圆姐要密码。</div>
+    <button type="submit" id="pwSubmit">查看方案</button>
+  </form>
+</div>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="i-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v5c0 4.5-3 8.3-7 10-4-1.7-7-5.5-7-10V6z"/><path d="M9 12l2 2 4-4"/></symbol>
+    <symbol id="i-coins" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="9" cy="6" rx="6" ry="2.5"/><path d="M3 6v4c0 1.4 2.7 2.5 6 2.5s6-1.1 6-2.5V6"/><ellipse cx="15" cy="14" rx="6" ry="2.5"/><path d="M9 14v4c0 1.4 2.7 2.5 6 2.5s6-1.1 6-2.5v-4"/></symbol>
+    <symbol id="i-gift" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M5 12v9h14v-9M12 8v13"/><path d="M12 8c-2-4-6-4-6-1.5S9 8 12 8zM12 8c2-4 6-4 6-1.5S15 8 12 8z"/></symbol>
+    <symbol id="i-cal" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4M7 14h2M11 14h2M15 14h2M7 17h2M11 17h2"/></symbol>
+    <symbol id="i-bars" viewBox="0 0 24 24" fill="currentColor"><rect x="4" y="13" width="4" height="8" rx="1.2"/><rect x="10" y="9" width="4" height="12" rx="1.2"/><rect x="16" y="4" width="4" height="17" rx="1.2"/></symbol>
+    <symbol id="i-doc" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h9l4 4v14H6z"/><path d="M15 3v4h4M9 11h7M9 14h7M9 17h5"/></symbol>
+    <symbol id="i-bulb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9c.6.5 1 1.2 1 2.1h5c0-.9.4-1.6 1-2.1A6 6 0 0 0 12 3z"/></symbol>
+    <symbol id="i-heart" viewBox="0 0 24 24"><path fill="#C0392B" d="M12 21s-7.5-4.6-9.6-9.2C.9 8.4 3 4.5 6.7 4.5c2.2 0 3.6 1.2 4.3 2.4.7-1.2 2.1-2.4 4.3-2.4 3.7 0 5.8 3.9 4.3 7.3C19.5 16.4 12 21 12 21z"/></symbol>
+    <symbol id="i-trend" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8"/><path d="M14 7h7v7"/></symbol>
+    <symbol id="i-chart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 15l4-4 3 3 6-7"/></symbol>
+    <symbol id="i-alert" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10.3 4 2.6 18a2 2 0 0 0 1.7 3h15.4a2 2 0 0 0 1.7-3L13.7 4a2 2 0 0 0-3.4 0z"/><path d="M12 9v4M12 17h.01"/></symbol>
+    <symbol id="i-cash" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="12" cy="12" r="2.6"/><path d="M6 12h.01M18 12h.01"/></symbol>
+    <symbol id="i-lock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4.5" y="10.5" width="15" height="10.5" rx="2.5"/><path d="M8 10.5V7.8a4 4 0 0 1 8 0v2.7M12 15v2.2"/></symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+    <symbol id="i-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M9 9l6 6M15 9l-6 6"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8 12.5l2.6 2.6L16 9.6"/></symbol>
+    <symbol id="i-usd" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 6.5v11M15 9.3c0-1.3-1.3-2.1-3-2.1s-3 .8-3 2.1c0 2.9 6 1.5 6 4.5 0 1.3-1.3 2.1-3 2.1s-3-.8-3-2.1"/></symbol>
+    <symbol id="i-swap" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 4 3 8l4 4M3 8h14M17 20l4-4-4-4M21 16H7"/></symbol>
+    <symbol id="i-door" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3h5a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-5"/><path d="M9 17l5-5-5-5M14 12H3"/></symbol>
+    <symbol id="i-family" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="7" r="3"/><path d="M3 21v-1a6 6 0 0 1 12 0v1"/><circle cx="17.5" cy="9" r="2.4"/><path d="M16 21v-.6a4.5 4.5 0 0 1 6-4.2"/></symbol>
+    <symbol id="i-scale" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18M6 21h12M5 7h14"/><path d="M5 7l-3 6a3 3 0 0 0 6 0zM19 7l-3 6a3 3 0 0 0 6 0z"/></symbol>
+    <symbol id="i-user" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></symbol>
+    <symbol id="i-mix" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="12" r="6"/><circle cx="15" cy="12" r="6"/></symbol>
+    <symbol id="i-coffee" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9h13v4a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5z"/><path d="M17 10h1.5a2.5 2.5 0 0 1 0 5H17M8 3v3M12 3v3M4 21h13"/></symbol>
+    <symbol id="i-chat" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20.5l1.4-4.8A8 8 0 1 1 21 12z"/><path d="M8.5 12h.01M12 12h.01M15.5 12h.01"/></symbol>
+    <symbol id="i-phone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5.5 4H9l1.6 4.3L8.5 10a12.5 12.5 0 0 0 5.5 5.5l1.7-2.1L20 15v3.6A1.6 1.6 0 0 1 18.2 20C10.8 19.2 4.8 13.2 4 5.8A1.6 1.6 0 0 1 5.5 4z"/></symbol>
+  </defs>
+</svg>
+
+<div class="page">
+  <svg class="deco" viewBox="0 0 220 160" aria-hidden="true">
+    <polygon points="60,0 220,0 220,150" fill="#EFE3C8" opacity=".7"/>
+    <polygon points="130,0 220,0 220,90" fill="#E4D3AE" opacity=".6"/>
+  </svg>
+  <header class="hero">
+    <h1>百万美元寿险 · 方案对比<span class="l2">130 万新币 Term vs 100 万美元 IUL</span></h1>
+    <div class="meta">
+      <span class="who"><svg class="ic" style="color:#fff"><use href="#i-user"/></svg>谢女士 · 33 岁 · 女 · 不吸烟</span>
+      <span><svg class="ic"><use href="#i-cal"/></svg>报价 2026.10.13 至 10.15</span>
+      <span><svg class="ic"><use href="#i-scale"/></svg>保额相当：S$130 万 ≈ US$100 万</span>
+      <span><svg class="ic"><use href="#i-swap"/></svg>1 美元 ≈ 1.30 新币</span>
+    </div>
+  </header>
+
+  <div class="switch" role="group" aria-label="Term 保额切换" hidden>
+    <div class="in">
+      <span class="lb"><svg class="ic"><use href="#i-shield"/></svg>Term 保额</span>
+      <button type="button" class="on" id="sa130">130万 · 同保额</button>
+      <button type="button" id="sa100">100万</button>
+    </div>
+  </div>
+
+  <!-- ===== 两个问题 ===== -->
+  <div class="sub-head"><svg class="ic ic-md"><use href="#i-bulb"/></svg>先回答您的两个问题</div>
+  <div class="kpis two">
+    <div class="kpi blue">
+      <div class="top"><div class="badge"><svg class="ic ic-md"><use href="#i-cal"/></svg></div>
+        <div><div class="label">① 65 岁前，Term 一共交多少？</div>
+          <div class="big-row num"><span class="big navy"><span class="v100">S$26,656</span><span class="v130">S$34,653</span></span><em><span class="v100">S$833 × 32 年</span><span class="v130">S$1,082.90 × 32 年</span></em></div></div></div>
+      <div class="eg"><svg class="ic red"><use href="#i-x"/></svg>65 岁平安健在，拿回 <b class="red">S$0</b></div>
+      <div class="cond">首年 9 折；坚持 Vitality 运动，最低约 <span class="v100">S$22,866</span><span class="v130">S$29,726</span></div>
+    </div>
+    <div class="kpi">
+      <div class="top"><div class="badge"><svg class="ic ic-md"><use href="#i-coins"/></svg></div>
+        <div><div class="label">② 65 岁平安健在，IUL 拿回 − 已交 ≈ 多少？</div></div></div>
+      <div class="pair num">
+        <div><span class="who">标普 500 版</span><span class="big sm">+US$152,501</span><em>约 +S$19.8 万 · 本金 3.3 倍</em></div>
+        <div class="g2"><span class="who">MSCI 版</span><span class="big sm" style="background:none;color:var(--green)">+US$125,396</span><em>约 +S$16.3 万 · 本金 3.5 倍</em></div>
+      </div>
+      <div class="cond">演示数字，不保证。拿走 = 退保，保障同时结束；不拿就继续保。</div>
+    </div>
+  </div>
+
+  <!-- ===== 方案 A ===== -->
+  <div class="pill-head">
+    <div class="pill navy">方案 A · 定期 Term</div>
+    <div class="formula"><svg class="ic"><use href="#i-cal"/></svg>每年 <span class="v100">S$833</span><span class="v130">S$1,082.90</span> · 交 32 年 · 新币</div>
+  </div>
+  <div class="cards2">
+    <div class="explain"><div class="ico"><svg class="ic ic-lg"><use href="#i-shield"/></svg></div>
+      <div><b>保什么</b><span>身故 · 末期疾病 · 末期癌症 · 残疾 TPD，各赔 <span class="v100">S$100 万</span><span class="v130">S$130 万</span></span></div></div>
+    <div class="explain"><div class="ico"><svg class="ic ic-lg"><use href="#i-lock"/></svg></div>
+      <div><b>保费锁定</b><span>32 年不涨价，做 Vitality 运动还能更便宜</span></div></div>
+  </div>
+  <div class="band">
+    <span class="nv" style="flex:4"><svg class="ic"><use href="#i-shield"/></svg>每年交 · 保到 65 岁</span>
+    <span class="gy" style="flex:1"><svg class="ic"><use href="#i-x"/></svg>65 岁后</span>
+  </div>
+  <div class="tl num" style="--n:5">
+    <div class="node"><div class="mk"><svg class="ic"><use href="#i-coins"/></svg></div><div class="when">34 岁<small>第 1 年</small></div>
+      <div class="box first"><svg class="ic"><use href="#i-cal"/></svg><span class="lb">每年交</span><b><span class="v100">S$833</span><span class="v130">S$1,082.90</span></b><small>月缴 <span class="v100">S$72.47</span><span class="v130">S$94.21</span></small></div></div>
+    <div class="node"><div class="mk"><div class="dot"></div></div><div class="when">43 岁<small>第 10 年</small></div>
+      <div class="box"><svg class="ic"><use href="#i-coins"/></svg><span class="lb">已交</span><b><span class="v100">S$8,330</span><span class="v130">S$10,829</span></b><span class="chip">保障 <span class="v100">100</span><span class="v130">130</span> 万</span></div></div>
+    <div class="node"><div class="mk"><div class="dot"></div></div><div class="when">53 岁<small>第 20 年</small></div>
+      <div class="box"><svg class="ic"><use href="#i-coins"/></svg><span class="lb">已交</span><b><span class="v100">S$16,660</span><span class="v130">S$21,658</span></b><span class="chip">保障 <span class="v100">100</span><span class="v130">130</span> 万</span></div></div>
+    <div class="node"><div class="mk"><div class="ring"></div></div><div class="when">65 岁<small>第 32 年</small></div>
+      <div class="box hl"><svg class="ic"><use href="#i-cash"/></svg><span class="lb">一共交</span><b><span class="v100">S$26,656</span><span class="v130">S$34,653</span></b><span class="chip bad">保障结束</span></div></div>
+    <div class="node"><div class="mk"><svg class="ic red"><use href="#i-x"/></svg></div><div class="when">65 岁后<small>平安健在</small></div>
+      <div class="box end gone"><span class="lb">拿回</span><b>S$0</b><small>再买会贵很多</small></div></div>
+  </div>
+  <div class="strip num">
+    <div><svg class="ic"><use href="#i-cash"/></svg><div><span class="lb">65 岁前一共交</span><b><span class="v100">S$26,656</span><span class="v130">S$34,653</span></b></div></div>
+    <div><svg class="ic red"><use href="#i-x"/></svg><div><span class="lb">65 岁平安，拿回</span><b class="red">S$0</b></div></div>
+  </div>
+  <div class="tip"><svg class="ic"><use href="#i-check"/></svg>60 岁前可以免体检，转成终身型保单</div>
+
+  <!-- ===== 方案 B ===== -->
+  <div class="pill-head">
+    <div class="pill gold">方案 B · IUL 标普 500 版</div>
+    <div class="formula"><svg class="ic"><use href="#i-usd"/></svg>一次交 US$66,566 · 美元</div>
+  </div>
+  <div class="cards2">
+    <div class="explain"><div class="ico"><svg class="ic ic-lg"><use href="#i-chart"/></svg></div>
+      <div><b>跟标普 500 指数</b><span>涨了按涨幅计息，每年最多约 9%；跌了算 0%，不倒扣</span></div></div>
+    <div class="explain"><div class="ico"><svg class="ic ic-lg"><use href="#i-shield"/></svg></div>
+      <div><b>保一辈子</b><span>身故 · 末期疾病赔 US$100 万（约 S$130 万）</span></div></div>
+  </div>
+  <div class="band">
+    <span class="gd" style="flex:1"><svg class="ic"><use href="#i-coins"/></svg>交 1 次</span>
+    <span class="nv" style="flex:4"><svg class="ic"><use href="#i-trend"/></svg>账户跟指数长 · 保终身</span>
+  </div>
+  <div class="tl num" style="--n:5">
+    <div class="node"><div class="mk"><svg class="ic"><use href="#i-coins"/></svg></div><div class="when">34 岁<small>第 1 年</small></div>
+      <div class="box first"><svg class="ic"><use href="#i-usd"/></svg><span class="lb">一次交</span><b>US$66,566</b><small>约 S$86,536</small></div></div>
+    <div class="node"><div class="mk"><div class="dot on"></div></div><div class="when">43 岁<small>第 10 年</small></div>
+      <div class="box"><svg class="ic"><use href="#i-shield"/></svg><span class="lb">账户</span><b>US$67,429</b><span class="chip ok">回本</span><span class="worst">最差 US$36,538</span></div></div>
+    <div class="node"><div class="mk"><div class="dot on"></div></div><div class="when">53 岁<small>第 20 年</small></div>
+      <div class="box"><svg class="ic"><use href="#i-shield"/></svg><span class="lb">账户</span><b>US$109,656</b><span class="chip">≈ 1.6× 本金</span><span class="worst">最差 US$28,576</span></div></div>
+    <div class="node"><div class="mk"><div class="ring"></div></div><div class="when">65 岁<small>第 32 年</small></div>
+      <div class="box hl"><svg class="ic"><use href="#i-cash"/></svg><span class="lb">账户</span><b>US$219,067</b><span class="chip">≈ 3.3× 本金</span><span class="worst">最差 US$17,570</span></div></div>
+    <div class="node"><div class="mk"><svg><use href="#i-heart"/></svg></div><div class="when">100 岁<small>终身</small></div>
+      <div class="box end"><span class="lb">身故利益</span><b>US$100 万</b><small>家人领取</small></div></div>
+  </div>
+  <div class="strip num">
+    <div><svg class="ic"><use href="#i-cash"/></svg><div><span class="lb">65 岁拿回 − 已交（演示）</span><b>+US$152,501<small>≈ +S$19.8 万</small></b></div></div>
+    <div><svg class="ic"><use href="#i-trend"/></svg><div><span class="lb">计划书假设回报</span><b>6.35%<small>/ 年</small></b></div></div>
+  </div>
+  <div class="tip warn"><svg class="ic"><use href="#i-alert"/></svg>最差情况：指数年年 0%，约 70 岁账户用完，要补钱才能继续保</div>
+
+  <!-- ===== 方案 C ===== -->
+  <div class="pill-head">
+    <div class="pill teal">方案 C · IUL MSCI 版</div>
+    <div class="formula"><svg class="ic"><use href="#i-usd"/></svg>一次交 US$50,444 · 美元</div>
+  </div>
+  <div class="cards2">
+    <div class="explain"><div class="ico"><svg class="ic ic-lg"><use href="#i-chart"/></svg></div>
+      <div><b>跟 MSCI 控波动指数</b><span>涨了按 110% 计息，不封顶；跌了算 0%，不倒扣</span></div></div>
+    <div class="explain"><div class="ico"><svg class="ic ic-lg"><use href="#i-coins"/></svg></div>
+      <div><b>少交 US$1.6 万</b><span>因为假设回报更高（7.5%，标普版 6.35%）</span></div></div>
+  </div>
+  <div class="band">
+    <span class="gd" style="flex:1"><svg class="ic"><use href="#i-coins"/></svg>交 1 次</span>
+    <span class="gn" style="flex:4"><svg class="ic"><use href="#i-trend"/></svg>账户跟指数长 · 保终身</span>
+  </div>
+  <div class="tl num" style="--n:5">
+    <div class="node"><div class="mk"><svg class="ic"><use href="#i-coins"/></svg></div><div class="when">34 岁<small>第 1 年</small></div>
+      <div class="box first"><svg class="ic"><use href="#i-usd"/></svg><span class="lb">一次交</span><b>US$50,444</b><small>约 S$65,577</small></div></div>
+    <div class="node"><div class="mk"><div class="dot on"></div></div><div class="when">45 岁<small>第 12 年</small></div>
+      <div class="box"><svg class="ic"><use href="#i-shield"/></svg><span class="lb">账户</span><b>US$51,227</b><span class="chip ok">回本</span><span class="worst">最差 US$15,085</span></div></div>
+    <div class="node"><div class="mk"><div class="dot on"></div></div><div class="when">53 岁<small>第 20 年</small></div>
+      <div class="box"><svg class="ic"><use href="#i-shield"/></svg><span class="lb">账户</span><b>US$79,856</b><span class="chip">≈ 1.6× 本金</span><span class="worst">最差 US$6,329</span></div></div>
+    <div class="node"><div class="mk"><div class="ring"></div></div><div class="when">65 岁<small>第 32 年</small></div>
+      <div class="box hl"><svg class="ic"><use href="#i-cash"/></svg><span class="lb">账户</span><b>US$175,840</b><span class="chip">≈ 3.5× 本金</span><span class="worst">最差 US$0</span></div></div>
+    <div class="node"><div class="mk"><svg><use href="#i-heart"/></svg></div><div class="when">100 岁<small>终身</small></div>
+      <div class="box end"><span class="lb">身故利益</span><b>US$100 万</b><small>家人领取</small></div></div>
+  </div>
+  <div class="strip num">
+    <div><svg class="ic"><use href="#i-cash"/></svg><div><span class="lb">65 岁拿回 − 已交（演示）</span><b>+US$125,396<small>≈ +S$16.3 万</small></b></div></div>
+    <div><svg class="ic"><use href="#i-trend"/></svg><div><span class="lb">计划书假设回报</span><b>7.50%<small>/ 年</small></b></div></div>
+  </div>
+  <div class="tip warn"><svg class="ic"><use href="#i-alert"/></svg>最差情况：约 59 岁账户用完要补钱；这个指数的历史大多是回测模拟</div>
+
+  <!-- ===== 对比表 ===== -->
+  <div class="sub-head"><svg class="ic ic-md"><use href="#i-scale"/></svg>三个方案，一张表对比</div>
+  <div class="ctable">
+    <table class="num">
+      <thead><tr><th>项目</th><th class="p1">A · Term</th><th class="p2">B · 标普 500 版</th><th class="p3">C · MSCI 版</th></tr></thead>
+      <tbody>
+        <tr><td>用什么钱</td><td class="p1">新币</td><td class="p2">美元</td><td class="p3">美元</td></tr>
+        <tr><td>保额</td><td class="p1"><span class="v100">S$100 万</span><span class="v130">S$130 万</span></td><td class="p2">US$100 万</td><td class="p3">US$100 万</td></tr>
+        <tr><td>怎么交</td><td class="p1">每年 <span class="v100">S$833</span><span class="v130">S$1,082.90</span> × 32 年</td><td class="p2">一次 US$66,566</td><td class="p3">一次 US$50,444</td></tr>
+        <tr class="top"><td>65 岁前共交</td><td class="p1"><span class="v100">S$26,656</span><span class="v130">S$34,653</span></td><td class="p2">≈ S$86,536</td><td class="p3">≈ S$65,577</td></tr>
+        <tr><td>保到几岁</td><td class="p1">65 岁</td><td class="p2">终身</td><td class="p3">终身</td></tr>
+        <tr><td>残疾 TPD</td><td class="p1"><span class="yes"><svg class="ic"><use href="#i-check"/></svg>保</span></td><td class="p2"><span class="no"><svg class="ic"><use href="#i-x"/></svg>不保</span></td><td class="p3"><span class="no"><svg class="ic"><use href="#i-x"/></svg>不保</span></td></tr>
+        <tr><td>65 岁账户（演示）</td><td class="p1">S$0</td><td class="p2">US$219,067</td><td class="p3">US$175,840</td></tr>
+        <tr class="top"><td>拿回 − 已交</td><td class="p1 red">−<span class="v100">S$26,656</span><span class="v130">S$34,653</span></td><td class="p2 green">+US$152,501</td><td class="p3 green">+US$125,396</td></tr>
+        <tr><td>几年回本（演示）</td><td class="p1">不回本</td><td class="p2">第 10 年</td><td class="p3">第 12 年</td></tr>
+        <tr><td>第 1 年就退出</td><td class="p1">拿回 S$0</td><td class="p2">拿回 US$51,481</td><td class="p3">拿回 US$36,222</td></tr>
+        <tr><td>最差情况</td><td class="p1">不受市场影响</td><td class="p2">约 70 岁要补钱</td><td class="p3">约 59 岁要补钱</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ===== 一定要知道 ===== -->
+  <div class="sub-head"><svg class="ic ic-md"><use href="#i-alert"/></svg>决定之前，一定要知道</div>
+  <div class="chips">
+    <div class="ccard"><div class="badge"><svg class="ic ic-md"><use href="#i-doc"/></svg></div><div><b>演示不保证</b><span>真实结果可能更多，也可能少很多</span></div></div>
+    <div class="ccard"><div class="badge"><svg class="ic ic-md"><use href="#i-usd"/></svg></div><div><b>IUL 是美元</b><span>换回新币多少，看当时汇率</span></div></div>
+    <div class="ccard"><div class="badge"><svg class="ic ic-md"><use href="#i-door"/></svg></div><div><b>IUL 前几年退出会亏</b><span>第 1 年只拿回约 7 至 8 成</span></div></div>
+    <div class="ccard"><div class="badge"><svg class="ic ic-md"><use href="#i-coins"/></svg></div><div><b>IUL 可能要补钱</b><span>回报长期偏低，账户不够扣费时</span></div></div>
+    <div class="ccard"><div class="badge"><svg class="ic ic-md"><use href="#i-x"/></svg></div><div><b>IUL 不保残疾</b><span>只赔身故和末期疾病</span></div></div>
+    <div class="ccard"><div class="badge"><svg class="ic ic-md"><use href="#i-clock"/></svg></div><div><b>Term 65 岁就停</b><span>之后再买，贵很多</span></div></div>
+  </div>
+
+  <!-- ===== 怎么选 ===== -->
+  <div class="sub-head"><svg class="ic ic-md"><use href="#i-check"/></svg>怎么选？</div>
+  <div class="pick">
+    <div class="pk a"><div class="hd"><div class="badge"><svg class="ic ic-md"><use href="#i-shield"/></svg></div>更适合 Term</div>
+      <ul><li><svg class="ic"><use href="#i-check"/></svg>怕 65 岁前出事，家里断收入</li><li><svg class="ic"><use href="#i-check"/></svg>预算要留给生活和孩子</li><li><svg class="ic"><use href="#i-check"/></svg>保险归保险，存钱归存钱</li></ul></div>
+    <div class="pk b"><div class="hd"><div class="badge"><svg class="ic ic-md"><use href="#i-usd"/></svg></div>更适合 IUL</div>
+      <ul><li><svg class="ic"><use href="#i-check"/></svg>有闲钱，10 年以上不用</li><li><svg class="ic"><use href="#i-check"/></svg>想保一辈子，留给孩子</li><li><svg class="ic"><use href="#i-check"/></svg>能接受不保证和美元汇率</li></ul></div>
+    <div class="pk c"><div class="hd"><div class="badge"><svg class="ic ic-md"><use href="#i-mix"/></svg></div>也可以组合</div>
+      <ul><li><svg class="ic"><use href="#i-check"/></svg>IUL 打底，保终身、做传承</li><li><svg class="ic"><use href="#i-check"/></svg>Term 加高 65 岁前的保额</li><li><svg class="ic"><use href="#i-check"/></svg>比例按预算再细算</li></ul></div>
+  </div>
+
+  <!-- ===== 行动区块 ===== -->
+  <div class="cta">
+    <div style="position:relative;z-index:1">
+      <div class="who-row"><img src="/avatar-round.png" alt="小圆姐">
+        <div><h3>方案还有更多细节<br><span>约杯咖啡，详细聊</span></h3></div></div>
+      <p class="sub">微信联系小圆姐，面对面帮您把数字算清楚。</p>
+      <div class="perks">
+        <span><svg class="ic"><use href="#i-coffee"/></svg>约杯咖啡</span>
+        <span><svg class="ic"><use href="#i-doc"/></svg>逐项讲解计划书</span>
+        <span><svg class="ic"><use href="#i-scale"/></svg>按您的预算再细调</span>
+      </div>
+      <div class="acts">
+        <button type="button" class="btn wx" id="wxCopy"><svg class="ic"><use href="#i-chat"/></svg><span id="wxTxt">微信 <b>singaporeyuan</b> · 点击复制</span></button>
+        <a class="btn wa" href="https://wa.me/6583750190?text=%E4%BD%A0%E5%A5%BD%E5%B0%8F%E5%9C%86%E5%A7%90%EF%BC%8C%E6%88%91%E7%9C%8B%E4%BA%86%E6%96%B9%E6%A1%88%E5%AF%B9%E6%AF%94%EF%BC%8C%E6%83%B3%E7%BA%A6%E6%9D%AF%E5%92%96%E5%95%A1%E8%AF%A6%E8%81%8A%E3%80%82" target="_blank" rel="noopener noreferrer"><svg class="ic"><use href="#i-phone"/></svg>WhatsApp +65 8375 0190</a>
+      </div>
+    </div>
+    <div class="qr"><img src="/wechat-qr.png" alt="小圆姐微信二维码"><span>扫码加微信</span></div>
+  </div>
+
+  <div class="notes">
+    <p>整理自 AIA 2026-10-13 及 10-15 计划书：AIA Secure Flexi Term To Age 65 (Vit) + TPD 附加；AIA Platinum Indexed Legacy (III) 两份，指数账户分别 100% 选 S&amp;P 500 (Cap)、MSCI BofA US Dualcast。被保人 33 岁（ALB）、女、不吸烟。仅作对比参考，不构成投保建议。</p>
+    <p><b>Term 保额 130 万新币</b>（2026-10-15 报价），与 IUL 的 100 万美元保额相当，方便横向比较。汇率 1.30 只为方便比较。</p>
+    <p><b>IUL 演示</b>按指数账户假设回报 6.35% / 7.50% 与现行收费，第 11 年起另有 0.35% 保证特别红利；<b>最差</b>按指数 0%、最高收费、最低退保价值保证计算。假设回报基于指数过去表现（MSCI 版含回测），上限与参与率不保证。</p>
+    <p>IUL 前 15 年退保或部分提取有退保费；保费在 12 个月内分批转入指数账户，计划书按一次性演示。身故赔付取 100 万与账户价值中较高者。</p>
+    <p>Term 基本保费 32 年保证不变，TPD 附加费率不保证；Vitality 折扣首年 9 折，之后在 85% 至 100% 间浮动。末期癌症赔付每人限额 S$100 万，IUL 末期疾病每人限额 US$200 万。具体以保单条款为准。</p>
+  </div>
+
+</div>
+<footer class="site-foot">
+  <div class="in">
+    <div class="grid">
+      <div>
+        <p class="brand">新加坡小圆姐</p>
+        <p class="tag">用专业和耐心，陪你一起日富一日</p>
+        <p class="cred">新加坡财富规划经理<br>RNF：YY-300823216</p>
+      </div>
+      <div>
+        <h4>联系方式</h4>
+        <ul>
+          <li><a href="/wechat-qr.png" target="_blank" rel="noopener"><svg fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>微信 · singaporeyuan</a></li>
+          <li><a href="https://wa.me/6583750190" target="_blank" rel="noopener noreferrer"><svg fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>+65 8375 0190</a></li>
+          <li><a href="mailto:yuanyuan@aia.com.sg"><svg fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 5L2 7"/></svg>yuanyuan@aia.com.sg</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>关注我</h4>
+        <ul>
+          <li><a href="https://xhslink.com/m/9KS9V4ytFmj" target="_blank" rel="noopener noreferrer"><svg fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>小红书 · 新加坡小圆姐</a></li>
+          <li><a href="https://xhslink.com/m/2eFS3jpJutg" target="_blank" rel="noopener noreferrer"><svg fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>小红书 · 图文笔记</a></li>
+          <li><a href="https://www.linkedin.com/in/singaporeyuan/" target="_blank" rel="noopener noreferrer"><svg fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>LinkedIn</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>新加坡小圆姐</h4>
+        <ul>
+          <li><a href="/zh/about">关于我</a></li>
+          <li><a href="/zh/cases">规划案例</a></li>
+          <li><a href="/zh/services">业务范围</a></li>
+          <li><a href="/zh/corporate">企业团险</a></li>
+          <li><a href="/zh/resources">资源中心</a></li>
+          <li><a href="/zh/consult">预约咨询</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="legal">
+      <p>本网站内容仅供参考，不构成任何投资、保险、法律或税务建议。保险产品涉及条款与风险，部分收益为非保证。具体以保险公司正式文件及相关专业意见为准。</p>
+      <p>© 2026 袁媛 Yuan Yuan. 版权所有。</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var HASH="5647cdb5254a24d3a184f9136af8416c1ffb1050fd57c67dc133e588b73fc706", KEY="sy_case_term_iul_auth";
+  function sha(s){return crypto.subtle.digest("SHA-256",new TextEncoder().encode(s)).then(function(b){
+    return Array.prototype.map.call(new Uint8Array(b),function(x){return x.toString(16).padStart(2,"0")}).join("");})}
+  try{ if(sessionStorage.getItem(KEY)===HASH) document.body.classList.remove("locked"); }catch(e){}
+  document.getElementById("pwForm").addEventListener("submit",function(e){
+    e.preventDefault();
+    sha(document.getElementById("pwInput").value.trim()).then(function(h){
+      if(h===HASH){ try{sessionStorage.setItem(KEY,HASH)}catch(e){} document.body.classList.remove("locked"); window.scrollTo(0,0); }
+      else{ document.getElementById("pwErr").classList.add("show"); document.getElementById("pwInput").select(); }
+    });
+  });
+})();
+
+(function(){
+  var a=document.getElementById('sa100'),b=document.getElementById('sa130');
+  function set(is130){
+    document.body.classList.toggle('sa130',is130);
+    a.classList.toggle('on',!is130);
+    b.classList.toggle('on',is130);
+  }
+  a.addEventListener('click',function(){set(false)});
+  b.addEventListener('click',function(){set(true)});
+  set(true);
+})();
+
+(function(){
+  var b=document.getElementById('wxCopy'), t=document.getElementById('wxTxt');
+  if(!b) return;
+  var orig=t.innerHTML;
+  function done(ok){ t.innerHTML = ok ? '已复制微信号，打开微信添加' : '微信号：<b>singaporeyuan</b>'; setTimeout(function(){ t.innerHTML=orig; },2600); }
+  b.addEventListener('click',function(){
+    if(navigator.clipboard&&navigator.clipboard.writeText){
+      navigator.clipboard.writeText('singaporeyuan').then(function(){done(true)},function(){done(false)});
+    } else done(false);
+  });
+})();
+
+</script>
+</body>
+</html>

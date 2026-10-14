@@ -1,0 +1,633 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>储蓄投资方案对比 · SWB vs PWV | 新加坡小圆姐</title>
+<style>
+:root{
+  --paper:#FBF6EA; --card:#FFFDF8;
+  --navy:#13286B; --navy-2:#1C3A8F;
+  --gold:#B8862B; --gold-deep:#9A6B17; --gold-light:#C9973A;
+  --gold-tint:#F5EAD2; --gold-tint-2:#FAF2E1; --blue-tint:#EEF3FB;
+  --green:#1E4D3B; --green-tint:#E7F0EA;
+  --red:#B4433A; --red-tint:#FBEAE6;
+  --line:#EADFC8; --ink:#2B2B2B; --muted:#6B6458;
+  --shadow:0 1px 6px rgba(120,90,30,.06);
+  --font:"Helvetica Neue","Avenir Next",Arial,"Hiragino Sans GB","PingFang SC",sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--paper);color:var(--ink);font-family:var(--font);font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased}
+button,input{font-family:inherit}
+[hidden]{display:none!important}
+.num{font-variant-numeric:tabular-nums;letter-spacing:.03em}
+.page{position:relative;max-width:1040px;margin:0 auto;padding:44px 32px 40px;overflow:hidden}
+.deco{position:absolute;top:0;right:0;width:180px;height:130px;pointer-events:none}
+.ic{width:18px;height:18px;color:var(--gold);flex:0 0 auto}
+.ic-md{width:22px;height:22px}.ic-lg{width:30px;height:30px}
+.red{color:var(--red)!important}.green{color:var(--green)!important}
+
+/* ---------- 标题 ---------- */
+.hero{position:relative;z-index:1}
+.hero h1{font-size:36px;line-height:1.2;font-weight:800;letter-spacing:-.3px;color:var(--navy)}
+.hero h1 .l2{display:block;color:var(--gold)}
+.meta{margin-top:16px;display:flex;flex-wrap:wrap;gap:8px}
+.meta span{display:inline-flex;align-items:center;gap:6px;background:var(--card);border:1px solid var(--line);border-radius:999px;padding:5px 13px;font-size:13px;color:var(--ink)}
+.meta span.who{background:var(--navy);border-color:var(--navy);color:#fff;font-weight:700}
+.meta .ic{width:15px;height:15px}
+
+/* ---------- 吸顶切换 ---------- */
+.switch{position:sticky;top:10px;z-index:20;display:flex;justify-content:center;margin:24px 0 0}
+.switch .in{display:inline-flex;align-items:center;gap:3px;background:var(--card);border:1px solid var(--line);border-radius:999px;padding:4px;box-shadow:0 10px 26px -12px rgba(19,40,107,.35)}
+.switch .lb{display:inline-flex;align-items:center;gap:5px;font-size:12.5px;color:var(--muted);padding:0 6px 0 10px;white-space:nowrap}
+.switch .lb .ic{width:15px;height:15px}
+.switch button{border:0;background:transparent;border-radius:999px;padding:7px 13px;font-size:13.5px;font-weight:700;color:var(--navy);cursor:pointer;white-space:nowrap}
+.switch button.on{background:var(--navy);color:#fff}
+.scen-desc{margin:10px auto 0;max-width:640px;text-align:center;font-size:13px;color:var(--muted)}
+.scen-desc b{color:var(--navy)}
+
+/* ---------- 小节标题 ---------- */
+.sub-head{display:flex;align-items:center;gap:10px;margin:40px 0 16px;font-size:19px;font-weight:800;color:var(--navy)}
+.sub-head::after{content:"";flex:1;height:1px;background:var(--gold);opacity:.4}
+
+/* ---------- KPI 卡 ---------- */
+.kpis{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.kpis.two{grid-template-columns:minmax(0,1fr) minmax(0,1.15fr)}
+.kpi{border:1px solid var(--line);border-radius:14px;padding:18px 20px;background:var(--card);box-shadow:var(--shadow)}
+.kpi.blue{background:var(--blue-tint);border-color:#D9E2F2}
+.kpi .top{display:flex;gap:14px;align-items:flex-start}
+.badge{flex:0 0 44px;height:44px;border-radius:50%;background:var(--gold-tint);display:grid;place-items:center}
+.kpi .label{font-size:14px;font-weight:700;color:var(--navy)}
+.big{font-size:36px;line-height:1.15;font-weight:800;letter-spacing:.04em;background:linear-gradient(180deg,var(--gold-light),var(--gold-deep));-webkit-background-clip:text;background-clip:text;color:transparent}
+.big.navy{background:none;color:var(--navy)}
+.big.sm{font-size:25px;letter-spacing:.04em}
+.big-row{display:flex;flex-wrap:wrap;align-items:baseline;column-gap:8px;margin-top:4px}
+.big-row em{white-space:nowrap;font-style:normal;font-size:13px;color:var(--muted)}
+.kpi .eg{margin-top:10px;font-size:13.5px;color:var(--ink);display:flex;align-items:center;gap:7px}
+.kpi .eg b{font-weight:800}
+.kpi .cond{margin-top:6px;font-size:12.5px;color:var(--muted)}
+.kpi .pair{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}
+.kpi .pair>div{border-radius:12px;padding:10px 12px;background:var(--gold-tint-2);border:1px solid var(--line)}
+.kpi .pair>div.g2{background:var(--green-tint);border-color:#D3E3D9}
+.kpi .pair .who{display:block;font-size:12.5px;font-weight:700;color:var(--gold-deep)}
+.kpi .pair .g2 .who{color:var(--green)}
+.kpi .pair em{display:block;font-style:normal;font-size:12.5px;color:var(--muted)}
+.kpi .rows{margin-top:8px}
+.kpi .rows>div{display:flex;align-items:baseline;justify-content:space-between;gap:10px;padding:7px 0;border-top:1px dashed var(--line)}
+.kpi .rows>div:first-child{border-top:0}
+.kpi .rows .who{font-size:13px;font-weight:800}
+.kpi .rows .who.a{color:var(--navy)}.kpi .rows .who.b{color:var(--gold-deep)}
+.kpi .rows .v{text-align:right;font-size:17px;letter-spacing:.04em;font-weight:800;color:var(--navy);line-height:1.3}
+.kpi .rows .v small{display:block;font-size:11.5px;font-weight:600;color:var(--muted)}
+
+/* ---------- 方案胶囊标题 ---------- */
+.pill-head{display:flex;align-items:center;gap:16px;margin:46px 0 14px;background:linear-gradient(90deg,transparent 0,var(--gold-tint-2) 30%);border-radius:999px}
+.pill{flex:0 0 auto;padding:8px 24px 8px 20px;border-radius:999px;color:#fff;font-size:18px;font-weight:700;letter-spacing:.3px;white-space:nowrap}
+.pill.navy{background:var(--navy)}.pill.gold{background:var(--gold)}.pill.teal{background:var(--green)}
+.pill-head .formula{display:flex;align-items:center;gap:8px;font-size:14px;font-weight:600;color:var(--ink);padding-right:16px}
+
+/* ---------- 说明卡 ---------- */
+.cards2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.explain{display:flex;align-items:center;gap:16px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 20px;box-shadow:var(--shadow)}
+.explain .ico{display:flex;padding-right:16px;border-right:1px solid var(--line)}
+.explain b{display:block;font-size:15px;color:var(--navy)}
+.explain span{font-size:13.5px;color:var(--muted)}
+.giftline{margin-top:12px;display:flex;align-items:center;gap:10px;background:var(--gold-tint);border:1px solid #E3CFA4;border-radius:12px;padding:10px 18px;font-size:14px;font-weight:600;color:var(--ink)}
+.giftline b{color:var(--gold-deep)}
+
+/* ---------- 色带 ---------- */
+.band{display:flex;gap:6px;margin-top:16px}
+.band span{display:flex;align-items:center;justify-content:center;gap:8px;border-radius:999px;padding:10px 14px;color:#fff;font-weight:700;font-size:14.5px;white-space:nowrap;overflow:hidden}
+.band .nv{background:var(--navy)}.band .gd{background:var(--gold)}.band .gn{background:var(--green)}
+.band .gy{background:#E4DACA;color:var(--muted)}
+.band .ic{color:currentColor;width:16px;height:16px}
+
+/* ---------- 时间轴 ---------- */
+.tl{position:relative;display:grid;grid-template-columns:repeat(var(--n),1fr);gap:12px;margin-top:22px}
+.tl::before{content:"";position:absolute;left:calc(50% / var(--n));right:calc(50% / var(--n));top:17px;height:2px;background:linear-gradient(90deg,#E2D3B3,#D9C59C)}
+.node{position:relative;display:flex;flex-direction:column;align-items:center;text-align:center}
+.mk{position:relative;width:36px;height:36px;border-radius:50%;background:var(--paper);display:grid;place-items:center}
+.mk .dot{width:20px;height:20px;border-radius:50%;background:var(--gold-tint);border:3px solid var(--card);box-shadow:0 0 0 1px #D9C59C}
+.mk .dot.on{background:var(--gold)}
+.mk .ring{width:22px;height:22px;border-radius:50%;border:4px solid var(--navy);background:var(--card)}
+.mk svg{width:26px;height:26px}
+.when{margin-top:6px;font-size:16px;font-weight:800;color:var(--navy);line-height:1.25}
+.when small{display:block;font-size:12px;font-weight:600;color:var(--muted)}
+.box{width:100%;margin-top:10px;border-radius:12px;padding:12px 8px;background:var(--card);border:1.5px solid var(--line);display:flex;flex-direction:column;align-items:center;gap:1px;min-height:122px;justify-content:center}
+.box .ic{width:18px;height:18px;color:var(--navy);margin-bottom:2px}
+.box .lb{font-size:12.5px;color:var(--muted)}
+.box b{font-size:17px;letter-spacing:.04em;font-weight:800;color:var(--navy);line-height:1.3}
+.box small{font-size:11.5px;color:var(--muted)}
+.box .worst{font-size:11.5px;color:#9A9384}
+.chip{display:inline-block;margin-top:5px;font-size:12px;font-weight:700;border-radius:999px;padding:2px 10px;background:var(--gold-tint);color:var(--gold-deep);white-space:nowrap}
+.chip.ok{background:var(--green-tint);color:var(--green)}
+.chip.bad{background:var(--red-tint);color:var(--red)}
+.box.first{background:var(--blue-tint);border-color:#D9E2F2}
+.box.hl{background:var(--gold-tint-2);border-color:#E3CFA4}
+.box.end{border:1.5px dashed #D9C59C;background:transparent}
+.box.end b{font-size:16px}
+.box.gone b{color:var(--red)}
+
+/* ---------- 金底 KPI 条 ---------- */
+.strip{margin-top:16px;display:grid;grid-template-columns:1fr 1fr;background:var(--gold-tint);border:1px solid #E3CFA4;border-radius:14px;padding:16px 22px}
+.strip>div{display:flex;align-items:center;gap:14px}
+.strip>div+div{border-left:1px solid #DCC9A2;padding-left:22px;margin-left:22px}
+.strip .ic{width:30px;height:30px;color:var(--gold-deep)}
+.strip .lb{font-size:13px;color:var(--ink)}
+.strip b{display:block;font-size:23px;letter-spacing:.04em;font-weight:800;color:var(--gold-deep);line-height:1.2}
+.strip b small{font-size:12.5px;letter-spacing:.02em;color:var(--muted);font-weight:600;margin-left:6px}
+.tip{margin-top:12px;display:flex;align-items:center;justify-content:center;gap:8px;text-align:center;font-size:13.5px;color:var(--ink);background:var(--gold-tint-2);border-radius:12px;padding:10px 14px}
+.tip .ic{width:17px;height:17px}
+.tip.warn{background:var(--red-tint)}
+.tip.warn .ic{color:var(--red)}
+
+/* ---------- 对比表 ---------- */
+.ctable{background:var(--card);border:1px solid var(--line);border-radius:12px;overflow-x:auto;box-shadow:var(--shadow)}
+.ctable table{width:100%;border-collapse:collapse;min-width:620px}
+.ctable th,.ctable td{text-align:left;padding:12px 16px;border-top:1px solid var(--line);font-size:14.5px;vertical-align:middle}
+.ctable th{border-top:0;font-size:14px;font-weight:700;color:#fff;white-space:nowrap}
+.ctable th:first-child{background:var(--gold-tint-2);color:var(--navy);width:24%}
+.ctable th.p1{background:var(--navy)}.ctable th.p2{background:var(--gold)}.ctable th.p3{background:var(--green)}
+.ctable td:first-child{color:var(--ink);font-weight:600}
+.ctable td{font-weight:600;color:var(--navy)}
+.ctable td.p1{background:#F7F9FD}.ctable td.p2{background:#FDF8EE}.ctable td.p3{background:#F4F8F5}
+.ctable td small{display:block;font-size:12px;font-weight:500;color:var(--muted)}
+.ctable tr.top td{background:var(--gold-tint)!important;font-weight:800}
+.ctable .yes,.ctable .no{display:inline-flex;align-items:center;gap:6px}
+.ctable .yes{color:var(--green)}.ctable .no{color:var(--red)}
+.ctable .yes .ic{color:var(--green)}.ctable .no .ic{color:var(--red)}
+
+/* ---------- 图标小卡 ---------- */
+.chips{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.ccard{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 16px;display:flex;gap:12px;align-items:center;box-shadow:var(--shadow)}
+.ccard .badge{flex:0 0 40px;height:40px}
+.ccard b{display:block;font-size:14.5px;color:var(--navy);line-height:1.4}
+.ccard span{font-size:13px;color:var(--muted);line-height:1.55}
+
+/* ---------- 怎么选 ---------- */
+.pick{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.pk{border-radius:14px;padding:18px;border:1px solid var(--line)}
+.pk.a{background:var(--blue-tint);border-color:#D9E2F2}.pk.b{background:var(--gold-tint-2)}.pk.c{background:var(--green-tint);border-color:#D3E3D9}
+.pk .hd{display:flex;align-items:center;gap:10px;font-size:16px;font-weight:800;color:var(--navy);margin-bottom:10px}
+.pk .hd .badge{flex:0 0 38px;height:38px;background:var(--card)}
+.pk ul{list-style:none;font-size:13.5px;color:var(--ink)}
+.pk li{display:flex;gap:8px;align-items:flex-start;margin-bottom:7px;line-height:1.55}
+.pk li .ic{width:16px;height:16px;margin-top:3px;color:var(--gold-deep)}
+
+/* ---------- 页尾小字 ---------- */
+.notes{margin-top:40px;padding-top:18px;border-top:1px solid var(--line);font-size:12px;color:var(--muted);line-height:1.8}
+.notes p{margin-bottom:5px;padding-left:12px;position:relative}
+.notes p::before{content:"";position:absolute;left:0;top:9px;width:4px;height:4px;border-radius:50%;background:var(--gold)}
+
+/* ---------- 密码门（同 pwv-plan-builder） ---------- */
+body.locked{overflow:hidden}
+body.locked>*:not(#pwGate){visibility:hidden}
+#pwGate{position:fixed;inset:0;z-index:99;display:none;align-items:center;justify-content:center;background:var(--paper);padding:20px}
+body.locked #pwGate{display:flex}
+.pw-card{width:100%;max-width:420px;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:36px 32px;box-shadow:0 20px 60px -30px rgba(19,40,107,.35)}
+.pw-chip{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);background:var(--gold-tint-2);border-radius:999px;padding:4px 14px 4px 4px;font-size:12.5px;font-weight:700;color:var(--gold-deep)}
+.pw-chip img{width:26px;height:26px;border-radius:50%;object-fit:cover}
+.pw-card h2{margin-top:18px;font-size:24px;font-weight:800;color:var(--navy)}
+.pw-card p{margin-top:6px;font-size:14px;color:var(--muted)}
+#pwInput{margin-top:20px;width:100%;border:1px solid var(--line);border-radius:12px;background:#fff;padding:13px 16px;font-size:15px;outline:none}
+#pwInput:focus{border-color:var(--gold)}
+#pwSubmit{margin-top:12px;width:100%;border:0;border-radius:12px;background:var(--navy);color:#fff;padding:13px;font-size:15px;font-weight:700;cursor:pointer}
+.pw-err{display:none;margin-top:10px;font-size:13px;color:#B4433A;font-weight:600}
+.pw-err.show{display:block}
+
+/* ---------- 网站页脚（同样板页） ---------- */
+.site-foot{border-top:1px solid rgba(184,134,43,.2);background:#F4ECDB;margin-top:48px}
+.site-foot .in{max-width:1040px;margin:0 auto;padding:48px 32px 36px}
+.site-foot .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:32px}
+.site-foot .brand{font-size:19px;font-weight:700;color:var(--navy)}
+.site-foot .tag{margin-top:10px;font-size:14px;color:var(--gold-deep)}
+.site-foot .cred{margin-top:20px;font-size:14px;line-height:1.7;color:rgba(19,40,107,.7)}
+.site-foot h4{font-size:12px;font-weight:600;letter-spacing:.18em;color:var(--gold-deep)}
+.site-foot ul{list-style:none;margin-top:14px;font-size:14px}
+.site-foot li{line-height:1.9}
+.site-foot a{color:rgba(19,40,107,.8);text-decoration:none;display:inline-flex;align-items:center;gap:9px}
+.site-foot a:hover{color:var(--gold-deep)}
+.site-foot a svg{width:16px;height:16px;color:var(--gold-deep);flex:0 0 auto}
+.site-foot .legal{margin-top:40px;padding-top:24px;border-top:1px solid rgba(184,134,43,.2);font-size:12px;line-height:1.7;color:#7a7264}
+.site-foot .legal p+p{margin-top:12px}
+
+/* ---------- 手机 ---------- */
+@media (max-width:760px){
+  .page{padding:28px 16px}
+  .hero h1{font-size:26px}
+  .kpis,.kpis.two,.cards2,.chips,.pick{grid-template-columns:1fr}
+  .big{font-size:30px}.big.sm{font-size:23px}
+  .kpi,.kpi .top>div{min-width:0}
+  .kpi .pair{grid-template-columns:1fr}
+  .big-row em{white-space:normal}
+  .pill-head{flex-direction:column;align-items:flex-start;gap:6px;background:none}
+  .pill{font-size:16px;padding:7px 18px}
+  .pill-head .formula{font-size:13.5px;padding-left:6px}
+  .explain{padding:12px 14px;gap:12px}.explain .ico{padding-right:12px}
+  .band span{font-size:13px;padding:9px 10px}
+  .tl{grid-template-columns:1fr;gap:10px}
+  .tl::before{left:17px;right:auto;top:18px;bottom:18px;width:2px;height:auto;background:linear-gradient(180deg,#E2D3B3,#D9C59C)}
+  .node{display:grid;grid-template-columns:36px 70px 1fr;align-items:center;text-align:left;gap:10px}
+  .when{margin-top:0;font-size:15px}
+  .box{margin-top:0;min-height:0;align-items:flex-start;padding:10px 12px}
+  .box .ic{display:none}
+  .strip{grid-template-columns:1fr;padding:14px 16px}
+  .strip>div+div{border-left:0;padding-left:0;margin-left:0;border-top:1px solid #DCC9A2;padding-top:12px;margin-top:12px}
+  .strip b{font-size:21px}
+  .tip{justify-content:flex-start;text-align:left}
+  .site-foot .in{padding:36px 16px 28px}
+  .site-foot .grid{grid-template-columns:1fr 1fr;gap:28px 20px}
+}
+@media (max-width:420px){.site-foot .grid{grid-template-columns:1fr}.switch .lb{display:none}}
+@media print{body{background:#fff}.switch{position:static}.site-foot{display:none}}
+
+/* ---------- 行动区块：微信约咖啡 ---------- */
+.cta{margin-top:44px;display:grid;grid-template-columns:1fr auto;gap:28px;align-items:center;background:var(--navy);border-radius:18px;padding:28px 32px;color:#fff;position:relative;overflow:hidden}
+.cta::after{content:"";position:absolute;right:-60px;top:-60px;width:220px;height:220px;border-radius:50%;border:1px solid rgba(201,151,58,.35);pointer-events:none}
+.cta .who-row{display:flex;align-items:center;gap:14px}
+.cta .who-row img{width:56px;height:56px;border-radius:50%;object-fit:cover;border:2px solid var(--gold-light);background:#fff}
+.cta h3{font-size:24px;font-weight:800;line-height:1.3}
+.cta h3 span{color:var(--gold-light)}
+.cta p.sub{margin-top:4px;font-size:14.5px;color:rgba(255,255,255,.8)}
+.cta .perks{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.cta .perks span{display:inline-flex;align-items:center;gap:6px;border:1px solid rgba(201,151,58,.5);border-radius:999px;padding:5px 12px;font-size:13px;color:#F3E4C4}
+.cta .perks .ic{width:15px;height:15px;color:var(--gold-light)}
+.cta .acts{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
+.cta .btn{display:inline-flex;align-items:center;gap:8px;border-radius:999px;padding:11px 20px;font-size:15px;font-weight:700;cursor:pointer;text-decoration:none;border:0}
+.cta .btn .ic{width:18px;height:18px;color:currentColor}
+.cta .btn.wx{background:var(--gold);color:#fff}
+.cta .btn.wx:hover{background:var(--gold-deep)}
+.cta .btn.wx b{letter-spacing:.04em}
+.cta .btn.wa{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.45)}
+.cta .btn.wa:hover{border-color:var(--gold-light);color:var(--gold-light)}
+.cta .qr{position:relative;z-index:1;background:#fff;border-radius:14px;padding:10px 10px 8px;text-align:center}
+.cta .qr img{display:block;width:132px;height:132px;object-fit:contain}
+.cta .qr span{display:block;margin-top:4px;font-size:12.5px;font-weight:700;color:var(--navy)}
+@media (max-width:760px){
+  .cta{grid-template-columns:1fr;padding:22px 18px;gap:18px}
+  .cta h3{font-size:20px}
+  .cta .qr{justify-self:center}
+  .cta .btn{flex:1 1 auto;justify-content:center}
+}
+
+.ruler-card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px 24px 18px;box-shadow:var(--shadow)}
+.ruler{position:relative;margin:62px 8px 86px;height:14px;border-radius:7px;background:linear-gradient(90deg,#F4D9D5 0%,#F7F1E4 40%,#DCEBE1 100%)}
+.ruler .tick{position:absolute;top:18px;transform:translateX(-50%);font-size:12px;color:var(--muted)}
+.ruler .mk2{position:absolute;bottom:20px;transform:translateX(-50%);text-align:center;width:112px;font-size:12px;line-height:1.4;color:var(--navy)}
+.ruler .mk2 b{display:block;font-size:16px;color:var(--gold-deep)}
+.ruler .mk2::after{content:"";position:absolute;left:50%;bottom:-20px;width:2px;height:20px;background:var(--navy);transform:translateX(-50%)}
+.ruler .mk2.lo{bottom:auto;top:38px}
+.ruler .mk2.lo::after{bottom:auto;top:-24px;height:24px}
+.ruler-tips{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.ruler-tips>div{display:flex;gap:10px;align-items:flex-start;background:var(--gold-tint-2);border-radius:12px;padding:12px 14px;font-size:13.5px;line-height:1.6}
+.ruler-tips .ic{margin-top:2px}
+.ruler-tips b{color:var(--navy)}
+@media (max-width:760px){.ruler-tips{grid-template-columns:1fr}.ruler-card{padding:18px 14px}}
+
+</style>
+</head>
+<body class="locked">
+<div id="pwGate">
+  <form class="pw-card" id="pwForm">
+    <span class="pw-chip"><img src="/avatar-round.png" alt="">新加坡小圆姐 · 专属方案</span>
+    <h2>储蓄投资方案对比</h2>
+    <p>为保护客户资料，请输入访问密码。</p>
+    <input id="pwInput" type="password" autocomplete="off" placeholder="输入密码">
+    <div class="pw-err" id="pwErr">密码不正确，再试一次，或者找小圆姐要密码。</div>
+    <button type="submit" id="pwSubmit">查看方案</button>
+  </form>
+</div>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="i-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v5c0 4.5-3 8.3-7 10-4-1.7-7-5.5-7-10V6z"/><path d="M9 12l2 2 4-4"/></symbol>
+    <symbol id="i-coins" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="9" cy="6" rx="6" ry="2.5"/><path d="M3 6v4c0 1.4 2.7 2.5 6 2.5s6-1.1 6-2.5V6"/><ellipse cx="15" cy="14" rx="6" ry="2.5"/><path d="M9 14v4c0 1.4 2.7 2.5 6 2.5s6-1.1 6-2.5v-4"/></symbol>
+    <symbol id="i-gift" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M5 12v9h14v-9M12 8v13"/><path d="M12 8c-2-4-6-4-6-1.5S9 8 12 8zM12 8c2-4 6-4 6-1.5S15 8 12 8z"/></symbol>
+    <symbol id="i-cal" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4M7 14h2M11 14h2M15 14h2M7 17h2M11 17h2"/></symbol>
+    <symbol id="i-bars" viewBox="0 0 24 24" fill="currentColor"><rect x="4" y="13" width="4" height="8" rx="1.2"/><rect x="10" y="9" width="4" height="12" rx="1.2"/><rect x="16" y="4" width="4" height="17" rx="1.2"/></symbol>
+    <symbol id="i-doc" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h9l4 4v14H6z"/><path d="M15 3v4h4M9 11h7M9 14h7M9 17h5"/></symbol>
+    <symbol id="i-bulb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9c.6.5 1 1.2 1 2.1h5c0-.9.4-1.6 1-2.1A6 6 0 0 0 12 3z"/></symbol>
+    <symbol id="i-heart" viewBox="0 0 24 24"><path fill="#C0392B" d="M12 21s-7.5-4.6-9.6-9.2C.9 8.4 3 4.5 6.7 4.5c2.2 0 3.6 1.2 4.3 2.4.7-1.2 2.1-2.4 4.3-2.4 3.7 0 5.8 3.9 4.3 7.3C19.5 16.4 12 21 12 21z"/></symbol>
+    <symbol id="i-trend" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8"/><path d="M14 7h7v7"/></symbol>
+    <symbol id="i-chart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 15l4-4 3 3 6-7"/></symbol>
+    <symbol id="i-alert" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10.3 4 2.6 18a2 2 0 0 0 1.7 3h15.4a2 2 0 0 0 1.7-3L13.7 4a2 2 0 0 0-3.4 0z"/><path d="M12 9v4M12 17h.01"/></symbol>
+    <symbol id="i-cash" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="12" cy="12" r="2.6"/><path d="M6 12h.01M18 12h.01"/></symbol>
+    <symbol id="i-lock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4.5" y="10.5" width="15" height="10.5" rx="2.5"/><path d="M8 10.5V7.8a4 4 0 0 1 8 0v2.7M12 15v2.2"/></symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+    <symbol id="i-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M9 9l6 6M15 9l-6 6"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8 12.5l2.6 2.6L16 9.6"/></symbol>
+    <symbol id="i-usd" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 6.5v11M15 9.3c0-1.3-1.3-2.1-3-2.1s-3 .8-3 2.1c0 2.9 6 1.5 6 4.5 0 1.3-1.3 2.1-3 2.1s-3-.8-3-2.1"/></symbol>
+    <symbol id="i-swap" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 4 3 8l4 4M3 8h14M17 20l4-4-4-4M21 16H7"/></symbol>
+    <symbol id="i-door" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3h5a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-5"/><path d="M9 17l5-5-5-5M14 12H3"/></symbol>
+    <symbol id="i-family" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="7" r="3"/><path d="M3 21v-1a6 6 0 0 1 12 0v1"/><circle cx="17.5" cy="9" r="2.4"/><path d="M16 21v-.6a4.5 4.5 0 0 1 6-4.2"/></symbol>
+    <symbol id="i-scale" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18M6 21h12M5 7h14"/><path d="M5 7l-3 6a3 3 0 0 0 6 0zM19 7l-3 6a3 3 0 0 0 6 0z"/></symbol>
+    <symbol id="i-user" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></symbol>
+    <symbol id="i-mix" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="12" r="6"/><circle cx="15" cy="12" r="6"/></symbol>
+    <symbol id="i-coffee" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9h13v4a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5z"/><path d="M17 10h1.5a2.5 2.5 0 0 1 0 5H17M8 3v3M12 3v3M4 21h13"/></symbol>
+    <symbol id="i-chat" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20.5l1.4-4.8A8 8 0 1 1 21 12z"/><path d="M8.5 12h.01M12 12h.01M15.5 12h.01"/></symbol>
+    <symbol id="i-phone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5.5 4H9l1.6 4.3L8.5 10a12.5 12.5 0 0 0 5.5 5.5l1.7-2.1L20 15v3.6A1.6 1.6 0 0 1 18.2 20C10.8 19.2 4.8 13.2 4 5.8A1.6 1.6 0 0 1 5.5 4z"/></symbol>
+  </defs>
+</svg>
+
+<div class="page">
+  <svg class="deco" viewBox="0 0 220 160" aria-hidden="true">
+    <polygon points="60,0 220,0 220,150" fill="#EFE3C8" opacity=".7"/>
+    <polygon points="130,0 220,0 220,90" fill="#E4D3AE" opacity=".6"/>
+  </svg>
+  <header class="hero">
+    <h1>每年存 9.8 万 · 存 5 年<span class="l2">稳健分红 SWB vs 指数基金 PWV</span></h1>
+    <div class="meta">
+      <span class="who"><svg class="ic" style="color:#fff"><use href="#i-user"/></svg>谢女士 · 33 岁 · 女</span>
+      <span><svg class="ic"><use href="#i-cal"/></svg>报价 2026 年 9 至 10 月</span>
+      <span><svg class="ic"><use href="#i-coins"/></svg>新币</span>
+    </div>
+  </header>
+
+  <div class="switch" role="group" aria-label="情况切换">
+    <div class="in">
+      <span class="lb"><svg class="ic"><use href="#i-chart"/></svg>看哪种情况</span>
+      <button type="button" data-s="m" class="on">保守</button>
+      <button type="button" data-s="h">乐观</button>
+    </div>
+  </div>
+  <p class="scen-desc" id="scenDesc"></p>
+
+  <!-- ===== 先看结论 ===== -->
+  <div class="sub-head"><svg class="ic ic-md"><use href="#i-bulb"/></svg>先看结论</div>
+  <div class="kpis">
+    <div class="kpi">
+      <div class="top"><div class="badge"><svg class="ic ic-md"><use href="#i-coins"/></svg></div><div class="label">一共交多少</div></div>
+      <div class="rows num">
+        <div><span class="who a">SWB</span><span class="v">S$490,000<small>S$98,000 × 5 年</small></span></div>
+        <div><span class="who b">PWV</span><span class="v">S$490,000<small>S$98,000 × 5 年</small></span></div>
+      </div>
+    </div>
+    <div class="kpi">
+      <div class="top"><div class="badge"><svg class="ic ic-md"><use href="#i-check"/></svg></div><div class="label">第几年回本</div></div>
+      <div class="rows num">
+        <div><span class="who a">SWB</span><span class="v" id="kBeA"></span></div>
+        <div><span class="who b">PWV</span><span class="v" id="kBeB"></span></div>
+      </div>
+    </div>
+    <div class="kpi blue">
+      <div class="top"><div class="badge"><svg class="ic ic-md"><use href="#i-bars"/></svg></div><div class="label">30 年后 · 63 岁</div></div>
+      <div class="rows num">
+        <div><span class="who a">SWB</span><span class="v" id="k30A"></span></div>
+        <div><span class="who b">PWV</span><span class="v" id="k30B"></span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== 方案一 SWB ===== -->
+  <div class="pill-head">
+    <div class="pill navy">方案一 · SWB 稳健分红</div>
+    <div class="formula"><svg class="ic"><use href="#i-cal"/></svg>每年 S$98,000 × 5 年 = S$490,000</div>
+  </div>
+  <div class="cards2">
+    <div class="explain"><div class="ico"><svg class="ic ic-lg"><use href="#i-shield"/></svg></div>
+      <div><b>有保底</b><span>第 15 年起保证回本，之后只多不少</span></div></div>
+    <div class="explain"><div class="ico"><svg class="ic ic-lg"><use href="#i-gift"/></svg></div>
+      <div><b>每年分红</b><span>AIA 每年宣布，加进保单就锁定</span></div></div>
+  </div>
+  <div class="band">
+    <span class="nv" style="flex:1"><svg class="ic"><use href="#i-cal"/></svg>交 5 年</span>
+    <span class="gd" style="flex:3"><svg class="ic"><use href="#i-gift"/></svg>不用再交 · 分红慢慢滚 · 可放到 125 岁</span>
+  </div>
+  <div class="tl num" style="--n:5" id="tlA"></div>
+  <div class="strip num">
+    <div><svg class="ic"><use href="#i-cash"/></svg><div><span class="lb">30 年后（63 岁）</span><b id="sA30"></b></div></div>
+    <div><svg class="ic"><use href="#i-shield"/></svg><div><span class="lb">其中合同保证</span><b>S$626,750</b></div></div>
+  </div>
+  <div class="tip warn"><svg class="ic"><use href="#i-door"/></svg>前 15 年退出会亏；第 1、2 年退出拿回 S$0</div>
+
+  <!-- ===== 方案二 PWV ===== -->
+  <div class="pill-head">
+    <div class="pill gold">方案二 · PWV 指数基金</div>
+    <div class="formula"><svg class="ic"><use href="#i-cal"/></svg>每年 S$98,000 × 5 年 = S$490,000</div>
+  </div>
+  <div class="cards2">
+    <div class="explain"><div class="ico"><svg class="ic ic-lg"><use href="#i-chart"/></svg></div>
+      <div><b>跟基金涨跌</b><span>全球指数基金，市场好赚得多，市场差会亏</span></div></div>
+    <div class="explain"><div class="ico"><svg class="ic ic-lg"><use href="#i-alert"/></svg></div>
+      <div><b>没有保底</b><span>账户价值不保证，可能低于本金</span></div></div>
+  </div>
+  <div class="giftline num"><svg class="ic ic-md"><use href="#i-gift"/></svg><span>公司奖励：迎新 <b>S$11,760</b>（前 3 年）+ 投资奖励 <b>S$9,800</b>（第 8 至 11 年）+ 第 8 年起每年 <b>0.4%</b></span></div>
+  <div class="band">
+    <span class="gd" style="flex:1"><svg class="ic"><use href="#i-cal"/></svg>交 5 年</span>
+    <span class="nv" style="flex:3"><svg class="ic"><use href="#i-trend"/></svg>账户跟基金涨跌 · 保到 100 岁</span>
+  </div>
+  <div class="tl num" style="--n:5" id="tlB"></div>
+  <div class="strip num">
+    <div><svg class="ic"><use href="#i-cash"/></svg><div><span class="lb">30 年后（63 岁）</span><b id="sB30"></b></div></div>
+    <div><svg class="ic red"><use href="#i-alert"/></svg><div><span class="lb">其中合同保证</span><b class="red">S$0</b></div></div>
+  </div>
+  <div class="tip"><svg class="ic"><use href="#i-check"/></svg>第 8 年起没有退保费，随时可以提取；前 7 年退出要扣费</div>
+
+  <!-- ===== 分水岭 ===== -->
+  <div class="sub-head"><svg class="ic ic-md"><use href="#i-scale"/></svg>PWV 基金每年要赚多少，才比 SWB 划算？</div>
+  <div class="ruler-card">
+    <div class="ruler" aria-hidden="true">
+      <span class="tick" style="left:0">0%</span>
+      <span class="tick" style="left:25%">2%</span>
+      <span class="tick" style="left:50%">4%</span>
+      <span class="tick" style="left:75%">6%</span>
+      <span class="tick" style="left:100%">8%</span>
+      <span class="mk2 lo" style="left:43.75%"><b>约 3.5%</b>赢 SWB 保守</span>
+      <span class="mk2" style="left:60%"><b>约 5%</b>赢 SWB 乐观</span>
+    </div>
+    <div class="ruler-tips">
+      <div><svg class="ic"><use href="#i-clock"/></svg><span><b>放 20 年以上：</b>PWV 基金长期每年平均赚到约 5%，就比 SWB 的乐观情况还多</span></div>
+      <div><svg class="ic"><use href="#i-door"/></svg><span><b>前 10 年：</b>SWB 锁得紧，就算 PWV 基金零回报，退出时也是 PWV 拿得多</span></div>
+    </div>
+  </div>
+
+  <!-- ===== 对比表 ===== -->
+  <div class="sub-head"><svg class="ic ic-md"><use href="#i-scale"/></svg>两个方案，一张表对比</div>
+  <div class="ctable">
+    <table class="num">
+      <thead><tr><th>项目</th><th class="p1">方案一 · SWB</th><th class="p2">方案二 · PWV</th></tr></thead>
+      <tbody>
+        <tr><td>每年交 × 年数</td><td class="p1">S$98,000 × 5 年</td><td class="p2">S$98,000 × 5 年</td></tr>
+        <tr class="top"><td>一共交</td><td class="p1">S$490,000</td><td class="p2">S$490,000</td></tr>
+        <tr><td>钱放在哪</td><td class="p1">AIA 分红基金</td><td class="p2">进取指数基金<small>股票占 45% 至 100%</small></td></tr>
+        <tr><td>保证回本</td><td class="p1"><span class="yes"><svg class="ic"><use href="#i-check"/></svg>第 15 年</span></td><td class="p2"><span class="no"><svg class="ic"><use href="#i-x"/></svg>没有保证</span></td></tr>
+        <tr><td id="tBeL">回本（当前情况）</td><td class="p1" id="tBeA"></td><td class="p2" id="tBeB"></td></tr>
+        <tr class="top"><td id="t30L">30 年后（当前情况）</td><td class="p1" id="t30A"></td><td class="p2" id="t30B"></td></tr>
+        <tr><td>第 1 年就退出</td><td class="p1">拿回 S$0</td><td class="p2">拿回约 4 成</td></tr>
+        <tr><td>残疾 / 末期疾病</td><td class="p1"><span class="yes"><svg class="ic"><use href="#i-check"/></svg>赔</span></td><td class="p2"><span class="no"><svg class="ic"><use href="#i-x"/></svg>不赔</span></td></tr>
+        <tr><td>公司奖励</td><td class="p1">靠分红</td><td class="p2">S$21,560 + 每年 0.4%</td></tr>
+        <tr><td>收费</td><td class="p1">含在分红里</td><td class="p2">演示数据已扣除所有费用</td></tr>
+        <tr><td>过去表现</td><td class="p1">分红基金 10 年平均 4.9%</td><td class="p2">2024 年成立，年化 13.18%<small>历史很短，不代表将来</small></td></tr>
+        <tr><td>留给家人</td><td class="p1"><span class="yes"><svg class="ic"><use href="#i-family"/></svg>可换受保人传下去</span></td><td class="p2"><span class="yes"><svg class="ic"><use href="#i-family"/></svg>可换受保人传下去</span></td></tr>
+        <tr><td>风险</td><td class="p1 green">低</td><td class="p2 red">较高</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ===== 怎么选 ===== -->
+  <div class="sub-head"><svg class="ic ic-md"><use href="#i-check"/></svg>怎么选？</div>
+  <div class="pick">
+    <div class="pk a"><div class="hd"><div class="badge"><svg class="ic ic-md"><use href="#i-shield"/></svg></div>更适合 SWB</div>
+      <ul><li><svg class="ic"><use href="#i-check"/></svg>养老、教育的底子，不能亏</li><li><svg class="ic"><use href="#i-check"/></svg>15 年以上用不到</li><li><svg class="ic"><use href="#i-check"/></svg>不想看市场，睡得安稳</li></ul></div>
+    <div class="pk b"><div class="hd"><div class="badge"><svg class="ic ic-md"><use href="#i-trend"/></svg></div>更适合 PWV</div>
+      <ul><li><svg class="ic"><use href="#i-check"/></svg>账户跌 20% 也不慌</li><li><svg class="ic"><use href="#i-check"/></svg>想博更高的长期回报</li><li><svg class="ic"><use href="#i-check"/></svg>8 年后可能要用钱</li></ul></div>
+    <div class="pk c"><div class="hd"><div class="badge"><svg class="ic ic-md"><use href="#i-mix"/></svg></div>两个都配</div>
+      <ul><li><svg class="ic"><use href="#i-check"/></svg>一半 SWB，守住底线</li><li><svg class="ic"><use href="#i-check"/></svg>一半 PWV，争取更多</li><li><svg class="ic"><use href="#i-check"/></svg>比例按情况再细算</li></ul></div>
+  </div>
+
+  <!-- ===== 行动区块 ===== -->
+  <div class="cta">
+    <div style="position:relative;z-index:1">
+      <div class="who-row"><img src="/avatar-round.png" alt="小圆姐">
+        <div><h3>方案还有更多细节<br><span>约杯咖啡，详细聊</span></h3></div></div>
+      <p class="sub">微信联系小圆姐，面对面帮您把数字算清楚。</p>
+      <div class="perks">
+        <span><svg class="ic"><use href="#i-coffee"/></svg>约杯咖啡</span>
+        <span><svg class="ic"><use href="#i-doc"/></svg>逐项讲解计划书</span>
+        <span><svg class="ic"><use href="#i-scale"/></svg>按您的预算再细调</span>
+      </div>
+      <div class="acts">
+        <button type="button" class="btn wx" id="wxCopy"><svg class="ic"><use href="#i-chat"/></svg><span id="wxTxt">微信 <b>singaporeyuan</b> · 点击复制</span></button>
+        <a class="btn wa" href="https://wa.me/6583750190?text=%E4%BD%A0%E5%A5%BD%E5%B0%8F%E5%9C%86%E5%A7%90%EF%BC%8C%E6%88%91%E7%9C%8B%E4%BA%86%E6%96%B9%E6%A1%88%E5%AF%B9%E6%AF%94%EF%BC%8C%E6%83%B3%E7%BA%A6%E6%9D%AF%E5%92%96%E5%95%A1%E8%AF%A6%E8%81%8A%E3%80%82" target="_blank" rel="noopener noreferrer"><svg class="ic"><use href="#i-phone"/></svg>WhatsApp +65 8375 0190</a>
+      </div>
+    </div>
+    <div class="qr"><img src="/wechat-qr.png" alt="小圆姐微信二维码"><span>扫码加微信</span></div>
+  </div>
+
+  <div class="notes">
+    <p>整理自 AIA 计划书：AIA Smart Wealth Builder (II) 5-Pay（2026-09-19）、AIA Platinum Wealth Venture 3.0 5-Pay（每年 S$98,000），被保人 33 岁（ALB）、女。仅作对比参考，不构成投资或投保建议。倍数 = 退出能拿回的钱 ÷ 已交本金。</p>
+    <p><b>保守</b> = SWB 分红基金 3.00% · PWV 基金 4%；<b>乐观</b> = SWB 分红基金 4.25% · PWV 基金 8%。都是计划书的演示假设，不是回报上下限，市场差时 PWV 可能亏损。</p>
+    <p><b>SWB</b> 年度红利派发后锁定，终期红利不保证。<b>PWV</b> 演示数据已扣除所有费用，并已计入迎新奖励、投资奖励与表现奖励。</p>
+    <p>分水岭回报用两份计划书第 20、30、40 年数字推算，仅供参考。本页假设不提取、不贷款、不暂停交费；计划书未含的限时促销未计入。过去表现不代表将来，提前退保成本很高。</p>
+  </div>
+
+</div>
+<footer class="site-foot">
+  <div class="in">
+    <div class="grid">
+      <div>
+        <p class="brand">新加坡小圆姐</p>
+        <p class="tag">用专业和耐心，陪你一起日富一日</p>
+        <p class="cred">新加坡财富规划经理<br>RNF：YY-300823216</p>
+      </div>
+      <div>
+        <h4>联系方式</h4>
+        <ul>
+          <li><a href="/wechat-qr.png" target="_blank" rel="noopener"><svg fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>微信 · singaporeyuan</a></li>
+          <li><a href="https://wa.me/6583750190" target="_blank" rel="noopener noreferrer"><svg fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>+65 8375 0190</a></li>
+          <li><a href="mailto:yuanyuan@aia.com.sg"><svg fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 5L2 7"/></svg>yuanyuan@aia.com.sg</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>关注我</h4>
+        <ul>
+          <li><a href="https://xhslink.com/m/9KS9V4ytFmj" target="_blank" rel="noopener noreferrer"><svg fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>小红书 · 新加坡小圆姐</a></li>
+          <li><a href="https://xhslink.com/m/2eFS3jpJutg" target="_blank" rel="noopener noreferrer"><svg fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>小红书 · 图文笔记</a></li>
+          <li><a href="https://www.linkedin.com/in/singaporeyuan/" target="_blank" rel="noopener noreferrer"><svg fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>LinkedIn</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>新加坡小圆姐</h4>
+        <ul>
+          <li><a href="/zh/about">关于我</a></li>
+          <li><a href="/zh/cases">规划案例</a></li>
+          <li><a href="/zh/services">业务范围</a></li>
+          <li><a href="/zh/corporate">企业团险</a></li>
+          <li><a href="/zh/resources">资源中心</a></li>
+          <li><a href="/zh/consult">预约咨询</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="legal">
+      <p>本网站内容仅供参考，不构成任何投资、保险、法律或税务建议。保险产品涉及条款与风险，部分收益为非保证。具体以保险公司正式文件及相关专业意见为准。</p>
+      <p>© 2026 袁媛 Yuan Yuan. 版权所有。</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var HASH="5647cdb5254a24d3a184f9136af8416c1ffb1050fd57c67dc133e588b73fc706", KEY="sy_case_swb_pwv_auth";
+  function sha(s){return crypto.subtle.digest("SHA-256",new TextEncoder().encode(s)).then(function(b){
+    return Array.prototype.map.call(new Uint8Array(b),function(x){return x.toString(16).padStart(2,"0")}).join("");})}
+  try{ if(sessionStorage.getItem(KEY)===HASH) document.body.classList.remove("locked"); }catch(e){}
+  document.getElementById("pwForm").addEventListener("submit",function(e){
+    e.preventDefault();
+    sha(document.getElementById("pwInput").value.trim()).then(function(h){
+      if(h===HASH){ try{sessionStorage.setItem(KEY,HASH)}catch(e){} document.body.classList.remove("locked"); window.scrollTo(0,0); }
+      else{ document.getElementById("pwErr").classList.add("show"); document.getElementById("pwInput").select(); }
+    });
+  });
+})();
+
+(function(){
+  // 退保价值，取自两份计划书（保单年度末）。换新计划书时只改这里。
+  var AGE0=33, YR=[1,8,15,30,40];
+  var A={prem:98000, m:[0,253711,575585,928760,1199117], h:[0,269796,643202,1326397,1942296]};
+  var B={prem:98000,  m:[40100,504800,647400,1070800,1497700], h:[41700,634900,1059700,3104300,6355400]};
+  var NAME={m:'保守',h:'乐观'};
+  var DESC={m:'<b>保守：</b>SWB 分红基金 3% · PWV 基金 4%',
+            h:'<b>乐观：</b>SWB 分红基金 4.25% · PWV 基金 8%'};
+  var BE_B={m:8,h:7};
+  var $=function(id){return document.getElementById(id)};
+  function sgd(n){return 'S$'+n.toLocaleString('en-US');}
+  function x(v,p){return (v/p).toFixed(2)+'×';}
+  function timeline(P,key,label,icon){
+    var total=P.prem*5;
+    return YR.map(function(y,i){
+      var age=AGE0+y;
+      if(i===0) return '<div class="node"><div class="mk"><svg class="ic"><use href="#i-coins"/></svg></div><div class="when">'+age+' 岁<small>第 1 年</small></div>'+
+        '<div class="box first"><svg class="ic"><use href="#i-cal"/></svg><span class="lb">每年交</span><b>'+sgd(P.prem)+'</b><small>5 年共 '+sgd(total)+'</small></div></div>';
+      var v=P[key][i], ok=v>=total, last=y===30;
+      var mk=last?'<div class="ring"></div>':'<div class="dot'+(ok?' on':'')+'"></div>';
+      var chip=ok?'<span class="chip ok">回本 · '+x(v,total)+'</span>':'<span class="chip bad">未回本 · '+x(v,total)+'</span>';
+      return '<div class="node"><div class="mk">'+mk+'</div><div class="when">'+age+' 岁<small>第 '+y+' 年</small></div>'+
+        '<div class="box'+(last?' hl':'')+'"><svg class="ic"><use href="#'+icon+'"/></svg><span class="lb">'+label+'</span><b>'+sgd(v)+'</b>'+chip+'</div></div>';
+    }).join('');
+  }
+  function render(s){
+    var ka=s, kb=s;
+    $('scenDesc').innerHTML=DESC[s];
+    $('tlA').innerHTML=timeline(A,ka,'保单价值','i-shield');
+    $('tlB').innerHTML=timeline(B,kb,'账户价值','i-chart');
+    var a30=A[ka][3], b30=B[kb][3];
+    $('kBeA').innerHTML='第 15 年 · 48 岁<small>保证，各种情况都一样</small>';
+    var be=BE_B[kb];
+    $('kBeB').innerHTML='第 '+be+' 年 · '+(AGE0+be)+' 岁<small>不保证</small>';
+    $('k30A').innerHTML=sgd(a30)+'<small>本金的 '+x(a30,490000)+'</small>';
+    $('k30B').innerHTML=sgd(b30)+'<small>本金的 '+x(b30,490000)+'</small>';
+    $('sA30').innerHTML=sgd(a30)+'<small>'+x(a30,490000)+'</small>';
+    $('sB30').innerHTML=sgd(b30)+'<small>'+x(b30,490000)+'</small>';
+    $('tBeL').textContent='回本（'+NAME[s]+'）';
+    $('t30L').textContent='30 年后（'+NAME[s]+'）';
+    $('tBeA').textContent='第 15 年';
+    $('tBeB').textContent='第 '+be+' 年';
+    $('t30A').innerHTML=sgd(a30)+'<small>'+x(a30,490000)+'</small>';
+    $('t30B').innerHTML=sgd(b30)+'<small>'+x(b30,490000)+'</small>';
+  }
+  var btns=[].slice.call(document.querySelectorAll('.switch button'));
+  btns.forEach(function(b){
+    b.addEventListener('click',function(){
+      btns.forEach(function(o){o.classList.toggle('on',o===b);});
+      render(b.getAttribute('data-s'));
+    });
+  });
+  render('m');
+})();
+
+(function(){
+  var b=document.getElementById('wxCopy'), t=document.getElementById('wxTxt');
+  if(!b) return;
+  var orig=t.innerHTML;
+  function done(ok){ t.innerHTML = ok ? '已复制微信号，打开微信添加' : '微信号：<b>singaporeyuan</b>'; setTimeout(function(){ t.innerHTML=orig; },2600); }
+  b.addEventListener('click',function(){
+    if(navigator.clipboard&&navigator.clipboard.writeText){
+      navigator.clipboard.writeText('singaporeyuan').then(function(){done(true)},function(){done(false)});
+    } else done(false);
+  });
+})();
+
+</script>
+</body>
+</html>
