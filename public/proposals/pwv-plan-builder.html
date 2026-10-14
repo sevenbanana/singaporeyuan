@@ -183,6 +183,24 @@ details.adv summary{cursor:pointer;font-size:13px;font-weight:700;color:var(--go
 .lang:hover{border-color:var(--gold);color:var(--gold-deep)}
 .lang svg{width:15px;height:15px}
 @media print{.lang{display:none}}
+/* 先增值后分红 */
+.vlink{display:inline-block;margin-top:6px;font-size:12px;font-weight:700;color:var(--gold-deep);cursor:pointer;text-decoration:underline}
+.src{font-weight:500;color:var(--muted);margin-left:6px;font-size:12px}
+.src.man{color:#B03A2E}
+.sheet.growth .s-title h2{font-size:27px}
+.sheet.growth .s-title h2 span{display:block}
+.tl.growth{padding-top:40px}
+.tl.growth.has-gift{padding-top:62px;margin-top:20px}
+.tl.growth .axis{top:87px}
+.tl.growth.has-gift .axis{top:109px}
+.band{position:absolute;left:0;right:0;top:0;height:32px;display:grid;font-size:14px}
+.band>div{display:flex;align-items:center;justify-content:space-between;padding:0 14px;border-radius:8px}
+.band .b1{background:var(--gold-tint-2);border:1px solid var(--line);margin-right:6px}
+.band .b2{background:var(--gold-tint);border:1px solid #E3CFA4}
+.band b{color:var(--navy);font-weight:800}
+.band span{font-size:12.5px;font-weight:700;color:var(--gold-deep)}
+.cap.as{color:var(--gold-deep);font-weight:600}
+.box.fill small{font-size:12px;color:var(--muted);font-weight:600}
 [hidden]{display:none!important}
 @media (max-width:760px){
   .wrap{padding:26px 16px}
@@ -246,6 +264,33 @@ details.adv summary{cursor:pointer;font-size:13px;font-weight:700;color:var(--go
         <div class="seg" id="segT">
           <button type="button" data-t="2" data-en="2 Pay (2 years)">2 年交 (2 Pay)</button>
           <button type="button" data-t="5" class="on" data-en="5 Pay (5 years)">5 年交 (5 Pay)</button>
+        </div>
+      </div>
+      <div class="field">
+        <label data-en="Plan type">方案类型</label>
+        <div class="seg" id="segM">
+          <button type="button" data-m="d" class="on" data-en="Dividends from day one">直接领分红</button>
+          <button type="button" data-m="g" data-en="Grow first, then income">先增值后分红</button>
+        </div>
+      </div>
+      <div id="growBox" hidden>
+        <div class="field">
+          <label data-en="Growth fund (before retirement)">增值基金（退休前）</label>
+          <div class="seg" id="segG">
+            <button type="button" data-g="elite" class="on">AIA Elite Adventurous</button>
+            <button type="button" data-g="index">Adventurous Index</button>
+          </div>
+        </div>
+        <div class="row2">
+          <div class="field">
+            <label for="iRet" data-en="Retirement age<small>Switch to income fund, 65 max</small>">退休年龄<small>转分红基金，最晚 65 岁</small></label>
+            <input id="iRet" type="number" inputmode="numeric" min="1" max="65" placeholder="例如 58" data-en-ph="e.g. 58">
+          </div>
+          <div class="field">
+            <label for="iVal"><span data-en="Policy value at retirement">退休时保单价值</span><span class="src" id="valSrc"></span></label>
+            <div class="pre"><b>S$</b><input id="iVal" inputmode="numeric" placeholder="0"></div>
+            <span class="vlink" id="valReset" hidden data-en="Restore BI value">恢复 BI 预填</span>
+          </div>
         </div>
       </div>
       <details class="adv">
@@ -397,6 +442,36 @@ const GB = 0.4;              // 每年保证基金红利，保单价值的 %
 const MILESTONES = [60, 70]; // 第 8 年之后的固定节点，最后固定 100 岁
 const MATURE = 100;
 
+/* ---------- 先增值：BI 保单价值表 ----------
+   来源：AIA PWV 3.0 BI，Illustrated at 8.00%，Regular Premium and Top-Up Unit Values。
+   每个数组是第 1 至 65 个保单年度末的保单价值（单位：百元）。BI 已含基本 Welcome Bonus，不含 Q4 额外送。
+   BI 与投保年龄无关；同一 Welcome Bonus 档位内，保单价值与年保费成正比。 */
+const GROW_RATE = 8;
+const ELITE_5 = {
+      18000: [185,375,571,771,978,1005,1033,1110,1192,1280,1374,1470,1572,1682,1799,1925,2059,2203,2357,2521,2697,2885,3086,3301,3532,3778,4042,4324,4625,4948,5293,5662,6057,6480,6932,7416,7933,8486,9078,9712,10389,11114,11889,12719,13606,14555,15571,16657,17819,19062,20392,21815,23336,24964,26706,28569,30562,32694,34975,37415,40025,42817,45804,52418,56075],
+      24000: [254,508,769,1037,1312,1348,1386,1489,1599,1717,1843,1972,2110,2257,2414,2583,2763,2955,3162,3382,3618,3871,4141,4429,4738,5069,5423,5801,6206,6638,7102,7597,8127,8694,9300,9949,10643,11386,12180,13030,13939,14911,15951,18255,19528,20891,22348,25575,27359,29267,31309,35830,38330,41003,43864,46924,50198,53699,57446,61453,65740,70326,75232,80481,86095],
+      42000: [445,906,1384,1854,2338,2402,2469,2653,2849,3059,3283,3512,3757,4020,4300,4600,4921,5264,5631,6024,6445,6894,7375,7890,8440,9029,9659,10332,11053,11824,12649,13532,14476,15485,16566,17721,18958,20280,21695,23208,24828,26560,28412,30394,32515,34783,37210,39806,42582,45553,48731,52131,55767,59658,63820,68272,73034,78130,83580,89411,95648,102321,109459,125264,134002],
+      60000: [635,1294,1978,2649,3339,3432,3527,3789,4070,4370,4691,5018,5368,5742,6143,6571,7030,7520,8045,8606,9206,9849,10536,11271,12057,12898,13798,14761,15790,16892,18070,19331,20679,22122,23665,25316,27082,28972,30993,33155,35468,37942,40589,43421,46450,49690,53157,56865,60832,65076,69616,74472,79668,85225,91171,97531,104335,111614,119400,127730,136640,146173,156370,178948,191432],
+      100000: [1059,2157,3296,4415,5566,5720,5879,6316,6783,7283,7818,8363,8946,9570,10238,10952,11716,12534,13408,14343,15344,16415,17560,18785,20095,21497,22997,24601,26317,28153,30117,32218,34466,36870,39442,42194,45137,48286,51655,55258,59113,63237,67649,77416,82817,88595,94775,108460,116026,124120,132779,151951,162552,173892,186023,199000,212883,227734,243621,260616,278797,298247,319053,341311,365122],
+      200000: [2117,4314,6592,8830,11131,11440,11758,12631,13566,14566,15635,16726,17893,19141,20476,21905,23433,25067,26816,28687,30688,32829,35119,37569,40190,42994,45993,49202,52634,56306,60234,64436,68931,73740,78884,84388,90275,96572,103309,110516,118226,126474,135297,154833,165634,177189,189550,216919,232052,248241,265558,303903,325103,347783,372045,398000,425765,455467,487242,521233,557595,596494,638106,682622,730243]
+    };
+const GROW_BI = {
+  elite: { name:"AIA Elite Adventurous Fund", 5: ELITE_5 },
+  index: { name:"Adventurous Index Fund",     5: ELITE_5 }   // TODO：暂用 Elite 数值，等 Index BI 到了替换
+};
+const baseSum = (t, anp) => tierOf(t, anp).y.reduce((a,b)=>a+b,0);
+// 第 n 个保单年度末的保单价值（BI 缩放 + Q4 额外送本金）；没有 BI 时返回 null
+function growPV(g, t, anp, n){
+  const tbl = GROW_BI[g] && GROW_BI[g][t]; if (!tbl || n < 1) return null;
+  const tier = baseSum(t, anp);
+  const presets = Object.keys(tbl).map(Number).filter(p => baseSum(t, p) === tier).sort((a,b)=>a-b);
+  if (!presets.length) return null;
+  const pre = presets.filter(p => p <= anp).pop() || presets[0];
+  const arr = tbl[pre]; if (n > arr.length) return null;
+  const extra = anp * (tierOf(t, anp).extra || 0) / 100;
+  return Math.round(arr[n-1] * 100 * anp / pre / 100) * 100 + extra;
+}
+
 /* ---------- 计算 ---------- */
 const money = n => "S$" + Math.round(n).toLocaleString("en-US");
 const pct = n => (Math.round(n*100)/100) + "%";
@@ -409,6 +484,17 @@ function tierOf(t, anp){
 function nextTier(t, anp){
   const cur = tierOf(t, anp), curSum = sumOf(cur);
   return WB[t].find(tr => tr.min > anp && sumOf(tr) > curSum) || null;
+}
+function calcGrowth(d){
+  const {age, t, anp, rate, g, ret, val} = d;
+  const V = val, divYr = V * rate / 100;
+  const ms = [];
+  const pv8 = growPV(g, t, anp, 8);
+  if (age + 7 < ret && pv8) ms.push({kind:"grow", age:age+7, n:8, pv:pv8, top:pv8});
+  ms.push({kind:"switch", age:ret, pv:V, top:V});
+  ms.push({kind:"hold", age:85, pv:V, div:divYr*(85-ret), top:V+divYr*(85-ret)});
+  ms.push({kind:"death", age:MATURE, div:divYr*(MATURE-ret), top:V+divYr*(MATURE-ret)});
+  return {V, divYr, ms, gname: GROW_BI[g].name};
 }
 function calc(d){
   const {anp, t, age, rate} = d;
@@ -440,7 +526,24 @@ iAnp.addEventListener("input", () => {
   iAnp.value = raw ? Number(raw).toLocaleString("en-US") : "";
   live();
 });
-["iAge","iRate","iName"].forEach(id => $(id).addEventListener("input", live));
+["iAge","iRate","iName","iRet"].forEach(id => $(id).addEventListener("input", live));
+let M = "d", G = "elite", MANUAL = false;
+const iVal = $("iVal");
+iVal.addEventListener("input", () => {
+  const raw = iVal.value.replace(/[^\d]/g, "");
+  iVal.value = raw ? Number(raw).toLocaleString("en-US") : "";
+  MANUAL = true; live();
+});
+$("valReset").addEventListener("click", () => { MANUAL = false; live(); });
+function segPick(id, attr, cb){
+  $(id).addEventListener("click", e => {
+    const b = e.target.closest("button"); if(!b) return;
+    [...$(id).children].forEach(x => x.classList.toggle("on", x===b));
+    cb(b.dataset[attr]); live();
+  });
+}
+segPick("segM", "m", v => { M = v; $("growBox").hidden = M !== "g"; });
+segPick("segG", "g", v => { G = v; });
 $("segT").addEventListener("click", e => {
   const b = e.target.closest("button"); if(!b) return;
   T = +b.dataset.t;
@@ -454,8 +557,19 @@ function read(){
     anp: Number(iAnp.value.replace(/[^\d]/g, "")),
     t: T,
     rate: parseFloat($("iRate").value),
-    fund: $("iFund").value.trim() || "Global Adventurous Income Fund"
+    fund: $("iFund").value.trim() || "Global Adventurous Income Fund",
+    m: M, g: G,
+    ret: parseInt($("iRet").value, 10),
+    val: Number(iVal.value.replace(/[^\d]/g, "")),
+    manual: MANUAL
   };
+}
+// 先增值：按 BI 预填退休时保单价值
+function prefillVal(d){
+  if (MANUAL) return;
+  const n = d.ret - d.age;
+  const v = (!isNaN(n) && d.anp) ? growPV(d.g, d.t, d.anp, n) : null;
+  iVal.value = v ? Math.round(v).toLocaleString("en-US") : "";
 }
 function fill(d){
   $("iName").value = d.name || "";
@@ -464,9 +578,22 @@ function fill(d){
   T = d.t; [...$("segT").children].forEach(x => x.classList.toggle("on", +x.dataset.t===T));
   $("iRate").value = d.rate;
   $("iFund").value = d.fund;
+  M = d.m; G = d.g; MANUAL = !!d.manual;
+  [...$("segM").children].forEach(x => x.classList.toggle("on", x.dataset.m===M));
+  [...$("segG").children].forEach(x => x.classList.toggle("on", x.dataset.g===G));
+  $("growBox").hidden = M !== "g";
+  $("iRet").value = isNaN(d.ret) ? "" : d.ret;
+  iVal.value = d.val ? Math.round(d.val).toLocaleString("en-US") : "";
 }
 function live(){
-  const d = read();
+  let d = read();
+  if (d.m === "g"){
+    prefillVal(d); d = read();
+    const has = !!growPV(d.g, d.t, d.anp || 1, 1);
+    $("valSrc").textContent = MANUAL ? L("已手动修改","edited") : has ? L(`按 BI ${GROW_RATE}% 预填`,`from BI at ${GROW_RATE}%`) : L(`${d.t} Pay BI 未录入，请手填`,`no ${d.t} Pay BI yet, enter manually`);
+    $("valSrc").classList.toggle("man", MANUAL || !has);
+    $("valReset").hidden = !(MANUAL && has);
+  }
   if (!d.anp){ $("sumDl").innerHTML = `<dt>${L("先填年保费","Enter the annual premium first")}</dt><dd></dd>`; $("tierNow").textContent = L("填好年保费后，这里会显示 Welcome Bonus 档位。","The Welcome Bonus tier will show here once the premium is filled in."); $("tierUp").hidden = true; return; }
   const c = calc({...d, age: isNaN(d.age)?40:d.age, rate: isNaN(d.rate)?7:d.rate});
   $("sumDl").innerHTML =
@@ -474,7 +601,10 @@ function live(){
      <dt>Welcome Bonus</dt><dd class="g">${pct(c.wbPct)}　${money(c.wbAmt)}</dd>
      <dt>${L("投资红利 (第8至11年)","Investment Bonus (Y8 to Y11)")}</dt><dd>${money(c.ibYr)} × 4 = ${money(c.ibYr*4)}</dd>
      <dt>${L("保证基金红利","Guaranteed bonus")}</dt><dd>${money(c.gb)} ${L("/ 年","/ yr")}</dd>
-     <dt>${L(`每年分红 (第${d.t}年起)`,`Annual dividend (Y${d.t} onward)`)}</dt><dd class="g">${money(c.divs[d.t-1])}</dd>`;
+     ${d.m === "g" && d.val && d.ret
+        ? `<dt>${L("退休时保单价值","Value at retirement")}</dt><dd>${money(d.val)}</dd>
+           <dt>${L(`${d.ret}岁起每年分红`,`Annual dividend from ${d.ret}`)}</dt><dd class="g">${money(d.val*(isNaN(d.rate)?7:d.rate)/100)}</dd>`
+        : `<dt>${L(`每年分红 (第${d.t}年起)`,`Annual dividend (Y${d.t} onward)`)}</dt><dd class="g">${money(c.divs[d.t-1])}</dd>`}`;
   const y = c.tier.y.map((v,i)=>L(`第${i+1}年 ${v}%`,`Y${i+1} ${v}%`)).join(L("，",", "));
   $("tierNow").innerHTML = c.wbPct
     ? L(`当前档位：年保费 ≥ ${money(c.tier.min)}，${y}${c.tier.extra?`，🎁 第1年额外送 ${c.tier.extra}%`:""}，累计 <b>${pct(c.wbPct)}</b>。`,
@@ -494,7 +624,11 @@ $("f").addEventListener("submit", e => {
   const d = read(), err = $("fErr");
   const msg = isNaN(d.age) || d.age < 0 || d.age > 80 ? L("请填投保年龄（0 到 80 岁）。","Please enter an age from 0 to 80.")
             : !d.anp ? L("请填年保费。","Please enter the annual premium.")
-            : isNaN(d.rate) || d.rate < 0 ? L("分红率要填数字。","The dividend rate must be a number.") : "";
+            : isNaN(d.rate) || d.rate < 0 ? L("分红率要填数字。","The dividend rate must be a number.")
+            : d.m !== "g" ? ""
+            : isNaN(d.ret) || d.ret > 65 ? L("请填退休年龄，最晚 65 岁。","Please enter a retirement age, 65 at most.")
+            : d.ret < d.age + d.t ? L(`退休年龄要在交完保费之后（${d.age + d.t} 岁或以上）。`,`Retirement must be after premiums are paid (age ${d.age + d.t} or above).`)
+            : !d.val ? L("请填退休时保单价值。","Please enter the policy value at retirement.") : "";
   if (msg){ err.textContent = msg; err.style.display = "block"; return; }
   err.style.display = "none";
   location.hash = encode(d);
@@ -502,7 +636,7 @@ $("f").addEventListener("submit", e => {
 
 /* ---------- 链接编码（只存在 # 后面，不会发到服务器） ---------- */
 function encode(d){
-  return "p=" + btoa(unescape(encodeURIComponent(JSON.stringify({n:d.name,a:d.age,p:d.anp,t:d.t,r:d.rate,f:d.fund})))) + "&l=" + LANG;
+  return "p=" + btoa(unescape(encodeURIComponent(JSON.stringify(Object.assign({n:d.name,a:d.age,p:d.anp,t:d.t,r:d.rate,f:d.fund}, d.m==="g" ? {m:"g",g:d.g,R:d.ret,v:d.val,mv:d.manual?1:0} : {}))))) + "&l=" + LANG;
 }
 function decode(h){
   try{
@@ -510,7 +644,8 @@ function decode(h){
     const lm = h.match(/&l=(zh|en)/); if (lm && lm[1] !== LANG){ LANG = lm[1]; applyStatic(); }
     const o = JSON.parse(decodeURIComponent(escape(atob(m[1]))));
     if (!(o.t===2||o.t===5) || !(o.p>0)) return null;
-    return {name:o.n||"", age:+o.a, anp:+o.p, t:o.t, rate:+o.r, fund:o.f||"Global Adventurous Income Fund"};
+    return {name:o.n||"", age:+o.a, anp:+o.p, t:o.t, rate:+o.r, fund:o.f||"Global Adventurous Income Fund",
+            m:o.m==="g"?"g":"d", g:o.g==="index"?"index":"elite", ret:+o.R, val:+o.v||0, manual:!!o.mv};
   }catch(e){ return null; }
 }
 
@@ -520,6 +655,8 @@ function render(d){
   const c = calc(d);
   const name = d.name || "VIP";
   const t = d.t;
+  const GR = d.m === "g" ? calcGrowth(d) : null;   // 先增值后分红
+  const ms = GR ? GR.ms : c.ms;
 
   // 前段刻度：第1年、有 Welcome Bonus 的年份、交完那年
   const yrs = new Set([1, t]);
@@ -541,7 +678,28 @@ function render(d){
     return `<div class="${last?"last":""}"><span>${L(`第${i+1}年${last?"起":""}`,`Year ${i+1}${last?"+":""}`)}</span><b class="num">${money(v)}</b></div>`;
   }).join("");
 
-  const msHtml = c.ms.map(m => `
+  const dotOf = m => m.kind==="death" || m.death ? '<svg class="heart" viewBox="0 0 24 24" fill="#C0392B"><path d="M12 21s-7.5-4.6-9.6-9.2C.9 8.4 3 4.5 6.7 4.5c2.2 0 3.6 1.2 4.3 2.4.7-1.2 2.1-2.4 4.3-2.4 3.7 0 5.8 3.9 4.3 7.3C19.5 16.4 12 21 12 21z"/></svg>' : '<div class="dot on"></div>';
+  const msHtml = GR ? ms.map(m => `
+    <div class="col"${m.kind==="switch"?' data-switch':''}>
+      <div class="topv num">${money(m.top)}</div>
+      <div class="dotrow">${dotOf(m)}</div>
+      <div class="age num">${m.age}</div>
+      <div class="agesub">${m.kind==="grow"?L("第8年","Year 8"):m.kind==="switch"?L("退休 · 转分红基金","Retire · switch"):""}</div>
+      ${m.kind==="grow"
+        ? `<div class="box line"><span>${L("保单价值","Policy value")}</span><b class="num">${money(m.pv)}</b></div>
+           <div class="cap as">${L(`假设基金 ${GROW_RATE}% 增长`,`Assumes ${GROW_RATE}% fund growth`)}</div>`
+        : m.kind==="switch"
+        ? `<div class="box line"><span>${L("保单价值","Policy value")}</span><b class="num">${money(m.pv)}</b></div>
+           <div class="box fill"><span>${L("每年分红","Annual dividend")}</span><b class="num">${money(GR.divYr)}</b><small class="num">${L(`${money(GR.divYr/12)}/月`,`${money(GR.divYr/12)}/month`)}</small></div>
+           <div class="cap as">${L("之后假设基金 0% 增长","Then assumes 0% growth")}</div>`
+        : m.kind==="hold"
+        ? `<div class="box line"><span>${L("保单价值","Policy value")}</span><b class="num">${money(m.pv)}</b></div>
+           <div class="box fill"><span>${L("到手分红","Dividends received")}</span><b class="num">${money(m.div)}</b></div>
+           <div class="cap">${L(`（${m.age - d.ret}年，${d.ret}至${m.age}岁）`,`(${m.age - d.ret} years, age ${d.ret} to ${m.age})`)}</div>`
+        : `<div class="box death"><b>${L("身故利益","Death benefit")}<br><span class="nw">${L("家人收到100%本金*","100% capital to family*")}</span></b></div>
+           <div class="box fill"><span>${L("累计分红","Total dividends")}</span><b class="num">${money(m.div)}</b></div>
+           <div class="cap">${L(`（${m.age - d.ret}年，${d.ret}至${m.age}岁）`,`(${m.age - d.ret} years, age ${d.ret} to ${m.age})`)}</div>`}
+    </div>`).join("") : c.ms.map(m => `
     <div class="col">
       <div class="topv num">${money(m.top)}</div>
       <div class="dotrow">${m.death?'<svg class="heart" viewBox="0 0 24 24" fill="#C0392B"><path d="M12 21s-7.5-4.6-9.6-9.2C.9 8.4 3 4.5 6.7 4.5c2.2 0 3.6 1.2 4.3 2.4.7-1.2 2.1-2.4 4.3-2.4 3.7 0 5.8 3.9 4.3 7.3C19.5 16.4 12 21 12 21z"/></svg>':'<div class="dot on"></div>'}</div>
@@ -561,15 +719,16 @@ function render(d){
     : `<span class="mute">${L("Welcome Bonus 迎新红利：此保费档位暂无","Welcome Bonus: not available at this premium level")}</span>`;
 
   $("sheet").classList.toggle("t2", t===2);
+  $("sheet").classList.toggle("growth", !!GR);
   $("sheet").innerHTML = `
     <svg class="deco" viewBox="0 0 220 160" aria-hidden="true">
       <polygon points="60,0 220,0 220,150" fill="#EFE3C8" opacity=".7"/>
       <polygon points="130,0 220,0 220,90" fill="#E4D3AE" opacity=".6"/>
     </svg>
     <div class="s-head">
-      <div class="tag"><i>#</i>${L("基金<br>定投","Fund<br>Plan")}</div>
+      <div class="tag"><i>#</i>${GR ? L("先增值<br>× 后分红","Grow first<br>× income") : L("基金<br>定投","Fund<br>Plan")}</div>
       <div class="s-title">
-        <h2>${esc(d.fund)} <span>For ${esc(name)}</span><svg viewBox="0 0 24 24" fill="#C0392B"><path d="M12 21s-7.5-4.6-9.6-9.2C.9 8.4 3 4.5 6.7 4.5c2.2 0 3.6 1.2 4.3 2.4.7-1.2 2.1-2.4 4.3-2.4 3.7 0 5.8 3.9 4.3 7.3C19.5 16.4 12 21 12 21z"/></svg></h2>
+        <h2>${GR ? esc(GR.gname) + " × " : ""}${esc(d.fund)} <span>For ${esc(name)}<svg viewBox="0 0 24 24" fill="#C0392B"><path d="M12 21s-7.5-4.6-9.6-9.2C.9 8.4 3 4.5 6.7 4.5c2.2 0 3.6 1.2 4.3 2.4.7-1.2 2.1-2.4 4.3-2.4 3.7 0 5.8 3.9 4.3 7.3C19.5 16.4 12 21 12 21z"/></svg></span></h2>
         <p class="prod">AIA Platinum Wealth Venture · ${t} Pay${L(`（缴费 ${t} 年）`,` (${t}-year premium term)`)}</p>
       </div>
     </div>
@@ -579,10 +738,12 @@ function render(d){
     </div>
     <div class="strip num">
       <div>
-        ${wbLine}<br>
+        ${GR ? `<span class="h">${L(`选择先增值，投资 ${GR.gname}`,`Grow first with ${GR.gname}`)}</span><br>
+        ${L(`${d.ret}岁退休时，转到分红基金，每年领取`,`At ${d.ret}, switch to the income fund for a`)} <span class="g">7-8%</span> ${L("目标分红","target dividend each year")}<br>` : ""}
+        ${wbLine}<br>${GR ? "" : `
         <span class="g">7-8%</span> ${L("目标分红，按季度领取","target dividend, paid quarterly")}<br>
         ${L("保单生效立刻开始领取季度分红","Quarterly dividends start as soon as the policy is in force")}<br>
-        ${L(`从第${t}年起，每年分红达到`,`From Year ${t}: dividend of`)} <span class="g num">${money(c.divs[t-1])}</span>${L(`（${money(c.divs[t-1]/12)}/月）`,` a year (${money(c.divs[t-1]/12)}/month)`)}
+        ${L(`从第${t}年起，每年分红达到`,`From Year ${t}: dividend of`)} <span class="g num">${money(c.divs[t-1])}</span>${L(`（${money(c.divs[t-1]/12)}/月）`,` a year (${money(c.divs[t-1]/12)}/month)`)}`}
       </div>
       <div>
         <span class="h">${L("第8年起：","From Year 8:")}</span><br>
@@ -590,32 +751,38 @@ function render(d){
         0.4% p.a. guaranteed bonus of Policy Value${L(" 每年保证基金红利：",": ")}<span class="g">${money(c.gb)}</span>
       </div>
     </div>
-    <div class="tl${c.tier.extra?" has-gift":""}">
+    <div class="tl${c.tier.extra?" has-gift":""}${GR?" growth":""}">
+      ${GR ? `<div class="band"><div class="b1"><b>${esc(GR.gname)} 📈</b><span>Fund switch →</span></div><div class="b2"><b>${esc(d.fund)} 💰</b></div></div>` : ""}
       <div class="axis"></div>
-      <div class="cols" style="grid-template-columns:2.3fr repeat(${c.ms.length},1fr)">
+      <div class="cols" style="grid-template-columns:2.3fr repeat(${ms.length},1fr)">
         <div class="col early">
           <div class="ticks">${tickHtml}</div>
-          <div class="assume">${L("假设<br>基金 0 增长","Assumes<br>0% fund growth")}</div>
+          ${GR ? `<div class="divbox">
+            <h4>${L(`${d.ret}岁起，按照每年分红 ${pct(d.rate)}`,`From age ${d.ret}, dividend at ${pct(d.rate)} a year`)}</h4>
+            <div class="yrs num"><div class="last"><span>${L("每年","Per year")}</span><b>${money(GR.divYr)}</b></div><div class="last"><span>${L("每月","Per month")}</span><b>${money(GR.divYr/12)}</b></div></div>
+          </div>` : `<div class="assume">${L("假设<br>基金 0 增长","Assumes<br>0% fund growth")}</div>
           <div class="divbox">
             <h4>${L(`按照每年分红 ${pct(d.rate)}`,`Dividend at ${pct(d.rate)} a year`)}</h4>
             <div class="yrs num">${divList}</div>
-          </div>
+          </div>`}
         </div>
         ${msHtml}
       </div>
     </div>
-    <div class="s-foot" style="grid-template-columns:2.3fr repeat(${c.ms.length},1fr)">
+    <div class="s-foot" style="grid-template-columns:2.3fr repeat(${ms.length},1fr)">
       <div class="maker">
         <img src="/wechat-qr.png" alt="${L("微信二维码","WeChat QR code")}">
         <p>${L("<b>@新加坡小圆姐 制作</b><br>微信：singaporeyuan<br>电话：8375 0190<br>RNF：YY-300823216","<b>Prepared by Yuan Yuan SG</b><br>WeChat: singaporeyuan<br>Phone: 8375 0190<br>RNF: YY-300823216")}</p>
       </div>
       <div>
         <div class="flex">${L("第8年起自由灵活，随时都可以提取现金价值<span>（保单100岁到期）</span>","From Year 8, withdraw cash value flexibly at any time<span>(policy matures at age 100)</span>")}</div>
-        <p class="notes">${L(`* 假设除了分红，没有其他现金价值提取。以上为演示：假设基金 0 增长、分红率 ${pct(d.rate)} 不变，分红非保证；Welcome Bonus 按 2026 Q4 促销档位；具体以 AIA 正式产品资料及 BI 为准。`,`* Assumes no withdrawals other than dividends. Illustration only: assumes 0% fund growth and a constant ${pct(d.rate)} dividend rate; dividends are not guaranteed. Welcome Bonus follows the 2026 Q4 promotion tiers. AIA's official product documents and BI prevail.`)}</p>
+        <p class="notes">${GR ? L(`* 假设除了分红，没有其他现金价值提取。以上为演示：增值期保单价值${d.manual?"由顾问输入":`按 BI ${GROW_RATE}% 假设回报预估（已含 Welcome Bonus），Q4 额外送部分只加本金不计增值`}；退休转分红基金后假设基金 0 增长、分红率 ${pct(d.rate)} 不变；均非保证，具体以 AIA 正式产品资料及 BI 为准。`,`* Assumes no withdrawals other than dividends. Illustration only: ${d.manual?"the value at retirement is entered by the adviser":`growth-phase values are projected from the BI at ${GROW_RATE}% (Welcome Bonus included; the Q4 extra bonus is added at cost without growth)`}; after switching to the income fund, assumes 0% growth and a constant ${pct(d.rate)} dividend rate. Not guaranteed; AIA's official product documents and BI prevail.`) : L(`* 假设除了分红，没有其他现金价值提取。以上为演示：假设基金 0 增长、分红率 ${pct(d.rate)} 不变，分红非保证；Welcome Bonus 按 2026 Q4 促销档位；具体以 AIA 正式产品资料及 BI 为准。`,`* Assumes no withdrawals other than dividends. Illustration only: assumes 0% fund growth and a constant ${pct(d.rate)} dividend rate; dividends are not guaranteed. Welcome Bonus follows the 2026 Q4 promotion tiers. AIA's official product documents and BI prevail.`)}</p>
       </div>
     </div>`;
   const cols = $("sheet").querySelector(".cols"), last = cols.lastElementChild;
   $("sheet").querySelector(".axis").style.right = (cols.offsetWidth - last.offsetLeft - last.offsetWidth/2) + "px";
+  const sw = cols.querySelector("[data-switch]"), band = $("sheet").querySelector(".band");
+  if (sw && band) band.style.gridTemplateColumns = `${sw.offsetLeft - 7}px 1fr`;
   fitSheet();
 }
 function fitSheet(){
