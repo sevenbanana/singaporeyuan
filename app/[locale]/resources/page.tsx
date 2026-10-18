@@ -80,6 +80,14 @@ const IconClock = (
   </svg>
 );
 
+const IconLayers = (
+  <svg {...ic}>
+    <path d="M12 3 3 7.5l9 4.5 9-4.5z" />
+    <path d="m3 12 9 4.5 9-4.5" />
+    <path d="m3 16.5 9 4.5 9-4.5" />
+  </svg>
+);
+
 type ResourceGroup = 'care' | 'money' | 'settle';
 
 type Resource = {
@@ -190,6 +198,18 @@ export default async function ResourcesPage({
         : '把 CPF LIFE、SRS 和投资资产放在同一条时间线上,逐年模拟退休后每一笔钱从哪里来。SRS 严格按你的提取年龄(62 / 63 / 64)才解锁,CPF LIFE 按开始领取年龄计入,想提前退休的人能直接看到中间那段现金缺口。',
       icon: IconClock,
       href: '/tools/retirement',
+      cta: en ? 'Open calculator' : '开始测算',
+    },
+    {
+      key: 'cpf',
+      group: 'money',
+      tag: en ? 'Tool' : '小工具',
+      title: en ? 'CPF Retirement Calculator' : 'CPF 退休计算器',
+      desc: en
+        ? 'Simulates OA, SA, MA and RA stage by stage, with the rules that change at 55 and when CPF LIFE starts. Income curves, career breaks, OA for housing, three layers of gap, and a side-by-side look at OA-to-SA transfers, cash top-ups and deferring payouts. (In Chinese)'
+        : '按年龄分阶段模拟 OA / SA / MA / RA:55 岁开 RA、关 SA,领取时按官方对照表算 CPF LIFE。可以设收入曲线、职业中断、房贷扣 OA,看月缺口、资本缺口、过桥缺口,并排比较 OA 转 SA、现金填补、推迟领取各自锁住多少流动性。',
+      icon: IconLayers,
+      href: '/tools/cpf',
       cta: en ? 'Open calculator' : '开始测算',
     },
   ];

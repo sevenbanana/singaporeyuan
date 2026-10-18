@@ -156,6 +156,30 @@ export default function ResourceArt({ k, className = '' }: Props) {
         </svg>
       );
 
+    /* CPF 退休计算器:四层账户叠成的台阶,55 岁处金色换成铜色 */
+    case 'cpf':
+      return (
+        <svg {...common}>
+          <g {...line}>
+            <path d="M40 140h320" strokeWidth="2.8" />
+            <path d="M60 140V118h70v22" fill="#fff" />
+            <path d="M60 118V100h70v18" fill={SAND} />
+            <path d="M150 140V104h70v36" fill="#fff" />
+            <path d="M150 104V80h70v24" fill={SAND} />
+            <path d="M240 140V88h70v52" fill="#fff" />
+            <path d="M240 88V58h70v30" fill={SAND} />
+            <path d="M230 30v118" strokeDasharray="5 5" opacity=".5" />
+          </g>
+          <g {...gold}>
+            <path d="M60 140v-10h70v10M150 140v-14h70v14" fill="rgba(201,165,92,.35)" />
+            <path d="M240 140v-24h70v24" fill="rgba(167,90,40,.3)" stroke="#a75a28" />
+            <path d="M70 92l70-22 90-26 70-14" strokeWidth="2.8" />
+            <circle cx="230" cy="44" r="4" fill={GOLD} />
+            <path d="M326 34l14-4-4 14" strokeWidth="2.6" />
+          </g>
+        </svg>
+      );
+
     /* PR 落地指南:证件 + 行李箱 + 地图针 */
     case 'pr':
       return (
