@@ -1,9 +1,13 @@
 import { setRequestLocale } from 'next-intl/server';
 import type { Metadata } from 'next';
-import type { ReactNode } from 'react';
 import PageHero, { ContentLayer } from '@/components/PageHero';
 import Reveal from '@/components/Reveal';
+import CountUp from '@/components/CountUp';
+import NavyDecor from '@/components/NavyDecor';
 import { Link } from '@/lib/routing';
+import { Icon, HeroArt, WhyArt, type IconKey } from './icons';
+import { Headcount, PlanLayers, ModuleStack, CoverageRings, PanelNetwork, ClaimsFlow } from './Diagrams';
+import { LimitTiers, AwardStreak, CalendarWheel, type Month } from './Charts';
 
 export async function generateMetadata({
   params,
@@ -14,74 +18,6 @@ export async function generateMetadata({
   return { title: locale === 'en' ? 'Corporate Employee Benefits' : '企业团险与员工福利' };
 }
 
-const ic = {
-  width: 22,
-  height: 22,
-  viewBox: '0 0 24 24',
-  fill: 'none',
-  stroke: 'currentColor',
-  strokeWidth: 1.7,
-  strokeLinecap: 'round' as const,
-  strokeLinejoin: 'round' as const,
-};
-
-const I = {
-  team: (
-    <svg {...ic}><circle cx="9" cy="8.5" r="3.1" /><path d="M3.5 20c.4-3.4 2.8-5.2 5.5-5.2s5.1 1.8 5.5 5.2" /><path d="M15.3 5.7a3.1 3.1 0 0 1 0 5.6M17.4 15c2 .7 3.3 2.3 3.6 5" /></svg>
-  ),
-  shield: (
-    <svg {...ic}><path d="m12 3 8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z" /><path d="m8.8 12 2.2 2.2 4.2-4.5" /></svg>
-  ),
-  phone: (
-    <svg {...ic}><rect x="6" y="2.5" width="12" height="19" rx="2.5" /><path d="M10.5 5h3M11 18.5h2" /></svg>
-  ),
-  heart: (
-    <svg {...ic}><path d="M12 20.3C7.2 16.5 3.5 13.2 3.5 9.2 3.5 6.4 5.6 4.5 8 4.5c1.6 0 3 .8 4 2.1 1-1.3 2.4-2.1 4-2.1 2.4 0 4.5 1.9 4.5 4.7 0 4-3.7 7.3-8.5 11.1z" /></svg>
-  ),
-  puzzle: (
-    <svg {...ic}><path d="M4 7h4V5.5a2 2 0 1 1 4 0V7h4v4h1.5a2 2 0 1 1 0 4H16v4h-4v-1.5a2 2 0 1 0-4 0V19H4v-4h1.5a2 2 0 1 0 0-4H4z" /></svg>
-  ),
-  clinic: (
-    <svg {...ic}><path d="m3 11 9-7 9 7" /><path d="M5 10v10h14V10" /><path d="M12 12.5v5M9.5 15h5" /></svg>
-  ),
-  card: (
-    <svg {...ic}><rect x="3" y="6" width="18" height="13" rx="2" /><path d="M3 10.5h18" /><path d="M6.8 15.5h4.5" /></svg>
-  ),
-  globe: (
-    <svg {...ic}><circle cx="12" cy="12" r="8.5" /><path d="M3.5 12h17" /><path d="M12 3.5c2.4 2.3 3.7 5.2 3.7 8.5s-1.3 6.2-3.7 8.5c-2.4-2.3-3.7-5.2-3.7-8.5s1.3-6.2 3.7-8.5z" /></svg>
-  ),
-  plus: (
-    <svg {...ic}><circle cx="12" cy="12" r="8.5" /><path d="M12 8v8M8 12h8" /></svg>
-  ),
-  check: (
-    <svg {...ic}><circle cx="12" cy="12" r="8.5" /><path d="m8.3 12.4 2.6 2.6 5-5.6" /></svg>
-  ),
-  star: (
-    <svg {...ic}><path d="m12 3.5 2.6 5.4 5.9.8-4.3 4.1 1 5.9-5.2-2.8-5.2 2.8 1-5.9-4.3-4.1 5.9-.8z" /></svg>
-  ),
-  steth: (
-    <svg {...ic}><path d="M5 3H4a1 1 0 0 0-1 1v5a5 5 0 0 0 10 0V4a1 1 0 0 0-1-1h-1" /><path d="M8 14v2.5a5.5 5.5 0 0 0 11 0v-4" /><circle cx="19" cy="10" r="2.4" /></svg>
-  ),
-  mic: (
-    <svg {...ic}><rect x="9" y="3" width="6" height="11" rx="3" /><path d="M5.5 11a6.5 6.5 0 0 0 13 0M12 17.5V21" /></svg>
-  ),
-  run: (
-    <svg {...ic}><circle cx="14" cy="5" r="2" /><path d="m8 21 3-6-2.5-3 3-4 2.5 3H18" /><path d="m6 12 2.5-4.5L12 6" /></svg>
-  ),
-  palette: (
-    <svg {...ic}><path d="M12 3.5a8.5 8.5 0 1 0 0 17c1.2 0 1.8-.8 1.8-1.7 0-.8-.5-1.3-.5-2 0-1 .8-1.8 1.9-1.8h2A3.3 3.3 0 0 0 20.5 12c0-4.7-3.8-8.5-8.5-8.5z" /><circle cx="8" cy="10" r="1" /><circle cx="12" cy="7.5" r="1" /><circle cx="16" cy="10" r="1" /></svg>
-  ),
-  coffee: (
-    <svg {...ic}><path d="M4 9h12v4.5A4.5 4.5 0 0 1 11.5 18h-3A4.5 4.5 0 0 1 4 13.5z" /><path d="M16 10h2.2a2.4 2.4 0 0 1 0 4.8H16" /><path d="M7.5 3.5c-.9 1.1-.9 2.2 0 3.3M11.5 3.5c-.9 1.1-.9 2.2 0 3.3" /></svg>
-  ),
-  book: (
-    <svg {...ic}><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" /><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" /></svg>
-  ),
-  tent: (
-    <svg {...ic}><path d="m12 4 9 16H3z" /><path d="M12 12v8" /><path d="m9.5 20 2.5-4 2.5 4" /></svg>
-  ),
-};
-
 export default async function CorporatePage({
   params,
 }: {
@@ -91,140 +27,183 @@ export default async function CorporatePage({
   setRequestLocale(locale);
   const en = locale === 'en';
 
-  const whys: { icon: ReactNode; t: string; d: string }[] = [
-    { icon: I.team, t: en ? 'Attract & retain talent' : '引才留才', d: en ? 'A solid benefits programme is the most cost-effective retention tool.' : '一份像样的医疗福利，是性价比最高的留人工具。' },
-    { icon: I.shield, t: en ? 'Duty of care' : '雇主责任', d: en ? 'When employees need help most, the company has it covered.' : '员工真出事的时候，公司有一套体面的应对。' },
-    { icon: I.phone, t: en ? 'Zero paperwork' : 'HR零纸质', d: en ? 'Claims on the eBenefits app; HR manages everything online.' : '员工手机理赔，HR后台管名单账单，不碰纸质表格。' },
+  /* ── 为什么值得做 ── */
+  const whys: { art: 'talent' | 'duty' | 'paperless'; t: string; d: string }[] = [
+    { art: 'talent', t: en ? 'Attract & retain talent' : '引才留才', d: en ? 'The most cost-effective retention tool.' : '性价比最高的留人工具' },
+    { art: 'duty', t: en ? 'Duty of care' : '雇主责任', d: en ? 'Covered when staff need it most.' : '员工出事时有体面应对' },
+    { art: 'paperless', t: en ? 'Zero paperwork' : 'HR零纸质', d: en ? 'Claims in the app, HR admin online.' : '手机理赔，后台管账单' },
   ];
 
-  const stats = en
+  /* ── 信任数字(AIA 新加坡官网,2026年10月查阅)── */
+  const stats: { icon: IconKey; v: string; l: string }[] = en
     ? [
-        { v: '50+', l: 'years in employee benefits' },
-        { v: '1.3m+', l: 'insured employees in SG' },
-        { v: '300+', l: 'support staff' },
-        { v: '19 yrs', l: 'Best Employee Insurance Gold' },
+        { icon: 'clock', v: '50+', l: 'years in employee benefits' },
+        { icon: 'team', v: '1.3m+', l: 'insured employees in SG' },
+        { icon: 'headset', v: '300+', l: 'support staff' },
+        { icon: 'medal', v: '20 yrs', l: 'Best Employee Insurance Gold' },
       ]
     : [
-        { v: '50+', l: '年员工福利经验' },
-        { v: '130万+', l: '新加坡受保会员' },
-        { v: '300+', l: '人服务团队' },
-        { v: '19年', l: '最佳雇员保险金奖' },
+        { icon: 'clock', v: '50+', l: '年员工福利经验' },
+        { icon: 'team', v: '130万+', l: '新加坡受保会员' },
+        { icon: 'headset', v: '300+', l: '人服务团队' },
+        { icon: 'medal', v: '20年', l: '连续最佳雇员保险金奖' },
       ];
 
-  const plans = [
-    {
-      tag: en ? 'For SMEs · All staff' : '中小企业 · 全员医疗',
-      name: 'AIA Flexi Vital Care Plus',
-      zhName: en ? 'Flexible SME employee insurance' : '模块化中小企业团险',
-      color: 'navy' as const,
-      stats: en
-        ? [
-            { v: '5', l: 'lives to start', s: '3 employees + 2 dependants counts' },
-            { v: '24/7', l: 'worldwide cover', s: 'incl. teleconsultation' },
-            { v: 'Portfolio', l: 'pricing', s: 'claims don’t push up renewal' },
-          ]
-        : [
-            { v: '5人', l: '起投', s: '3员工+2家属也可' },
-            { v: '7×24', l: '全球保障', s: '含远程问诊' },
-            { v: '组合', l: '定价', s: '理赔不直接推高续保' },
-          ],
-      feats: en
-        ? [
-            { icon: I.puzzle, t: 'Mix & match modules', s: 'GHS / GTL core + outpatient, dental, CI, accident riders' },
-            { icon: I.clinic, t: 'Cashless clinic network', s: 'Panel GP & SP, medication delivered to your door' },
-            { icon: I.card, t: 'Inpatient pre-authorisation', s: 'AIA settles the hospital bill directly' },
-            { icon: I.plus, t: 'Voluntary top-ups', s: 'Employees & dependants upgrade at their own cost' },
-          ]
-        : [
-            { icon: I.puzzle, t: '模块自由组合', s: '住院GHS/寿险GTL打底，门诊、牙科、重疾、意外按需加装' },
-            { icon: I.clinic, t: '无现金诊所网络', s: '合作全科+专科看诊免掏钱，远程问诊药品送上门' },
-            { icon: I.card, t: '住院预授权直赔', s: '友邦直接与医院结算，出院不垫大额账单' },
-            { icon: I.plus, t: '员工自愿加保', s: '员工和家属可自费升级，公司不用额外掏钱' },
-          ],
-    },
-    {
-      tag: en ? 'For executives · Global teams' : '高管与外籍人才 · 高端医疗',
-      name: 'AIA Premier International Medical',
-      zhName: en ? 'High-end international medical (PIM)' : '友邦卓越国际医疗保险（PIM）',
-      color: 'gold' as const,
-      stats: en
-        ? [
-            { v: '4', l: 'lives to start', s: '3 employees + 1 dependant counts' },
-            { v: 'S$3.5m', l: 'top annual limit', s: 'five tiers from S$500k' },
-            { v: '3', l: 'coverage areas', s: 'Asia / WW ex-USA / Worldwide' },
-          ]
-        : [
-            { v: '4人', l: '起投', s: '3员工+1家属也可' },
-            { v: '350万', l: '最高年限额', s: '50万起共五档，新元/美元' },
-            { v: '3种', l: '承保区域', s: '亚洲 / 全球除美 / 全球' },
-          ],
-      feats: en
-        ? [
-            { icon: I.globe, t: 'Cashless worldwide', s: 'Global guarantee letters + panel clinics in 7 markets' },
-            { icon: I.plus, t: 'Rich optional benefits', s: 'Outpatient, dental, maternity, optical, wellness' },
-            { icon: I.check, t: 'Pre-existing conditions OK', s: 'Groups of 11+ can opt for no-questions-asked underwriting' },
-            { icon: I.star, t: 'Concierge-level care', s: '24/7 service centre, case management, mental health support' },
-          ]
-        : [
-            { icon: I.globe, t: '全球无现金就医', s: '住院保函直赔，新加坡等7地门诊网络' },
-            { icon: I.plus, t: '福利想加就加', s: '门诊、牙科、孕产、眼科、体检五项可选' },
-            { icon: I.check, t: '既往症也能保', s: '11人以上团体可选"既往症不咎"核保' },
-            { icon: I.star, t: '管家级服务', s: '7×24专属中心 + 个案管理 + 心理健康' },
-          ],
-    },
-  ];
-
-  const cmp: { k: string; a: string; b: string }[] = en
+  /* ── FVCP 亮点 ── */
+  const fvcpTiles: { icon: IconKey; t: string; s: string }[] = en
     ? [
-        { k: 'Best for', a: 'SMEs covering all staff', b: 'Executives, expats, global teams' },
-        { k: 'Minimum lives', a: '5 (3 employees + 2 dependants)', b: '4 (3 employees + 1 dependant)' },
-        { k: 'Annual limit', a: 'Tiered by module & plan', b: 'S$500k – S$3.5m, five tiers' },
-        { k: 'Coverage area', a: 'Worldwide, 24/7', b: 'Asia / WW ex-USA / Worldwide' },
-        { k: 'Cashless network', a: 'Panel clinics + tele-consult + pre-auth', b: 'Global guarantee letters + 7-market panels' },
-        { k: 'Pricing', a: 'Portfolio pricing, GST included', b: 'Age-banded, quoted per census' },
+        { icon: 'globe', t: '24/7 worldwide', s: 'incl. teleconsultation' },
+        { icon: 'tag', t: 'Portfolio pricing', s: 'claims don’t push up renewal' },
+        { icon: 'clinic', t: 'Cashless clinics', s: 'GP & SP, meds delivered' },
+        { icon: 'card', t: 'Pre-authorised', s: 'AIA settles the hospital bill' },
       ]
     : [
-        { k: '适合团队', a: '中小企业全员保障', b: '高管、外籍员工、跨国团队' },
-        { k: '起投人数', a: '5人（3员工+2家属也可）', b: '4人（3员工+1家属也可）' },
-        { k: '年度限额', a: '按模块和档位选择', b: '50万–350万新元/美元，五档' },
-        { k: '保障范围', a: '全球7×24', b: '亚洲 / 全球除美 / 全球 三选一' },
-        { k: '无现金网络', a: '合作诊所+远程问诊+住院预授权', b: '全球住院保函直赔+七地门诊网络' },
-        { k: '定价方式', a: '组合定价，理赔不直接推高续保', b: '按年龄段与名单精准报价' },
+        { icon: 'globe', t: '全球 7×24', s: '含远程问诊' },
+        { icon: 'tag', t: '组合定价', s: '理赔不直接推高续保' },
+        { icon: 'clinic', t: '无现金诊所', s: '全科+专科，药品送上门' },
+        { icon: 'card', t: '住院预授权', s: '友邦直接与医院结算' },
       ];
 
-  const acts: { icon: ReactNode; t: string; items: string[] }[] = en
+  /* ── PIM 年度限额五档(AIA 官方手册)── */
+  const tiers = en
     ? [
-        { icon: I.steth, t: 'Health checks', items: ['Onsite screening', 'Cancer screening', 'Spinal assessment', 'Eye check', 'Body composition', 'TCM consult'] },
-        { icon: I.mic, t: 'Health talks', items: ['Cancer prevention', 'Breast / prostate', 'Heart & diabetes', 'Stress relief'] },
-        { icon: I.run, t: 'Fitness', items: ['Yoga', 'Pilates', 'Spinning', 'HIIT', 'Muay Thai', 'Bounce'] },
-        { icon: I.palette, t: 'Team crafts', items: ['Pottery', 'Perfume making', 'Leather craft', 'Terrarium', 'Watch assembly', 'Flower art', 'Crochet'] },
-        { icon: I.coffee, t: 'Tasting', items: ['Coffee / tea', 'Barista', 'Ice-cream making', 'Mooncake baking', 'Wine'] },
-        { icon: I.book, t: 'Financial wellness', items: ['LPA & wills', 'CPF & retirement', 'Company vs personal cover', 'Insurance AMA', 'Legacy planning'] },
-        { icon: I.tent, t: 'Big days', items: ['Family carnival', 'Charity run', 'Wellness bazaar'] },
+        { v: 0.5, read: '500k', plan: 'Plan 1' },
+        { v: 0.75, read: '750k', plan: 'Plan 2' },
+        { v: 1, read: '1m', plan: 'Plan 3' },
+        { v: 2, read: '2m', plan: 'Plan 4' },
+        { v: 3.5, read: 'S$3.5m', plan: 'Plan 5', top: 'Highest' },
       ]
     : [
-        { icon: I.steth, t: '健康检测', items: ['上门体检', '癌症筛查', '脊椎评估', '眼科检查', '体脂分析', '中医体质'] },
-        { icon: I.mic, t: '健康讲座', items: ['癌症防治', '乳腺/前列腺', '心脏与三高', '心理减压'] },
-        { icon: I.run, t: '运动课程', items: ['瑜伽', '普拉提', '动感单车', 'HIIT', '泰拳', '蹦床'] },
-        { icon: I.palette, t: '手作团建', items: ['陶艺', '香水调制', '皮具', '微景观', '手表组装', '花艺', '钩织'] },
-        { icon: I.coffee, t: '品鉴体验', items: ['咖啡/茶品鉴', '咖啡师体验', '冰淇淋制作', '月饼烘焙', '品酒会'] },
-        { icon: I.book, t: '财务讲座', items: ['LPA与遗嘱', 'CPF退休', '公司险×个人险', '保险你问我答', '传承规划'] },
-        { icon: I.tent, t: '大型活动', items: ['家庭嘉年华', '慈善跑', '健康集市'] },
+        { v: 0.5, read: '50万', plan: '第1档' },
+        { v: 0.75, read: '75万', plan: '第2档' },
+        { v: 1, read: '100万', plan: '第3档' },
+        { v: 2, read: '200万', plan: '第4档' },
+        { v: 3.5, read: '350万', plan: '第5档', top: '最高档' },
       ];
 
-  const steps = en
+  const pimBenefits: { icon: IconKey; t: string }[] = en
     ? [
-        { t: 'Tell me about your team', d: '20 minutes: headcount, budget, current cover.' },
-        { t: 'Proposal in 1–3 days', d: 'Tailored design, premiums side by side.' },
-        { t: 'Go live', d: 'Enrolment done for you; e-cards in the app.' },
-        { t: 'Year-round support', d: 'Claims, renewals, WorkWell calendar.' },
+        { icon: 'steth', t: 'Outpatient' },
+        { icon: 'tooth', t: 'Dental' },
+        { icon: 'stroller', t: 'Maternity' },
+        { icon: 'glasses', t: 'Optical' },
+        { icon: 'pulse', t: 'Wellness' },
       ]
     : [
-        { t: '聊聊你的团队', d: '20分钟：人数、预算、现有福利。' },
-        { t: '1–3个工作日出方案', d: '定制设计，保费并排对比。' },
-        { t: '投保生效', d: '手续我来跑，电子卡进手机。' },
-        { t: '全年陪跑', d: '理赔、续保、员工活动日历。' },
+        { icon: 'steth', t: '门诊' },
+        { icon: 'tooth', t: '牙科' },
+        { icon: 'stroller', t: '孕产' },
+        { icon: 'glasses', t: '眼科' },
+        { icon: 'pulse', t: '体检' },
       ];
+
+  /* ── 无现金就医 ── */
+  const flow: { icon: IconKey; t: string; s: string }[] = en
+    ? [
+        { icon: 'phone', t: 'Show the e-card', s: 'Right in the app' },
+        { icon: 'clinic', t: 'Visit a panel provider', s: 'Clinics, or pre-authorised hospital stay' },
+        { icon: 'wallet', t: 'No upfront payment', s: 'No big bills to advance' },
+        { icon: 'receipt', t: 'AIA settles directly', s: 'HR never touches paper claims' },
+      ]
+    : [
+        { icon: 'phone', t: '手机出示电子卡', s: 'App 里一卡在手' },
+        { icon: 'clinic', t: '合作网络就医', s: '门诊走合作诊所，住院先预授权' },
+        { icon: 'wallet', t: '员工不用垫付', s: '不用先掏大额账单' },
+        { icon: 'receipt', t: '友邦直接结算', s: 'HR 不碰纸质单据' },
+      ];
+
+  /* ── 一眼对比 ── */
+  const cmp: { icon: IconKey; k: string; a: string; b: string }[] = en
+    ? [
+        { icon: 'team', k: 'Best for', a: 'SMEs covering all staff', b: 'Executives, expats, global teams' },
+        { icon: 'user', k: 'Minimum lives', a: '5 (3 staff + 2 dependants)', b: '4 (3 staff + 1 dependant)' },
+        { icon: 'shield', k: 'Annual limit', a: 'By module & plan', b: '500k – S$3.5m, five tiers' },
+        { icon: 'globe', k: 'Coverage area', a: 'Worldwide, 24/7', b: 'Asia / WW ex-USA / Worldwide' },
+        { icon: 'card', k: 'Cashless', a: 'Panel clinics + tele + pre-auth', b: 'Global guarantee letters + 7-market panel' },
+        { icon: 'tag', k: 'Pricing', a: 'Portfolio pricing', b: 'Age-banded, per census' },
+      ]
+    : [
+        { icon: 'team', k: '适合团队', a: '中小企业全员保障', b: '高管、外籍、跨国团队' },
+        { icon: 'user', k: '起投人数', a: '5人（3员工+2家属）', b: '4人（3员工+1家属）' },
+        { icon: 'shield', k: '年度限额', a: '按模块与档位', b: '50万–350万，五档' },
+        { icon: 'globe', k: '保障范围', a: '全球 7×24', b: '亚洲 / 全球除美 / 全球' },
+        { icon: 'card', k: '无现金', a: '合作诊所+远程问诊+预授权', b: '全球保函直赔+七地门诊网络' },
+        { icon: 'tag', k: '定价方式', a: '组合定价', b: '按年龄段与名单报价' },
+      ];
+
+  /* ── WorkWell:一年示例日历 + 七类活动 ── */
+  const months: Month[] = en
+    ? [
+        { m: 'Jan', icon: 'mic', cat: 'Health talk', t: 'Stress relief' },
+        { m: 'Feb', icon: 'coffee', cat: 'Tasting', t: 'Coffee / tea' },
+        { m: 'Mar', icon: 'steth', cat: 'Health check', t: 'Onsite screening' },
+        { m: 'Apr', icon: 'run', cat: 'Fitness', t: 'Yoga' },
+        { m: 'May', icon: 'book', cat: 'Financial', t: 'CPF & retirement' },
+        { m: 'Jun', icon: 'palette', cat: 'Team craft', t: 'Pottery' },
+        { m: 'Jul', icon: 'mic', cat: 'Health talk', t: 'Heart & diabetes' },
+        { m: 'Aug', icon: 'run', cat: 'Fitness', t: 'HIIT' },
+        { m: 'Sep', icon: 'coffee', cat: 'Tasting', t: 'Mooncake baking' },
+        { m: 'Oct', icon: 'steth', cat: 'Health check', t: 'Cancer screening' },
+        { m: 'Nov', icon: 'book', cat: 'Financial', t: 'LPA & wills' },
+        { m: 'Dec', icon: 'tent', cat: 'Big day', t: 'Family carnival' },
+      ]
+    : [
+        { m: '1月', icon: 'mic', cat: '健康讲座', t: '心理减压' },
+        { m: '2月', icon: 'coffee', cat: '品鉴体验', t: '咖啡/茶品鉴' },
+        { m: '3月', icon: 'steth', cat: '健康检测', t: '上门体检' },
+        { m: '4月', icon: 'run', cat: '运动课程', t: '瑜伽' },
+        { m: '5月', icon: 'book', cat: '财务讲座', t: 'CPF退休' },
+        { m: '6月', icon: 'palette', cat: '手作团建', t: '陶艺' },
+        { m: '7月', icon: 'mic', cat: '健康讲座', t: '心脏与三高' },
+        { m: '8月', icon: 'run', cat: '运动课程', t: 'HIIT' },
+        { m: '9月', icon: 'coffee', cat: '品鉴体验', t: '月饼烘焙' },
+        { m: '10月', icon: 'steth', cat: '健康检测', t: '癌症筛查' },
+        { m: '11月', icon: 'book', cat: '财务讲座', t: 'LPA与遗嘱' },
+        { m: '12月', icon: 'tent', cat: '大型活动', t: '家庭嘉年华' },
+      ];
+
+  const acts: { icon: IconKey; t: string; items: string[] }[] = en
+    ? [
+        { icon: 'steth', t: 'Health checks', items: ['Onsite screening', 'Cancer screening', 'Spinal assessment', 'Eye check', 'Body composition', 'TCM consult'] },
+        { icon: 'mic', t: 'Health talks', items: ['Cancer prevention', 'Breast / prostate', 'Heart & diabetes', 'Stress relief'] },
+        { icon: 'run', t: 'Fitness', items: ['Yoga', 'Pilates', 'Spinning', 'HIIT', 'Muay Thai', 'Bounce'] },
+        { icon: 'palette', t: 'Team crafts', items: ['Pottery', 'Perfume making', 'Leather craft', 'Terrarium', 'Watch assembly', 'Flower art', 'Crochet'] },
+        { icon: 'coffee', t: 'Tasting', items: ['Coffee / tea', 'Barista', 'Ice-cream making', 'Mooncake baking', 'Wine'] },
+        { icon: 'book', t: 'Financial wellness', items: ['LPA & wills', 'CPF & retirement', 'Company vs personal cover', 'Insurance AMA', 'Legacy planning'] },
+        { icon: 'tent', t: 'Big days', items: ['Family carnival', 'Charity run', 'Wellness bazaar'] },
+      ]
+    : [
+        { icon: 'steth', t: '健康检测', items: ['上门体检', '癌症筛查', '脊椎评估', '眼科检查', '体脂分析', '中医体质'] },
+        { icon: 'mic', t: '健康讲座', items: ['癌症防治', '乳腺/前列腺', '心脏与三高', '心理减压'] },
+        { icon: 'run', t: '运动课程', items: ['瑜伽', '普拉提', '动感单车', 'HIIT', '泰拳', '蹦床'] },
+        { icon: 'palette', t: '手作团建', items: ['陶艺', '香水调制', '皮具', '微景观', '手表组装', '花艺', '钩织'] },
+        { icon: 'coffee', t: '品鉴体验', items: ['咖啡/茶品鉴', '咖啡师体验', '冰淇淋制作', '月饼烘焙', '品酒会'] },
+        { icon: 'book', t: '财务讲座', items: ['LPA与遗嘱', 'CPF退休', '公司险×个人险', '保险你问我答', '传承规划'] },
+        { icon: 'tent', t: '大型活动', items: ['家庭嘉年华', '慈善跑', '健康集市'] },
+      ];
+  const actTotal = acts.reduce((n, g) => n + g.items.length, 0);
+
+  /* ── 合作流程 ── */
+  const steps: { icon: IconKey; t: string; chip: string }[] = en
+    ? [
+        { icon: 'chat', t: 'Tell me about your team', chip: '20 min' },
+        { icon: 'compare', t: 'Side-by-side proposal', chip: '1–3 working days' },
+        { icon: 'shield', t: 'Go live', chip: 'Enrolment done for you' },
+        { icon: 'calendar', t: 'Year-round support', chip: 'Claims · renewal · WorkWell' },
+      ]
+    : [
+        { icon: 'chat', t: '聊聊你的团队', chip: '20分钟' },
+        { icon: 'compare', t: '方案并排对比', chip: '1–3个工作日' },
+        { icon: 'shield', t: '投保生效', chip: '手续我来跑' },
+        { icon: 'calendar', t: '全年陪跑', chip: '理赔·续保·活动' },
+      ];
+
+  const H2 = ({ eyebrow, title }: { eyebrow: string; title: string }) => (
+    <>
+      <p className="eyebrow">{eyebrow}</p>
+      <h2 className="mt-2 text-xl font-black leading-snug text-navy md:text-2xl">{title}</h2>
+    </>
+  );
 
   return (
     <>
@@ -233,204 +212,403 @@ export default async function CorporatePage({
         title={en ? 'Group insurance & employee benefits' : '企业团险与员工福利'}
         subtitle={
           en
-            ? 'From 4-person startups to regional teams: coverage employees feel, claims HR loves, activities your team talks about.'
-            : '从4人小团队到跨国企业:给员工看得见的保障、让HR省心的理赔、说得出口的员工活动。'
+            ? 'From 4-person startups to regional teams: cover employees feel, claims HR loves, activities your team talks about.'
+            : '从4人小团队到跨国企业：员工看得见的保障，HR省心的理赔，说得出口的员工活动。'
         }
-        accent={I.heart}
-      />
+        accent={<HeroArt className="h-full w-full" />}
+      >
+        <HeroArt className="mb-6 h-28 w-28 sm:hidden" />
+        <div className="flex flex-wrap gap-2">
+          {(en
+            ? [
+                { icon: 'team' as IconKey, t: 'From 4 lives' },
+                { icon: 'card' as IconKey, t: 'Cashless care' },
+                { icon: 'calendar' as IconKey, t: 'WorkWell activities' },
+              ]
+            : [
+                { icon: 'team' as IconKey, t: '4人起投' },
+                { icon: 'card' as IconKey, t: '无现金就医' },
+                { icon: 'calendar' as IconKey, t: '全年员工活动' },
+              ]
+          ).map((c) => (
+            <span key={c.t} className="inline-flex items-center gap-1.5 rounded-full border border-gold/40 bg-white/70 px-3.5 py-1.5 text-xs font-bold text-navy">
+              <span className="text-gold-deep">
+                <Icon k={c.icon} size={15} sw={2} />
+              </span>
+              {c.t}
+            </span>
+          ))}
+        </div>
+        <div className="mt-7 flex flex-wrap gap-3">
+          <Link href="/corporate/consult" className="btn-primary">
+            {en ? 'Book a consultation' : '预约企业咨询'}
+          </Link>
+          <a href="#plans" className="btn-ghost">
+            {en ? 'See the plans' : '看两大方案'}
+          </a>
+        </div>
+      </PageHero>
+
       <ContentLayer>
-        <div className="container-wide py-16 md:py-20">
-          {/* 为什么值得做 */}
-          <div className="grid gap-6 md:grid-cols-3">
+        <div className="container-wide py-14 md:py-20">
+          {/* ═══ 为什么值得做:三张插画卡 ═══ */}
+          <div className="grid grid-cols-3 gap-3 sm:gap-6">
             {whys.map((w, i) => (
               <Reveal key={w.t} delay={i * 90}>
-                <div className="card flex h-full items-start gap-4 p-6">
-                  <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-gold/15 text-gold-deep">
-                    {w.icon}
+                <div className="card card-hover flex h-full flex-col items-center px-2.5 py-5 text-center sm:px-6 sm:py-8">
+                  <span className="flex h-16 w-16 items-center justify-center rounded-full bg-gold/10 sm:h-24 sm:w-24">
+                    <WhyArt k={w.art} className="h-10 w-10 sm:h-14 sm:w-14" />
                   </span>
-                  <div>
-                    <h2 className="text-base font-black text-navy">{w.t}</h2>
-                    <p className="mt-1.5 text-[13px] leading-[1.8] text-mist">{w.d}</p>
-                  </div>
+                  <h2 className="mt-3 text-[13px] font-black leading-snug text-navy sm:mt-5 sm:text-base">{w.t}</h2>
+                  <p className="mt-1 text-[11px] leading-snug text-mist sm:text-[13px]">{w.d}</p>
                 </div>
               </Reveal>
             ))}
           </div>
 
-          {/* 信任数字带 */}
+          {/* ═══ 信任数字带 + 连续金奖 ═══ */}
           <Reveal delay={100}>
-            <div className="mt-8 grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-gold/25 bg-gold/25 md:grid-cols-4">
-              {stats.map((s) => (
-                <div key={s.l} className="bg-navy px-5 py-6 text-center">
-                  <p className="text-2xl font-black text-gold md:text-3xl">{s.v}</p>
-                  <p className="mt-1 text-xs text-white/70">{s.l}</p>
-                </div>
-              ))}
+            <div className="relative mt-8 overflow-hidden rounded-3xl bg-navy px-5 py-7 md:px-10 md:py-9">
+              <NavyDecor />
+              <div className="relative grid grid-cols-2 gap-y-7 md:grid-cols-4">
+                {stats.map((s) => (
+                  <div key={s.l} className="flex flex-col items-center text-center">
+                    <span className="flex h-10 w-10 items-center justify-center rounded-full bg-gold/15 text-gold">
+                      <Icon k={s.icon} size={20} />
+                    </span>
+                    <CountUp value={s.v} className="mt-3 text-2xl font-black text-gold md:text-3xl" />
+                    <p className="mt-1 text-xs text-white/70">{s.l}</p>
+                  </div>
+                ))}
+              </div>
+              <div className="relative mt-8 border-t border-white/10 pt-6">
+                <AwardStreak
+                  from={2006}
+                  to={2025}
+                  label={
+                    en
+                      ? 'HR Vendors of the Year · Best Employee Insurance Provider, Gold'
+                      : 'HR Vendors of the Year · 最佳雇员保险供应商金奖'
+                  }
+                />
+              </div>
             </div>
             <p className="mt-2 text-right text-[11px] text-mist">
-              {en ? 'AIA Singapore employee benefits, company data' : 'AIA新加坡员工福利业务数据'}
+              {en ? 'Source: AIA Singapore website, Oct 2026' : '数据来源：AIA新加坡官网（2026年10月）'}
             </p>
           </Reveal>
 
-          {/* 两大主力方案 */}
-          <Reveal delay={120}>
-            <div className="mt-14">
-              <p className="eyebrow">{en ? 'Two flagship solutions' : '两大主力方案'}</p>
-              <h2 className="mt-2 text-xl font-black leading-snug text-navy md:text-2xl">
-                {en ? 'All-staff coverage, or high-end international medical' : '全员医疗打底，高端国际医疗拔高'}
-              </h2>
-              <div className="mt-6 grid gap-6 lg:grid-cols-2">
-                {plans.map((p) => (
-                  <div
-                    key={p.name}
-                    className={`card h-full p-6 md:p-7 ${
-                      p.color === 'gold' ? 'border-t-4 border-t-gold' : 'border-t-4 border-t-navy'
-                    }`}
-                  >
-                    <span
-                      className={`inline-block rounded-full border px-3.5 py-1 text-xs font-semibold ${
-                        p.color === 'gold' ? 'border-gold/60 text-gold-deep' : 'border-navy/40 text-navy'
-                      }`}
-                    >
-                      {p.tag}
-                    </span>
-                    <h3 className="mt-3.5 text-lg font-black text-navy md:text-xl">{p.name}</h3>
-                    <p className="mt-0.5 text-sm text-gold-deep">{p.zhName}</p>
+          {/* ═══ 两大主力方案:定位图 ═══ */}
+          <section id="plans" className="scroll-mt-24 pt-16">
+            <Reveal>
+              <div className="text-center">
+                <H2
+                  eyebrow={en ? 'Two flagship solutions' : '两大主力方案'}
+                  title={en ? 'All-staff cover as the base, international medical on top' : '全员医疗打底，高端国际医疗拔高'}
+                />
+              </div>
+              <div className="mt-8">
+                <PlanLayers en={en} />
+              </div>
+            </Reveal>
 
-                    {/* 三格关键数据 */}
-                    <div className="mt-5 grid grid-cols-3 gap-2.5">
-                      {p.stats.map((st) => (
-                        <div key={st.l} className={`rounded-xl px-3 py-3.5 text-center ${p.color === 'gold' ? 'bg-gold/10' : 'bg-navy/[0.06]'}`}>
-                          <p className="text-lg font-black leading-tight text-navy">{st.v}</p>
-                          <p className="text-[11px] font-semibold text-navy/70">{st.l}</p>
-                          <p className="mt-1 text-[10.5px] leading-snug text-mist">{st.s}</p>
+            {/* ── 方案一:FVCP ── */}
+            <Reveal delay={80}>
+              <div className="card mt-10 border-t-4 border-t-navy p-5 md:p-8">
+                <div className="flex flex-wrap items-center gap-x-3 gap-y-2">
+                  <span className="rounded-full border border-navy/40 px-3.5 py-1 text-xs font-semibold text-navy">
+                    {en ? 'For SMEs · All staff' : '中小企业 · 全员医疗'}
+                  </span>
+                </div>
+                <h3 className="mt-3 text-lg font-black text-navy md:text-xl">AIA Flexi Vital Care Plus</h3>
+                <p className="text-sm text-gold-deep">{en ? 'Modular SME employee insurance' : '模块化中小企业团险'}</p>
+
+                <div className="mt-6 grid gap-6 lg:grid-cols-[1.15fr_1fr] lg:gap-8">
+                  <div>
+                    <p className="mb-3 flex items-center gap-2 text-sm font-black text-navy">
+                      <Icon k="compare" size={17} className="text-gold-deep" />
+                      {en ? 'Build it like blocks' : '像搭积木一样配置'}
+                    </p>
+                    <ModuleStack en={en} />
+                  </div>
+                  <div className="flex flex-col gap-5">
+                    <div className="rounded-2xl bg-navy/[0.05] p-4">
+                      <Headcount
+                        total={en ? '5' : '5人'}
+                        emp={3}
+                        dep={2}
+                        tone="navy"
+                        label={en ? 'lives to start' : '起投'}
+                        legend={en ? '3 employees + 2 dependants counts' : '3名员工 + 2名家属也可'}
+                      />
+                    </div>
+                    <div className="grid grid-cols-2 gap-2.5">
+                      {fvcpTiles.map((f) => (
+                        <div key={f.t} className="rounded-xl border border-navy/10 bg-white/70 p-3.5">
+                          <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-navy text-gold">
+                            <Icon k={f.icon} size={18} />
+                          </span>
+                          <p className="mt-2.5 text-sm font-black text-navy">{f.t}</p>
+                          <p className="mt-0.5 text-[11px] leading-snug text-mist">{f.s}</p>
                         </div>
                       ))}
                     </div>
-
-                    {/* 图标特性行 */}
-                    <ul className="mt-5 space-y-3.5">
-                      {p.feats.map((f) => (
-                        <li key={f.t} className="flex items-start gap-3">
-                          <span className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-xl ${p.color === 'gold' ? 'bg-gold/15 text-gold-deep' : 'bg-navy/[0.07] text-navy'}`}>
-                            {f.icon}
-                          </span>
-                          <div>
-                            <p className="text-sm font-bold text-navy">{f.t}</p>
-                            <p className="text-xs leading-relaxed text-mist">{f.s}</p>
-                          </div>
-                        </li>
-                      ))}
-                    </ul>
                   </div>
-                ))}
+                </div>
               </div>
-            </div>
-          </Reveal>
+            </Reveal>
 
-          {/* 对比表 */}
-          <Reveal delay={140}>
-            <div className="mt-10 overflow-x-auto rounded-2xl border border-gold/20 bg-white">
-              <table className="w-full min-w-[560px] border-collapse text-sm">
-                <thead>
-                  <tr className="bg-navy text-left text-white">
-                    <th className="whitespace-nowrap px-5 py-3.5 font-medium">{en ? 'At a glance' : '一眼对比'}</th>
-                    <th className="whitespace-nowrap px-5 py-3.5 font-medium">Flexi Vital Care Plus</th>
-                    <th className="whitespace-nowrap px-5 py-3.5 font-medium">Premier International Medical</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {cmp.map((r, i) => (
-                    <tr key={r.k} className={i % 2 ? 'bg-sand-50' : ''}>
-                      <td className="whitespace-nowrap px-5 py-3.5 font-semibold text-navy">{r.k}</td>
-                      <td className="px-5 py-3.5 text-navy/80">{r.a}</td>
-                      <td className="px-5 py-3.5 text-navy/80">{r.b}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          </Reveal>
+            {/* ── 方案二:PIM ── */}
+            <Reveal delay={80}>
+              <div className="card mt-6 border-t-4 border-t-gold p-5 md:p-8">
+                <span className="inline-block rounded-full border border-gold/60 px-3.5 py-1 text-xs font-semibold text-gold-deep">
+                  {en ? 'For executives · Global teams' : '高管与外籍人才 · 高端医疗'}
+                </span>
+                <h3 className="mt-3 text-lg font-black text-navy md:text-xl">AIA Premier International Medical</h3>
+                <p className="text-sm text-gold-deep">{en ? 'High-end international medical (PIM)' : '友邦卓越国际医疗保险（PIM）'}</p>
 
-          {/* WorkWell */}
-          <Reveal delay={160}>
-            <div className="mt-16">
-              <p className="eyebrow">WorkWell with AIA</p>
-              <h2 className="mt-2 text-xl font-black leading-snug text-navy md:text-2xl">
-                {en ? 'Employee wellness, sponsored' : '员工福利活动，我们来赞助'}
-              </h2>
-              <p className="mt-2 max-w-2xl text-sm leading-[1.9] text-mist">
-                {en
-                  ? 'Corporate clients get WorkWell with AIA: most activities complimentary, planned as an annual calendar for your team.'
-                  : '成为团险客户后即可使用:大部分活动免费,我帮你排成一整年的员工活动日历。'}
-              </p>
-              <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-                {acts.map((g) => (
-                  <div key={g.t} className="card h-full p-5">
-                    <div className="flex items-center gap-2.5">
-                      <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-gold/15 text-gold-deep">
-                        {g.icon}
+                <div className="mt-6 grid gap-6 md:grid-cols-2 md:gap-8">
+                  {/* 限额柱状图 */}
+                  <div className="rounded-2xl border border-gold/25 bg-white/60 p-4 sm:p-5">
+                    <p className="flex items-center gap-2 text-sm font-black text-navy">
+                      <Icon k="shield" size={17} className="text-gold-deep" />
+                      {en ? 'Annual limit · five tiers' : '年度总限额 · 五档可选'}
+                    </p>
+                    <div className="mt-12">
+                      <LimitTiers
+                        tiers={tiers}
+                        note={
+                          en
+                            ? 'Per insured member, per policy year. Plans 1–4 in SGD or USD; Plan 5 in SGD only.'
+                            : '每位受保人每保单年度；第1–4档可选新元或美元，第5档仅限新元。'
+                        }
+                      />
+                    </div>
+                  </div>
+                  {/* 承保区域 */}
+                  <div className="flex flex-col rounded-2xl border border-gold/25 bg-white/60 p-4 sm:p-5">
+                    <p className="flex items-center gap-2 text-sm font-black text-navy">
+                      <Icon k="globe" size={17} className="text-gold-deep" />
+                      {en ? 'Coverage area · pick one of three' : '承保区域 · 三选一'}
+                    </p>
+                    <div className="flex flex-1 items-center justify-center py-4">
+                      <CoverageRings en={en} />
+                    </div>
+                  </div>
+                </div>
+
+                <div className="mt-6 grid gap-6 md:grid-cols-[1fr_1.1fr_1fr] md:gap-5">
+                  {/* 起投 + 既往症 */}
+                  <div className="flex flex-col gap-3">
+                    <div className="rounded-2xl bg-gold/10 p-4">
+                      <Headcount
+                        total={en ? '4' : '4人'}
+                        emp={3}
+                        dep={1}
+                        tone="gold"
+                        label={en ? 'lives to start' : '起投'}
+                        legend={en ? '3 employees + 1 dependant counts' : '3名员工 + 1名家属也可'}
+                      />
+                    </div>
+                    <div className="flex items-center gap-3 rounded-2xl border border-gold/30 bg-white/70 p-4">
+                      <span className="flex h-11 w-11 shrink-0 flex-col items-center justify-center rounded-full bg-navy text-gold">
+                        <span className="text-sm font-black leading-none">11+</span>
                       </span>
-                      <h3 className="text-[15px] font-bold text-navy">{g.t}</h3>
+                      <div>
+                        <p className="text-sm font-black text-navy">{en ? 'Pre-existing conditions OK' : '既往症也能保'}</p>
+                        <p className="text-[11px] leading-snug text-mist">
+                          {en ? 'Groups of 11+ can opt to have medical history disregarded' : '11人以上团体可选“既往症不咎”核保'}
+                        </p>
+                      </div>
                     </div>
-                    <div className="mt-3 flex flex-wrap gap-1.5">
-                      {g.items.map((it) => (
-                        <span key={it} className="rounded-full bg-gold/10 px-3 py-1 text-xs leading-relaxed text-navy/80">
-                          {it}
-                        </span>
+                  </div>
+                  {/* 门诊网络 */}
+                  <div className="rounded-2xl border border-gold/25 bg-white/60 p-4">
+                    <p className="flex items-center gap-2 text-sm font-black text-navy">
+                      <Icon k="clinic" size={17} className="text-gold-deep" />
+                      {en ? 'Outpatient panel · 7 markets' : '门诊网络 · 7个市场'}
+                    </p>
+                    <div className="mt-2">
+                      <PanelNetwork en={en} />
+                    </div>
+                    <p className="text-[11px] text-mist">{en ? 'Inpatient: global guarantee letters' : '住院：全球保函直赔'}</p>
+                  </div>
+                  {/* 可选福利 */}
+                  <div className="rounded-2xl border border-gold/25 bg-white/60 p-4">
+                    <p className="flex items-center gap-2 text-sm font-black text-navy">
+                      <Icon k="plus" size={17} className="text-gold-deep" />
+                      {en ? 'Optional benefits · up to 5' : '可选福利 · 最多5项'}
+                    </p>
+                    <div className="mt-4 grid grid-cols-5 gap-1.5 md:grid-cols-3 md:gap-2.5">
+                      {pimBenefits.map((b) => (
+                        <div key={b.t} className="flex flex-col items-center">
+                          <span className="flex h-11 w-11 items-center justify-center rounded-full bg-gold/15 text-gold-deep">
+                            <Icon k={b.icon} size={20} />
+                          </span>
+                          <span className="mt-1.5 text-[11px] font-bold text-navy">{b.t}</span>
+                        </div>
                       ))}
                     </div>
+                    <div className="mt-4 flex items-start gap-2 rounded-xl bg-navy px-3 py-2.5 text-cream">
+                      <Icon k="star" size={16} className="mt-0.5 shrink-0 text-gold" />
+                      <p className="text-[11px] leading-snug">
+                        {en ? '24/7 service centre · case management · mental health support' : '7×24专属中心 · 个案管理 · 心理健康'}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </Reveal>
+          </section>
+
+          {/* ═══ 无现金就医流程 ═══ */}
+          <Reveal delay={100}>
+            <section className="pt-16">
+              <H2
+                eyebrow={en ? 'Cashless care' : '无现金就医'}
+                title={en ? 'Seeing a doctor, without paying first' : '在合作网络看病，员工不用先垫钱'}
+              />
+              <div className="card mt-6 p-6 md:p-8">
+                <ClaimsFlow steps={flow} />
+              </div>
+              <p className="mt-2 text-[11px] text-mist">
+                {en ? 'Other claims are submitted in the app. Details per plan terms.' : '其余理赔在 App 线上提交；具体以方案条款为准。'}
+              </p>
+            </section>
+          </Reveal>
+
+          {/* ═══ 一眼对比 ═══ */}
+          <Reveal delay={100}>
+            <section className="pt-14">
+              <H2 eyebrow={en ? 'At a glance' : '一眼对比'} title={en ? 'Which one fits your team?' : '哪一个更适合你的团队？'} />
+              <div className="mt-6 overflow-hidden rounded-2xl border border-gold/20 bg-white">
+                <div className="grid grid-cols-2 sm:grid-cols-[170px_1fr_1fr]">
+                  <div className="hidden bg-sand-50 sm:block" />
+                  <div className="flex items-center gap-2 bg-navy px-4 py-3 text-[13px] font-bold text-white">
+                    <span className="h-2.5 w-2.5 shrink-0 rounded-full bg-white/80" />
+                    Flexi Vital Care Plus
+                  </div>
+                  <div className="flex items-center gap-2 bg-gold-deep px-4 py-3 text-[13px] font-bold text-white">
+                    <span className="h-2.5 w-2.5 shrink-0 rounded-full bg-white/80" />
+                    Premier Intl Medical
+                  </div>
+                </div>
+                {cmp.map((r, i) => (
+                  <div key={r.k} className={`grid grid-cols-2 sm:grid-cols-[170px_1fr_1fr] ${i % 2 ? 'bg-sand-50' : ''}`}>
+                    <div className="col-span-2 flex items-center gap-2 px-4 pt-3 text-[13px] font-black text-navy sm:col-span-1 sm:py-3.5">
+                      <span className="text-gold-deep">
+                        <Icon k={r.icon} size={16} sw={2} />
+                      </span>
+                      {r.k}
+                    </div>
+                    <p className="px-4 pb-3 pt-1 text-[13px] leading-snug text-navy/80 sm:py-3.5">{r.a}</p>
+                    <p className="border-l border-gold/20 px-4 pb-3 pt-1 text-[13px] leading-snug text-navy/80 sm:py-3.5">{r.b}</p>
                   </div>
                 ))}
               </div>
-              <p className="mt-4 text-xs leading-relaxed text-mist">
+            </section>
+          </Reveal>
+
+          {/* ═══ WorkWell ═══ */}
+          <Reveal delay={100}>
+            <section className="pt-16">
+              <H2 eyebrow="WorkWell with AIA" title={en ? 'Employee wellness, sponsored' : '员工福利活动，我们来赞助'} />
+              <p className="mt-2 max-w-2xl text-sm leading-relaxed text-mist">
+                {en ? 'Most activities complimentary. I plan them into a year-round calendar.' : '大部分活动免费，我帮你排成一整年的员工日历。'}
+              </p>
+
+              <div className="mt-8 grid items-center gap-8 lg:grid-cols-[360px_1fr] lg:gap-10">
+                <div className="min-w-0">
+                  <CalendarWheel months={months} hint={en ? 'Sample annual activity calendar' : '一年活动示例日历'} />
+                  <p className="mt-3 text-center text-[11px] text-mist">
+                    {en ? 'Sample calendar · tap a month' : '示例日历 · 点一下月份看看'}
+                  </p>
+                </div>
+
+                <div className="min-w-0">
+                  <div className="mb-4 flex items-end gap-3">
+                    <CountUp value={`${actTotal}`} className="text-4xl font-black leading-none text-gold-deep" />
+                    <p className="pb-1 text-sm font-bold text-navy">
+                      {en ? `activities across ${acts.length} categories` : `种活动可选 · ${acts.length} 大类`}
+                    </p>
+                  </div>
+                  {/* 手机端横向滑动,平板以上两列网格 */}
+                  <div className="-mx-6 flex snap-x snap-mandatory gap-3 overflow-x-auto px-6 pb-2 [scrollbar-width:none] sm:mx-0 sm:grid sm:grid-cols-2 sm:overflow-visible sm:px-0 sm:pb-0 [&::-webkit-scrollbar]:hidden">
+                    {acts.map((g) => (
+                      <div key={g.t} className="card w-[76%] shrink-0 snap-start p-4 sm:w-auto">
+                        <div className="flex items-center gap-2.5">
+                          <span className="flex h-10 w-10 items-center justify-center rounded-full bg-navy text-gold">
+                            <Icon k={g.icon} size={19} />
+                          </span>
+                          <h3 className="text-[15px] font-bold text-navy">{g.t}</h3>
+                          <span className="ml-auto text-xs font-black tabular-nums text-gold-deep">{g.items.length}</span>
+                        </div>
+                        <div className="mt-3 flex flex-wrap gap-1.5">
+                          {g.items.map((it) => (
+                            <span key={it} className="rounded-full bg-gold/10 px-2.5 py-0.5 text-[11.5px] leading-relaxed text-navy/80">
+                              {it}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                  <p className="mt-2 text-[11px] text-mist sm:hidden">{en ? 'Swipe for more →' : '左右滑动查看 →'}</p>
+                </div>
+              </div>
+              <p className="mt-5 text-[11px] leading-relaxed text-mist">
                 {en
                   ? 'Availability depends on team size and plan; some partner services at preferential rates (LPA, will writing); plus partner perks like citizen cancer screening slots and home-based children vaccination.'
-                  : '活动视团队规模与方案而定;部分合作伙伴服务享优惠价(LPA认证、遗嘱服务),另有公民癌症筛查名额、儿童上门疫苗等伙伴福利。'}
+                  : '活动视团队规模与方案而定；部分合作伙伴服务享优惠价（LPA认证、遗嘱服务），另有公民癌症筛查名额、儿童上门疫苗等伙伴福利。'}
               </p>
-            </div>
+            </section>
           </Reveal>
 
-          {/* 流程 */}
-          <Reveal delay={180}>
-            <div className="mt-16">
-              <p className="eyebrow">{en ? 'How it works' : '合作流程'}</p>
-              <h2 className="mt-2 text-xl font-black leading-snug text-navy md:text-2xl">
-                {en ? 'From first chat to full coverage' : '从第一次沟通到全员保障'}
-              </h2>
-              <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          {/* ═══ 合作流程 ═══ */}
+          <Reveal delay={100}>
+            <section className="pt-16">
+              <H2 eyebrow={en ? 'How it works' : '合作流程'} title={en ? 'From first chat to full coverage' : '从第一次沟通到全员保障'} />
+              <ol className="mt-6 grid grid-cols-2 gap-3 lg:grid-cols-4 lg:gap-4">
                 {steps.map((s, i) => (
-                  <div key={s.t} className="card h-full p-6">
-                    <span className="flex h-9 w-9 items-center justify-center rounded-full bg-navy text-sm font-bold text-white">
+                  <li key={s.t} className="card relative overflow-hidden p-5">
+                    <span aria-hidden className="pointer-events-none absolute -right-1 -top-3 select-none text-[4.5rem] font-black leading-none text-gold/10">
                       {i + 1}
                     </span>
-                    <h3 className="mt-4 text-[15px] font-bold text-navy">{s.t}</h3>
-                    <p className="mt-1.5 text-[13px] leading-[1.8] text-mist">{s.d}</p>
-                  </div>
+                    <span className="relative flex h-11 w-11 items-center justify-center rounded-2xl bg-navy text-gold">
+                      <Icon k={s.icon} size={21} />
+                    </span>
+                    <h3 className="relative mt-4 text-[15px] font-black leading-snug text-navy">{s.t}</h3>
+                    <span className="relative mt-2 inline-flex items-center gap-1 rounded-full bg-gold/10 px-2.5 py-1 text-[11px] font-bold text-gold-deep">
+                      <Icon k="clock" size={12} sw={2.2} />
+                      {s.chip}
+                    </span>
+                  </li>
                 ))}
-              </div>
-            </div>
+              </ol>
+            </section>
           </Reveal>
 
-          {/* CTA */}
-          <Reveal delay={200}>
-            <div className="card mt-14 flex flex-col items-start gap-5 border-gold/40 bg-gradient-to-br from-white to-sand-50 p-7 sm:flex-row sm:items-center sm:justify-between md:p-8">
-              <div>
-                <p className="text-lg font-black text-navy">
-                  {en ? 'Get a proposal for your team' : '给你的团队要一份方案'}
-                </p>
-                <p className="mt-1.5 max-w-xl text-sm leading-relaxed text-mist">
-                  {en
-                    ? 'Headcount + budget → tailored comparison in 1–3 working days. Renewing soon? Get a free review of your current plan.'
-                    : '人数+预算 → 1–3个工作日拿到可并排对比的方案。现有团险快到期?顺便做一次免费方案复核。'}
-                </p>
+          {/* ═══ CTA ═══ */}
+          <Reveal delay={120}>
+            <div className="relative mt-14 overflow-hidden rounded-3xl bg-navy p-7 md:p-10">
+              <NavyDecor />
+              <div className="relative flex flex-col items-start gap-6 sm:flex-row sm:items-center">
+                <HeroArt className="hidden h-28 w-28 shrink-0 sm:block" />
+                <div className="flex-1">
+                  <p className="text-xl font-black text-cream">{en ? 'Get a proposal for your team' : '给你的团队要一份方案'}</p>
+                  <div className="mt-3 flex flex-wrap items-center gap-2 text-xs font-semibold text-cream/80">
+                    <span className="rounded-full border border-cream/20 px-3 py-1">{en ? 'Headcount + budget' : '人数 + 预算'}</span>
+                    <Icon k="arrow" size={14} className="text-gold" />
+                    <span className="rounded-full border border-cream/20 px-3 py-1">{en ? 'Comparison in 1–3 days' : '1–3个工作日出对比'}</span>
+                  </div>
+                  <p className="mt-3 text-xs text-cream/60">
+                    {en ? 'Renewing soon? Get a free review of your current plan.' : '现有团险快到期？顺便做一次免费方案复核。'}
+                  </p>
+                </div>
+                <Link href="/corporate/consult" className="btn-gold shrink-0">
+                  {en ? 'Book a consultation' : '预约企业咨询'}
+                </Link>
               </div>
-              <Link
-                href="/corporate/consult"
-                className="inline-flex shrink-0 items-center justify-center gap-2 rounded-xl bg-navy px-7 py-3.5 text-sm font-semibold text-white transition-all duration-300 hover:bg-navy-deep"
-              >
-                {en ? 'Book a consultation' : '预约企业咨询'}
-              </Link>
             </div>
           </Reveal>
 
