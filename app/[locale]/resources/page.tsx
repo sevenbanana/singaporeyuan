@@ -80,7 +80,14 @@ const IconClock = (
   </svg>
 );
 
-type ResourceGroup = 'care' | 'money' | 'settle';
+const IconGlobe = (
+  <svg {...ic}>
+    <circle cx="12" cy="12" r="8.5" />
+    <path d="M3.5 12h17M12 3.5c2.4 2.4 3.6 5.2 3.6 8.5s-1.2 6.1-3.6 8.5c-2.4-2.4-3.6-5.2-3.6-8.5s1.2-6.1 3.6-8.5z" />
+  </svg>
+);
+
+type ResourceGroup ='care' | 'money' | 'settle';
 
 type Resource = {
   key: string;
@@ -167,6 +174,18 @@ export default async function ResourcesPage({
       icon: IconSpark,
       external: en ? '/guides/pr-checklist-en.html' : '/guides/pr-checklist.html',
       cta: en ? 'Read the guide' : '阅读指南',
+    },
+    {
+      key: 'odi',
+      group: 'settle',
+      tag: en ? 'Interactive' : '互动专题',
+      title: en ? "China's New Outbound Investment Rules" : '对外投资管理办法速读',
+      desc: en
+        ? 'NDRC Order No. 49, in force from 1 December 2026, now covers individuals too. A scrollable brief: tap cards to check what counts, pick your situation to see whether you need approval, filing or a report, and drag a slider to see how fines scale with the amount invested. (In Chinese)'
+        : '国家发改委新规12月1日起施行,个人也正式纳入。一页滚动读完:点卡片判断哪些算对外投资,选几个选项就知道该走核准、备案还是报告,拖动滑块看罚款按投资额怎么算,还有国内家人来新加坡开公司等场景问答。',
+      icon: IconGlobe,
+      external: '/guides/outbound-investment.html',
+      cta: en ? 'Scroll the story' : '滚动看看',
     },
     {
       key: 'tax',

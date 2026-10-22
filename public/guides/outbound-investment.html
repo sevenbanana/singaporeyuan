@@ -1,0 +1,1566 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>对外投资管理办法速读 | 新加坡小圆姐</title>
+<meta name="description" content="国家发展改革委《对外投资管理办法》（2026年第49号令）互动速读：哪些算对外投资，核准、备案、报告怎么分，国内家人来新加坡开公司要先办什么，附自查工具和罚款测算。2026年12月1日起施行。">
+<link rel="icon" href="/logo-mark.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=Noto+Sans+SC:wght@400;500;700;900&display=swap">
+
+<style>
+/* ───────────────── tokens(与 wealth-across-cycles 同一套) ───────────────── */
+:root{
+  --ink:#0A1C2E;
+  --ink-2:#0F2A44;
+  --ink-3:#1B4269;
+  --paper:#F4EEE1;
+  --paper-2:#E6DCC7;
+  /* 浅色卡片:冰蓝白,与深海军蓝背景同一冷色系(原暖米色与背景不协调) */
+  --card-l1:#F1F5FA;
+  --card-l2:#DFE7F1;
+  --card-line:rgba(141,185,226,.45);
+  --gold:#D6A94C;
+  --gold-2:#A9812F;
+  --ember:#B5503C;
+  --ember-l:#E9917C;
+  --sky:#8DB9E2;
+  --mist:#93A9BE;
+  --slate:#51687D;
+  --field:#0F2A44;
+
+  --fs-body:1.0625rem;
+  --wrap:1080px;
+  --shadow:0 24px 60px -28px rgba(0,0,0,.75);
+  --sans:"Archivo",system-ui,-apple-system,"Helvetica Neue",Arial,"Noto Sans SC","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+}
+
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  margin:0;
+  background:var(--ink);
+  color:var(--paper);
+  font-family:var(--sans);
+  font-size:var(--fs-body);
+  line-height:1.85;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+h1,h2,h3,h4{margin:0;font-weight:900;line-height:1.22;text-wrap:balance;letter-spacing:.01em}
+p{margin:0}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px;border-radius:4px}
+
+/* ───────────────── fixed field (layer 0) ───────────────── */
+.field{position:fixed;inset:0;z-index:0;pointer-events:none;background:var(--ink);transition:background-color 1.2s ease}
+.field__glow{position:absolute;inset:-15% -10%;background:
+   radial-gradient(58% 42% at 22% 12%, color-mix(in srgb, var(--field) 92%, #2C6A9E) 0%, transparent 62%),
+   radial-gradient(50% 40% at 86% 78%, rgba(214,169,76,.13) 0%, transparent 60%);
+  transition:background 1.2s ease}
+.field__grain{position:absolute;inset:0;opacity:.5;
+  background-image:radial-gradient(rgba(255,255,255,.055) 1px, transparent 1px);
+  background-size:3px 3px}
+.field__waves{position:absolute;left:-6%;right:-6%;bottom:-4%;height:46vh;opacity:.5}
+.field__waves svg{width:100%;height:100%}
+
+/* ───────────────── chrome ───────────────── */
+.progress{position:fixed;top:0;left:0;height:3px;width:0;background:linear-gradient(90deg,var(--gold-2),var(--gold));z-index:60}
+.brandbar{position:fixed;top:0;left:0;right:0;z-index:55;display:flex;align-items:center;justify-content:space-between;gap:12px;
+  padding:14px clamp(16px,4vw,40px);pointer-events:none;
+  background:linear-gradient(180deg,rgba(10,28,46,.86),rgba(10,28,46,0));
+  opacity:0;transform:translateY(-12px);transition:opacity .5s ease,transform .5s ease}
+.brandbar.on{opacity:1;transform:none}
+.brandbar b{font-weight:700;font-size:.9rem;letter-spacing:.06em}
+.brandbar span{font-size:.72rem;letter-spacing:.24em;color:var(--mist)}
+
+.dots{position:fixed;right:22px;top:50%;transform:translateY(-50%);z-index:55;display:flex;flex-direction:column;gap:11px}
+.dots a{width:9px;height:9px;border-radius:50%;background:rgba(244,238,225,.24);transition:.35s;position:relative}
+.dots a::after{content:attr(data-t);position:absolute;right:18px;top:50%;transform:translateY(-50%);
+  white-space:nowrap;font-size:.72rem;letter-spacing:.06em;color:var(--mist);opacity:0;transition:.3s;pointer-events:none}
+.dots a:hover::after{opacity:1}
+.dots a.on{background:var(--gold);transform:scale(1.45)}
+@media(max-width:900px){.dots{display:none}}
+
+/* ───────────────── scenes ───────────────── */
+.scene{position:relative;z-index:1;padding:clamp(76px,13vh,140px) clamp(18px,5vw,48px)}
+.scene__art{position:absolute;inset:0;z-index:-1;pointer-events:none;overflow:hidden}
+[data-depth]{transform:translate3d(0,var(--py,0px),0);will-change:transform}
+.inner{max-width:var(--wrap);margin:0 auto;position:relative}
+.narrow{max-width:64ch}
+
+.eyebrow{font-size:.72rem;letter-spacing:.34em;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:14px}
+.h-sec{font-size:clamp(1.85rem,4.4vw,2.9rem)}
+.rule{width:56px;height:3px;background:var(--gold);margin:20px 0 26px;border-radius:2px}
+.lede{color:#CDDAE6;max-width:60ch;margin-top:18px}
+.src{font-size:.76rem;line-height:1.7;color:#6E8399;margin-top:22px;letter-spacing:.01em}
+.art{font-size:.74rem;font-weight:500;color:var(--mist);letter-spacing:.04em;white-space:nowrap;margin-left:6px}
+
+/* reveal */
+.rise{opacity:0;transform:translateY(30px)}
+.rise.in{opacity:1;transform:none;transition:opacity .85s ease var(--d,0s),transform .85s cubic-bezier(.2,.75,.25,1) var(--d,0s)}
+
+/* ───────────────── hero ───────────────── */
+.hero{min-height:100svh;display:flex;align-items:center;padding-top:clamp(60px,10vh,110px)}
+.hero__art{position:absolute;left:72%;top:56%;width:min(56vw,620px);opacity:.95;
+  transform:translate(-50%,-50%) translate3d(0,var(--py,0px),0)}
+@media(max-width:820px){.hero__art{left:56%;top:76%;width:min(108vw,560px);opacity:.5}}
+.hero h1{font-size:clamp(2.9rem,10.5vw,7rem);line-height:1.04;letter-spacing:-.01em}
+.hero h1 em{font-style:normal;color:var(--gold);display:block}
+.hero__brand{display:flex;flex-wrap:wrap;align-items:center;gap:6px 14px;margin-bottom:26px}
+.hero__brand b{font-size:clamp(1.1rem,2.6vw,1.35rem);font-weight:900;letter-spacing:.02em}
+.hero__brand i{font-style:normal;font-size:.68rem;letter-spacing:.28em;color:var(--mist);text-transform:uppercase}
+.hero__sub{margin-top:30px;font-size:clamp(1rem,2.2vw,1.2rem);color:#D3E0EA;max-width:21em;text-wrap:pretty}
+.hero__meta{margin-top:44px;display:flex;flex-wrap:wrap;gap:10px 22px;font-size:.82rem;color:var(--mist);letter-spacing:.04em}
+.scroll-hint{position:absolute;left:50%;bottom:26px;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;
+  font-size:.74rem;letter-spacing:.22em;color:var(--mist)}
+.scroll-hint span{display:block;width:1px;height:38px;background:linear-gradient(var(--gold),transparent);animation:drip 2.1s infinite}
+@keyframes drip{0%{transform:scaleY(.2);transform-origin:top;opacity:0}40%{opacity:1}100%{transform:scaleY(1);transform-origin:top;opacity:0}}
+
+/* ───────────────── chapter openers ───────────────── */
+.chapter{min-height:86svh;display:flex;align-items:center}
+.chapter__no{position:absolute;right:3%;top:8%;font-size:clamp(8rem,24vw,19rem);font-weight:800;line-height:.8;
+  color:rgba(214,169,76,.09);letter-spacing:-.04em;z-index:-1}
+.chapter h2{font-size:clamp(2.2rem,7vw,4.2rem);line-height:1.08}
+.chapter__art{position:absolute;right:2%;bottom:6%;width:min(46vw,430px);opacity:.85}
+@media(max-width:820px){.chapter__art{right:-4%;bottom:1%;width:min(48vw,210px);opacity:.35}}
+
+/* ───────────────── cards ───────────────── */
+.card{background:linear-gradient(160deg,var(--card-l1),var(--card-l2));border:1px solid var(--card-line);color:var(--ink);border-radius:22px;padding:clamp(22px,3.4vw,38px);box-shadow:var(--shadow)}
+.card--dark{background:linear-gradient(160deg,#12314F,#0C2135);color:var(--paper);box-shadow:var(--shadow);border:1px solid rgba(214,169,76,.22)}
+.card h3{font-size:1.15rem}
+.card p{color:var(--slate)}
+.card--dark p{color:#C3D3E0}
+.card ul{margin:10px 0 0;padding-left:1.2em;color:var(--slate);display:flex;flex-direction:column;gap:4px}
+.card li::marker{color:var(--gold-2)}
+
+.grid{display:grid;gap:clamp(14px,2vw,22px)}
+.g2{grid-template-columns:repeat(2,1fr)}
+.g3{grid-template-columns:repeat(3,1fr)}
+.g4{grid-template-columns:repeat(4,1fr)}
+@media(max-width:860px){.g3,.g4{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:620px){.g2,.g3,.g4{grid-template-columns:1fr}}
+
+/* stats */
+.stat{padding:22px 4px}
+.stat__n{font-size:clamp(2rem,4.6vw,3rem);font-weight:800;color:var(--gold);line-height:1.1;font-variant-numeric:tabular-nums}
+.stat__n small{font-size:.45em;font-weight:700;margin-left:4px}
+.stat__l{font-weight:700;margin-top:6px;font-size:.98rem}
+.stat__d{color:var(--mist);font-size:.85rem;line-height:1.6;margin-top:4px}
+
+.pill{display:inline-flex;align-items:center;gap:8px;padding:5px 13px;border-radius:999px;font-size:.84rem;font-weight:600;line-height:1.5;white-space:nowrap;
+  border:1px solid rgba(244,238,225,.22);background:rgba(244,238,225,.06);color:var(--paper)}
+.pill--star{background:var(--gold);border-color:transparent;color:#20180A;font-weight:700}
+
+/* 三种手续的配色:核准 = 暗红,备案 = 天蓝,报告 = 金 */
+.k-approve{background:rgba(181,80,60,.22);border-color:rgba(233,145,124,.55);color:var(--ember-l)}
+.k-file{background:rgba(141,185,226,.14);border-color:rgba(141,185,226,.5);color:var(--sky)}
+.k-report{background:rgba(214,169,76,.16);border-color:rgba(214,169,76,.55);color:var(--gold)}
+.k-plain{background:rgba(244,238,225,.06);border-color:rgba(244,238,225,.22);color:var(--mist)}
+
+/* takeaway strip */
+.takeaway{display:block;margin-top:26px;padding:18px 22px;border-radius:16px;
+  background:rgba(214,169,76,.12);border-left:3px solid var(--gold);font-weight:500}
+.takeaway b{color:var(--gold)}
+.takeaway--warn{background:rgba(181,80,60,.14);border-left-color:var(--ember)}
+.takeaway--warn b{color:var(--ember-l)}
+
+/* ───────────────── chartbox ───────────────── */
+.chartbox{background:linear-gradient(160deg,var(--card-l1),var(--card-l2));border:1px solid var(--card-line);color:var(--ink);border-radius:22px;padding:clamp(16px,2.6vw,28px);box-shadow:var(--shadow)}
+.chartbox--dark{background:linear-gradient(165deg,#12314F,#0B1E31);color:var(--paper);border:1px solid rgba(214,169,76,.2)}
+.scroller{overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:thin}
+.scroller svg{display:block;width:100%;height:auto}
+@media(max-width:820px){
+  .scroller--wide svg{min-width:620px}
+  .scroller--wide{position:relative}
+  .scroller--wide::after{content:"← 左右滑动查看完整图表";display:block;font-size:.72rem;letter-spacing:.08em;color:var(--mist);padding:6px 2px 0;position:sticky;left:0}
+  .field__waves{height:30vh;opacity:.35}
+}
+.chart-title{font-size:.82rem;letter-spacing:.16em;color:var(--slate);margin-bottom:10px;font-weight:600}
+.chartbox--dark .chart-title{color:var(--mist)}
+
+.ax{stroke:rgba(244,238,225,.3);stroke-width:1}
+.tick{fill:var(--mist);font-size:13px;font-family:var(--sans)}
+.lab{fill:var(--paper);font-size:14px;font-weight:700;font-family:var(--sans)}
+.draw{fill:none;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:var(--len);stroke-dashoffset:var(--len);
+  transition:stroke-dashoffset 2.4s cubic-bezier(.35,.1,.2,1) var(--d,0s)}
+.is-live .draw{stroke-dashoffset:0}
+.fade{opacity:0;transition:opacity .8s ease var(--d,.5s)}
+.is-live .fade{opacity:1}
+
+/* ───────────────── 按钮组(与情绪曲线的节点按钮同款) ───────────────── */
+.pills{display:flex;flex-wrap:wrap;gap:8px}
+.pills button,.opts label{font:inherit;font-size:.86rem;font-weight:600;cursor:pointer;padding:8px 15px;border-radius:999px;line-height:1.45;
+  border:1px solid rgba(244,238,225,.25);background:transparent;color:var(--paper);transition:.28s;text-align:left}
+.pills button:hover,.opts label:hover{border-color:var(--gold)}
+.pills button.on{background:var(--gold);border-color:var(--gold);color:#20180A}
+.pills button.on.t-approve{background:var(--ember);border-color:var(--ember);color:#fff}
+.pills button.on.t-file{background:var(--sky);border-color:var(--sky);color:var(--ink)}
+.opts{display:flex;flex-wrap:wrap;gap:8px}
+.opts input{position:absolute;opacity:0;width:1px;height:1px;pointer-events:none}
+.opts input:checked + label{background:var(--gold);border-color:var(--gold);color:#20180A}
+.opts input:focus-visible + label{outline:2px solid var(--gold);outline-offset:3px}
+
+.note{margin-top:20px;min-height:5.4em;border-left:3px solid var(--gold);padding-left:18px}
+.note.bad{border-color:var(--ember)}
+.note.blue{border-color:var(--sky)}
+.note b{display:block;font-size:1.2rem;margin-bottom:4px}
+.note span,.note p{color:#C3D3E0}
+.note p + p{margin-top:8px}
+.pending{display:block;margin-top:12px;padding:10px 14px;border-radius:12px;border:1px dashed rgba(214,169,76,.6);color:var(--gold)!important;font-size:.92rem}
+
+/* ───────────────── 六个要点 ───────────────── */
+.key{display:flex;flex-direction:column;gap:8px}
+.key__no{font-size:2.4rem;font-weight:800;color:var(--gold);line-height:1;font-variant-numeric:tabular-nums}
+.key h3{font-size:1.12rem;color:var(--paper)}
+
+/* ───────────────── 八种情形 ───────────────── */
+.act{padding:18px 18px 16px;border-radius:18px;border:1px solid rgba(214,169,76,.22);background:rgba(255,255,255,.04);
+  display:grid;grid-template-columns:40px minmax(0,1fr);gap:12px;align-items:start}
+.act .ico{width:40px;height:40px}
+.act__no{font-size:.78rem;letter-spacing:.2em;color:var(--gold);font-weight:700}
+.act p{margin-top:6px;color:#D3E0EA;font-size:.96rem;line-height:1.7}
+
+/* ───────────────── 判断题卡片 ───────────────── */
+.quiz{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(12px,2vw,20px);align-items:start}
+@media(max-width:860px){.quiz{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:620px){.quiz{grid-template-columns:1fr}}
+.qcard{cursor:pointer;text-align:left;font:inherit;color:inherit;border:1px solid rgba(214,169,76,.28);background:rgba(255,255,255,.04);
+  border-radius:20px;padding:22px;transition:.35s;display:flex;flex-direction:column;gap:10px}
+.qcard:hover{border-color:var(--gold);transform:translateY(-3px)}
+.qcard__q{display:block;font-size:1.08rem;font-weight:700;line-height:1.55}
+.qcard__hint{display:block;font-size:.8rem;letter-spacing:.14em;color:var(--mist)}
+.qcard__a{display:none;font-size:.95rem;line-height:1.75;color:var(--slate)}
+.qcard__a .pill{margin-bottom:8px}
+.qcard.on{background:linear-gradient(160deg,var(--card-l1),var(--card-l2));color:var(--ink);border-color:var(--card-line)}
+.qcard.on .qcard__hint{display:none}
+.qcard.on .qcard__a{display:block;animation:pop .45s ease}
+.qcard.on .art{color:var(--slate)}
+.qcard.on .k-report{background:var(--gold);border-color:var(--gold);color:#20180A}
+.qcard.on .k-plain{background:rgba(10,28,46,.08);border-color:rgba(10,28,46,.2);color:var(--ink-3)}
+.qcard.on .k-tbd{background:transparent;border:1px dashed var(--gold-2);color:var(--gold-2)}
+@keyframes pop{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+/* ───────────────── 持股滑块 ───────────────── */
+.ctrl__top{display:flex;justify-content:space-between;align-items:baseline;gap:12px;font-size:.92rem;font-weight:600}
+.ctrl__v{font-size:1.15rem;font-weight:800;color:var(--gold);font-variant-numeric:tabular-nums}
+input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:4px;border-radius:4px;background:rgba(244,238,225,.22);margin-top:14px}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:24px;height:24px;border-radius:50%;background:var(--gold);cursor:pointer;border:3px solid #0F2A44}
+input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;background:var(--gold);cursor:pointer;border:3px solid #0F2A44}
+.share{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:clamp(18px,3vw,34px);align-items:center}
+@media(max-width:820px){.share{grid-template-columns:1fr}}
+.strack{position:relative;height:56px;margin-top:22px}
+.strack__bar{position:absolute;left:0;right:0;top:22px;height:12px;border-radius:8px;background:rgba(244,238,225,.12);overflow:hidden}
+.strack__fill{height:100%;width:0;background:linear-gradient(90deg,var(--gold-2),var(--gold));border-radius:8px;transition:width .35s cubic-bezier(.3,.8,.3,1)}
+.strack__ctl{position:absolute;left:50%;right:0;top:12px;height:32px;border:1px dashed rgba(233,145,124,.6);border-radius:10px;background:rgba(181,80,60,.08)}
+.strack__ctl span{position:absolute;right:8px;top:-22px;font-size:.72rem;letter-spacing:.08em;color:var(--ember-l)}
+.tickm{position:absolute;top:16px;width:2px;height:24px;margin-left:-1px;background:rgba(244,238,225,.3);border-radius:1px;transition:background .3s}
+.tickm i{position:absolute;top:28px;left:50%;transform:translateX(-50%);font-style:normal;font-size:.7rem;color:var(--mist);font-variant-numeric:tabular-nums}
+.tickm.hit{background:var(--gold)}
+.tickm.hit i{color:var(--gold);font-weight:700}
+.share__big{font-size:clamp(2.4rem,6.4vw,3.6rem);font-weight:800;color:var(--gold);line-height:1.1;font-variant-numeric:tabular-nums}
+
+/* ───────────────── 三种手续 ───────────────── */
+.trk{margin-top:18px;display:grid;grid-template-columns:1fr;gap:0;border-top:1px solid rgba(244,238,225,.14)}
+.trk div{padding:13px 0 12px;border-bottom:1px solid rgba(244,238,225,.14)}
+.trk dt{font-size:.74rem;letter-spacing:.2em;color:var(--gold);font-weight:700}
+.trk dd{margin:4px 0 0;color:#D3E0EA;font-size:.96rem;line-height:1.7}
+.trk-title{display:flex;align-items:center;gap:14px;margin-top:22px}
+.trk-title h3{font-size:clamp(1.15rem,2.6vw,1.4rem);margin-top:6px}
+.split{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:clamp(18px,3vw,30px);align-items:stretch}
+@media(max-width:900px){.split{grid-template-columns:1fr}}
+
+/* ───────────────── 自查工具 ───────────────── */
+.checker{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:clamp(18px,3vw,34px);align-items:start}
+@media(max-width:860px){.checker{grid-template-columns:1fr}}
+fieldset{border:0;margin:0 0 18px;padding:0;min-width:0}
+legend{font-weight:700;font-size:.95rem;padding:0;margin-bottom:10px}
+.hint{font-size:.8rem;color:var(--mist);margin-top:8px}
+.path{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:2px 0 18px}
+.path .pill{animation:pop .45s ease}
+.path i{font-style:normal;color:var(--gold);font-weight:700}
+.res-title{font-size:clamp(1.3rem,3vw,1.7rem);font-weight:900;line-height:1.35;margin-bottom:6px}
+.rrows div{display:grid;grid-template-columns:5.2em minmax(0,1fr);gap:12px;padding:10px 0;border-bottom:1px solid rgba(244,238,225,.12);font-size:.96rem;line-height:1.7}
+.rrows span:first-child{color:var(--gold);font-size:.82rem;font-weight:700;padding-top:2px;letter-spacing:.06em}
+.rrows span:last-child{color:#D3E0EA}
+.also{display:flex;flex-direction:column;gap:8px;margin-top:16px;font-size:.92rem;line-height:1.7;color:#C3D3E0}
+.also p{display:grid;grid-template-columns:auto minmax(0,1fr);gap:10px;align-items:baseline}
+
+/* ───────────────── 办理时限 ───────────────── */
+.tbars{display:flex;flex-direction:column;gap:20px}
+.tbar-lab{display:flex;justify-content:space-between;align-items:baseline;gap:10px;flex-wrap:wrap;font-size:.95rem;margin-bottom:8px}
+.tbar-lab b{font-size:1rem}
+.tbar-lab span{font-weight:800;font-variant-numeric:tabular-nums;color:var(--ink-3)}
+.tbar{display:flex;height:16px;border-radius:5px;background:rgba(10,28,46,.08);overflow:hidden}
+.seg{display:block;height:100%;width:0;transition:width 1.1s cubic-bezier(.25,.8,.25,1) var(--d,0s)}
+.is-live .seg{width:var(--w)}
+.seg--approve{background:var(--ember)}
+.seg--file{background:var(--ink-3)}
+.seg--report{background:var(--gold-2)}
+.seg--x{opacity:.55}
+.seg--approve.seg--x{background:repeating-linear-gradient(135deg,var(--ember) 0 3px,transparent 3px 7px)}
+.seg--file.seg--x{background:repeating-linear-gradient(135deg,var(--ink-3) 0 3px,transparent 3px 7px)}
+.tbar-axis{display:flex;justify-content:space-between;font-size:.72rem;color:var(--slate);font-variant-numeric:tabular-nums;margin-top:-6px}
+
+/* ───────────────── 罚款测算 ───────────────── */
+.fine{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:clamp(18px,3vw,34px);align-items:center}
+@media(max-width:820px){.fine{grid-template-columns:1fr}}
+.fine__big{font-size:clamp(2.2rem,6vw,3.3rem);font-weight:800;color:var(--ember-l);line-height:1.12;font-variant-numeric:tabular-nums}
+.frow{margin-top:16px}
+.frow__lab{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;font-size:.9rem;margin-bottom:6px}
+.frow__lab b{font-variant-numeric:tabular-nums}
+.frow__track{position:relative;height:12px;border-radius:8px;background:rgba(244,238,225,.12)}
+.frow__fill{position:absolute;top:0;bottom:0;border-radius:8px}
+.fscale{display:flex;justify-content:space-between;font-size:.7rem;color:var(--mist);margin-top:6px;font-variant-numeric:tabular-nums}
+.pen h3{font-size:1.02rem;color:var(--paper)}
+.pen p{margin-top:6px;font-size:.94rem}
+
+/* ───────────────── 新旧对比 ───────────────── */
+.chg{display:flex;flex-direction:column;gap:10px;padding:18px 20px;border-radius:18px;border:1px solid rgba(244,238,225,.16);background:rgba(255,255,255,.04);transition:opacity .35s,transform .35s}
+.chg h3{font-size:1.05rem}
+.chg p{color:#C3D3E0;font-size:.95rem;line-height:1.75}
+.chg.out{display:none}
+
+/* ───────────────── 联系 ───────────────── */
+.contact{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:clamp(20px,3vw,40px);align-items:center}
+@media(max-width:820px){.contact{grid-template-columns:1fr;text-align:center;justify-items:center}}
+.avatar{width:132px;height:132px;border-radius:50%;object-fit:cover;border:3px solid var(--gold)}
+.qr{width:132px;height:132px;border-radius:12px;background:#fff;padding:7px}
+.contact__lines{display:flex;flex-direction:column;gap:6px;margin-top:14px;font-size:.98rem}
+.contact__lines a{text-decoration:none;border-bottom:1px solid rgba(214,169,76,.5);padding-bottom:1px}
+.qr-cap{font-size:.76rem;color:var(--mist);text-align:center;margin-top:8px;letter-spacing:.08em}
+
+.srclist{margin:0;padding-left:1.3em;display:flex;flex-direction:column;gap:8px;font-size:.92rem;color:#C3D3E0}
+.srclist li::marker{color:var(--gold);font-weight:700}
+.srclist a{text-decoration:none;border-bottom:1px solid rgba(214,169,76,.5)}
+
+footer{position:relative;z-index:1;padding:40px clamp(18px,5vw,48px) 60px;border-top:1px solid rgba(244,238,225,.12);
+  color:#6E8399;font-size:.78rem;line-height:1.8}
+footer .inner{display:flex;flex-wrap:wrap;gap:12px 28px;justify-content:space-between}
+
+/* ───────────────── 线稿图标 ───────────────── */
+.ico{width:44px;height:44px;color:var(--gold);flex:none;display:block}
+.ico--xs{width:22px;height:22px;display:inline-block;vertical-align:-5px}
+.ico--sm{width:34px;height:34px}
+.ico--lg{width:60px;height:60px}
+.card:not(.card--dark) .ico,.qcard.on .ico{color:var(--gold-2)}
+.hd{display:flex;align-items:center;gap:12px}
+.ico-ring{width:58px;height:58px;border-radius:50%;display:grid;place-items:center;flex:none;
+  background:rgba(214,169,76,.12);border:1px solid rgba(214,169,76,.35)}
+.ico-ring .ico{width:36px;height:36px}
+.stat .ico{margin-bottom:12px}
+.key__top{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
+.pills .ico--xs{margin-right:6px}
+.pills button.on .ico{color:currentColor}
+
+/* 理财渠道三张小卡 */
+.chan{display:flex;align-items:center;gap:14px;padding:16px 18px;border-radius:18px;border:1px solid rgba(214,169,76,.22);background:rgba(255,255,255,.04)}
+.chan b{display:block;font-size:1.02rem}
+.chan span{display:block;font-size:.84rem;color:var(--mist);line-height:1.5}
+
+/* 资金出海三条路示意图 */
+.routes{display:block;width:100%;height:auto}
+.routes .route{cursor:pointer;transition:opacity .45s ease}
+.routes .route.dim{opacity:.3}
+.routes .route,.routes .route:focus,.routes .route:focus-visible{outline:none}
+.routes .route:focus-visible rect{stroke-width:3.5}
+.dg-t{font-family:var(--sans);font-size:20px;font-weight:800;fill:var(--ink)}
+.dg-s{font-family:var(--sans);font-size:15px;font-weight:500;fill:var(--slate)}
+.dg-l{font-family:var(--sans);font-size:16px;font-weight:700}
+.dg-b{font-family:var(--sans);font-size:18px;font-weight:800;fill:#fff;letter-spacing:.12em}
+.note__row{display:grid;grid-template-columns:auto minmax(0,1fr);gap:16px;align-items:start}
+@media(max-width:560px){.note__row{grid-template-columns:1fr}.note__row .ico-ring{width:48px;height:48px}.note__row .ico-ring .ico{width:30px;height:30px}}
+
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{transition-duration:.01ms !important;animation:none !important}
+  .rise{opacity:1;transform:none}
+  .seg{width:var(--w)}
+  .draw{stroke-dashoffset:0}
+  .fade{opacity:1}
+}
+</style>
+</head>
+<body>
+
+<!-- ══════════ hand-drawn illustration library ══════════ -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <filter id="rough">
+      <feTurbulence type="fractalNoise" baseFrequency="0.026" numOctaves="3" seed="7" result="n"/>
+      <feDisplacementMap in="SourceGraphic" in2="n" scale="3.2" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+    <filter id="rough-s">
+      <feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="2" seed="3" result="n"/>
+      <feDisplacementMap in="SourceGraphic" in2="n" scale="1.8" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+
+    <!-- 封面 · 一封盖了章的文件,坐船从国门驶向新加坡 -->
+    <symbol id="ill-cross" viewBox="0 0 620 340">
+      <g filter="url(#rough)" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M100 122Q300 -4 506 92" stroke="var(--gold)" stroke-width="2.2" stroke-dasharray="2 11" opacity=".9"/>
+        <path d="M492 80l16 12-18 6" stroke="var(--gold)" stroke-width="2.2"/>
+        <!-- 国门 -->
+        <g opacity=".7" stroke-width="2.2">
+          <path d="M26 152q70-34 140 0"/>
+          <path d="M40 152v66M152 152v66"/>
+          <path d="M52 170h88M52 186h88"/>
+          <path d="M80 218v-28h32v28"/>
+          <path d="M14 218h166"/>
+        </g>
+        <!-- 新加坡天际线 -->
+        <g opacity=".7" stroke-width="2.2">
+          <path d="M450 218l5-94h16l5 94M490 218l5-94h16l5 94M530 218l5-94h16l5 94"/>
+          <path d="M438 122h130q12 0 18-9"/>
+          <path d="M586 218v-48l10-10 10 10v48"/>
+          <path d="M424 218h196"/>
+        </g>
+        <!-- 船 + 文件 -->
+        <path d="M232 230h156l-20 30q-58 12-116 0z" fill="rgba(214,169,76,.16)"/>
+        <path d="M270 230v-52h80v52" fill="rgba(244,238,225,.08)"/>
+        <path d="M270 178l40 28 40-28"/>
+        <circle cx="310" cy="212" r="9" stroke="var(--gold)" fill="rgba(214,169,76,.35)"/>
+        <path d="M310 178V108"/>
+        <path d="M310 108l30 12-30 11z" fill="var(--gold)" stroke="var(--gold)"/>
+        <!-- 波浪 -->
+        <g stroke-width="2.6">
+          <path d="M6 272q30-18 60 0t60 0 60 0 60 0 60 0 60 0 60 0 60 0 60 0 60 0"/>
+          <path d="M-14 302q34-20 68 0t68 0 68 0 68 0 68 0 68 0 68 0 68 0 68 0" opacity=".7"/>
+          <path d="M6 330q30-18 60 0t60 0 60 0 60 0 60 0 60 0 60 0 60 0 60 0 60 0" opacity=".45"/>
+        </g>
+      </g>
+    </symbol>
+
+    <!-- 第一章 · 地球 + 放大镜 -->
+    <symbol id="ill-globe" viewBox="0 0 340 340">
+      <g filter="url(#rough)" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="146" cy="150" r="100" fill="rgba(244,238,225,.05)"/>
+        <ellipse cx="146" cy="150" rx="46" ry="100"/>
+        <path d="M50 116h192M50 184h192M146 50v200"/>
+        <circle cx="240" cy="236" r="46" stroke="var(--gold)" fill="rgba(214,169,76,.14)"/>
+        <path d="M274 270l42 42" stroke="var(--gold)" stroke-width="6"/>
+        <path d="M240 258s-18-14-18-28a18 18 0 0 1 36 0c0 14-18 28-18 28z" stroke="var(--gold)"/>
+        <circle cx="240" cy="230" r="6" stroke="var(--gold)"/>
+        <path d="M30 316h170" stroke-width="3" opacity=".6"/>
+      </g>
+    </symbol>
+
+    <!-- 第二章 · 印章 + 文件 -->
+    <symbol id="ill-seal" viewBox="0 0 340 340">
+      <g filter="url(#rough)" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M54 118h150l32 32v164H54z" fill="rgba(244,238,225,.06)"/>
+        <path d="M204 118v32h32"/>
+        <path d="M80 172h124M80 202h132M80 232h90"/>
+        <circle cx="184" cy="272" r="26" stroke="var(--gold)" fill="rgba(214,169,76,.12)"/>
+        <path d="M172 272l9 9 16-18" stroke="var(--gold)" stroke-width="3"/>
+        <g transform="rotate(14 262 80)">
+          <circle cx="262" cy="30" r="17"/>
+          <path d="M252 46h20v32h-20z"/>
+          <path d="M228 78h68v20h-68z" fill="rgba(214,169,76,.3)" stroke="var(--gold)"/>
+        </g>
+        <g stroke="var(--gold)" stroke-width="2.2" opacity=".85">
+          <path d="M226 126l-12 14M262 120v18M296 130l12 12"/>
+        </g>
+      </g>
+    </symbol>
+
+    <!-- 第三章 · 日历 + 沙漏 -->
+    <symbol id="ill-clock" viewBox="0 0 340 340">
+      <g filter="url(#rough)" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="34" y="96" width="156" height="156" rx="12" fill="rgba(244,238,225,.06)"/>
+        <path d="M34 138h156M74 78v34M150 78v34"/>
+        <path d="M64 170h.01M98 170h.01M132 170h.01M166 170h.01M64 204h.01M98 204h.01M166 204h.01M64 236h.01M98 236h.01" stroke-width="7"/>
+        <circle cx="132" cy="204" r="15" stroke="var(--gold)" fill="rgba(214,169,76,.2)"/>
+        <path d="M222 90h88M222 300h88"/>
+        <path d="M234 90q0 62 32 104 32-42 32-104" fill="rgba(244,238,225,.06)"/>
+        <path d="M234 300q0-62 32-106 32 44 32 106" fill="rgba(214,169,76,.22)" stroke="var(--gold)"/>
+        <path d="M20 318h300" stroke-width="3" opacity=".6"/>
+      </g>
+    </symbol>
+
+    <!-- 第四章 · 新加坡 -->
+    <symbol id="ill-sg" viewBox="0 0 360 340">
+      <g filter="url(#rough)" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="282" cy="70" r="34" stroke="var(--gold)" stroke-width="2.6"/>
+        <path d="M60 250l7-130h22l7 130M120 250l7-130h22l7 130M180 250l7-130h22l7 130" fill="rgba(244,238,225,.05)"/>
+        <path d="M44 118h184q16 0 24-12" stroke="var(--gold)"/>
+        <path d="M288 250v-70" />
+        <path d="M262 150q26 20 52 0l-12 30h-28z" fill="rgba(214,169,76,.22)" stroke="var(--gold)"/>
+        <path d="M268 166q20 10 40 0" stroke="var(--gold)" opacity=".7"/>
+        <path d="M20 250h320" stroke-width="3"/>
+        <g stroke-width="2.6">
+          <path d="M10 282q28-18 56 0t56 0 56 0 56 0 56 0 56 0"/>
+          <path d="M-8 312q30-20 60 0t60 0 60 0 60 0 60 0 60 0" opacity=".6"/>
+        </g>
+      </g>
+    </symbol>
+
+    <!-- ══ 线稿图标 64×64(与插画同一手绘滤镜) ══ -->
+    <symbol id="ic-person" viewBox="0 0 64 64"><g filter="url(#rough-s)" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="32" cy="21" r="10"/><path d="M12 56c2-12 10-19 20-19s18 7 20 19"/></g></symbol>
+    <symbol id="ic-alert" viewBox="0 0 64 64"><g filter="url(#rough-s)" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M32 8 5 54h54z"/><path d="M32 24v15"/><path d="M32 46h.01" stroke-width="4.5"/></g></symbol>
+    <symbol id="ic-relay" viewBox="0 0 64 64"><g filter="url(#rough-s)" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M6 56h52M10 56V30h14v26M40 56V18h14v38"/><path d="M15 38h4M15 46h4M45 26h4M45 34h4M45 42h4"/><path d="M26 34h11M33 29l5 5-5 5"/></g></symbol>
+    <symbol id="ic-report" viewBox="0 0 64 64"><g filter="url(#rough-s)" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M16 6h22l10 10v42H16z"/><path d="M38 6v10h10"/><path d="M32 48V28M24 36l8-8 8 8"/></g></symbol>
+    <symbol id="ic-gavel" viewBox="0 0 64 64"><g filter="url(#rough-s)" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M16 21 29 8l14 14-13 13z"/><path d="M36 28l20 20"/><path d="M8 56h30M13 56v-6h20v6"/></g></symbol>
+    <symbol id="ic-fund" viewBox="0 0 64 64"><g filter="url(#rough-s)" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M8 12h48v40H8z"/><path d="M14 42l10-10 8 6 16-16"/><path d="M42 22h6v6"/></g></symbol>
+    <symbol id="ic-land" viewBox="0 0 64 64"><g filter="url(#rough-s)" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M6 46l20-10 32 8-20 12z"/><path d="M30 40V10"/><path d="M30 10l14 6-14 6"/></g></symbol>
+    <symbol id="ic-mine" viewBox="0 0 64 64"><g filter="url(#rough-s)" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M4 54l18-30 10 14 8-10 20 26z"/><path d="M46 6l6 6-6 8-6-8z"/></g></symbol>
+    <symbol id="ic-bridge" viewBox="0 0 64 64"><g filter="url(#rough-s)" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M4 38h56"/><path d="M8 38q24-30 48 0"/><path d="M18 38v14M46 38v14M32 38V24"/><path d="M6 58q6-4 13 0t13 0 13 0 13 0"/></g></symbol>
+    <symbol id="ic-pie" viewBox="0 0 64 64"><g filter="url(#rough-s)" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="32" cy="32" r="22"/><path d="M32 32V10M32 32l19 11"/></g></symbol>
+    <symbol id="ic-factory" viewBox="0 0 64 64"><g filter="url(#rough-s)" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M6 56V32l14 8v-8l14 8v-8l14 8V12h8v44z"/><path d="M14 48h6M28 48h6M42 48h6"/></g></symbol>
+    <symbol id="ic-newco" viewBox="0 0 64 64"><g filter="url(#rough-s)" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M10 56V12h26v44M4 56h36"/><path d="M17 20h4M25 20h4M17 30h4M25 30h4M17 40h4M25 40h4"/><circle cx="48" cy="40" r="11"/><path d="M48 34v12M42 40h12"/></g></symbol>
+    <symbol id="ic-coins" viewBox="0 0 64 64"><g filter="url(#rough-s)" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+      <ellipse cx="26" cy="16" rx="16" ry="6"/><path d="M10 16v10c0 3.3 7.2 6 16 6s16-2.7 16-6V16"/><path d="M10 26v10c0 3.3 7.2 6 16 6s16-2.7 16-6V26"/><path d="M10 36v10c0 3.3 7.2 6 16 6s16-2.7 16-6V36"/><path d="M53 34v14M46 41h14"/></g></symbol>
+    <symbol id="ic-contract" viewBox="0 0 64 64"><g filter="url(#rough-s)" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12 6h30v52H12z"/><path d="M20 18h14M20 26h14M20 34h8"/><path d="M34 50l16-16 5 5-16 16h-5z"/></g></symbol>
+    <symbol id="ic-cal" viewBox="0 0 64 64"><g filter="url(#rough-s)" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M8 14h48v42H8z"/><path d="M8 26h48M20 8v12M44 8v12"/><path d="M18 36h.01M28 36h.01M38 36h.01M48 36h.01M18 46h.01M28 46h.01M38 46h.01" stroke-width="5"/></g></symbol>
+    <symbol id="ic-calok" viewBox="0 0 64 64"><g filter="url(#rough-s)" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M8 14h48v42H8z"/><path d="M8 26h48M20 8v12M44 8v12"/><path d="M22 40l7 7 13-14"/></g></symbol>
+    <symbol id="ic-hourglass" viewBox="0 0 64 64"><g filter="url(#rough-s)" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M16 8h32M16 56h32"/><path d="M20 8c0 12 12 18 12 24s-12 12-12 24M44 8c0 12-12 18-12 24s12 12 12 24"/><path d="M25 52q7-8 14 0z"/></g></symbol>
+    <symbol id="ic-docx" viewBox="0 0 64 64"><g filter="url(#rough-s)" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M16 6h22l10 10v42H16z"/><path d="M38 6v10h10"/><path d="M24 30l16 16M40 30 24 46"/></g></symbol>
+    <symbol id="ic-stamp" viewBox="0 0 64 64"><g filter="url(#rough-s)" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="32" cy="13" r="7"/><path d="M28 20h8v12h-8z"/><path d="M14 32h36v10H14z"/><path d="M10 54h44"/></g></symbol>
+    <symbol id="ic-clip" viewBox="0 0 64 64"><g filter="url(#rough-s)" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M14 12h36v46H14z"/><path d="M24 8h16v8H24z"/><path d="M22 36l7 7 13-14"/></g></symbol>
+    <symbol id="ic-plane" viewBox="0 0 64 64"><g filter="url(#rough-s)" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M6 30 58 8 46 56 32 38z"/><path d="M32 38 58 8"/><path d="M32 38v14l8-8"/></g></symbol>
+    <symbol id="ic-globealert" viewBox="0 0 64 64"><g filter="url(#rough-s)" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="26" cy="26" r="19"/><ellipse cx="26" cy="26" rx="8" ry="19"/><path d="M7 26h38"/><path d="M47 36l12 20H35z"/><path d="M47 43v6M47 52.5h.01"/></g></symbol>
+    <symbol id="ic-gear" viewBox="0 0 64 64"><g filter="url(#rough-s)" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="32" cy="32" r="13"/><circle cx="32" cy="32" r="4.5"/><path d="M32 8v8M32 48v8M8 32h8M48 32h8M15 15l6 6M43 43l6 6M49 15l-6 6M21 43l-6 6"/></g></symbol>
+    <symbol id="ic-search" viewBox="0 0 64 64"><g filter="url(#rough-s)" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="27" cy="27" r="17"/><path d="M40 40l16 16"/></g></symbol>
+    <symbol id="ic-chat" viewBox="0 0 64 64"><g filter="url(#rough-s)" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M8 10h48v34H28L16 54V44H8z"/><path d="M27 22a5 5 0 1 1 7 4.6c-1.5.7-2 1.6-2 3.4"/><path d="M32 37h.01" stroke-width="4.5"/></g></symbol>
+    <symbol id="ic-ban" viewBox="0 0 64 64"><g filter="url(#rough-s)" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="32" cy="32" r="22"/><path d="M16 16l32 32"/></g></symbol>
+    <symbol id="ic-mask" viewBox="0 0 64 64"><g filter="url(#rough-s)" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M6 26c10-8 42-8 52 0-2 14-12 18-19 13l-7-5-7 5c-7 5-17 1-19-13z"/><path d="M17 29h9M38 29h9"/></g></symbol>
+    <symbol id="ic-scissors" viewBox="0 0 64 64"><g filter="url(#rough-s)" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="16" cy="18" r="7"/><circle cx="16" cy="46" r="7"/><path d="M22 22l34 22M22 42l34-22"/></g></symbol>
+    <symbol id="ic-bell" viewBox="0 0 64 64"><g filter="url(#rough-s)" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M18 44V28a14 14 0 0 1 28 0v16l5 6H13z"/><path d="M27 54a5 5 0 0 0 10 0"/><path d="M32 8v6"/></g></symbol>
+    <symbol id="ic-bank" viewBox="0 0 64 64"><g filter="url(#rough-s)" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M6 24 32 10l26 14z"/><path d="M13 28v20M25 28v20M39 28v20M51 28v20"/><path d="M6 52h52"/></g></symbol>
+    <symbol id="ic-record" viewBox="0 0 64 64"><g filter="url(#rough-s)" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M8 14h48v36H8z"/><path d="M8 24h48M16 34h16M16 42h10"/><circle cx="44" cy="38" r="6"/></g></symbol>
+    <symbol id="ic-shield" viewBox="0 0 64 64"><g filter="url(#rough-s)" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M32 8l20 8v18c0 12-9 20-20 24-11-4-20-12-20-24V16z"/><path d="M23 32l7 7 12-13"/></g></symbol>
+    <symbol id="ic-scales" viewBox="0 0 64 64"><g filter="url(#rough-s)" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M32 10v44M20 54h24M12 18h40"/><path d="M12 18 6 34a6 6 0 0 0 12 0zM52 18l-6 16a6 6 0 0 0 12 0z"/></g></symbol>
+    <symbol id="ic-lock" viewBox="0 0 64 64"><g filter="url(#rough-s)" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M14 28h36v28H14z"/><path d="M21 28v-8a11 11 0 0 1 22 0v8"/><path d="M32 39v8"/></g></symbol>
+    <symbol id="ic-house" viewBox="0 0 64 64"><g filter="url(#rough-s)" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M6 30 32 8l26 22"/><path d="M13 25v31h38V25"/><path d="M27 56V40h10v16"/></g></symbol>
+    <symbol id="ic-passport" viewBox="0 0 64 64"><g filter="url(#rough-s)" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M14 6h36v52H14z"/><circle cx="32" cy="24" r="8"/><path d="M22 40h20M25 48h14"/></g></symbol>
+    <symbol id="ic-pins" viewBox="0 0 64 64"><g filter="url(#rough-s)" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M16 46s-9-8-9-16a9 9 0 0 1 18 0c0 8-9 16-9 16z"/><circle cx="16" cy="30" r="3"/><path d="M48 58s-9-8-9-16a9 9 0 0 1 18 0c0 8-9 16-9 16z"/><circle cx="48" cy="42" r="3"/><path d="M20 16q14-14 28 8" stroke-dasharray="2 6"/></g></symbol>
+    <symbol id="ic-history" viewBox="0 0 64 64"><g filter="url(#rough-s)" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12 34a20 20 0 1 0 6-16"/><path d="M10 10v12h12"/><path d="M32 22v12l8 5"/></g></symbol>
+    <symbol id="ic-pen" viewBox="0 0 64 64"><g filter="url(#rough-s)" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12 50l4-12 28-28 8 8-28 28z"/><path d="M38 16l8 8"/><path d="M8 58h48"/></g></symbol>
+    <symbol id="ic-swap" viewBox="0 0 64 64"><g filter="url(#rough-s)" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M10 22h42l-9-9"/><path d="M54 42H12l9 9"/></g></symbol>
+    <symbol id="ic-flag" viewBox="0 0 64 64"><g filter="url(#rough-s)" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M14 58V8"/><path d="M14 10h34l-7 10 7 10H14"/></g></symbol>
+
+    <!-- 背景波纹 -->
+    <symbol id="ill-wavefield" viewBox="0 0 1200 300" preserveAspectRatio="none">
+      <g fill="none" stroke="var(--gold)" stroke-width="1.6" opacity=".33" filter="url(#rough-s)">
+        <path d="M0 40q60-28 120 0t120 0 120 0 120 0 120 0 120 0 120 0 120 0 120 0 120 0"/>
+        <path d="M0 100q60-28 120 0t120 0 120 0 120 0 120 0 120 0 120 0 120 0 120 0 120 0"/>
+        <path d="M0 160q60-28 120 0t120 0 120 0 120 0 120 0 120 0 120 0 120 0 120 0 120 0"/>
+        <path d="M0 220q60-28 120 0t120 0 120 0 120 0 120 0 120 0 120 0 120 0 120 0 120 0"/>
+        <path d="M0 280q60-28 120 0t120 0 120 0 120 0 120 0 120 0 120 0 120 0 120 0 120 0"/>
+      </g>
+    </symbol>
+  </defs>
+</svg>
+
+<div class="progress" id="progress"></div>
+<div class="field" id="field">
+  <div class="field__glow"></div>
+  <div class="field__grain"></div>
+  <div class="field__waves" id="fieldWaves"><svg viewBox="0 0 1200 300" preserveAspectRatio="none"><use href="#ill-wavefield"/></svg></div>
+</div>
+
+<header class="brandbar" id="brandbar">
+  <b>新加坡小圆姐</b>
+  <span>对外投资管理办法速读</span>
+</header>
+
+<nav class="dots" id="dots" aria-label="章节导航"></nav>
+
+<!-- ══════════ 封面 ══════════ -->
+<section class="scene hero" id="s-cover" data-title="封面" data-tint="#0F2A44">
+  <div class="scene__art"><div class="hero__art" data-depth="-0.42"><svg viewBox="0 0 620 340" style="width:100%;height:auto;color:rgba(244,238,225,.34)"><use href="#ill-cross"/></svg></div></div>
+  <div class="inner">
+    <div class="hero__brand rise">
+      <b>新加坡小圆姐</b>
+      <i>Policy Brief · China Outbound Investment</i>
+    </div>
+    <h1 class="rise" style="--d:.1s">对外投资<em>管理办法</em></h1>
+    <p class="hero__sub rise" style="--d:.22s">国家发改委 2026 年第 49 号令速读<br>钱出海之前，先弄清该办哪道手续。</p>
+    <div class="hero__meta rise" style="--d:.34s">
+      <span>袁媛 Yuan Yuan · AIA 财富管理顾问</span>
+      <span>2026 年 10 月</span>
+      <span>阅读约 8 分钟 · 建议下滑体验</span>
+    </div>
+  </div>
+  <div class="scroll-hint" aria-hidden="true">向下滑动<span></span></div>
+</section>
+
+<!-- ══════════ 三个日期 ══════════ -->
+<section class="scene" id="s-dates" data-title="三个日期" data-tint="#10314E">
+  <div class="inner">
+    <p class="eyebrow rise">Key dates</p>
+    <h2 class="h-sec rise" style="--d:.06s">先记住三个日期</h2>
+    <div class="rule rise" style="--d:.1s"></div>
+    <div class="grid g4" data-live style="margin-top:26px">
+      <div class="stat rise" style="--d:.05s"><svg class="ico" viewBox="0 0 64 64" aria-hidden="true"><use href="#ic-cal"/></svg><div class="stat__n">10.22</div><div class="stat__l">2026 年 · 公布</div><div class="stat__d">国家发展改革委令 2026 年第 49 号</div></div>
+      <div class="stat rise" style="--d:.13s"><svg class="ico" viewBox="0 0 64 64" aria-hidden="true"><use href="#ic-calok"/></svg><div class="stat__n">12.01</div><div class="stat__l">2026 年 · 施行</div><div class="stat__d">12 月 1 日起正式实施</div></div>
+      <div class="stat rise" style="--d:.21s" id="cdBox"><svg class="ico" viewBox="0 0 64 64" aria-hidden="true"><use href="#ic-hourglass"/></svg><div class="stat__n"><span id="cdNum" data-count="0">0</span><small>天</small></div><div class="stat__l">距施行还有</div><div class="stat__d">按北京时间计算</div></div>
+      <div class="stat rise" style="--d:.29s"><svg class="ico" viewBox="0 0 64 64" aria-hidden="true"><use href="#ic-docx"/></svg><div class="stat__n">11<small>号令</small></div><div class="stat__l">同时废止</div><div class="stat__d">2017 年《企业境外投资管理办法》</div></div>
+    </div>
+    <div class="grid g2 rise" style="--d:.34s;margin-top:30px">
+      <div class="card card--dark"><div class="hd"><svg class="ico ico--sm" viewBox="0 0 64 64" aria-hidden="true"><use href="#ic-gavel"/></svg><h3>上位法</h3></div><p style="margin-top:8px">《国务院关于对外投资的规定》（国务院令第 837 号），2026 年 7 月 1 日起施行。</p></div>
+      <div class="card card--dark"><div class="hd"><svg class="ico ico--sm" viewBox="0 0 64 64" aria-hidden="true"><use href="#ic-search"/></svg><h3>这一页是什么</h3></div><p style="margin-top:8px">对官方原文的通俗整理，不是官方文件。正式稿和 8 月征求意见稿不一样的地方，一律按正式稿写。</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ 六个要点 ══════════ -->
+<section class="scene" id="s-keys" data-title="六个要点" data-tint="#0E2B45">
+  <div class="inner">
+    <p class="eyebrow rise">In one minute</p>
+    <h2 class="h-sec rise" style="--d:.06s">一分钟看懂：六个要点</h2>
+    <div class="rule rise" style="--d:.1s"></div>
+    <div class="grid g3">
+      <div class="card card--dark key rise" style="--d:.05s"><div class="key__top"><span class="key__no">01</span><svg class="ico" viewBox="0 0 64 64" aria-hidden="true"><use href="#ic-person"/></svg></div><h3>个人也正式纳入</h3><p>投资者包括境内企业（含金融企业）、其他组织（事业单位、社会团体等）和居民个人。2017 年旧版主要面向企业。</p></div>
+      <div class="card card--dark key rise" style="--d:.12s"><div class="key__top"><span class="key__no">02</span><svg class="ico" viewBox="0 0 64 64" aria-hidden="true"><use href="#ic-alert"/></svg></div><h3>先看敏不敏感</h3><p>涉及敏感国家地区或敏感行业，要国家发改委核准；不敏感、自己直接投的，办备案。</p></div>
+      <div class="card card--dark key rise" style="--d:.19s"><div class="key__top"><span class="key__no">03</span><svg class="ico" viewBox="0 0 64 64" aria-hidden="true"><use href="#ic-relay"/></svg></div><h3>用境外公司再投资，也要提前报</h3><p>通过自己控制的境外公司做的非敏感投资，实施前 10 个工作日提交“境外再投资报告”，不设金额门槛。</p></div>
+      <div class="card card--dark key rise" style="--d:.05s"><div class="key__top"><span class="key__no">04</span><svg class="ico" viewBox="0 0 64 64" aria-hidden="true"><use href="#ic-report"/></svg></div><h3>报告变多了</h3><p>新增前期工作情况报告（1 亿美元以上或关乎外交关系）和年度报告（每年 6 月 30 日前），出现重大不利情况要立即报告。</p></div>
+      <div class="card card--dark key rise" style="--d:.12s"><div class="key__top"><span class="key__no">05</span><svg class="ico" viewBox="0 0 64 64" aria-hidden="true"><use href="#ic-gavel"/></svg></div><h3>罚款按投资额算</h3><p>没按规定办核准、备案的，可罚中方投资额的 1‰–5‰，拒不改正最高 10‰，还可能 1–3 年内不得对外投资。</p></div>
+      <div class="card card--dark key rise" style="--d:.19s"><div class="key__top"><span class="key__no">06</span><svg class="ico" viewBox="0 0 64 64" aria-hidden="true"><use href="#ic-fund"/></svg></div><h3>常规理财渠道不受影响</h3><p>通过 QDII、港股通、跨境理财通投资境外金融市场，原则上不用核准、备案或报告。</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ 章节 01 ══════════ -->
+<section class="scene chapter" id="s-c1" data-title="第一章 · 范围" data-tint="#0C2439">
+  <div class="scene__art">
+    <div class="chapter__no" data-depth="-0.2">01</div>
+    <div class="chapter__art" data-depth="-0.3"><svg viewBox="0 0 340 340" style="width:100%;height:auto;color:rgba(244,238,225,.4)"><use href="#ill-globe"/></svg></div>
+  </div>
+  <div class="inner narrow">
+    <p class="eyebrow rise">What counts as outbound investment</p>
+    <h2 class="rise" style="--d:.08s">范围：<br>哪些钱<br>算“出海”</h2>
+    <div class="rule rise" style="--d:.14s"></div>
+    <p class="lede rise" style="--d:.18s">用钱、资产、权益，或者提供融资、担保，直接或间接拿到境外企业、资产的所有权、控制权、经营管理权，都算对外投资。<span class="art">第 2 条</span></p>
+  </div>
+</section>
+
+<!-- ══════════ 八种情形 ══════════ -->
+<section class="scene" id="s-acts" data-title="八种情形" data-tint="#102D49">
+  <div class="inner">
+    <p class="eyebrow rise">Eight common forms</p>
+    <h2 class="h-sec rise" style="--d:.06s">办法列了八种常见情形</h2>
+    <div class="rule rise" style="--d:.1s"></div>
+    <div class="grid g4">
+      <div class="act rise" style="--d:.04s"><svg class="ico" viewBox="0 0 64 64" aria-hidden="true"><use href="#ic-land"/></svg><div><span class="act__no">01</span><p>拿到境外土地的所有权、使用权</p></div></div>
+      <div class="act rise" style="--d:.09s"><svg class="ico" viewBox="0 0 64 64" aria-hidden="true"><use href="#ic-mine"/></svg><div><span class="act__no">02</span><p>拿到境外矿产等自然资源的勘探、开发特许权</p></div></div>
+      <div class="act rise" style="--d:.14s"><svg class="ico" viewBox="0 0 64 64" aria-hidden="true"><use href="#ic-bridge"/></svg><div><span class="act__no">03</span><p>拿到境外基础设施的所有权、经营管理权</p></div></div>
+      <div class="act rise" style="--d:.19s"><svg class="ico" viewBox="0 0 64 64" aria-hidden="true"><use href="#ic-pie"/></svg><div><span class="act__no">04</span><p>收购或入股境外企业、组织或资产</p></div></div>
+      <div class="act rise" style="--d:.04s"><svg class="ico" viewBox="0 0 64 64" aria-hidden="true"><use href="#ic-factory"/></svg><div><span class="act__no">05</span><p>在境外新建、改扩建厂房设备等固定资产</p></div></div>
+      <div class="act rise" style="--d:.09s"><svg class="ico" viewBox="0 0 64 64" aria-hidden="true"><use href="#ic-newco"/></svg><div><span class="act__no">06</span><p>在境外新设公司，或给已有境外公司增资</p></div></div>
+      <div class="act rise" style="--d:.14s"><svg class="ico" viewBox="0 0 64 64" aria-hidden="true"><use href="#ic-coins"/></svg><div><span class="act__no">07</span><p>新设或参股境外股权投资基金</p></div></div>
+      <div class="act rise" style="--d:.19s"><svg class="ico" viewBox="0 0 64 64" aria-hidden="true"><use href="#ic-contract"/></svg><div><span class="act__no">08</span><p>通过协议、信托等方式控制境外企业或资产</p></div></div>
+    </div>
+    <div class="grid g2" style="margin-top:22px">
+      <div class="card rise" style="--d:.2s">
+        <div class="hd"><svg class="ico ico--sm" viewBox="0 0 64 64" aria-hidden="true"><use href="#ic-relay"/></svg><h3 style="color:var(--ink-2)">容易忽略之一</h3></div>
+        <p style="margin-top:6px">用自己控制的境外公司再去投资，<b style="color:var(--ink)">也算对外投资</b>。</p>
+      </div>
+      <div class="card rise" style="--d:.28s">
+        <div class="hd"><svg class="ico ico--sm" viewBox="0 0 64 64" aria-hidden="true"><use href="#ic-coins"/></svg><h3 style="color:var(--ink-2)">容易忽略之二</h3></div>
+        <p style="margin-top:6px">“中方投资额”不只算钱，还包括证券、实物、技术、<b style="color:var(--ink)">数据</b>、知识产权、股权、债权，以及提供的融资和担保。</p>
+      </div>
+    </div>
+    <p class="src rise">“控制”指拥有一半以上表决权，或者虽不到一半，但能支配经营、财务、人事、技术等重要事项。</p>
+  </div>
+</section>
+
+<!-- ══════════ 判断题(互动) ══════════ -->
+<section class="scene" id="s-quiz" data-title="算不算" data-tint="#0E2B45">
+  <div class="inner">
+    <p class="eyebrow rise">Quick check</p>
+    <h2 class="h-sec rise" style="--d:.06s">这算不算对外投资？</h2>
+    <div class="rule rise" style="--d:.1s"></div>
+    <p class="lede rise" style="--d:.12s">先自己想一想，再点开卡片看答案。</p>
+    <div class="quiz rise" id="quiz" style="--d:.16s;margin-top:26px">
+      <button type="button" class="qcard" aria-expanded="false">
+        <svg class="ico" viewBox="0 0 64 64" aria-hidden="true"><use href="#ic-newco"/></svg><span class="qcard__q">国内的家人，以个人名义在新加坡注册一家私人有限公司</span>
+        <span class="qcard__hint">点开看答案 +</span>
+        <span class="qcard__a"><span class="pill k-report">算 · 备案</span><br>属于“新设境外企业”。不涉及敏感因素的，向户籍所在地或经常居住地的省级发改部门备案，拿到备案通知书再出资。<span class="art">第 13 条</span></span>
+      </button>
+      <button type="button" class="qcard" aria-expanded="false">
+        <svg class="ico" viewBox="0 0 64 64" aria-hidden="true"><use href="#ic-pie"/></svg><span class="qcard__q">入股朋友在新加坡开的公司</span>
+        <span class="qcard__hint">点开看答案 +</span>
+        <span class="qcard__a"><span class="pill k-report">算 · 备案</span><br>属于“获得境外企业所有权”。一样先备案，再出资；个人备案不按金额分级。<span class="art">第 13 条</span></span>
+      </button>
+      <button type="button" class="qcard" aria-expanded="false">
+        <svg class="ico" viewBox="0 0 64 64" aria-hidden="true"><use href="#ic-coins"/></svg><span class="qcard__q">给已有的新加坡公司增资，或者替它向银行提供担保</span>
+        <span class="qcard__hint">点开看答案 +</span>
+        <span class="qcard__a"><span class="pill k-report">算</span><br>“给已有境外公司增资”本身就在八种情形里；提供融资、担保也计入中方投资额。</span>
+      </button>
+      <button type="button" class="qcard" aria-expanded="false">
+        <svg class="ico" viewBox="0 0 64 64" aria-hidden="true"><use href="#ic-relay"/></svg><span class="qcard__q">用自己控制的香港公司，再投一家新加坡公司</span>
+        <span class="qcard__hint">点开看答案 +</span>
+        <span class="qcard__a"><span class="pill k-report">算 · 境外再投资报告</span><br>通过港澳台公司再投资境外，参照本办法执行。不涉及敏感因素的，实施投资 10 个工作日之前提交报告，不论金额。<span class="art">第 14、72 条</span></span>
+      </button>
+      <button type="button" class="qcard" aria-expanded="false">
+        <svg class="ico" viewBox="0 0 64 64" aria-hidden="true"><use href="#ic-fund"/></svg><span class="qcard__q">在国内用 QDII 基金、跨境理财通买境外基金</span>
+        <span class="qcard__hint">点开看答案 +</span>
+        <span class="qcard__a"><span class="pill k-plain">一般不用办</span><br>这些渠道原则上不适用核准、备案、报告。例外是拿到控制权，或持股、表决权比例达到 10% 的整数倍。下一屏可以拖动试试。<span class="art">第 73 条</span></span>
+      </button>
+      <button type="button" class="qcard" aria-expanded="false">
+        <svg class="ico" viewBox="0 0 64 64" aria-hidden="true"><use href="#ic-house"/></svg><span class="qcard__q">个人在新加坡买房、买保险</span>
+        <span class="qcard__hint">点开看答案 +</span>
+        <span class="qcard__a"><span class="pill k-tbd">待明确</span><br>办法列举的情形包括“获得境外土地所有权、使用权等权益”，但没有单独点名个人买房或买保险。是否纳入，要看后续配套文件和官方问答。</span>
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ 金融市场渠道(互动) ══════════ -->
+<section class="scene" id="s-market" data-title="理财渠道" data-tint="#11324F">
+  <div class="inner">
+    <p class="eyebrow rise">QDII · Stock Connect · Wealth Connect</p>
+    <h2 class="h-sec rise" style="--d:.06s">常规理财渠道：原则上不用办，但有两个例外</h2>
+    <div class="rule rise" style="--d:.1s"></div>
+    <p class="lede rise" style="--d:.12s">通过 QDII、港股通、跨境理财通等投资境外金融市场，不适用核准、备案、报告。可一旦持股到了某些节点，就要按办法办理。拖动滑块看看。</p>
+    <div class="grid g3 rise" style="--d:.14s;margin-top:26px">
+      <div class="chan"><svg class="ico" viewBox="0 0 64 64" aria-hidden="true"><use href="#ic-fund"/></svg><div><b>QDII 基金</b><span>合格境内机构投资者</span></div></div>
+      <div class="chan"><svg class="ico" viewBox="0 0 64 64" aria-hidden="true"><use href="#ic-bridge"/></svg><div><b>港股通</b><span>内地投资者买港股</span></div></div>
+      <div class="chan"><svg class="ico" viewBox="0 0 64 64" aria-hidden="true"><use href="#ic-coins"/></svg><div><b>跨境理财通</b><span>大湾区跨境理财</span></div></div>
+    </div>
+    <div class="chartbox chartbox--dark rise" style="--d:.18s;margin-top:18px">
+      <div class="share">
+        <div>
+          <div class="ctrl__top"><label for="share">单独或与一致行动人合计持股 / 表决权比例</label><span class="ctrl__v"><span id="shareV">8</span>%</span></div>
+          <input id="share" type="range" min="0" max="100" step="1" value="8">
+          <div class="strack" aria-hidden="true">
+            <div class="strack__ctl"><span>超过 50%：控制权</span></div>
+            <div class="strack__bar"><div class="strack__fill" id="shareFill"></div></div>
+            <div id="shareTicks"></div>
+          </div>
+        </div>
+        <div aria-live="polite">
+          <p style="color:var(--mist);font-size:.9rem;letter-spacing:.1em">当前判断</p>
+          <div class="share__big" id="shareBig">一般不用办</div>
+          <p style="color:#C3D3E0;margin-top:8px" id="shareTxt"></p>
+        </div>
+      </div>
+    </div>
+    <div class="takeaway rise">持股或表决权比例<b>达到 10% 的整数倍</b>（10%、20%、30%……），或者<b>拿到控制权</b>，就要按办法办理。国家发改委明确的其他情形也一样。</div>
+    <p class="src rise">依据第 73 条。“控制”也包括虽不到一半、但能支配经营、财务、人事、技术等重要事项的情况。示意工具，仅帮助理解条文。</p>
+  </div>
+</section>
+
+<!-- ══════════ 章节 02 ══════════ -->
+<section class="scene chapter" id="s-c2" data-title="第二章 · 手续" data-tint="#0B2135">
+  <div class="scene__art">
+    <div class="chapter__no" data-depth="-0.2">02</div>
+    <div class="chapter__art" data-depth="-0.3"><svg viewBox="0 0 340 340" style="width:100%;height:auto;color:rgba(244,238,225,.4)"><use href="#ill-seal"/></svg></div>
+  </div>
+  <div class="inner narrow">
+    <p class="eyebrow rise">Approval, filing or report</p>
+    <h2 class="rise" style="--d:.08s">手续：<br>核准、备案<br>还是报告</h2>
+    <div class="rule rise" style="--d:.14s"></div>
+    <p class="lede rise" style="--d:.18s">先看敏不敏感，再看是自己直接投，还是通过自己控制的境外公司投。</p>
+  </div>
+</section>
+
+<!-- ══════════ 三种手续(互动) ══════════ -->
+<section class="scene" id="s-tracks" data-title="三种手续" data-tint="#10314E">
+  <div class="inner">
+    <p class="eyebrow rise">Three procedures</p>
+    <h2 class="h-sec rise" style="--d:.06s">三种手续，各管什么<span class="art">第 12–14 条</span></h2>
+    <div class="rule rise" style="--d:.1s"></div>
+    <div class="split">
+      <div class="chartbox rise" data-live style="--d:.14s">
+        <p class="chart-title">资金出海的三条路 · 点一条路看看</p>
+        <svg class="routes" id="ch-routes" viewBox="0 0 560 450" role="group" aria-label="资金出海的三条路：自己直接投走备案；经自己控制的境外公司再投走报告；涉及敏感国家地区或行业，哪条路都要核准">
+          <rect x="180" y="14" width="200" height="72" rx="14" fill="#fff" stroke="#0F2A44" stroke-width="2"/>
+          <use href="#ic-person" x="192" y="26" width="48" height="48" style="color:#A9812F"/>
+          <text class="dg-t" x="248" y="48">境内投资者</text>
+          <text class="dg-s" x="248" y="72">企业 · 组织 · 个人</text>
+
+          <g class="route" data-k="file" tabindex="0" role="button" aria-label="自己直接投：备案">
+            <path class="draw" d="M226 86C226 160 110 150 110 236" stroke="#1B4269" stroke-width="3"/>
+            <path class="fade" d="M100 226l10 12 10-12" fill="none" stroke="#1B4269" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="--d:1.6s"/>
+            <text class="dg-l" x="160" y="152" text-anchor="end" fill="#1B4269">自己直接投</text>
+            <rect x="20" y="242" width="180" height="72" rx="14" fill="#fff" stroke="#1B4269" stroke-width="2"/>
+            <use href="#ic-newco" x="30" y="254" width="48" height="48" style="color:#1B4269"/>
+            <text class="dg-t" x="86" y="274">境外企业</text>
+            <text class="dg-s" x="86" y="298">或境外资产</text>
+            <rect x="60" y="326" width="100" height="36" rx="18" fill="#1B4269"/>
+            <text class="dg-b" x="110" y="350" text-anchor="middle">备案</text>
+          </g>
+
+          <g class="route" data-k="report" tabindex="0" role="button" aria-label="经自己控制的境外公司再投：报告">
+            <path class="draw" d="M334 86C334 122 445 112 445 136" stroke="#A9812F" stroke-width="3" style="--d:.3s"/>
+            <path class="fade" d="M435 126l10 12 10-12" fill="none" stroke="#A9812F" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="--d:1.6s"/>
+            <text class="dg-l" x="360" y="140" text-anchor="end" fill="#A9812F">经境外公司</text>
+            <rect x="350" y="142" width="190" height="72" rx="14" fill="#fff" stroke="#A9812F" stroke-width="2"/>
+            <use href="#ic-relay" x="360" y="154" width="48" height="48" style="color:#A9812F"/>
+            <text class="dg-t" x="416" y="174">自己控制的</text>
+            <text class="dg-s" x="416" y="198">境外公司</text>
+            <path class="draw" d="M445 214V256" stroke="#A9812F" stroke-width="3" style="--d:.9s"/>
+            <path class="fade" d="M435 246l10 12 10-12" fill="none" stroke="#A9812F" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="--d:1.8s"/>
+            <rect x="350" y="262" width="190" height="72" rx="14" fill="#fff" stroke="#A9812F" stroke-width="2"/>
+            <use href="#ic-factory" x="360" y="274" width="48" height="48" style="color:#A9812F"/>
+            <text class="dg-t" x="416" y="294">境外新项目</text>
+            <text class="dg-s" x="416" y="318">再投资</text>
+            <rect x="395" y="344" width="100" height="36" rx="18" fill="#A9812F"/>
+            <text class="dg-b" x="445" y="368" text-anchor="middle">报告</text>
+            <path class="draw" d="M540 166C576 120 530 42 384 40" stroke="#A9812F" stroke-width="2" stroke-dasharray="5 7" style="--d:1.2s"/>
+            <path class="fade" d="M396 32l-12 8 12 8" fill="none" stroke="#A9812F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="--d:2s"/>
+            <text class="dg-s fade" x="500" y="104" text-anchor="end" style="--d:2s">返程投资也要报</text>
+          </g>
+
+          <g class="route" data-k="approve" tabindex="0" role="button" aria-label="涉及敏感国家地区或敏感行业：核准">
+            <rect x="12" y="392" width="536" height="50" rx="14" fill="rgba(181,80,60,.08)" stroke="#B5503C" stroke-width="2" stroke-dasharray="6 6"/>
+            <use href="#ic-alert" x="24" y="398" width="38" height="38" style="color:#B5503C"/>
+            <text class="dg-l" x="70" y="423" fill="#0A1C2E">涉及敏感国家地区或行业：哪条路都要</text>
+            <rect x="440" y="401" width="96" height="32" rx="16" fill="#B5503C"/>
+            <text class="dg-b" x="488" y="423" text-anchor="middle">核准</text>
+          </g>
+        </svg>
+      </div>
+      <div class="chartbox chartbox--dark rise" style="--d:.2s">
+        <div class="pills" id="trkNav" role="group" aria-label="切换手续类型">
+          <button type="button" data-k="file" class="on t-file"><svg class="ico ico--xs" viewBox="0 0 64 64" aria-hidden="true"><use href="#ic-clip"/></svg>备案</button>
+          <button type="button" data-k="report"><svg class="ico ico--xs" viewBox="0 0 64 64" aria-hidden="true"><use href="#ic-plane"/></svg>报告</button>
+          <button type="button" data-k="approve" class="t-approve"><svg class="ico ico--xs" viewBox="0 0 64 64" aria-hidden="true"><use href="#ic-stamp"/></svg>核准</button>
+        </div>
+        <div aria-live="polite">
+          <div class="trk-title"><span class="ico-ring"><svg class="ico" id="trkIco" viewBox="0 0 64 64" aria-hidden="true"><use href="#ic-clip"/></svg></span><div><span class="pill k-file" id="trkChip">备案</span><h3 id="trkTitle"></h3></div></div>
+          <dl class="trk" id="trkRows"></dl>
+        </div>
+      </div>
+    </div>
+    <div class="grid g2" style="margin-top:22px">
+      <div class="card rise" style="--d:.2s">
+        <div class="hd"><svg class="ico ico--sm" viewBox="0 0 64 64" style="color:var(--ember)" aria-hidden="true"><use href="#ic-globealert"/></svg><h3 style="color:var(--ember)">敏感国家和地区</h3></div>
+        <ul>
+          <li>与我国未建交的</li>
+          <li>发生战争、内乱等的</li>
+          <li>按我国缔结或参加的国际条约、协定，需要限制投资的</li>
+          <li>其他敏感国家和地区</li>
+        </ul>
+      </div>
+      <div class="card rise" style="--d:.28s">
+        <div class="hd"><svg class="ico ico--sm" viewBox="0 0 64 64" style="color:var(--ember)" aria-hidden="true"><use href="#ic-gear"/></svg><h3 style="color:var(--ember)">敏感行业</h3></div>
+        <ul>
+          <li>武器装备的研制、生产、维修</li>
+          <li>跨境水资源开发利用</li>
+          <li>新闻传媒</li>
+          <li>按法律法规和调控政策需要限制对外投资的行业（目录由国家发改委发布）</li>
+        </ul>
+      </div>
+    </div>
+    <div class="takeaway takeaway--warn rise"><b>为什么一定要先办：</b>该核准、备案却没拿到文件的，外汇管理、海关等部门不予办理相关手续，银行也不予办理相关的资金结算、融资和担保。<span class="art">第 35 条</span></div>
+  </div>
+</section>
+
+<!-- ══════════ 自查工具(互动) ══════════ -->
+<section class="scene" id="s-check" data-title="自查工具" data-tint="#0C2439">
+  <div class="inner">
+    <p class="eyebrow rise">Try it yourself</p>
+    <h2 class="h-sec rise" style="--d:.06s">我的投资走哪条路？</h2>
+    <div class="rule rise" style="--d:.1s"></div>
+    <p class="lede rise" style="--d:.12s">选几个选项，看看对应的手续和办理机关。</p>
+    <div class="chartbox chartbox--dark rise" style="--d:.16s;margin-top:26px;padding:clamp(20px,3vw,34px)">
+      <form class="checker" id="checker" novalidate>
+        <div>
+          <fieldset id="g-way">
+            <legend>怎么投？</legend>
+            <div class="opts">
+              <input type="radio" name="way" id="way-direct" value="direct" checked><label for="way-direct">自己直接投</label>
+              <input type="radio" name="way" id="way-sub" value="sub"><label for="way-sub">通过自己控制的境外公司投</label>
+              <input type="radio" name="way" id="way-market" value="market"><label for="way-market">通过 QDII／港股通／跨境理财通</label>
+            </div>
+          </fieldset>
+          <fieldset id="g-who">
+            <legend>投资者是谁？</legend>
+            <div class="opts">
+              <input type="radio" name="who" id="who-person" value="person" checked><label for="who-person">居民个人</label>
+              <input type="radio" name="who" id="who-local" value="local"><label for="who-local">地方企业／组织</label>
+              <input type="radio" name="who" id="who-central" value="central"><label for="who-central">中央管理的企业／组织</label>
+            </div>
+            <p class="hint">事业单位、社会团体等其他组织参照企业执行。</p>
+          </fieldset>
+          <fieldset id="g-sens">
+            <legend>涉及敏感国家地区或敏感行业吗？</legend>
+            <div class="opts">
+              <input type="radio" name="sens" id="sens-no" value="no" checked><label for="sens-no">不涉及</label>
+              <input type="radio" name="sens" id="sens-yes" value="yes"><label for="sens-yes">涉及</label>
+              <input type="radio" name="sens" id="sens-unsure" value="unsure"><label for="sens-unsure">不确定</label>
+            </div>
+          </fieldset>
+          <fieldset id="g-amt" style="margin-bottom:0">
+            <legend>中方投资额大约多少？</legend>
+            <div class="opts">
+              <input type="radio" name="amt" id="amt-lt1" value="lt1" checked><label for="amt-lt1">低于 1 亿美元</label>
+              <input type="radio" name="amt" id="amt-mid" value="mid"><label for="amt-mid">1 亿至 3 亿美元</label>
+              <input type="radio" name="amt" id="amt-ge3" value="ge3"><label for="amt-ge3">3 亿美元及以上</label>
+            </div>
+          </fieldset>
+        </div>
+        <div aria-live="polite">
+          <p style="color:var(--mist);font-size:.9rem;letter-spacing:.1em;margin-bottom:8px">你的路径</p>
+          <div class="path" id="cPath"></div>
+          <div class="hd" style="margin-bottom:6px"><span class="ico-ring"><svg class="ico" id="cIco" viewBox="0 0 64 64" aria-hidden="true"><use href="#ic-clip"/></svg></span><div class="res-title" id="cTitle" style="margin:0"></div></div>
+          <div class="rrows" id="cRows"></div>
+          <div class="also" id="cAlso"></div>
+        </div>
+      </form>
+    </div>
+    <p class="src rise">结果只是按办法条文的初步判断，复杂情况请咨询熟悉跨境投资的律师。不确定是否敏感，可以先向发改部门咨询，部门应当及时告知（第 11 条）。</p>
+  </div>
+</section>
+
+<!-- ══════════ 办理时限 ══════════ -->
+<section class="scene" id="s-time" data-title="要等多久" data-tint="#122F3F">
+  <div class="inner">
+    <p class="eyebrow rise">How long it takes</p>
+    <h2 class="h-sec rise" style="--d:.06s">要等多久<span class="art">第 21–37 条</span></h2>
+    <div class="rule rise" style="--d:.1s"></div>
+    <div class="chartbox rise" data-live style="--d:.14s">
+      <p class="chart-title">法定时限 · 工作日（实色为法定时限，斜纹为最多可延长）</p>
+      <div class="tbars">
+        <div>
+          <div class="tbar-lab"><b style="color:var(--ember)">核准 · 作出决定</b><span>20 + 最多 10</span></div>
+          <div class="tbar"><i class="seg seg--approve" style="--w:66.67%"></i><i class="seg seg--approve seg--x" style="--w:33.33%;--d:.6s"></i></div>
+        </div>
+        <div>
+          <div class="tbar-lab"><b style="color:var(--ink-3)">备案 · 出具通知书</b><span>7 + 最多 7</span></div>
+          <div class="tbar"><i class="seg seg--file" style="--w:23.33%;--d:.15s"></i><i class="seg seg--file seg--x" style="--w:23.33%;--d:.75s"></i></div>
+        </div>
+        <div>
+          <div class="tbar-lab"><b style="color:var(--gold-2)">境外再投资报告 · 提前提交</b><span>至少提前 10</span></div>
+          <div class="tbar"><i class="seg seg--report" style="--w:33.33%;--d:.3s"></i></div>
+        </div>
+        <div class="tbar-axis"><span>0</span><span>10</span><span>20</span><span>30</span></div>
+      </div>
+      <p style="font-size:.85rem;color:var(--slate);margin-top:14px">核准、备案时限都包括征求有关单位意见的时间，但不包括委托咨询机构评估的时间。</p>
+    </div>
+    <div class="grid g4" data-live style="margin-top:24px">
+      <div class="stat rise"><svg class="ico" viewBox="0 0 64 64" aria-hidden="true"><use href="#ic-contract"/></svg><div class="stat__n"><span data-count="5">0</span><small>个工作日</small></div><div class="stat__l">材料不全，一次性告知补正</div><div class="stat__d">核准、备案都适用；逾期不告知，自收到之日起视为受理</div></div>
+      <div class="stat rise" style="--d:.08s"><svg class="ico" viewBox="0 0 64 64" aria-hidden="true"><use href="#ic-chat"/></svg><div class="stat__n"><span data-count="7">0</span><small>个工作日</small></div><div class="stat__l">有关部门出具审查意见</div><div class="stat__d">核准环节；逾期不反馈视为同意</div></div>
+      <div class="stat rise" style="--d:.16s"><svg class="ico" viewBox="0 0 64 64" aria-hidden="true"><use href="#ic-search"/></svg><div class="stat__n">≤<span data-count="30">0</span><small>日</small></div><div class="stat__l">委托评估</div><div class="stat__d">确有必要时 4 日内委托；情况复杂可延长，不超过 60 个工作日；费用由核准机关承担，不向投资者收费</div></div>
+      <div class="stat rise" style="--d:.24s"><svg class="ico" viewBox="0 0 64 64" aria-hidden="true"><use href="#ic-cal"/></svg><div class="stat__n"><span data-count="2">0</span><small>年</small></div><div class="stat__l">文件有效期</div><div class="stat__d">延期须在届满前 30 个工作日提出；核准机关 20 个、备案机关 7 个工作日内答复</div></div>
+    </div>
+    <div class="grid g2" style="margin-top:18px">
+      <div class="card card--dark rise"><div class="hd"><svg class="ico ico--sm" viewBox="0 0 64 64" aria-hidden="true"><use href="#ic-coins"/></svg><h3 style="color:var(--gold)">前期费用可以先办</h3></div><p style="margin-top:6px">保证金、保函手续费、中介费、资源勘探费等规模较大的，可先单独申请核准或备案，计入中方投资额。<span class="art">第 34 条</span></p></div>
+      <div class="card card--dark rise" style="--d:.08s"><div class="hd"><svg class="ico ico--sm" viewBox="0 0 64 64" aria-hidden="true"><use href="#ic-pie"/></svg><h3 style="color:var(--gold)">几方一起投</h3></div><p style="margin-top:6px">由投资额较大的一方在其他方书面同意后申报；金额相同的，书面协商一致后由一方申报。<span class="art">第 33 条</span></p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ 章节 03 ══════════ -->
+<section class="scene chapter" id="s-c3" data-title="第三章 · 节点与责任" data-tint="#0B2135">
+  <div class="scene__art">
+    <div class="chapter__no" data-depth="-0.2">03</div>
+    <div class="chapter__art" data-depth="-0.3"><svg viewBox="0 0 340 340" style="width:100%;height:auto;color:rgba(244,238,225,.4)"><use href="#ill-clock"/></svg></div>
+  </div>
+  <div class="inner narrow">
+    <p class="eyebrow rise">Milestones &amp; liabilities</p>
+    <h2 class="rise" style="--d:.08s">节点：<br>从签约<br>到年报</h2>
+    <div class="rule rise" style="--d:.14s"></div>
+    <p class="lede rise" style="--d:.18s">一笔投资从头到尾，有七个时间点要留意。<br>该办没办，罚款按投资额算。</p>
+  </div>
+</section>
+
+<!-- ══════════ 流程节点(互动) ══════════ -->
+<section class="scene" id="s-flow" data-title="流程节点" data-tint="#0E2B45">
+  <div class="inner">
+    <p class="eyebrow rise">Seven milestones</p>
+    <h2 class="h-sec rise" style="--d:.06s">一笔投资，从头到尾要报什么</h2>
+    <div class="rule rise" style="--d:.1s"></div>
+    <p class="lede rise" style="--d:.12s">点一点每个节点，看看那一步要做什么。</p>
+    <div class="chartbox chartbox--dark rise" data-live style="--d:.16s;margin-top:22px" id="flowBox">
+      <div class="scroller scroller--wide"><svg id="ch-flow" viewBox="0 0 900 230" role="img" aria-label="对外投资的七个节点：动手前咨询、签约前前期工作报告、实施前核准备案或报告、方案变化前变更、重大不利情况立即报告、完成或终止后报告、每年6月30日前年度报告"></svg></div>
+      <div class="pills" id="flowNav" style="margin-top:18px"></div>
+      <div class="note" id="flowNote"></div>
+    </div>
+    <div class="takeaway rise"><span><b>金色 = 要交的报告，蓝色 = 核准、备案或变更，暗红 = 随时立即报告。</b></span></div>
+  </div>
+</section>
+
+<!-- ══════════ 罚款测算(互动) ══════════ -->
+<section class="scene" id="s-fine" data-title="违规后果" data-tint="#11324F">
+  <div class="inner">
+    <p class="eyebrow rise">Liabilities</p>
+    <h2 class="h-sec rise" style="--d:.06s">该办没办，罚款按投资额算<span class="art">第 56–67 条</span></h2>
+    <div class="rule rise" style="--d:.1s"></div>
+    <div class="chartbox chartbox--dark rise" style="--d:.14s;padding:clamp(20px,3vw,34px)">
+      <p class="eyebrow" style="margin-bottom:6px">Try it yourself</p>
+      <h3 style="font-size:1.35rem">没按规定核准、备案，大概会罚多少？</h3>
+      <p style="color:#C3D3E0;margin:8px 0 22px">拖动滑块，换一个中方投资额试试。</p>
+      <div class="fine">
+        <div>
+          <div class="ctrl__top"><label for="fAmt">中方投资额</label><span class="ctrl__v">US$<span id="fAmtV">1,000 万</span></span></div>
+          <input id="fAmt" type="range" min="0" max="9" step="1" value="4">
+          <div class="fscale"><span>50 万</span><span>10 亿</span></div>
+        </div>
+        <div aria-live="polite">
+          <p style="color:var(--mist);font-size:.9rem;letter-spacing:.1em">拒不改正，最高可罚</p>
+          <div class="fine__big">US$<span id="fMax">10 万</span></div>
+          <div class="frow">
+            <div class="frow__lab"><span>责令改正，罚 1‰–5‰</span><b id="fR1" style="color:var(--gold)"></b></div>
+            <div class="frow__track"><div class="frow__fill" style="left:10%;width:40%;background:var(--gold)"></div></div>
+          </div>
+          <div class="frow">
+            <div class="frow__lab"><span>拒不改正，罚 5‰–10‰</span><b id="fR2" style="color:var(--ember-l)"></b></div>
+            <div class="frow__track"><div class="frow__fill" style="left:50%;width:50%;background:var(--ember)"></div></div>
+          </div>
+          <div class="fscale"><span>0</span><span>5‰</span><span>10‰</span></div>
+          <p style="margin-top:14px;font-size:.9rem;color:#C3D3E0">另对直接责任人员罚 <b style="color:var(--paper)">2 万至 5 万元</b>，并没收违法所得。</p>
+        </div>
+      </div>
+      <p class="src" style="margin-top:18px">示意测算：按中方投资额乘以比例折算，帮助理解罚款量级；实际处罚以主管部门决定为准。</p>
+    </div>
+
+    <div class="grid g2" style="margin-top:24px">
+      <div class="card card--dark pen rise"><div class="hd"><svg class="ico ico--sm" viewBox="0 0 64 64" aria-hidden="true"><use href="#ic-ban"/></svg><h3>投资国家禁止的项目</h3></div><p>责令停止、限期处分股份资产、没收违法所得；拒不执行的罚中方投资额 5‰–10‰，直接责任人员罚 5 万至 10 万元。</p></div>
+      <div class="card card--dark pen rise" style="--d:.08s"><div class="hd"><svg class="ico ico--sm" viewBox="0 0 64 64" aria-hidden="true"><use href="#ic-mask"/></svg><h3>用贿赂、欺骗拿到核准、备案</h3></div><p>撤销文件、没收违法所得，罚 1‰–5‰；已投资的再责令停止、限期处分，罚 5‰–10‰；责任人员罚 2 万至 5 万元。</p></div>
+      <div class="card card--dark pen rise"><div class="hd"><svg class="ico ico--sm" viewBox="0 0 64 64" aria-hidden="true"><use href="#ic-scissors"/></svg><h3>恶意拆分项目</h3></div><p>不予受理或不予核准、备案，对投资者和主要责任人警告。</p></div>
+      <div class="card card--dark pen rise" style="--d:.08s"><div class="hd"><svg class="ico ico--sm" viewBox="0 0 64 64" aria-hidden="true"><use href="#ic-bell"/></svg><h3>该报的没报</h3></div><p>责令限期改正；情节严重或逾期不改的，警告或通报批评。</p></div>
+      <div class="card card--dark pen rise"><div class="hd"><svg class="ico ico--sm" viewBox="0 0 64 64" aria-hidden="true"><use href="#ic-alert"/></svg><h3>不正当竞争、商业贿赂等</h3></div><p>限期改正；造成危害后果的，可禁止 1–3 年内从事对外投资。</p></div>
+      <div class="card card--dark pen rise" style="--d:.08s"><div class="hd"><svg class="ico ico--sm" viewBox="0 0 64 64" aria-hidden="true"><use href="#ic-globealert"/></svg><h3>威胁或损害国家利益和安全</h3></div><p>责令中止或停止、限期改正并补救，予以警告；及时报告重大不利情况并主动改正的，可减轻或免除处罚。</p></div>
+      <div class="card card--dark pen rise"><div class="hd"><svg class="ico ico--sm" viewBox="0 0 64 64" aria-hidden="true"><use href="#ic-bank"/></svg><h3>帮忙违规的银行和中介</h3></div><p>通报违规行为，并请其监管部门采取措施。</p></div>
+      <div class="card card--dark pen rise" style="--d:.08s"><div class="hd"><svg class="ico ico--sm" viewBox="0 0 64 64" aria-hidden="true"><use href="#ic-record"/></svg><h3>信用记录</h3></div><p>违法违规行为纳入全国信用信息共享平台、“信用中国”网站公示，实施联合惩戒。</p></div>
+    </div>
+    <div class="takeaway takeaway--warn rise"><b>附加后果：</b>投资禁止项目、未按规定核准备案或提交虚假材料、以贿赂欺骗取得文件这三类，处罚生效起 3 年内可不受理其申请，或禁止其 1–3 年内从事对外投资。</div>
+  </div>
+</section>
+
+<!-- ══════════ 投资保护 ══════════ -->
+<section class="scene" id="s-protect" data-title="投资保护" data-tint="#0C2439">
+  <div class="inner">
+    <p class="eyebrow rise">Protection</p>
+    <h2 class="h-sec rise" style="--d:.06s">国家怎么保护投资者<span class="art">第 50–55 条</span></h2>
+    <div class="rule rise" style="--d:.1s"></div>
+    <div class="grid g2">
+      <div class="card rise"><div class="hd"><svg class="ico ico--sm" viewBox="0 0 64 64" aria-hidden="true"><use href="#ic-bell"/></svg><h3 style="color:var(--ink-2)">风险提示</h3></div><p style="margin-top:6px">发改部门根据国内外形势和风险状况发布风险提示。投资者自己也要建好合规、内控、安全生产、突发事件处置等制度。</p></div>
+      <div class="card rise" style="--d:.08s"><div class="hd"><svg class="ico ico--sm" viewBox="0 0 64 64" aria-hidden="true"><use href="#ic-shield"/></svg><h3 style="color:var(--ink-2)">年报里可以请求保护</h3></div><p style="margin-top:6px">在年度报告中反映受到外国组织或个人歧视性措施，或被不合理剥夺、限制的，应投资者请求，发改委可以禁止或限制对方在中国境内投资、与境内主体交易合作，或采取其他保护措施。</p></div>
+      <div class="card rise"><div class="hd"><svg class="ico ico--sm" viewBox="0 0 64 64" aria-hidden="true"><use href="#ic-scales"/></svg><h3 style="color:var(--ink-2)">对等反制</h3></div><p style="margin-top:6px">外国国家、地区或国际组织对中国采取歧视性措施的，发改委可依法采取相应措施。</p></div>
+      <div class="card rise" style="--d:.08s"><div class="hd"><svg class="ico ico--sm" viewBox="0 0 64 64" aria-hidden="true"><use href="#ic-lock"/></svg><h3 style="color:var(--ink-2)">材料保密</h3></div><p style="margin-top:6px">投资者提交的材料，发改部门和受托评估单位应当保密。<span class="art" style="color:var(--slate)">第 70 条</span></p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ 章节 04 ══════════ -->
+<section class="scene chapter" id="s-c4" data-title="第四章 · 对照与场景" data-tint="#0B2135">
+  <div class="scene__art">
+    <div class="chapter__no" data-depth="-0.2">04</div>
+    <div class="chapter__art" data-depth="-0.3"><svg viewBox="0 0 360 340" style="width:100%;height:auto;color:rgba(244,238,225,.4)"><use href="#ill-sg"/></svg></div>
+  </div>
+  <div class="inner narrow">
+    <p class="eyebrow rise">Old vs new · Singapore cases</p>
+    <h2 class="rise" style="--d:.08s">对照：<br>新旧变化<br>与新加坡场景</h2>
+    <div class="rule rise" style="--d:.14s"></div>
+    <p class="lede rise" style="--d:.18s">和 2017 年旧版比变了什么；放到新加坡的具体情况里，又该怎么看。</p>
+  </div>
+</section>
+
+<!-- ══════════ 新旧对比(互动筛选) ══════════ -->
+<section class="scene" id="s-changes" data-title="新旧对比" data-tint="#10314E">
+  <div class="inner">
+    <p class="eyebrow rise">2017 → 2026</p>
+    <h2 class="h-sec rise" style="--d:.06s">和 2017 年旧版比，变了什么</h2>
+    <div class="rule rise" style="--d:.1s"></div>
+    <div class="pills rise" id="chgNav" role="group" aria-label="按变化类型筛选" style="--d:.12s">
+      <button type="button" data-f="all" class="on">全部 8 项</button>
+      <button type="button" data-f="wide">扩大</button>
+      <button type="button" data-f="new">新增</button>
+      <button type="button" data-f="tight">收紧</button>
+      <button type="button" data-f="fine">细化</button>
+    </div>
+    <div class="grid g2 rise" id="chgList" style="--d:.16s;margin-top:22px">
+      <div class="chg" data-t="wide"><span class="pill k-file" style="align-self:flex-start">扩大</span><div class="hd"><svg class="ico ico--sm" viewBox="0 0 64 64" aria-hidden="true"><use href="#ic-person"/></svg><h3>投资者范围</h3></div><p>从《企业境外投资管理办法》改为《对外投资管理办法》，居民个人、事业单位、社会团体直接纳入。旧版下，个人直接对外投资不适用。</p></div>
+      <div class="chg" data-t="wide"><span class="pill k-file" style="align-self:flex-start">扩大</span><div class="hd"><svg class="ico ico--sm" viewBox="0 0 64 64" aria-hidden="true"><use href="#ic-relay"/></svg><h3>境外再投资报告</h3></div><p>旧版只要求通过境外企业开展的 3 亿美元及以上非敏感项目报告；新版不设金额门槛，并把返程投资纳入。</p></div>
+      <div class="chg" data-t="new"><span class="pill k-report" style="align-self:flex-start">新增</span><div class="hd"><svg class="ico ico--sm" viewBox="0 0 64 64" aria-hidden="true"><use href="#ic-pen"/></svg><h3>前期工作情况报告</h3></div><p>面向 1 亿美元以上或关乎外交关系的项目。</p></div>
+      <div class="chg" data-t="new"><span class="pill k-report" style="align-self:flex-start">新增</span><div class="hd"><svg class="ico ico--sm" viewBox="0 0 64 64" aria-hidden="true"><use href="#ic-cal"/></svg><h3>年度报告</h3></div><p>每年 6 月 30 日前报告截至上年末的情况。</p></div>
+      <div class="chg" data-t="tight"><span class="pill k-approve" style="align-self:flex-start">收紧</span><div class="hd"><svg class="ico ico--sm" viewBox="0 0 64 64" aria-hidden="true"><use href="#ic-bell"/></svg><h3>重大不利情况</h3></div><p>改为“立即”报告，并新增外方索要技术数据、要求转让处分资产两类情形。</p></div>
+      <div class="chg" data-t="new"><span class="pill k-report" style="align-self:flex-start">新增</span><div class="hd"><svg class="ico ico--sm" viewBox="0 0 64 64" aria-hidden="true"><use href="#ic-shield"/></svg><h3>保护专章</h3></div><p>年度报告与请求保护挂钩，明确发改委可采取的反制措施。</p></div>
+      <div class="chg" data-t="tight"><span class="pill k-approve" style="align-self:flex-start">收紧</span><div class="hd"><svg class="ico ico--sm" viewBox="0 0 64 64" aria-hidden="true"><use href="#ic-gavel"/></svg><h3>法律责任</h3></div><p>罚款与投资额挂钩，增加资格限制和信用惩戒，并延伸到金融机构和中介机构。</p></div>
+      <div class="chg" data-t="fine"><span class="pill k-plain" style="align-self:flex-start">细化</span><div class="hd"><svg class="ico ico--sm" viewBox="0 0 64 64" aria-hidden="true"><use href="#ic-search"/></svg><h3>认定原则</h3></div><p>投资者、控制、中方投资额等，按“实质重于形式”认定；中方投资额口径加入“数据”。</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ 新加坡场景(互动) ══════════ -->
+<section class="scene" id="s-faq" data-title="新加坡场景" data-tint="#0E2B45">
+  <div class="inner">
+    <p class="eyebrow rise">Singapore cases</p>
+    <h2 class="h-sec rise" style="--d:.06s">放到新加坡的具体场景里</h2>
+    <div class="rule rise" style="--d:.1s"></div>
+    <p class="lede rise" style="--d:.12s">选一个最像你家的情况。</p>
+    <div class="chartbox chartbox--dark rise" style="--d:.16s;margin-top:22px">
+      <div class="pills" id="faqNav" role="group" aria-label="选择场景"></div>
+      <div class="note" id="faqNote" aria-live="polite"></div>
+    </div>
+    <div class="card card--dark rise" style="margin-top:22px">
+      <div class="hd"><svg class="ico ico--sm" viewBox="0 0 64 64" aria-hidden="true"><use href="#ic-history"/></svg><h3 style="color:var(--gold)">接下来会出什么</h3></div>
+      <p style="margin-top:8px">按发改委答记者问，施行前后会陆续修订配套格式文本和填报指南，更新对外投资常见问题解答，完善全国对外投资管理和服务网络系统。上面几处“待明确”，可以留意这些配套文件。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ 资料来源 ══════════ -->
+<section class="scene" id="s-src" data-title="资料来源" data-tint="#0C2439" style="padding-top:clamp(56px,9vh,96px);padding-bottom:clamp(40px,6vh,64px)">
+  <div class="inner">
+    <p class="eyebrow rise">Sources</p>
+    <h2 class="h-sec rise" style="--d:.06s;font-size:clamp(1.4rem,3.2vw,2rem)">资料来源</h2>
+    <div class="rule rise" style="--d:.1s"></div>
+    <ol class="srclist rise" style="--d:.12s">
+      <li><a href="https://www.ndrc.gov.cn/xxgk/zcfb/fzggwl/202610/P020261022317321587480.pdf" target="_blank" rel="noopener">国家发展改革委：《对外投资管理办法》全文（PDF）</a></li>
+      <li><a href="https://www.chinanews.com.cn/cj/2026/10-22/10719333.shtml" target="_blank" rel="noopener">国家发展改革委有关负责同志就《对外投资管理办法》答记者问（中新网转载）</a></li>
+      <li><a href="https://www.news.cn/politics/20260601/c501b3cd78034669a8dd442f659f2a20/c.html" target="_blank" rel="noopener">《国务院关于对外投资的规定》（国务院令第 837 号）</a></li>
+      <li><a href="https://www.fangdalaw.com/content/details32_9472.html" target="_blank" rel="noopener">方达律师事务所：《对外投资管理办法（修订征求意见稿）》热点问题与评述</a>（分析对象为 8 月征求意见稿，部分时限与正式稿不同，以正式稿为准）</li>
+    </ol>
+  </div>
+</section>
+
+<!-- ══════════ 联系 ══════════ -->
+<section class="scene" id="s-contact" data-title="预约面谈" data-tint="#0D2A42">
+  <div class="scene__art"><div style="position:absolute;right:-6%;top:8%;width:min(52vw,520px);opacity:.22" data-depth="-0.34">
+    <svg viewBox="0 0 620 340" style="width:100%;height:auto;color:var(--gold)"><use href="#ill-cross"/></svg></div></div>
+  <div class="inner">
+    <p class="eyebrow rise">Contact</p>
+    <h2 class="h-sec rise" style="--d:.06s">家里有人打算来新加坡投资？</h2>
+    <div class="rule rise" style="--d:.1s"></div>
+    <p class="lede rise" style="--d:.12s">这份办法管的是国内那一端的手续，具体备案建议找熟悉跨境投资的律师。钱到了新加坡之后，公司和家人的保障、资产怎么安排，可以预约我一对一聊聊。</p>
+    <div class="card card--dark contact rise" style="--d:.18s;margin-top:30px">
+      <img class="avatar" src="/avatar-round.png" alt="袁媛 Yuan Yuan">
+      <div>
+        <h3 style="font-size:1.5rem">袁媛 Yuan Yuan · 新加坡小圆姐</h3>
+        <p style="color:var(--gold);margin-top:4px">AIA 财富管理顾问 · MDRT 百万圆桌会员</p>
+        <p style="color:var(--mist);font-size:.82rem;letter-spacing:.04em">AIA Singapore 代表 · RNF No. YY-300823216</p>
+        <div class="contact__lines">
+          <span>WhatsApp · <a href="https://wa.me/6583750190?text=%E4%BD%A0%E5%A5%BD%E5%B0%8F%E5%9C%86%E5%A7%90%EF%BC%8C%E6%88%91%E7%9C%8B%E4%BA%86%E7%BD%91%E7%AB%99%E7%9A%84%E5%AF%B9%E5%A4%96%E6%8A%95%E8%B5%84%E7%AE%A1%E7%90%86%E5%8A%9E%E6%B3%95%E9%80%9F%E8%AF%BB%EF%BC%8C%E6%83%B3%E8%81%8A%E8%81%8A%E5%AE%B6%E9%87%8C%E5%87%BA%E6%B5%B7%E6%8A%95%E8%B5%84%E4%B9%8B%E5%90%8E%E7%9A%84%E5%AE%89%E6%8E%92%E3%80%82" target="_blank" rel="noopener noreferrer">+65 8375 0190</a></span>
+          <span>微信 · singaporeyuan</span>
+          <span>邮箱 · <a href="mailto:yuanyuan@aia.com.sg">yuanyuan@aia.com.sg</a></span>
+          <span>小红书 / 视频号 · @新加坡小圆姐</span>
+        </div>
+      </div>
+      <div>
+        <img class="qr" src="/wechat-qr.png" alt="微信二维码">
+        <p class="qr-cap">扫码加我微信</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="inner">
+    <span>新加坡小圆姐 ｜ 对外投资管理办法速读 · 2026 年 10 月</span>
+    <span>本页依据国家发展改革委公布的原文及官方答记者问整理，仅供一般参考，不构成法律、税务或投资建议；条文以官方正式文本为准，个案请咨询熟悉跨境投资的律师。<br>袁媛 Yuan Yuan · AIA Singapore 代表 · RNF No. YY-300823216</span>
+  </div>
+</footer>
+
+<script>
+(function(){
+"use strict";
+const NS="http://www.w3.org/2000/svg";
+const RM = matchMedia("(prefers-reduced-motion: reduce)").matches;
+const el=(t,a)=>{const e=document.createElementNS(NS,t);for(const k in a)e.setAttribute(k,a[k]);return e;};
+const tx=(x,y,s,cls,a)=>{const e=el("text",Object.assign({x,y,class:cls},a||{}));e.textContent=s;return e;};
+const money=n=>n.toLocaleString("en-US");
+const $=id=>document.getElementById(id);
+
+/* ───── 距施行天数(北京时间 2026-12-01 00:00),须在 count-up 之前写好 ───── */
+(function(){
+  const days=Math.ceil((Date.UTC(2026,10,30,16,0,0)-Date.now())/86400000);
+  const box=$("cdBox");
+  if(days>0){ $("cdNum").dataset.count=days; }
+  else{ box.innerHTML='<svg class="ico" viewBox="0 0 64 64" aria-hidden="true"><use href="#ic-calok"/></svg><div class="stat__n">已施行</div><div class="stat__l">2026 年 12 月 1 日起</div><div class="stat__d">按北京时间计算</div>'; }
+})();
+
+/* ───── layer 0/1: parallax + field tint ───── */
+const layers=[...document.querySelectorAll("[data-depth]")];
+const scenes=[...document.querySelectorAll(".scene[data-tint]")];
+const field=$("field");
+const waves=$("fieldWaves");
+const bar=$("progress");
+const brandbar=$("brandbar");
+let ticking=false;
+
+function frame(){
+  ticking=false;
+  const vh=innerHeight, y=scrollY;
+  bar.style.width=(y/Math.max(1,document.documentElement.scrollHeight-vh)*100)+"%";
+  brandbar.classList.toggle("on", y>vh*0.7);
+  if(RM) return;
+  waves.style.transform="translate3d(0,"+(y*-0.05).toFixed(1)+"px,0)";
+  for(const l of layers){
+    const host=l.closest(".scene")||l.parentElement;
+    const r=host.getBoundingClientRect();
+    const c=(r.top+r.height/2-vh/2)/vh;
+    l.style.setProperty("--py",(c*parseFloat(l.dataset.depth)*110).toFixed(1)+"px");
+  }
+}
+addEventListener("scroll",()=>{if(!ticking){ticking=true;requestAnimationFrame(frame);}},{passive:true});
+addEventListener("resize",frame);
+
+/* 章节导航点 + 背景色随章节变化 */
+const dots=$("dots");
+scenes.forEach(s=>{
+  const a=document.createElement("a");
+  a.href="#"+s.id; a.dataset.t=s.dataset.title||""; a.setAttribute("aria-label",s.dataset.title||s.id);
+  dots.appendChild(a); s._dot=a;
+});
+const tintObs=new IntersectionObserver(es=>{
+  let best=null;
+  es.forEach(e=>{ if(e.isIntersecting && (!best || e.intersectionRatio>best.intersectionRatio)) best=e; });
+  if(best){
+    field.style.setProperty("--field", best.target.dataset.tint);
+    scenes.forEach(s=>s._dot.classList.toggle("on", s===best.target));
+  }
+},{threshold:[0.35,0.55,0.75]});
+scenes.forEach(s=>tintObs.observe(s));
+
+/* ───── layer 2: reveal + count-up ───── */
+const riseObs=new IntersectionObserver(es=>{
+  es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add("in"); riseObs.unobserve(e.target);} });
+},{rootMargin:"0px 0px -8% 0px",threshold:.15});
+document.querySelectorAll(".rise").forEach(n=>riseObs.observe(n));
+
+function countUp(node){
+  const to=parseFloat(node.dataset.count), dur=parseInt(node.dataset.dur||"1500",10);
+  if(RM){node.textContent=money(to);return;}
+  const t0=performance.now();
+  (function step(t){
+    const p=Math.min(1,(t-t0)/dur), e=1-Math.pow(1-p,3);
+    node.textContent=money(Math.round(to*e));
+    if(p<1)requestAnimationFrame(step);
+  })(t0);
+}
+const liveObs=new IntersectionObserver(es=>{
+  es.forEach(e=>{
+    if(!e.isIntersecting)return;
+    e.target.classList.add("is-live");
+    e.target.querySelectorAll("[data-count]").forEach(countUp);
+    liveObs.unobserve(e.target);
+  });
+},{threshold:.28});
+document.querySelectorAll("[data-live]").forEach(n=>liveObs.observe(n));
+
+function armPaths(root){
+  root.querySelectorAll(".draw").forEach(p=>{
+    p.style.setProperty("--len",p.getTotalLength().toFixed(1));
+  });
+}
+
+/* ───── 1. 判断题卡片 ───── */
+$("quiz").addEventListener("click",e=>{
+  const b=e.target.closest(".qcard"); if(!b)return;
+  b.setAttribute("aria-expanded", b.classList.toggle("on"));
+});
+
+/* ───── 2. 持股比例滑块 ───── */
+(function(){
+  const s=$("share"), ticks=$("shareTicks");
+  for(let k=10;k<=90;k+=10){
+    const t=document.createElement("span");
+    t.className="tickm"; t.style.left=k+"%"; t.dataset.k=k;
+    t.innerHTML="<i>"+k+"%</i>";
+    ticks.appendChild(t);
+  }
+  function draw(){
+    const v=+s.value;
+    $("shareV").textContent=v;
+    $("shareFill").style.width=v+"%";
+    const hit=[];
+    [...ticks.children].forEach(t=>{ const on=v>=+t.dataset.k; t.classList.toggle("hit",on); if(on)hit.push(t.dataset.k+"%"); });
+    const big=$("shareBig"), txt=$("shareTxt");
+    if(!hit.length){
+      big.textContent="一般不用办"; big.style.color="var(--paper)";
+      txt.textContent="还没达到 10%，也没拿到控制权：原则上不需要核准、备案或报告。";
+    }else{
+      big.textContent="需按办法办理"; big.style.color="var(--gold)";
+      txt.textContent="持股或表决权比例已达到 "+hit.join("、")+(hit.length>1?" 这几个":" 这个")+"节点。"+(v>50?"超过 50%，也意味着拿到了控制权。":"");
+    }
+  }
+  s.addEventListener("input",draw);
+  draw();
+})();
+
+/* ───── 3. 三种手续 ───── */
+(function(){
+  const T={
+    file:{chip:"备案",cls:"k-file",title:"非敏感、自己直接投：先备案，再出资",rows:[
+      ["管什么","投资者自己直接投入资产、权益或提供融资担保的非敏感投资"],
+      ["找谁","央企：国家发改委<br>地方企业 ≥3 亿美元：国家发改委<br>地方企业 &lt;3 亿美元：注册地省级发改部门<br>居民个人：户籍所在地或经常居住地省级发改部门"],
+      ["什么时候","实施投资前取得备案通知书"],
+      ["多久","受理后 7 个工作日内出具，可延长 7 个工作日"]]},
+    report:{chip:"报告",cls:"k-report",title:"非敏感、通过境外公司投：提前报告",rows:[
+      ["管什么","通过自己控制的境外公司、组织做的非敏感投资；这家境外公司回头投资国内（返程投资）也要报"],
+      ["找谁","与备案的分工相同"],
+      ["什么时候","实施投资 10 个工作日之前，通过网络系统提交"],
+      ["多久","不是审批。材料真实、准确、完整，就算完成报告"]]},
+    approve:{chip:"核准",cls:"k-approve",title:"敏感类投资：要国家发改委核准",rows:[
+      ["管什么","涉及敏感国家地区或敏感行业的投资，不论自己直接投还是通过境外公司投"],
+      ["找谁","国家发展改革委"],
+      ["什么时候","实施投资前取得核准文件"],
+      ["多久","受理后 20 个工作日内决定，可延长 10 个工作日"]]}
+  };
+  const ICO={file:["#ic-clip","var(--sky)"],report:["#ic-plane","var(--gold)"],approve:["#ic-stamp","var(--ember-l)"]};
+  const nav=$("trkNav"), routes=[...document.querySelectorAll("#ch-routes .route")];
+  function show(k){
+    const d=T[k];
+    [...nav.children].forEach(b=>{ const on=b.dataset.k===k; b.classList.toggle("on",on); b.setAttribute("aria-pressed",on); });
+    routes.forEach(g=>{ const on=g.dataset.k===k; g.classList.toggle("dim",!on); g.setAttribute("aria-pressed",on); });
+    $("trkIco").querySelector("use").setAttribute("href",ICO[k][0]); $("trkIco").style.color=ICO[k][1];
+    $("trkChip").className="pill "+d.cls; $("trkChip").textContent=d.chip;
+    $("trkTitle").textContent=d.title;
+    $("trkRows").innerHTML=d.rows.map(r=>"<div><dt>"+r[0]+"</dt><dd>"+r[1]+"</dd></div>").join("");
+  }
+  nav.addEventListener("click",e=>{ const b=e.target.closest("button"); if(b)show(b.dataset.k); });
+  routes.forEach(g=>{
+    g.addEventListener("click",()=>show(g.dataset.k));
+    g.addEventListener("keydown",e=>{ if(e.key==="Enter"||e.key===" "){ e.preventDefault(); show(g.dataset.k); } });
+  });
+  armPaths($("ch-routes"));
+  show("file");
+})();
+
+/* ───── 4. 自查工具 ───── */
+(function(){
+  const form=$("checker");
+  const val=n=>{const e=form.querySelector('input[name="'+n+'"]:checked');return e?e.value:null;};
+  const lab=n=>{const e=form.querySelector('input[name="'+n+'"]:checked');return e?form.querySelector('label[for="'+e.id+'"]').textContent:"";};
+  const pill=(t,c)=>'<span class="pill '+(c||"")+'">'+t+'</span>';
+  const rows=list=>list.map(r=>"<div><span>"+r[0]+"</span><span>"+r[1]+"</span></div>").join("");
+  const also=list=>list.map(t=>'<p><span class="pill k-report">另需</span><span>'+t+'</span></p>').join("");
+  function authority(who,amt){
+    if(who==="central")return "国家发展改革委";
+    if(who==="person")return "户籍所在地或经常居住地的省级发展改革部门";
+    return amt==="ge3"?"国家发展改革委":"注册地的省级发展改革部门";
+  }
+  function render(){
+    const way=val("way"),who=val("who"),sens=val("sens"),amt=val("amt");
+    const market=way==="market";
+    $("g-who").hidden=market; $("g-sens").hidden=market; $("g-amt").hidden=market;
+    const P=$("cPath"),T=$("cTitle"),R=$("cRows"),A=$("cAlso");
+    const arrow="<i>→</i>";
+    const ico=(h,c)=>{ const i=$("cIco"); i.querySelector("use").setAttribute("href",h); i.style.color=c; };
+
+    if(market){
+      ico("#ic-fund","var(--mist)");
+      P.innerHTML=pill(lab("way"))+arrow+pill("一般不适用","k-plain");
+      T.textContent="原则上无需核准、备案或报告";
+      R.innerHTML=rows([["例外一","投资后单独或与一致行动人一起拿到被投资企业的控制权"],["例外二","单独或与一致行动人合计持股、表决权比例达到 10% 的整数倍"],["例外三","国家发改委明确的其他情形"],["依据","第 73 条"]]);
+      A.innerHTML="";
+      return;
+    }
+
+    const auth=authority(who,amt);
+    const extra=[];
+    if(amt!=="lt1")extra.push("中方投资额 1 亿美元及以上：在向外方政府作投资承诺、签署投资协议等重要前期工作的 10 个工作日之前，提交前期工作情况报告（第 41 条）");
+    extra.push("投资完成或终止之日起 10 个工作日内，提交完成或终止情况报告（第 42 条）");
+    extra.push("每年 6 月 30 日前提交对外投资信息年度报告（第 54 条）");
+
+    const nonSens = way==="direct"
+      ? {label:"备案",cls:"k-file",title:"需要办理备案",rows:[["办理机关",auth],["什么时候","实施投资前取得备案通知书"],["办理时限","受理后 7 个工作日内出具，可延长不超过 7 个工作日（评估时间另计）"]]}
+      : {label:"报告",cls:"k-report",title:"需要提交境外再投资报告",rows:[["报送机关",auth],["什么时候","实施投资 10 个工作日之前，通过网络系统提交"],["说明","不设金额门槛；该境外公司对境内返程投资也要报告（第 14 条）"]]};
+    const sensLab={no:"不敏感",yes:"敏感",unsure:"不确定"}[sens];
+
+    if(sens==="yes"){
+      ico("#ic-stamp","var(--ember-l)");
+      P.innerHTML=pill(lab("way"))+arrow+pill(sensLab,"k-approve")+arrow+pill("核准","k-approve");
+      T.textContent="需要国家发改委核准";
+      R.innerHTML=rows([["办理机关","国家发展改革委"],["什么时候","实施投资前取得核准文件"],["办理时限","受理后 20 个工作日内决定，可延长不超过 10 个工作日（评估时间另计）"]]);
+    }else if(sens==="unsure"){
+      ico("#ic-chat","var(--mist)");
+      P.innerHTML=pill(lab("way"))+arrow+pill(sensLab,"k-plain")+arrow+pill("先确认","k-plain");
+      T.textContent="先问清楚是否敏感";
+      R.innerHTML=rows([["怎么问","可向发展改革部门咨询，部门应当及时告知（第 11 条）"],["如果敏感","国家发展改革委核准，实施前取得核准文件"],["如果不敏感",nonSens.title.replace("需要","")+"："+nonSens.rows[0][1]+"，"+nonSens.rows[1][1]]]);
+    }else{
+      way==="direct" ? ico("#ic-clip","var(--sky)") : ico("#ic-plane","var(--gold)");
+      P.innerHTML=pill(lab("way"))+arrow+pill(sensLab,"k-plain")+arrow+pill(nonSens.label,nonSens.cls);
+      T.textContent=nonSens.title;
+      R.innerHTML=rows(nonSens.rows);
+    }
+    A.innerHTML=also(extra);
+  }
+  form.addEventListener("change",render);
+  form.addEventListener("submit",e=>e.preventDefault());
+  render();
+})();
+
+/* ───── 5. 流程节点(互动,自动轮播) ───── */
+(function(){
+  const svg=$("ch-flow");
+  const W=900,H=230,L=60,R=60,Y=96;
+  const steps=[
+    {tone:"plain",ic:"ic-chat",short:"动手前",label:"动手之前 · 先问清属于哪一类",note:"可以向发改部门咨询，是否属于核准、备案或报告范围，部门应当及时告知。",art:"第 11 条"},
+    {tone:"report",ic:"ic-pen",short:"签约前",label:"签约前 10 个工作日 · 前期工作情况报告",note:"中方投资额 1 亿美元及以上，或关乎我国与有关国家外交关系的投资。“重要前期工作”指向外方政府作投资承诺、签署投资协议或类似文件等。",art:"第 41 条"},
+    {tone:"file",ic:"ic-stamp",short:"实施前",label:"实施投资前 · 拿到核准或备案文件，或提交再投资报告",note:"“实施”指投入资产、权益或提供融资、担保之前。境外再投资报告须提前 10 个工作日提交。",art:"第 12–14 条"},
+    {tone:"file",ic:"ic-swap",short:"变化前",label:"方案变化前 · 办完变更手续",note:"投资者增减、投资地点或主要内容规模重大变化、中方投资额变动达到原金额 20% 或 1 亿美元及以上，都要在变化发生前完成变更。",art:""},
+    {tone:"alert",ic:"ic-bell",short:"任何时候",label:"任何时候 · 重大不利情况立即报告",note:"外派人员重大伤亡、境外资产重大损失、损害两国外交关系；外方索要技术、数据，或要求转让、处分相关资产权益，以致威胁国家利益和安全。",art:""},
+    {tone:"report",ic:"ic-flag",short:"完成后",label:"完成或终止后 10 个工作日内 · 情况报告",note:"工程竣工、股权或资产交割、投资额支出完毕，或不再拥有相关权益时。",art:"第 42 条"},
+    {tone:"report",ic:"ic-cal",short:"每年 6/30",label:"每年 6 月 30 日前 · 年度报告",note:"报告截至上一年末的对外投资信息。如果在境外受到歧视性措施，也可以借此向发改委请求保护。",art:"第 54 条"}
+  ];
+  const COL={plain:"#F4EEE1",report:"#D6A94C",file:"#8DB9E2",alert:"#B5503C"};
+  const x=i=>L+i/(steps.length-1)*(W-L-R);
+  const yOf=i=>Y+(i%2?18:-18);
+  const d=steps.map((s,i)=>(i?"L":"M")+x(i)+" "+yOf(i)).join(" ");
+  const line=el("path",{class:"draw",d:d,stroke:"#BACBDA","stroke-width":3,style:"--d:.15s"});
+  svg.appendChild(line);
+  const dotsArr=[];
+  steps.forEach((s,i)=>{
+    const c=el("circle",{class:"fade",cx:x(i),cy:yOf(i),r:8,fill:COL[s.tone],stroke:"#0B1E31","stroke-width":2.5,style:"--d:"+(1.2+i*0.1)+"s;cursor:pointer;transition:r .3s"});
+    c.addEventListener("click",()=>go(i,true));
+    svg.appendChild(c); dotsArr.push(c);
+    svg.appendChild(tx(x(i),i%2?yOf(i)+42:yOf(i)-26,s.short,"lab fade",{"text-anchor":"middle",style:"--d:"+(1.3+i*0.1)+"s"}));
+    svg.appendChild(tx(x(i),H-14,"0"+(i+1),"tick fade",{"text-anchor":"middle",style:"--d:"+(1.3+i*0.1)+"s"}));
+  });
+  const cursor=el("g",{class:"fade",style:"--d:1.9s;transition:transform .7s cubic-bezier(.3,.8,.3,1)"});
+  cursor.appendChild(el("circle",{r:16,fill:"none",stroke:"#D6A94C","stroke-width":2,opacity:".9"}));
+  cursor.appendChild(el("circle",{r:24,fill:"none",stroke:"#D6A94C","stroke-width":1,opacity:".35"}));
+  svg.appendChild(cursor);
+  armPaths(svg);
+
+  const nav=$("flowNav"), note=$("flowNote");
+  let cur=-1,timer=null;
+  function go(i,user){
+    cur=i; const s=steps[i];
+    cursor.setAttribute("transform","translate("+x(i)+","+yOf(i)+")");
+    cursor.querySelectorAll("circle").forEach(c=>c.setAttribute("stroke",COL[s.tone]==="#F4EEE1"?"#D6A94C":COL[s.tone]));
+    dotsArr.forEach((c,k)=>c.setAttribute("r",k===i?11:8));
+    [...nav.children].forEach((b,k)=>{
+      b.classList.toggle("on",k===i);
+      b.classList.toggle("t-approve",steps[k].tone==="alert");
+      b.classList.toggle("t-file",steps[k].tone==="file");
+    });
+    note.className="note"+(s.tone==="alert"?" bad":s.tone==="file"?" blue":"");
+    const c=s.tone==="alert"?"var(--ember-l)":s.tone==="file"?"var(--sky)":"var(--gold)";
+    note.innerHTML='<div class="note__row"><span class="ico-ring"><svg class="ico" viewBox="0 0 64 64" style="color:'+c+'" aria-hidden="true"><use href="#'+s.ic+'"/></svg></span><div>'
+      +"<b>"+s.label+"</b><span>"+s.note+(s.art?'<span class="art">'+s.art+'</span>':"")+"</span></div></div>";
+    if(user&&timer){clearInterval(timer);timer=null;}
+  }
+  steps.forEach((s,i)=>{
+    const b=document.createElement("button");
+    b.type="button"; b.textContent=(i+1)+" · "+s.short;
+    b.addEventListener("click",()=>go(i,true));
+    nav.appendChild(b);
+  });
+  go(0,false);
+  const startObs=new IntersectionObserver(es=>{
+    es.forEach(e=>{
+      if(!e.isIntersecting)return;
+      startObs.unobserve(e.target);
+      if(RM)return;
+      setTimeout(()=>{ if(cur!==0)return; timer=setInterval(()=>go((cur+1)%steps.length,false),3600); },2400);
+    });
+  },{threshold:.4});
+  startObs.observe($("flowBox"));
+})();
+
+/* ───── 6. 罚款测算 ───── */
+(function(){
+  const AMT=[5e5,1e6,3e6,5e6,1e7,3e7,5e7,1e8,3e8,1e9];
+  const fmt=n=>{
+    if(n>=1e8)return (+(n/1e8).toFixed(2))+" 亿";
+    if(n>=1e4)return money(+(n/1e4).toFixed(2))+" 万";
+    return money(Math.round(n));
+  };
+  const s=$("fAmt");
+  function draw(){
+    const a=AMT[+s.value];
+    $("fAmtV").textContent=fmt(a);
+    $("fMax").textContent=fmt(a*0.01);
+    $("fR1").textContent="US$"+fmt(a*0.001)+" – "+fmt(a*0.005);
+    $("fR2").textContent="US$"+fmt(a*0.005)+" – "+fmt(a*0.01);
+  }
+  s.addEventListener("input",draw);
+  draw();
+})();
+
+/* ───── 7. 新旧对比筛选 ───── */
+(function(){
+  const nav=$("chgNav"), list=$("chgList");
+  nav.addEventListener("click",e=>{
+    const b=e.target.closest("button"); if(!b)return;
+    const f=b.dataset.f;
+    [...nav.children].forEach(c=>{ const on=c===b; c.classList.toggle("on",on); c.setAttribute("aria-pressed",on); });
+    [...list.children].forEach(c=>c.classList.toggle("out", f!=="all" && c.dataset.t!==f));
+  });
+})();
+
+/* ───── 8. 新加坡场景 ───── */
+(function(){
+  const Q=[
+    {k:"QDII / 理财通",ic:"ic-fund",q:"在国内用 QDII 基金、港股通、跨境理财通买境外股票或基金，要备案吗？",
+     a:["一般不用。这些渠道不适用核准、备案、报告的规定。但如果因此拿到被投资企业的控制权，或单独、与一致行动人合计持股或表决权达到 10% 的整数倍，就要按办法办理。<span class=\"art\">第 73 条</span>"]},
+    {k:"家人来新加坡开公司",ic:"ic-newco",q:"国内的家人想以个人名义在新加坡注册公司，或入股朋友的新加坡公司？",
+     a:["这属于“新建境外企业”或“获得境外企业所有权”。不涉及敏感因素的，向户籍所在地或经常居住地的省级发改部门备案，拿到备案通知书后再出资，个人备案不按金额分级。<span class=\"art\">第 13 条</span>",
+        "没拿到备案通知书的，外汇、银行等不予办理相关手续和结算。资金出境另涉及外汇管理部门的相关登记，那是另一套规定。<span class=\"art\">第 35 条</span>"]},
+    {k:"用境外公司再投资",ic:"ic-relay",q:"已经有一家自己控制的境外公司，想用它再投新项目？",
+     a:["不涉及敏感因素的，在实施投资 10 个工作日之前提交境外再投资报告，不论金额；这家境外公司如果回头投资国内（返程投资），同样要报。涉及敏感因素的，仍需国家发改委核准。<span class=\"art\">第 12、14 条</span>"]},
+    {k:"我有 EP / PR",ic:"ic-passport",q:"已经拿了新加坡 EP 或 PR，还算“居民个人”吗？",
+     a:["办法没有给“居民个人”下定义，只规定个人向户籍所在地或经常居住地的省级发改部门备案，并强调认定时“实质重于形式”。<span class=\"art\">第 13、71 条</span>"],
+     p:"具体口径有待配套文件和常见问题解答明确。个案建议咨询熟悉跨境投资的律师。"},
+    {k:"境外买房、买保险",ic:"ic-house",q:"个人在境外买房、买保险，算不算对外投资？",
+     a:["办法列举的情形包括“获得境外土地所有权、使用权等权益”，但没有单独点名个人购买住房或保险产品。"],
+     p:"是否纳入，要看后续配套文件和官方问答。"},
+    {k:"投资港澳台",ic:"ic-pins",q:"投资香港、澳门、台湾呢？",
+     a:["参照本办法执行；通过港澳台的公司再投资境外，也参照执行。<span class=\"art\">第 72 条</span>"]},
+    {k:"12 月 1 日前的老项目",ic:"ic-history",q:"12 月 1 日前已经办过手续的项目怎么办？",
+     a:["办法本身没有写过渡条款，只规定施行之日旧版同时废止。"],
+     p:"存量项目如何衔接（例如年度报告是否覆盖已有投资），有待配套规则明确。"}
+  ];
+  const nav=$("faqNav"), note=$("faqNote");
+  function show(i){
+    const d=Q[i];
+    [...nav.children].forEach((b,k)=>{ b.classList.toggle("on",k===i); b.setAttribute("aria-pressed",k===i); });
+    note.innerHTML='<div class="note__row"><span class="ico-ring"><svg class="ico" viewBox="0 0 64 64" aria-hidden="true"><use href="#'+d.ic+'"/></svg></span><div>'
+      +"<b>"+d.q+"</b>"+d.a.map(t=>"<p>"+t+"</p>").join("")+(d.p?'<span class="pending">待明确 · '+d.p+'</span>':"")+"</div></div>";
+  }
+  Q.forEach((d,i)=>{
+    const b=document.createElement("button");
+    b.type="button";
+    b.innerHTML='<svg class="ico ico--xs" viewBox="0 0 64 64" aria-hidden="true"><use href="#'+d.ic+'"/></svg>'+d.k;
+    b.addEventListener("click",()=>show(i));
+    nav.appendChild(b);
+  });
+  show(1);
+})();
+
+frame();
+})();
+</script>
+</body>
+</html>
