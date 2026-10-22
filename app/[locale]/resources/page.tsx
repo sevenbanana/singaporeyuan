@@ -80,7 +80,14 @@ const IconClock = (
   </svg>
 );
 
-type ResourceGroup = 'care' | 'money' | 'settle';
+const IconGlobe = (
+  <svg {...ic}>
+    <circle cx="12" cy="12" r="8.5" />
+    <path d="M3.5 12h17M12 3.5c2.4 2.4 3.6 5.2 3.6 8.5s-1.2 6.1-3.6 8.5c-2.4-2.4-3.6-5.2-3.6-8.5s1.2-6.1 3.6-8.5z" />
+  </svg>
+);
+
+type ResourceGroup ='care' | 'money' | 'settle';
 
 type Resource = {
   key: string;
@@ -167,6 +174,18 @@ export default async function ResourcesPage({
       icon: IconSpark,
       external: en ? '/guides/pr-checklist-en.html' : '/guides/pr-checklist.html',
       cta: en ? 'Read the guide' : '阅读指南',
+    },
+    {
+      key: 'odi',
+      group: 'settle',
+      tag: en ? 'Policy brief' : '政策速读',
+      title: en ? "China's New Outbound Investment Rules" : '对外投资管理办法速读',
+      desc: en
+        ? 'NDRC Order No. 49, in force from 1 December 2026, now covers individuals too. What counts as outbound investment, when you need approval, filing or a report, what a family member in China must do before setting up a Singapore company, plus a quick self-check. (In Chinese)'
+        : '国家发改委新规12月1日起施行,个人也正式纳入。哪些算对外投资,核准、备案、报告怎么分,国内家人来新加坡开公司要先办什么,QDII和跨境理财通受不受影响,附一个自查小工具。',
+      icon: IconGlobe,
+      external: '/guides/outbound-investment.html',
+      cta: en ? 'Read the brief' : '阅读速读',
     },
     {
       key: 'tax',

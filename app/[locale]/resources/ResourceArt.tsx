@@ -179,6 +179,30 @@ export default function ResourceArt({ k, className = '' }: Props) {
         </svg>
       );
 
+    /* 对外投资速读:盖章文件 → 箭头 → 地球 */
+    case 'odi':
+      return (
+        <svg {...common}>
+          <g {...line}>
+            <path d="M58 26h80l18 18v104H58z" fill="#fff" />
+            <path d="M138 26v18h18" />
+            <path d="M76 58h56M76 78h62M76 98h40" opacity=".45" />
+            <circle cx="276" cy="86" r="50" fill={SAND} />
+            <path d="M226 86h100" opacity=".6" />
+            <path d="M276 36c14 14 21 31 21 50s-7 36-21 50c-14-14-21-31-21-50s7-36 21-50z" fill="#fff" />
+            <path d="M234 62h84M234 110h84" opacity=".45" />
+            <path d="M30 158h340" strokeWidth="2.8" opacity=".35" />
+          </g>
+          <g {...gold}>
+            <circle cx="126" cy="124" r="15" fill="rgba(201,165,92,.2)" />
+            <path d="M119 124l5 5 9-10" strokeWidth="2.6" />
+            <path d="M172 86h40" strokeWidth="2.6" />
+            <path d="M206 79l10 7-10 7z" fill={GOLD} />
+            <path d="M330 30v16M322 38h16" />
+          </g>
+        </svg>
+      );
+
     default:
       return null;
   }
