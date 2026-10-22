@@ -178,14 +178,14 @@ export default async function ResourcesPage({
     {
       key: 'odi',
       group: 'settle',
-      tag: en ? 'Policy brief' : '政策速读',
+      tag: en ? 'Interactive' : '互动专题',
       title: en ? "China's New Outbound Investment Rules" : '对外投资管理办法速读',
       desc: en
-        ? 'NDRC Order No. 49, in force from 1 December 2026, now covers individuals too. What counts as outbound investment, when you need approval, filing or a report, what a family member in China must do before setting up a Singapore company, plus a quick self-check. (In Chinese)'
-        : '国家发改委新规12月1日起施行,个人也正式纳入。哪些算对外投资,核准、备案、报告怎么分,国内家人来新加坡开公司要先办什么,QDII和跨境理财通受不受影响,附一个自查小工具。',
+        ? 'NDRC Order No. 49, in force from 1 December 2026, now covers individuals too. A scrollable brief: tap cards to check what counts, pick your situation to see whether you need approval, filing or a report, and drag a slider to see how fines scale with the amount invested. (In Chinese)'
+        : '国家发改委新规12月1日起施行,个人也正式纳入。一页滚动读完:点卡片判断哪些算对外投资,选几个选项就知道该走核准、备案还是报告,拖动滑块看罚款按投资额怎么算,还有国内家人来新加坡开公司等场景问答。',
       icon: IconGlobe,
       external: '/guides/outbound-investment.html',
-      cta: en ? 'Read the brief' : '阅读速读',
+      cta: en ? 'Scroll the story' : '滚动看看',
     },
     {
       key: 'tax',
