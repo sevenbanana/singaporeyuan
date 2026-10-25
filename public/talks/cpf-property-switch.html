@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>换房前的四条CPF规则 | 新加坡小圆姐</title>
+<meta name="description" content="卖房到手现金为什么和想的不一样：CPF 退款、55 岁分界线、先买后卖的 ABSD、屋龄与地契，四条规则一次讲清。">
+<link rel="icon" href="/logo-mark.svg">
+<meta name="theme-color" content="#7C5A22">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700;800;900&family=Noto+Sans+SC:wght@400;500;700;900&display=swap">
+
+<style>
+:root{
+  --bg-1:#9A7331;
+  --bg-2:#7C5A22;
+  --bg-3:#5E4315;
+  --cream:#FCF7EC;
+  --cream-2:rgba(252,247,236,.74);
+  --cream-3:rgba(252,247,236,.48);
+  --gold:#EFC96E;
+  --gold-2:#D8A63F;
+  --line:rgba(252,247,236,.20);
+
+  --sans:"Noto Sans SC","PingFang SC","Hiragino Sans GB","Microsoft YaHei",system-ui,sans-serif;
+  --num:"Archivo","Noto Sans SC",system-ui,sans-serif;
+
+  /* 右下角口播头像安全区，内容永不进入 */
+  --avz:clamp(128px,36vw,178px);
+  --pad:clamp(28px,7.2vw,44px);
+  --ease:cubic-bezier(.22,1,.36,1);
+  --sat:env(safe-area-inset-top,0px);
+  --sab:env(safe-area-inset-bottom,0px);
+}
+
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;padding:0;height:100%}
+body{
+  background:var(--bg-2);color:var(--cream);font-family:var(--sans);
+  overflow:hidden;-webkit-font-smoothing:antialiased;
+  overscroll-behavior:none;touch-action:none;
+}
+
+/* ───────── 舞台 ───────── */
+#stage{
+  position:fixed;inset:0;display:flex;align-items:center;justify-content:center;overflow:hidden;
+  background:
+    radial-gradient(120% 80% at 50% 6%, rgba(255,225,168,.17), transparent 58%),
+    radial-gradient(100% 70% at 50% 100%, rgba(0,0,0,.34), transparent 60%),
+    linear-gradient(168deg, var(--bg-1) 0%, var(--bg-2) 52%, var(--bg-3) 100%);
+}
+#stage::after{
+  content:"";position:absolute;inset:-40%;pointer-events:none;opacity:.05;
+  background-image:radial-gradient(rgba(255,255,255,.9) .6px, transparent .7px);
+  background-size:3px 3px;animation:grain 6s steps(6) infinite;
+}
+@keyframes grain{
+  0%{transform:translate(0,0)}20%{transform:translate(-2%,1%)}40%{transform:translate(1%,-2%)}
+  60%{transform:translate(-1%,2%)}80%{transform:translate(2%,1%)}100%{transform:translate(0,0)}
+}
+#waves{position:fixed;left:0;right:0;bottom:0;height:24vh;opacity:.15;pointer-events:none;z-index:1}
+#waves svg{width:100%;height:100%}
+
+#deck{position:relative;width:100%;max-width:520px;height:100%;margin:0 auto;z-index:2}
+
+/* ───────── 页 ───────── */
+.scene{
+  position:absolute;inset:0;
+  display:flex;flex-direction:column;justify-content:center;
+  padding:calc(var(--pad) + 40px + var(--sat)) var(--pad) calc(var(--avz) + 30px + var(--sab));
+  opacity:0;visibility:hidden;
+  transition:opacity .32s var(--ease),transform .6s var(--ease),visibility 0s linear .6s;
+}
+.scene.below{transform:translateY(52px)}
+.scene.above{transform:translateY(-52px)}
+.scene.live{
+  opacity:1;visibility:visible;transform:none;
+  transition:opacity .5s var(--ease) .16s,transform .62s var(--ease) .1s,visibility 0s linear 0s;
+}
+.inner{position:relative;z-index:2;width:100%;transform-origin:center center}
+
+/* 插画：右上角出血，低透明度做背景层 */
+.art{
+  position:absolute;top:calc(var(--pad) + 46px);right:0;z-index:1;
+  width:clamp(116px,35vw,164px);color:var(--cream);pointer-events:none;
+  opacity:0;transform:translateY(14px) rotate(-3deg);
+  transition:opacity 1s var(--ease) .25s,transform 1.1s var(--ease) .25s;
+}
+.scene.live .art{opacity:.3;transform:none}
+.art.big{width:clamp(160px,48vw,220px);right:-6px;top:calc(var(--pad) + 34px)}
+.scene.live .art.big{opacity:.26}
+.art svg{width:100%;height:auto;display:block}
+
+/* ───────── 动效单元 ───────── */
+.b{opacity:0;transform:translateY(16px);transition:opacity .5s var(--ease),transform .6s var(--ease)}
+.b.on{opacity:1;transform:none}
+
+/* ───────── 文字 ───────── */
+.kicker{
+  display:inline-flex;align-items:center;line-height:1.15;align-self:flex-start;
+  font-size:12.5px;letter-spacing:.24em;font-weight:700;color:var(--gold);
+  padding:7px 13px;border:1px solid rgba(239,201,110,.42);border-radius:999px;
+  background:rgba(239,201,110,.08);
+}
+.idx{
+  font-family:var(--num);font-weight:900;font-size:clamp(44px,13vw,64px);line-height:.8;
+  color:transparent;-webkit-text-stroke:2px rgba(239,201,110,.5);letter-spacing:-.02em;
+}
+h1,h2{
+  margin:0;font-weight:900;letter-spacing:.005em;
+  text-shadow:0 1px 0 rgba(58,36,2,.55), 0 3px 8px rgba(44,27,0,.4), 0 16px 34px rgba(0,0,0,.34);
+}
+h1{line-height:1.34;font-size:clamp(30px,8.4vw,42px)}
+h2{line-height:1.38;font-size:clamp(24px,6.8vw,33px)}
+h1 .mark,h2 .mark{text-shadow:0 1px 0 rgba(58,36,2,.5), 0 4px 16px rgba(239,201,110,.32), 0 16px 34px rgba(0,0,0,.3)}
+.lead{margin:0;font-size:clamp(16px,4.3vw,18px);line-height:1.9;letter-spacing:.014em;
+  color:var(--cream-2);font-weight:500}
+.tiny{font-size:12.5px;line-height:1.8;letter-spacing:.014em;color:var(--cream-3);font-weight:400}
+.mark{color:var(--gold)}
+.ul{
+  padding-bottom:12px;
+  background-image:linear-gradient(rgba(239,201,110,.9),rgba(239,201,110,.9));
+  background-position:0 100%;background-repeat:no-repeat;background-size:0 7px;
+  transition:background-size .8s var(--ease) .25s;
+}
+.on .ul,.ul.on{background-size:100% 7px}
+
+/* 模块间距 */
+.stack>*+*{margin-top:clamp(20px,5.4vw,30px)}
+.stack-s>*+*{margin-top:12px}
+
+/* ───────── 组件 ───────── */
+.card{
+  border:1px solid var(--line);border-radius:16px;
+  background:linear-gradient(180deg,rgba(252,247,236,.11),rgba(252,247,236,.045));
+  padding:16px 17px;backdrop-filter:blur(2px);
+}
+.card.gold{border-color:rgba(239,201,110,.5);background:linear-gradient(180deg,rgba(239,201,110,.2),rgba(239,201,110,.07))}
+.row{display:flex;gap:11px}
+.row>*{flex:1}
+.lbl{font-size:12.5px;line-height:1.6;color:var(--cream-3);font-weight:600;letter-spacing:.06em}
+.val{font-family:var(--num);font-weight:800;font-size:clamp(21px,5.6vw,26px);line-height:1.26;letter-spacing:-.01em}
+.val.g{color:var(--gold)}
+.unit{font-size:.56em;font-weight:700;margin-left:2px;opacity:.8}
+
+.bar{position:relative;height:32px;border-radius:9px;background:rgba(0,0,0,.17);overflow:hidden}
+.bar .fill{position:absolute;inset:0 auto 0 0;width:0;border-radius:9px;transition:width 1s var(--ease) .12s}
+.b.on .bar .fill{width:var(--w)}
+.fill.solid{background:linear-gradient(90deg,#F4D488,var(--gold-2))}
+.fill.ghost{background:repeating-linear-gradient(115deg,rgba(252,247,236,.22) 0 7px,rgba(252,247,236,.08) 7px 14px)}
+.fill.dim{background:linear-gradient(90deg,rgba(252,247,236,.34),rgba(252,247,236,.18))}
+.barrow{display:flex;align-items:center;gap:10px}
+.barrow .name{width:62px;flex:none;font-size:13px;line-height:1.45;color:var(--cream-2);font-weight:600}
+.barrow .bar{flex:1}
+.barrow .num{width:78px;flex:none;text-align:right;font-family:var(--num);font-weight:800;font-size:15.5px}
+.barrow .num.g{color:var(--gold)}
+.hr{display:flex;align-items:center;gap:10px;color:var(--gold);font-size:11.5px;letter-spacing:.18em;font-weight:700}
+.hr::before,.hr::after{content:"";height:1px;flex:1;background:rgba(239,201,110,.3)}
+
+.stackbar{display:flex;gap:2px;height:34px;border-radius:10px;overflow:hidden;background:rgba(0,0,0,.17)}
+.stackbar span{width:0;transition:width .9s var(--ease);border-radius:2px}
+.on .stackbar span{width:var(--w)}
+.s1{background:#F6DFA6}.s2{background:#EFC96E}.s3{background:#C68F35}.s4{background:#9C6D24}
+.legend{display:flex;flex-wrap:wrap;gap:10px 16px;font-size:12.5px;line-height:1.6;color:var(--cream-2);font-weight:600}
+.legend i{display:inline-block;width:9px;height:9px;border-radius:3px;margin-right:6px;vertical-align:middle}
+.legend b{font-family:var(--num);font-weight:800;color:var(--cream)}
+
+.fork{display:flex;gap:11px;align-items:stretch}
+.fork .card{display:flex;flex-direction:column;gap:7px}
+.age{position:relative;text-align:center;font-family:var(--num);font-weight:900;
+  font-size:clamp(38px,10vw,50px);color:var(--gold);line-height:1}
+.age::before,.age::after{content:"";position:absolute;top:50%;width:24%;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(239,201,110,.6))}
+.age::before{left:2%}
+.age::after{right:2%;transform:scaleX(-1)}
+
+.tl{position:relative;padding-left:23px}
+.tl::before{content:"";position:absolute;left:6px;top:7px;bottom:9px;width:2px;
+  background:linear-gradient(180deg,var(--gold),rgba(239,201,110,.12))}
+.tl .step{position:relative;padding:0 0 15px}
+.tl .step:last-child{padding-bottom:0}
+.tl .step::before{content:"";position:absolute;left:-22px;top:5px;width:10px;height:10px;border-radius:50%;
+  background:var(--gold);box-shadow:0 0 0 4px rgba(239,201,110,.16)}
+.tl .t{font-size:15.5px;font-weight:700;line-height:1.5}
+.tl .d{font-size:12.5px;color:var(--cream-3);margin-top:3px;line-height:1.6}
+
+.chart{width:100%;height:auto;display:block;overflow:visible}
+.chart .grid{stroke:rgba(252,247,236,.14);stroke-width:1}
+.chart .axis{fill:rgba(252,247,236,.5);font-size:8.5px;font-family:var(--num);font-weight:700}
+.chart .ln{fill:none;stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round;
+  stroke-dasharray:520;stroke-dashoffset:520;transition:stroke-dashoffset 1.5s var(--ease) .2s}
+.on .chart .ln{stroke-dashoffset:0}
+.chart .ln.a{stroke:rgba(252,247,236,.42);stroke-dasharray:4 5;stroke-dashoffset:0;opacity:0;transition:opacity .6s ease .2s}
+.on .chart .ln.a{opacity:1}
+.chart .ln.b{stroke:var(--gold)}
+.chart .gap{opacity:0;transition:opacity .5s ease 1.5s}
+.on .chart .gap{opacity:1}
+.chart .gapln{stroke:var(--gold);stroke-width:1;stroke-dasharray:2 3}
+.chart .gaptx{fill:var(--gold);font-size:9.5px;font-weight:800;font-family:var(--num)}
+
+.checks{display:flex;flex-direction:column;gap:11px}
+.check{display:flex;align-items:center;gap:12px;padding:14px;border-radius:14px;
+  border:1px solid var(--line);background:rgba(252,247,236,.07)}
+.check .n{font-family:var(--num);font-weight:900;color:var(--gold);font-size:15px;opacity:.85}
+.check .tx{font-size:15px;font-weight:600;line-height:1.5}
+
+/* 首屏房产类型卡 */
+.ptype{display:flex;flex-direction:column;align-items:center;gap:10px;padding:18px 12px}
+.ptype svg{width:clamp(38px,10.5vw,46px);height:auto;color:var(--cream)}
+.ptype.gold svg{color:var(--gold)}
+.ptype .nm{font-size:15px;font-weight:700;line-height:1.35;text-align:center}
+.ptype .en{display:block;font-family:var(--num);font-size:11.5px;font-weight:700;
+  letter-spacing:.1em;color:var(--cream-3);margin-top:3px}
+
+/* 章节过渡页 */
+.mid{text-align:center}
+.mid .kicker{align-self:center}
+.nums{display:flex;justify-content:center;gap:clamp(14px,5vw,26px);
+  font-family:var(--num);font-weight:900;font-size:clamp(17px,4.8vw,21px);color:transparent;
+  -webkit-text-stroke:1.6px rgba(239,201,110,.55);letter-spacing:.02em}
+
+/* 55 岁左右对比 */
+.vs{position:relative}
+.vs .panes{display:flex;border:1px solid var(--line);border-radius:18px;overflow:hidden;
+  background:linear-gradient(180deg,rgba(252,247,236,.09),rgba(252,247,236,.035))}
+.vs .pane{flex:1;padding:20px 10px 16px;display:flex;flex-direction:column;align-items:center;gap:11px}
+.vs .pane+.pane{border-left:1px dashed rgba(239,201,110,.5);background:rgba(239,201,110,.08)}
+.vs .when{font-size:12.5px;font-weight:700;letter-spacing:.06em;color:var(--cream-3)}
+.vs .dest{font-family:var(--num);font-weight:800;font-size:clamp(15px,4.2vw,17px);color:var(--gold);text-align:center;line-height:1.35}
+.vs .note{font-size:11.5px;line-height:1.55;color:var(--cream-3);text-align:center}
+.vs .badge{
+  position:absolute;left:50%;top:0;transform:translate(-50%,-52%);z-index:3;
+  font-family:var(--num);font-weight:900;font-size:13.5px;color:var(--gold);
+  padding:4px 12px;border-radius:999px;border:1px solid rgba(239,201,110,.55);background:var(--bg-2);
+}
+.col{width:clamp(46px,13vw,58px);height:clamp(84px,24vw,108px);border-radius:9px;
+  background:rgba(0,0,0,.2);display:flex;flex-direction:column-reverse;overflow:hidden}
+.col i{display:block;width:100%;height:0;transition:height .95s var(--ease) .1s}
+.on .col i{height:var(--h)}
+.col .ra{background:#C68F35}
+.col .oa{background:#F6DFA6}
+.collbl{display:flex;flex-direction:column;gap:3px;font-size:11.5px;line-height:1.4;color:var(--cream-2);text-align:center}
+.collbl b{font-family:var(--num);color:var(--cream)}
+
+/* 常显小字注解 */
+.fn{
+  position:absolute;left:var(--pad);right:auto;width:50%;
+  bottom:calc(42px + var(--sab));z-index:2;
+  padding-top:9px;border-top:1px solid rgba(252,247,236,.14);
+  opacity:0;transition:opacity .6s var(--ease) .3s;
+}
+.fn .tiny{line-height:1.72}
+.scene.live .fn{opacity:1}
+
+/* ───────── HUD ───────── */
+#hud{position:fixed;top:0;left:0;right:0;padding:calc(14px + var(--sat)) var(--pad) 0;z-index:20;pointer-events:none;
+  max-width:520px;margin:0 auto}
+#ticks{display:flex;gap:4px}
+#ticks .tk{flex:1;height:3px;border-radius:2px;background:rgba(252,247,236,.18);overflow:hidden}
+#ticks .tk i{display:block;height:100%;width:0;background:var(--gold);transition:width .45s var(--ease)}
+#ctl{position:fixed;bottom:calc(10px + var(--sab));right:max(10px, calc(50% - 260px + 10px));
+  z-index:22;display:flex;gap:5px;opacity:.5}
+#ctl button{
+  width:28px;height:28px;border-radius:50%;border:1px solid rgba(252,247,236,.22);
+  background:rgba(0,0,0,.18);color:var(--cream-2);font-size:12px;cursor:pointer;
+  display:grid;place-items:center;padding:0;font-family:var(--num);font-weight:800;
+}
+#ctl button:active{transform:scale(.92)}
+
+#avz{
+  position:fixed;right:max(10px, calc(50% - 260px + 10px));bottom:calc(10px + var(--sab));
+  width:var(--avz);height:var(--avz);border-radius:50%;z-index:15;pointer-events:none;
+  border:1px dashed rgba(252,247,236,0);transition:border-color .3s ease,background .3s ease;
+}
+#avz.show{border-color:rgba(239,201,110,.5);background:rgba(239,201,110,.05)}
+
+#swipe{
+  position:fixed;left:max(var(--pad), calc(50% - 260px + var(--pad)));bottom:calc(12px + var(--sab));z-index:18;
+  display:flex;align-items:center;gap:9px;pointer-events:none;
+  color:rgba(252,247,236,.5);font-size:11px;letter-spacing:.2em;font-weight:600;
+  opacity:0;transition:opacity .5s ease;
+}
+#swipe.show{opacity:1}
+#swipe svg{width:15px;height:15px;animation:nudge 1.6s ease-in-out infinite}
+@keyframes nudge{0%,100%{transform:translateY(-3px)}50%{transform:translateY(3px)}}
+
+#gesture{position:fixed;inset:0;z-index:10}
+
+/* 矮屏收紧 */
+@media (max-height:800px){
+  :root{--avz:clamp(108px,31vw,150px);--pad:clamp(24px,6.4vw,36px)}
+  .scene{padding:calc(var(--pad) + 32px + var(--sat)) var(--pad) calc(var(--avz) + 24px + var(--sab))}
+  .stack>*+*{margin-top:clamp(16px,4.4vw,22px)}
+  .lead{line-height:1.8}
+  .card{padding:14px 15px}
+  .fn{bottom:calc(38px + var(--sab))}
+}
+@media (max-height:700px){
+  :root{--avz:clamp(96px,27vw,130px)}
+  .stack>*+*{margin-top:14px}
+  h1{line-height:1.26}
+  h2{line-height:1.3}
+  .lead{line-height:1.7}
+  .tiny{font-size:12px;line-height:1.65}
+  .idx{font-size:clamp(34px,9.5vw,48px)}
+  .art{width:clamp(100px,30vw,140px)}
+}
+@media (prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+</style>
+</head>
+<body>
+
+<!-- ───────── 插画符号 ───────── -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <filter id="rough">
+    <feTurbulence type="fractalNoise" baseFrequency="0.028" numOctaves="3" seed="7" result="n"/>
+    <feDisplacementMap in="SourceGraphic" in2="n" scale="2.6" xChannelSelector="R" yChannelSelector="G"/>
+  </filter>
+  <filter id="rough-s">
+    <feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="2" seed="3" result="n"/>
+    <feDisplacementMap in="SourceGraphic" in2="n" scale="1.6" xChannelSelector="R" yChannelSelector="G"/>
+  </filter>
+
+  <symbol id="ill-house" viewBox="0 0 200 200">
+    <g filter="url(#rough)" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M34 104L100 56l66 48" />
+      <path d="M50 100v62h100v-62" fill="rgba(252,247,236,.06)"/>
+      <path d="M88 162v-34h24v34" fill="rgba(239,201,110,.18)"/>
+      <path d="M62 112h24v20H62z"/>
+      <path d="M126 76V60h14v26"/>
+      <g stroke="var(--gold)" stroke-width="2.4">
+        <circle cx="158" cy="40" r="21" fill="rgba(239,201,110,.16)"/>
+        <path d="M158 28v24M151 35h14M151 45h14"/>
+      </g>
+      <path d="M20 174h160" stroke-width="3"/>
+    </g>
+  </symbol>
+
+  <symbol id="ill-coins" viewBox="0 0 200 200">
+    <g filter="url(#rough)" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+      <g stroke="var(--gold)">
+        <circle cx="142" cy="56" r="26" fill="rgba(239,201,110,.16)"/>
+        <path d="M142 42v28M135 50h14M135 62h14"/>
+      </g>
+      <g fill="rgba(252,247,236,.06)">
+        <ellipse cx="52" cy="112" rx="28" ry="9"/><ellipse cx="52" cy="128" rx="28" ry="9"/>
+        <ellipse cx="52" cy="144" rx="28" ry="9"/><ellipse cx="52" cy="160" rx="28" ry="9"/>
+        <ellipse cx="118" cy="144" rx="24" ry="8"/><ellipse cx="118" cy="160" rx="24" ry="8"/>
+        <ellipse cx="170" cy="160" rx="18" ry="7"/>
+      </g>
+      <path d="M24 112v48M80 112v48M94 144v16M142 144v16"/>
+      <path d="M14 176h172" stroke-width="3"/>
+    </g>
+  </symbol>
+
+  <symbol id="ill-vault" viewBox="0 0 200 200">
+    <g filter="url(#rough)" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="38" y="66" width="112" height="98" rx="10" fill="rgba(252,247,236,.06)"/>
+      <rect x="52" y="80" width="84" height="70" rx="7"/>
+      <circle cx="94" cy="115" r="20" stroke="var(--gold)" fill="rgba(239,201,110,.14)"/>
+      <path d="M94 95v40M74 115h40" stroke="var(--gold)" stroke-width="2.2"/>
+      <path d="M50 164v10M138 164v10"/>
+      <g stroke="var(--gold)" stroke-width="2.4">
+        <path d="M170 34q22 34 -6 54"/>
+        <path d="M156 82l8-14 14 6"/>
+        <path d="M96 52h44"/>
+      </g>
+    </g>
+  </symbol>
+
+  <symbol id="ill-hourglass" viewBox="0 0 200 200">
+    <g filter="url(#rough)" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M56 30h88M56 172h88" stroke-width="3"/>
+      <path d="M68 32h64c0 36-28 46-28 68 0 22 28 32 28 68H68c0-36 28-46 28-68 0-22-28-32-28-68z"/>
+      <path d="M74 40h52c0 26-26 38-26 52 0-14-26-26-26-52z" fill="rgba(239,201,110,.24)" stroke="var(--gold)" stroke-width="2"/>
+      <path d="M100 122c0 16 22 24 24 42H76c2-18 24-26 24-42z" fill="rgba(239,201,110,.16)" stroke="var(--gold)" stroke-width="2"/>
+      <path d="M100 96v26" stroke="var(--gold)" stroke-width="2"/>
+    </g>
+  </symbol>
+
+  <symbol id="ill-signpost" viewBox="0 0 200 200">
+    <g filter="url(#rough)" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M100 176V44"/>
+      <path d="M96 62H40L24 78l16 16h56z" fill="rgba(252,247,236,.07)"/>
+      <path d="M104 112h56l16 16-16 16h-56z" fill="rgba(239,201,110,.2)" stroke="var(--gold)"/>
+      <path d="M52 74h28M52 82h20" opacity=".7"/>
+      <path d="M120 122h28M120 134h20" stroke="var(--gold)" opacity=".8"/>
+      <circle cx="100" cy="36" r="8" stroke="var(--gold)" fill="rgba(239,201,110,.2)"/>
+      <path d="M28 176h144" stroke-width="3"/>
+    </g>
+  </symbol>
+
+  <symbol id="ill-two-houses" viewBox="0 0 200 200">
+    <g filter="url(#rough)" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M14 112l36-28 36 28"/>
+      <path d="M24 110v52h52v-52" fill="rgba(252,247,236,.05)"/>
+      <path d="M42 162v-24h16v24"/>
+      <path d="M108 96l40-32 40 32" stroke="var(--gold)"/>
+      <path d="M120 94v68h56V94" fill="rgba(239,201,110,.16)" stroke="var(--gold)"/>
+      <path d="M140 162v-30h18v30" stroke="var(--gold)"/>
+      <path d="M86 128q10-16 22-16" stroke="var(--gold)" stroke-width="2.2"/>
+      <path d="M102 106l8 6-9 5" stroke="var(--gold)" stroke-width="2.2"/>
+      <path d="M8 174h184" stroke-width="3"/>
+    </g>
+  </symbol>
+
+  <symbol id="ill-clock-house" viewBox="0 0 200 200">
+    <g filter="url(#rough)" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M16 118l46-34 46 34"/>
+      <path d="M28 116v50h68v-50" fill="rgba(252,247,236,.05)"/>
+      <path d="M52 166v-26h20v26"/>
+      <path d="M38 128h14v12H38z"/>
+      <g stroke="var(--gold)">
+        <circle cx="146" cy="82" r="34" fill="rgba(239,201,110,.14)"/>
+        <path d="M146 60v22l16 10"/>
+        <path d="M146 46v-8M180 82h8M146 118v8M104 82h8"/>
+      </g>
+      <path d="M10 178h180" stroke-width="3"/>
+    </g>
+  </symbol>
+
+  <symbol id="ill-clipboard" viewBox="0 0 200 200">
+    <g filter="url(#rough)" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="44" y="38" width="102" height="132" rx="10" fill="rgba(252,247,236,.06)"/>
+      <path d="M78 30h34a6 6 0 016 6v12H72V36a6 6 0 016-6z" fill="rgba(239,201,110,.2)" stroke="var(--gold)"/>
+      <g stroke="var(--gold)" stroke-width="2.4">
+        <path d="M62 76l6 7 11-14M62 106l6 7 11-14M62 136l6 7 11-14"/>
+      </g>
+      <path d="M92 78h38M92 108h38M92 138h26"/>
+      <g stroke="var(--gold)" stroke-width="2.6">
+        <circle cx="152" cy="140" r="24" fill="rgba(239,201,110,.1)"/>
+        <path d="M170 158l16 16"/>
+      </g>
+    </g>
+  </symbol>
+
+  <symbol id="ill-sunrise" viewBox="0 0 200 200">
+    <g filter="url(#rough)" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M52 126a48 48 0 0196 0z" fill="rgba(239,201,110,.2)" stroke="var(--gold)"/>
+      <g stroke="var(--gold)" stroke-width="2.2" opacity=".85">
+        <path d="M100 56V38M56 74L44 62M144 74l12-12M34 118H16M184 118h-18"/>
+      </g>
+      <path d="M10 126h180" stroke-width="3"/>
+      <g opacity=".8">
+        <path d="M14 146q22-14 44 0t44 0 44 0 44 0"/>
+        <path d="M2 168q22-14 44 0t44 0 44 0 44 0" opacity=".65"/>
+      </g>
+    </g>
+  </symbol>
+
+  <symbol id="ic-hdb" viewBox="0 0 64 64">
+    <g filter="url(#rough-s)" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M8 22l24-11 24 11"/>
+      <path d="M10 22v32h44V22" fill="rgba(252,247,236,.06)"/>
+      <path d="M16 30h8v7h-8zM30 30h8v7h-8zM44 30h6v7h-6z"/>
+      <path d="M16 42h8v7h-8zM44 42h6v7h-6z"/>
+      <path d="M29 54v-12h6v12"/>
+      <path d="M4 56h56" stroke-width="3"/>
+    </g>
+  </symbol>
+  <symbol id="ic-condo" viewBox="0 0 64 64">
+    <g filter="url(#rough-s)" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M22 54V8h24v46" fill="rgba(239,201,110,.14)"/>
+      <path d="M22 18h24M22 28h24M22 38h24"/>
+      <path d="M34 8v46" opacity=".45"/>
+      <path d="M10 54V32h12v22" fill="rgba(239,201,110,.08)"/>
+      <path d="M13 38h6M13 46h6"/>
+      <path d="M4 56h56" stroke-width="3"/>
+    </g>
+  </symbol>
+
+  <symbol id="ill-wave" viewBox="0 0 1200 300" preserveAspectRatio="none">
+    <g fill="none" stroke="var(--gold)" stroke-width="1.6" opacity=".5" filter="url(#rough-s)">
+      <path d="M0 60q60-28 120 0t120 0 120 0 120 0 120 0 120 0 120 0 120 0 120 0 120 0"/>
+      <path d="M0 130q60-28 120 0t120 0 120 0 120 0 120 0 120 0 120 0 120 0 120 0 120 0"/>
+      <path d="M0 200q60-28 120 0t120 0 120 0 120 0 120 0 120 0 120 0 120 0 120 0 120 0"/>
+      <path d="M0 270q60-28 120 0t120 0 120 0 120 0 120 0 120 0 120 0 120 0 120 0 120 0"/>
+    </g>
+  </symbol>
+</defs></svg>
+
+<div id="stage">
+  <div id="waves"><svg viewBox="0 0 1200 300" preserveAspectRatio="none"><use href="#ill-wave"/></svg></div>
+  <div id="deck">
+
+    <!-- 1 -->
+    <section class="scene">
+      <div class="art big"><svg viewBox="0 0 200 200"><use href="#ill-house"/></svg></div>
+      <div class="inner stack">
+        <span class="b kicker">新 加 坡 🇸🇬 · 换 房 前 必 看</span>
+        <h1 class="b">房子<span class="mark" data-count="100" data-suf="万">0万</span>卖掉<br>你能拿到多少<span class="mark">现金</span>？</h1>
+        <div class="b row">
+          <div class="card ptype"><svg viewBox="0 0 64 64"><use href="#ic-hdb"/></svg>
+            <div class="nm">组屋<span class="en">HDB</span></div></div>
+          <div class="card gold ptype"><svg viewBox="0 0 64 64"><use href="#ic-condo"/></svg>
+            <div class="nm">私宅<span class="en">PRIVATE</span></div></div>
+        </div>
+      </div>
+      <div class="fn"><span class="tiny">全片金额为示意演算，用于说明规则，非个人测算结果。</span></div>
+    </section>
+
+    <!-- 2 -->
+    <section class="scene">
+      <div class="art"><svg viewBox="0 0 200 200"><use href="#ill-coins"/></svg></div>
+      <div class="inner stack">
+        <span class="b kicker">很 多 人 这 么 算</span>
+        <div class="b stack-s">
+          <div class="barrow"><span class="name">成交价</span><div class="bar"><div class="fill dim" style="--w:100%"></div></div><span class="num">100万</span></div>
+        </div>
+        <div class="b stack-s">
+          <div class="barrow"><span class="name">未还房贷</span><div class="bar"><div class="fill ghost" style="--w:37%"></div></div><span class="num">-37万</span></div>
+        </div>
+        <div class="b stack-s">
+          <div class="barrow"><span class="name">表面剩余</span><div class="bar"><div class="fill dim" style="--w:63%"></div></div><span class="num">63万</span></div>
+        </div>
+        <div class="b hr">实 际 到 账</div>
+        <div class="b stack-s">
+          <div class="barrow"><span class="name">到手现金</span><div class="bar"><div class="fill solid" style="--w:16%"></div></div><span class="num g">10万</span></div>
+        </div>
+        <div class="b stack-s">
+          <div class="barrow"><span class="name">退回 CPF</span><div class="bar"><div class="fill solid" style="--w:84%"></div></div><span class="num g">53万</span></div>
+        </div>
+      </div>
+      <div class="fn"><span class="tiny">示意：成交价 100万、剩余贷款 37万、历史 CPF 含应计利息 53万。</span></div>
+    </section>
+
+    <!-- 3 · 章节过渡 -->
+    <section class="scene">
+      <div class="inner stack mid">
+        <span class="b kicker">接 下 来</span>
+        <h1 class="b">换房前<br>最容易忽略的<br><span class="mark">4 个规则</span></h1>
+        <div class="b nums"><span>01</span><span>02</span><span>03</span><span>04</span></div>
+      </div>
+    </section>
+
+    <!-- 4 -->
+    <section class="scene">
+      <div class="art"><svg viewBox="0 0 200 200"><use href="#ill-vault"/></svg></div>
+      <div class="inner stack">
+        <div class="b idx">01</div>
+        <h2 class="b">用过的 <span class="mark">CPF</span><br><span class="ul">卖房时要退回去</span></h2>
+        <div class="b">
+          <div class="stackbar">
+            <span class="s1" style="--w:34%"></span><span class="s2" style="--w:41%"></span>
+            <span class="s3" style="--w:6%"></span><span class="s4" style="--w:19%"></span>
+          </div>
+          <div class="legend" style="margin-top:13px">
+            <span><i style="background:#F6DFA6"></i>首付 <b>18万</b></span>
+            <span><i style="background:#EFC96E"></i>月供 <b>22万</b></span>
+            <span><i style="background:#C68F35"></i>补贴 <b>3万</b></span>
+            <span><i style="background:#9C6D24"></i>应计利息 <b>10万</b></span>
+          </div>
+        </div>
+        <p class="b lead">钱还是你的，<b class="mark">只是不在手上</b>。</p>
+      </div>
+      <div class="fn"><span class="tiny">来源：CPF Board 住房退款——动用的 CPF 及应计利息须在售房时退回本人账户。</span></div>
+    </section>
+
+    <!-- 5 -->
+    <section class="scene">
+      <div class="art"><svg viewBox="0 0 200 200"><use href="#ill-hourglass"/></svg></div>
+      <div class="inner stack">
+        <span class="b kicker">最 容 易 低 估 的 一 笔</span>
+        <h2 class="b"><span class="mark">应计利息</span><br><span class="ul">一直在累积</span></h2>
+        <div class="b card">
+          <svg class="chart" viewBox="0 0 300 138" role="img" aria-label="应计利息累积示意图">
+            <line class="grid" x1="25" y1="120" x2="292" y2="120"/>
+            <line class="grid" x1="25" y1="70" x2="292" y2="70"/>
+            <line class="grid" x1="25" y1="20" x2="292" y2="20"/>
+            <text class="axis" x="22" y="133" text-anchor="middle">0</text>
+            <text class="axis" x="155" y="133" text-anchor="middle">第10年</text>
+            <text class="axis" x="285" y="133" text-anchor="middle">第20年</text>
+            <polyline class="ln a" points="25,110 90,110 155,110 220,110 285,110"/>
+            <polyline class="ln b" points="25,110 90,92 155,71 220,47 285,20"/>
+            <g class="gap">
+              <line class="gapln" x1="285" y1="20" x2="285" y2="110"/>
+              <text class="gaptx" x="279" y="60" text-anchor="end">+ 应计利息</text>
+              <text class="gaptx" x="279" y="72" text-anchor="end">≈ S$19万</text>
+            </g>
+          </svg>
+          <div class="legend" style="margin-top:8px">
+            <span><i style="background:rgba(252,247,236,.42)"></i>动用本金 <b>30万</b></span>
+            <span><i style="background:#EFC96E"></i>本金 + 应计利息</span>
+          </div>
+        </div>
+      </div>
+      <div class="fn"><span class="tiny">示意：本金 30万按 OA 利率 2.5% 复利 20 年，需退约 49万。来源：CPF Board。</span></div>
+    </section>
+
+    <!-- 6 -->
+    <section class="scene">
+      <div class="art"><svg viewBox="0 0 200 200"><use href="#ill-signpost"/></svg></div>
+      <div class="inner stack">
+        <div class="b idx">02</div>
+        <h2 class="b">退款回到哪里<br><span class="ul">要看你<span class="mark">几岁</span></span></h2>
+        <div class="b vs">
+          <span class="badge">55 岁</span>
+          <div class="panes">
+            <div class="pane b">
+              <span class="when">之 前 卖 房</span>
+              <div class="col"><i class="oa" style="--h:100%"></i></div>
+              <div class="dest">全额回 OA</div>
+              <div class="collbl"><span>OA <b>53万</b></span></div>
+            </div>
+            <div class="pane b">
+              <span class="when">之 后 卖 房</span>
+              <div class="col"><i class="ra" style="--h:23%"></i><i class="oa" style="--h:77%"></i></div>
+              <div class="dest">先补 RA 再回 OA</div>
+              <div class="collbl"><span>RA <b>12万</b> · OA <b>41万</b></span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="fn"><span class="tiny">来源：CPF Board。2026 年满 55 岁的全额退休存款 S$220,400，以官网公布为准。</span></div>
+    </section>
+
+    <!-- 7 -->
+    <section class="scene">
+      <div class="art"><svg viewBox="0 0 200 200"><use href="#ill-two-houses"/></svg></div>
+      <div class="inner stack">
+        <div class="b idx">03</div>
+        <h2 class="b">先买后卖<br><span class="ul">按<span class="mark">第二套</span>计算</span></h2>
+        <div class="tl">
+          <div class="step b"><div class="t">① 先买新房</div><div class="d">旧房 CPF 暂时拿不出来</div></div>
+          <div class="step b"><div class="t">② 按第二套计税</div><div class="d">公民第二套 ABSD 20%</div></div>
+          <div class="step b"><div class="t">③ 再卖旧房</div><div class="d">CPF 退款此时才回账户</div></div>
+          <div class="step b"><div class="t">④ 能否退还 ABSD</div><div class="d">看换房条件是否符合</div></div>
+        </div>
+        <div class="b card gold" style="display:flex;align-items:center;gap:14px">
+          <div class="val g" style="font-size:clamp(27px,7.6vw,34px)"><span data-count="20" data-suf="%">0%</span></div>
+          <div class="tiny" style="color:var(--cream-2)">按 S$150万新房计，<br>需先备 <b class="mark">约 S$30万</b> 印花税。</div>
+        </div>
+      </div>
+      <div class="fn"><span class="tiny">来源：IRAS。2023年4月27日起公民第二套住宅 ABSD 20%，符合条件可申请退还。</span></div>
+    </section>
+
+    <!-- 8 -->
+    <section class="scene">
+      <div class="art"><svg viewBox="0 0 200 200"><use href="#ill-clock-house"/></svg></div>
+      <div class="inner stack">
+        <div class="b idx">04</div>
+        <h2 class="b">房子的<span class="mark">屋龄</span><br><span class="ul">也会影响 CPF</span></h2>
+        <div class="b card"><div class="lbl">门槛</div><div class="val">剩余地契 <span class="mark">≥ 20 年</span></div></div>
+        <div class="b stack-s">
+          <div class="lbl">能否覆盖最年轻买家到 95 岁</div>
+          <div class="barrow"><span class="name">可覆盖</span><div class="bar" style="height:30px"><div class="fill solid" style="--w:100%"></div></div><span class="num g">100%</span></div>
+          <div class="barrow"><span class="name">不覆盖</span><div class="bar" style="height:30px"><div class="fill dim" style="--w:82%"></div></div><span class="num">约 82%</span></div>
+        </div>
+        <p class="b lead">屋龄越老，要补的<b class="mark">现金越多</b>。</p>
+      </div>
+      <div class="fn"><span class="tiny">来源：CPF Board 地契规则。例：40 岁买家需覆盖至 95 岁，即 55 年。</span></div>
+    </section>
+
+    <!-- 9 -->
+    <section class="scene">
+      <div class="art"><svg viewBox="0 0 200 200"><use href="#ill-clipboard"/></svg></div>
+      <div class="inner stack">
+        <span class="b kicker">换 房 之 前 · 三 件 事</span>
+        <h2 class="b">不要只看<span class="ul"><span class="mark">成交价</span></span></h2>
+        <div class="checks">
+          <div class="check b"><span class="n">01</span><span class="tx">还剩多少房贷</span></div>
+          <div class="check b"><span class="n">02</span><span class="tx">要退回多少 CPF</span></div>
+          <div class="check b"><span class="n">03</span><span class="tx">真正到手多少现金</span></div>
+        </div>
+        <div class="b card gold">
+          <div class="lbl">在哪里查</div>
+          <div class="val g" style="font-size:clamp(16px,4.4vw,19px);margin-top:4px">CPF · Home Ownership Dashboard</div>
+        </div>
+      </div>
+      <div class="fn"><span class="tiny">接近 55 岁的换房，还要看这一步会不会影响以后的退休收入。</span></div>
+    </section>
+
+    <!-- 10 -->
+    <section class="scene">
+      <div class="art big"><svg viewBox="0 0 200 200"><use href="#ill-sunrise"/></svg></div>
+      <div class="inner stack">
+        <span class="b kicker">S I N G A P O R E · 退 休 规 划</span>
+        <h1 class="b">我是在新加坡<br>做退休规划的<span class="mark">小圆姐</span></h1>
+        <h2 class="b" style="color:var(--gold)"><span class="ul">陪你一起，日富一日</span></h2>
+      </div>
+      <div class="fn"><span class="tiny">本页仅供参考，不构成投资、税务或法律建议。以 CPF Board、IRAS、HDB / URA 最新规定为准。</span></div>
+    </section>
+
+  </div>
+</div>
+
+<div id="hud"><div id="ticks"></div></div>
+<div id="ctl">
+  <button id="bUp" title="上一页">↑</button>
+  <button id="bDown" title="下一页">↓</button>
+  <button id="bPlay" title="暂停/继续本页">II</button>
+  <button id="bGuide" title="显示头像位">◎</button>
+</div>
+<div id="avz"></div>
+<div id="swipe">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+  <span>下 滑 继 续</span>
+</div>
+<div id="gesture"></div>
+
+<script>
+(function(){
+  var STEP_MS = 2000;                        // 本页内每个展示点约 2 秒
+  var scenes  = Array.prototype.slice.call(document.querySelectorAll('.scene'));
+  var beats   = scenes.map(function(sc){ return Array.prototype.slice.call(sc.querySelectorAll('.b')); });
+  var page = 0, step = -1, timer = null, playing = true;
+
+  var ticks = document.getElementById('ticks');
+  scenes.forEach(function(){ var d=document.createElement('div'); d.className='tk'; d.innerHTML='<i></i>'; ticks.appendChild(d); });
+  var tkFills = Array.prototype.slice.call(ticks.querySelectorAll('i'));
+  var swipe = document.getElementById('swipe');
+
+  /* 每页可用高度 = 顶部留白 ~ 注解上沿，内容超出则整页等比缩小 */
+  var GAP = 18;
+  function fit(){
+    var avz = document.getElementById('avz').getBoundingClientRect();
+    scenes.forEach(function(sc){
+      var inner = sc.querySelector('.inner'); if(!inner) return;
+      var fn = sc.querySelector('.fn');
+      var lim = fn ? Math.min(fn.getBoundingClientRect().top, avz.top) : avz.top;
+      var limit = lim - sc.getBoundingClientRect().top - GAP;
+      sc.style.paddingBottom = Math.max(0, sc.clientHeight - limit) + 'px';
+      var avail = limit - parseFloat(getComputedStyle(sc).paddingTop);
+      inner.style.transform = '';
+      var h = inner.offsetHeight;
+      if(h > avail && avail > 0) inner.style.transform = 'scale(' + Math.max(.72, avail/h).toFixed(3) + ')';
+    });
+  }
+  window.addEventListener('resize', fit);
+
+  function countUp(el){
+    var target = parseFloat(el.getAttribute('data-count')), suf = el.getAttribute('data-suf')||'';
+    var t0 = null;
+    function tick(ts){
+      if(!t0) t0 = ts;
+      var p = Math.min(1,(ts-t0)/900), e = 1 - Math.pow(1-p,3);
+      el.textContent = Math.round(target*e) + suf;
+      if(p<1) requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  }
+
+  function render(){
+    scenes.forEach(function(sc,i){
+      sc.classList.toggle('live', i===page);
+      sc.classList.toggle('above', i<page);
+      sc.classList.toggle('below', i>page);
+    });
+    beats.forEach(function(list,i){
+      list.forEach(function(el,j){
+        var on = i<page || (i===page && j<=step);
+        if(on && !el.classList.contains('on')){
+          el.classList.add('on');
+          Array.prototype.slice.call(el.querySelectorAll('[data-count]')).forEach(countUp);
+        }
+        if(!on) el.classList.remove('on');
+      });
+    });
+    tkFills.forEach(function(f,i){
+      f.style.width = (i<page ? 100 : i>page ? 0 : ((step+1)/beats[i].length)*100) + '%';
+    });
+    var done = step >= beats[page].length-1;
+    swipe.classList.toggle('show', done && page < scenes.length-1);
+  }
+
+  function schedule(){
+    clearTimeout(timer);
+    if(!playing || step >= beats[page].length-1) return;
+    timer = setTimeout(function(){ step++; render(); schedule(); }, STEP_MS);
+  }
+  function nextStep(){
+    if(step < beats[page].length-1){ step++; render(); schedule(); }
+  }
+  function goPage(n, fromStart){
+    if(n<0 || n>scenes.length-1) return;
+    page = n; step = fromStart===false ? beats[page].length-1 : 0;
+    render(); schedule();
+  }
+  function pause(){ playing=false; clearTimeout(timer); document.getElementById('bPlay').textContent='▶'; }
+  function play(){ playing=true; document.getElementById('bPlay').textContent='II'; schedule(); }
+
+  /* ── 手势：上下滑动翻页，轻触推进本页展示点 ── */
+  var lock = false;
+  function guard(fn){ if(lock) return; lock=true; setTimeout(function(){lock=false;},720); fn(); }
+  var gz = document.getElementById('gesture');
+  gz.addEventListener('wheel', function(e){
+    if(Math.abs(e.deltaY) < 16) return;
+    guard(function(){ goPage(page + (e.deltaY>0 ? 1 : -1)); });
+  }, {passive:true});
+
+  var sy=0, sx=0, moved=0;
+  gz.addEventListener('touchstart', function(e){
+    sy=e.touches[0].clientY; sx=e.touches[0].clientX; moved=0;
+  }, {passive:true});
+  gz.addEventListener('touchmove', function(e){
+    moved = Math.max(moved, Math.abs(e.touches[0].clientY-sy), Math.abs(e.touches[0].clientX-sx));
+  }, {passive:true});
+  gz.addEventListener('touchend', function(e){
+    var dy = sy - e.changedTouches[0].clientY;
+    if(Math.abs(dy) > 46) guard(function(){ goPage(page + (dy>0 ? 1 : -1)); });
+    else if(moved < 12) nextStep();
+  }, {passive:true});
+  gz.addEventListener('click', function(){ if(moved < 12) nextStep(); });
+
+  document.getElementById('bUp').addEventListener('click', function(e){ e.stopPropagation(); goPage(page-1); });
+  document.getElementById('bDown').addEventListener('click', function(e){ e.stopPropagation(); goPage(page+1); });
+  document.getElementById('bPlay').addEventListener('click', function(e){ e.stopPropagation(); playing?pause():play(); });
+  document.getElementById('bGuide').addEventListener('click', function(e){ e.stopPropagation(); document.getElementById('avz').classList.toggle('show'); });
+
+  document.addEventListener('keydown', function(e){
+    var k = e.key;
+    if(k==='ArrowDown'||k==='PageDown'||k==='ArrowRight'){ e.preventDefault(); goPage(page+1); }
+    else if(k==='ArrowUp'||k==='PageUp'||k==='ArrowLeft'){ e.preventDefault(); goPage(page-1); }
+    else if(k===' '){ e.preventDefault(); playing?pause():play(); }
+    else if(k==='Enter'){ e.preventDefault(); nextStep(); }
+    else if(k==='r'||k==='R'){ goPage(page); }
+    else if(k==='g'||k==='G'){ document.getElementById('avz').classList.toggle('show'); }
+  });
+
+  fit();
+  goPage(0);
+})();
+</script>
+
+</body>
+</html>
