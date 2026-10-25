@@ -434,6 +434,41 @@ body.locked #pwGate{display:flex}
   .oop-read{grid-template-columns:1fr 1fr}
   .oop-read b{font-size:16px}
 }
+
+/* ---------- 方案二 4 个选项 ---------- */
+.opt-intro{margin:26px 0 10px;display:flex;align-items:center;gap:8px;font-size:14px;color:var(--muted)}
+.opt-intro b{color:var(--navy)}
+.optgrid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+.opt{position:relative;text-align:left;cursor:pointer;border:1.5px solid var(--line);background:var(--card);border-radius:14px;padding:12px 14px;display:flex;flex-direction:column;gap:2px;box-shadow:var(--shadow);font:inherit;color:var(--ink)}
+.opt:hover{border-color:#D9C59C}
+.opt .t{font-size:13px;font-weight:800;color:var(--gold-deep);letter-spacing:.02em}
+.opt .l{font-size:12.5px;color:var(--muted);line-height:1.5}
+.opt .p{margin-top:4px;font-size:19px;font-weight:800;color:var(--navy);letter-spacing:.03em}
+.opt .p small{font-size:12px;color:var(--muted);font-weight:600;margin-left:3px}
+.opt .m{font-size:12.5px;font-weight:700;color:var(--ink)}
+.opt .q{position:absolute;top:-9px;right:10px;font-size:11px;font-weight:800;color:#fff;background:var(--gold);border-radius:999px;padding:1px 8px}
+.opt .ck{position:absolute;top:10px;right:10px;width:20px;height:20px;border-radius:50%;border:1.5px solid var(--line);display:grid;place-items:center;background:var(--card)}
+.opt .ck .ic{width:13px;height:13px;color:#fff;opacity:0}
+.opt.on{border-color:var(--navy);background:var(--blue-tint);box-shadow:0 8px 22px -14px rgba(19,40,107,.6)}
+.opt.on .ck{background:var(--navy);border-color:var(--navy)}
+.opt.on .ck .ic{opacity:1}
+.ctable.opts table{min-width:760px}
+.ctable.opts th button{all:unset;cursor:pointer;display:block;width:100%}
+.ctable.opts th small{display:block;font-size:11.5px;font-weight:600;opacity:.85}
+.ctable.opts th.p0{background:var(--navy)}
+.ctable.opts th.po{background:#C9A65E}
+.ctable.opts th.po.sel{background:var(--gold)}
+.ctable.opts td.p0{background:#F7F9FD}
+.ctable.opts td.sel{background:var(--gold-tint)!important;color:var(--navy)}
+.ctable.opts td.best{color:var(--green)}
+@media (max-width:760px){
+  .optgrid{grid-template-columns:1fr 1fr}
+  .opt{padding:10px 12px}
+  .opt .p{font-size:17px}
+  .opt .l{font-size:11.5px}
+  .sg-row.hd .sg-v.b{flex-wrap:wrap;row-gap:0}
+  .sg-row.hd #hdB{flex-basis:100%;font-size:12px;padding-left:25px}
+}
 </style>
 </head>
 <body class="locked">
@@ -499,13 +534,16 @@ body.locked #pwGate{display:flex}
     </div>
   </header>
 
+  <div class="opt-intro"><svg class="ic"><use href="#i-globe"/></svg><span><b>方案二全球医疗险有 4 个选项</b>，点一下切换，整页的方案二数字都会跟着变</span></div>
+  <div class="optgrid num" id="optGrid" role="group" aria-label="方案二选项"></div>
+
   <!-- ===== 方案总结概要 ===== -->
   <div class="sub-head"><svg class="ic ic-md"><use href="#i-doc"/></svg>方案总结</div>
   <div class="sumgrid num">
     <div class="sg-row hd">
       <div class="sg-k"></div>
       <div class="sg-v a"><svg class="ic"><use href="#i-hospital"/></svg>方案一 · 新加坡私立医院计划</div>
-      <div class="sg-v b"><svg class="ic"><use href="#i-globe"/></svg>方案二 · 全球医疗险</div>
+      <div class="sg-v b"><svg class="ic"><use href="#i-globe"/></svg>方案二 · 全球医疗险<span id="hdB" style="font-weight:600;opacity:.85"></span></div>
     </div>
     <div class="sg-row">
       <div class="sg-k"><span class="sg-ic"><svg class="ic"><use href="#i-hospital"/></svg></span>在哪看病能赔</div>
@@ -515,17 +553,17 @@ body.locked #pwGate{display:flex}
     <div class="sg-row">
       <div class="sg-k"><span class="sg-ic"><svg class="ic"><use href="#i-coins"/></svg></span>今年保费</div>
       <div class="sg-v a"><b>S$3,523.70</b><small>3 项合计 · 现金</small></div>
-      <div class="sg-v b"><b>S$3,651</b><small>首年 95 折 S$3,468.45 · 现金</small></div>
+      <div class="sg-v b" id="sgPremB"></div>
     </div>
     <div class="sg-row">
       <div class="sg-k"><span class="sg-ic"><svg class="ic"><use href="#i-wallet"/></svg></span>每年自己最多付</div>
-      <div class="sg-v a"><b>约 S$9,500</b><small>自付额 S$3,500 + 5% 共付（封顶 S$6,000）</small><span class="win"><svg class="ic"><use href="#i-check"/></svg>自付少一半多</span></div>
-      <div class="sg-v b"><b>S$23,000</b><small>自付额 S$3,000 + 15% 共付（封顶 S$20,000）</small></div>
+      <div class="sg-v a"><b>约 S$9,500</b><small>自付额 S$3,500 + 5% 共付（封顶 S$6,000）</small><span class="win"><svg class="ic"><use href="#i-check"/></svg><span id="sgWinA"></span></span></div>
+      <div class="sg-v b" id="sgOopB"></div>
     </div>
     <div class="sg-row">
       <div class="sg-k"><span class="sg-ic"><svg class="ic"><use href="#i-shield"/></svg></span>每年最高赔</div>
       <div class="sg-v a"><b>S$100 万</b><small>全在 AIA 合作医院看 S$200 万 · 终身不设上限</small></div>
-      <div class="sg-v b"><b>S$150 万</b><small>终身最多 S$1,000 万</small></div>
+      <div class="sg-v b" id="sgLimB"></div>
     </div>
     <div class="sg-row">
       <div class="sg-k"><span class="sg-ic"><svg class="ic"><use href="#i-ribbon"/></svg></span>癌症门诊治疗</div>
@@ -550,7 +588,7 @@ body.locked #pwGate{display:flex}
   </div>
   <div class="sum-line">
     <div class="a"><svg class="ic"><use href="#i-hospital"/></svg><span><b>选方案一：</b>主要在新加坡看病，想把每年自付压在 1 万以内，要保证续保、以后可能拿 PR</span></div>
-    <div class="b"><svg class="ic"><use href="#i-globe"/></svg><span><b>选方案二：</b>常回国或在几个国家生活，想在国外也按实际赔，能接受大病自付到 S$2.3 万</span></div>
+    <div class="b"><svg class="ic"><use href="#i-globe"/></svg><span><b>选方案二：</b>常回国或在几个国家生活，想在国外也按实际赔，能接受大病自付到 <span id="sumB"></span></span></div>
   </div>
 
   <div class="switch" role="group" aria-label="账单切换">
@@ -614,20 +652,20 @@ body.locked #pwGate{display:flex}
   <!-- ===== 方案二 ===== -->
   <div class="pill-head">
     <div class="pill gold">方案二 · 全球医疗险</div>
-    <div class="formula"><svg class="ic"><use href="#i-cal"/></svg>今年 S$3,651（首年 95 折 S$3,468.45）· 每年续保</div>
+    <div class="formula num"><svg class="ic"><use href="#i-cal"/></svg><span id="fB"></span></div>
   </div>
   <div class="cards2">
     <div class="explain"><div class="ico"><svg class="ic ic-lg"><use href="#i-globe"/></svg></div>
-      <div><b>全球看病（美国除外），按实际赔</b><span>AIA Platinum International Health Plan 2，标准房</span></div></div>
+      <div><b>全球看病（美国除外），按实际赔</b><span>AIA Platinum International Health <span id="eB1"></span>，标准房</span></div></div>
     <div class="explain"><div class="ico"><svg class="ic ic-lg"><use href="#i-wallet"/></svg></div>
-      <div><b>每年最多自付 S$23,000</b><span>自付额 S$3,000，之后付 15%，15% 部分一年最多 S$20,000</span></div></div>
+      <div><b id="eB2b"></b><span id="eB2s"></span></div></div>
   </div>
   <div class="band">
     <span class="gd" style="flex:4"><svg class="ic"><use href="#i-globe"/></svg>全球看病 · 按实际赔</span>
     <span class="gy" style="flex:1"><svg class="ic"><use href="#i-x"/></svg>美国不保</span>
   </div>
   <div class="strip num">
-    <div><svg class="ic"><use href="#i-shield"/></svg><div><span class="lb">每年最高赔</span><b>S$150 万<small>终身 S$1,000 万</small></b></div></div>
+    <div><svg class="ic"><use href="#i-shield"/></svg><div><span class="lb">每年最高赔</span><b id="sLimB"></b></div></div>
     <div><svg class="ic"><use href="#i-ribbon"/></svg><div><span class="lb">癌症门诊</span><b>S$50 万<small>/ 年 · 不分药物清单</small></b></div></div>
   </div>
   <div class="tip warn"><svg class="ic"><use href="#i-alert"/></svg>续保不保证，保险公司有权不续保；准证、居住国家变化时，公司可调整或终止保单</div>
@@ -642,6 +680,11 @@ body.locked #pwGate{display:flex}
   <div class="vtl num" id="vtl"></div>
   <p class="vtl-note">卡片里是那一岁的年保费，"累计"是从 45 岁交到那一岁的总和。两个方案保费都不保证，会随医疗通胀调整，这里按现行费率表。</p>
 
+  <!-- ===== 4 个选项一览 ===== -->
+  <div class="sub-head"><svg class="ic ic-md"><use href="#i-scale"/></svg>方案二的 4 个选项，和方案一放一起看</div>
+  <div class="ctable opts"><table class="num" id="optTable"></table></div>
+  <p class="vtl-note">点表头也能切换选项。绿色是这一行最好的数字。保费按产品说明书费率表，45 岁一行是首年价（方案二首年 95 折），都不保证。</p>
+
   <!-- ===== 账单 → 自付 ===== -->
   <div class="sub-head"><svg class="ic ic-md"><use href="#i-scale"/></svg>账单越大，自付差得越多</div>
   <div class="oop-card num">
@@ -655,8 +698,8 @@ body.locked #pwGate{display:flex}
     <label class="oop-range"><span>拖动看看</span><input type="range" id="oopRange" min="0" max="300000" step="1000" value="50000" aria-label="住院账单金额"><span>S$30 万</span></label>
     <div class="oop-legend"><span><i style="background:#2747A3"></i>方案一 · 新加坡私立医院计划</span><span><i style="background:#B8862B"></i>方案二 · 全球医疗险</span></div>
     <div class="ruler-tips">
-      <div><svg class="ic"><use href="#i-wallet"/></svg><span><b>账单超过约 S$12.4 万：</b>方案一自付就封顶在约 S$9,500；方案二要到约 S$13.6 万才封顶，封顶在 S$23,000</span></div>
-      <div><svg class="ic"><use href="#i-coins"/></svg><span><b>保费差不多：</b>今年只差一百多新币；真正拉开差距的是生病那一年自己要掏的钱</span></div>
+      <div><svg class="ic"><use href="#i-wallet"/></svg><span id="tipCap"></span></div>
+      <div><svg class="ic"><use href="#i-coins"/></svg><span id="tipPrem"></span></div>
     </div>
   </div>
 
@@ -666,23 +709,23 @@ body.locked #pwGate{display:flex}
     <table class="num">
       <thead><tr><th>项目</th><th class="p1">方案一 · 新加坡私立医院计划</th><th class="p2">方案二 · 全球医疗险</th></tr></thead>
       <tbody>
-        <tr><td>产品</td><td class="p1">HealthShield Gold Max A（外籍版）<small>+ Max VitalHealth Pro A + Cancer Care Pro</small></td><td class="p2">Platinum International Health<small>SG Resident · Plan 2</small></td></tr>
+        <tr><td>产品</td><td class="p1">HealthShield Gold Max A（外籍版）<small>+ Max VitalHealth Pro A + Cancer Care Pro</small></td><td class="p2" id="tProdB"></td></tr>
         <tr><td>保哪里</td><td class="p1">新加坡<small>海外紧急和计划治疗也赔，以新加坡私立医院收费为上限</small></td><td class="p2 green">全球（美国除外）<small>在美国连续超过 90 天停保，期间只保紧急</small></td></tr>
         <tr><td>病房</td><td class="p1">私立医院标准房</td><td class="p2">标准房</td></tr>
-        <tr class="top"><td>今年保费</td><td class="p1">S$3,523.70<small>主险 S$2,225 + 附加 S$1,135 + 癌症 S$163.70</small></td><td class="p2">S$3,651<small>首年 95 折 S$3,468.45</small></td></tr>
+        <tr class="top"><td>今年保费</td><td class="p1">S$3,523.70<small>主险 S$2,225 + 附加 S$1,135 + 癌症 S$163.70</small></td><td class="p2" id="tPremB"></td></tr>
         <tr><td>续保</td><td class="p1 green">保证终身</td><td class="p2 red">不保证，公司可拒绝续保</td></tr>
 
         <tr class="sec hi"><td colspan="3"><svg class="ic"><use href="#i-wallet"/></svg>生病时自己付<small>每个保单年度</small></td></tr>
-        <tr><td>自付额</td><td class="p1">S$3,500<small>私立医院住院；附加险不报销自付额</small></td><td class="p2">S$3,000</td></tr>
-        <tr><td>共付</td><td class="p1 green">5%，封顶 S$6,000<small>需 AIA 指定医生或预先批准</small></td><td class="p2">15%，封顶 S$20,000</td></tr>
-        <tr class="top"><td>每年最多自付</td><td class="p1 green">约 S$9,500</td><td class="p2">S$23,000</td></tr>
-        <tr><td>账单 S$2 万</td><td class="p1">自付 S$4,325</td><td class="p2">自付 S$5,550</td></tr>
-        <tr><td>账单 S$5 万</td><td class="p1">自付 S$5,825</td><td class="p2">自付 S$10,050</td></tr>
-        <tr><td>账单 S$10 万</td><td class="p1">自付 S$8,325</td><td class="p2">自付 S$17,550</td></tr>
+        <tr><td>自付额</td><td class="p1">S$3,500<small>私立医院住院；附加险不报销自付额</small></td><td class="p2" id="tDedB"></td></tr>
+        <tr><td>共付</td><td class="p1 green">5%，封顶 S$6,000<small>需 AIA 指定医生或预先批准</small></td><td class="p2" id="tCoB"></td></tr>
+        <tr class="top"><td>每年最多自付</td><td class="p1 green">约 S$9,500</td><td class="p2" id="tMaxB"></td></tr>
+        <tr><td>账单 S$2 万</td><td class="p1">自付 S$4,325</td><td class="p2" id="t2B"></td></tr>
+        <tr><td>账单 S$5 万</td><td class="p1">自付 S$5,825</td><td class="p2" id="t5B"></td></tr>
+        <tr><td>账单 S$10 万</td><td class="p1">自付 S$8,325</td><td class="p2" id="t10B"></td></tr>
 
         <tr class="sec lo"><td colspan="3"><svg class="ic"><use href="#i-shield"/></svg>赔付范围</td></tr>
-        <tr><td>每年最高赔</td><td class="p1">S$100 万<small>全在 AIA 合作医院 S$200 万</small></td><td class="p2">S$150 万</td></tr>
-        <tr><td>终身最高赔</td><td class="p1 green">不设上限</td><td class="p2">S$1,000 万</td></tr>
+        <tr><td>每年最高赔</td><td class="p1">S$100 万<small>全在 AIA 合作医院 S$200 万</small></td><td class="p2" id="tLimB"></td></tr>
+        <tr><td>终身最高赔</td><td class="p1 green">不设上限</td><td class="p2" id="tLifeB"></td></tr>
         <tr><td>住院前后</td><td class="p1 green">前后各 100 天<small>AIA 指定医生 13 个月</small></td><td class="p2">前后各 90 天</td></tr>
         <tr><td>癌症门诊</td><td class="p1">清单内药物每月 21 倍 MSHL 限额<small>清单外药物每年 S$20 万；放疗按实际</small></td><td class="p2 green">每年 S$50 万<small>化疗、免疫、放疗，不分清单</small></td></tr>
         <tr><td>30 种重病</td><td class="p1 green">每年额外 S$10 万</td><td class="p2">没有额外额度</td></tr>
@@ -708,7 +751,7 @@ body.locked #pwGate{display:flex}
     <div class="pk a"><div class="hd"><div class="badge"><svg class="ic ic-md"><use href="#i-hospital"/></svg></div>更适合方案一</div>
       <ul><li><svg class="ic"><use href="#i-check"/></svg>主要在新加坡看病</li><li><svg class="ic"><use href="#i-check"/></svg>想把每年自付压在 1 万以内</li><li><svg class="ic"><use href="#i-check"/></svg>要保证续保，以后可能拿 PR</li></ul></div>
     <div class="pk b"><div class="hd"><div class="badge"><svg class="ic ic-md"><use href="#i-globe"/></svg></div>更适合方案二</div>
-      <ul><li><svg class="ic"><use href="#i-check"/></svg>常回国或在几个国家生活</li><li><svg class="ic"><use href="#i-check"/></svg>想在国外也按实际赔</li><li><svg class="ic"><use href="#i-check"/></svg>能接受大病自付到 S$2.3 万</li></ul></div>
+      <ul><li><svg class="ic"><use href="#i-check"/></svg>常回国或在几个国家生活</li><li><svg class="ic"><use href="#i-check"/></svg>想在国外也按实际赔</li><li><svg class="ic"><use href="#i-check"/></svg>能接受大病自付到 <span id="pickB"></span></li></ul></div>
     <div class="pk c"><div class="hd"><div class="badge"><svg class="ic ic-md"><use href="#i-bulb"/></svg></div>决定前想一想</div>
       <ul><li><svg class="ic"><use href="#i-check"/></svg>未来 5 到 10 年住在哪里？</li><li><svg class="ic"><use href="#i-check"/></svg>公司团险已经保了多少？</li><li><svg class="ic"><use href="#i-check"/></svg>有没有既往病史，两份都要核保</li></ul></div>
   </div>
@@ -733,9 +776,9 @@ body.locked #pwGate{display:flex}
   </div>
 
   <div class="notes">
-    <p>整理自 AIA 2026-10-25 报价：AIA HealthShield Gold Max A（外籍版）+ AIA Max VitalHealth Pro A + Cancer Care Pro；AIA Platinum International Health – SG Resident，Plan 2，自付额 S$3,000、共付 15%（封顶 S$20,000）、每年上限 S$150 万。被保人 45 岁（ALB）、女、不吸烟、外籍（非公民 / PR 家属，保费全部现金）。仅作对比参考，不构成投保建议。</p>
+    <p>整理自 AIA 2026-10-25 报价：AIA HealthShield Gold Max A（外籍版）+ AIA Max VitalHealth Pro A + Cancer Care Pro；AIA Platinum International Health – SG Resident。方案二有 4 个选项：Plan 1（每年上限 S$75 万）或 Plan 2（S$150 万），配自付额 S$1,500 + 共付 10%（封顶 S$15,000）或自付额 S$3,000 + 共付 15%（封顶 S$20,000）；报价单为 Plan 2、自付额 S$3,000，其余选项的保费取自产品说明书费率表。被保人 45 岁（ALB）、女、不吸烟、外籍（非公民 / PR 家属，保费全部现金）。仅作对比参考，不构成投保建议。</p>
     <p><b>自付计算</b>假设：在新加坡私立医院住院，费用合理且全部在保障范围内；方案一由 AIA 指定医生治疗（或预先批准、急诊转入），5% 共付才有 S$6,000 封顶，否则 5% 不封顶。方案一的自付额不能由附加险报销。癌症门诊药物、精神科等各有限额，超出部分要自付。每个保单年度重新计算自付额。</p>
-    <p><b>保费</b>两个方案都不保证，会随年龄、理赔经验和医疗通胀调整；本页按现行费率表（方案一按下一岁年龄分段，方案二按上一岁年龄）。方案二首年 95 折为 Vitality 限时优惠，第 2 年起按 Vitality 状态在原价的 85% 至 100% 间调整。</p>
+    <p><b>保费</b>两个方案都不保证，会随年龄、理赔经验和医疗通胀调整；本页按现行费率表（方案一按下一岁年龄分段，方案二按上一岁年龄）。方案二首年 95 折为 Vitality 限时优惠（报价单所示，其余 3 个选项按同样优惠估算），第 2 年起按 Vitality 状态在原价的 85% 至 100% 间调整。</p>
     <p><b>方案一</b>外籍版：准证被取消或到期，60 天内没换新，保单终止；成为公民或 PR 后转为 MediSave 认可的综合健保（含 MediShield Life）。<b>方案二</b>：续保由 AIA 决定，可拒绝续保；公民身份、居留身份、常住国家或准证变化须通知 AIA，AIA 可拒赔、终止或调整条款。"MSHL 限额"指 MOH 公布的 MediShield Life 癌症药物限额。具体以保单条款为准。</p>
   </div>
 
@@ -800,54 +843,137 @@ body.locked #pwGate{display:flex}
 })();
 
 (function(){
-  // 自付规则：方案一 自付额 S$3,500 + 5% 共付（封顶 S$6,000）；方案二 自付额 S$3,000 + 15% 共付（封顶 S$20,000）。
-  // 保费：方案一按下一岁年龄分段（主险 + VitalHealth Pro A + Cancer Care Pro），方案二按上一岁年龄。换报价时只改这里。
-  var PA=3523.70, PB1=3468.45, CA='#2747A3', CB='#B8862B';
-  var DED_A=3500, CO_A=0.05, CAP_A=6000, DED_B=3000, CO_B=0.15, CAP_B=20000;
-  var PREM=[{age:45,a:3523.70,b:3651,c:[3524,3468]},{age:50,a:5010,b:4488,c:[22628,24110]},{age:55,a:6135.80,b:5090,c:[48804,48354]},
-    {age:60,a:8183.60,b:6456,c:[81531,76962]},{age:65,a:11374.30,b:9202,c:[125640,117465]},{age:70,a:14930.40,b:15131,c:[186067,181261]},
-    {age:75,a:19579.70,b:18488,c:[268739,270157]},{age:80,a:22874.90,b:24418,c:[373893,374003]},{age:85,a:24474.70,b:27033,c:[491609,502919]}];
+  // 方案一：自付额 S$3,500 + 5% 共付（封顶 S$6,000），保费按下一岁年龄分段（主险 + VitalHealth Pro A + Cancer Care Pro）。
+  // 方案二：4 个选项（Plan 1 / 2 × 选项一 / 二），保费取自产品说明书费率表（上一岁年龄），首年 95 折。换报价时只改这里。
+  var CA='#2747A3', CB='#B8862B', AGES=[45,50,55,60,65,70,75,80,85];
+  var A={prem:3523.70,ded:3500,co:0.05,cap:6000,lim:1000000,
+    ages:[3523.70,5010,6135.80,8183.60,11374.30,14930.40,19579.70,22874.90,24474.70],
+    cum:[3524,22628,48804,81531,125640,186067,268739,373893,491609]};
+  var OPTS=[
+    {plan:'Plan 1',opt:'选项一',lim:750000,life:5000000,ded:1500,co:0.10,cap:15000,
+     ages:[3910,4806,5451,6914,9855,16204,19800,26150,28951],cum:[3714,25820,51786,82424,125802,194124,289326,400540,538602]},
+    {plan:'Plan 1',opt:'选项二',lim:750000,life:5000000,ded:3000,co:0.15,cap:20000,
+     ages:[3485,4284,4858,6163,8784,14443,17648,23308,25804],cum:[3311,23015,46157,73466,112127,173022,257877,357003,480058]},
+    {plan:'Plan 2',opt:'选项一',lim:1500000,life:10000000,ded:1500,co:0.10,cap:15000,
+     ages:[4097,5035,5711,7244,10324,16976,20743,27395,30329],cum:[3892,27050,54251,86349,131791,203366,303103,419612,564249]},
+    {plan:'Plan 2',opt:'选项二',lim:1500000,life:10000000,ded:3000,co:0.15,cap:20000,quote:true,
+     ages:[3651,4488,5090,6456,9202,15131,18488,24418,27033],cum:[3468,24110,48354,76962,117465,181261,270157,374003,502919]}
+  ];
+  var cur=3, bill=50000;
   var $=function(id){return document.getElementById(id)};
   function sgd(n){return 'S$'+Math.round(n).toLocaleString('en-US');}
-  function wan(n){return 'S$'+(n/10000).toFixed(n%10000?1:0)+' 万';}
-  function oop(x,d,co,cap){return x<=d?x:d+Math.min(co*(x-d),cap);}
-  function oopA(x){return oop(x,DED_A,CO_A,CAP_A);}
-  function oopB(x){return oop(x,DED_B,CO_B,CAP_B);}
-  function parts(x,d,co,cap,pct){
-    if(x<=d) return '全部在自付额内';
-    var c=Math.min(co*(x-d),cap);
-    return '自付额 '+sgd(d)+' + '+pct+' '+sgd(c)+(c>=cap?'（已封顶）':'');
+  function c2(n){return 'S$'+n.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});}
+  function wan(n){return 'S$'+(+(n/10000).toFixed(2))+' 万';}
+  function pct(x){return Math.round(x*100)+'%';}
+  function oop(x,p){return x<=p.ded?x:p.ded+Math.min(p.co*(x-p.ded),p.cap);}
+  function maxOop(p){return p.ded+p.cap;}
+  function first(o){return Math.round(o.ages[0]*0.95*100)/100;}
+  function O(){return OPTS[cur];}
+  function oopB(x){return oop(x,O());}
+  function oopA(x){return oop(x,A);}
+  function parts(x,p){
+    if(x<=p.ded) return '全部在自付额内';
+    var c=Math.min(p.co*(x-p.ded),p.cap);
+    return '自付额 '+sgd(p.ded)+' + '+pct(p.co)+' '+sgd(c)+(c>=p.cap?'（已封顶）':'');
   }
-  function render(x){
-    var a=oopA(x), b=oopB(x);
-    $('scenDesc').innerHTML='<b>账单 '+wan(x)+'：</b>在新加坡私立医院住院，费用都在保障范围内';
+  // ---- 选项卡 ----
+  function cards(){
+    $('optGrid').innerHTML=OPTS.map(function(o,i){
+      return '<button type="button" class="opt'+(i===cur?' on':'')+'" data-i="'+i+'" aria-pressed="'+(i===cur)+'">'+
+        (o.quote?'<span class="q">报价方案</span>':'')+'<span class="ck"><svg class="ic"><use href="#i-check"/></svg></span>'+
+        '<span class="t">'+o.plan+' · '+o.opt+'</span>'+
+        '<span class="l">每年上限 '+wan(o.lim)+'</span>'+
+        '<span class="l">自付额 '+sgd(o.ded)+'</span><span class="l">共付 '+pct(o.co)+'，封顶 '+wan(o.cap)+'</span>'+
+        '<span class="p">'+sgd(o.ages[0])+'<small>/ 年</small></span>'+
+        '<span class="m">每年最多自付 '+sgd(maxOop(o))+'</span></button>';
+    }).join('');
+  }
+  // ---- 4 个选项一览表（方案一放第一列做参照） ----
+  function table(){
+    function flags(vals,low){var t=low?Math.min.apply(null,vals):Math.max.apply(null,vals);return vals.map(function(v){return v===t;});}
+    function col(f){return [f(A,true)].concat(OPTS.map(function(o){return f(o,false);}));}
+    var head='<thead><tr><th>项目</th><th class="p0">方案一<small>新加坡私立医院</small></th>'+OPTS.map(function(o,i){
+      return '<th class="po'+(i===cur?' sel':'')+'"><button type="button" data-i="'+i+'">'+o.plan+' · '+o.opt+'<small>'+(o.quote?'报价方案':'方案二')+'</small></button></th>';
+    }).join('')+'</tr></thead>';
+    var rows=[
+      {k:'每年最高赔',v:col(function(p){return p.lim;}),fmt:function(v,j){return wan(v)+(j===0?'<small>合作医院 S$200 万</small>':'');},low:false},
+      {k:'每年最多自付',v:col(maxOop),fmt:function(v,j){return (j===0?'约 ':'')+sgd(v);},low:true,top:true},
+      {k:'自付额',v:col(function(p){return p.ded;}),fmt:sgd,low:true},
+      {k:'共付',txt:col(function(p){return pct(p.co)+'<small>封顶 '+sgd(p.cap)+'</small>';})}
+    ];
+    AGES.forEach(function(a,k){
+      rows.push({k:a+' 岁保费'+(k===0?'（首年）':''),v:col(function(p,isA){return k===0&&!isA?first(p):p.ages[k];}),fmt:sgd,low:true});
+    });
+    rows.push({k:'累计到 65 岁',v:col(function(p){return p.cum[4];}),fmt:sgd,low:true});
+    rows.push({k:'累计到 85 岁',v:col(function(p){return p.cum[8];}),fmt:sgd,low:true,top:true});
+    var body='<tbody>'+rows.map(function(r){
+      var cells=r.txt||r.v.map(r.fmt), best=r.txt?[]:flags(r.v,r.low);
+      return '<tr'+(r.top?' class="top"':'')+'><td>'+r.k+'</td>'+cells.map(function(c,j){
+        return '<td class="'+(j===0?'p0':(j-1===cur?'sel':''))+(best[j]?' best':'')+'">'+c+'</td>';
+      }).join('')+'</tr>';
+    }).join('')+'</tbody>';
+    $('optTable').innerHTML=head+body;
+  }
+  // ---- 方案二相关文字 ----
+  function texts(){
+    var o=O(), mx=maxOop(o), f=first(o), tag=o.plan+' · '+o.opt;
+    $('hdB').textContent='（'+tag+'）';
+    $('sgPremB').innerHTML='<b>'+sgd(o.ages[0])+'</b><small>首年 95 折 '+c2(f)+' · 现金</small>';
+    $('sgOopB').innerHTML='<b>'+sgd(mx)+'</b><small>自付额 '+sgd(o.ded)+' + '+pct(o.co)+' 共付（封顶 '+sgd(o.cap)+'）</small>';
+    $('sgLimB').innerHTML='<b>'+wan(o.lim)+'</b><small>终身最多 '+wan(o.life)+'</small>';
+    $('sgWinA').textContent='每年最多少付 '+sgd(mx-(A.ded+A.cap));
+    $('sumB').textContent=wan(mx); $('pickB').textContent=wan(mx);
+    $('fB').textContent='今年 '+sgd(o.ages[0])+'（首年 95 折 '+c2(f)+'）· '+tag;
+    $('eB1').textContent=tag;
+    $('eB2b').textContent='每年最多自付 '+sgd(mx);
+    $('eB2s').textContent='自付额 '+sgd(o.ded)+'，之后付 '+pct(o.co)+'，'+pct(o.co)+' 部分一年最多 '+sgd(o.cap);
+    $('sLimB').innerHTML=wan(o.lim)+'<small>终身 '+wan(o.life)+'</small>';
+    $('tProdB').innerHTML='Platinum International Health<small>SG Resident · '+tag+'</small>';
+    $('tPremB').innerHTML=sgd(o.ages[0])+'<small>首年 95 折 '+c2(f)+'</small>';
+    $('tDedB').textContent=sgd(o.ded);
+    $('tCoB').textContent=pct(o.co)+'，封顶 '+sgd(o.cap);
+    $('tMaxB').textContent=sgd(mx);
+    $('t2B').textContent='自付 '+sgd(oopB(20000)); $('t5B').textContent='自付 '+sgd(oopB(50000)); $('t10B').textContent='自付 '+sgd(oopB(100000));
+    $('tLimB').textContent=wan(o.lim); $('tLifeB').textContent=wan(o.life);
+    var capAt=Math.round((o.ded+o.cap/o.co)/1000)*1000;
+    $('tipCap').innerHTML='<b>账单超过约 S$12.4 万：</b>方案一自付就封顶在约 S$9,500；方案二要到约 '+wan(capAt)+' 才封顶，封顶在 '+sgd(mx);
+    var dp=o.ages[0]-A.prem;
+    $('tipPrem').innerHTML='<b>保费差距不大：</b>今年方案二'+(dp>=0?'贵 ':'便宜 ')+sgd(Math.abs(dp))+'；真正拉开差距的是生病那一年自己要掏的钱';
+  }
+  function kpis(){
+    var x=bill, a=oopA(x), b=oopB(x), o=O();
+    $('scenDesc').innerHTML='<b>账单 S$'+(x/10000)+' 万：</b>在新加坡私立医院住院，费用都在保障范围内（方案二按 '+o.plan+' · '+o.opt+'）';
     $('kPayA').innerHTML=sgd(x-a)+'<small>赔了账单的 '+Math.round((x-a)/x*100)+'%</small>';
     $('kPayB').innerHTML=sgd(x-b)+'<small>赔了账单的 '+Math.round((x-b)/x*100)+'%</small>';
-    $('kOopA').innerHTML=sgd(a)+'<small>'+parts(x,DED_A,CO_A,CAP_A,'5%')+'</small>';
-    $('kOopB').innerHTML=sgd(b)+'<small>'+parts(x,DED_B,CO_B,CAP_B,'15%')+'</small>';
-    $('kTotA').innerHTML=sgd(PA+a)+'<small>保费 S$3,524 + 自付 '+sgd(a)+'</small>';
-    $('kTotB').innerHTML=sgd(PB1+b)+'<small>首年保费 S$3,468 + 自付 '+sgd(b)+'</small>';
+    $('kOopA').innerHTML=sgd(a)+'<small>'+parts(x,A)+'</small>';
+    $('kOopB').innerHTML=sgd(b)+'<small>'+parts(x,o)+'</small>';
+    $('kTotA').innerHTML=sgd(A.prem+a)+'<small>保费 S$3,524 + 自付 '+sgd(a)+'</small>';
+    $('kTotB').innerHTML=sgd(first(o)+b)+'<small>首年保费 '+sgd(first(o))+' + 自付 '+sgd(b)+'</small>';
   }
   // ---- 保费时间轴 ----
-  $('vtl').innerHTML=PREM.map(function(r,i){
-    var cheapA=r.a<r.b, d=Math.abs(r.a-r.b);
-    function card(side,v,cum,cheap){
-      return '<div class="vcard '+side+'"><span class="lb">每年保费</span><b>'+sgd(v)+'</b><small class="sg">累计 '+sgd(cum)+'</small>'+
-        '<div class="tags">'+(cheap&&d>=100?'<span class="chip ok">便宜 '+sgd(d)+'</span>':'')+
-        (i===0&&side==='b'?'<span class="chip">首年 95 折</span>':'')+'</div></div>';
-    }
-    return '<div class="vrow'+(i===0?' ms':'')+'">'+card('a',r.a,r.c[0],cheapA)+
-      '<div class="vmid"><span class="dot"></span><b>'+r.age+' 岁</b><small>第 '+(r.age-44)+' 年</small></div>'+
-      card('b',r.b,r.c[1],!cheapA)+'</div>';
-  }).join('');
+  function timeline(){
+    var o=O();
+    $('vtl').innerHTML=AGES.map(function(age,i){
+      var a=A.ages[i], b=o.ages[i], cheapA=a<b, d=Math.abs(a-b);
+      function card(side,v,cum,cheap){
+        return '<div class="vcard '+side+'"><span class="lb">每年保费</span><b>'+sgd(v)+'</b><small class="sg">累计 '+sgd(cum)+'</small>'+
+          '<div class="tags">'+(cheap&&d>=100?'<span class="chip ok">便宜 '+sgd(d)+'</span>':'')+
+          (i===0&&side==='b'?'<span class="chip">首年 95 折</span>':'')+'</div></div>';
+      }
+      return '<div class="vrow'+(i===0?' ms':'')+'">'+card('a',a,A.cum[i],cheapA)+
+        '<div class="vmid"><span class="dot"></span><b>'+age+' 岁</b><small>第 '+(age-44)+' 年</small></div>'+
+        card('b',b,o.cum[i],!cheapA)+'</div>';
+    }).join('');
+  }
   // ---- 账单 → 自付 图（按实际宽度绘制，窄屏字不缩小） ----
-  var svg=$('oopSvg'), NS='http://www.w3.org/2000/svg', H=260, T=14, B=30, R=12, XMAX=300000, YMAX=25000;
+  var svg=$('oopSvg'), NS='http://www.w3.org/2000/svg', H=260, T=14, Bm=30, R=12, XMAX=300000, YMAX=25000;
   var range=$('oopRange'), W, L, cross, dA, dB;
   function sx(x){return L+(W-L-R)*x/XMAX;}
-  function sy(y){return T+(H-T-B)*(1-y/YMAX);}
+  function sy(y){return T+(H-T-Bm)*(1-y/YMAX);}
   function el(tag,attrs,text){var e=document.createElementNS(NS,tag);for(var k in attrs)e.setAttribute(k,attrs[k]);if(text!=null)e.textContent=text;svg.appendChild(e);return e;}
   function pts(f){var p=[];for(var x=0;x<=XMAX;x+=1000)p.push(sx(x).toFixed(1)+','+sy(f(x)).toFixed(1));return p.join(' ');}
   function draw(){
+    var mx=maxOop(O());
     W=Math.max(280,Math.round(svg.getBoundingClientRect().width)); L=W<500?44:54;
     svg.setAttribute('viewBox','0 0 '+W+' '+H); svg.setAttribute('height',H);
     while(svg.firstChild) svg.removeChild(svg.firstChild);
@@ -860,11 +986,11 @@ body.locked #pwGate{display:flex}
     });
     el('polyline',{points:pts(oopB),'class':'ln',stroke:CB});
     el('polyline',{points:pts(oopA),'class':'ln',stroke:CA});
-    el('text',{x:W-R-16,y:sy(23000)-8,'text-anchor':'end','class':'lbl'},'方案二 封顶 S$23,000');
+    el('text',{x:W-R-16,y:sy(mx)-8,'text-anchor':'end','class':'lbl'},'方案二 封顶 '+sgd(mx));
     el('text',{x:W-R-16,y:sy(9500)-8,'text-anchor':'end','class':'lbl'},'方案一 封顶约 S$9,500');
-    cross=el('line',{y1:T,y2:H-B,'class':'cross'});
+    cross=el('line',{y1:T,y2:H-Bm,'class':'cross'});
     dB=el('circle',{r:5,fill:CB,'class':'dot'}); dA=el('circle',{r:5,fill:CA,'class':'dot'});
-    var hit=el('rect',{x:L,y:T,width:W-L-R,height:H-T-B,fill:'transparent',style:'cursor:crosshair'});
+    var hit=el('rect',{x:L,y:T,width:W-L-R,height:H-T-Bm,fill:'transparent',style:'cursor:crosshair'});
     hit.addEventListener('pointermove',function(e){mark(fromEvt(e));});
     hit.addEventListener('pointerleave',function(){mark(+range.value);});
     hit.addEventListener('click',function(e){range.value=fromEvt(e);mark(+range.value);});
@@ -884,16 +1010,22 @@ body.locked #pwGate{display:flex}
   }
   range.addEventListener('input',function(){mark(+range.value);});
   var rz; window.addEventListener('resize',function(){clearTimeout(rz);rz=setTimeout(draw,150);});
-  draw();
-  // ---- 吸顶切换 ----
+  // ---- 切换 ----
+  function all(){cards();table();texts();kpis();timeline();draw();}
+  function pick(e){
+    var t=e.target.closest('[data-i]'); if(!t) return;
+    cur=+t.getAttribute('data-i'); all();
+  }
+  $('optGrid').addEventListener('click',pick);
+  $('optTable').addEventListener('click',pick);
   var btns=[].slice.call(document.querySelectorAll('.switch button'));
   btns.forEach(function(b){
     b.addEventListener('click',function(){
       btns.forEach(function(o){o.classList.toggle('on',o===b);});
-      var x=+b.getAttribute('data-s'); render(x); range.value=x; mark(x);
+      bill=+b.getAttribute('data-s'); kpis(); range.value=bill; mark(bill);
     });
   });
-  render(50000);
+  all();
 })();
 
 (function(){
