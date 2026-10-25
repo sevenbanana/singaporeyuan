@@ -4,6 +4,15 @@ const withNextIntl = createNextIntlPlugin('./lib/i18n.ts');
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  // 口播素材页会反复修改：让浏览器每次都向服务器确认最新版本，避免手机缓存旧页面
+  async headers() {
+    return [
+      {
+        source: '/reels/:path*',
+        headers: [{ key: 'Cache-Control', value: 'no-cache, must-revalidate' }],
+      },
+    ];
+  },
   async rewrites() {
     return [
       // Bufan 的英语学习工具:静态单文件放在 public/gaobufan/english.html,
