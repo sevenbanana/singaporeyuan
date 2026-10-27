@@ -675,6 +675,19 @@ body{padding-bottom:92px}
   .stat4>div:nth-child(n+3){border-top:1px solid var(--line)}
   .stat4 b{font-size:17px}
 }
+
+/* 不同身份价格对照 */
+.res-cmp{margin-top:12px}
+.res-cmp table{min-width:0}
+.res-cmp tr.cur td{background:var(--gold-tint)}
+.res-cmp tr.cur td:first-child{font-weight:800;color:var(--navy)}
+#cmpWhy{align-items:flex-start;line-height:1.65;text-align:left;justify-content:flex-start}
+@media (max-width:760px){
+  .res-cmp th,.res-cmp td{padding:10px 10px;font-size:13.5px}
+  .res-cmp th{white-space:normal}
+  .res-cmp td small{font-size:11.5px}
+}
+#cmpWhy .ic{flex:0 0 auto;margin-top:3px}
 </style>
 </head>
 <body class="locked">
@@ -829,6 +842,8 @@ body{padding-bottom:92px}
     <div class="a"><div class="t"><svg class="ic"><use href="#i-hospital"/></svg><span id="cpAt"></span></div><b id="cpA"></b><div class="s" id="cpAs"></div></div>
     <div class="b"><div class="t"><svg class="ic"><use href="#i-globe"/></svg><span id="cpBt"></span></div><b id="cpB"></b><div class="s" id="cpBs"></div></div>
   </div>
+  <div class="ctable res-cmp"><table class="num" id="cmpRes"></table></div>
+  <div class="tip" id="cmpWhy"><svg class="ic"><use href="#i-bulb"/></svg><span></span></div>
   <div class="sumgrid num" id="cmpGrid"></div>
   <div class="ctable cmp-future"><table class="num" id="cmpFuture"></table></div>
   <div class="sum-line">
@@ -1152,6 +1167,7 @@ function calcHosp(ps){
     if(local){const msl=band(HSGM_LOCAL,anb)[1];
       out.rows.push(['MediShield Life（公民 / PR 必须保留）',msl]); out.cpf+=msl; out.total+=msl;}
     out.notes.push('全球医疗险（美国除外）：'+gDesc(go)+'；每年最高赔 '+wan(GLIM[gp][0])+'。续保不保证。');
+    if(local)out.notes.push('全球险保费不分国籍，住在新加坡的人都是同一个价；公民 / PR 另外要交政府强制的 MediShield Life（MediSave 付）。');
     if(ps.age>65)out.notes.push('全球医疗险最后投保年龄为 65 岁，此价格仅供已有保单续保参考。');
     return out;
   }
@@ -1381,14 +1397,15 @@ function renderCmp(){
   $('cpA').innerHTML=sgd(A.total)+'<small>/ 年</small>'; $('cpAs').textContent=split(A);
   $('cpBt').textContent='全球（美国除外）· '+gName(o.gp,o.go);
   $('cpB').innerHTML=sgd(B.total)+'<small>/ 年</small>';
-  $('cpBs').textContent=local?'全球险现金 '+sgd(B.cash)+' + MediShield Life '+sgd(B.cpf)+'（MediSave）':'全部现金';
+  $('cpBs').textContent=local?'全球险 '+sgd(B.cash)+'（现金）+ MediShield Life '+sgd(B.cpf)+'（MediSave）':'全部现金';
+  renderResCmp();
   const d=GDED[o.go], maxB=d.ded+d.cap, maxA=SGDED[cmp.sg]+6000, limB=GLIM[o.gp][0], limA=SGLIM[cmp.sg][0];
   const win=t=>`<span class="win"><svg class="ic"><use href="#i-check"/></svg>${t}</span>`;
   const where={A:['新加坡私立医院标准房','按实际赔；海外按新加坡收费赔'],B:['新加坡公立医院 A 级病房','去私立医院按 70% 折算再赔'],BL:['新加坡公立医院 B1 病房','私立按 50%、公立 A 级按 80% 折算']}[cmp.sg];
   const cheap=Math.abs(A.total-B.total)>=50?(A.total<B.total?'a':'b'):'';
   const rows=[
     ['i-hospital','在哪看病能赔',`<b>${where[0]}</b><small>${where[1]}</small>`,`<b>全球（美国除外）标准房</b><small>按实际赔</small>${win('范围更广')}`],
-    ['i-coins','今年保费',`<b>${sgd(A.total)}</b><small>${split(A)}</small>${cheap==='a'?win('便宜 '+sgd(B.total-A.total)):''}`,`<b>${sgd(B.total)}</b><small>${local?'含 MediShield Life':'全部现金'}</small>${cheap==='b'?win('便宜 '+sgd(A.total-B.total)):''}`],
+    ['i-coins','今年保费',`<b>${sgd(A.total)}</b><small>${split(A)}</small>${cheap==='a'?win('便宜 '+sgd(B.total-A.total)):''}`,`<b>${sgd(B.total)}</b><small>${local?'全球险 '+sgd(B.cash)+' + MediShield Life '+sgd(B.cpf):'全部现金'}</small>${cheap==='b'?win('便宜 '+sgd(A.total-B.total)):''}`],
     ['i-wallet','每年自己最多付',`<b>约 ${sgd(maxA)}</b><small>免赔额 ${sgd(SGDED[cmp.sg])} + 5%（封顶 S$6,000）</small>${win('少付 '+sgd(maxB-maxA))}`,`<b>${sgd(maxB)}</b><small>${gDesc(o.go)}</small>`],
     ['i-shield','每年最高赔',`<b>${wan(limA)}</b><small>${SGLIM[cmp.sg][1]||'终身不设上限'}</small>${limA>limB?win('更高'):''}`,`<b>${wan(limB)}</b><small>终身 ${wan(GLIM[o.gp][1])}</small>${limB>limA?win('更高'):''}`],
     ['i-ribbon','癌症门诊',`<b>按国家癌症药物清单</b><small>私立 A 可加 Cancer Care Pro，额度更高</small>`,`<b>每年 S$50 万</b><small>化疗、免疫、放疗都算</small>${win('更宽松')}`],
@@ -1405,6 +1422,20 @@ function renderCmp(){
     `<tr><td>新加坡 · ${SGNAME[cmp.sg]}</td>${pa.map((v,i)=>`<td class="p1${v<pb[i]?' green':''}">${sgd(v)}</td>`).join('')}</tr>`+
     `<tr><td>全球 · ${gName(o.gp,o.go)}</td>${pb.map((v,i)=>`<td class="p2${v<pa[i]?' green':''}">${sgd(v)}</td>`).join('')}</tr></tbody>`;
   renderClaims();
+}
+/* 同一年龄、三种身份的价格对照 */
+function renderResCmp(){
+  const $=id=>document.getElementById(id), ids=RES.map(r=>r[0]), o=GOPT[cmp.gi];
+  const sgAll=ids.map(r=>r!=='local'&&cmp.sg==='BL'?null:sgPrice(cmp.age,r,cmp.sg));
+  const glAll=ids.map(r=>glPrice(cmp.age,r,cmp.gi));
+  const td=(i,v,sm,k)=>`<td class="${k}">${v}<small>${sm}</small></td>`;
+  const sgCell=(x,i)=>!x?td(i,'—','外国人没有 B Lite','p1'):
+    td(i,sgd(x.total),ids[i]==='local'?'含 MediShield Life '+sgd(band(HSGM_LOCAL,cmp.age+1)[1]):ids[i]==='fdep'?'家人 MediSave 可付 '+sgd(x.cpf):'全部现金','p1');
+  const glCell=(x,i)=>td(i,sgd(x.total),ids[i]==='local'?'全球险 '+sgd(x.cash)+' + MediShield Life '+sgd(x.cpf):'全球险，全部现金','p2');
+  $('cmpRes').innerHTML=`<thead><tr><th>同样 ${cmp.age} 岁</th><th class="p1">新加坡 · ${SGNAME[cmp.sg]}</th><th class="p2">全球 · ${gName(o.gp,o.go)}</th></tr></thead><tbody>`+
+    RES.map((r,i)=>`<tr class="${r[0]===cmp.res?'cur':''}"><td>${r[1]}</td>${sgCell(sgAll[i],i)}${glCell(glAll[i],i)}</tr>`).join('')+'</tbody>';
+  const sgLine=sgAll[2]?`新加坡计划这边，外国人反而比公民 / PR 贵（${sgd(sgAll[2].total)} 对 ${sgd(sgAll[0].total)}）。`:'';
+  $('cmpWhy').querySelector('span').innerHTML=`<b>为什么全球险外国人看起来更便宜？</b>全球险本身不分国籍，住在新加坡的人都是 ${sgd(glAll[2].total)}。公民 / PR 多出来的 ${sgd(glAll[0].cpf)} 是政府强制的 MediShield Life，用 MediSave 付，等于多一层保障。${sgLine}`;
 }
 (function(){
   const r=document.getElementById('cAgeR'), n=document.getElementById('cAge');
