@@ -1,0 +1,1727 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>一篇看懂 CareShield Life | 新加坡小圆姐</title>
+<meta name="description" content="新加坡国民长期护理险 CareShield Life 互动指南：谁自动有、六项日常活动（ADL）怎么判断、2026 年起每月能领多少、真要人照顾时够不够，以及怎么用 Singlife CareShield 补充计划往上补一层。附缺口测算和线上报价入口。">
+<link rel="icon" href="/logo-mark.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=Noto+Sans+SC:wght@400;500;700;900&display=swap">
+
+<style>
+/* ───────────────── tokens(与 wealth-across-cycles 同一套) ───────────────── */
+:root{
+  --ink:#0A1C2E;
+  --ink-2:#0F2A44;
+  --ink-3:#1B4269;
+  --paper:#F4EEE1;
+  --paper-2:#E6DCC7;
+  /* 浅色卡片:冰蓝白,与深海军蓝背景同一冷色系 */
+  --card-l1:#F1F5FA;
+  --card-l2:#DFE7F1;
+  --card-line:rgba(141,185,226,.45);
+  --gold:#D6A94C;
+  --gold-2:#A9812F;
+  --ember:#B5503C;
+  --ember-l:#E9917C;
+  --sky:#8DB9E2;
+  --mist:#93A9BE;
+  --slate:#51687D;
+  --field:#0F2A44;
+
+  --fs-body:1.0625rem;
+  --wrap:1080px;
+  --shadow:0 24px 60px -28px rgba(0,0,0,.75);
+  --sans:"Archivo",system-ui,-apple-system,"Helvetica Neue",Arial,"Noto Sans SC","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+}
+
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  margin:0;
+  background:var(--ink);
+  color:var(--paper);
+  font-family:var(--sans);
+  font-size:var(--fs-body);
+  line-height:1.85;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+h1,h2,h3,h4{margin:0;font-weight:900;line-height:1.22;text-wrap:balance;letter-spacing:.01em}
+p{margin:0}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px;border-radius:4px}
+
+/* ───────────────── fixed field (layer 0) ───────────────── */
+.field{position:fixed;inset:0;z-index:0;pointer-events:none;background:var(--ink);transition:background-color 1.2s ease}
+.field__glow{position:absolute;inset:-15% -10%;background:
+   radial-gradient(58% 42% at 22% 12%, color-mix(in srgb, var(--field) 92%, #2C6A9E) 0%, transparent 62%),
+   radial-gradient(50% 40% at 86% 78%, rgba(214,169,76,.13) 0%, transparent 60%);
+  transition:background 1.2s ease}
+.field__grain{position:absolute;inset:0;opacity:.5;
+  background-image:radial-gradient(rgba(255,255,255,.055) 1px, transparent 1px);
+  background-size:3px 3px}
+.field__waves{position:absolute;left:-6%;right:-6%;bottom:-4%;height:46vh;opacity:.5}
+.field__waves svg{width:100%;height:100%}
+
+/* ───────────────── chrome ───────────────── */
+.progress{position:fixed;top:0;left:0;height:3px;width:0;background:linear-gradient(90deg,var(--gold-2),var(--gold));z-index:60}
+.brandbar{position:fixed;top:0;left:0;right:0;z-index:55;display:flex;align-items:center;justify-content:space-between;gap:12px;
+  padding:14px clamp(16px,4vw,40px);pointer-events:none;
+  background:linear-gradient(180deg,rgba(10,28,46,.86),rgba(10,28,46,0));
+  opacity:0;transform:translateY(-12px);transition:opacity .5s ease,transform .5s ease}
+.brandbar.on{opacity:1;transform:none}
+.brandbar b{font-weight:700;font-size:.9rem;letter-spacing:.06em}
+.brandbar span{font-size:.72rem;letter-spacing:.24em;color:var(--mist)}
+
+.dots{position:fixed;right:22px;top:50%;transform:translateY(-50%);z-index:55;display:flex;flex-direction:column;gap:11px}
+.dots a{width:9px;height:9px;border-radius:50%;background:rgba(244,238,225,.24);transition:.35s;position:relative}
+.dots a::after{content:attr(data-t);position:absolute;right:18px;top:50%;transform:translateY(-50%);
+  white-space:nowrap;font-size:.72rem;letter-spacing:.06em;color:var(--mist);opacity:0;transition:.3s;pointer-events:none}
+.dots a:hover::after{opacity:1}
+.dots a.on{background:var(--gold);transform:scale(1.45)}
+@media(max-width:900px){.dots{display:none}}
+
+/* ───────────────── scenes ───────────────── */
+.scene{position:relative;z-index:1;padding:clamp(76px,13vh,140px) clamp(18px,5vw,48px)}
+.scene__art{position:absolute;inset:0;z-index:-1;pointer-events:none;overflow:hidden}
+[data-depth]{transform:translate3d(0,var(--py,0px),0);will-change:transform}
+.inner{max-width:var(--wrap);margin:0 auto;position:relative}
+.narrow{max-width:64ch}
+
+.eyebrow{font-size:.72rem;letter-spacing:.34em;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:14px}
+.h-sec{font-size:clamp(1.85rem,4.4vw,2.9rem)}
+.rule{width:56px;height:3px;background:var(--gold);margin:20px 0 26px;border-radius:2px}
+.lede{color:#CDDAE6;max-width:60ch;margin-top:18px}
+.src{font-size:.76rem;line-height:1.7;color:#6E8399;margin-top:22px;letter-spacing:.01em}
+.art{font-size:.74rem;font-weight:500;color:var(--mist);letter-spacing:.04em;white-space:nowrap;margin-left:6px}
+
+/* reveal */
+.rise{opacity:0;transform:translateY(30px)}
+.rise.in{opacity:1;transform:none;transition:opacity .85s ease var(--d,0s),transform .85s cubic-bezier(.2,.75,.25,1) var(--d,0s)}
+
+/* ───────────────── hero ───────────────── */
+.hero{min-height:100svh;display:flex;align-items:center;padding-top:clamp(60px,10vh,110px)}
+.hero__art{position:absolute;left:72%;top:56%;width:min(56vw,620px);opacity:.95;
+  transform:translate(-50%,-50%) translate3d(0,var(--py,0px),0)}
+@media(max-width:820px){.hero__art{left:56%;top:76%;width:min(108vw,560px);opacity:.5}}
+.hero h1{font-size:clamp(2.9rem,10.5vw,7rem);line-height:1.04;letter-spacing:-.01em}
+.hero h1 em{font-style:normal;color:var(--gold);display:block;font-size:.82em;letter-spacing:-.02em}
+@media(min-width:821px){
+  .hero h1 em{font-size:.6em;margin-top:.12em}
+  #s-cover .hero__art{left:78%;top:64%;width:min(48vw,580px)}
+  #s-cover .hero__meta{max-width:27em}
+}
+@media(min-width:821px) and (max-width:1200px){#s-cover .hero__art{left:80%;top:74%;width:min(44vw,480px)}}
+.hero__brand{display:flex;flex-wrap:wrap;align-items:center;gap:6px 14px;margin-bottom:26px}
+.hero__brand b{font-size:clamp(1.1rem,2.6vw,1.35rem);font-weight:900;letter-spacing:.02em}
+.hero__brand i{font-style:normal;font-size:.68rem;letter-spacing:.28em;color:var(--mist);text-transform:uppercase}
+.hero__sub{margin-top:30px;font-size:clamp(1rem,2.2vw,1.2rem);color:#D3E0EA;max-width:21em;text-wrap:pretty}
+.hero__meta{margin-top:44px;display:flex;flex-wrap:wrap;gap:10px 22px;font-size:.82rem;color:var(--mist);letter-spacing:.04em}
+.scroll-hint{position:absolute;left:50%;bottom:26px;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;
+  font-size:.74rem;letter-spacing:.22em;color:var(--mist)}
+.scroll-hint span{display:block;width:1px;height:38px;background:linear-gradient(var(--gold),transparent);animation:drip 2.1s infinite}
+@keyframes drip{0%{transform:scaleY(.2);transform-origin:top;opacity:0}40%{opacity:1}100%{transform:scaleY(1);transform-origin:top;opacity:0}}
+
+/* ───────────────── chapter openers ───────────────── */
+.chapter{min-height:86svh;display:flex;align-items:center}
+.chapter__no{position:absolute;right:3%;top:8%;font-size:clamp(8rem,24vw,19rem);font-weight:800;line-height:.8;
+  color:rgba(214,169,76,.09);letter-spacing:-.04em;z-index:-1}
+.chapter h2{font-size:clamp(2.2rem,7vw,4.2rem);line-height:1.08}
+.chapter__art{position:absolute;right:2%;bottom:6%;width:min(46vw,430px);opacity:.85}
+@media(max-width:820px){.chapter__art{right:-4%;bottom:1%;width:min(48vw,210px);opacity:.35}}
+
+/* ───────────────── cards ───────────────── */
+.card{background:linear-gradient(160deg,var(--card-l1),var(--card-l2));border:1px solid var(--card-line);color:var(--ink);border-radius:22px;padding:clamp(22px,3.4vw,38px);box-shadow:var(--shadow)}
+.card--dark{background:linear-gradient(160deg,#12314F,#0C2135);color:var(--paper);box-shadow:var(--shadow);border:1px solid rgba(214,169,76,.22)}
+.card h3{font-size:1.15rem}
+.card p{color:var(--slate)}
+.card--dark p{color:#C3D3E0}
+.card ul{margin:10px 0 0;padding-left:1.2em;color:var(--slate);display:flex;flex-direction:column;gap:4px}
+.card--dark ul{color:#C3D3E0}
+.card li::marker{color:var(--gold-2)}
+.card--dark li::marker{color:var(--gold)}
+
+.grid{display:grid;gap:clamp(14px,2vw,22px)}
+.g2{grid-template-columns:repeat(2,1fr)}
+.g3{grid-template-columns:repeat(3,1fr)}
+.g4{grid-template-columns:repeat(4,1fr)}
+@media(max-width:860px){.g3,.g4{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:620px){.g2,.g3,.g4{grid-template-columns:1fr}}
+
+/* stats */
+.stat{padding:22px 4px}
+.stat__n{font-size:clamp(2rem,4.6vw,3rem);font-weight:800;color:var(--gold);line-height:1.1;font-variant-numeric:tabular-nums}
+.stat__n small{font-size:.45em;font-weight:700;margin-left:4px}
+.stat__l{font-weight:700;margin-top:6px;font-size:.98rem}
+.stat__d{color:var(--mist);font-size:.85rem;line-height:1.6;margin-top:4px}
+
+.pill{display:inline-flex;align-items:center;gap:8px;padding:5px 13px;border-radius:999px;font-size:.84rem;font-weight:600;line-height:1.5;white-space:nowrap;
+  border:1px solid rgba(244,238,225,.22);background:rgba(244,238,225,.06);color:var(--paper)}
+
+/* 三种角色的配色:政府计划 = 天蓝,补充计划 = 金,缺口 = 暗红 */
+.k-gov{background:rgba(141,185,226,.14);border-color:rgba(141,185,226,.5);color:var(--sky)}
+.k-sup{background:rgba(214,169,76,.16);border-color:rgba(214,169,76,.55);color:var(--gold)}
+.k-gap{background:rgba(181,80,60,.22);border-color:rgba(233,145,124,.55);color:var(--ember-l)}
+.k-plain{background:rgba(244,238,225,.06);border-color:rgba(244,238,225,.22);color:var(--mist)}
+
+/* takeaway strip */
+.takeaway{display:block;margin-top:26px;padding:18px 22px;border-radius:16px;
+  background:rgba(214,169,76,.12);border-left:3px solid var(--gold);font-weight:500}
+.takeaway b{color:var(--gold)}
+.takeaway--warn{background:rgba(181,80,60,.14);border-left-color:var(--ember)}
+.takeaway--warn b{color:var(--ember-l)}
+.takeaway--sky{background:rgba(141,185,226,.1);border-left-color:var(--sky)}
+.takeaway--sky b{color:var(--sky)}
+
+/* ───────────────── chartbox ───────────────── */
+.chartbox{background:linear-gradient(160deg,var(--card-l1),var(--card-l2));border:1px solid var(--card-line);color:var(--ink);border-radius:22px;padding:clamp(16px,2.6vw,28px);box-shadow:var(--shadow)}
+.chartbox--dark{background:linear-gradient(165deg,#12314F,#0B1E31);color:var(--paper);border:1px solid rgba(214,169,76,.2)}
+.scroller{overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:thin}
+.scroller svg{display:block;width:100%;height:auto}
+@media(max-width:820px){
+  .scroller--wide svg{min-width:620px}
+  .scroller--wide{position:relative}
+  .scroller--wide::after{content:"← 左右滑动查看完整图表";display:block;font-size:.72rem;letter-spacing:.08em;color:var(--mist);padding:6px 2px 0;position:sticky;left:0}
+  .field__waves{height:30vh;opacity:.35}
+}
+.chart-title{font-size:.82rem;letter-spacing:.16em;color:var(--slate);margin-bottom:10px;font-weight:600}
+.chartbox--dark .chart-title{color:var(--mist)}
+
+.ax{stroke:rgba(244,238,225,.3);stroke-width:1}
+.grid-l{stroke:rgba(244,238,225,.1);stroke-width:1}
+.tick{fill:var(--mist);font-size:13px;font-family:var(--sans)}
+.lab{fill:var(--paper);font-size:14px;font-weight:700;font-family:var(--sans)}
+.draw{fill:none;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:var(--len);stroke-dashoffset:var(--len);
+  transition:stroke-dashoffset 2.4s cubic-bezier(.35,.1,.2,1) var(--d,0s)}
+.is-live .draw{stroke-dashoffset:0}
+.fade{opacity:0;transition:opacity .8s ease var(--d,.5s)}
+.is-live .fade{opacity:1}
+
+/* ───────────────── 按钮组 ───────────────── */
+.pills{display:flex;flex-wrap:wrap;gap:8px}
+.pills button,.opts label{font:inherit;font-size:.86rem;font-weight:600;cursor:pointer;padding:8px 15px;border-radius:999px;line-height:1.45;
+  border:1px solid rgba(244,238,225,.25);background:transparent;color:var(--paper);transition:.28s;text-align:left}
+.pills button:hover,.opts label:hover{border-color:var(--gold)}
+.pills button.on{background:var(--gold);border-color:var(--gold);color:#20180A}
+.pills button.on.t-gov{background:var(--sky);border-color:var(--sky);color:var(--ink)}
+.opts{display:flex;flex-wrap:wrap;gap:8px}
+.opts input{position:absolute;opacity:0;width:1px;height:1px;pointer-events:none}
+.opts input:checked + label{background:var(--gold);border-color:var(--gold);color:#20180A}
+.opts input:focus-visible + label{outline:2px solid var(--gold);outline-offset:3px}
+
+.note{margin-top:20px;min-height:5.4em;border-left:3px solid var(--gold);padding-left:18px}
+.note.blue{border-color:var(--sky)}
+.note.bad{border-color:var(--ember)}
+.note b{display:block;font-size:1.2rem;margin-bottom:4px}
+.note span,.note p{color:#C3D3E0}
+.note p + p{margin-top:8px}
+.note__row{display:grid;grid-template-columns:auto minmax(0,1fr);gap:16px;align-items:start}
+@media(max-width:560px){.note__row{grid-template-columns:1fr}.note__row .ico-ring{width:48px;height:48px}.note__row .ico-ring .ico{width:30px;height:30px}}
+
+/* ───────────────── 六个要点 ───────────────── */
+.key{display:flex;flex-direction:column;gap:8px}
+.key__no{font-size:2.4rem;font-weight:800;color:var(--gold);line-height:1;font-variant-numeric:tabular-nums}
+.key h3{font-size:1.12rem;color:var(--paper)}
+.key__top{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
+
+/* ───────────────── 从生病到长期照护(示意图) ───────────────── */
+.journey{display:block;width:100%;height:auto}
+.journey .stage{cursor:pointer;transition:opacity .45s ease}
+.journey .stage.dim{opacity:.35}
+.journey .stage,.journey .stage:focus,.journey .stage:focus-visible{outline:none}
+.journey .stage:focus-visible rect{stroke-width:3.5}
+.dg-t{font-family:var(--sans);font-size:20px;font-weight:800;fill:var(--ink)}
+.dg-s{font-family:var(--sans);font-size:15px;font-weight:500;fill:var(--slate)}
+.dg-l{font-family:var(--sans);font-size:15px;font-weight:700}
+.dg-b{font-family:var(--sans);font-size:16px;font-weight:800;fill:#fff;letter-spacing:.06em}
+.jnote{margin-top:16px;padding:16px 18px;border-radius:16px;background:rgba(10,28,46,.06);border-left:3px solid var(--gold-2)}
+.jnote b{display:block;font-size:1.05rem;color:var(--ink);margin-bottom:4px}
+.jnote span{color:var(--slate);font-size:.96rem;line-height:1.75}
+
+/* ───────────────── 自查工具 ───────────────── */
+.checker{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:clamp(18px,3vw,34px);align-items:start}
+@media(max-width:860px){.checker{grid-template-columns:1fr}}
+fieldset{border:0;margin:0 0 18px;padding:0;min-width:0}
+legend{font-weight:700;font-size:.95rem;padding:0;margin-bottom:10px}
+.hint{font-size:.8rem;color:var(--mist);margin-top:8px}
+.res-title{font-size:clamp(1.3rem,3vw,1.7rem);font-weight:900;line-height:1.35;margin-bottom:6px}
+.rrows div{display:grid;grid-template-columns:5.6em minmax(0,1fr);gap:12px;padding:10px 0;border-bottom:1px solid rgba(244,238,225,.12);font-size:.96rem;line-height:1.7}
+.rrows span:first-child{color:var(--gold);font-size:.82rem;font-weight:700;padding-top:2px;letter-spacing:.06em}
+.rrows span:last-child{color:#D3E0EA}
+.rrows a{color:var(--gold);text-decoration:none;border-bottom:1px solid rgba(214,169,76,.5)}
+
+/* ───────────────── 线稿图标 ───────────────── */
+.ico{width:44px;height:44px;color:var(--gold);flex:none;display:block}
+.ico--xs{width:22px;height:22px;display:inline-block;vertical-align:-5px}
+.ico--sm{width:34px;height:34px}
+.ico--lg{width:60px;height:60px}
+.card:not(.card--dark) .ico{color:var(--gold-2)}
+.hd{display:flex;align-items:center;gap:12px}
+.ico-ring{width:58px;height:58px;border-radius:50%;display:grid;place-items:center;flex:none;
+  background:rgba(214,169,76,.12);border:1px solid rgba(214,169,76,.35)}
+.ico-ring .ico{width:36px;height:36px}
+.stat .ico{margin-bottom:12px}
+.pills .ico--xs{margin-right:6px}
+.pills button.on .ico{color:currentColor}
+
+/* ───────────────── 六项 ADL ───────────────── */
+.adlwrap{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:clamp(18px,3vw,34px);align-items:start}
+@media(max-width:900px){.adlwrap{grid-template-columns:1fr}}
+.adl{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+@media(max-width:620px){.adl{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.adl button{font:inherit;color:inherit;text-align:left;cursor:pointer;border-radius:18px;padding:14px 14px 12px;
+  border:1px solid rgba(244,238,225,.2);background:rgba(255,255,255,.04);transition:.3s;display:flex;flex-direction:column;gap:6px;position:relative}
+.adl button:hover{border-color:var(--gold)}
+.adl button .ico{width:40px;height:40px;color:var(--mist);transition:color .3s}
+.adl b{font-size:1.02rem}
+.adl b small{font-size:.72rem;font-weight:600;color:var(--mist);margin-left:6px;letter-spacing:.04em}
+.adl span{font-size:.8rem;line-height:1.55;color:var(--mist)}
+.adl button::after{content:"能自己做";position:absolute;right:12px;top:12px;font-size:.68rem;letter-spacing:.06em;color:var(--mist);
+  padding:1px 8px;border-radius:999px;border:1px solid rgba(244,238,225,.2)}
+.adl button[aria-pressed="true"]{background:rgba(181,80,60,.18);border-color:rgba(233,145,124,.7)}
+.adl button[aria-pressed="true"] .ico{color:var(--ember-l)}
+.adl button[aria-pressed="true"]::after{content:"做不到";color:#fff;background:var(--ember);border-color:var(--ember)}
+.meter{display:grid;grid-template-columns:repeat(6,1fr);gap:5px;margin:4px 0 6px}
+.meter i{height:12px;border-radius:4px;background:rgba(244,238,225,.12);transition:background .35s}
+.meter i.on{background:var(--ember)}
+.meter-ax{display:grid;grid-template-columns:repeat(6,1fr);gap:5px;font-size:.7rem;color:var(--mist);text-align:center;font-variant-numeric:tabular-nums}
+.meter-ax span.hit{color:var(--gold);font-weight:700}
+.tri{display:flex;flex-direction:column;gap:0;margin-top:14px;border-top:1px solid rgba(244,238,225,.14)}
+.tri div{display:grid;grid-template-columns:minmax(0,7.6em) minmax(0,1fr);gap:12px;padding:12px 0;border-bottom:1px solid rgba(244,238,225,.14);align-items:baseline}
+.tri dt{font-size:.8rem;font-weight:700;letter-spacing:.04em;line-height:1.5}
+.tri dd{margin:0;font-size:.94rem;line-height:1.7;color:#D3E0EA}
+.tri dd.off{color:#6E8399}
+.tri .t-gov{color:var(--sky)}
+.tri .t-sup{color:var(--gold)}
+.tri .t-ms{color:var(--mist)}
+.adl-head{font-size:clamp(1.2rem,2.8vw,1.5rem);font-weight:900;line-height:1.4;margin-top:6px}
+
+/* ───────────────── 月付款滑块 ───────────────── */
+.ctrl__top{display:flex;justify-content:space-between;align-items:baseline;gap:12px;font-size:.92rem;font-weight:600}
+.ctrl__v{font-size:1.15rem;font-weight:800;color:var(--gold);font-variant-numeric:tabular-nums}
+input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:4px;border-radius:4px;background:rgba(244,238,225,.22);margin-top:14px}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:24px;height:24px;border-radius:50%;background:var(--gold);cursor:pointer;border:3px solid #0F2A44}
+input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;background:var(--gold);cursor:pointer;border:3px solid #0F2A44}
+.fscale{display:flex;justify-content:space-between;font-size:.7rem;color:var(--mist);margin-top:6px;font-variant-numeric:tabular-nums}
+.paywrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:clamp(18px,3vw,34px);align-items:center;margin-top:18px}
+@media(max-width:820px){.paywrap{grid-template-columns:1fr}}
+.big{font-size:clamp(2.4rem,6.4vw,3.6rem);font-weight:800;color:var(--gold);line-height:1.1;font-variant-numeric:tabular-nums}
+.big small{font-size:.42em;font-weight:700;margin-left:6px;color:var(--mist)}
+.big--sky{color:var(--sky)}
+.big--ember{color:var(--ember-l)}
+.mini{display:flex;flex-wrap:wrap;gap:8px 18px;margin-top:10px;font-size:.88rem;color:#C3D3E0}
+.mini b{color:var(--paper);font-variant-numeric:tabular-nums}
+
+/* ───────────────── 缺口测算 ───────────────── */
+.gap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:clamp(18px,3vw,34px);align-items:start}
+@media(max-width:860px){.gap{grid-template-columns:1fr}}
+.ctrl{margin-top:20px}
+.ctrl:first-child{margin-top:0}
+.sbar{position:relative;display:flex;height:34px;border-radius:10px;background:rgba(244,238,225,.08);overflow:hidden;margin-top:14px}
+.sbar i{display:block;height:100%;transition:width .45s cubic-bezier(.3,.8,.3,1)}
+.sbar .b-gov{background:var(--sky)}
+.sbar .b-sup{background:var(--gold)}
+.sbar .b-gap{background:repeating-linear-gradient(135deg,var(--ember) 0 5px,rgba(181,80,60,.35) 5px 10px)}
+.sbar-cost{position:absolute;top:-6px;bottom:-6px;width:2px;margin-left:-1px;background:var(--paper);transition:left .45s cubic-bezier(.3,.8,.3,1)}
+.legend{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:.78rem;color:var(--mist);margin-top:10px}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:6px;vertical-align:-1px}
+.grows div{display:flex;justify-content:space-between;gap:12px;padding:9px 0;border-bottom:1px solid rgba(244,238,225,.12);font-size:.95rem}
+.grows span:first-child{color:#C3D3E0}
+.grows span:last-child{font-weight:700;font-variant-numeric:tabular-nums}
+.gnote{margin-top:14px;font-size:.86rem;line-height:1.7;color:var(--mist)}
+.gnote b{color:var(--gold)}
+
+/* ───────────────── 补充计划三家 ───────────────── */
+.chan{display:flex;align-items:center;gap:14px;padding:16px 18px;border-radius:18px;border:1px solid rgba(214,169,76,.22);background:rgba(255,255,255,.04)}
+.chan b{display:block;font-size:1.02rem}
+.chan span{display:block;font-size:.84rem;color:var(--mist);line-height:1.5}
+.chan--star{border-color:var(--gold);background:rgba(214,169,76,.1)}
+
+/* ───────────────── Standard / Plus 触发矩阵 ───────────────── */
+.mx{display:grid;grid-template-columns:minmax(92px,1.25fr) repeat(3,minmax(0,1fr));gap:6px}
+.mx__h{font-size:.78rem;font-weight:700;letter-spacing:.04em;color:var(--slate);padding:6px 4px;text-align:center;line-height:1.4}
+.mx__r{font-size:.86rem;font-weight:800;color:var(--ink);padding:10px 6px 10px 0;display:flex;align-items:center;line-height:1.35}
+.mx__r small{display:block;font-size:.7rem;font-weight:600;color:var(--slate)}
+.mx button{font:inherit;font-size:.84rem;font-weight:700;cursor:pointer;border-radius:12px;padding:12px 4px;line-height:1.3;transition:.25s;
+  border:1px solid rgba(10,28,46,.12);background:rgba(10,28,46,.04);color:#8296A8}
+.mx button.c-wv{background:#fff;border:1px dashed var(--gold-2);color:var(--gold-2)}
+.mx button.c-12{background:rgba(141,185,226,.32);border-color:rgba(27,66,105,.35);color:var(--ink-3)}
+.mx button.c-life{background:var(--gold);border-color:var(--gold-2);color:#20180A}
+.mx button.c-gov{background:var(--ink-3);border-color:var(--ink-3);color:#fff}
+.mx button:hover{transform:translateY(-2px)}
+.mx button.sel{outline:3px solid var(--ink);outline-offset:2px}
+.mxlegend{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:.76rem;color:var(--slate);margin-top:12px}
+.mxlegend i{display:inline-block;width:12px;height:12px;border-radius:4px;margin-right:6px;vertical-align:-2px}
+
+.benefit{padding:18px 18px 16px;border-radius:18px;border:1px solid rgba(214,169,76,.22);background:rgba(255,255,255,.04);
+  display:grid;grid-template-columns:44px minmax(0,1fr);gap:12px;align-items:start}
+.benefit b{display:block;font-size:1rem;line-height:1.45}
+.benefit b em{font-style:normal;color:var(--gold)}
+.benefit p{margin-top:4px;color:#C3D3E0;font-size:.9rem;line-height:1.65}
+.benefit--off{opacity:.6;border-style:dashed}
+
+/* ───────────────── 理赔时间线 ───────────────── */
+.phase{margin-top:16px}
+.phase__lab{display:flex;justify-content:space-between;align-items:baseline;gap:10px;flex-wrap:wrap;font-size:.92rem;margin-bottom:6px}
+.phase__lab b{font-size:.95rem}
+.phase__lab span{color:var(--mist);font-size:.8rem}
+.phase__lab strong{font-size:1.05rem;font-variant-numeric:tabular-nums;color:var(--paper)}
+.ptrack{display:flex;height:18px;border-radius:6px;background:rgba(244,238,225,.08);overflow:hidden}
+.ptrack i{display:block;height:100%;transition:width .45s cubic-bezier(.3,.8,.3,1)}
+.ptrack .p-base{background:var(--gold)}
+.ptrack .p-add{background:#E7C77F}
+.ptrack .p-care{background:#C49442}
+.ptrack .p-dep{background:#8E6A28}
+.ptrack .p-gov{background:var(--sky)}
+.chk{display:flex;align-items:center;gap:10px;margin-top:16px;font-size:.88rem;color:#C3D3E0;cursor:pointer}
+.chk input{width:18px;height:18px;accent-color:var(--gold)}
+.totals{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:20px}
+.totals div{padding:14px 16px;border-radius:14px;background:rgba(214,169,76,.1);border:1px solid rgba(214,169,76,.3)}
+.totals span{display:block;font-size:.78rem;color:var(--mist);letter-spacing:.06em}
+.totals b{display:block;font-size:1.45rem;font-weight:800;color:var(--gold);font-variant-numeric:tabular-nums;line-height:1.3}
+
+/* ───────────────── 流程节点 ───────────────── */
+.flowsvg text{user-select:none}
+
+/* ───────────────── 三步办好 + 按钮 ───────────────── */
+.step{display:flex;flex-direction:column;gap:10px}
+.step__no{font-size:.78rem;letter-spacing:.24em;color:var(--gold);font-weight:700}
+.step h3{font-size:1.15rem;color:var(--paper)}
+.cta{display:inline-flex;align-items:center;gap:12px;padding:16px 26px;border-radius:999px;background:var(--gold);color:#20180A;
+  font-weight:800;font-size:1.05rem;text-decoration:none;box-shadow:0 18px 40px -18px rgba(214,169,76,.8);transition:transform .25s,box-shadow .25s}
+.cta:hover{transform:translateY(-2px);box-shadow:0 22px 46px -16px rgba(214,169,76,.9)}
+.cta .ico{width:26px;height:26px;color:#20180A}
+.cta--ghost{background:transparent;color:var(--paper);border:1px solid rgba(244,238,225,.35);box-shadow:none}
+.cta--ghost .ico{color:var(--gold)}
+.cta-row{display:flex;flex-wrap:wrap;gap:12px 16px;align-items:center;margin-top:26px}
+.buybox{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:clamp(18px,3vw,34px);align-items:center}
+@media(max-width:820px){.buybox{grid-template-columns:1fr}}
+.buybox ul{margin:12px 0 0;padding-left:1.2em;display:flex;flex-direction:column;gap:6px;color:#C3D3E0;font-size:.95rem}
+.buybox li::marker{color:var(--gold)}
+
+/* ───────────────── 联系 ───────────────── */
+.contact{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:clamp(20px,3vw,40px);align-items:center}
+@media(max-width:820px){.contact{grid-template-columns:1fr;text-align:center;justify-items:center}}
+.avatar{width:132px;height:132px;border-radius:50%;object-fit:cover;border:3px solid var(--gold)}
+.qr{width:132px;height:132px;border-radius:12px;background:#fff;padding:7px}
+.contact__lines{display:flex;flex-direction:column;gap:6px;margin-top:14px;font-size:.98rem}
+.contact__lines a{text-decoration:none;border-bottom:1px solid rgba(214,169,76,.5);padding-bottom:1px}
+.qr-cap{font-size:.76rem;color:var(--mist);text-align:center;margin-top:8px;letter-spacing:.08em}
+
+.srclist{margin:0;padding-left:1.3em;display:flex;flex-direction:column;gap:8px;font-size:.92rem;color:#C3D3E0}
+.srclist li::marker{color:var(--gold);font-weight:700}
+.srclist a{text-decoration:none;border-bottom:1px solid rgba(214,169,76,.5)}
+
+footer{position:relative;z-index:1;padding:40px clamp(18px,5vw,48px) 60px;border-top:1px solid rgba(244,238,225,.12);
+  color:#6E8399;font-size:.78rem;line-height:1.8}
+footer .inner{display:flex;flex-wrap:wrap;gap:12px 28px;justify-content:space-between}
+footer .inner > span{max-width:100%}
+
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{transition-duration:.01ms !important;animation:none !important}
+  .rise{opacity:1;transform:none}
+  .draw{stroke-dashoffset:0}
+  .fade{opacity:1}
+}
+</style>
+</head>
+<body>
+
+<!-- ══════════ hand-drawn illustration library ══════════ -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <filter id="rough">
+      <feTurbulence type="fractalNoise" baseFrequency="0.026" numOctaves="3" seed="7" result="n"/>
+      <feDisplacementMap in="SourceGraphic" in2="n" scale="3.2" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+    <filter id="rough-s">
+      <feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="2" seed="3" result="n"/>
+      <feDisplacementMap in="SourceGraphic" in2="n" scale="1.8" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+
+    <!-- 封面 · 一面盾护着推轮椅的一家人,每月的钱从盾里落进日历 -->
+    <symbol id="ill-cover" viewBox="0 0 620 340">
+      <g filter="url(#rough)" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+        <!-- 盾 -->
+        <path d="M262 26l124 44v78c0 78-54 124-124 146-70-22-124-68-124-146V70z" stroke="var(--gold)" stroke-width="2.2" fill="rgba(214,169,76,.07)"/>
+        <path d="M262 50l100 36" stroke="var(--gold)" stroke-width="1.8" opacity=".55"/>
+        <!-- 房子 -->
+        <g opacity=".7" stroke-width="2.2">
+          <path d="M18 300v-66l48-38 48 38v66"/>
+          <path d="M50 300v-34h32v34"/>
+          <path d="M6 244l60-48 60 48"/>
+        </g>
+        <!-- 照顾的人 -->
+        <circle cx="176" cy="132" r="17"/>
+        <path d="M176 150c-12 8-14 36-12 82M176 150c10 8 14 24 14 40"/>
+        <path d="M168 176h46" />
+        <path d="M164 232l-14 66M166 232l18 66"/>
+        <!-- 轮椅 + 坐着的人 -->
+        <circle cx="264" cy="168" r="16"/>
+        <path d="M260 186c-8 18-6 40 0 54h44l12 40"/>
+        <path d="M262 206l26 12"/>
+        <path d="M232 200l8 50h62" stroke-width="2.6"/>
+        <path d="M214 176h18l4 24"/>
+        <circle cx="258" cy="268" r="36" stroke-width="2.6" fill="rgba(244,238,225,.05)"/>
+        <circle cx="258" cy="268" r="6"/>
+        <circle cx="330" cy="294" r="10"/>
+        <path d="M302 250l14 44"/>
+        <!-- 每月入账:虚线弧 + 日历 + 硬币 -->
+        <path d="M372 94Q470 40 500 136" stroke="var(--gold)" stroke-width="2.2" stroke-dasharray="2 11" opacity=".9"/>
+        <path d="M488 126l12 12 6-16" stroke="var(--gold)" stroke-width="2.2"/>
+        <rect x="438" y="150" width="128" height="100" rx="10" fill="rgba(244,238,225,.06)"/>
+        <path d="M438 180h128M468 138v24M536 138v24"/>
+        <path d="M460 202h.01M486 202h.01M512 202h.01M538 202h.01M460 228h.01M486 228h.01M538 228h.01" stroke-width="6"/>
+        <circle cx="512" cy="228" r="12" stroke="var(--gold)" fill="rgba(214,169,76,.25)"/>
+        <g stroke="var(--gold)">
+          <ellipse cx="504" cy="294" rx="34" ry="9" fill="rgba(214,169,76,.18)"/>
+          <path d="M470 294v-12c0 5 15 9 34 9s34-4 34-9v12"/>
+          <ellipse cx="504" cy="282" rx="34" ry="9"/>
+          <path d="M470 282v-12c0 5 15 9 34 9s34-4 34-9v12"/>
+          <ellipse cx="504" cy="270" rx="34" ry="9"/>
+        </g>
+        <path d="M0 304h620" stroke-width="2.8" opacity=".7"/>
+        <g stroke-width="2.4" opacity=".55">
+          <path d="M6 326q30-16 60 0t60 0 60 0 60 0 60 0 60 0 60 0 60 0 60 0 60 0"/>
+        </g>
+      </g>
+    </symbol>
+
+    <!-- 第一章 · 一把伞护着房子和拄拐的老人 -->
+    <symbol id="ill-umbrella" viewBox="0 0 340 340">
+      <g filter="url(#rough)" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M24 144Q170 0 316 144" fill="rgba(244,238,225,.05)"/>
+        <path d="M24 144q24-20 49 0t49 0 49 0 49 0 49 0 48 0" stroke="var(--gold)"/>
+        <path d="M170 52v-18"/>
+        <path d="M170 144Q150 96 170 52M170 52q20 44 0 92" opacity=".5"/>
+        <path d="M196 144v128q0 20-18 20t-18-16" stroke="var(--gold)"/>
+        <path d="M40 300v-70l50-40 50 40v70" fill="rgba(244,238,225,.06)"/>
+        <path d="M72 300v-36h36v36"/>
+        <circle cx="262" cy="186" r="14"/>
+        <path d="M262 202q-10 26-2 52M260 254l-12 46M260 254l12 46"/>
+        <path d="M258 216l22 14"/>
+        <path d="M286 226v74" stroke="var(--gold)" stroke-width="3"/>
+        <path d="M14 302h312" stroke-width="3" opacity=".6"/>
+      </g>
+    </symbol>
+
+    <!-- 第二章 · 六项清单勾掉三项 + 拐杖 -->
+    <symbol id="ill-adl" viewBox="0 0 340 340">
+      <g filter="url(#rough)" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M50 60h176v246H50z" fill="rgba(244,238,225,.06)"/>
+        <path d="M104 44h68v30h-68z"/>
+        <g>
+          <rect x="74" y="96" width="24" height="24" rx="4" stroke="var(--gold)" fill="rgba(214,169,76,.2)"/>
+          <path d="M79 103l14 12M93 103l-14 12" stroke="var(--gold)"/>
+          <path d="M114 108h88"/>
+          <rect x="74" y="132" width="24" height="24" rx="4" stroke="var(--gold)" fill="rgba(214,169,76,.2)"/>
+          <path d="M79 139l14 12M93 139l-14 12" stroke="var(--gold)"/>
+          <path d="M114 144h70"/>
+          <rect x="74" y="168" width="24" height="24" rx="4" stroke="var(--gold)" fill="rgba(214,169,76,.2)"/>
+          <path d="M79 175l14 12M93 175l-14 12" stroke="var(--gold)"/>
+          <path d="M114 180h80"/>
+          <rect x="74" y="204" width="24" height="24" rx="4"/>
+          <path d="M114 216h60" opacity=".6"/>
+          <rect x="74" y="240" width="24" height="24" rx="4"/>
+          <path d="M114 252h74" opacity=".6"/>
+          <rect x="74" y="276" width="24" height="18" rx="4"/>
+          <path d="M114 286h50" opacity=".6"/>
+        </g>
+        <path d="M262 94q30-20 48 4" stroke-width="3"/>
+        <path d="M262 94v222" stroke-width="3.4"/>
+        <path d="M246 318h34" stroke-width="3"/>
+        <path d="M20 322h300" stroke-width="3" opacity=".5"/>
+      </g>
+    </symbol>
+
+    <!-- 第三章 · 储钱罐里的钱只到一半 -->
+    <symbol id="ill-jar" viewBox="0 0 340 340">
+      <g filter="url(#rough)" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M96 66h148v26H96z" fill="rgba(244,238,225,.08)"/>
+        <path d="M106 92q-26 22-26 62v120q0 26 26 26h128q26 0 26-26V154q0-40-26-62" fill="rgba(244,238,225,.05)"/>
+        <path d="M84 214q86 18 172 0v60q0 20-20 20H104q-20 0-20-20z" fill="rgba(141,185,226,.18)" stroke="var(--sky)"/>
+        <g stroke="var(--gold)">
+          <ellipse cx="140" cy="250" rx="22" ry="7"/>
+          <ellipse cx="196" cy="262" rx="22" ry="7"/>
+          <ellipse cx="168" cy="236" rx="22" ry="7"/>
+        </g>
+        <path d="M84 140h172" stroke="var(--ember-l)" stroke-dasharray="6 9" stroke-width="2.4"/>
+        <path d="M290 146v62" stroke="var(--ember-l)" stroke-width="2.4"/>
+        <path d="M282 154l8-8 8 8M282 200l8 8 8-8" stroke="var(--ember-l)" stroke-width="2.4"/>
+        <path d="M30 304h280" stroke-width="3" opacity=".6"/>
+      </g>
+    </symbol>
+
+    <!-- 第四章 · 在底座上再叠一层 -->
+    <symbol id="ill-stack" viewBox="0 0 340 340">
+      <g filter="url(#rough)" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M40 222h260v80H40z" fill="rgba(141,185,226,.14)" stroke="var(--sky)"/>
+        <path d="M70 262h80M70 280h50" stroke="var(--sky)" opacity=".7"/>
+        <path d="M232 244l18 7v14c0 14-8 22-18 26-10-4-18-12-18-26v-14z" stroke="var(--sky)"/>
+        <path d="M70 128h200v80H70z" fill="rgba(214,169,76,.2)" stroke="var(--gold)"/>
+        <path d="M100 168h90M100 186h60" stroke="var(--gold)" opacity=".8"/>
+        <path d="M170 34v54M143 61h54" stroke="var(--gold)" stroke-width="3.4"/>
+        <path d="M120 112l50 14 50-14" stroke-dasharray="3 9" opacity=".7"/>
+        <path d="M14 304h312" stroke-width="3" opacity=".6"/>
+      </g>
+    </symbol>
+
+    <!-- ══ 线稿图标 64×64(与插画同一手绘滤镜) ══ -->
+    <symbol id="ic-person" viewBox="0 0 64 64"><g filter="url(#rough-s)" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="32" cy="21" r="10"/><path d="M12 56c2-12 10-19 20-19s18 7 20 19"/></g></symbol>
+    <symbol id="ic-alert" viewBox="0 0 64 64"><g filter="url(#rough-s)" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M32 8 5 54h54z"/><path d="M32 24v15"/><path d="M32 46h.01" stroke-width="4.5"/></g></symbol>
+    <symbol id="ic-shield" viewBox="0 0 64 64"><g filter="url(#rough-s)" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M32 8l20 8v18c0 12-9 20-20 24-11-4-20-12-20-24V16z"/><path d="M23 32l7 7 12-13"/></g></symbol>
+    <symbol id="ic-coins" viewBox="0 0 64 64"><g filter="url(#rough-s)" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+      <ellipse cx="26" cy="16" rx="16" ry="6"/><path d="M10 16v10c0 3.3 7.2 6 16 6s16-2.7 16-6V16"/><path d="M10 26v10c0 3.3 7.2 6 16 6s16-2.7 16-6V26"/><path d="M10 36v10c0 3.3 7.2 6 16 6s16-2.7 16-6V36"/><path d="M53 34v14M46 41h14"/></g></symbol>
+    <symbol id="ic-cal" viewBox="0 0 64 64"><g filter="url(#rough-s)" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M8 14h48v42H8z"/><path d="M8 26h48M20 8v12M44 8v12"/><path d="M18 36h.01M28 36h.01M38 36h.01M48 36h.01M18 46h.01M28 46h.01M38 46h.01" stroke-width="5"/></g></symbol>
+    <symbol id="ic-calok" viewBox="0 0 64 64"><g filter="url(#rough-s)" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M8 14h48v42H8z"/><path d="M8 26h48M20 8v12M44 8v12"/><path d="M22 40l7 7 13-14"/></g></symbol>
+    <symbol id="ic-hourglass" viewBox="0 0 64 64"><g filter="url(#rough-s)" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M16 8h32M16 56h32"/><path d="M20 8c0 12 12 18 12 24s-12 12-12 24M44 8c0 12-12 18-12 24s12 12 12 24"/><path d="M25 52q7-8 14 0z"/></g></symbol>
+    <symbol id="ic-contract" viewBox="0 0 64 64"><g filter="url(#rough-s)" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12 6h30v52H12z"/><path d="M20 18h14M20 26h14M20 34h8"/><path d="M34 50l16-16 5 5-16 16h-5z"/></g></symbol>
+    <symbol id="ic-search" viewBox="0 0 64 64"><g filter="url(#rough-s)" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="27" cy="27" r="17"/><path d="M40 40l16 16"/></g></symbol>
+    <symbol id="ic-chat" viewBox="0 0 64 64"><g filter="url(#rough-s)" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M8 10h48v34H28L16 54V44H8z"/><path d="M27 22a5 5 0 1 1 7 4.6c-1.5.7-2 1.6-2 3.4"/><path d="M32 37h.01" stroke-width="4.5"/></g></symbol>
+    <symbol id="ic-house" viewBox="0 0 64 64"><g filter="url(#rough-s)" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M6 30 32 8l26 22"/><path d="M13 25v31h38V25"/><path d="M27 56V40h10v16"/></g></symbol>
+    <symbol id="ic-passport" viewBox="0 0 64 64"><g filter="url(#rough-s)" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M14 6h36v52H14z"/><circle cx="32" cy="24" r="8"/><path d="M22 40h20M25 48h14"/></g></symbol>
+    <symbol id="ic-fund" viewBox="0 0 64 64"><g filter="url(#rough-s)" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M8 12h48v40H8z"/><path d="M14 42l10-10 8 6 16-16"/><path d="M42 22h6v6"/></g></symbol>
+    <symbol id="ic-bank" viewBox="0 0 64 64"><g filter="url(#rough-s)" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M6 24 32 10l26 14z"/><path d="M13 28v20M25 28v20M39 28v20M51 28v20"/><path d="M6 52h52"/></g></symbol>
+    <symbol id="ic-scales" viewBox="0 0 64 64"><g filter="url(#rough-s)" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M32 10v44M20 54h24M12 18h40"/><path d="M12 18 6 34a6 6 0 0 0 12 0zM52 18l-6 16a6 6 0 0 0 12 0z"/></g></symbol>
+    <!-- 六项 ADL -->
+    <symbol id="ic-bath" viewBox="0 0 64 64"><g filter="url(#rough-s)" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M6 34h52v5c0 9-7 15-16 15H22c-9 0-16-6-16-15z"/><path d="M16 54l-3 5M48 54l3 5"/><path d="M14 34V16a7 7 0 0 1 14 0"/><path d="M24 22h8"/><path d="M26 27v3M31 26v3"/></g></symbol>
+    <symbol id="ic-shirt" viewBox="0 0 64 64"><g filter="url(#rough-s)" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M22 8 8 16l6 12 6-3v31h24V25l6 3 6-12-14-8c-2 5-6 7-10 7s-8-2-10-7z"/><path d="M32 22v8M32 36v.01M32 44v.01" stroke-width="3"/></g></symbol>
+    <symbol id="ic-bowl" viewBox="0 0 64 64"><g filter="url(#rough-s)" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M6 32h52c0 13-11 22-26 22S6 45 6 32z"/><path d="M24 54h16"/><path d="M30 28 50 6M36 28 56 10"/><path d="M14 24q-3-5 0-10M22 24q-3-5 0-10"/></g></symbol>
+    <symbol id="ic-toilet" viewBox="0 0 64 64"><g filter="url(#rough-s)" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M14 6h18v20H14z"/><path d="M8 26h44c0 11-8 18-19 18h-6C16 44 8 37 8 26z"/><path d="M20 44l-2 12h24l-2-12"/></g></symbol>
+    <symbol id="ic-walk" viewBox="0 0 64 64"><g filter="url(#rough-s)" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+      <ellipse cx="21" cy="17" rx="7" ry="10"/><circle cx="21" cy="34" r="4"/><ellipse cx="43" cy="31" rx="7" ry="10"/><circle cx="43" cy="48" r="4"/></g></symbol>
+    <symbol id="ic-transfer" viewBox="0 0 64 64"><g filter="url(#rough-s)" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M4 30v24M4 44h28v-8H10"/><path d="M32 54V44"/><path d="M44 40h14V22M44 40v14M58 40v14"/><path d="M14 22q14-16 30-2"/><path d="M38 14l6 6-8 3"/></g></symbol>
+    <!-- 其他 -->
+    <symbol id="ic-wheelchair" viewBox="0 0 64 64"><g filter="url(#rough-s)" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="22" cy="9" r="5"/><path d="M22 16v18h16l7 14h6"/><path d="M14 22h16"/><circle cx="24" cy="44" r="13"/></g></symbol>
+    <symbol id="ic-hospital" viewBox="0 0 64 64"><g filter="url(#rough-s)" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M10 56V18h44v38"/><path d="M32 24v14M25 31h14"/><path d="M27 56V46h10v10"/><path d="M4 56h56"/></g></symbol>
+    <symbol id="ic-walker" viewBox="0 0 64 64"><g filter="url(#rough-s)" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M14 58V16h36v42"/><path d="M14 32h36"/><path d="M10 16h8M46 16h8"/><circle cx="14" cy="58" r="2"/><circle cx="50" cy="58" r="2"/></g></symbol>
+    <symbol id="ic-steth" viewBox="0 0 64 64"><g filter="url(#rough-s)" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12 6v16a10 10 0 0 0 20 0V6"/><path d="M8 6h8M28 6h8"/><path d="M22 32v8a12 12 0 0 0 24 0v-6"/><circle cx="46" cy="30" r="5"/></g></symbol>
+    <symbol id="ic-gift" viewBox="0 0 64 64"><g filter="url(#rough-s)" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M8 24h48v10H8z"/><path d="M12 34v22h40V34"/><path d="M32 24v32"/><path d="M32 24c-6-10-17-11-16-3 1 5 16 3 16 3zM32 24c6-10 17-11 16-3-1 5-16 3-16 3z"/></g></symbol>
+    <symbol id="ic-boost" viewBox="0 0 64 64"><g filter="url(#rough-s)" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M8 56h48"/><path d="M16 56V40M28 56V32M40 56V24M52 56V14"/><path d="M10 30 26 16l8 6L50 8"/><path d="M42 8h8v8"/></g></symbol>
+    <symbol id="ic-care" viewBox="0 0 64 64"><g filter="url(#rough-s)" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M32 30c-3-7-14-7-14 1 0 7 14 14 14 14s14-7 14-14c0-8-11-8-14-1z"/><path d="M4 46h10l10 5h14a4 4 0 0 1 0 8H20"/><path d="M4 42v20"/></g></symbol>
+    <symbol id="ic-family" viewBox="0 0 64 64"><g filter="url(#rough-s)" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="18" cy="14" r="6"/><circle cx="46" cy="14" r="6"/><circle cx="32" cy="32" r="4.5"/><path d="M6 58c0-16 5-34 12-34s9 8 10 16M58 58c0-16-5-34-12-34s-9 8-10 16"/><path d="M25 58c0-9 3-16 7-16s7 7 7 16"/></g></symbol>
+    <symbol id="ic-pause" viewBox="0 0 64 64"><g filter="url(#rough-s)" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="32" cy="32" r="23"/><path d="M26 22v20M38 22v20"/></g></symbol>
+    <symbol id="ic-lily" viewBox="0 0 64 64"><g filter="url(#rough-s)" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M32 58V32"/><path d="M32 32c-6-5-7-15-2-22 5 7 6 16 2 22z"/><path d="M32 32c-10 1-17-5-18-14 9 0 16 6 18 14z"/><path d="M32 32c10 1 17-5 18-14-9 0-16 6-18 14z"/><path d="M32 48c-7 0-12-4-13-10 7 0 12 4 13 10z"/></g></symbol>
+    <symbol id="ic-layers" viewBox="0 0 64 64"><g filter="url(#rough-s)" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M6 42l26 13 26-13"/><path d="M6 32l26 13 26-13-26-13z"/><path d="M32 4v12M26 10h12"/></g></symbol>
+    <symbol id="ic-wallet" viewBox="0 0 64 64"><g filter="url(#rough-s)" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M8 20h48v36H8z"/><path d="M8 20 40 8l4 12"/><path d="M40 32h16v12H40z"/><path d="M46 38h.01" stroke-width="4"/></g></symbol>
+    <symbol id="ic-cash" viewBox="0 0 64 64"><g filter="url(#rough-s)" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M4 18h56v30H4z"/><circle cx="32" cy="33" r="8"/><path d="M12 26v14M52 26v14"/></g></symbol>
+    <symbol id="ic-bill" viewBox="0 0 64 64"><g filter="url(#rough-s)" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M14 6h36v52l-6-4-6 4-6-4-6 4-6-4-6 4z"/><path d="M22 18h20M22 28h20M22 38h12"/></g></symbol>
+    <symbol id="ic-globe" viewBox="0 0 64 64"><g filter="url(#rough-s)" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="32" cy="32" r="23"/><ellipse cx="32" cy="32" rx="9" ry="23"/><path d="M9 32h46M13 20h38M13 44h38"/></g></symbol>
+    <symbol id="ic-elder" viewBox="0 0 64 64"><g filter="url(#rough-s)" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="26" cy="11" r="6"/><path d="M26 18q-6 12-2 24l-6 16M24 42l8 16"/><path d="M25 26l13 7"/><path d="M40 32v26"/><path d="M40 32q0-4 4-4"/></g></symbol>
+    <symbol id="ic-link" viewBox="0 0 64 64"><g filter="url(#rough-s)" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M28 12H10v42h42V36"/><path d="M38 8h18v18"/><path d="M56 8 28 36"/></g></symbol>
+    <symbol id="ic-ban" viewBox="0 0 64 64"><g filter="url(#rough-s)" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="32" cy="32" r="22"/><path d="M16 16l32 32"/></g></symbol>
+
+    <!-- 背景波纹 -->
+    <symbol id="ill-wavefield" viewBox="0 0 1200 300" preserveAspectRatio="none">
+      <g fill="none" stroke="var(--gold)" stroke-width="1.6" opacity=".33" filter="url(#rough-s)">
+        <path d="M0 40q60-28 120 0t120 0 120 0 120 0 120 0 120 0 120 0 120 0 120 0 120 0"/>
+        <path d="M0 100q60-28 120 0t120 0 120 0 120 0 120 0 120 0 120 0 120 0 120 0 120 0"/>
+        <path d="M0 160q60-28 120 0t120 0 120 0 120 0 120 0 120 0 120 0 120 0 120 0 120 0"/>
+        <path d="M0 220q60-28 120 0t120 0 120 0 120 0 120 0 120 0 120 0 120 0 120 0 120 0"/>
+        <path d="M0 280q60-28 120 0t120 0 120 0 120 0 120 0 120 0 120 0 120 0 120 0 120 0"/>
+      </g>
+    </symbol>
+  </defs>
+</svg>
+
+<div class="progress" id="progress"></div>
+<div class="field" id="field">
+  <div class="field__glow"></div>
+  <div class="field__grain"></div>
+  <div class="field__waves" id="fieldWaves"><svg viewBox="0 0 1200 300" preserveAspectRatio="none"><use href="#ill-wavefield"/></svg></div>
+</div>
+
+<header class="brandbar" id="brandbar">
+  <b>新加坡小圆姐</b>
+  <span>一篇看懂 CareShield Life</span>
+</header>
+
+<nav class="dots" id="dots" aria-label="章节导航"></nav>
+
+<!-- ══════════ 封面 ══════════ -->
+<section class="scene hero" id="s-cover" data-title="封面" data-tint="#0F2A44">
+  <div class="scene__art"><div class="hero__art" data-depth="-0.42"><svg viewBox="0 0 620 340" style="width:100%;height:auto;color:rgba(244,238,225,.34)"><use href="#ill-cover"/></svg></div></div>
+  <div class="inner">
+    <div class="hero__brand rise">
+      <b>新加坡小圆姐</b>
+      <i>Guide · Long-term Care in Singapore</i>
+    </div>
+    <h1 class="rise" style="--d:.1s">一篇看懂<em>CareShield Life</em></h1>
+    <p class="hero__sub rise" style="--d:.22s">新加坡的国民长期护理险。<br>谁有、怎么赔、够不够、怎么补，一页看完。</p>
+    <div class="hero__meta rise" style="--d:.34s">
+      <span>袁媛 Yuan Yuan · 新加坡财富规划经理</span>
+      <span>2026 年 10 月</span>
+      <span>阅读约 8 分钟 · 建议下滑体验</span>
+    </div>
+  </div>
+  <div class="scroll-hint" aria-hidden="true">向下滑动<span></span></div>
+</section>
+
+<!-- ══════════ 几个数字 ══════════ -->
+<section class="scene" id="s-nums" data-title="几个数字" data-tint="#10314E">
+  <div class="inner">
+    <p class="eyebrow rise">Key numbers</p>
+    <h2 class="h-sec rise" style="--d:.06s">先记住四个数字</h2>
+    <div class="rule rise" style="--d:.1s"></div>
+    <div class="grid g4" data-live style="margin-top:26px">
+      <div class="stat rise" style="--d:.05s"><svg class="ico" viewBox="0 0 64 64" aria-hidden="true"><use href="#ic-person"/></svg><div class="stat__n"><span data-count="30">0</span><small>岁</small></div><div class="stat__l">自动加入</div><div class="stat__d">1980 年及以后出生的公民和 PR，不看既往病史</div></div>
+      <div class="stat rise" style="--d:.13s"><svg class="ico" viewBox="0 0 64 64" aria-hidden="true"><use href="#ic-wheelchair"/></svg><div class="stat__n"><span data-count="3">0</span><small>/ 6 项</small></div><div class="stat__l">理赔门槛</div><div class="stat__d">六项日常活动（ADL）里至少三项做不到</div></div>
+      <div class="stat rise" style="--d:.21s"><svg class="ico" viewBox="0 0 64 64" aria-hidden="true"><use href="#ic-cash"/></svg><div class="stat__n">S$<span data-count="689">0</span></div><div class="stat__l">每月现金 · 领到终身</div><div class="stat__d">2026 年开始领的月付款，之后金额固定</div></div>
+      <div class="stat rise" style="--d:.29s"><svg class="ico" viewBox="0 0 64 64" aria-hidden="true"><use href="#ic-boost"/></svg><div class="stat__n"><span data-count="4">0</span><small>% / 年</small></div><div class="stat__l">2026–2030 增幅</div><div class="stat__d">月付款每年涨 4%，原来是 2%</div></div>
+    </div>
+    <div class="grid g2 rise" style="--d:.34s;margin-top:30px">
+      <div class="card card--dark"><div class="hd"><svg class="ico ico--sm" viewBox="0 0 64 64" aria-hidden="true"><use href="#ic-shield"/></svg><h3>它是什么</h3></div><p style="margin-top:8px">卫生部推出的国民长期护理保险，2020 年 10 月 1 日起实施，保费在 CPF 里扣。2025 年检讨之后，2026 年 1 月起分阶段提高给付。</p></div>
+      <div class="card card--dark"><div class="hd"><svg class="ico ico--sm" viewBox="0 0 64 64" aria-hidden="true"><use href="#ic-search"/></svg><h3>这一页是什么</h3></div><p style="margin-top:8px">对卫生部、CPF 局公开资料的通俗整理，不是官方文件。最后一章讲补充计划，以我代理的 Singlife CareShield 为例。</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ 六个要点 ══════════ -->
+<section class="scene" id="s-keys" data-title="六个要点" data-tint="#0E2B45">
+  <div class="inner">
+    <p class="eyebrow rise">In one minute</p>
+    <h2 class="h-sec rise" style="--d:.06s">一分钟看懂：六个要点</h2>
+    <div class="rule rise" style="--d:.1s"></div>
+    <div class="grid g3">
+      <div class="card card--dark key rise" style="--d:.05s"><div class="key__top"><span class="key__no">01</span><svg class="ico" viewBox="0 0 64 64" aria-hidden="true"><use href="#ic-person"/></svg></div><h3>满 30 岁自动有</h3><p>1980 年及以后出生的新加坡公民和 PR，从 30 岁起（或 2020 年 10 月 1 日起，取较晚者）自动纳入，不用申请，也不看健康状况。</p></div>
+      <div class="card card--dark key rise" style="--d:.12s"><div class="key__top"><span class="key__no">02</span><svg class="ico" viewBox="0 0 64 64" aria-hidden="true"><use href="#ic-walk"/></svg></div><h3>看能不能自理，不看得了什么病</h3><p>洗澡、穿衣、进食、如厕、走动、移位这六项日常活动，至少三项需要别人帮忙，才算严重失能、可以理赔。</p></div>
+      <div class="card card--dark key rise" style="--d:.19s"><div class="key__top"><span class="key__no">03</span><svg class="ico" viewBox="0 0 64 64" aria-hidden="true"><use href="#ic-cash"/></svg></div><h3>每月给现金，领到终身</h3><p>不是凭单据报销，而是每月直接打钱，怎么用自己决定。2026 年开始领的，每月 S$689；只要一直符合条件，就一直领。</p></div>
+      <div class="card card--dark key rise" style="--d:.05s"><div class="key__top"><span class="key__no">04</span><svg class="ico" viewBox="0 0 64 64" aria-hidden="true"><use href="#ic-boost"/></svg></div><h3>2026 年起赔得更多</h3><p>月付款的年增幅从 2% 提高到 4%（2026–2030 年）。开始领之后金额固定；一直没理赔的，金额涨到 67 岁为止。</p></div>
+      <div class="card card--dark key rise" style="--d:.12s"><div class="key__top"><span class="key__no">05</span><svg class="ico" viewBox="0 0 64 64" aria-hidden="true"><use href="#ic-wallet"/></svg></div><h3>保费交到 67 岁</h3><p>可以全额用 MediSave 付。政府有按收入的保费补贴，2026–2030 年再加 5.7 亿新币过渡补贴，平均每年只涨约 S$38。</p></div>
+      <div class="card card--dark key rise" style="--d:.19s"><div class="key__top"><span class="key__no">06</span><svg class="ico" viewBox="0 0 64 64" aria-hidden="true"><use href="#ic-layers"/></svg></div><h3>它是底，可以往上补</h3><p>三家保险公司有政府认可的补充计划（Supplement），可以更早赔、每月多赔；补充保费每人每年最多 S$600 可以用 MediSave 付。</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ 章节 01 ══════════ -->
+<section class="scene chapter" id="s-c1" data-title="第一章 · 是什么" data-tint="#0C2439">
+  <div class="scene__art">
+    <div class="chapter__no" data-depth="-0.2">01</div>
+    <div class="chapter__art" data-depth="-0.3"><svg viewBox="0 0 340 340" style="width:100%;height:auto;color:rgba(244,238,225,.4)"><use href="#ill-umbrella"/></svg></div>
+  </div>
+  <div class="inner narrow">
+    <p class="eyebrow rise">What it covers</p>
+    <h2 class="rise" style="--d:.08s">是什么：<br>国民的<br>长期护理险</h2>
+    <div class="rule rise" style="--d:.14s"></div>
+    <p class="lede rise" style="--d:.18s">长期护理不是住院那几天的账单，而是失能以后每个月都要付的照顾费用，可能一付就是好多年。CareShield Life 管的就是这一段。</p>
+  </div>
+</section>
+
+<!-- ══════════ 从生病到长期照护(可点击示意图) ══════════ -->
+<section class="scene" id="s-journey" data-title="管哪一段" data-tint="#102D49">
+  <div class="inner">
+    <p class="eyebrow rise">MediShield Life vs CareShield Life</p>
+    <h2 class="h-sec rise" style="--d:.06s">住院险管账单，它管照顾</h2>
+    <div class="rule rise" style="--d:.1s"></div>
+    <p class="lede rise" style="--d:.12s">很多人以为有了 MediShield Life 或私人医疗险就够了。其实它们管的是两段不同的路。点一段看看。</p>
+    <div class="chartbox rise" data-live style="--d:.16s;margin-top:24px">
+      <p class="chart-title">从生病到长期需要人照顾 · 点一段看看</p>
+      <div class="scroller scroller--wide">
+        <svg class="journey" id="ch-journey" viewBox="0 0 900 290" role="group" aria-label="从生病到长期照护的三段：住院手术由 MediShield Life 和医疗险报销；出院康复部分仍在医疗体系里；长期需要人照顾由 CareShield Life 每月给现金">
+          <g class="stage" data-k="a" tabindex="0" role="button" aria-label="住院、手术">
+            <rect x="14" y="20" width="262" height="150" rx="18" fill="#fff" stroke="#1B4269" stroke-width="2"/>
+            <use href="#ic-hospital" x="32" y="40" width="54" height="54" style="color:#1B4269"/>
+            <text class="dg-t" x="98" y="64">生病 · 住院</text>
+            <text class="dg-s" x="98" y="88">手术、住院、专科</text>
+            <rect x="32" y="114" width="226" height="38" rx="19" fill="#1B4269"/>
+            <text class="dg-b" x="145" y="139" text-anchor="middle">MediShield Life / 医疗险</text>
+          </g>
+          <path class="draw" d="M280 95H316" stroke="#93A9BE" stroke-width="3" style="--d:.4s"/>
+          <path class="fade" d="M306 85l12 10-12 10" fill="none" stroke="#93A9BE" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="--d:1.4s"/>
+          <g class="stage" data-k="b" tabindex="0" role="button" aria-label="出院、康复">
+            <rect x="320" y="20" width="262" height="150" rx="18" fill="#fff" stroke="#51687D" stroke-width="2" stroke-dasharray="7 6"/>
+            <use href="#ic-walker" x="338" y="40" width="54" height="54" style="color:#51687D"/>
+            <text class="dg-t" x="404" y="64">出院 · 康复</text>
+            <text class="dg-s" x="404" y="88">社区医院、复健、复诊</text>
+            <rect x="338" y="114" width="226" height="38" rx="19" fill="#51687D"/>
+            <text class="dg-b" x="451" y="139" text-anchor="middle">部分仍可报销</text>
+          </g>
+          <path class="draw" d="M586 95H622" stroke="#93A9BE" stroke-width="3" style="--d:.8s"/>
+          <path class="fade" d="M612 85l12 10-12 10" fill="none" stroke="#93A9BE" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="--d:1.6s"/>
+          <g class="stage" data-k="c" tabindex="0" role="button" aria-label="长期需要人照顾">
+            <rect x="626" y="20" width="262" height="150" rx="18" fill="#fff" stroke="#A9812F" stroke-width="2.4"/>
+            <use href="#ic-wheelchair" x="644" y="40" width="54" height="54" style="color:#A9812F"/>
+            <text class="dg-t" x="710" y="64">长期要人照顾</text>
+            <text class="dg-s" x="710" y="88">请人、日间护理、护理院</text>
+            <rect x="644" y="114" width="226" height="38" rx="19" fill="#A9812F"/>
+            <text class="dg-b" x="757" y="139" text-anchor="middle">CareShield Life</text>
+          </g>
+          <path class="draw" d="M20 214H576" stroke="#1B4269" stroke-width="2.4" style="--d:1s"/>
+          <path class="fade" d="M20 204v20M576 204v20" stroke="#1B4269" stroke-width="2.4" stroke-linecap="round" style="--d:1.8s"/>
+          <text class="dg-l fade" x="298" y="248" text-anchor="middle" fill="#1B4269" style="--d:1.8s">医疗费用 · 凭单据报销，有自付额和共付</text>
+          <path class="draw" d="M632 214H882" stroke="#A9812F" stroke-width="2.4" style="--d:1.3s"/>
+          <path class="fade" d="M632 204v20M882 204v20" stroke="#A9812F" stroke-width="2.4" stroke-linecap="round" style="--d:2s"/>
+          <text class="dg-l fade" x="757" y="248" text-anchor="middle" fill="#A9812F" style="--d:2s">照顾开销 · 每月直接给现金</text>
+          <text class="dg-s fade" x="757" y="272" text-anchor="middle" style="--d:2.1s">可能持续很多年</text>
+        </svg>
+      </div>
+      <div class="jnote" id="jNote" aria-live="polite"></div>
+    </div>
+    <div class="takeaway rise">两种保险<b>不是二选一</b>：住院险管“治病花的钱”，CareShield Life 管“治不好、需要人照顾以后的钱”。</div>
+  </div>
+</section>
+
+<!-- ══════════ 我有没有(自查) ══════════ -->
+<section class="scene" id="s-who" data-title="我有没有" data-tint="#0E2B45">
+  <div class="inner">
+    <p class="eyebrow rise">Am I covered?</p>
+    <h2 class="h-sec rise" style="--d:.06s">我有没有 CareShield Life？</h2>
+    <div class="rule rise" style="--d:.1s"></div>
+    <p class="lede rise" style="--d:.12s">选两三个选项，看看自己（或家人）属于哪一种。</p>
+    <div class="chartbox chartbox--dark rise" style="--d:.16s;margin-top:26px;padding:clamp(20px,3vw,34px)">
+      <form class="checker" id="checker" novalidate>
+        <div>
+          <fieldset>
+            <legend>身份</legend>
+            <div class="opts">
+              <input type="radio" name="st" id="st-sc" value="sc" checked><label for="st-sc">新加坡公民</label>
+              <input type="radio" name="st" id="st-pr" value="pr"><label for="st-pr">PR</label>
+              <input type="radio" name="st" id="st-pass" value="pass"><label for="st-pass">EP、S Pass、家属准证等</label>
+            </div>
+          </fieldset>
+          <fieldset id="g-born">
+            <legend>出生年份</legend>
+            <div class="opts">
+              <input type="radio" name="born" id="born-a" value="after" checked><label for="born-a">1980 年及以后</label>
+              <input type="radio" name="born" id="born-b" value="before"><label for="born-b">1979 年及以前</label>
+            </div>
+          </fieldset>
+          <fieldset id="g-age" style="margin-bottom:0">
+            <legend>现在满 30 岁了吗？</legend>
+            <div class="opts">
+              <input type="radio" name="age" id="age-y" value="ge30" checked><label for="age-y">已满 30 岁</label>
+              <input type="radio" name="age" id="age-n" value="lt30"><label for="age-n">还没满 30 岁</label>
+            </div>
+          </fieldset>
+        </div>
+        <div aria-live="polite">
+          <p style="color:var(--mist);font-size:.9rem;letter-spacing:.1em;margin-bottom:8px">判断结果</p>
+          <div class="hd" style="margin-bottom:6px"><span class="ico-ring"><svg class="ico" id="cIco" viewBox="0 0 64 64" aria-hidden="true"><use href="#ic-shield"/></svg></span><div class="res-title" id="cTitle" style="margin:0"></div></div>
+          <div class="rrows" id="cRows"></div>
+        </div>
+      </form>
+    </div>
+    <p class="src rise">最准的办法是登录 CPF 网站或 app，在 MediSave / CareShield Life 一栏查自己的保障和保费。结果只是按公开规则的初步判断。</p>
+  </div>
+</section>
+
+<!-- ══════════ 保费与补贴 ══════════ -->
+<section class="scene" id="s-prem" data-title="保费" data-tint="#11324F">
+  <div class="inner">
+    <p class="eyebrow rise">Premiums &amp; support</p>
+    <h2 class="h-sec rise" style="--d:.06s">保费：谁付、交多久、涨多少</h2>
+    <div class="rule rise" style="--d:.1s"></div>
+    <div class="grid g2">
+      <div class="card rise"><div class="hd"><svg class="ico ico--sm" viewBox="0 0 64 64" aria-hidden="true"><use href="#ic-calok"/></svg><h3 style="color:var(--ink-2)">交到 67 岁</h3></div><p style="margin-top:6px">59 岁前加入的，每年交到 67 岁；59 岁及以后加入的，交 10 年。以 30 岁加入为例，年保费大约两三百新币，之后逐年增加。理赔期间不用再交。</p></div>
+      <div class="card rise" style="--d:.08s"><div class="hd"><svg class="ico ico--sm" viewBox="0 0 64 64" aria-hidden="true"><use href="#ic-wallet"/></svg><h3 style="color:var(--ink-2)">MediSave 可以全额付</h3></div><p style="margin-top:6px">每年自动从 MediSave 扣。自己的 MediSave 不够，家人的 MediSave 也可以帮忙付，或者用现金。</p></div>
+      <div class="card rise"><div class="hd"><svg class="ico ico--sm" viewBox="0 0 64 64" aria-hidden="true"><use href="#ic-boost"/></svg><h3 style="color:var(--ink-2)">2026 年起会涨</h3></div><p style="margin-top:6px">为了提高给付，2026 年保费有一次性调升，之后每年约涨 4%。政府 2026–2030 年额外拿出 5.7 亿新币过渡补贴，把每年的涨幅压到平均约 S$38，最多不超过 S$75。</p></div>
+      <div class="card rise" style="--d:.08s"><div class="hd"><svg class="ico ico--sm" viewBox="0 0 64 64" aria-hidden="true"><use href="#ic-shield"/></svg><h3 style="color:var(--ink-2)">交不起也不会断保</h3></div><p style="margin-top:6px">中低收入有按家庭收入的保费补贴；家人帮忙后仍付不起的，可以申请额外保费支援（APS）。政府的说法是：不会有人因为交不起保费失去 CareShield Life。</p></div>
+    </div>
+    <div class="takeaway rise"><b>注意：</b>买了补充计划（Supplement）的人，不符合额外保费支援（APS）的资格。正在领 APS 的，先想清楚再加补充计划。</div>
+  </div>
+</section>
+
+<!-- ══════════ 章节 02 ══════════ -->
+<section class="scene chapter" id="s-c2" data-title="第二章 · 怎么赔" data-tint="#0B2135">
+  <div class="scene__art">
+    <div class="chapter__no" data-depth="-0.2">02</div>
+    <div class="chapter__art" data-depth="-0.3"><svg viewBox="0 0 340 340" style="width:100%;height:auto;color:rgba(244,238,225,.4)"><use href="#ill-adl"/></svg></div>
+  </div>
+  <div class="inner narrow">
+    <p class="eyebrow rise">How claims work</p>
+    <h2 class="rise" style="--d:.08s">怎么赔：<br>看能不能自理<br>不看得了什么病</h2>
+    <div class="rule rise" style="--d:.14s"></div>
+    <p class="lede rise" style="--d:.18s">中风、失智、跌倒骨折、帕金森……原因都不重要。评估员只看一件事：六项日常活动里，有几项已经离不开别人帮忙。</p>
+  </div>
+</section>
+
+<!-- ══════════ 六项 ADL(互动) ══════════ -->
+<section class="scene" id="s-adl" data-title="六项 ADL" data-tint="#10314E">
+  <div class="inner">
+    <p class="eyebrow rise">Six Activities of Daily Living</p>
+    <h2 class="h-sec rise" style="--d:.06s">点一点：哪几项做不到了？</h2>
+    <div class="rule rise" style="--d:.1s"></div>
+    <p class="lede rise" style="--d:.12s">“做不到”指的是即使用了辅助器具，也要别人帮忙才能完成。点选下面的项目，看看政府计划和补充计划各赔不赔。</p>
+    <div class="chartbox chartbox--dark rise" style="--d:.16s;margin-top:24px;padding:clamp(18px,3vw,32px)">
+      <div class="adlwrap">
+        <div class="adl" id="adl" role="group" aria-label="六项日常活动"></div>
+        <div aria-live="polite">
+          <p style="color:var(--mist);font-size:.82rem;letter-spacing:.14em">做不到的项数</p>
+          <div class="meter" id="adlMeter" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+          <div class="meter-ax" id="adlAx" aria-hidden="true"><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span></div>
+          <div class="adl-head" id="adlHead"></div>
+          <dl class="tri" id="adlRows"></dl>
+        </div>
+      </div>
+    </div>
+    <p class="src rise">评估由卫生部认可的严重失能评估员进行。Singlife 两款计划的门槛依据其产品资料和卫生部公布的补充计划比较表；具体定义、给付条件以保单条款为准。</p>
+  </div>
+</section>
+
+<!-- ══════════ 每月领多少(互动) ══════════ -->
+<section class="scene" id="s-pay" data-title="每月领多少" data-tint="#0E2B45">
+  <div class="inner">
+    <p class="eyebrow rise">Monthly payouts</p>
+    <h2 class="h-sec rise" style="--d:.06s">每月领多少？看你哪一年开始领</h2>
+    <div class="rule rise" style="--d:.1s"></div>
+    <p class="lede rise" style="--d:.12s">月付款按“开始领的那一年”定下来，之后就不再变。拖动滑块看看。</p>
+    <div class="chartbox chartbox--dark rise" data-live style="--d:.16s;margin-top:24px">
+      <p class="chart-title">CareShield Life 月付款 · 按开始领的年份</p>
+      <div class="scroller scroller--wide"><svg class="flowsvg" id="ch-pay" viewBox="0 0 900 300" role="img" aria-label="CareShield Life 月付款：2020 年 600 新币，每年涨 2% 到 2025 年 662 新币；2026 年起每年涨 4%，2026 年 689 新币，推算 2030 年约 806 新币"></svg></div>
+      <div class="paywrap">
+        <div>
+          <div class="ctrl__top"><label for="payYear">开始领的年份</label><span class="ctrl__v" id="payYearV">2026</span></div>
+          <input id="payYear" type="range" min="2020" max="2030" step="1" value="2026">
+          <div class="fscale"><span>2020</span><span>2030</span></div>
+        </div>
+        <div aria-live="polite">
+          <p style="color:var(--mist);font-size:.9rem;letter-spacing:.1em">每月可领</p>
+          <div class="big" id="payBig">S$689</div>
+          <div class="mini"><span>一年 <b id="payY1">S$8,268</b></span><span>十年 <b id="payY10">S$82,680</b></span></div>
+          <p style="color:#C3D3E0;margin-top:10px;font-size:.94rem" id="payTxt"></p>
+        </div>
+      </div>
+    </div>
+    <div class="grid g2" style="margin-top:22px">
+      <div class="card card--dark rise"><div class="hd"><svg class="ico ico--sm" viewBox="0 0 64 64" aria-hidden="true"><use href="#ic-calok"/></svg><h3 style="color:var(--gold)">涨到 67 岁为止</h3></div><p style="margin-top:6px">一直没理赔的人，月付款每年跟着涨，涨到 67 岁就定格。也就是说，80 岁才开始领，拿到的是 67 岁那年的水平。</p></div>
+      <div class="card card--dark rise" style="--d:.08s"><div class="hd"><svg class="ico ico--sm" viewBox="0 0 64 64" aria-hidden="true"><use href="#ic-coins"/></svg><h3 style="color:var(--gold)">钱怎么用，自己定</h3></div><p style="margin-top:6px">请女佣、去日间护理、住护理院、买轮椅护理床、家里改装，甚至补贴照顾你的家人，都可以。不用交单据。</p></div>
+    </div>
+    <p class="src rise">2020–2025 年为已公布数字（每年 +2%）；2026 年 S$689 为 CPF 局公布数字；2027–2030 年按每年 4% 推算，四舍五入到整数，2030 年之后待下次检讨。</p>
+  </div>
+</section>
+
+<!-- ══════════ 理赔流程(互动) ══════════ -->
+<section class="scene" id="s-claim" data-title="理赔流程" data-tint="#11324F">
+  <div class="inner">
+    <p class="eyebrow rise">Making a claim</p>
+    <h2 class="h-sec rise" style="--d:.06s">真要理赔，分六步</h2>
+    <div class="rule rise" style="--d:.1s"></div>
+    <p class="lede rise" style="--d:.12s">点一点每个节点，看那一步要做什么。</p>
+    <div class="chartbox chartbox--dark rise" data-live style="--d:.16s;margin-top:22px" id="flowBox">
+      <div class="scroller scroller--wide"><svg class="flowsvg" id="ch-flow" viewBox="0 0 900 230" role="img" aria-label="CareShield Life 理赔六步：失能发生、预约评估、提交申请、等待审批、每月入账、同时申请补充计划"></svg></div>
+      <div class="pills" id="flowNav" style="margin-top:18px"></div>
+      <div class="note" id="flowNote"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ 章节 03 ══════════ -->
+<section class="scene chapter" id="s-c3" data-title="第三章 · 够不够" data-tint="#0B2135">
+  <div class="scene__art">
+    <div class="chapter__no" data-depth="-0.2">03</div>
+    <div class="chapter__art" data-depth="-0.3"><svg viewBox="0 0 340 340" style="width:100%;height:auto;color:rgba(244,238,225,.4)"><use href="#ill-jar"/></svg></div>
+  </div>
+  <div class="inner narrow">
+    <p class="eyebrow rise">Is it enough?</p>
+    <h2 class="rise" style="--d:.08s">够不够：<br>照顾开销<br>和月付款</h2>
+    <div class="rule rise" style="--d:.14s"></div>
+    <p class="lede rise" style="--d:.18s">S$689 是一个底。真到需要人照顾的那天，一个月的开销往往是它的好几倍。</p>
+  </div>
+</section>
+
+<!-- ══════════ 缺口测算(互动) ══════════ -->
+<section class="scene" id="s-gap" data-title="缺口测算" data-tint="#122F3F">
+  <div class="inner">
+    <p class="eyebrow rise">Try it yourself</p>
+    <h2 class="h-sec rise" style="--d:.06s">算一算：每月还差多少？</h2>
+    <div class="rule rise" style="--d:.1s"></div>
+    <p class="lede rise" style="--d:.12s">先选一种照顾方式，再拖动滑块，看 CareShield Life 加上补充计划能盖住多少。</p>
+    <div class="chartbox chartbox--dark rise" style="--d:.16s;margin-top:24px;padding:clamp(20px,3vw,34px)">
+      <div class="pills" id="gapNav" role="group" aria-label="照顾方式"></div>
+      <p class="gnote" id="gapScen" style="margin-top:12px"></p>
+      <div class="gap" style="margin-top:20px">
+        <div>
+          <div class="ctrl">
+            <div class="ctrl__top"><label for="gCost">每月照顾开销</label><span class="ctrl__v">S$<span id="gCostV">1,600</span></span></div>
+            <input id="gCost" type="range" min="800" max="8000" step="100" value="1600">
+            <div class="fscale"><span>S$800</span><span>S$8,000</span></div>
+          </div>
+          <div class="ctrl">
+            <div class="ctrl__top"><label for="gSup">补充计划每月给付</label><span class="ctrl__v">S$<span id="gSupV">0</span></span></div>
+            <input id="gSup" type="range" min="0" max="3000" step="100" value="0">
+            <div class="fscale"><span>不买</span><span>S$3,000</span></div>
+          </div>
+          <div class="ctrl">
+            <div class="ctrl__top"><label for="gYrs">需要照顾的年数</label><span class="ctrl__v"><span id="gYrsV">5</span> 年</span></div>
+            <input id="gYrs" type="range" min="1" max="15" step="1" value="5">
+            <div class="fscale"><span>1 年</span><span>15 年</span></div>
+          </div>
+        </div>
+        <div aria-live="polite">
+          <p style="color:var(--mist);font-size:.9rem;letter-spacing:.1em" id="gLab">每月还差</p>
+          <div class="big big--ember" id="gBig">S$0</div>
+          <div class="sbar" aria-hidden="true"><i class="b-gov" id="gB1"></i><i class="b-sup" id="gB2"></i><i class="b-gap" id="gB3"></i><span class="sbar-cost" id="gMark"></span></div>
+          <div class="legend"><span><i style="background:var(--sky)"></i>CareShield Life</span><span><i style="background:var(--gold)"></i>补充计划</span><span><i style="background:var(--ember)"></i>缺口</span><span><i style="background:var(--paper);width:2px"></i>每月开销</span></div>
+          <div class="grows" style="margin-top:14px">
+            <div><span>每月照顾开销</span><span id="gR1"></span></div>
+            <div><span>CareShield Life（2026 年起领）</span><span id="gR2" style="color:var(--sky)"></span></div>
+            <div><span>补充计划</span><span id="gR3" style="color:var(--gold)"></span></div>
+            <div><span id="gR4l">累计缺口</span><span id="gR4" style="color:var(--ember-l)"></span></div>
+          </div>
+          <p class="gnote" id="gNote"></p>
+        </div>
+      </div>
+      <p class="src" style="margin-top:18px">示意测算：开销为未扣政府补贴的估算，帮助理解量级；公民和 PR 按家庭收入可以申请不同程度的护理补贴，实际自付可能更低。日间护理费用参考卫生部估算（工作日每天去，未扣补贴每月约 S$945–1,430，不含交通）。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ 章节 04 ══════════ -->
+<section class="scene chapter" id="s-c4" data-title="第四章 · 怎么补" data-tint="#0B2135">
+  <div class="scene__art">
+    <div class="chapter__no" data-depth="-0.2">04</div>
+    <div class="chapter__art" data-depth="-0.3"><svg viewBox="0 0 340 340" style="width:100%;height:auto;color:rgba(244,238,225,.4)"><use href="#ill-stack"/></svg></div>
+  </div>
+  <div class="inner narrow">
+    <p class="eyebrow rise">Supplements</p>
+    <h2 class="rise" style="--d:.08s">怎么补：<br>在底座上<br>再加一层</h2>
+    <div class="rule rise" style="--d:.14s"></div>
+    <p class="lede rise" style="--d:.18s">CareShield Life 人人一样。想更早赔、每月多赔，就在它上面叠一份补充计划。</p>
+  </div>
+</section>
+
+<!-- ══════════ 补充计划是什么 ══════════ -->
+<section class="scene" id="s-sup" data-title="补充计划" data-tint="#10314E">
+  <div class="inner">
+    <p class="eyebrow rise">CareShield Life Supplements</p>
+    <h2 class="h-sec rise" style="--d:.06s">补充计划：三家公司，同一套规矩</h2>
+    <div class="rule rise" style="--d:.1s"></div>
+    <p class="lede rise" style="--d:.12s">卫生部认可的 CareShield Life 补充计划目前由三家保险公司提供。具体条款各家不同，但几条规矩是一样的。</p>
+    <div class="grid g3 rise" style="--d:.14s;margin-top:26px">
+      <div class="chan"><svg class="ico" viewBox="0 0 64 64" aria-hidden="true"><use href="#ic-shield"/></svg><div><b>Great Eastern</b><span>GREAT CareShield</span></div></div>
+      <div class="chan"><svg class="ico" viewBox="0 0 64 64" aria-hidden="true"><use href="#ic-shield"/></svg><div><b>Income</b><span>Care Secure</span></div></div>
+      <div class="chan chan--star"><svg class="ico" viewBox="0 0 64 64" aria-hidden="true"><use href="#ic-layers"/></svg><div><b>Singlife</b><span>CareShield Standard / Plus · 我代理的这一家</span></div></div>
+    </div>
+    <div class="grid g4" style="margin-top:22px">
+      <div class="card rise"><div class="hd"><svg class="ico ico--sm" viewBox="0 0 64 64" aria-hidden="true"><use href="#ic-wallet"/></svg><h3 style="color:var(--ink-2)">MediSave 每年 S$600</h3></div><p style="margin-top:6px">补充计划保费每人每个日历年最多 S$600 可以用 MediSave，超出部分付现金。</p></div>
+      <div class="card rise" style="--d:.06s"><div class="hd"><svg class="ico ico--sm" viewBox="0 0 64 64" aria-hidden="true"><use href="#ic-search"/></svg><h3 style="color:var(--ink-2)">要核保</h3></div><p style="margin-top:6px">和 CareShield Life 不同，补充计划要看健康状况。已经失能或有某些病史，可能被拒或除外。</p></div>
+      <div class="card rise" style="--d:.12s"><div class="hd"><svg class="ico ico--sm" viewBox="0 0 64 64" aria-hidden="true"><use href="#ic-hourglass"/></svg><h3 style="color:var(--ink-2)">越早越便宜</h3></div><p style="margin-top:6px">保费按投保年龄算，年轻、健康时买，保费低、也更容易通过核保。</p></div>
+      <div class="card rise" style="--d:.18s"><div class="hd"><svg class="ico ico--sm" viewBox="0 0 64 64" aria-hidden="true"><use href="#ic-ban"/></svg><h3 style="color:var(--ink-2)">不能单独买</h3></div><p style="margin-top:6px">要先有 CareShield Life（或 ElderShield），才能加补充计划。EP、准证持有人买不了。</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ Singlife Standard / Plus(互动矩阵) ══════════ -->
+<section class="scene" id="s-singlife" data-title="Standard 与 Plus" data-tint="#0E2B45">
+  <div class="inner">
+    <p class="eyebrow rise">Singlife CareShield Standard / Plus</p>
+    <h2 class="h-sec rise" style="--d:.06s">Singlife 两款：差在什么时候开始赔</h2>
+    <div class="rule rise" style="--d:.1s"></div>
+    <p class="lede rise" style="--d:.12s">同样是失能，CareShield Life 要三项做不到才赔；Singlife Plus 一项做不到就开始给钱。点格子看看每种情况赔什么。</p>
+    <div class="grid g2" style="margin-top:24px;align-items:start">
+      <div class="chartbox rise" style="--d:.14s">
+        <p class="chart-title">做不到几项 ADL，各赔什么 · 点格子</p>
+        <div class="mx" id="mx" role="group" aria-label="CareShield Life 与 Singlife 两款计划的理赔门槛"></div>
+        <div class="mxlegend"><span><i style="background:rgba(10,28,46,.08)"></i>不赔</span><span><i style="background:#fff;border:1px dashed var(--gold-2)"></i>豁免保费</span><span><i style="background:rgba(141,185,226,.5)"></i>最长 12 个月</span><span><i style="background:var(--gold)"></i>领到终身</span><span><i style="background:var(--ink-3)"></i>政府计划终身</span></div>
+      </div>
+      <div class="chartbox chartbox--dark rise" style="--d:.2s">
+        <div aria-live="polite">
+          <div class="hd"><span class="ico-ring"><svg class="ico" id="mxIco" viewBox="0 0 64 64" aria-hidden="true"><use href="#ic-layers"/></svg></span><div><span class="pill k-sup" id="mxChip">Singlife Plus</span><h3 id="mxTitle" style="font-size:clamp(1.15rem,2.6vw,1.4rem);margin-top:6px"></h3></div></div>
+          <p id="mxTxt" style="color:#C3D3E0;margin-top:14px"></p>
+        </div>
+      </div>
+    </div>
+
+    <h3 class="rise" style="font-size:1.35rem;margin-top:44px">Plus 计划里都有什么</h3>
+    <div class="grid g4" style="margin-top:16px">
+      <div class="benefit rise"><svg class="ico" viewBox="0 0 64 64" aria-hidden="true"><use href="#ic-cal"/></svg><div><b>月给付 · <em>领到终身</em></b><p>两项做不到起，每月给付选定的月保障额，持续符合条件就一直领。</p></div></div>
+      <div class="benefit rise" style="--d:.05s"><svg class="ico" viewBox="0 0 64 64" aria-hidden="true"><use href="#ic-gift"/></svg><div><b>一次性给付 · <em>3 倍</em></b><p>确认严重失能时一次过给 3 倍月保障额，应付轮椅、护理床、家里改装。</p></div></div>
+      <div class="benefit rise" style="--d:.1s"><svg class="ico" viewBox="0 0 64 64" aria-hidden="true"><use href="#ic-boost"/></svg><div><b>附加给付 · <em>12 个月</em></b><p>一项做不到起，每月再给 100% 月保障额，最长 12 个月，把最吃紧的头一年垫厚。</p></div></div>
+      <div class="benefit rise" style="--d:.15s"><svg class="ico" viewBox="0 0 64 64" aria-hidden="true"><use href="#ic-care"/></svg><div><b>看护者补贴 · <em>60%</em></b><p>每月 60% 月保障额，最长 12 个月，用来请护工或住家看护。</p></div></div>
+      <div class="benefit rise"><svg class="ico" viewBox="0 0 64 64" aria-hidden="true"><use href="#ic-family"/></svg><div><b>家属照顾补贴 · <em>20%</em></b><p>每月 20% 月保障额，最长 36 个月。</p></div></div>
+      <div class="benefit rise" style="--d:.05s"><svg class="ico" viewBox="0 0 64 64" aria-hidden="true"><use href="#ic-pause"/></svg><div><b>保费豁免 · <em>1 项起</em></b><p>一项做不到起就不用再交保费，保障照常有效。</p></div></div>
+      <div class="benefit rise" style="--d:.1s"><svg class="ico" viewBox="0 0 64 64" aria-hidden="true"><use href="#ic-lily"/></svg><div><b>身故保障 · <em>3 倍</em></b><p>领取期间不幸身故，赔最后一次月给付的 3 倍。</p></div></div>
+      <div class="benefit rise" style="--d:.15s"><svg class="ico" viewBox="0 0 64 64" aria-hidden="true"><use href="#ic-layers"/></svg><div><b>免核保加保</b><p>结婚、生孩子等指定人生阶段，可以提高月保障额，不用重新核保。</p></div></div>
+    </div>
+    <div class="takeaway takeaway--sky rise"><b>Standard 的区别：</b>门槛各往后推一项（两项做不到起附加给付 12 个月，三项起领到终身），保费更低；另外多一项康复补贴，Plus 没有。</div>
+  </div>
+</section>
+
+<!-- ══════════ Plus 理赔后能拿多少(互动) ══════════ -->
+<section class="scene" id="s-plus" data-title="能拿多少" data-tint="#11324F">
+  <div class="inner">
+    <p class="eyebrow rise">Try it yourself</p>
+    <h2 class="h-sec rise" style="--d:.06s">以 Plus 为例：理赔以后每月能拿多少</h2>
+    <div class="rule rise" style="--d:.1s"></div>
+    <p class="lede rise" style="--d:.12s">各项补贴陆续结束，所以月度金额分三段。拖动滑块，换一个月保障额试试。</p>
+    <div class="chartbox chartbox--dark rise" style="--d:.16s;margin-top:24px;padding:clamp(20px,3vw,34px)">
+      <div class="gap">
+        <div>
+          <div class="ctrl__top"><label for="pAmt">选定的月保障额</label><span class="ctrl__v">S$<span id="pAmtV">1,500</span></span></div>
+          <input id="pAmt" type="range" min="500" max="3000" step="100" value="1500">
+          <div class="fscale"><span>S$500</span><span>S$3,000</span></div>
+          <label class="chk"><input type="checkbox" id="pGov">假设已到三项做不到，也算上 CareShield Life 的 S$689</label>
+          <div class="totals" aria-live="polite">
+            <div><span>一次性给付</span><b id="pLump"></b></div>
+            <div><span>首 12 个月累计</span><b id="pY1"></b></div>
+            <div><span>第 37 个月起每月</span><b id="pLong"></b></div>
+            <div><span>身故保障</span><b id="pDeath"></b></div>
+          </div>
+        </div>
+        <div>
+          <div class="phase">
+            <div class="phase__lab"><b>第 1–12 个月</b><strong id="pM1"></strong></div>
+            <div class="ptrack"><i class="p-gov" id="pg1"></i><i class="p-base" id="pb1"></i><i class="p-add" id="pa1"></i><i class="p-care" id="pc1"></i><i class="p-dep" id="pd1"></i></div>
+            <div class="phase__lab" style="margin-top:4px"><span>月给付 + 附加给付 + 看护者补贴 + 家属照顾补贴</span></div>
+          </div>
+          <div class="phase">
+            <div class="phase__lab"><b>第 13–36 个月</b><strong id="pM2"></strong></div>
+            <div class="ptrack"><i class="p-gov" id="pg2"></i><i class="p-base" id="pb2"></i><i class="p-dep" id="pd2"></i></div>
+            <div class="phase__lab" style="margin-top:4px"><span>月给付 + 家属照顾补贴</span></div>
+          </div>
+          <div class="phase">
+            <div class="phase__lab"><b>第 37 个月起</b><strong id="pM3"></strong></div>
+            <div class="ptrack"><i class="p-gov" id="pg3"></i><i class="p-base" id="pb3"></i></div>
+            <div class="phase__lab" style="margin-top:4px"><span>月给付，领到终身</span></div>
+          </div>
+          <div class="legend" style="margin-top:14px"><span><i style="background:var(--gold)"></i>月给付</span><span><i style="background:#E7C77F"></i>附加给付</span><span><i style="background:#C49442"></i>看护者</span><span><i style="background:#8E6A28"></i>家属</span><span><i style="background:var(--sky)"></i>CareShield Life</span></div>
+        </div>
+      </div>
+      <p class="src" style="margin-top:18px">示意：按 Singlife CareShield Plus 在两项做不到起的给付结构计算，假设理赔成立、全程持续符合条件、各项补贴的条件都满足。实际给付起算时点、资格和终止条件以保单条款为准。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ 三步办好 + 报价入口 ══════════ -->
+<section class="scene" id="s-buy" data-title="三步办好" data-tint="#0D2A42">
+  <div class="inner">
+    <p class="eyebrow rise">Get started</p>
+    <h2 class="h-sec rise" style="--d:.06s">三步，把这一层补上</h2>
+    <div class="rule rise" style="--d:.1s"></div>
+    <div class="grid g3">
+      <div class="card card--dark step rise"><svg class="ico" viewBox="0 0 64 64" aria-hidden="true"><use href="#ic-search"/></svg><span class="step__no">STEP 01</span><h3>查一查</h3><p>登录 CPF 网站或 app，确认自己已经有 CareShield Life，看看今年的保费和 MediSave 余额。</p></div>
+      <div class="card card--dark step rise" style="--d:.08s"><svg class="ico" viewBox="0 0 64 64" aria-hidden="true"><use href="#ic-scales"/></svg><span class="step__no">STEP 02</span><h3>想一想</h3><p>用上面的测算估一下缺口，想好每月要补多少，选 Standard 还是 Plus。拿不准可以先问我。</p></div>
+      <div class="card card--dark step rise" style="--d:.16s"><svg class="ico" viewBox="0 0 64 64" aria-hidden="true"><use href="#ic-contract"/></svg><span class="step__no">STEP 03</span><h3>报个价</h3><p>打开 Singlife 线上报价页，输入出生日期等资料就能看到保费，可以直接在线投保。</p></div>
+    </div>
+    <div class="chartbox chartbox--dark rise" style="margin-top:26px;padding:clamp(22px,3.4vw,38px)">
+      <div class="buybox">
+        <div>
+          <p class="eyebrow" style="margin-bottom:8px">Singlife CareShield · 线上报价</p>
+          <h3 style="font-size:clamp(1.35rem,3vw,1.8rem)">现在就看看自己要交多少</h3>
+          <ul>
+            <li>几分钟填完，马上看到 Standard / Plus 各档的保费</li>
+            <li>保费里 MediSave 能付的部分、要付现金的部分，报价页会分开列出</li>
+            <li>投保前请看完产品摘要（Product Summary）</li>
+          </ul>
+        </div>
+        <div class="cta-row" style="margin-top:0">
+          <a class="cta" href="https://directsales.singlife.com/QuoteBuy/directsales/index.html#/mltc/lets-get-started" target="_blank" rel="noopener">打开 Singlife 线上报价<svg class="ico" viewBox="0 0 64 64" aria-hidden="true"><use href="#ic-link"/></svg></a>
+          <a class="cta cta--ghost" href="#s-contact">先问问小圆姐<svg class="ico" viewBox="0 0 64 64" aria-hidden="true"><use href="#ic-chat"/></svg></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ 常见情况(互动) ══════════ -->
+<section class="scene" id="s-faq" data-title="常见情况" data-tint="#0E2B45">
+  <div class="inner">
+    <p class="eyebrow rise">Common situations</p>
+    <h2 class="h-sec rise" style="--d:.06s">放到自己家的情况里</h2>
+    <div class="rule rise" style="--d:.1s"></div>
+    <p class="lede rise" style="--d:.12s">选一个最像你家的情况。</p>
+    <div class="chartbox chartbox--dark rise" style="--d:.16s;margin-top:22px">
+      <div class="pills" id="faqNav" role="group" aria-label="选择情况"></div>
+      <div class="note" id="faqNote" aria-live="polite"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ 资料来源 ══════════ -->
+<section class="scene" id="s-src" data-title="资料来源" data-tint="#0C2439" style="padding-top:clamp(56px,9vh,96px);padding-bottom:clamp(40px,6vh,64px)">
+  <div class="inner">
+    <p class="eyebrow rise">Sources</p>
+    <h2 class="h-sec rise" style="--d:.06s;font-size:clamp(1.4rem,3.2vw,2rem)">资料来源</h2>
+    <div class="rule rise" style="--d:.1s"></div>
+    <ol class="srclist rise" style="--d:.12s">
+      <li><a href="https://www.moh.gov.sg/newsroom/government-accepts-careshield-life-council-s-recommendations-to-enhance-careshield-life--provides-additional--570-million-to-subsidise-premiums/" target="_blank" rel="noopener">卫生部：政府接受 CareShield Life 理事会建议，加强 CareShield Life 并额外拨款 5.7 亿新币补贴保费（2025 年 8 月）</a></li>
+      <li><a href="https://www.moh.gov.sg/managing-expenses/schemes-and-subsidies/careshield-life/careshield-life-2025-review/" target="_blank" rel="noopener">卫生部：CareShield Life 2025 Review</a></li>
+      <li><a href="https://www.cpf.gov.sg/service/article/what-is-the-monthly-payout-amount-for-careshield-life" target="_blank" rel="noopener">CPF 局：CareShield Life 月付款是多少</a></li>
+      <li><a href="https://www.cpf.gov.sg/member/healthcare-financing/careshield-life/careshield-premiums-and-subsidies" target="_blank" rel="noopener">CPF 局：CareShield Life 保费与补贴</a></li>
+      <li><a href="https://ask.gov.sg/moh/questions/clpjhuuou009ihipnhum9zvxv" target="_blank" rel="noopener">卫生部 Ask.gov：理赔递延期</a>；<a href="https://ask.gov.sg/moh/questions/clpjhuup700fwhipn7xbujye2" target="_blank" rel="noopener">MediSave Care 与 ElderFund</a>；<a href="https://ask.gov.sg/moh/questions/cm2sgceyz006n46yze4zp4lia" target="_blank" rel="noopener">日间护理费用估算</a></li>
+      <li><a href="https://isomer-user-content.by.gov.sg/3/1b3adb01-60a7-4ee3-a856-ce9dae94e4f6/COMPARISON%20OF%20CARESHIELD%20LIFE%20SUPPLEMENTS%20(Sep%202025).pdf" target="_blank" rel="noopener">卫生部：CareShield Life 补充计划比较表（2025 年 9 月，PDF）</a></li>
+      <li><a href="https://singlife.com/en/disability-insurance/careshield" target="_blank" rel="noopener">Singlife CareShield Standard / Plus 产品页</a>；<a href="https://singlife.com/content/dam/public/sg/documents/disability-insurance/singlife-careshield-standard-and-plus-and-eldershield-standard-and-plus/product-summary.pdf" target="_blank" rel="noopener">产品摘要（PDF）</a></li>
+    </ol>
+  </div>
+</section>
+
+<!-- ══════════ 联系 ══════════ -->
+<section class="scene" id="s-contact" data-title="联系我" data-tint="#0D2A42">
+  <div class="scene__art"><div style="position:absolute;right:-6%;top:8%;width:min(52vw,520px);opacity:.22" data-depth="-0.34">
+    <svg viewBox="0 0 620 340" style="width:100%;height:auto;color:var(--gold)"><use href="#ill-cover"/></svg></div></div>
+  <div class="inner">
+    <p class="eyebrow rise">Contact</p>
+    <h2 class="h-sec rise" style="--d:.06s">想帮自己或家人补一层长期护理？</h2>
+    <div class="rule rise" style="--d:.1s"></div>
+    <p class="lede rise" style="--d:.12s">我代理 Singlife 的 CareShield 补充计划。可以先在线上报个价；也可以直接找我，告诉我年龄和想补的金额，我帮你把 Standard 和 Plus、不同保障额和缴费期的报价一起看明白。</p>
+    <div class="cta-row rise" style="--d:.14s">
+      <a class="cta" href="https://directsales.singlife.com/QuoteBuy/directsales/index.html#/mltc/lets-get-started" target="_blank" rel="noopener">打开 Singlife 线上报价<svg class="ico" viewBox="0 0 64 64" aria-hidden="true"><use href="#ic-link"/></svg></a>
+    </div>
+    <div class="card card--dark contact rise" style="--d:.18s;margin-top:30px">
+      <img class="avatar" src="/avatar-round.png" alt="袁媛 Yuan Yuan">
+      <div>
+        <h3 style="font-size:1.5rem">袁媛 Yuan Yuan · 新加坡小圆姐</h3>
+        <p style="color:var(--gold);margin-top:4px">新加坡财富规划经理 · MDRT 百万圆桌会员</p>
+        <p style="color:var(--mist);font-size:.82rem;letter-spacing:.04em">RNF No. YY-300823216</p>
+        <div class="contact__lines">
+          <span>WhatsApp · <a href="https://wa.me/6583750190?text=%E4%BD%A0%E5%A5%BD%E5%B0%8F%E5%9C%86%E5%A7%90%EF%BC%8C%E6%88%91%E7%9C%8B%E4%BA%86%E7%BD%91%E7%AB%99%E7%9A%84%20CareShield%20Life%20%E6%8C%87%E5%8D%97%EF%BC%8C%E6%83%B3%E4%BA%86%E8%A7%A3%E4%B8%80%E4%B8%8B%E9%95%BF%E6%9C%9F%E6%8A%A4%E7%90%86%E8%A1%A5%E5%85%85%E8%AE%A1%E5%88%92%E3%80%82" target="_blank" rel="noopener noreferrer">+65 8375 0190</a></span>
+          <span>微信 · singaporeyuan</span>
+          <span>邮箱 · <a href="mailto:yuanyuan@aia.com.sg">yuanyuan@aia.com.sg</a></span>
+          <span>小红书 / 视频号 · @新加坡小圆姐</span>
+        </div>
+      </div>
+      <div>
+        <img class="qr" src="/wechat-qr.png" alt="微信二维码">
+        <p class="qr-cap">扫码加我微信</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="inner">
+    <span>新加坡小圆姐 ｜ 一篇看懂 CareShield Life · 2026 年 10 月</span>
+    <span>本页依据卫生部、CPF 局公开资料及 Singlife 公开产品资料整理，仅供一般参考，不构成保险或理财建议。CareShield Life 的金额和规则以政府最新公布为准；Singlife CareShield Standard / Plus 的保障范围、定义、等待期和除外责任以产品摘要及保单条款为准，投保前请阅读产品摘要。<br>本页提及的保单受保单持有人保障计划（Policy Owners' Protection Scheme）保障，该计划由新加坡存款保险公司（SDIC）管理，保障自动生效；保障类型和额度详情可向 Singlife 查询，或访问 LIA、SDIC 网站。本广告未经新加坡金融管理局审阅。<br>袁媛 Yuan Yuan · RNF No. YY-300823216</span>
+  </div>
+</footer>
+
+<script>
+(function(){
+"use strict";
+const NS="http://www.w3.org/2000/svg";
+const RM = matchMedia("(prefers-reduced-motion: reduce)").matches;
+const el=(t,a)=>{const e=document.createElementNS(NS,t);for(const k in a)e.setAttribute(k,a[k]);return e;};
+const tx=(x,y,s,cls,a)=>{const e=el("text",Object.assign({x,y,class:cls},a||{}));e.textContent=s;return e;};
+const money=n=>n.toLocaleString("en-US");
+const sgd=n=>"S$"+money(Math.round(n));
+const $=id=>document.getElementById(id);
+const ico=(h,c)=>'<svg class="ico" viewBox="0 0 64 64"'+(c?' style="color:'+c+'"':'')+' aria-hidden="true"><use href="#'+h+'"/></svg>';
+
+/* CareShield Life 月付款(按开始领的年份):2020–2025 每年 +2%,2026 起每年 +4%(2027–2030 为推算) */
+const CSL_2026=689;
+const PAY={};
+(function(){
+  let v=600;
+  for(let y=2020;y<=2030;y++){ PAY[y]=v; v*= y<2025?1.02:1.04; }
+})();
+
+/* ───── layer 0/1: parallax + field tint ───── */
+const layers=[...document.querySelectorAll("[data-depth]")];
+const scenes=[...document.querySelectorAll(".scene[data-tint]")];
+const field=$("field");
+const waves=$("fieldWaves");
+const bar=$("progress");
+const brandbar=$("brandbar");
+let ticking=false;
+
+function frame(){
+  ticking=false;
+  const vh=innerHeight, y=scrollY;
+  bar.style.width=(y/Math.max(1,document.documentElement.scrollHeight-vh)*100)+"%";
+  brandbar.classList.toggle("on", y>vh*0.7);
+  if(RM) return;
+  waves.style.transform="translate3d(0,"+(y*-0.05).toFixed(1)+"px,0)";
+  for(const l of layers){
+    const host=l.closest(".scene")||l.parentElement;
+    const r=host.getBoundingClientRect();
+    const c=(r.top+r.height/2-vh/2)/vh;
+    l.style.setProperty("--py",(c*parseFloat(l.dataset.depth)*110).toFixed(1)+"px");
+  }
+}
+addEventListener("scroll",()=>{if(!ticking){ticking=true;requestAnimationFrame(frame);}},{passive:true});
+addEventListener("resize",frame);
+
+/* 章节导航点 + 背景色随章节变化 */
+const dots=$("dots");
+scenes.forEach(s=>{
+  const a=document.createElement("a");
+  a.href="#"+s.id; a.dataset.t=s.dataset.title||""; a.setAttribute("aria-label",s.dataset.title||s.id);
+  dots.appendChild(a); s._dot=a;
+});
+const tintObs=new IntersectionObserver(es=>{
+  let best=null;
+  es.forEach(e=>{ if(e.isIntersecting && (!best || e.intersectionRatio>best.intersectionRatio)) best=e; });
+  if(best){
+    field.style.setProperty("--field", best.target.dataset.tint);
+    scenes.forEach(s=>s._dot.classList.toggle("on", s===best.target));
+  }
+},{threshold:[0.35,0.55,0.75]});
+scenes.forEach(s=>tintObs.observe(s));
+
+/* ───── layer 2: reveal + count-up ───── */
+const riseObs=new IntersectionObserver(es=>{
+  es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add("in"); riseObs.unobserve(e.target);} });
+},{rootMargin:"0px 0px -8% 0px",threshold:.15});
+document.querySelectorAll(".rise").forEach(n=>riseObs.observe(n));
+
+function countUp(node){
+  const to=parseFloat(node.dataset.count), dur=parseInt(node.dataset.dur||"1500",10);
+  if(RM){node.textContent=money(to);return;}
+  const t0=performance.now();
+  (function step(t){
+    const p=Math.min(1,(t-t0)/dur), e=1-Math.pow(1-p,3);
+    node.textContent=money(Math.round(to*e));
+    if(p<1)requestAnimationFrame(step);
+  })(t0);
+}
+const liveObs=new IntersectionObserver(es=>{
+  es.forEach(e=>{
+    if(!e.isIntersecting)return;
+    e.target.classList.add("is-live");
+    e.target.querySelectorAll("[data-count]").forEach(countUp);
+    liveObs.unobserve(e.target);
+  });
+},{threshold:.28});
+document.querySelectorAll("[data-live]").forEach(n=>liveObs.observe(n));
+
+function armPaths(root){
+  root.querySelectorAll(".draw").forEach(p=>{
+    p.style.setProperty("--len",p.getTotalLength().toFixed(1));
+  });
+}
+
+/* ───── 1. 从生病到长期照护 ───── */
+(function(){
+  const N={
+    a:["住院、手术：MediShield Life 管","终身健保 MediShield Life，以及私人的综合健保计划（Integrated Shield），报销的是住院、手术等医疗账单：凭单据报销，有自付额和共付比例。病治好了、出院了，这部分就基本结束。"],
+    b:["出院康复：一部分还在医疗体系里","社区医院住院、复健、门诊复诊等，部分项目还能用 MediSave 或 MediShield Life。等情况稳定下来，但洗澡、走路这些日常起居需要人帮，就进入下一段。"],
+    c:["长期需要人照顾：CareShield Life 管","这时候的开销不再是医疗账单，而是请人照顾、日间护理、护理院、轮椅护理床、家里改装，而且一付可能就是很多年。CareShield Life 不看单据，确认严重失能后每月直接给现金，领到终身。"]
+  };
+  const stages=[...document.querySelectorAll("#ch-journey .stage")];
+  function show(k){
+    stages.forEach(g=>{ const on=g.dataset.k===k; g.classList.toggle("dim",!on); g.setAttribute("aria-pressed",on); });
+    $("jNote").innerHTML="<b>"+N[k][0]+"</b><span>"+N[k][1]+"</span>";
+    $("jNote").style.borderLeftColor = k==="c" ? "var(--gold-2)" : k==="a" ? "var(--ink-3)" : "var(--slate)";
+  }
+  stages.forEach(g=>{
+    g.addEventListener("click",()=>show(g.dataset.k));
+    g.addEventListener("keydown",e=>{ if(e.key==="Enter"||e.key===" "){ e.preventDefault(); show(g.dataset.k); } });
+  });
+  armPaths($("ch-journey"));
+  show("c");
+})();
+
+/* ───── 2. 我有没有 ───── */
+(function(){
+  const form=$("checker");
+  const val=n=>{const e=form.querySelector('input[name="'+n+'"]:checked');return e?e.value:null;};
+  const rows=list=>list.map(r=>"<div><span>"+r[0]+"</span><span>"+r[1]+"</span></div>").join("");
+  const setIco=(h,c)=>{ const i=$("cIco"); i.querySelector("use").setAttribute("href","#"+h); i.style.color=c; };
+  const supLink='<a href="#s-sup">看第四章</a>';
+  function render(){
+    const st=val("st"), born=val("born"), age=val("age");
+    $("g-born").hidden = st==="pass";
+    $("g-age").hidden = st==="pass" || born==="before";
+    const T=$("cTitle"), R=$("cRows");
+    if(st==="pass"){
+      setIco("ic-globe","var(--mist)");
+      T.textContent="不在 CareShield Life 范围内";
+      R.innerHTML=rows([
+        ["原因","CareShield Life 只覆盖新加坡公民和 PR"],
+        ["补充计划","要先有 CareShield Life（或 ElderShield）才能买，所以暂时也买不了"],
+        ["以后","拿到 PR 后，1980 年及以后出生、已满 30 岁的会纳入"],
+        ["现在可以","先了解商业保险里的失能、重疾类保障，可以找我聊聊"]]);
+      return;
+    }
+    const who= st==="sc" ? "公民" : "PR";
+    if(born==="before"){
+      setIco("ic-elder","var(--sky)");
+      T.textContent="不是自动纳入，要看情况";
+      R.innerHTML=rows([
+        ["原来的","多数人 40 岁起自动加入过 ElderShield（每月 S$300 或 S$400，最多领 5–6 年），也可能早已退出"],
+        ["1970–1979 年","原有 ElderShield 400、没有严重失能的，大多已在 2021 年底起被转入 CareShield Life（当时可选择退出）"],
+        ["其他人","可以自愿申请加入，须未严重失能；2025 年检讨决定恢复此前暂时放宽的投保健康条件"],
+        ["最准","登录 CPF 网站查一下自己现在的保障"]]);
+      return;
+    }
+    if(age==="lt30"){
+      setIco("ic-hourglass","var(--gold)");
+      T.textContent="满 30 岁时自动纳入";
+      R.innerHTML=rows([
+        ["什么时候","满 30 岁那年自动纳入，不用申请"],
+        ["健康状况","不影响，有既往病史一样纳入"],
+        ["补充计划","要等有了 CareShield Life 之后才能加，"+supLink],
+        ["现在可以","先帮父母看看他们的长期护理保障"]]);
+      return;
+    }
+    setIco("ic-shield","var(--gold)");
+    T.textContent="你已经有了";
+    R.innerHTML=rows([
+      ["从什么时候","2020 年 10 月 1 日或年满 30 岁起，取较晚者；"+(st==="pr"?"新拿 PR 的，一般在成为 PR 后纳入":"不用申请")],
+      ["保费","每年从 MediSave 扣，交到 67 岁"],
+      ["健康状况","自动纳入，不看既往病史"],
+      ["下一步","想更早赔、每月多赔，可以加补充计划，"+supLink]]);
+  }
+  form.addEventListener("change",render);
+  form.addEventListener("submit",e=>e.preventDefault());
+  render();
+})();
+
+/* ───── 3. 六项 ADL ───── */
+(function(){
+  const A=[
+    {ic:"ic-bath",n:"洗澡",en:"Washing",d:"自己洗澡，盆浴、淋浴都算"},
+    {ic:"ic-shirt",n:"穿衣",en:"Dressing",d:"自己穿脱衣服、扣扣子、戴辅具"},
+    {ic:"ic-bowl",n:"进食",en:"Feeding",d:"饭菜备好后，自己吃进嘴里"},
+    {ic:"ic-toilet",n:"如厕",en:"Toileting",d:"自己上厕所、保持清洁"},
+    {ic:"ic-walk",n:"走动",en:"Walking",d:"在平地上从一个房间走到另一个"},
+    {ic:"ic-transfer",n:"移位",en:"Transferring",d:"从床移到椅子，或从椅子移到床"}
+  ];
+  const box=$("adl");
+  A.forEach((a,i)=>{
+    const b=document.createElement("button");
+    b.type="button"; b.setAttribute("aria-pressed","false");
+    b.innerHTML=ico(a.ic)+"<b>"+a.n+"<small>"+a.en+"</small></b><span>"+a.d+"</span>";
+    b.addEventListener("click",()=>{ b.setAttribute("aria-pressed", b.getAttribute("aria-pressed")!=="true"); render(); });
+    box.appendChild(b);
+  });
+  const HEAD=[
+    "六项都能自己做：哪一份都不赔",
+    "一项做不到：政府计划还不赔，Plus 已经开始赔",
+    "两项做不到：CareShield Life 仍未达标",
+    "三项做不到：CareShield Life 开始每月给付",
+    "四项做不到：严重失能",
+    "五项做不到：严重失能",
+    "六项都做不到：严重失能"
+  ];
+  function row(cls,name,on,txt){ return '<div><dt class="'+cls+'">'+name+'</dt><dd'+(on?"":' class="off"')+'>'+txt+'</dd></div>'; }
+  function render(){
+    const n=[...box.children].filter(b=>b.getAttribute("aria-pressed")==="true").length;
+    [...$("adlMeter").children].forEach((m,i)=>m.classList.toggle("on",i<n));
+    [...$("adlAx").children].forEach((s,i)=>s.classList.toggle("hit",i<n));
+    $("adlHead").textContent=HEAD[n];
+    const csl = n>=3 ? row("t-gov","CareShield Life",1,"每月 S$"+CSL_2026+" 起（2026 年起领），领到终身；理赔期间免交保费")
+                     : row("t-gov","CareShield Life",0,"还不赔，要三项做不到");
+    const msc = n>=3 ? row("t-ms","MediSave Care",1,"可以从 MediSave 每月提取最多 S$200 现金")
+                     : row("t-ms","MediSave Care",0,"还不能用，同样要三项做不到");
+    const plus = n===0 ? row("t-sup","Singlife Plus",0,"还不赔")
+               : n===1 ? row("t-sup","Singlife Plus",1,"附加给付：每月 100% 月保障额，最长 12 个月；同时豁免保费")
+                       : row("t-sup","Singlife Plus",1,"月保障额领到终身，另有一次性 3 倍给付、头 12 个月的附加给付、看护者和家属照顾补贴；豁免保费");
+    const std = n===0 ? row("t-sup","Singlife Standard",0,"还不赔")
+              : n===1 ? row("t-sup","Singlife Standard",1,"豁免保费，保障照常")
+              : n===2 ? row("t-sup","Singlife Standard",1,"附加给付：每月 100% 月保障额，最长 12 个月；豁免保费")
+                      : row("t-sup","Singlife Standard",1,"月保障额领到终身，另有一次性 3 倍给付、附加给付、看护者和家属照顾补贴、康复补贴");
+    $("adlRows").innerHTML=csl+msc+plus+std;
+  }
+  render();
+})();
+
+/* ───── 4. 月付款曲线 + 年份滑块 ───── */
+(function(){
+  const svg=$("ch-pay");
+  const W=900,H=300,L=70,R=40,T=34,B=56;
+  const Y0=560,Y1=840;
+  const x=y=>L+(y-2020)/10*(W-L-R);
+  const yv=v=>T+(1-(v-Y0)/(Y1-Y0))*(H-T-B);
+  [600,700,800].forEach(v=>{
+    svg.appendChild(el("line",{class:"grid-l",x1:L,x2:W-R,y1:yv(v),y2:yv(v)}));
+    svg.appendChild(tx(L-12,yv(v)+4,"S$"+v,"tick",{"text-anchor":"end"}));
+  });
+  svg.appendChild(el("line",{class:"ax",x1:L,x2:W-R,y1:H-B,y2:H-B}));
+  for(let y=2020;y<=2030;y++) svg.appendChild(tx(x(y),H-B+24,String(y),"tick",{"text-anchor":"middle"}));
+  const pts=(a,b)=>{ let d=""; for(let y=a;y<=b;y++) d+=(y===a?"M":"L")+x(y).toFixed(1)+" "+yv(PAY[y]).toFixed(1)+" "; return d; };
+  svg.appendChild(el("path",{class:"draw",d:pts(2020,2025),stroke:"#8DB9E2","stroke-width":3.5,style:"--d:.15s"}));
+  svg.appendChild(el("path",{class:"draw",d:pts(2025,2030),stroke:"#D6A94C","stroke-width":3.5,style:"--d:1.4s"}));
+  for(let y=2020;y<=2030;y++){
+    const proj=y>=2027;
+    svg.appendChild(el("circle",{class:"fade",cx:x(y),cy:yv(PAY[y]),r:proj?5:4.5,fill:proj?"#0B1E31":(y<=2025?"#8DB9E2":"#D6A94C"),
+      stroke:y<=2025?"#8DB9E2":"#D6A94C","stroke-width":2,style:"--d:"+(1+(y-2020)*.12).toFixed(2)+"s"}));
+  }
+  svg.appendChild(tx(x(2022.5),yv(PAY[2023])+40,"每年 +2%","lab fade",{"text-anchor":"middle",fill:"#8DB9E2",style:"--d:1.6s"}));
+  svg.appendChild(tx(x(2028.5),yv(PAY[2029])+46,"每年 +4%","lab fade",{"text-anchor":"middle",fill:"#D6A94C",style:"--d:2.4s"}));
+  svg.appendChild(tx(x(2028.5),yv(PAY[2029])+66,"2027 年起为推算","tick fade",{"text-anchor":"middle",style:"--d:2.5s"}));
+  const guide=el("line",{x1:0,x2:0,y1:T-6,y2:H-B,stroke:"rgba(244,238,225,.35)","stroke-width":1.2,"stroke-dasharray":"3 5",class:"fade",style:"--d:2s"});
+  const cur=el("g",{class:"fade",style:"--d:2s"});
+  cur.appendChild(el("circle",{r:11,fill:"none",stroke:"#F4EEE1","stroke-width":2}));
+  cur.appendChild(el("circle",{r:19,fill:"none",stroke:"#F4EEE1","stroke-width":1,opacity:".35"}));
+  const curT=tx(0,0,"","lab fade",{"text-anchor":"middle",style:"--d:2s"});
+  svg.appendChild(guide); svg.appendChild(cur); svg.appendChild(curT);
+  armPaths(svg);
+
+  const s=$("payYear");
+  function draw(){
+    const y=+s.value, v=Math.round(PAY[y]);
+    const px=x(y), py=yv(PAY[y]);
+    guide.setAttribute("x1",px); guide.setAttribute("x2",px);
+    cur.setAttribute("transform","translate("+px.toFixed(1)+","+py.toFixed(1)+")");
+    curT.setAttribute("x",Math.min(W-R-30,Math.max(L+30,px))); curT.setAttribute("y",py-24); curT.textContent="S$"+v;
+    $("payYearV").textContent=y;
+    $("payBig").textContent="S$"+money(v);
+    $("payY1").textContent=sgd(v*12); $("payY10").textContent=sgd(v*120);
+    $("payTxt").textContent= y<2026 ? y+" 年开始领的人，每月就是这个数，之后不再变。"
+      : y===2026 ? "2026 年开始领：每月 S$689，之后金额固定，只要持续严重失能就一直领。"
+      : "按 2026–2030 年每年 4% 推算；真到 "+y+" 年，以政府公布为准。";
+  }
+  s.addEventListener("input",draw);
+  draw();
+})();
+
+/* ───── 5. 理赔流程(自动轮播) ───── */
+(function(){
+  const svg=$("ch-flow");
+  const W=900,H=230,L=60,R=60,Y=96;
+  const steps=[
+    {tone:"alert",ic:"ic-alert",short:"失能发生",label:"失能发生 · 先判断是不是长期的",note:"至少三项日常活动要别人帮忙，而且看起来会持续。刚出院、还在恢复期的，可以先等情况稳定。"},
+    {tone:"gov",ic:"ic-steth",short:"预约评估",label:"预约评估 · 找卫生部认可的评估员",note:"由卫生部认可的严重失能评估员（医生等）做评估，可以在医院、诊所，行动不便的也能安排上门。"},
+    {tone:"gov",ic:"ic-contract",short:"提交申请",label:"提交申请 · 评估结果连同理赔申请一起递交",note:"本人行动不便的，可以由家人或获授权的人代办。准备好身份证明和收款银行账户。"},
+    {tone:"plain",ic:"ic-hourglass",short:"等待审批",label:"等待审批 · 一般约 4 周",note:"条款上有 90 天的递延期，用来确认失能是长期的；卫生部表示大多数个案会豁免，只在情况不明确时才适用。"},
+    {tone:"report",ic:"ic-coins",short:"每月入账",label:"每月入账 · 次月起存入指定银行账户",note:"获批后每月入账，持续符合条件就一直领；理赔期间不用再交 CareShield Life 保费。符合条件的，还可以申请 MediSave Care 每月提取最多 S$200。"},
+    {tone:"report",ic:"ic-layers",short:"补充计划",label:"同时找补充计划 · 另外申请、另外入账",note:"有补充计划的，记得同时通知保险公司理赔。Singlife 的给付和政府计划分开计算、分开入账，两份钱叠加。"}
+  ];
+  const COL={plain:"#F4EEE1",report:"#D6A94C",gov:"#8DB9E2",alert:"#B5503C"};
+  const x=i=>L+i/(steps.length-1)*(W-L-R);
+  const yOf=i=>Y+(i%2?18:-18);
+  const d=steps.map((s,i)=>(i?"L":"M")+x(i)+" "+yOf(i)).join(" ");
+  svg.appendChild(el("path",{class:"draw",d:d,stroke:"#BACBDA","stroke-width":3,style:"--d:.15s"}));
+  const dotsArr=[];
+  steps.forEach((s,i)=>{
+    const c=el("circle",{class:"fade",cx:x(i),cy:yOf(i),r:8,fill:COL[s.tone],stroke:"#0B1E31","stroke-width":2.5,style:"--d:"+(1.2+i*0.1)+"s;cursor:pointer;transition:r .3s"});
+    c.addEventListener("click",()=>go(i,true));
+    svg.appendChild(c); dotsArr.push(c);
+    svg.appendChild(tx(x(i),i%2?yOf(i)+42:yOf(i)-26,s.short,"lab fade",{"text-anchor":"middle",style:"--d:"+(1.3+i*0.1)+"s"}));
+    svg.appendChild(tx(x(i),H-14,"0"+(i+1),"tick fade",{"text-anchor":"middle",style:"--d:"+(1.3+i*0.1)+"s"}));
+  });
+  const cursor=el("g",{class:"fade",style:"--d:1.9s;transition:transform .7s cubic-bezier(.3,.8,.3,1)"});
+  cursor.appendChild(el("circle",{r:16,fill:"none",stroke:"#D6A94C","stroke-width":2,opacity:".9"}));
+  cursor.appendChild(el("circle",{r:24,fill:"none",stroke:"#D6A94C","stroke-width":1,opacity:".35"}));
+  svg.appendChild(cursor);
+  armPaths(svg);
+
+  const nav=$("flowNav"), note=$("flowNote");
+  let cur=-1,timer=null;
+  function go(i,user){
+    cur=i; const s=steps[i];
+    cursor.setAttribute("transform","translate("+x(i)+","+yOf(i)+")");
+    cursor.querySelectorAll("circle").forEach(c=>c.setAttribute("stroke",COL[s.tone]==="#F4EEE1"?"#D6A94C":COL[s.tone]));
+    dotsArr.forEach((c,k)=>c.setAttribute("r",k===i?11:8));
+    [...nav.children].forEach((b,k)=>{
+      b.classList.toggle("on",k===i);
+      b.classList.toggle("t-gov",steps[k].tone==="gov");
+    });
+    note.className="note"+(s.tone==="alert"?" bad":s.tone==="gov"?" blue":"");
+    const c=s.tone==="alert"?"var(--ember-l)":s.tone==="gov"?"var(--sky)":"var(--gold)";
+    note.innerHTML='<div class="note__row"><span class="ico-ring">'+ico(s.ic,c)+'</span><div><b>'+s.label+"</b><span>"+s.note+"</span></div></div>";
+    if(user&&timer){clearInterval(timer);timer=null;}
+  }
+  steps.forEach((s,i)=>{
+    const b=document.createElement("button");
+    b.type="button"; b.textContent=(i+1)+" · "+s.short;
+    b.addEventListener("click",()=>go(i,true));
+    nav.appendChild(b);
+  });
+  go(0,false);
+  const startObs=new IntersectionObserver(es=>{
+    es.forEach(e=>{
+      if(!e.isIntersecting)return;
+      startObs.unobserve(e.target);
+      if(RM)return;
+      setTimeout(()=>{ if(cur!==0)return; timer=setInterval(()=>go((cur+1)%steps.length,false),3600); },2400);
+    });
+  },{threshold:.4});
+  startObs.observe($("flowBox"));
+})();
+
+/* ───── 6. 缺口测算 ───── */
+(function(){
+  const S=[
+    {k:"day",ic:"ic-house",label:"日间护理 + 家人照顾",cost:1400,txt:"白天去日间护理中心，晚上家人照顾。卫生部估算日间护理未扣补贴每月约 S$945–1,430，再加交通、纸尿裤等耗材。"},
+    {k:"fdw",ic:"ic-person",label:"请女佣在家照顾",cost:1600,txt:"女佣工资常见 S$500–900，再加准证税（家里有老人或失能者可申请优惠）、食宿、保险，以及耗材和复诊。"},
+    {k:"plus",ic:"ic-care",label:"女佣 + 上门护理 / 复健",cost:3000,txt:"需要定期上门护理、换药、复健时，按次计费会让开销明显上去。"},
+    {k:"nh",ic:"ic-hospital",label:"私立护理院",cost:4500,txt:"护理院按护理等级、房型收费，每月常见几千新币；政府补贴主要给符合资格的公民和 PR，按收入审查。"}
+  ];
+  const nav=$("gapNav"), cost=$("gCost"), sup=$("gSup"), yrs=$("gYrs");
+  S.forEach((s,i)=>{
+    const b=document.createElement("button");
+    b.type="button";
+    b.innerHTML='<svg class="ico ico--xs" viewBox="0 0 64 64" aria-hidden="true"><use href="#'+s.ic+'"/></svg>'+s.label;
+    b.addEventListener("click",()=>pick(i));
+    nav.appendChild(b);
+  });
+  function pick(i){
+    [...nav.children].forEach((b,k)=>{ b.classList.toggle("on",k===i); b.setAttribute("aria-pressed",k===i); });
+    $("gapScen").textContent=S[i].txt;
+    cost.value=S[i].cost;
+    draw();
+  }
+  function draw(){
+    const c=+cost.value, x=+sup.value, n=+yrs.value;
+    const cov=CSL_2026+x, gap=Math.max(0,c-cov), over=Math.max(0,cov-c);
+    const scale=Math.max(c,cov);
+    $("gCostV").textContent=money(c); $("gSupV").textContent=money(x); $("gYrsV").textContent=n;
+    $("gB1").style.width=(CSL_2026/scale*100)+"%";
+    $("gB2").style.width=(x/scale*100)+"%";
+    $("gB3").style.width=(gap/scale*100)+"%";
+    $("gMark").style.left=(c/scale*100)+"%";
+    $("gR1").textContent=sgd(c);
+    $("gR2").textContent=sgd(CSL_2026);
+    $("gR3").textContent= x ? sgd(x) : "没买";
+    if(gap>0){
+      $("gLab").textContent="每月还差"; $("gBig").textContent=sgd(gap); $("gBig").className="big big--ember";
+      $("gR4l").textContent=n+" 年累计缺口"; $("gR4").textContent=sgd(gap*12*n); $("gR4").style.color="var(--ember-l)";
+    }else{
+      $("gLab").textContent="每月够用，还多"; $("gBig").textContent=sgd(over); $("gBig").className="big";
+      $("gR4l").textContent=n+" 年累计结余"; $("gR4").textContent=sgd(over*12*n); $("gR4").style.color="var(--gold)";
+    }
+    const pct=Math.round(Math.min(1,CSL_2026/c)*100);
+    $("gNote").innerHTML= x
+      ? "光靠 CareShield Life，只能盖住开销的 <b>"+pct+"%</b>。补充计划头一年通常还有一次性给付和附加补贴，见第四章。"
+      : "光靠 CareShield Life，只能盖住开销的 <b>"+pct+"%</b>，剩下的要靠存款、家人，或者补充计划。";
+  }
+  [cost,sup,yrs].forEach(r=>r.addEventListener("input",()=>{
+    if(r===cost) [...nav.children].forEach(b=>{ b.classList.remove("on"); b.setAttribute("aria-pressed",false); });
+    draw();
+  }));
+  pick(1);
+})();
+
+/* ───── 7. Standard / Plus 触发矩阵 ───── */
+(function(){
+  const COLS=["1 项做不到","2 项做不到","3 项及以上"];
+  const ROWS=[
+    {k:"csl",name:"CareShield Life",sub:"政府计划",chip:"CareShield Life",chipCls:"k-gov",ic:"ic-shield",cells:[
+      ["c-no","—","只有一项做不到","CareShield Life 还不赔，政府计划的门槛是三项。这一段，正是补充计划可以补上的地方。"],
+      ["c-no","—","两项做不到","仍未达到 CareShield Life 的严重失能标准（三项），一样不赔。"],
+      ["c-gov","终身","三项及以上做不到","每月给付，2026 年开始领的是 S$689，领到终身；理赔期间免交保费。符合条件的，还可以从 MediSave 每月提取最多 S$200（MediSave Care）。"]]},
+    {k:"std",name:"Singlife Standard",sub:"补充计划",chip:"Singlife Standard",chipCls:"k-sup",ic:"ic-layers",cells:[
+      ["c-wv","豁免","只有一项做不到","一项做不到起，保费豁免，保障继续有效。"],
+      ["c-12","12 个月","两项做不到","附加给付（Add-on Benefit）：每月 100% 月保障额，最长 12 个月；同时豁免保费。"],
+      ["c-life","终身","三项及以上做不到","达到 Standard 的严重失能标准：月保障额领到终身，另有一次性 3 倍月保障额、附加给付、看护者补贴、家属照顾补贴，Standard 还多一项康复补贴。"]]},
+    {k:"plus",name:"Singlife Plus",sub:"补充计划",chip:"Singlife Plus",chipCls:"k-sup",ic:"ic-layers",cells:[
+      ["c-12","12 个月","只有一项做不到","一项做不到就开始赔：附加给付每月 100% 月保障额，最长 12 个月，同时豁免保费。这是 Plus 和政府计划差得最远的地方。"],
+      ["c-life","终身","两项做不到","达到 Plus 的严重失能标准：月保障额领到终身，另有一次性 3 倍月保障额、头 12 个月的附加给付、看护者补贴（60%，最长 12 个月）、家属照顾补贴（20%，最长 36 个月）。"],
+      ["c-life","终身","三项及以上做不到","Plus 继续照付；这时 CareShield Life 也开始赔，两份钱叠加。"]]}
+  ];
+  const mx=$("mx");
+  mx.insertAdjacentHTML("beforeend",'<span></span>'+COLS.map(c=>'<span class="mx__h">'+c+'</span>').join(""));
+  const btns=[];
+  ROWS.forEach((r,ri)=>{
+    mx.insertAdjacentHTML("beforeend",'<span class="mx__r"><span>'+r.name+'<small>'+r.sub+'</small></span></span>');
+    r.cells.forEach((c,ci)=>{
+      const b=document.createElement("button");
+      b.type="button"; b.className=c[0]; b.textContent=c[1];
+      b.setAttribute("aria-label",r.name+"，"+COLS[ci]+"："+c[1]);
+      b.addEventListener("click",()=>show(ri,ci));
+      mx.appendChild(b); btns.push([ri,ci,b]);
+    });
+  });
+  function show(ri,ci){
+    const r=ROWS[ri], c=r.cells[ci];
+    btns.forEach(([a,b2,b])=>{ const on=a===ri&&b2===ci; b.classList.toggle("sel",on); b.setAttribute("aria-pressed",on); });
+    $("mxChip").className="pill "+r.chipCls; $("mxChip").textContent=r.chip;
+    const i=$("mxIco"); i.querySelector("use").setAttribute("href","#"+r.ic); i.style.color= r.k==="csl" ? "var(--sky)" : "var(--gold)";
+    $("mxTitle").textContent=c[2];
+    $("mxTxt").textContent=c[3];
+  }
+  show(2,0);
+})();
+
+/* ───── 8. Plus 理赔后每月能拿多少 ───── */
+(function(){
+  const s=$("pAmt"), g=$("pGov");
+  function draw(){
+    const x=+s.value, gv=g.checked?CSL_2026:0;
+    const m1=2.8*x+gv, m2=1.2*x+gv, m3=x+gv;
+    const scale=2.8*3000+CSL_2026;
+    const w=v=>(v/scale*100)+"%";
+    $("pAmtV").textContent=money(x);
+    [["pg1",gv],["pb1",x],["pa1",x],["pc1",.6*x],["pd1",.2*x],["pg2",gv],["pb2",x],["pd2",.2*x],["pg3",gv],["pb3",x]].forEach(([id,v])=>{ $(id).style.width=w(v); });
+    $("pM1").textContent=sgd(m1)+" / 月";
+    $("pM2").textContent=sgd(m2)+" / 月";
+    $("pM3").textContent=sgd(m3)+" / 月";
+    $("pLump").textContent=sgd(3*x);
+    $("pY1").textContent=sgd(3*x+12*m1);
+    $("pLong").textContent=sgd(m3);
+    $("pDeath").textContent=sgd(3*x);
+  }
+  s.addEventListener("input",draw);
+  g.addEventListener("change",draw);
+  draw();
+})();
+
+/* ───── 9. 常见情况 ───── */
+(function(){
+  const Q=[
+    {k:"我是新 PR",ic:"ic-passport",q:"刚拿到 PR，CareShield Life 怎么算？",
+     a:["1980 年及以后出生、已满 30 岁的，成为 PR 后一般会纳入，保费从 MediSave 扣，不看既往病史。",
+        "刚开始 MediSave 余额可能不多，家人的 MediSave 也可以帮忙付。想加补充计划，有了 CareShield Life 之后就可以申请。"]},
+    {k:"我拿 EP / 准证",ic:"ic-globe",q:"拿 EP、S Pass 或家属准证，能买吗？",
+     a:["CareShield Life 只覆盖公民和 PR，补充计划也要先有 CareShield Life，所以暂时都买不了。",
+        "可以先了解商业保险里的失能、重疾类保障；拿到 PR 之后，再按年龄纳入。"]},
+    {k:"父母 1979 年前出生",ic:"ic-elder",q:"爸妈是 1979 年及以前出生的公民或 PR？",
+     a:["他们不是自动纳入的。原来多半有 ElderShield：ElderShield 300 每月 S$300、最多 60 个月，ElderShield 400 每月 S$400、最多 72 个月。",
+        "可以登录 CPF 查一下他们现在的保障；没有严重失能的，可以考虑申请加入 CareShield Life。子女也可以用自己的 MediSave 帮父母付保费。"]},
+    {k:"MediSave 不够付",ic:"ic-wallet",q:"MediSave 不够付保费怎么办？",
+     a:["可以用家人的 MediSave 或现金付。中低收入有按家庭收入的保费补贴，付不起的还可以申请额外保费支援（APS），政府承诺不会有人因为交不起保费失去保障。",
+        "要留意：买了补充计划，就不符合 APS 的资格。"]},
+    {k:"赔的钱怎么用",ic:"ic-cash",q:"理赔的钱有限制用途吗？",
+     a:["没有。CareShield Life 和 Singlife 的补充计划都是每月给现金，不用交单据。请女佣、护理院、家里改装、补贴照顾你的家人、日常生活费，都可以。"]},
+    {k:"已经有病史",ic:"ic-steth",q:"已经有病史，还能买补充计划吗？",
+     a:["补充计划要核保。已经失能，或者有某些病史，可能被拒保或者相关情况被除外。所以最好在年轻、健康的时候买，保费也低。"],
+     p:"每个人的核保结果不同，可以先把情况告诉我，一起看看。"},
+    {k:"补充保费会变吗",ic:"ic-boost",q:"补充计划的保费会一直不变吗？",
+     a:["补充计划的保费不是保证不变的，保险公司可以按条款调整。缴费期可以选，报价时就能看到不同缴费期的保费；理赔期间豁免保费。"]}
+  ];
+  const nav=$("faqNav"), note=$("faqNote");
+  function show(i){
+    const d=Q[i];
+    [...nav.children].forEach((b,k)=>{ b.classList.toggle("on",k===i); b.setAttribute("aria-pressed",k===i); });
+    note.innerHTML='<div class="note__row"><span class="ico-ring">'+ico(d.ic)+'</span><div>'
+      +"<b>"+d.q+"</b>"+d.a.map(t=>"<p>"+t+"</p>").join("")+(d.p?'<p style="color:var(--gold)">'+d.p+'</p>':"")+"</div></div>";
+  }
+  Q.forEach((d,i)=>{
+    const b=document.createElement("button");
+    b.type="button";
+    b.innerHTML='<svg class="ico ico--xs" viewBox="0 0 64 64" aria-hidden="true"><use href="#'+d.ic+'"/></svg>'+d.k;
+    b.addEventListener("click",()=>show(i));
+    nav.appendChild(b);
+  });
+  show(0);
+})();
+
+frame();
+})();
+</script>
+</body>
+</html>

@@ -94,6 +94,13 @@ const IconGlobe = (
   </svg>
 );
 
+const IconShield = (
+  <svg {...ic}>
+    <path d="M12 3l7 2.8v6c0 4.4-3 7.3-7 8.7-4-1.4-7-4.3-7-8.7v-6z" />
+    <path d="M8.8 12l2.2 2.2 4.2-4.4" />
+  </svg>
+);
+
 type ResourceGroup ='care' | 'money' | 'settle';
 
 type Resource = {
@@ -157,6 +164,18 @@ export default async function ResourcesPage({
       icon: IconRoute,
       external: '/guides/insurance-journey.html',
       cta: en ? 'See the full flow' : '看看流程',
+    },
+    {
+      key: 'careshield',
+      group: 'care',
+      tag: en ? 'Interactive' : '互动专题',
+      title: en ? 'CareShield Life, Explained' : '一篇看懂 CareShield Life',
+      desc: en
+        ? "Singapore's national long-term care insurance on one scrollable page: check whether you're covered, tap the six daily activities to see when a claim pays, drag sliders to see the monthly payout from 2026 and how much of real care costs it covers, then see how a supplement plan tops it up. (In Chinese)"
+        : '新加坡国民长期护理险,一页滚动读完:选几个选项看自己有没有,点六项日常活动看什么时候能赔,拖动滑块看2026年起每月领多少、真要人照顾时每月还差多少,最后讲怎么用补充计划往上补一层。',
+      icon: IconShield,
+      external: '/guides/careshield-life.html',
+      cta: en ? 'Scroll the story' : '滚动看看',
     },
     {
       key: 'taxguide',

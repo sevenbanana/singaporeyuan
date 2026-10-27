@@ -179,6 +179,32 @@ export default function ResourceArt({ k, className = '' }: Props) {
         </svg>
       );
 
+    /* CareShield Life:房子 + 轮椅 ← 盾牌每月给付 */
+    case 'careshield':
+      return (
+        <svg {...common}>
+          <g {...line}>
+            <path d="M40 158v-42l28-22 28 22v42" fill="#fff" />
+            <path d="M58 158v-22h20v22" opacity=".45" />
+            <circle cx="160" cy="48" r="11" />
+            <path d="M158 60c-6 14-6 30-2 40h36l9 30" />
+            <path d="M160 74l18 8" />
+            <path d="M134 84l6 34h52" />
+            <path d="M118 66h14l4 18" />
+            <circle cx="158" cy="124" r="26" fill={SAND} />
+            <circle cx="158" cy="124" r="4" />
+            <circle cx="214" cy="146" r="7" fill="#fff" />
+            <path d="M30 158h340" strokeWidth="2.8" opacity=".35" />
+          </g>
+          <g {...gold}>
+            <path d="M294 38l44 15v29c0 29-19 46-44 54-25-8-44-25-44-54V53z" fill="rgba(201,165,92,.2)" />
+            <path d="M279 84l10 10 19-21" strokeWidth="2.6" />
+            <path d="M250 60Q226 26 202 48" strokeDasharray="2 8" />
+            <path d="M210 40l-9 9 12 3" />
+          </g>
+        </svg>
+      );
+
     /* 对外投资速读:盖章文件 → 箭头 → 地球 */
     case 'odi':
       return (
