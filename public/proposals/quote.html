@@ -645,6 +645,28 @@ body{padding-bottom:92px}
   body{padding-bottom:132px}
 }
 @media print{#totbar,#wm{display:none}}
+
+/* 为什么选 AIA：数据条、奖项、来源 */
+.stat4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-bottom:12px}
+.stat4>div{background:var(--navy);color:#fff;border-radius:14px;padding:12px 14px;display:flex;flex-direction:column;gap:1px}
+.stat4 .lb{font-size:12px;opacity:.8}
+.stat4 b{font-size:26px;font-weight:800;letter-spacing:.02em;line-height:1.2;color:var(--gold-light)}
+.stat4 small{font-size:12px;opacity:.85;line-height:1.5}
+.stat4 .ref{color:var(--gold-light)}
+.ref{font-size:10.5px;font-weight:800;color:var(--gold-deep);text-decoration:none;margin-left:2px;vertical-align:super;line-height:0}
+.ref:hover{text-decoration:underline}
+.award-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.award-row span{display:inline-flex;align-items:center;gap:6px;background:var(--gold-tint-2);border:1px solid #E3CFA4;border-radius:999px;padding:5px 12px;font-size:12.5px;font-weight:700;color:var(--navy)}
+.award-row .ic{width:15px;height:15px}
+.srcs{margin:12px 0 0;padding:12px 16px 12px 34px;background:var(--card);border:1px dashed #D9C59C;border-radius:12px;font-size:12px;line-height:1.75;color:var(--muted)}
+.srcs a{color:var(--navy);text-decoration:underline;text-decoration-color:#D9C59C;word-break:break-word}
+.srcs li{border-radius:6px}
+.srcs li.hit{animation:srcHit 2.4s ease-out}
+@keyframes srcHit{0%,40%{background:var(--gold-tint)}100%{background:transparent}}
+@media (max-width:760px){
+  .stat4{grid-template-columns:1fr 1fr}
+  .stat4 b{font-size:21px}
+}
 </style>
 </head>
 <body class="locked">
@@ -721,18 +743,42 @@ body{padding-bottom:92px}
   <div class="sub-head"><svg class="ic ic-md"><use href="#i-bulb"/></svg>报价之前，先了解：为什么选 AIA，为什么找小圆姐</div>
   <div class="pill-head">
     <div class="pill navy">为什么选 AIA</div>
-    <div class="formula"><svg class="ic"><use href="#i-shield"/></svg>新加坡医疗险的首选</div>
+    <div class="formula"><svg class="ic"><use href="#i-doc"/></svg>数据都有出处，点小编号看来源</div>
+  </div>
+  <div class="stat4 num">
+    <div><span class="lb">在新加坡</span><b>95 年</b><small>2026 年迎来 95 周年<a class="ref" href="#src1">[1]</a></small></div>
+    <div><span class="lb">过去 10 年赔付</span><b>S$400 亿+</b><small>住院、重疾、身故、意外、满期金<a class="ref" href="#src1">[1]</a></small></div>
+    <div><span class="lb">新加坡投保人</span><b>100 万+</b><small>5,700+ 位专属代理<a class="ref" href="#src2">[2]</a></small></div>
+    <div><span class="lb">AIA 合作专科医生</span><b>约 700 位</b><small>公立医院专科医生也都算<a class="ref" href="#src4">[4]</a><a class="ref" href="#src5">[5]</a></small></div>
   </div>
   <div class="why-grid">
-    <div class="explain"><div class="ico"><svg class="ic ic-lg"><use href="#i-trophy"/></svg></div>
-      <div><b>市场占有率最高</b><span>新加坡医疗险市场占有率最高，客户和医生口碑都最好</span></div></div>
-    <div class="explain"><div class="ico"><svg class="ic ic-lg"><use href="#i-shield"/></svg></div>
-      <div><b>保障额度全面</b><span>私立、公立、全球都有，年度额度高，附加险齐全</span></div></div>
+    <div class="explain"><div class="ico"><svg class="ic ic-lg"><use href="#i-coins"/></svg></div>
+      <div><b>赔付有底气</b><span>过去 10 年在新加坡赔付超过 S$400 亿<a class="ref" href="#src1">[1]</a>；AIA 集团穆迪评级 Aa2，2025 年 5 月展望回到稳定<a class="ref" href="#src8">[8]</a></span></div></div>
+    <div class="explain"><div class="ico"><svg class="ic ic-lg"><use href="#i-steth"/></svg></div>
+      <div><b>医生网络大</b><span>约 700 位 AIA 合作专科医生，2025 年加入莱佛士医院 90 多位私立专科<a class="ref" href="#src4">[4]</a>；看 AIA 优选医生，住院前后最长各 13 个月<a class="ref" href="#src11">[11]</a></span></div></div>
     <div class="explain"><div class="ico"><svg class="ic ic-lg"><use href="#i-mobile"/></svg></div>
-      <div><b>理赔数码化程度高</b><span>线上提交、进度随时可查，不用来回跑</span></div></div>
+      <div><b>理赔数码化</b><span>在 AIA+ app 或网站发起预授权，证书直接在 AIA+ 下载；医生资料齐全后 3 个工作日内评估<a class="ref" href="#src6">[6]</a>，约九成当天就批<a class="ref" href="#src7">[7]</a></span></div></div>
     <div class="explain"><div class="ico"><svg class="ic ic-lg"><use href="#i-card"/></svg></div>
-      <div><b>外国人也有预授权信</b><span>公立医院也包括在内，住院出院免垫付（cashless）</span></div></div>
+      <div><b>入院前就知道赔多少</b><span>私立医院、日间手术、门诊癌症中心可申请预授权<a class="ref" href="#src6">[6]</a>；公立医院用保证函（LOG），保障内的费用由保险公司直接付给医院<a class="ref" href="#src9">[9]</a></span></div></div>
   </div>
+  <div class="award-row">
+    <span><svg class="ic"><use href="#i-trophy"/></svg>Insurance Asia Awards 2025 · 新加坡年度国际寿险公司<a class="ref" href="#src3">[3]</a></span>
+    <span><svg class="ic"><use href="#i-trophy"/></svg>Asia Trusted Life Agents &amp; Advisers Awards 2025 · 年度保险公司<a class="ref" href="#src3">[3]</a></span>
+    <span><svg class="ic"><use href="#i-trophy"/></svg>亚洲保险业大奖 2021 · 年度健康保险公司<a class="ref" href="#src10">[10]</a></span>
+  </div>
+  <ol class="srcs">
+    <li id="src1">AIA Singapore 新闻稿，<a href="https://www.aia.com.sg/en/about-aia/media-centre/press-releases/2026/aia-singapore-surpasses-40-billion-in-payouts-over-the-last-decade" target="_blank" rel="noopener noreferrer">AIA Singapore surpasses S$40 Billion in payouts over the last decade</a>，2026 年 2 月 12 日</li>
+    <li id="src2">AIA Singapore，<a href="https://www.aia.com.sg/content/dam/sg-wise/en/docs/about-aia/aia-corporate-factsheet/aia-corporate-factsheet.pdf" target="_blank" rel="noopener noreferrer">Corporate Factsheet</a>（数据截至 2023 年 12 月）</li>
+    <li id="src3">AIA Singapore，<a href="https://www.aia.com.sg/en/about-aia/our-awards" target="_blank" rel="noopener noreferrer">Our Awards</a></li>
+    <li id="src4">AIA Singapore 新闻稿，<a href="https://aia.com.sg/en/about-aia/media-centre/press-releases/2025/aia-singapore-partnering-with-raffles-hospital-to-boost-accessibility-of-quality-healthcare-in-singapore" target="_blank" rel="noopener noreferrer">AIA Singapore partnering with Raffles Hospital to boost accessibility of quality healthcare</a>，2025 年 1 月 23 日</li>
+    <li id="src5">AIA Singapore，<a href="https://www.aia.com.sg/en/health-wellness/healthcare-services/our-specialists" target="_blank" rel="noopener noreferrer">AIA Quality Healthcare Partners</a></li>
+    <li id="src6">AIA Singapore，<a href="https://www.aia.com.sg/en/health-wellness/healthcare-services/pre-authorisation" target="_blank" rel="noopener noreferrer">AIA Pre-authorisation</a></li>
+    <li id="src7">Asia Advisers Network，<a href="https://asiaadvisersnetwork.com/Article/aid/61203" target="_blank" rel="noopener noreferrer">AIA Singapore: Medical claims pre-authorisation process as easy as 1, 2, 3</a>，2020 年（AIA 营运总监访谈）</li>
+    <li id="src8">FSMOne，<a href="https://secure.fundsupermart.com/fsmone/article/rcms378760" target="_blank" rel="noopener noreferrer">Will Your Insurer Pay Out? 2026 Guide to Singapore Insurer Ratings</a></li>
+    <li id="src9">The Straits Times（Singapore Law Watch 转载），<a href="https://www.singaporelawwatch.sg/Headlines/what-is-pre-authorisation-and-can-insurers-refuse-to-give-it-askst" target="_blank" rel="noopener noreferrer">What is pre-authorisation and can insurers refuse to give it?</a></li>
+    <li id="src10">Asia Insurance Review，<a href="https://www.asiainsurancereview.com/Awards/Roll-Of-Honour" target="_blank" rel="noopener noreferrer">Asia Insurance Industry Awards Roll of Honour</a></li>
+    <li id="src11">AIA Singapore，<a href="https://www.aia.com.sg/content/dam/sg-wise/en/docs/our-products/en/aia-healthshield-gold-max-english-brochure.pdf" target="_blank" rel="noopener noreferrer">AIA HealthShield Gold Max 产品手册</a></li>
+  </ol>
 
   <div class="pill-head">
     <div class="pill gold">跟小圆姐买，多了什么</div>
@@ -755,11 +801,11 @@ body{padding-bottom:92px}
       <div class="node"><div class="mk"><svg class="ic"><use href="#i-chat"/></svg></div><div class="when">第 1 步<small>找小圆姐</small></div>
         <div class="box first"><b>约专科医生</b><small>公立、私立都能约</small><span class="who yy">小圆姐</span></div></div>
       <div class="node"><div class="mk"><svg class="ic"><use href="#i-doc"/></svg></div><div class="when">第 2 步<small>入院前</small></div>
-        <div class="box"><b>申请预授权信</b><small>外国人、公立医院也可以</small><span class="who aia">AIA</span></div></div>
+        <div class="box"><b>预授权 / 保证函</b><small>私立医院预授权，公立医院 LOG</small><span class="who aia">AIA</span></div></div>
       <div class="node"><div class="mk"><svg class="ic"><use href="#i-bed"/></svg></div><div class="when">第 3 步<small>住院</small></div>
-        <div class="box hl"><b>免垫付住院</b><small>cashless，不用先付押金</small><span class="who aia">AIA</span></div></div>
+        <div class="box hl"><b>安心住院</b><small>入院前就知道大概能赔多少</small><span class="who aia">AIA</span></div></div>
       <div class="node"><div class="mk"><svg class="ic"><use href="#i-card"/></svg></div><div class="when">第 4 步<small>出院</small></div>
-        <div class="box"><b>医院直接结算</b><small>你只付自付的部分</small><span class="who aia">AIA</span></div></div>
+        <div class="box"><b>医院直接结算</b><small>保障内的部分 AIA 直接付</small><span class="who aia">AIA</span></div></div>
       <div class="node"><div class="mk"><svg class="ic"><use href="#i-renew"/></svg></div><div class="when">第 5 步<small>之后</small></div>
         <div class="box first"><b>理赔进度同步</b><small>前后门诊也帮你跟进</small><span class="who yy">小圆姐</span></div></div>
     </div>
@@ -879,7 +925,7 @@ body{padding-bottom:92px}
     <p>实际保费与承保以 AIA 正式报价单、保单条款及<b>核保结果</b>为准。住院险及意外险保费都不保证，会随年龄和理赔经验调整。新加坡计划最后投保年龄 75 岁（下一生日年龄），全球医疗险最后投保年龄 65 岁（上一生日年龄），更高年龄只供续保参考。</p>
     <p><b>全球医疗险</b>：续保由 AIA 决定，可拒绝续保；在美国连续逗留超过 90 天停保（期间只保紧急）；准证、居留身份或常住国家变化要通知 AIA。价格不分身份；公民 / PR 仍须保留 MediShield Life，本页对比已把它算进去。首年 Vitality 特别折扣以正式报价单为准，本页按原价。</p>
     <p>MediSave 实际扣款受可扣额度、账户余额、补贴及 MediShield Life 保费调整影响；附加险（VitalHealth Pro 系列）和全球医疗险不可用 MediSave。外国人投保需持有效准证（EP / PEP / EntrePass / S Pass / DP / Student Pass / 部分 LTVP 及 WP）。意外险默认按职业类别 1/2，类别 3/4 请联系顾问。</p>
-    <p>"为什么选 AIA / 跟小圆姐买"中的服务以实际情况为准；预授权须经 AIA 审批。不建议在未评估利弊前退旧买新，转保可能带来保费上升或保障减少。本保单受 SDIC 保单持有人保障计划保护。</p>
+    <p>"为什么选 AIA"的数据摘自上方列出的 AIA 官网、新闻稿及媒体报道，以原文为准；公司及集团数据可能随时间更新。"跟小圆姐买"中的服务以实际情况为准；预授权与保证函须经 AIA 审批，紧急入院、公立医院及海外治疗不适用预授权。不建议在未评估利弊前退旧买新，转保可能带来保费上升或保障减少。本保单受 SDIC 保单持有人保障计划保护。</p>
   </div>
 
 </div>
@@ -1398,6 +1444,15 @@ function renderClaims(){
   const text='新加坡小圆姐　　　singaporeyuan　　　仅供本人参考　　　　　　', wm=document.getElementById('wm'), unit=text.repeat(6);
   for(let i=0;i<16;i++){const d=document.createElement('div');d.className='row';d.textContent=unit;d.style.top=(i*110-120)+'px';d.style.left='-200px';wm.appendChild(d);}
 })();
+
+/* 引用小编号：滚到来源，不改地址栏里的 #q= */
+document.addEventListener('click',e=>{
+  const a=e.target.closest('a.ref'); if(!a)return;
+  const li=document.querySelector(a.getAttribute('href')); if(!li)return;
+  e.preventDefault();
+  li.scrollIntoView({behavior:'smooth',block:'center'});
+  li.classList.remove('hit'); void li.offsetWidth; li.classList.add('hit');
+});
 
 /* ============ 启动 ============ */
 if(!loadHash()){people=[newPerson(1)];}
