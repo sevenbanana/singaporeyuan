@@ -203,6 +203,37 @@ export default function ResourceArt({ k, className = '' }: Props) {
         </svg>
       );
 
+    /* 退休年龄 65:台阶 55 → 60 → 62 → 63 → 64 → 65,顶上插旗 */
+    case 'retire65':
+      return (
+        <svg {...common}>
+          {/* 整体缩小一点,让右上角的标签不压住旗子 */}
+          <g transform="translate(10 14) scale(0.88)">
+            <g {...line}>
+              <path d="M30 150h50v-18h46v-18h46v-18h46v-18h46v-18h86v90z" fill={SAND} />
+              <path d="M30 150h50v-18h46v-18h46v-18h46v-18h46v-18h86" />
+              <path d="M350 60V40h28" strokeDasharray="4 7" opacity=".5" />
+              <path d="M20 158h360" strokeWidth="2.8" opacity=".35" />
+            </g>
+            <g {...gold}>
+              <path d="M264 60h86" strokeWidth="3.4" />
+              <path d="M322 60V16" />
+              <path d="M322 16l22 7-22 7z" fill={GOLD} />
+              <circle cx="70" cy="46" r="16" />
+              <path d="M70 22v-8M46 46h-8M94 46h8M53 29l-6-6M87 29l6-6" opacity=".7" />
+            </g>
+            <g fontFamily="Archivo, sans-serif" fontWeight={800} fontSize={14} textAnchor="middle" fill={NAVY}>
+              <text x="55" y="144" opacity=".5">55</text>
+              <text x="103" y="126" opacity=".58">60</text>
+              <text x="149" y="108" opacity=".66">62</text>
+              <text x="195" y="90" opacity=".74">63</text>
+              <text x="241" y="72" opacity=".82">64</text>
+              <text x="292" y="54" fill={GOLD} fontSize={18}>65</text>
+            </g>
+          </g>
+        </svg>
+      );
+
     default:
       return null;
   }

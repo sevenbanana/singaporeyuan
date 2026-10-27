@@ -80,6 +80,13 @@ const IconClock = (
   </svg>
 );
 
+const IconStairs = (
+  <svg {...ic}>
+    <path d="M3 20h4.5v-4h4.5v-4h4.5V8H21" />
+    <path d="M17.5 8V3.5l3 1.3-3 1.3" />
+  </svg>
+);
+
 const IconGlobe = (
   <svg {...ic}>
     <circle cx="12" cy="12" r="8.5" />
@@ -185,6 +192,18 @@ export default async function ResourcesPage({
         : '国家发改委新规12月1日起施行,个人也正式纳入。一页滚动读完:点卡片判断哪些算对外投资,选几个选项就知道该走核准、备案还是报告,拖动滑块看罚款按投资额怎么算,还有国内家人来新加坡开公司等场景问答。',
       icon: IconGlobe,
       external: '/guides/outbound-investment.html',
+      cta: en ? 'Scroll the story' : '滚动看看',
+    },
+    {
+      key: 'retire65',
+      group: 'money',
+      tag: en ? 'Interactive' : '互动专题',
+      title: en ? 'Retirement Age 65 from 2029' : '退休年龄65岁深度解读',
+      desc: en
+        ? 'From 1 January 2029 the retirement age rises to 65 and the re-employment age to 70, a year ahead of plan. A scrollable deep dive: what changes, how Singapore got from 55 to 65 over three decades, a slider to look up the ages that apply to your birth year, and a calculator showing what working a few more years does to CPF, savings and CPF LIFE payouts. (In Chinese)'
+        : '2029年1月1日起退休65岁、重新雇佣70岁,比原定早一年。一页滚动读完:新规改了什么、从55岁到65岁的三十多年变化史;拖动出生年份查你适用几岁,拖滑块看多工作几年对CPF、积蓄和CPF LIFE的影响,还有SRS提取年龄怎么锁定、按人生阶段该做的事。',
+      icon: IconStairs,
+      external: '/guides/retirement-age-65.html',
       cta: en ? 'Scroll the story' : '滚动看看',
     },
     {

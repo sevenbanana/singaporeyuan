@@ -1,0 +1,1561 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>退休年龄 65 岁深度解读 | 新加坡小圆姐</title>
+<meta name="description" content="2029 年 1 月 1 日起，新加坡法定退休年龄提高到 65 岁、重新雇佣年龄提高到 70 岁，比原定时间表早一年。互动深度解读：新规改了什么、从 55 岁到 65 岁的三十多年变化史、按出生年份查自己的退休年龄，以及收入、CPF、SRS、保障该怎么提前准备。">
+<link rel="icon" href="/logo-mark.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=Noto+Sans+SC:wght@400;500;700;900&display=swap">
+
+<style>
+/* ───────────────── tokens(与 wealth-across-cycles 同一套) ───────────────── */
+:root{
+  --ink:#0A1C2E;
+  --ink-2:#0F2A44;
+  --ink-3:#1B4269;
+  --paper:#F4EEE1;
+  --paper-2:#E6DCC7;
+  /* 浅色卡片:冰蓝白,与深海军蓝背景同一冷色系 */
+  --card-l1:#F1F5FA;
+  --card-l2:#DFE7F1;
+  --card-line:rgba(141,185,226,.45);
+  --gold:#D6A94C;
+  --gold-2:#A9812F;
+  --ember:#B5503C;
+  --ember-l:#E9917C;
+  --sky:#8DB9E2;
+  --mist:#93A9BE;
+  --slate:#51687D;
+  --field:#0F2A44;
+
+  --fs-body:1.0625rem;
+  --wrap:1080px;
+  --shadow:0 24px 60px -28px rgba(0,0,0,.75);
+  --sans:"Archivo",system-ui,-apple-system,"Helvetica Neue",Arial,"Noto Sans SC","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+}
+
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  margin:0;
+  background:var(--ink);
+  color:var(--paper);
+  font-family:var(--sans);
+  font-size:var(--fs-body);
+  line-height:1.85;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+h1,h2,h3,h4{margin:0;font-weight:900;line-height:1.22;text-wrap:balance;letter-spacing:.01em}
+p{margin:0}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px;border-radius:4px}
+
+/* ───────────────── fixed field (layer 0) ───────────────── */
+.field{position:fixed;inset:0;z-index:0;pointer-events:none;background:var(--ink);transition:background-color 1.2s ease}
+.field__glow{position:absolute;inset:-15% -10%;background:
+   radial-gradient(58% 42% at 22% 12%, color-mix(in srgb, var(--field) 92%, #2C6A9E) 0%, transparent 62%),
+   radial-gradient(50% 40% at 86% 78%, rgba(214,169,76,.13) 0%, transparent 60%);
+  transition:background 1.2s ease}
+.field__grain{position:absolute;inset:0;opacity:.5;
+  background-image:radial-gradient(rgba(255,255,255,.055) 1px, transparent 1px);
+  background-size:3px 3px}
+.field__waves{position:absolute;left:-6%;right:-6%;bottom:-4%;height:46vh;opacity:.5}
+.field__waves svg{width:100%;height:100%}
+
+/* ───────────────── chrome ───────────────── */
+.progress{position:fixed;top:0;left:0;height:3px;width:0;background:linear-gradient(90deg,var(--gold-2),var(--gold));z-index:60}
+.brandbar{position:fixed;top:0;left:0;right:0;z-index:55;display:flex;align-items:center;justify-content:space-between;gap:12px;
+  padding:14px clamp(16px,4vw,40px);pointer-events:none;
+  background:linear-gradient(180deg,rgba(10,28,46,.86),rgba(10,28,46,0));
+  opacity:0;transform:translateY(-12px);transition:opacity .5s ease,transform .5s ease}
+.brandbar.on{opacity:1;transform:none}
+.brandbar b{font-weight:700;font-size:.9rem;letter-spacing:.06em}
+.brandbar span{font-size:.72rem;letter-spacing:.24em;color:var(--mist)}
+
+.dots{position:fixed;right:22px;top:50%;transform:translateY(-50%);z-index:55;display:flex;flex-direction:column;gap:11px}
+.dots a{width:9px;height:9px;border-radius:50%;background:rgba(244,238,225,.24);transition:.35s;position:relative}
+.dots a::after{content:attr(data-t);position:absolute;right:18px;top:50%;transform:translateY(-50%);
+  white-space:nowrap;font-size:.72rem;letter-spacing:.06em;color:var(--mist);opacity:0;transition:.3s;pointer-events:none}
+.dots a:hover::after{opacity:1}
+.dots a.on{background:var(--gold);transform:scale(1.45)}
+@media(max-width:900px){.dots{display:none}}
+
+/* ───────────────── scenes ───────────────── */
+.scene{position:relative;z-index:1;padding:clamp(76px,13vh,140px) clamp(18px,5vw,48px)}
+.scene__art{position:absolute;inset:0;z-index:-1;pointer-events:none;overflow:hidden}
+[data-depth]{transform:translate3d(0,var(--py,0px),0);will-change:transform}
+.inner{max-width:var(--wrap);margin:0 auto;position:relative}
+.narrow{max-width:64ch}
+
+.eyebrow{font-size:.72rem;letter-spacing:.34em;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:14px}
+.h-sec{font-size:clamp(1.85rem,4.4vw,2.9rem)}
+.rule{width:56px;height:3px;background:var(--gold);margin:20px 0 26px;border-radius:2px}
+.lede{color:#CDDAE6;max-width:60ch;margin-top:18px}
+.lede + .lede{margin-top:12px}
+.src{font-size:.76rem;line-height:1.7;color:#6E8399;margin-top:22px;letter-spacing:.01em}
+.tag-est{display:inline-block;font-size:.7rem;font-weight:700;letter-spacing:.08em;padding:1px 8px;border-radius:999px;border:1px dashed var(--gold);color:var(--gold);vertical-align:2px;margin-left:6px;white-space:nowrap}
+
+/* reveal */
+.rise{opacity:0;transform:translateY(30px)}
+.rise.in{opacity:1;transform:none;transition:opacity .85s ease var(--d,0s),transform .85s cubic-bezier(.2,.75,.25,1) var(--d,0s)}
+
+/* ───────────────── hero ───────────────── */
+.hero{min-height:100svh;display:flex;align-items:center;padding-top:clamp(60px,10vh,110px)}
+.hero__art{position:absolute;left:77%;top:58%;width:min(50vw,580px);opacity:.95;
+  transform:translate(-50%,-50%) translate3d(0,var(--py,0px),0)}
+@media(max-width:820px){.hero__art{left:50%;top:78%;width:min(104vw,540px);opacity:.45}}
+.hero h1{font-size:clamp(2.9rem,10.5vw,7rem);line-height:1.04;letter-spacing:-.01em}
+.hero h1 em{font-style:normal;color:var(--gold);display:block}
+.hero__brand{display:flex;flex-wrap:wrap;align-items:center;gap:6px 14px;margin-bottom:26px}
+.hero__brand b{font-size:clamp(1.1rem,2.6vw,1.35rem);font-weight:900;letter-spacing:.02em}
+.hero__brand i{font-style:normal;font-size:.68rem;letter-spacing:.28em;color:var(--mist);text-transform:uppercase}
+.hero__sub{margin-top:30px;font-size:clamp(1rem,2.2vw,1.2rem);color:#D3E0EA;max-width:19em;text-wrap:pretty}
+.hero__meta{margin-top:44px;display:flex;flex-wrap:wrap;gap:10px 22px;font-size:.82rem;color:var(--mist);letter-spacing:.04em}
+.scroll-hint{position:absolute;left:50%;bottom:26px;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;
+  font-size:.74rem;letter-spacing:.22em;color:var(--mist)}
+.scroll-hint span{display:block;width:1px;height:38px;background:linear-gradient(var(--gold),transparent);animation:drip 2.1s infinite}
+@keyframes drip{0%{transform:scaleY(.2);transform-origin:top;opacity:0}40%{opacity:1}100%{transform:scaleY(1);transform-origin:top;opacity:0}}
+
+/* ───────────────── chapter openers ───────────────── */
+.chapter{min-height:86svh;display:flex;align-items:center}
+.chapter__no{position:absolute;right:3%;top:8%;font-size:clamp(8rem,24vw,19rem);font-weight:800;line-height:.8;
+  color:rgba(214,169,76,.09);letter-spacing:-.04em;z-index:-1}
+.chapter h2{font-size:clamp(2.2rem,7vw,4.2rem);line-height:1.08}
+.chapter__art{position:absolute;right:2%;bottom:6%;width:min(46vw,430px);opacity:.85}
+@media(max-width:820px){.chapter__art{right:-4%;bottom:1%;width:min(48vw,210px);opacity:.35}}
+
+/* ───────────────── cards ───────────────── */
+.card{background:linear-gradient(160deg,var(--card-l1),var(--card-l2));border:1px solid var(--card-line);color:var(--ink);border-radius:22px;padding:clamp(22px,3.4vw,38px);box-shadow:var(--shadow)}
+.card--dark{background:linear-gradient(160deg,#12314F,#0C2135);color:var(--paper);box-shadow:var(--shadow);border:1px solid rgba(214,169,76,.22)}
+.card h3{font-size:1.15rem}
+.card:not(.card--dark) h3{color:var(--ink-2)}
+.card p{color:var(--slate)}
+.card--dark p{color:#C3D3E0}
+.card ul{margin:10px 0 0;padding-left:1.2em;color:var(--slate);display:flex;flex-direction:column;gap:4px}
+.card li::marker{color:var(--gold-2)}
+.card b{color:var(--ink)}
+.card--dark b{color:var(--paper)}
+
+.grid{display:grid;gap:clamp(14px,2vw,22px)}
+.g2{grid-template-columns:repeat(2,1fr)}
+.g3{grid-template-columns:repeat(3,1fr)}
+.g4{grid-template-columns:repeat(4,1fr)}
+@media(max-width:860px){.g3,.g4{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:620px){.g2,.g3,.g4{grid-template-columns:1fr}}
+
+/* stats */
+.stat{padding:22px 4px}
+.stat__n{font-size:clamp(2rem,4.6vw,3rem);font-weight:800;color:var(--gold);line-height:1.1;font-variant-numeric:tabular-nums}
+.stat__n small{font-size:.45em;font-weight:700;margin-left:4px}
+.stat__l{font-weight:700;margin-top:6px;font-size:.98rem}
+.stat__d{color:var(--mist);font-size:.85rem;line-height:1.6;margin-top:4px}
+
+.pill{display:inline-flex;align-items:center;gap:8px;padding:5px 13px;border-radius:999px;font-size:.84rem;font-weight:600;line-height:1.5;white-space:nowrap;
+  border:1px solid rgba(244,238,225,.22);background:rgba(244,238,225,.06);color:var(--paper)}
+.k-gold{background:rgba(214,169,76,.16);border-color:rgba(214,169,76,.55);color:var(--gold)}
+.k-sky{background:rgba(141,185,226,.14);border-color:rgba(141,185,226,.5);color:var(--sky)}
+.k-ember{background:rgba(181,80,60,.22);border-color:rgba(233,145,124,.55);color:var(--ember-l)}
+.k-plain{background:rgba(244,238,225,.06);border-color:rgba(244,238,225,.22);color:var(--mist)}
+
+/* takeaway strip */
+.takeaway{display:block;margin-top:26px;padding:18px 22px;border-radius:16px;
+  background:rgba(214,169,76,.12);border-left:3px solid var(--gold);font-weight:500}
+.takeaway b{color:var(--gold)}
+.takeaway--sky{background:rgba(141,185,226,.1);border-left-color:var(--sky)}
+.takeaway--sky b{color:var(--sky)}
+
+/* ───────────────── chartbox ───────────────── */
+.chartbox{background:linear-gradient(160deg,var(--card-l1),var(--card-l2));border:1px solid var(--card-line);color:var(--ink);border-radius:22px;padding:clamp(16px,2.6vw,28px);box-shadow:var(--shadow)}
+.chartbox--dark{background:linear-gradient(165deg,#12314F,#0B1E31);color:var(--paper);border:1px solid rgba(214,169,76,.2)}
+.scroller{overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:thin}
+.scroller svg{display:block;width:100%;height:auto}
+@media(max-width:820px){
+  .scroller--wide svg{min-width:640px}
+  .scroller--wide{position:relative}
+  .scroller--wide::after{content:"← 左右滑动查看完整图表";display:block;font-size:.72rem;letter-spacing:.08em;color:var(--mist);padding:6px 2px 0;position:sticky;left:0}
+  .field__waves{height:30vh;opacity:.35}
+}
+.chart-title{font-size:.82rem;letter-spacing:.16em;color:var(--slate);margin-bottom:10px;font-weight:600}
+.chartbox--dark .chart-title{color:var(--mist)}
+
+.tick{fill:var(--mist);font-size:13px;font-family:var(--sans)}
+.lab{fill:var(--paper);font-size:14px;font-weight:700;font-family:var(--sans)}
+.gridl{stroke:rgba(244,238,225,.12);stroke-width:1}
+.draw{fill:none;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:var(--len);stroke-dashoffset:var(--len);
+  transition:stroke-dashoffset 2.4s cubic-bezier(.35,.1,.2,1) var(--d,0s)}
+.is-live .draw{stroke-dashoffset:0}
+.fade{opacity:0;transition:opacity .8s ease var(--d,.5s)}
+.is-live .fade{opacity:1}
+
+/* ───────────────── 按钮组 ───────────────── */
+.pills{display:flex;flex-wrap:wrap;gap:8px}
+.pills button{font:inherit;font-size:.86rem;font-weight:600;cursor:pointer;padding:8px 15px;border-radius:999px;line-height:1.45;
+  border:1px solid rgba(244,238,225,.25);background:transparent;color:var(--paper);transition:.28s;text-align:left}
+.pills button:hover{border-color:var(--gold)}
+.pills button.on{background:var(--gold);border-color:var(--gold);color:#20180A}
+.pills button.on.t-sky{background:var(--sky);border-color:var(--sky);color:var(--ink)}
+.pills button.on.t-plain{background:var(--paper);border-color:var(--paper);color:var(--ink)}
+.pills .ico--xs{margin-right:6px}
+.pills button.on .ico{color:currentColor}
+
+.note{margin-top:20px;min-height:5.4em;border-left:3px solid var(--gold);padding-left:18px}
+.note.blue{border-color:var(--sky)}
+.note.plain{border-color:var(--paper)}
+.note b{display:block;font-size:1.2rem;margin-bottom:4px}
+.note span,.note p{color:#C3D3E0}
+.note p + p{margin-top:8px}
+.note ul{margin:8px 0 0;padding-left:1.15em;color:#C3D3E0;display:flex;flex-direction:column;gap:8px;line-height:1.75}
+.note li::marker{color:var(--gold)}
+.note li b{display:inline;font-size:1em;margin:0;color:var(--paper)}
+.note__row{display:grid;grid-template-columns:auto minmax(0,1fr);gap:16px;align-items:start}
+@media(max-width:560px){.note__row{grid-template-columns:1fr}.note__row .ico-ring{width:48px;height:48px}.note__row .ico-ring .ico{width:30px;height:30px}}
+
+/* ───────────────── 要点卡 ───────────────── */
+.key{display:flex;flex-direction:column;gap:8px}
+.key__no{font-size:2.4rem;font-weight:800;color:var(--gold);line-height:1;font-variant-numeric:tabular-nums}
+.key h3{font-size:1.12rem;color:var(--paper)}
+.key__top{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
+
+/* ───────────────── 判断题卡片 ───────────────── */
+.quiz{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(12px,2vw,20px);align-items:start}
+@media(max-width:860px){.quiz{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:620px){.quiz{grid-template-columns:1fr}}
+.qcard{cursor:pointer;text-align:left;font:inherit;color:inherit;border:1px solid rgba(214,169,76,.28);background:rgba(255,255,255,.04);
+  border-radius:20px;padding:22px;transition:.35s;display:flex;flex-direction:column;gap:10px}
+.qcard:hover{border-color:var(--gold);transform:translateY(-3px)}
+.qcard__q{display:block;font-size:1.08rem;font-weight:700;line-height:1.55}
+.qcard__hint{display:block;font-size:.8rem;letter-spacing:.14em;color:var(--mist)}
+.qcard__a{display:none;font-size:.95rem;line-height:1.75;color:var(--slate)}
+.qcard__a .pill{margin-bottom:8px}
+.qcard.on{background:linear-gradient(160deg,var(--card-l1),var(--card-l2));color:var(--ink);border-color:var(--card-line)}
+.qcard.on .qcard__hint{display:none}
+.qcard.on .qcard__a{display:block;animation:pop .45s ease}
+.qcard.on .k-ember{background:var(--ember);border-color:var(--ember);color:#fff}
+.qcard.on .k-gold{background:var(--gold);border-color:var(--gold);color:#20180A}
+.qcard.on .k-sky{background:var(--ink-3);border-color:var(--ink-3);color:#fff}
+@keyframes pop{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+/* ───────────────── 两条保护线 ───────────────── */
+.zone{position:relative;margin:64px 0 18px}
+.ztrack{position:relative;height:34px;border-radius:12px;background:rgba(244,238,225,.06);border:1px solid rgba(244,238,225,.12)}
+.zseg{position:absolute;top:0;bottom:0;transition:left .9s cubic-bezier(.3,.8,.3,1),width .9s cubic-bezier(.3,.8,.3,1)}
+.zseg--ret{left:0;border-radius:11px 0 0 11px;background:linear-gradient(90deg,rgba(214,169,76,.25),var(--gold))}
+.zseg--re{background:repeating-linear-gradient(135deg,rgba(141,185,226,.9) 0 6px,rgba(141,185,226,.62) 6px 12px)}
+.zflag{position:absolute;transform:translateX(-50%);text-align:center;white-space:nowrap;line-height:1.1;transition:left .9s cubic-bezier(.3,.8,.3,1)}
+.zflag b{display:block;font-size:clamp(1.4rem,3.6vw,1.9rem);font-weight:800;font-variant-numeric:tabular-nums}
+.zflag small{display:block;font-size:.72rem;letter-spacing:.06em;font-weight:600;color:var(--mist)}
+.zflag--top{bottom:calc(100% + 10px)}
+.zflag--top b{color:var(--gold)}
+.zflag--bot{top:calc(100% + 10px)}
+.zflag--bot b{color:var(--sky)}
+.zflag i{position:absolute;left:50%;width:2px;height:10px;margin-left:-1px;background:currentColor;opacity:.6}
+.zflag--top i{top:100%;color:var(--gold)}
+.zflag--bot i{bottom:100%;color:var(--sky)}
+.zaxis{position:relative;height:20px;margin-top:62px;font-size:.72rem;color:var(--mist);font-variant-numeric:tabular-nums}
+.zaxis span{position:absolute;transform:translateX(-50%);white-space:nowrap}
+.zaxis span:first-child{transform:none}
+.zaxis span:last-child{transform:translateX(-100%)}
+.zleg{display:flex;flex-direction:column;gap:6px}
+.zleg__sw{width:34px;height:10px;border-radius:5px;display:block;margin-bottom:6px}
+.zleg h3{font-size:1.02rem;color:var(--paper)}
+.zleg p{font-size:.93rem;color:#C3D3E0;line-height:1.7}
+
+/* ───────────────── 筛选卡 ───────────────── */
+.chg{display:flex;flex-direction:column;gap:10px;padding:18px 20px;border-radius:18px;border:1px solid rgba(244,238,225,.16);background:rgba(255,255,255,.04)}
+.chg h3{font-size:1.05rem}
+.chg p{color:#C3D3E0;font-size:.95rem;line-height:1.75}
+.chg.out{display:none}
+
+/* ───────────────── 查询器 ───────────────── */
+.mine{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:clamp(18px,3vw,36px);align-items:start}
+@media(max-width:860px){.mine{grid-template-columns:1fr}}
+.ctrl__top{display:flex;justify-content:space-between;align-items:baseline;gap:12px;font-size:.92rem;font-weight:600}
+.ctrl__v{font-size:1.15rem;font-weight:800;color:var(--gold);font-variant-numeric:tabular-nums}
+input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:4px;border-radius:4px;background:rgba(244,238,225,.22);margin-top:14px}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:24px;height:24px;border-radius:50%;background:var(--gold);cursor:pointer;border:3px solid #0F2A44}
+input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;background:var(--gold);cursor:pointer;border:3px solid #0F2A44}
+.fscale{display:flex;justify-content:space-between;font-size:.7rem;color:var(--mist);margin-top:6px;font-variant-numeric:tabular-nums}
+.ctrl + .ctrl{margin-top:26px}
+.duo{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.duo__n{font-size:clamp(2.6rem,7vw,3.8rem);font-weight:800;line-height:1;font-variant-numeric:tabular-nums}
+.duo__n small{font-size:.38em;font-weight:700;margin-left:4px}
+.duo__l{font-size:.86rem;color:var(--mist);margin-top:6px;letter-spacing:.04em}
+.life{position:relative;height:14px;border-radius:7px;background:rgba(244,238,225,.08);margin:40px 0 36px}
+.life__seg{position:absolute;top:0;bottom:0;transition:left .6s cubic-bezier(.3,.8,.3,1),width .6s cubic-bezier(.3,.8,.3,1)}
+.life__mk{position:absolute;top:50%;width:14px;height:14px;margin:-7px 0 0 -7px;border-radius:50%;border:2.5px solid #0B1E31;transition:left .6s cubic-bezier(.3,.8,.3,1)}
+.life__lab{position:absolute;font-size:.8rem;font-weight:800;white-space:nowrap;font-variant-numeric:tabular-nums;transition:left .6s cubic-bezier(.3,.8,.3,1)}
+.life__lab.top{bottom:calc(100% + 8px);transform:translateX(-50%)}
+.life__lab.bot{top:calc(100% + 8px)}
+.life__lab.bot.l{transform:translateX(-100%) translateX(6px)}
+.life__lab.bot.r{transform:translateX(-6px)}
+.rrows div{display:grid;grid-template-columns:auto minmax(0,1fr);gap:12px;padding:10px 0;border-bottom:1px solid rgba(244,238,225,.12);font-size:.95rem;line-height:1.65;align-items:baseline}
+.rrows i{width:10px;height:10px;border-radius:50%;display:inline-block;transform:translateY(1px)}
+.rrows span{color:#D3E0EA}
+.rrows span b{color:var(--paper)}
+.status{margin-top:16px;padding:12px 16px;border-radius:14px;background:rgba(214,169,76,.1);border:1px solid rgba(214,169,76,.3);font-size:.94rem;color:#E4D6B6}
+
+/* ───────────────── 历史图 ───────────────── */
+.hist-ret{stroke:var(--gold)}
+.hist-re{stroke:var(--sky)}
+.legend{display:flex;flex-wrap:wrap;gap:8px 18px;font-size:.82rem;color:var(--mist);margin-bottom:8px}
+.legend span{display:inline-flex;align-items:center;gap:8px}
+.legend i{width:22px;height:3px;border-radius:2px;display:inline-block}
+
+/* ───────────────── 对照表 ───────────────── */
+.vs{width:100%;border-collapse:collapse;font-size:.94rem;line-height:1.65}
+.vs th,.vs td{padding:12px 10px;text-align:left;vertical-align:top;border-bottom:1px solid rgba(15,42,68,.12)}
+.vs thead th{font-size:.8rem;letter-spacing:.12em;color:var(--slate);font-weight:700}
+.vs tbody th{color:var(--ink-2);font-weight:700;width:6.5em}
+.vs td{color:var(--slate)}
+.vs td b{color:var(--ink)}
+@media(max-width:620px){
+  .vs thead{display:none}
+  .vs tr{display:block;padding:10px 0;border-bottom:1px solid rgba(15,42,68,.14)}
+  .vs th,.vs td{display:block;border:0;padding:3px 0}
+  .vs td::before{content:attr(data-h);display:block;font-size:.72rem;letter-spacing:.12em;color:var(--gold-2);font-weight:700}
+}
+
+/* ───────────────── 三重效应测算 ───────────────── */
+.calc{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.2fr);gap:clamp(18px,3vw,36px);align-items:start}
+@media(max-width:860px){.calc{grid-template-columns:1fr}}
+.cmp + .cmp{margin-top:20px}
+.cmp__h{display:flex;align-items:center;gap:10px;font-weight:700;font-size:.98rem}
+.cmp__big{font-size:clamp(1.6rem,4.4vw,2.2rem);font-weight:800;color:var(--gold);line-height:1.15;font-variant-numeric:tabular-nums;margin:4px 0 6px}
+.cmp__row{display:grid;grid-template-columns:5.4em minmax(0,1fr) 5.6em;gap:10px;align-items:center;font-size:.8rem;color:var(--mist);margin-top:6px}
+.cmp__row b{text-align:right;color:var(--paper);font-variant-numeric:tabular-nums;font-size:.86rem}
+.cmp__bar{height:12px;border-radius:6px;background:rgba(244,238,225,.08);overflow:hidden}
+.cmp__fill{display:block;height:100%;border-radius:6px;transition:width .5s cubic-bezier(.3,.8,.3,1)}
+
+/* ───────────────── 供款率柱 ───────────────── */
+.rbars{display:flex;flex-direction:column;gap:18px}
+.rgrp b{display:block;font-size:.95rem;margin-bottom:6px}
+.rrow{display:grid;grid-template-columns:3.2em minmax(0,1fr) 3.6em;gap:10px;align-items:center;font-size:.8rem;color:var(--slate);margin-top:5px}
+.rrow strong{text-align:right;color:var(--ink);font-variant-numeric:tabular-nums}
+.rtrack{position:relative;height:13px;border-radius:5px;background:rgba(10,28,46,.07)}
+.rfill{position:absolute;left:0;top:0;bottom:0;width:0;border-radius:5px;transition:width 1.1s cubic-bezier(.25,.8,.25,1) var(--d,0s)}
+.is-live .rfill{width:var(--w)}
+.rref{position:absolute;top:-6px;bottom:-6px;width:0;border-left:2px dashed var(--ember);opacity:.7}
+.srs-age{font-size:clamp(3rem,9vw,4.6rem);font-weight:800;color:var(--gold);line-height:1;font-variant-numeric:tabular-nums}
+.srs-age small{font-size:.32em;font-weight:700;margin-left:6px;color:var(--paper)}
+
+/* ───────────────── 联系 ───────────────── */
+.contact{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:clamp(20px,3vw,40px);align-items:center}
+@media(max-width:820px){.contact{grid-template-columns:1fr;text-align:center;justify-items:center}}
+.avatar{width:132px;height:132px;border-radius:50%;object-fit:cover;border:3px solid var(--gold)}
+.qr{width:132px;height:132px;border-radius:12px;background:#fff;padding:7px}
+.contact__lines{display:flex;flex-direction:column;gap:6px;margin-top:14px;font-size:.98rem}
+.contact__lines a{text-decoration:none;border-bottom:1px solid rgba(214,169,76,.5);padding-bottom:1px}
+.qr-cap{font-size:.76rem;color:var(--mist);text-align:center;margin-top:8px;letter-spacing:.08em}
+
+.srclist{margin:0;padding-left:1.3em;display:flex;flex-direction:column;gap:8px;font-size:.92rem;color:#C3D3E0}
+.srclist li::marker{color:var(--gold);font-weight:700}
+.srclist a{text-decoration:none;border-bottom:1px solid rgba(214,169,76,.5)}
+
+footer{position:relative;z-index:1;padding:40px clamp(18px,5vw,48px) 60px;border-top:1px solid rgba(244,238,225,.12);
+  color:#6E8399;font-size:.78rem;line-height:1.8}
+footer .inner{display:flex;flex-wrap:wrap;gap:12px 28px;justify-content:space-between}
+
+/* ───────────────── 线稿图标 ───────────────── */
+.ico{width:44px;height:44px;color:var(--gold);flex:none;display:block}
+.ico--xs{width:22px;height:22px;display:inline-block;vertical-align:-5px}
+.ico--sm{width:34px;height:34px}
+.card:not(.card--dark) .ico,.qcard.on .ico{color:var(--gold-2)}
+.hd{display:flex;align-items:center;gap:12px}
+.ico-ring{width:58px;height:58px;border-radius:50%;display:grid;place-items:center;flex:none;
+  background:rgba(214,169,76,.12);border:1px solid rgba(214,169,76,.35)}
+.ico-ring .ico{width:36px;height:36px}
+.stat .ico{margin-bottom:12px}
+
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{transition-duration:.01ms !important;animation:none !important}
+  .rise{opacity:1;transform:none}
+  .rfill{width:var(--w)}
+  .draw{stroke-dashoffset:0}
+  .fade{opacity:1}
+}
+</style>
+</head>
+<body>
+
+<!-- ══════════ hand-drawn illustration library ══════════ -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <filter id="rough">
+      <feTurbulence type="fractalNoise" baseFrequency="0.026" numOctaves="3" seed="7" result="n"/>
+      <feDisplacementMap in="SourceGraphic" in2="n" scale="3.2" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+    <filter id="rough-s">
+      <feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="2" seed="3" result="n"/>
+      <feDisplacementMap in="SourceGraphic" in2="n" scale="1.8" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+
+    <!-- 封面 · 一级一级往上的台阶,55 → 65,顶上的人举着旗 -->
+    <symbol id="ill-stairs" viewBox="0 0 620 360">
+      <g filter="url(#rough)" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="118" cy="104" r="40" stroke="var(--gold)" fill="rgba(214,169,76,.12)"/>
+        <path d="M118 46V30M74 62 63 51M162 62l11-11M60 104H44M176 104h16" stroke="var(--gold)" opacity=".7"/>
+        <path d="M30 300H130V264H210V228H290V192H370V156H450V120H580V300Z" fill="rgba(244,238,225,.05)"/>
+        <path d="M30 300H130V264H210V228H290V192H370V156H450V120H580"/>
+        <path d="M450 120H580" stroke="var(--gold)" stroke-width="3.6"/>
+        <path d="M580 120V84h34" stroke-dasharray="4 9" opacity=".55"/>
+        <circle cx="500" cy="64" r="12"/>
+        <path d="M500 76v26M500 102l-10 18M500 102l10 18M500 84l14-8M500 84l-13 11"/>
+        <path d="M514 76V22"/>
+        <path d="M514 22l28 9-28 9z" fill="var(--gold)" stroke="var(--gold)"/>
+        <g stroke-width="2.4">
+          <path d="M0 322q30-16 60 0t60 0 60 0 60 0 60 0 60 0 60 0 60 0 60 0 60 0 60 0"/>
+          <path d="M-20 348q34-18 68 0t68 0 68 0 68 0 68 0 68 0 68 0 68 0 68 0 68 0" opacity=".55"/>
+        </g>
+      </g>
+      <g font-family="Archivo, sans-serif" font-weight="800" font-size="22" fill="currentColor" text-anchor="middle">
+        <text x="80" y="290" opacity=".75">55</text>
+        <text x="170" y="254">60</text>
+        <text x="250" y="218">62</text>
+        <text x="330" y="182">63</text>
+        <text x="410" y="146">64</text>
+        <text x="556" y="110" fill="var(--gold)" font-size="26">65</text>
+      </g>
+    </symbol>
+
+    <!-- 第一章 · 2029 年的日历 + 65 的奖章 -->
+    <symbol id="ill-cal" viewBox="0 0 340 340">
+      <g filter="url(#rough)" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="34" y="70" width="196" height="204" rx="14" fill="rgba(244,238,225,.06)"/>
+        <path d="M34 120h196M82 50v36M182 50v36"/>
+        <circle cx="82" cy="162" r="22" stroke="var(--gold)" fill="rgba(214,169,76,.22)"/>
+        <path d="M128 162h.01M168 162h.01M206 162h.01M66 204h.01M104 204h.01M146 204h.01M186 204h.01M66 244h.01M104 244h.01M146 244h.01" stroke-width="7"/>
+        <circle cx="262" cy="232" r="46" stroke="var(--gold)" fill="rgba(214,169,76,.12)"/>
+        <path d="M236 270l-14 50 22-10 12 20 6-46M288 270l14 50-22-10-12 20" stroke="var(--gold)"/>
+        <path d="M14 322h170" stroke-width="3" opacity=".55"/>
+      </g>
+      <g font-family="Archivo, sans-serif" font-weight="800" text-anchor="middle" fill="currentColor">
+        <text x="132" y="106" font-size="26">2029</text>
+        <text x="82" y="171" font-size="24" fill="var(--gold)">1</text>
+        <text x="262" y="246" font-size="38" fill="var(--gold)">65</text>
+      </g>
+    </symbol>
+
+    <!-- 第二章 · 一条延伸到远处的路,路边一块块里程碑 -->
+    <symbol id="ill-road" viewBox="0 0 340 340">
+      <g filter="url(#rough)" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M14 104h312" opacity=".5"/>
+        <path d="M30 320 178 104M318 320 202 104"/>
+        <path d="M30 320 178 104h24l116 216z" fill="rgba(244,238,225,.05)" stroke="none"/>
+        <path d="M172 318l7-38M184 262l5-28M192 216l3-20M197 182l2-14M200 156l1-9" stroke="var(--gold)" stroke-width="3"/>
+        <path d="M64 300v-58"/>
+        <rect x="40" y="216" width="48" height="28" rx="5" fill="rgba(214,169,76,.18)" stroke="var(--gold)"/>
+        <path d="M120 222v-36"/>
+        <rect x="104" y="170" width="32" height="18" rx="4" fill="rgba(244,238,225,.08)"/>
+        <path d="M150 170v-22"/>
+        <rect x="141" y="138" width="18" height="11" rx="3"/>
+        <circle cx="270" cy="58" r="30" stroke="var(--gold)" fill="rgba(214,169,76,.1)"/>
+        <path d="M270 40v18l12 8" stroke="var(--gold)"/>
+      </g>
+    </symbol>
+
+    <!-- 第三章 · 指南针 + 一盆在长的新芽 -->
+    <symbol id="ill-compass" viewBox="0 0 340 340">
+      <g filter="url(#rough)" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="204" cy="146" r="98" fill="rgba(244,238,225,.05)"/>
+        <circle cx="204" cy="146" r="80" opacity=".45"/>
+        <path d="M204 48v16M204 228v16M106 146h16M286 146h16"/>
+        <g transform="rotate(32 204 146)">
+          <path d="M204 74l17 72h-34z" fill="rgba(214,169,76,.4)" stroke="var(--gold)"/>
+          <path d="M187 146h34l-17 72z"/>
+        </g>
+        <circle cx="204" cy="146" r="6"/>
+        <path d="M30 262h74l-10 52H40z" fill="rgba(214,169,76,.16)" stroke="var(--gold)"/>
+        <path d="M67 262v-52"/>
+        <path d="M67 236c-18 0-28-10-28-26 18 0 28 10 28 26zM67 222c0-16 10-26 28-26 0 16-10 26-28 26z"/>
+        <path d="M10 318h320" stroke-width="3" opacity=".55"/>
+      </g>
+    </symbol>
+
+    <!-- ══ 线稿图标 64×64(与插画同一手绘滤镜) ══ -->
+    <symbol id="ic-person" viewBox="0 0 64 64"><g filter="url(#rough-s)" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="32" cy="21" r="10"/><path d="M12 56c2-12 10-19 20-19s18 7 20 19"/></g></symbol>
+    <symbol id="ic-stairs" viewBox="0 0 64 64"><g filter="url(#rough-s)" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M6 56h12V44h12V32h12V20h14"/><path d="M6 56h50V20"/><path d="M48 20V6l10 4-10 4"/></g></symbol>
+    <symbol id="ic-renew" viewBox="0 0 64 64"><g filter="url(#rough-s)" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M34 58H12V6h22l10 10v12"/><path d="M34 6v10h10"/><path d="M20 24h14M20 32h10"/><path d="M58 46a10 10 0 1 1-3-7"/><path d="M57 31v8h-8"/></g></symbol>
+    <symbol id="ic-halfclock" viewBox="0 0 64 64"><g filter="url(#rough-s)" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="32" cy="32" r="23"/><path d="M32 9a23 23 0 0 1 0 46z" fill="currentColor" fill-opacity=".2"/><path d="M32 9v46"/><path d="M32 20v12l-8 6"/></g></symbol>
+    <symbol id="ic-office" viewBox="0 0 64 64"><g filter="url(#rough-s)" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12 56V10h28v46M40 24h12v32"/><path d="M6 56h52"/><path d="M19 18h4M29 18h4M19 28h4M29 28h4M19 38h4M29 38h4M45 32h3M45 42h3"/><path d="M24 56v-8h6v8"/></g></symbol>
+    <symbol id="ic-receipt" viewBox="0 0 64 64"><g filter="url(#rough-s)" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M14 6h36v52l-6-4-6 4-6-4-6 4-6-4-6 4z"/><path d="M22 18h20"/><path d="M40 28 24 46"/><circle cx="26" cy="30" r="3"/><circle cx="38" cy="44" r="3"/></g></symbol>
+    <symbol id="ic-trend" viewBox="0 0 64 64"><g filter="url(#rough-s)" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M8 8v48h48"/><path d="M14 44l10-12 9 6 10-16 10 6"/><path d="M47 22h6v6"/></g></symbol>
+    <symbol id="ic-coins" viewBox="0 0 64 64"><g filter="url(#rough-s)" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+      <ellipse cx="26" cy="16" rx="16" ry="6"/><path d="M10 16v10c0 3.3 7.2 6 16 6s16-2.7 16-6V16"/><path d="M10 26v10c0 3.3 7.2 6 16 6s16-2.7 16-6V26"/><path d="M10 36v10c0 3.3 7.2 6 16 6s16-2.7 16-6V36"/><path d="M53 34v14M46 41h14"/></g></symbol>
+    <symbol id="ic-cal" viewBox="0 0 64 64"><g filter="url(#rough-s)" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M8 14h48v42H8z"/><path d="M8 26h48M20 8v12M44 8v12"/><path d="M18 36h.01M28 36h.01M38 36h.01M48 36h.01M18 46h.01M28 46h.01M38 46h.01" stroke-width="5"/></g></symbol>
+    <symbol id="ic-calok" viewBox="0 0 64 64"><g filter="url(#rough-s)" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M8 14h48v42H8z"/><path d="M8 26h48M20 8v12M44 8v12"/><path d="M22 40l7 7 13-14"/></g></symbol>
+    <symbol id="ic-hourglass" viewBox="0 0 64 64"><g filter="url(#rough-s)" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M16 8h32M16 56h32"/><path d="M20 8c0 12 12 18 12 24s-12 12-12 24M44 8c0 12-12 18-12 24s12 12 12 24"/><path d="M25 52q7-8 14 0z"/></g></symbol>
+    <symbol id="ic-docx" viewBox="0 0 64 64"><g filter="url(#rough-s)" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M16 6h22l10 10v42H16z"/><path d="M38 6v10h10"/><path d="M23 30h18M23 38h18M23 46h10"/></g></symbol>
+    <symbol id="ic-shield" viewBox="0 0 64 64"><g filter="url(#rough-s)" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M32 8l20 8v18c0 12-9 20-20 24-11-4-20-12-20-24V16z"/><path d="M23 32l7 7 12-13"/></g></symbol>
+    <symbol id="ic-chat" viewBox="0 0 64 64"><g filter="url(#rough-s)" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M8 10h48v34H28L16 54V44H8z"/><path d="M27 22a5 5 0 1 1 7 4.6c-1.5.7-2 1.6-2 3.4"/><path d="M32 37h.01" stroke-width="4.5"/></g></symbol>
+    <symbol id="ic-search" viewBox="0 0 64 64"><g filter="url(#rough-s)" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="27" cy="27" r="17"/><path d="M40 40l16 16"/></g></symbol>
+    <symbol id="ic-flag" viewBox="0 0 64 64"><g filter="url(#rough-s)" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M14 58V8"/><path d="M14 10h34l-7 10 7 10H14"/></g></symbol>
+    <symbol id="ic-bell" viewBox="0 0 64 64"><g filter="url(#rough-s)" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M18 44V28a14 14 0 0 1 28 0v16l5 6H13z"/><path d="M27 54a5 5 0 0 0 10 0"/><path d="M32 8v6"/></g></symbol>
+    <symbol id="ic-passport" viewBox="0 0 64 64"><g filter="url(#rough-s)" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M14 6h36v52H14z"/><circle cx="32" cy="24" r="8"/><path d="M22 40h20M25 48h14"/></g></symbol>
+    <symbol id="ic-house" viewBox="0 0 64 64"><g filter="url(#rough-s)" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M6 30 32 8l26 22"/><path d="M13 25v31h38V25"/><path d="M27 56V40h10v16"/></g></symbol>
+    <symbol id="ic-history" viewBox="0 0 64 64"><g filter="url(#rough-s)" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12 34a20 20 0 1 0 6-16"/><path d="M10 10v12h12"/><path d="M32 22v12l8 5"/></g></symbol>
+    <symbol id="ic-scales" viewBox="0 0 64 64"><g filter="url(#rough-s)" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M32 10v44M20 54h24M12 18h40"/><path d="M12 18 6 34a6 6 0 0 0 12 0zM52 18l-6 16a6 6 0 0 0 12 0z"/></g></symbol>
+    <symbol id="ic-heart" viewBox="0 0 64 64"><g filter="url(#rough-s)" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M32 54S8 40 8 24a12 12 0 0 1 24-5 12 12 0 0 1 24 5c0 16-24 30-24 30z"/><path d="M14 32h10l4-8 6 14 4-6h12"/></g></symbol>
+    <symbol id="ic-cap" viewBox="0 0 64 64"><g filter="url(#rough-s)" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M4 24 32 12l28 12-28 12z"/><path d="M16 30v13c0 4 8 8 16 8s16-4 16-8V30"/><path d="M56 26v16"/></g></symbol>
+    <symbol id="ic-umbrella" viewBox="0 0 64 64"><g filter="url(#rough-s)" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M6 32a26 26 0 0 1 52 0q-6.5-5-13 0-6.5-5-13 0-6.5-5-13 0-6.5-5-13 0z"/><path d="M32 32v18a6 6 0 0 1-12 0"/><path d="M32 6v0"/></g></symbol>
+    <symbol id="ic-family" viewBox="0 0 64 64"><g filter="url(#rough-s)" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="19" cy="16" r="7"/><circle cx="45" cy="16" r="7"/><circle cx="32" cy="34" r="5"/><path d="M5 56c1-13 6-21 14-21 4 0 7 2 9 5"/><path d="M59 56c-1-13-6-21-14-21-4 0-7 2-9 5"/><path d="M24 58c0-7 3-12 8-12s8 5 8 12"/></g></symbol>
+    <symbol id="ic-medical" viewBox="0 0 64 64"><g filter="url(#rough-s)" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="8" y="8" width="48" height="48" rx="10"/><path d="M32 20v24M20 32h24"/></g></symbol>
+    <symbol id="ic-sprout" viewBox="0 0 64 64"><g filter="url(#rough-s)" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M32 56V30"/><path d="M32 36c-14 0-20-8-20-20 14 0 20 8 20 20zM32 30c0-10 6-16 18-16 0 10-6 16-18 16z"/><path d="M18 56h28"/></g></symbol>
+    <symbol id="ic-briefcase" viewBox="0 0 64 64"><g filter="url(#rough-s)" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M8 20h48v34H8z"/><path d="M24 20v-8h16v8"/><path d="M8 33h48"/><path d="M29 33v6h6v-6"/></g></symbol>
+    <symbol id="ic-piggy" viewBox="0 0 64 64"><g filter="url(#rough-s)" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M10 34c0-11 10-18 23-18 9 0 16 3 20 9h5v11h-5c-2 4-5 7-9 8v6h-8v-4h-9v4h-8v-7c-6-2-9-5-9-9z"/><path d="M26 16a6 6 0 0 1 12 0"/><path d="M44 28h.01" stroke-width="4"/></g></symbol>
+    <symbol id="ic-target" viewBox="0 0 64 64"><g filter="url(#rough-s)" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="30" cy="34" r="22"/><circle cx="30" cy="34" r="12"/><circle cx="30" cy="34" r="3"/><path d="M30 34 54 10M46 10h8v8"/></g></symbol>
+
+    <!-- 背景波纹 -->
+    <symbol id="ill-wavefield" viewBox="0 0 1200 300" preserveAspectRatio="none">
+      <g fill="none" stroke="var(--gold)" stroke-width="1.6" opacity=".33" filter="url(#rough-s)">
+        <path d="M0 40q60-28 120 0t120 0 120 0 120 0 120 0 120 0 120 0 120 0 120 0 120 0"/>
+        <path d="M0 100q60-28 120 0t120 0 120 0 120 0 120 0 120 0 120 0 120 0 120 0 120 0"/>
+        <path d="M0 160q60-28 120 0t120 0 120 0 120 0 120 0 120 0 120 0 120 0 120 0 120 0"/>
+        <path d="M0 220q60-28 120 0t120 0 120 0 120 0 120 0 120 0 120 0 120 0 120 0 120 0"/>
+        <path d="M0 280q60-28 120 0t120 0 120 0 120 0 120 0 120 0 120 0 120 0 120 0 120 0"/>
+      </g>
+    </symbol>
+  </defs>
+</svg>
+
+<div class="progress" id="progress"></div>
+<div class="field" id="field">
+  <div class="field__glow"></div>
+  <div class="field__grain"></div>
+  <div class="field__waves" id="fieldWaves"><svg viewBox="0 0 1200 300" preserveAspectRatio="none"><use href="#ill-wavefield"/></svg></div>
+</div>
+
+<header class="brandbar" id="brandbar">
+  <b>新加坡小圆姐</b>
+  <span>退休年龄 65 岁深度解读</span>
+</header>
+
+<nav class="dots" id="dots" aria-label="章节导航"></nav>
+
+<!-- ══════════ 封面 ══════════ -->
+<section class="scene hero" id="s-cover" data-title="封面" data-tint="#0F2A44">
+  <div class="scene__art"><div class="hero__art" data-depth="-0.42"><svg viewBox="0 0 620 360" style="width:100%;height:auto;color:rgba(244,238,225,.34)"><use href="#ill-stairs"/></svg></div></div>
+  <div class="inner">
+    <div class="hero__brand rise">
+      <b>新加坡小圆姐</b>
+      <i>Deep Dive · Retirement Age 65</i>
+    </div>
+    <h1 class="rise" style="--d:.1s">退休年龄<em>65 岁</em></h1>
+    <p class="hero__sub rise" style="--d:.22s">2029 年 1 月 1 日起，退休 65、重新雇佣 70，比原定早一年。<br>新规改了什么，过去三十多年怎么走过来，我们又该怎么准备。</p>
+    <div class="hero__meta rise" style="--d:.34s">
+      <span>袁媛 Yuan Yuan · AIA 财富管理顾问</span>
+      <span>2026 年 10 月</span>
+      <span>阅读约 12 分钟 · 建议下滑体验</span>
+    </div>
+  </div>
+  <div class="scroll-hint" aria-hidden="true">向下滑动<span></span></div>
+</section>
+
+<!-- ══════════ 关键日期 ══════════ -->
+<section class="scene" id="s-dates" data-title="新闻速览" data-tint="#10314E">
+  <div class="inner">
+    <p class="eyebrow rise">What happened</p>
+    <h2 class="h-sec rise" style="--d:.06s">10 月 26 日，政府宣布了什么</h2>
+    <div class="rule rise" style="--d:.1s"></div>
+    <p class="lede rise" style="--d:.12s">年长员工就业三方工作组（TWG-SE）交出报告，六项建议政府全部接受。最受关注的一条：法定退休年龄和重新雇佣年龄，<b style="color:var(--paper)">2029 年 1 月 1 日</b>起分别提高到 <b style="color:var(--gold)">65 岁</b>和 <b style="color:var(--sky)">70 岁</b>。2019 年定下的目标是“2030 年前”，这次提前了一年。</p>
+    <div class="grid g4" data-live style="margin-top:26px">
+      <div class="stat rise" style="--d:.05s"><svg class="ico" viewBox="0 0 64 64" aria-hidden="true"><use href="#ic-docx"/></svg><div class="stat__n">10.26</div><div class="stat__l">2026 年 · 宣布</div><div class="stat__d">人力部、职总、雇主联合会联合公布工作组报告</div></div>
+      <div class="stat rise" style="--d:.13s"><svg class="ico" viewBox="0 0 64 64" aria-hidden="true"><use href="#ic-calok"/></svg><div class="stat__n">1.1</div><div class="stat__l">2029 年 · 生效</div><div class="stat__d">退休年龄 64 → 65，重新雇佣年龄 69 → 70</div></div>
+      <div class="stat rise" style="--d:.21s" id="cdBox"><svg class="ico" viewBox="0 0 64 64" aria-hidden="true"><use href="#ic-hourglass"/></svg><div class="stat__n"><span id="cdNum" data-count="0">0</span><small>天</small></div><div class="stat__l">距生效还有</div><div class="stat__d">按新加坡时间计算</div></div>
+      <div class="stat rise" style="--d:.29s"><svg class="ico" viewBox="0 0 64 64" aria-hidden="true"><use href="#ic-search"/></svg><div class="stat__n"><span data-count="6">0</span><small>项建议</small></div><div class="stat__l">全部接受</div><div class="stat__d">实施细节 2027 年上半年公布</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ 六个要点 ══════════ -->
+<section class="scene" id="s-keys" data-title="六个要点" data-tint="#0E2B45">
+  <div class="inner">
+    <p class="eyebrow rise">In one minute</p>
+    <h2 class="h-sec rise" style="--d:.06s">一分钟看懂：六个要点</h2>
+    <div class="rule rise" style="--d:.1s"></div>
+    <div class="grid g3">
+      <div class="card card--dark key rise" style="--d:.05s"><div class="key__top"><span class="key__no">01</span><svg class="ico" viewBox="0 0 64 64" aria-hidden="true"><use href="#ic-stairs"/></svg></div><h3>退休年龄 64 → 65</h3><p>2029 年 1 月 1 日起，雇主不能以年龄为由，要求未满 65 岁的员工退休。</p></div>
+      <div class="card card--dark key rise" style="--d:.12s"><div class="key__top"><span class="key__no">02</span><svg class="ico" viewBox="0 0 64 64" aria-hidden="true"><use href="#ic-renew"/></svg></div><h3>重新雇佣年龄 69 → 70</h3><p>满 65 岁后，符合条件的员工，雇主须提供重新雇佣，一直到 70 岁。</p></div>
+      <div class="card card--dark key rise" style="--d:.19s"><div class="key__top"><span class="key__no">03</span><svg class="ico" viewBox="0 0 64 64" aria-hidden="true"><use href="#ic-calok"/></svg></div><h3>提前一年到位</h3><p>原定“2030 年前”，现在提前到 2029 年。上一次上调，刚在 2026 年 7 月 1 日。</p></div>
+      <div class="card card--dark key rise" style="--d:.05s"><div class="key__top"><span class="key__no">04</span><svg class="ico" viewBox="0 0 64 64" aria-hidden="true"><use href="#ic-halfclock"/></svg></div><h3>弹性岗位从 50 岁起</h3><p>新设弹性工作量计划（Flexi-Load Programme），资助雇主增设兼职和按比例分配工作量的岗位，适用年龄从 60 岁放宽到 50 岁。</p></div>
+      <div class="card card--dark key rise" style="--d:.12s"><div class="key__top"><span class="key__no">05</span><svg class="ico" viewBox="0 0 64 64" aria-hidden="true"><use href="#ic-office"/></svg></div><h3>雇主补贴接棒</h3><p>2027 年底到期的高龄雇员补贴（SEC），2028 年起由新的重新雇佣补贴（REC）接替。</p></div>
+      <div class="card card--dark key rise" style="--d:.19s"><div class="key__top"><span class="key__no">06</span><svg class="ico" viewBox="0 0 64 64" aria-hidden="true"><use href="#ic-receipt"/></svg></div><h3>税务与低薪支持</h3><p>超过法定年龄还在工作的，劳动所得税务减免会加强；就业入息补助、渐进式薪金补贴也会调整；就业援助金（EAP）金额上调。</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ 常见误会(互动) ══════════ -->
+<section class="scene" id="s-myths" data-title="常见误会" data-tint="#11324F">
+  <div class="inner">
+    <p class="eyebrow rise">Quick check</p>
+    <h2 class="h-sec rise" style="--d:.06s">这些说法，对不对？</h2>
+    <div class="rule rise" style="--d:.1s"></div>
+    <p class="lede rise" style="--d:.12s">“退休年龄”四个字最容易被误会。先自己想一想，再点开卡片看答案。</p>
+    <div class="quiz rise" id="quiz" style="--d:.16s;margin-top:26px">
+      <button type="button" class="qcard" aria-expanded="false">
+        <svg class="ico" viewBox="0 0 64 64" aria-hidden="true"><use href="#ic-stairs"/></svg><span class="qcard__q">2029 年起，我要到 65 岁才可以退休</span>
+        <span class="qcard__hint">点开看答案 +</span>
+        <span class="qcard__a"><span class="pill k-ember">不对</span><br>法定退休年龄管的是雇主：雇主不能因为你的年龄，在 65 岁前要求你退休。你自己想 55 岁、60 岁就停下，随时可以。</span>
+      </button>
+      <button type="button" class="qcard" aria-expanded="false">
+        <svg class="ico" viewBox="0 0 64 64" aria-hidden="true"><use href="#ic-piggy"/></svg><span class="qcard__q">退休年龄提高了，CPF 也要晚几年才能领</span>
+        <span class="qcard__hint">点开看答案 +</span>
+        <span class="qcard__a"><span class="pill k-ember">不对</span><br>CPF 是另一套规则。55 岁起可提取超出退休存款的部分，CPF LIFE 65 岁起开始领，这次都<b>没有改变</b>。2029 年起，退休年龄正好和 CPF LIFE 的领取年龄对齐在 65 岁。</span>
+      </button>
+      <button type="button" class="qcard" aria-expanded="false">
+        <svg class="ico" viewBox="0 0 64 64" aria-hidden="true"><use href="#ic-briefcase"/></svg><span class="qcard__q">到了 65 岁，公司就可以叫我走</span>
+        <span class="qcard__hint">点开看答案 +</span>
+        <span class="qcard__a"><span class="pill k-gold">不完全对</span><br>满 65 岁后，符合条件的员工，雇主要提供重新雇佣到 70 岁；实在没有合适岗位，要一次性支付就业援助金（EAP）。</span>
+      </button>
+      <button type="button" class="qcard" aria-expanded="false">
+        <svg class="ico" viewBox="0 0 64 64" aria-hidden="true"><use href="#ic-renew"/></svg><span class="qcard__q">重新雇佣，就是原岗位、原薪水</span>
+        <span class="qcard__hint">点开看答案 +</span>
+        <span class="qcard__a"><span class="pill k-gold">不一定</span><br>重新雇佣是一份新合同，工作内容和薪酬可以调整，但要基于工作职责、表现等合理因素，不能只因为年龄降薪。</span>
+      </button>
+      <button type="button" class="qcard" aria-expanded="false">
+        <svg class="ico" viewBox="0 0 64 64" aria-hidden="true"><use href="#ic-passport"/></svg><span class="qcard__q">我持 EP 工作，也受这条法律保护</span>
+        <span class="qcard__hint">点开看答案 +</span>
+        <span class="qcard__a"><span class="pill k-ember">不对</span><br>《退休与重新雇佣法》的保障只适用于<b>新加坡公民和 PR</b>。持 EP、S Pass 的外籍员工，能工作到几岁，主要看雇主和准证续签。</span>
+      </button>
+      <button type="button" class="qcard" aria-expanded="false">
+        <svg class="ico" viewBox="0 0 64 64" aria-hidden="true"><use href="#ic-coins"/></svg><span class="qcard__q">SRS 的提取年龄，也会跟着变</span>
+        <span class="qcard__hint">点开看答案 +</span>
+        <span class="qcard__a"><span class="pill k-sky">对新存的人会</span><br>SRS 的法定提取年龄，按<b>第一次存钱</b>时的法定退休年龄锁定，之后不变。已经存过的不受影响；2029 年起才第一次存的，预计要到 65 岁。</span>
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ 章节 01 ══════════ -->
+<section class="scene chapter" id="s-c1" data-title="第一章 · 新规" data-tint="#0C2439">
+  <div class="scene__art">
+    <div class="chapter__no" data-depth="-0.2">01</div>
+    <div class="chapter__art" data-depth="-0.3"><svg viewBox="0 0 340 340" style="width:100%;height:auto;color:rgba(244,238,225,.4)"><use href="#ill-cal"/></svg></div>
+  </div>
+  <div class="inner narrow">
+    <p class="eyebrow rise">What exactly changes</p>
+    <h2 class="rise" style="--d:.08s">新规：<br>到底改了<br>什么</h2>
+    <div class="rule rise" style="--d:.14s"></div>
+    <p class="lede rise" style="--d:.18s">两条保护线、六项配套、一张时间表。最后，用出生年份算一算你自己适用几岁。</p>
+  </div>
+</section>
+
+<!-- ══════════ 两条保护线(互动) ══════════ -->
+<section class="scene" id="s-zones" data-title="两条保护线" data-tint="#10314E">
+  <div class="inner">
+    <p class="eyebrow rise">Two lines of protection</p>
+    <h2 class="h-sec rise" style="--d:.06s">两条保护线，各往后挪一年</h2>
+    <div class="rule rise" style="--d:.1s"></div>
+    <p class="lede rise" style="--d:.12s">退休年龄和重新雇佣年龄，是《退休与重新雇佣法》给员工划的两条线。点按钮，看 2022、2026、2029 三个阶段怎么变。</p>
+    <div class="chartbox chartbox--dark rise" style="--d:.16s;margin-top:24px;padding:clamp(20px,3vw,34px)">
+      <div class="pills" id="zNav" role="group" aria-label="切换阶段">
+        <button type="button" data-k="2022">2022.7 起 · 63 / 68</button>
+        <button type="button" data-k="2026">现行 2026.7 起 · 64 / 69</button>
+        <button type="button" data-k="2029" class="on">2029.1 起 · 65 / 70</button>
+      </div>
+      <div class="zone" aria-live="polite">
+        <div class="ztrack">
+          <div class="zseg zseg--ret" id="zRet"></div>
+          <div class="zseg zseg--re" id="zRe"></div>
+          <div class="zflag zflag--top" id="zFlagR"><small>法定退休年龄</small><b id="zR">65</b><i></i></div>
+          <div class="zflag zflag--bot" id="zFlagE"><i></i><b id="zE">70</b><small>重新雇佣年龄</small></div>
+        </div>
+        <div class="zaxis" id="zAxis"></div>
+      </div>
+      <div class="grid g3" style="margin-top:6px">
+        <div class="zleg"><span class="zleg__sw" style="background:linear-gradient(90deg,rgba(214,169,76,.25),var(--gold))"></span><h3 id="zL1h">未满 65 岁</h3><p>雇主<b style="color:var(--paper)">不能以年龄为由</b>要求你退休。因为表现或公司裁员离开，是另外的规则。</p></div>
+        <div class="zleg"><span class="zleg__sw" style="background:var(--sky)"></span><h3 id="zL2h">65 至 70 岁</h3><p>雇主可以让你按退休年龄退休，但对符合条件的员工，<b style="color:var(--paper)">必须提供重新雇佣</b>；做不到，要付就业援助金。</p></div>
+        <div class="zleg"><span class="zleg__sw" style="background:rgba(244,238,225,.12);border:1px dashed rgba(244,238,225,.4)"></span><h3 id="zL3h">70 岁以后</h3><p>法律不再要求雇主续聘。还想继续做，由你和雇主自行协商。</p></div>
+      </div>
+      <p class="src" id="zNote" style="margin-top:18px"></p>
+    </div>
+    <div class="grid g2" style="margin-top:22px">
+      <div class="card rise">
+        <div class="hd"><svg class="ico ico--sm" viewBox="0 0 64 64" aria-hidden="true"><use href="#ic-person"/></svg><h3>谁能获得重新雇佣</h3></div>
+        <ul>
+          <li>新加坡公民或 PR</li>
+          <li>在现雇主处服务满规定年限</li>
+          <li>工作表现令人满意（由雇主评估）</li>
+          <li>身体状况适合继续工作</li>
+        </ul>
+      </div>
+      <div class="card rise" style="--d:.08s">
+        <div class="hd"><svg class="ico ico--sm" viewBox="0 0 64 64" aria-hidden="true"><use href="#ic-coins"/></svg><h3>雇主做不到怎么办</h3></div>
+        <p style="margin-top:8px">在员工同意下，可以把重新雇佣转给另一家雇主。实在没有合适岗位，要一次性支付<b>就业援助金（EAP）</b>，约相当于 3.5 个月工资，设有最低和最高金额。这个金额 2022 年修订过，这次会按工资增长再上调。</p>
+      </div>
+    </div>
+    <div class="takeaway rise"><b>一句话记住：</b>退休年龄管的是雇主最早什么时候可以因为年龄让你走，不是你必须工作到几岁。</div>
+  </div>
+</section>
+
+<!-- ══════════ 六项建议(互动筛选) ══════════ -->
+<section class="scene" id="s-recs" data-title="六项建议" data-tint="#0E2B45">
+  <div class="inner">
+    <p class="eyebrow rise">Six recommendations · three directions</p>
+    <h2 class="h-sec rise" style="--d:.06s">六项建议，三个方向</h2>
+    <div class="rule rise" style="--d:.1s"></div>
+    <p class="lede rise" style="--d:.12s">工作组由人力部、职总（NTUC）和全国雇主联合会（SNEF）共同主持。退休年龄只是其中一项，另外几项是让“想做的人做得下去”的配套。</p>
+    <div class="pills rise" id="recNav" role="group" aria-label="按方向筛选" style="--d:.14s;margin-top:22px">
+      <button type="button" data-f="all" class="on">全部</button>
+      <button type="button" data-f="a">减少过早离场</button>
+      <button type="button" data-f="b">超龄继续工作</button>
+      <button type="button" data-f="c">低薪年长者</button>
+    </div>
+    <div class="grid g2 rise" id="recList" style="--d:.18s;margin-top:22px">
+      <div class="chg" data-t="a"><span class="pill k-gold" style="align-self:flex-start">减少过早离场</span><div class="hd"><svg class="ico ico--sm" viewBox="0 0 64 64" aria-hidden="true"><use href="#ic-stairs"/></svg><h3>退休 65、重新雇佣 70</h3></div><p>2029 年 1 月 1 日生效，比 2019 年定下的时间表早一年。</p></div>
+      <div class="chg" data-t="a"><span class="pill k-gold" style="align-self:flex-start">减少过早离场</span><div class="hd"><svg class="ico ico--sm" viewBox="0 0 64 64" aria-hidden="true"><use href="#ic-halfclock"/></svg><h3>弹性工作量计划（FLP）</h3></div><p>资助雇主<b style="color:var(--paper)">新增</b>兼职和按比例分配工作量的岗位，帮忙分担重新设计岗位、系统和制度的成本。适用年龄从 60 岁以上放宽到 50 岁以上；2027 年底接替到期的兼职重新雇佣津贴（PTRG）。另设专门的项目办公室，也帮离开职场的年长者回来。</p></div>
+      <div class="chg" data-t="a"><span class="pill k-gold" style="align-self:flex-start">减少过早离场</span><div class="hd"><svg class="ico ico--sm" viewBox="0 0 64 64" aria-hidden="true"><use href="#ic-coins"/></svg><h3>上调就业援助金（EAP）</h3></div><p>雇主无法提供重新雇佣时一次性支付。最低和最高金额自 2022 年以来首次上调，反映这几年的工资增长。</p></div>
+      <div class="chg" data-t="b"><span class="pill k-sky" style="align-self:flex-start">超龄继续工作</span><div class="hd"><svg class="ico ico--sm" viewBox="0 0 64 64" aria-hidden="true"><use href="#ic-office"/></svg><h3>重新雇佣补贴（REC）</h3></div><p>2028 年起接替 2027 年底到期的高龄雇员补贴（SEC），继续给留用年长员工的雇主工资补贴。</p></div>
+      <div class="chg" data-t="b"><span class="pill k-sky" style="align-self:flex-start">超龄继续工作</span><div class="hd"><svg class="ico ico--sm" viewBox="0 0 64 64" aria-hidden="true"><use href="#ic-receipt"/></svg><h3>加强劳动所得税务减免</h3></div><p>超过法定退休、重新雇佣年龄还在工作的年长者，税负再减轻。现行减免：55–59 岁 6,000 新元，60 岁以上 8,000 新元；加强后的金额待公布。</p></div>
+      <div class="chg" data-t="c"><span class="pill" style="align-self:flex-start">低薪年长者</span><div class="hd"><svg class="ico ico--sm" viewBox="0 0 64 64" aria-hidden="true"><use href="#ic-trend"/></svg><h3>Workfare 与渐进式薪金补贴</h3></div><p>加强就业入息补助（Workfare Income Supplement），更新渐进式薪金补贴（Progressive Wage Credit Scheme），让低薪年长员工的收入跟得上。</p></div>
+    </div>
+    <p class="src rise">按工作组报告的三个方向整理。各项金额、资格和启动时间，以 2027 年上半年公布的实施细节为准。</p>
+  </div>
+</section>
+
+<!-- ══════════ 时间表(互动) ══════════ -->
+<section class="scene" id="s-road" data-title="时间表" data-tint="#11324F">
+  <div class="inner">
+    <p class="eyebrow rise">Roadmap 2026 – 2029</p>
+    <h2 class="h-sec rise" style="--d:.06s">从现在到 2029，按时间排一排</h2>
+    <div class="rule rise" style="--d:.1s"></div>
+    <p class="lede rise" style="--d:.12s">点一点每个节点。年龄变化、CPF 调整、补贴交接，有几件事在新年龄生效前就会先来。</p>
+    <div class="chartbox chartbox--dark rise" data-live style="--d:.16s;margin-top:22px" id="roadBox">
+      <div class="scroller scroller--wide"><svg id="ch-road" viewBox="0 0 900 230" role="img" aria-label="2026 年 7 月退休年龄 64、重新雇佣 69 生效；2026 年 10 月公布新建议；2027 年 1 月年长员工 CPF 供款率上调；2027 年上半年公布实施细节；2027 年底 SEC 与 PTRG 到期；2028 年 REC 与 FLP 接棒；2029 年 1 月退休 65、重新雇佣 70 生效"></svg></div>
+      <div class="pills" id="roadNav" style="margin-top:18px"></div>
+      <div class="note" id="roadNote"></div>
+    </div>
+    <div class="takeaway rise"><span><b>金色 = 年龄生效，蓝色 = CPF 与补贴，米白 = 公布消息。</b></span></div>
+  </div>
+</section>
+
+<!-- ══════════ 我适用几岁(互动) ══════════ -->
+<section class="scene" id="s-mine" data-title="我适用几岁" data-tint="#0C2439">
+  <div class="inner">
+    <p class="eyebrow rise">Try it yourself</p>
+    <h2 class="h-sec rise" style="--d:.06s">按出生年份，查查你适用几岁</h2>
+    <div class="rule rise" style="--d:.1s"></div>
+    <p class="lede rise" style="--d:.12s">新年龄只适用于生效那天还没到旧年龄的人。拖动滑块，看你的法定退休年龄、重新雇佣年龄，和 CPF 的几个关键节点。</p>
+    <div class="chartbox chartbox--dark rise" style="--d:.16s;margin-top:24px;padding:clamp(20px,3vw,34px)">
+      <div class="mine">
+        <div>
+          <div class="ctrl">
+            <div class="ctrl__top"><label for="by">出生年份</label><span class="ctrl__v"><span id="byV">1975</span> 年</span></div>
+            <input id="by" type="range" min="1958" max="2000" step="1" value="1975">
+            <div class="fscale"><span>1958</span><span>2000</span></div>
+          </div>
+          <div class="ctrl">
+            <div class="ctrl__top"><span>出生在</span></div>
+            <div class="pills" id="bh" role="group" aria-label="出生在上半年还是下半年" style="margin-top:10px">
+              <button type="button" data-h="0" class="on">1 – 6 月</button>
+              <button type="button" data-h="1">7 – 12 月</button>
+            </div>
+          </div>
+          <div class="status" id="mStatus" aria-live="polite"></div>
+        </div>
+        <div aria-live="polite">
+          <div class="duo">
+            <div><div class="duo__n" style="color:var(--gold)"><span id="mR">65</span><small>岁</small></div><div class="duo__l">法定退休年龄<span id="mRtag"></span></div></div>
+            <div><div class="duo__n" style="color:var(--sky)"><span id="mE">70</span><small>岁</small></div><div class="duo__l">重新雇佣年龄<span id="mEtag"></span></div></div>
+          </div>
+          <div class="life" id="life" aria-hidden="true"></div>
+          <div class="rrows" id="mRows"></div>
+        </div>
+      </div>
+      <p class="src" id="mNote" style="margin-top:20px">2029 年适用人群为按以往调整惯例推算（新年龄适用于生效日当天尚未达到旧年龄的员工），标“推算”的以官方 2027 年上半年公布的细节为准。平均寿命为 2025 年满 65 岁居民的预期，个人差异很大。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ 章节 02 ══════════ -->
+<section class="scene chapter" id="s-c2" data-title="第二章 · 回顾" data-tint="#0B2135">
+  <div class="scene__art">
+    <div class="chapter__no" data-depth="-0.2">02</div>
+    <div class="chapter__art" data-depth="-0.3"><svg viewBox="0 0 340 340" style="width:100%;height:auto;color:rgba(244,238,225,.4)"><use href="#ill-road"/></svg></div>
+  </div>
+  <div class="inner narrow">
+    <p class="eyebrow rise">From 55 to 65</p>
+    <h2 class="rise" style="--d:.08s">回顾：<br>从 55 到 65，<br>走了三十多年</h2>
+    <div class="rule rise" style="--d:.14s"></div>
+    <p class="lede rise" style="--d:.18s">从没有法定退休年龄、55 岁就退的惯例，到 65 岁的法定线，新加坡每一步都只走一两岁，每一步都提前好几年打招呼。</p>
+  </div>
+</section>
+
+<!-- ══════════ 历史阶梯图(互动) ══════════ -->
+<section class="scene" id="s-history" data-title="变化史" data-tint="#10314E">
+  <div class="inner">
+    <p class="eyebrow rise">1993 → 2029</p>
+    <h2 class="h-sec rise" style="--d:.06s">一级一级往上走的两条线</h2>
+    <div class="rule rise" style="--d:.1s"></div>
+    <p class="lede rise" style="--d:.12s">金线是法定退休年龄，蓝线是重新雇佣年龄。点图上的圆点或下面的年份，看每一步发生了什么。</p>
+    <div class="chartbox chartbox--dark rise" data-live style="--d:.16s;margin-top:22px" id="histBox">
+      <div class="legend"><span><i style="background:var(--gold)"></i>法定退休年龄</span><span><i style="background:var(--sky)"></i>重新雇佣年龄</span><span><i style="background:repeating-linear-gradient(90deg,var(--mist) 0 4px,transparent 4px 8px)"></i>惯例，非法定</span></div>
+      <div class="scroller scroller--wide"><svg id="ch-hist" viewBox="0 0 900 380" role="img" aria-label="新加坡法定退休年龄：1993 年以前没有法定年龄，惯例 55 岁；1993 年 60 岁，1999 年 62 岁，2022 年 63 岁，2026 年 64 岁，2029 年 65 岁。重新雇佣年龄：2012 年 65 岁，2017 年 67 岁，2022 年 68 岁，2026 年 69 岁，2029 年 70 岁。"></svg></div>
+      <div class="pills" id="histNav" style="margin-top:16px"></div>
+      <div class="note" id="histNote"></div>
+    </div>
+    <div class="takeaway rise"><b>新加坡的节奏：</b>不一步到位，每次只提高一两岁，提前几年宣布；先用“重新雇佣”给弹性，再让退休年龄慢慢跟上。2029 年这一步，是 2019 年路线图的最后一级。</div>
+  </div>
+</section>
+
+<!-- ══════════ 为什么一再往后推 ══════════ -->
+<section class="scene" id="s-why" data-title="为什么" data-tint="#0E2B45">
+  <div class="inner">
+    <p class="eyebrow rise">Why keep raising it</p>
+    <h2 class="h-sec rise" style="--d:.06s">为什么一再往后推</h2>
+    <div class="rule rise" style="--d:.1s"></div>
+    <p class="lede rise" style="--d:.12s">背后是三件同时在发生的事：人活得更久，劳动力更紧，也有越来越多人想继续工作。</p>
+    <div class="grid g4" data-live style="margin-top:22px">
+      <div class="stat rise"><svg class="ico" viewBox="0 0 64 64" aria-hidden="true"><use href="#ic-heart"/></svg><div class="stat__n"><span data-count="83.9" data-dec="1">0</span><small>岁</small></div><div class="stat__l">出生时预期寿命</div><div class="stat__d">2025 年新加坡居民（初步数字），高于 2019 年疫情前的 83.7 岁</div></div>
+      <div class="stat rise" style="--d:.08s"><svg class="ico" viewBox="0 0 64 64" aria-hidden="true"><use href="#ic-hourglass"/></svg><div class="stat__n"><span data-count="86.6" data-dec="1">0</span><small>岁</small></div><div class="stat__l">65 岁的人，平均活到</div><div class="stat__d">男性 84.9 岁、女性 88.1 岁。65 岁之后，平均还有二十多年</div></div>
+      <div class="stat rise" style="--d:.16s"><svg class="ico" viewBox="0 0 64 64" aria-hidden="true"><use href="#ic-briefcase"/></svg><div class="stat__n"><span data-count="18.9" data-dec="1">0</span><small>%</small></div><div class="stat__l">劳动队伍里 60 岁以上的占比</div><div class="stat__d">2014 年 12.3%，十年后 18.9%</div></div>
+      <div class="stat rise" style="--d:.24s"><svg class="ico" viewBox="0 0 64 64" aria-hidden="true"><use href="#ic-family"/></svg><div class="stat__n">1<small>/ 4</small></div><div class="stat__l">2030 年 65 岁以上的公民</div><div class="stat__d">大约每 4 名公民里就有 1 位</div></div>
+    </div>
+    <div class="grid g3" style="margin-top:22px">
+      <div class="card card--dark rise"><div class="hd"><svg class="ico ico--sm" viewBox="0 0 64 64" aria-hidden="true"><use href="#ic-piggy"/></svg><h3 style="color:var(--gold)">钱要撑得更久</h3></div><p style="margin-top:8px">如果 60 岁停工、活到 87 岁，要靠积蓄过 27 年。多工作几年，既多存，也少花。</p></div>
+      <div class="card card--dark rise" style="--d:.08s"><div class="hd"><svg class="ico ico--sm" viewBox="0 0 64 64" aria-hidden="true"><use href="#ic-office"/></svg><h3 style="color:var(--gold)">经验需要留下来</h3></div><p style="margin-top:8px">人口老化，年轻劳动力增长放缓，过早让有经验的人离开，对企业和整个经济都是损失。</p></div>
+      <div class="card card--dark rise" style="--d:.16s"><div class="hd"><svg class="ico ico--sm" viewBox="0 0 64 64" aria-hidden="true"><use href="#ic-scales"/></svg><h3 style="color:var(--gold)">给想做的人选择</h3></div><p style="margin-top:8px">工作组的说法是“choice to work, choice of work”：想继续工作的，有机会做；想换个方式做的，有弹性岗位。</p></div>
+    </div>
+
+    <div class="card rise" style="margin-top:28px">
+      <div class="hd"><svg class="ico ico--sm" viewBox="0 0 64 64" aria-hidden="true"><use href="#ic-search"/></svg><h3>和中国的“延迟退休”，不是一回事</h3></div>
+      <p style="margin-top:8px">很多新移民朋友会把两者联想在一起。同样叫“退休年龄”，含义差得很远：</p>
+      <table class="vs" style="margin-top:12px">
+        <thead><tr><th></th><th>新加坡</th><th>中国（2025 年起渐进式延迟退休）</th></tr></thead>
+        <tbody>
+          <tr><th>退休年龄是什么</th><td data-h="新加坡">雇主不能更早因年龄让你退休的<b>保护线</b></td><td data-h="中国">办理退休、开始领基本养老金的年龄</td></tr>
+          <tr><th>想早点停</th><td data-h="新加坡">自己决定，随时可以</td><td data-h="中国">可自愿弹性提前，最多 3 年，且不早于原退休年龄</td></tr>
+          <tr><th>养老金从哪来</th><td data-h="新加坡">CPF 个人账户；CPF LIFE <b>65 岁</b>起领，和退休年龄分开规定</td><td data-h="中国">退休时开始领基本养老金</td></tr>
+          <tr><th>调整幅度</th><td data-h="新加坡">2022 至 2029 年，62 → 65 岁</td><td data-h="中国">15 年内，男 60 → 63 岁，女 50 → 55 岁 / 55 → 58 岁</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ 章节 03 ══════════ -->
+<section class="scene chapter" id="s-c3" data-title="第三章 · 应对" data-tint="#0B2135">
+  <div class="scene__art">
+    <div class="chapter__no" data-depth="-0.2">03</div>
+    <div class="chapter__art" data-depth="-0.3"><svg viewBox="0 0 340 340" style="width:100%;height:auto;color:rgba(244,238,225,.4)"><use href="#ill-compass"/></svg></div>
+  </div>
+  <div class="inner narrow">
+    <p class="eyebrow rise">How to respond</p>
+    <h2 class="rise" style="--d:.08s">应对：<br>多出来的几年，<br>怎么用</h2>
+    <div class="rule rise" style="--d:.14s"></div>
+    <p class="lede rise" style="--d:.18s">法定年龄变了，真正要重新算的，是你自己的四条时间线：收入、储蓄、健康、技能。</p>
+  </div>
+</section>
+
+<!-- ══════════ 三个观念 ══════════ -->
+<section class="scene" id="s-mind" data-title="三个观念" data-tint="#10314E">
+  <div class="inner">
+    <p class="eyebrow rise">Mindset first</p>
+    <h2 class="h-sec rise" style="--d:.06s">先换三个观念</h2>
+    <div class="rule rise" style="--d:.1s"></div>
+    <div class="grid g3">
+      <div class="card card--dark key rise" style="--d:.05s"><div class="key__top"><span class="key__no">01</span><svg class="ico" viewBox="0 0 64 64" aria-hidden="true"><use href="#ic-shield"/></svg></div><h3>65 岁是保护线，不是终点线</h3><p>这是你可以要求继续工作的权利，不是必须工作到的义务。规划时把“能做到几岁”和“想做到几岁”分开算，并给“不能做”留一个后备方案。</p></div>
+      <div class="card card--dark key rise" style="--d:.12s"><div class="key__top"><span class="key__no">02</span><svg class="ico" viewBox="0 0 64 64" aria-hidden="true"><use href="#ic-trend"/></svg></div><h3>收入会下台阶</h3><p>重新雇佣不一定原岗原薪，弹性岗位的工资按工作量算。不要把 60 岁以后的收入，按巅峰期的水平来估。</p></div>
+      <div class="card card--dark key rise" style="--d:.19s"><div class="key__top"><span class="key__no">03</span><svg class="ico" viewBox="0 0 64 64" aria-hidden="true"><use href="#ic-heart"/></svg></div><h3>健康才是真正的本钱</h3><p>能不能多做五年，最后看身体。法律给了你工作到 70 岁的机会，身体决定你用不用得上。</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ 三重效应测算(互动) ══════════ -->
+<section class="scene" id="s-calc" data-title="多做几年" data-tint="#0E2B45">
+  <div class="inner">
+    <p class="eyebrow rise">Try it yourself</p>
+    <h2 class="h-sec rise" style="--d:.06s">多工作几年，差别有多大？</h2>
+    <div class="rule rise" style="--d:.1s"></div>
+    <p class="lede rise" style="--d:.12s">晚几年停工，会同时带来三个效果：多存、少花、多领。拖动滑块，和“60 岁就停下”比一比。</p>
+    <div class="chartbox chartbox--dark rise" style="--d:.16s;margin-top:24px;padding:clamp(20px,3vw,34px)">
+      <div class="calc">
+        <div>
+          <div class="ctrl">
+            <div class="ctrl__top"><label for="cSal">55 岁以后的月薪</label><span class="ctrl__v">S$<span id="cSalV">6,000</span></span></div>
+            <input id="cSal" type="range" min="2000" max="12000" step="500" value="6000">
+            <div class="fscale"><span>2,000</span><span>12,000</span></div>
+          </div>
+          <div class="ctrl">
+            <div class="ctrl__top"><label for="cAge">打算工作到</label><span class="ctrl__v"><span id="cAgeV">65</span> 岁</span></div>
+            <input id="cAge" type="range" min="60" max="70" step="1" value="65">
+            <div class="fscale"><span>60</span><span>65</span><span>70</span></div>
+          </div>
+          <p style="color:#C3D3E0;font-size:.92rem;margin-top:22px" id="cSum"></p>
+        </div>
+        <div aria-live="polite">
+          <div class="cmp">
+            <div class="cmp__h"><svg class="ico ico--xs" viewBox="0 0 64 64" aria-hidden="true"><use href="#ic-piggy"/></svg>多存：55 岁起存进 CPF 的钱</div>
+            <div class="cmp__big" id="o1"></div>
+            <div class="cmp__row"><span>60 岁停</span><span class="cmp__bar"><i class="cmp__fill" id="b1a" style="background:var(--mist)"></i></span><b id="v1a"></b></div>
+            <div class="cmp__row"><span id="l1b">65 岁停</span><span class="cmp__bar"><i class="cmp__fill" id="b1b" style="background:var(--gold)"></i></span><b id="v1b"></b></div>
+          </div>
+          <div class="cmp">
+            <div class="cmp__h"><svg class="ico ico--xs" viewBox="0 0 64 64" aria-hidden="true"><use href="#ic-hourglass"/></svg>少花：要靠积蓄过的年数（算到 90 岁）</div>
+            <div class="cmp__big" id="o2"></div>
+            <div class="cmp__row"><span>60 岁停</span><span class="cmp__bar"><i class="cmp__fill" id="b2a" style="background:var(--mist)"></i></span><b id="v2a"></b></div>
+            <div class="cmp__row"><span id="l2b">65 岁停</span><span class="cmp__bar"><i class="cmp__fill" id="b2b" style="background:var(--sky)"></i></span><b id="v2b"></b></div>
+          </div>
+          <div class="cmp">
+            <div class="cmp__h"><svg class="ico ico--xs" viewBox="0 0 64 64" aria-hidden="true"><use href="#ic-calok"/></svg>多领：CPF LIFE 延后领取的月领增幅</div>
+            <div class="cmp__big" id="o3"></div>
+            <div class="cmp__row"><span>60 岁停</span><span class="cmp__bar"><i class="cmp__fill" id="b3a" style="background:var(--mist)"></i></span><b id="v3a"></b></div>
+            <div class="cmp__row"><span id="l3b">65 岁停</span><span class="cmp__bar"><i class="cmp__fill" id="b3b" style="background:var(--gold)"></i></span><b id="v3b"></b></div>
+          </div>
+        </div>
+      </div>
+      <p class="src" style="margin-top:20px">示意测算：按 2027 年起的 CPF 供款率（55–60 岁 35.5%、60–65 岁 26%、65–70 岁 16.5%），月薪按普通工资上限 8,000 新元封顶，工资不变，不计花红和利息；要靠积蓄过的年数算到 90 岁；CPF LIFE 每延后一年最多约多领 7%，最晚 70 岁开始领，假设还在工作时才延后。实际以 CPF 局计算为准。</p>
+    </div>
+    <div class="takeaway rise"><b>三件事叠在一起：</b>多做 5 年，不只是多 5 年收入；要靠积蓄撑的年数少了 5 年，CPF LIFE 还可以选择晚一点、多一点领。所以“做到几岁”往往是退休规划里影响最大的一个变量。</div>
+  </div>
+</section>
+
+<!-- ══════════ CPF 与 SRS(互动) ══════════ -->
+<section class="scene" id="s-cpf" data-title="CPF 与 SRS" data-tint="#11324F">
+  <div class="inner">
+    <p class="eyebrow rise">CPF &amp; SRS</p>
+    <h2 class="h-sec rise" style="--d:.06s">CPF 与 SRS：要盯紧的几个数字</h2>
+    <div class="rule rise" style="--d:.1s"></div>
+    <p class="lede rise" style="--d:.12s">退休年龄往后挪的同时，年长员工的 CPF 供款率也在一步步往上调；SRS 的提取年龄，则看你第一笔钱是哪天存的。</p>
+    <div class="grid g2" style="margin-top:24px;align-items:start">
+      <div class="chartbox rise" data-live style="--d:.14s">
+        <p class="chart-title">年长员工 CPF 总供款率 · 雇主 + 雇员</p>
+        <div class="rbars" id="rbars"></div>
+        <p style="font-size:.82rem;color:var(--slate);margin-top:14px">红色虚线是 55 岁以下的 37%。55–65 岁的费率正在逐年向它靠拢，65 岁以上这几年没变；新增部分先存入退休户头（RA），存满全额退休存款后转入普通户头（OA）。</p>
+      </div>
+      <div class="chartbox chartbox--dark rise" style="--d:.2s">
+        <p class="chart-title">SRS 提取年龄 · 看第一笔钱存在哪天</p>
+        <div class="pills" id="srsNav" role="group" aria-label="第一次存入 SRS 的时间"></div>
+        <div aria-live="polite" style="margin-top:18px">
+          <div class="srs-age" id="srsAge">64<small>岁</small></div>
+          <p style="color:#C3D3E0;margin-top:10px" id="srsTxt"></p>
+        </div>
+        <p class="src">到了法定提取年龄再提，只有 50% 计税、不罚 5%，余额可分 10 年提完。开户本身不锁定年龄，要真正存入一笔。</p>
+      </div>
+    </div>
+    <div class="grid g4" data-live style="margin-top:22px">
+      <div class="stat rise"><svg class="ico" viewBox="0 0 64 64" aria-hidden="true"><use href="#ic-target"/></svg><div class="stat__n"><span data-count="228200">0</span></div><div class="stat__l">2027 年满 55 岁的全额退休存款（FRS）</div><div class="stat__d">基本 114,100、全额 228,200、提高 456,400 新元</div></div>
+      <div class="stat rise" style="--d:.08s"><svg class="ico" viewBox="0 0 64 64" aria-hidden="true"><use href="#ic-calok"/></svg><div class="stat__n">65<small>岁</small></div><div class="stat__l">CPF LIFE 开始领取</div><div class="stat__d">这次没变；可延后到 70 岁，每延后一年最多约多领 7%</div></div>
+      <div class="stat rise" style="--d:.16s"><svg class="ico" viewBox="0 0 64 64" aria-hidden="true"><use href="#ic-coins"/></svg><div class="stat__n"><span data-count="8000">0</span></div><div class="stat__l">普通工资上限（新元 / 月）</div><div class="stat__d">2026 年起，超过的部分不缴 CPF</div></div>
+      <div class="stat rise" style="--d:.24s"><svg class="ico" viewBox="0 0 64 64" aria-hidden="true"><use href="#ic-receipt"/></svg><div class="stat__n"><span data-count="8000">0</span></div><div class="stat__l">60 岁以上劳动所得减免（新元）</div><div class="stat__d">现行金额；对超龄工作者的加强版待公布</div></div>
+    </div>
+    <div class="takeaway rise"><b>SRS 小提醒：</b>如果打算用 SRS 省税但还没存过，在 <b>2028 年 12 月 31 日前</b>先存第一笔，按现行规则可以把提取年龄锁定在 64 岁（预计）；等到 2029 年才开始，就可能要等到 65 岁。</div>
+  </div>
+</section>
+
+<!-- ══════════ 按人生阶段(互动) ══════════ -->
+<section class="scene" id="s-stage" data-title="按人生阶段" data-tint="#0C2439">
+  <div class="inner">
+    <p class="eyebrow rise">By life stage</p>
+    <h2 class="h-sec rise" style="--d:.06s">你现在，该先做哪几件事？</h2>
+    <div class="rule rise" style="--d:.1s"></div>
+    <p class="lede rise" style="--d:.12s">选一个最像你的情况。</p>
+    <div class="chartbox chartbox--dark rise" style="--d:.16s;margin-top:22px">
+      <div class="pills" id="stageNav" role="group" aria-label="选择人生阶段"></div>
+      <div class="note" id="stageNote" aria-live="polite"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ 保障也要跟着延长 ══════════ -->
+<section class="scene" id="s-protect" data-title="保障" data-tint="#10314E">
+  <div class="inner">
+    <p class="eyebrow rise">Protection timeline</p>
+    <h2 class="h-sec rise" style="--d:.06s">工作时间拉长，保障也要跟着拉长</h2>
+    <div class="rule rise" style="--d:.1s"></div>
+    <p class="lede rise" style="--d:.12s">多工作几年的前提，是这几年身体和收入都不出大问题。下面六件事，可以对照自己家的保单看一看。</p>
+    <div class="grid g3" style="margin-top:24px">
+      <div class="card rise"><div class="hd"><svg class="ico ico--sm" viewBox="0 0 64 64" aria-hidden="true"><use href="#ic-office"/></svg><h3>团体保险跟着工作走</h3></div><p style="margin-top:8px">公司的团体医疗、寿险，通常随雇佣关系结束或合同改变而调整。转重新雇佣、转兼职或离职前，先确认个人保障能接得上。</p></div>
+      <div class="card rise" style="--d:.08s"><div class="hd"><svg class="ico ico--sm" viewBox="0 0 64 64" aria-hidden="true"><use href="#ic-medical"/></svg><h3>住院保障趁早配齐</h3></div><p style="margin-top:8px">健保双全（Integrated Shield）保证续保，但保费随年龄上升；带着病史投保会有除外。年纪越大，核保越严。</p></div>
+      <div class="card rise" style="--d:.16s"><div class="hd"><svg class="ico ico--sm" viewBox="0 0 64 64" aria-hidden="true"><use href="#ic-heart"/></svg><h3>重疾与收入保障看工作年限</h3></div><p style="margin-top:8px">打算做到 65、70 岁，收入中断的风险也跟着拉长。重疾、失能收入保障的保障期，可以考虑和你计划的工作年限对齐。</p></div>
+      <div class="card rise"><div class="hd"><svg class="ico ico--sm" viewBox="0 0 64 64" aria-hidden="true"><use href="#ic-umbrella"/></svg><h3>寿险覆盖到责任结束</h3></div><p style="margin-top:8px">房贷、孩子的教育费，可能一直延续到 60 多岁。定期寿险的保障期跟着家庭责任走，而不是跟着退休年龄走。</p></div>
+      <div class="card rise" style="--d:.08s"><div class="hd"><svg class="ico ico--sm" viewBox="0 0 64 64" aria-hidden="true"><use href="#ic-shield"/></svg><h3>长期护理别漏掉</h3></div><p style="margin-top:8px">1980 年及以后出生的公民和 PR 自动纳入终身护理保障计划（CareShield Life），更早出生的可以申请加入。赔付是基本保障，够不够用，值得算一算。</p></div>
+      <div class="card rise" style="--d:.16s"><div class="hd"><svg class="ico ico--sm" viewBox="0 0 64 64" aria-hidden="true"><use href="#ic-family"/></svg><h3>全家一起看</h3></div><p style="margin-top:8px">夹心层上有父母、下有孩子。父母也可能工作得更久，他们的医疗、护理安排，会直接影响你的现金流。</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ 资料来源 ══════════ -->
+<section class="scene" id="s-src" data-title="资料来源" data-tint="#0C2439" style="padding-top:clamp(56px,9vh,96px);padding-bottom:clamp(40px,6vh,64px)">
+  <div class="inner">
+    <p class="eyebrow rise">Sources</p>
+    <h2 class="h-sec rise" style="--d:.06s;font-size:clamp(1.4rem,3.2vw,2rem)">资料来源</h2>
+    <div class="rule rise" style="--d:.1s"></div>
+    <ol class="srclist rise" style="--d:.12s">
+      <li><a href="https://www.mom.gov.sg/-/media/mom/documents/press-releases/2026/annex---twg-se-report.pdf" target="_blank" rel="noopener">人力部：Report by the Tripartite Workgroup on Senior Employment（PDF）</a></li>
+      <li><a href="https://www.ntuc.org.sg/uportal/news/senior-employment-recommendations-twg-se" target="_blank" rel="noopener">职总 NTUC：Choice to work, choice of work: What the new senior employment recommendations mean for you</a></li>
+      <li><a href="https://www.thestar.com.my/aseanplus/aseanplus-news/2026/10/26/singapore-to-raise-retirement-age-to-65-re-employment-age-to-70-in-2029-expand-flexi-work-for-seniors" target="_blank" rel="noopener">The Straits Times / ANN：Singapore to raise retirement age to 65, re-employment age to 70 in 2029</a></li>
+      <li><a href="https://english.news.cn/asiapacific/20261026/74d7f3cfa7644554bb62df965672c2a0/c.html" target="_blank" rel="noopener">新华社：Singapore plans to bring forward retirement age increases to 2029</a></li>
+      <li><a href="https://www.mom.gov.sg/employment-practices/re-employment" target="_blank" rel="noopener">人力部：Re-employment（资格与就业援助金）</a></li>
+      <li><a href="https://www.allenandgledhill.com/sg/publication/articles/32838/retirement-and-re-employment-ages-to-be-raised-to-64-and-69-from-1-july-2026" target="_blank" rel="noopener">Allen &amp; Gledhill：Retirement and re-employment ages to be raised to 64 and 69 from 1 July 2026</a></li>
+      <li><a href="https://www.mom.gov.sg/newsroom/press-releases/2019/0819-tripartite-workgroup-on-older-workers-releases-its-recommendations" target="_blank" rel="noopener">人力部 2019：Tripartite Workgroup on Older Workers releases its recommendations</a></li>
+      <li><a href="https://endowus.com/insights/what-is-singapore-retirement-age" target="_blank" rel="noopener">Endowus：What Singapore’s retirement age is, and how it applies to you（历史沿革）</a></li>
+      <li><a href="https://www.cpf.gov.sg/service/article/what-are-the-changes-to-the-cpf-contribution-rates-for-senior-workers-that-will-take-effect-from-1-january-2027" target="_blank" rel="noopener">CPF 局：2027 年 1 月 1 日起年长员工供款率调整</a>；<a href="https://www.cpf.gov.sg/service/article/what-are-the-changes-to-the-cpf-contribution-rates-for-senior-workers-from-1-january-2026" target="_blank" rel="noopener">2026 年调整</a></li>
+      <li><a href="https://www.singstat.gov.sg/news/complete-life-tables-for-singapore-resident-population-2024-2025" target="_blank" rel="noopener">新加坡统计局：Complete Life Tables for Singapore Resident Population, 2024–2025</a></li>
+      <li><a href="https://stats.mom.gov.sg/iMAS_Tables1/LabourForce/LabourForce_2024/mrsd_2024Labourforce_survey_findings.pdf" target="_blank" rel="noopener">人力部：Labour Force in Singapore 2024</a></li>
+      <li><a href="https://www.iras.gov.sg/taxes/individual-income-tax/employees/deductions-for-individuals/special-tax-schemes/tax-on-srs-withdrawal" target="_blank" rel="noopener">IRAS：Tax on SRS withdrawal</a></li>
+    </ol>
+  </div>
+</section>
+
+<!-- ══════════ 联系 ══════════ -->
+<section class="scene" id="s-contact" data-title="预约面谈" data-tint="#0D2A42">
+  <div class="scene__art"><div style="position:absolute;right:-6%;top:8%;width:min(52vw,520px);opacity:.22" data-depth="-0.34">
+    <svg viewBox="0 0 620 360" style="width:100%;height:auto;color:var(--gold)"><use href="#ill-stairs"/></svg></div></div>
+  <div class="inner">
+    <p class="eyebrow rise">Contact</p>
+    <h2 class="h-sec rise" style="--d:.06s">想算算你自己的那条时间线？</h2>
+    <div class="rule rise" style="--d:.1s"></div>
+    <p class="lede rise" style="--d:.12s">做到几岁、CPF LIFE 几岁开始领、SRS 怎么存、保障要覆盖到哪一年，每个家庭的答案都不一样。可以预约我一对一，把收入、CPF、SRS 和保单放在同一张时间表上看。</p>
+    <div class="card card--dark contact rise" style="--d:.18s;margin-top:30px">
+      <img class="avatar" src="/avatar-round.png" alt="袁媛 Yuan Yuan">
+      <div>
+        <h3 style="font-size:1.5rem">袁媛 Yuan Yuan · 新加坡小圆姐</h3>
+        <p style="color:var(--gold);margin-top:4px">AIA 财富管理顾问 · MDRT 百万圆桌会员</p>
+        <p style="color:var(--mist);font-size:.82rem;letter-spacing:.04em">AIA Singapore 代表 · RNF No. YY-300823216</p>
+        <div class="contact__lines">
+          <span>WhatsApp · <a href="https://wa.me/6583750190?text=%E4%BD%A0%E5%A5%BD%E5%B0%8F%E5%9C%86%E5%A7%90%EF%BC%8C%E6%88%91%E7%9C%8B%E4%BA%86%E7%BD%91%E7%AB%99%E7%9A%84%E9%80%80%E4%BC%91%E5%B9%B4%E9%BE%8465%E5%B2%81%E6%B7%B1%E5%BA%A6%E8%A7%A3%E8%AF%BB%EF%BC%8C%E6%83%B3%E8%81%8A%E8%81%8A%E6%88%91%E8%87%AA%E5%B7%B1%E7%9A%84%E9%80%80%E4%BC%91%E8%A7%84%E5%88%92%E3%80%82" target="_blank" rel="noopener noreferrer">+65 8375 0190</a></span>
+          <span>微信 · singaporeyuan</span>
+          <span>邮箱 · <a href="mailto:yuanyuan@aia.com.sg">yuanyuan@aia.com.sg</a></span>
+          <span>小红书 / 视频号 · @新加坡小圆姐</span>
+        </div>
+      </div>
+      <div>
+        <img class="qr" src="/wechat-qr.png" alt="微信二维码">
+        <p class="qr-cap">扫码加我微信</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="inner">
+    <span>新加坡小圆姐 ｜ 退休年龄 65 岁深度解读 · 2026 年 10 月</span>
+    <span>本页依据人力部、三方工作组报告、CPF 局、统计局等公开资料整理，仅供一般参考，不构成法律、税务、投资或保险建议。2029 年新年龄的适用人群为按以往惯例推算，各项细节以官方 2027 年上半年公布为准。<br>袁媛 Yuan Yuan · AIA Singapore 代表 · RNF No. YY-300823216</span>
+  </div>
+</footer>
+
+<script>
+(function(){
+"use strict";
+const NS="http://www.w3.org/2000/svg";
+const RM = matchMedia("(prefers-reduced-motion: reduce)").matches;
+const el=(t,a)=>{const e=document.createElementNS(NS,t);for(const k in a)e.setAttribute(k,a[k]);return e;};
+const tx=(x,y,s,cls,a)=>{const e=el("text",Object.assign({x,y,class:cls},a||{}));e.textContent=s;return e;};
+const money=n=>n.toLocaleString("en-US");
+const $=id=>document.getElementById(id);
+
+/* ───── 距生效天数(新加坡时间 2029-01-01 00:00),须在 count-up 之前写好 ───── */
+(function(){
+  const days=Math.ceil((Date.UTC(2028,11,31,16,0,0)-Date.now())/86400000);
+  const box=$("cdBox");
+  if(days>0){ $("cdNum").dataset.count=days; }
+  else{ box.innerHTML='<svg class="ico" viewBox="0 0 64 64" aria-hidden="true"><use href="#ic-calok"/></svg><div class="stat__n">已生效</div><div class="stat__l">2029 年 1 月 1 日起</div><div class="stat__d">退休 65 · 重新雇佣 70</div>'; }
+})();
+
+/* ───── layer 0/1: parallax + field tint ───── */
+const layers=[...document.querySelectorAll("[data-depth]")];
+const scenes=[...document.querySelectorAll(".scene[data-tint]")];
+const field=$("field");
+const waves=$("fieldWaves");
+const bar=$("progress");
+const brandbar=$("brandbar");
+let ticking=false;
+
+function frame(){
+  ticking=false;
+  const vh=innerHeight, y=scrollY;
+  bar.style.width=(y/Math.max(1,document.documentElement.scrollHeight-vh)*100)+"%";
+  brandbar.classList.toggle("on", y>vh*0.7);
+  if(RM) return;
+  waves.style.transform="translate3d(0,"+(y*-0.05).toFixed(1)+"px,0)";
+  for(const l of layers){
+    const host=l.closest(".scene")||l.parentElement;
+    const r=host.getBoundingClientRect();
+    const c=(r.top+r.height/2-vh/2)/vh;
+    l.style.setProperty("--py",(c*parseFloat(l.dataset.depth)*110).toFixed(1)+"px");
+  }
+}
+addEventListener("scroll",()=>{if(!ticking){ticking=true;requestAnimationFrame(frame);}},{passive:true});
+addEventListener("resize",frame);
+
+/* 章节导航点 + 背景色随章节变化 */
+const dots=$("dots");
+scenes.forEach(s=>{
+  const a=document.createElement("a");
+  a.href="#"+s.id; a.dataset.t=s.dataset.title||""; a.setAttribute("aria-label",s.dataset.title||s.id);
+  dots.appendChild(a); s._dot=a;
+});
+const tintObs=new IntersectionObserver(es=>{
+  let best=null;
+  es.forEach(e=>{ if(e.isIntersecting && (!best || e.intersectionRatio>best.intersectionRatio)) best=e; });
+  if(best){
+    field.style.setProperty("--field", best.target.dataset.tint);
+    scenes.forEach(s=>s._dot.classList.toggle("on", s===best.target));
+  }
+},{threshold:[0.35,0.55,0.75]});
+scenes.forEach(s=>tintObs.observe(s));
+
+/* ───── layer 2: reveal + count-up ───── */
+const riseObs=new IntersectionObserver(es=>{
+  es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add("in"); riseObs.unobserve(e.target);} });
+},{rootMargin:"0px 0px -8% 0px",threshold:.15});
+document.querySelectorAll(".rise").forEach(n=>riseObs.observe(n));
+
+function countUp(node){
+  const to=parseFloat(node.dataset.count), dur=parseInt(node.dataset.dur||"1500",10), dec=parseInt(node.dataset.dec||"0",10);
+  const show=v=>{ node.textContent = dec ? v.toFixed(dec) : money(Math.round(v)); };
+  if(RM){show(to);return;}
+  const t0=performance.now();
+  (function step(t){
+    const p=Math.min(1,(t-t0)/dur), e=1-Math.pow(1-p,3);
+    show(to*e);
+    if(p<1)requestAnimationFrame(step);
+  })(t0);
+}
+const liveObs=new IntersectionObserver(es=>{
+  es.forEach(e=>{
+    if(!e.isIntersecting)return;
+    e.target.classList.add("is-live");
+    e.target.querySelectorAll("[data-count]").forEach(countUp);
+    liveObs.unobserve(e.target);
+  });
+},{threshold:.28});
+
+function armPaths(root){
+  root.querySelectorAll(".draw").forEach(p=>{
+    p.style.setProperty("--len",p.getTotalLength().toFixed(1));
+  });
+}
+
+/* 节点轮播图(时间表、变化史共用):点按钮或圆点切换,进入视野后自动轮播,用户一点就停 */
+function stepper(o){
+  const nav=$(o.nav), note=$(o.note);
+  let cur=-1,timer=null;
+  function go(i,user){
+    cur=i; const s=o.steps[i];
+    o.onGo(i);
+    [...nav.children].forEach((b,k)=>{
+      b.classList.toggle("on",k===i);
+      b.setAttribute("aria-pressed",k===i);
+      b.classList.toggle("t-sky",o.steps[k].tone==="sky");
+      b.classList.toggle("t-plain",o.steps[k].tone==="plain");
+    });
+    note.className="note"+(s.tone==="sky"?" blue":s.tone==="plain"?" plain":"");
+    const c=s.tone==="sky"?"var(--sky)":s.tone==="plain"?"var(--paper)":"var(--gold)";
+    note.innerHTML='<div class="note__row"><span class="ico-ring"><svg class="ico" viewBox="0 0 64 64" style="color:'+c+'" aria-hidden="true"><use href="#'+s.ic+'"/></svg></span><div>'
+      +"<b>"+s.label+"</b><span>"+s.note+"</span></div></div>";
+    if(user&&timer){clearInterval(timer);timer=null;}
+  }
+  o.steps.forEach((s,i)=>{
+    const b=document.createElement("button");
+    b.type="button"; b.textContent=s.short;
+    b.addEventListener("click",()=>go(i,true));
+    nav.appendChild(b);
+  });
+  go(o.start||0,false);
+  const startObs=new IntersectionObserver(es=>{
+    es.forEach(e=>{
+      if(!e.isIntersecting)return;
+      startObs.unobserve(e.target);
+      if(RM)return;
+      setTimeout(()=>{ if(cur!==(o.start||0))return; timer=setInterval(()=>go((cur+1)%o.steps.length,false),3800); },2600);
+    });
+  },{threshold:.4});
+  startObs.observe($(o.box));
+  return go;
+}
+const TONE={gold:"#D6A94C",sky:"#8DB9E2",plain:"#F4EEE1"};
+
+/* ───── 1. 判断题卡片 ───── */
+$("quiz").addEventListener("click",e=>{
+  const b=e.target.closest(".qcard"); if(!b)return;
+  b.setAttribute("aria-expanded", b.classList.toggle("on"));
+});
+
+/* ───── 2. 两条保护线 ───── */
+(function(){
+  const A0=50,A1=75,pct=a=>((a-A0)/(A1-A0)*100);
+  const S={
+    "2022":{r:63,e:68,note:"2022 年 7 月 1 日至 2026 年 6 月 30 日适用。2019 年路线图的第一步。"},
+    "2026":{r:64,e:69,note:"2026 年 7 月 1 日起的现行规定：64 岁适用于 1963 年 7 月 1 日及以后出生的员工，69 岁适用于 1958 年 7 月 1 日及以后出生的员工。"},
+    "2029":{r:65,e:70,note:"2029 年 1 月 1 日起。按以往惯例推算，65 岁适用于生效时未满 64 岁的员工，70 岁适用于生效时未满 69 岁的员工，具体以官方公布为准。"}
+  };
+  const axis=$("zAxis");
+  for(let a=A0;a<=A1;a+=5){ const s=document.createElement("span"); s.style.left=pct(a)+"%"; s.textContent=a+" 岁"; axis.appendChild(s); }
+  const nav=$("zNav");
+  function show(k){
+    const d=S[k];
+    [...nav.children].forEach(b=>{ const on=b.dataset.k===k; b.classList.toggle("on",on); b.setAttribute("aria-pressed",on); });
+    $("zRet").style.width=pct(d.r)+"%";
+    $("zRe").style.left=pct(d.r)+"%";
+    $("zRe").style.width=(pct(d.e)-pct(d.r))+"%";
+    $("zFlagR").style.left=pct(d.r)+"%";
+    $("zFlagE").style.left=pct(d.e)+"%";
+    $("zR").textContent=d.r; $("zE").textContent=d.e;
+    $("zL1h").textContent="未满 "+d.r+" 岁";
+    $("zL2h").textContent=d.r+" 至 "+d.e+" 岁";
+    $("zL3h").textContent=d.e+" 岁以后";
+    $("zNote").textContent=d.note;
+  }
+  nav.addEventListener("click",e=>{ const b=e.target.closest("button"); if(b)show(b.dataset.k); });
+  show("2029");
+})();
+
+/* ───── 3. 六项建议筛选 ───── */
+(function(){
+  const nav=$("recNav"), list=$("recList");
+  nav.addEventListener("click",e=>{
+    const b=e.target.closest("button"); if(!b)return;
+    const f=b.dataset.f;
+    [...nav.children].forEach(c=>{ const on=c===b; c.classList.toggle("on",on); c.setAttribute("aria-pressed",on); });
+    [...list.children].forEach(c=>c.classList.toggle("out", f!=="all" && c.dataset.t!==f));
+  });
+})();
+
+/* ───── 4. 时间表 2026–2029 ───── */
+(function(){
+  const svg=$("ch-road");
+  const W=900,H=230,L=60,R=60,Y=96;
+  const steps=[
+    {tone:"gold",ic:"ic-stairs",short:"2026.7",label:"2026 年 7 月 1 日 · 退休 64、重新雇佣 69 生效",note:"这是现行规定，也是 2019 年路线图的第二步。"},
+    {tone:"plain",ic:"ic-docx",short:"2026.10",label:"2026 年 10 月 26 日 · 三方工作组公布六项建议",note:"政府全部接受，宣布 65 / 70 提前到 2029 年 1 月 1 日。"},
+    {tone:"sky",ic:"ic-piggy",short:"2027.1",label:"2027 年 1 月 1 日 · 年长员工 CPF 供款率再上调",note:"55–60 岁总供款率 34% → 35.5%，60–65 岁 25% → 26%。雇主有一年的 CPF 过渡补贴（CPF Transition Offset），补贴雇主增幅的一半。"},
+    {tone:"plain",ic:"ic-search",short:"2027 上半年",label:"2027 年上半年 · 公布实施细节",note:"弹性工作量计划、重新雇佣补贴、税务减免、就业援助金新金额等，具体怎么做会在这时公布。"},
+    {tone:"sky",ic:"ic-hourglass",short:"2027 年底",label:"2027 年 12 月 · 两项现行补贴到期",note:"高龄雇员补贴（SEC）和兼职重新雇佣津贴（PTRG）都延长到 2027 年底。"},
+    {tone:"sky",ic:"ic-office",short:"2028",label:"2028 年 · 新补贴接棒",note:"重新雇佣补贴（REC）接替 SEC；弹性工作量计划（FLP）接替 PTRG，适用年龄放宽到 50 岁以上。"},
+    {tone:"gold",ic:"ic-flag",short:"2029.1.1",label:"2029 年 1 月 1 日 · 退休 65、重新雇佣 70 生效",note:"比原定的“2030 年前”早一年，也是这一轮路线图的最后一级。"}
+  ];
+  const x=i=>L+i/(steps.length-1)*(W-L-R);
+  const yOf=i=>Y+(i%2?18:-18);
+  const d=steps.map((s,i)=>(i?"L":"M")+x(i)+" "+yOf(i)).join(" ");
+  svg.appendChild(el("path",{class:"draw",d:d,stroke:"#BACBDA","stroke-width":3,style:"--d:.15s"}));
+  const dotsArr=[];
+  let go=null;
+  steps.forEach((s,i)=>{
+    const c=el("circle",{class:"fade",cx:x(i),cy:yOf(i),r:8,fill:TONE[s.tone],stroke:"#0B1E31","stroke-width":2.5,style:"--d:"+(1.2+i*0.1)+"s;cursor:pointer;transition:r .3s"});
+    c.addEventListener("click",()=>go(i,true));
+    svg.appendChild(c); dotsArr.push(c);
+    svg.appendChild(tx(x(i),i%2?yOf(i)+42:yOf(i)-26,s.short,"lab fade",{"text-anchor":"middle",style:"--d:"+(1.3+i*0.1)+"s"}));
+    svg.appendChild(tx(x(i),H-14,"0"+(i+1),"tick fade",{"text-anchor":"middle",style:"--d:"+(1.3+i*0.1)+"s"}));
+  });
+  const cursor=el("g",{class:"fade",style:"--d:1.9s;transition:transform .7s cubic-bezier(.3,.8,.3,1)"});
+  cursor.appendChild(el("circle",{r:16,fill:"none","stroke-width":2,opacity:".9"}));
+  cursor.appendChild(el("circle",{r:24,fill:"none","stroke-width":1,opacity:".35"}));
+  svg.appendChild(cursor);
+  armPaths(svg);
+  go=stepper({steps,nav:"roadNav",note:"roadNote",box:"roadBox",onGo:i=>{
+    cursor.setAttribute("transform","translate("+x(i)+","+yOf(i)+")");
+    cursor.querySelectorAll("circle").forEach(c=>c.setAttribute("stroke",steps[i].tone==="plain"?"#D6A94C":TONE[steps[i].tone]));
+    dotsArr.forEach((c,k)=>c.setAttribute("r",k===i?11:8));
+  }});
+})();
+
+/* ───── 5. 按出生年份查适用年龄 ───── */
+(function(){
+  const by=$("by"), bh=$("bh");
+  let half=0;
+  /* 生效日当天还没到旧年龄的人,才适用新年龄:以半年为单位比较出生时间(h=0 上半年,1 下半年) */
+  function retAge(y,h){ const b=y*2+h;
+    if(b>=1965*2) return {a:65,est:true};
+    if(b>=1963*2+1) return {a:64};
+    if(b>=1960*2+1) return {a:63};
+    return {a:62}; }
+  function reAge(y,h){ const b=y*2+h;
+    if(b>=1960*2) return {a:70,est:true};
+    if(b>=1958*2+1) return {a:69};
+    if(b>=1955*2+1) return {a:68};
+    return {a:67}; }
+  const L0=50,L1=90,lp=a=>((Math.min(L1,Math.max(L0,a))-L0)/(L1-L0)*100);
+  const LIFE=86.6;
+  const life=$("life");
+  const seg=(c)=>{const s=document.createElement("span");s.className="life__seg";s.style.background=c;life.appendChild(s);return s;};
+  const sRet=seg("linear-gradient(90deg,rgba(214,169,76,.2),var(--gold))");
+  const sRe=seg("repeating-linear-gradient(135deg,rgba(141,185,226,.9) 0 5px,rgba(141,185,226,.6) 5px 10px)");
+  const sAfter=seg("rgba(244,238,225,.14)");
+  const mk=(c)=>{const m=document.createElement("span");m.className="life__mk";m.style.background=c;life.appendChild(m);return m;};
+  const lab=(cls,c)=>{const l=document.createElement("span");l.className="life__lab "+cls;l.style.color=c;life.appendChild(l);return l;};
+  const m55=mk("var(--mist)"), mR=mk("var(--gold)"), m65=mk("var(--paper)"), mE=mk("var(--sky)"), mL=mk("rgba(244,238,225,.5)");
+  const l55=lab("top","var(--mist)"), l65=lab("top","var(--paper)"), lL=lab("top","var(--mist)"), lR=lab("bot l","var(--gold)"), lE=lab("bot r","var(--sky)");
+  const place=(n,a)=>{n.style.left=lp(a)+"%";};
+  const when=(y,h,a)=>(y+a)+" 年"+(h?"下半年":"上半年");
+
+  function draw(){
+    const y=+by.value, h=half;
+    $("byV").textContent=y;
+    const R=retAge(y,h), E=reAge(y,h);
+    $("mR").textContent=R.a; $("mE").textContent=E.a;
+    $("mRtag").innerHTML=R.est?'<span class="tag-est">推算</span>':"";
+    $("mEtag").innerHTML=E.est?'<span class="tag-est">推算</span>':"";
+
+    sRet.style.left="0%"; sRet.style.width=lp(R.a)+"%";
+    sRe.style.left=lp(R.a)+"%"; sRe.style.width=(lp(E.a)-lp(R.a))+"%";
+    sAfter.style.left=lp(E.a)+"%"; sAfter.style.width=(lp(LIFE)-lp(E.a))+"%";
+    place(m55,55); place(mR,R.a); place(m65,65); place(mE,E.a); place(mL,LIFE);
+    place(l55,55); place(l65,65); place(lL,LIFE); place(lR,R.a); place(lE,E.a);
+    l55.textContent="55"; lL.textContent="86.6";
+    l65.textContent="65"; l65.hidden = R.a===65; m65.hidden = R.a===65;
+    lR.textContent=R.a; lE.textContent=E.a;
+
+    const row=(c,t)=>'<div><i style="background:'+c+'"></i><span>'+t+'</span></div>';
+    const rows=[
+      row("var(--mist)","<b>55 岁</b> · "+when(y,h,55)+"：CPF 设立退休户头，超出退休存款的部分可以提取"),
+      R.a===65
+        ? row("var(--gold)","<b>65 岁</b> · "+when(y,h,65)+"：法定退休年龄，也是 CPF LIFE 开始领取的年龄（可延后到 70 岁）")
+        : row("var(--gold)","<b>"+R.a+" 岁</b> · "+when(y,h,R.a)+"：法定退休年龄")+row("var(--paper)","<b>65 岁</b> · "+when(y,h,65)+"：CPF LIFE 开始领取（可延后到 70 岁）"),
+      row("var(--sky)","<b>"+E.a+" 岁</b> · "+when(y,h,E.a)+"：重新雇佣年龄，雇主续聘义务到此为止"),
+      row("rgba(244,238,225,.5)","<b>86.6 岁</b>：2025 年满 65 岁的居民平均活到的年龄；规划时建议至少算到 90 岁")
+    ];
+    $("mRows").innerHTML=rows.join("");
+
+    /* 现在大概处在哪个阶段(按今天的日期、出生半年的中点估算) */
+    const now=new Date();
+    const age=now.getFullYear()+now.getMonth()/12-(y+(h?0.75:0.25));
+    let st;
+    if(age<R.a){
+      const left=Math.max(0,Math.round(R.a-age));
+      st="你现在约 "+Math.floor(age)+" 岁，距离法定退休年龄还有约 "+left+" 年。";
+    }else if(age<E.a){
+      st="你现在约 "+Math.floor(age)+" 岁，已过法定退休年龄；符合条件的话，雇主应提供重新雇佣到 "+E.a+" 岁。";
+    }else{
+      st="你现在约 "+Math.floor(age)+" 岁，已超过重新雇佣年龄，继续工作由你和雇主协商。";
+    }
+    const b=y*2+h;
+    if(b===1964*2+1) st+=" 你在 2028 年下半年满 64 岁，早于新规生效日，按现行规则适用 64 岁；如有过渡安排，以官方公布为准。";
+    else if(b===1965*2) st+=" 你在 2029 年上半年满 64 岁，刚好赶上新规，退休年龄预计为 65 岁。";
+    else if(b===1959*2+1) st+=" 你在 2028 年下半年满 69 岁，早于新规生效日，重新雇佣按现行的 69 岁。";
+    else if(b===1960*2) st+=" 你在 2029 年上半年满 69 岁，刚好赶上新规，重新雇佣预计可到 70 岁。";
+    $("mStatus").textContent=st;
+  }
+  by.addEventListener("input",draw);
+  bh.addEventListener("click",e=>{
+    const b=e.target.closest("button"); if(!b)return;
+    half=+b.dataset.h;
+    [...bh.children].forEach(c=>{ const on=c===b; c.classList.toggle("on",on); c.setAttribute("aria-pressed",on); });
+    draw();
+  });
+  draw();
+})();
+
+/* ───── 6. 变化史阶梯图 ───── */
+(function(){
+  const svg=$("ch-hist");
+  const W=900,H=380,L=58,R=30,T=26,B=48;
+  const X0=1985,X1=2031,A0=52,A1=72;
+  const xs=y=>L+(y-X0)/(X1-X0)*(W-L-R);
+  const ys=a=>T+(A1-a)/(A1-A0)*(H-T-B);
+  const TODAY=2026+10/12;
+  /* 网格与坐标 */
+  [55,60,65,70].forEach(a=>{
+    svg.appendChild(el("line",{class:"gridl",x1:L,x2:W-R,y1:ys(a),y2:ys(a)}));
+    svg.appendChild(tx(L-10,ys(a)+4,a+" 岁","tick",{"text-anchor":"end"}));
+  });
+  for(let y=1990;y<=2030;y+=5) svg.appendChild(tx(xs(y),H-18,String(y),"tick",{"text-anchor":"middle"}));
+  /* 已公布、待生效的区域 */
+  svg.appendChild(el("rect",{x:xs(TODAY),y:T,width:W-R-xs(TODAY),height:H-T-B,fill:"rgba(214,169,76,.07)"}));
+  svg.appendChild(el("line",{x1:xs(TODAY),x2:xs(TODAY),y1:T,y2:H-B,stroke:"#D6A94C","stroke-width":1.5,"stroke-dasharray":"4 5",opacity:".7"}));
+  svg.appendChild(tx(xs(TODAY)-6,T+16,"今天","tick",{"text-anchor":"end",fill:"#D6A94C"}));
+  /* 1993 年以前:惯例 55 岁 */
+  svg.appendChild(el("path",{class:"fade",d:"M"+xs(X0)+" "+ys(55)+" H"+xs(1993.5),fill:"none",stroke:"#93A9BE","stroke-width":3,"stroke-linecap":"round","stroke-dasharray":"2 8",style:"--d:.1s"}));
+  svg.appendChild(tx(xs(1985.6),ys(55)-12,"惯例 55 岁 · 没有法定退休年龄","tick fade",{style:"--d:1s"}));
+  /* 两条阶梯线 */
+  const ret="M"+xs(1993.5)+" "+ys(60)+" H"+xs(1999)+" V"+ys(62)+" H"+xs(2022.5)+" V"+ys(63)+" H"+xs(2026.5)+" V"+ys(64)+" H"+xs(2029)+" V"+ys(65)+" H"+xs(X1);
+  const re ="M"+xs(2012)+" "+ys(65)+" H"+xs(2017.5)+" V"+ys(67)+" H"+xs(2022.5)+" V"+ys(68)+" H"+xs(2026.5)+" V"+ys(69)+" H"+xs(2029)+" V"+ys(70)+" H"+xs(X1);
+  svg.appendChild(el("path",{class:"draw",d:ret,stroke:"#D6A94C","stroke-width":3.5,style:"--d:.3s"}));
+  svg.appendChild(el("path",{class:"draw",d:re,stroke:"#8DB9E2","stroke-width":3.5,style:"--d:.9s"}));
+  svg.appendChild(tx(xs(2029.4),ys(65)-10,"65","lab fade",{fill:"#D6A94C",style:"--d:2.4s"}));
+  svg.appendChild(tx(xs(2029.4),ys(70)-10,"70","lab fade",{fill:"#8DB9E2",style:"--d:2.6s"}));
+
+  const steps=[
+    {y:1993.5,a:60,tone:"gold",ic:"ic-docx",short:"1993 · 60 岁",label:"1993 年 · 第一次立法：最低退休年龄 60 岁",note:"《退休年龄法》1993 年 7 月 1 日实施。在此之前，新加坡没有法定退休年龄，很多人跟着 CPF 的 55 岁提取年龄退休。立法之前，政府先和职总、雇主联合会商量过，这种三方协商的做法一直沿用到今天。"},
+    {y:1999,a:62,tone:"gold",ic:"ic-stairs",short:"1999 · 62 岁",label:"1999 年 · 提高到 62 岁",note:"1999 年 1 月 1 日起，法定退休年龄提高到 62 岁。这个年龄一用就是 23 年。"},
+    {y:2012,a:65,tone:"sky",ic:"ic-renew",short:"2012 · 重新雇佣 65",label:"2012 年 · 引入“重新雇佣”，到 65 岁",note:"法令改名为《退休与重新雇佣法》，2012 年 1 月 1 日起，雇主要为年满 62 岁、符合条件的员工提供重新雇佣到 65 岁。没有直接提高退休年龄，而是用更有弹性的续聘合同，让雇主可以调整岗位和薪酬。"},
+    {y:2017.5,a:67,tone:"sky",ic:"ic-swap",short:"2017 · 重新雇佣 67",label:"2017 年 · 重新雇佣年龄提高到 67 岁",note:"2017 年 7 月 1 日起实施。同时允许雇主在员工同意下，把重新雇佣义务转给其他雇主，扩大续聘的机会。"},
+    {y:2019.6,a:62,tone:"plain",ic:"ic-flag",short:"2019 · 定下路线图",label:"2019 年 · 定下“2030 年前 65 / 70”的目标",note:"国庆群众大会上宣布，参考年长员工三方工作组的建议，2030 年前把退休年龄和重新雇佣年龄逐步提高到 65 岁和 70 岁，同时分阶段调高 55 至 70 岁员工的 CPF 供款率。"},
+    {y:2022.5,a:63,tone:"gold",ic:"ic-stairs",short:"2022 · 63 / 68",label:"2022 年 · 路线图第一步：63 岁 / 68 岁",note:"2022 年 7 月 1 日起，退休年龄 62 → 63，重新雇佣年龄 67 → 68。"},
+    {y:2026.5,a:64,tone:"gold",ic:"ic-stairs",short:"2026 · 64 / 69",label:"2026 年 · 第二步：64 岁 / 69 岁",note:"2026 年 7 月 1 日起实施，这是现行规定。原计划还要再走一步，在 2030 年前到 65 / 70。"},
+    {y:2029,a:65,tone:"gold",ic:"ic-calok",short:"2029 · 65 / 70",label:"2029 年 · 最后一步，提前一年到位",note:"2026 年 10 月 26 日宣布，2029 年 1 月 1 日起退休 65 岁、重新雇佣 70 岁。2019 年的目标提前一年完成；退休年龄也和 CPF LIFE 的领取年龄对齐在 65 岁。"}
+  ];
+  const dotsArr=[];
+  let go=null;
+  steps.forEach((s,i)=>{
+    const c=el("circle",{class:"fade",cx:xs(s.y),cy:ys(s.a),r:7,fill:TONE[s.tone],stroke:"#0B1E31","stroke-width":2.5,style:"--d:"+(1.6+i*0.08)+"s;cursor:pointer;transition:r .3s"});
+    c.addEventListener("click",()=>go(i,true));
+    svg.appendChild(c); dotsArr.push(c);
+  });
+  const cursor=el("g",{class:"fade",style:"--d:2.2s;transition:transform .7s cubic-bezier(.3,.8,.3,1)"});
+  cursor.appendChild(el("circle",{r:14,fill:"none","stroke-width":2,opacity:".9"}));
+  cursor.appendChild(el("circle",{r:22,fill:"none","stroke-width":1,opacity:".35"}));
+  svg.appendChild(cursor);
+  armPaths(svg);
+  go=stepper({steps,nav:"histNav",note:"histNote",box:"histBox",onGo:i=>{
+    const s=steps[i];
+    cursor.setAttribute("transform","translate("+xs(s.y)+","+ys(s.a)+")");
+    cursor.querySelectorAll("circle").forEach(c=>c.setAttribute("stroke",s.tone==="plain"?"#D6A94C":TONE[s.tone]));
+    dotsArr.forEach((c,k)=>c.setAttribute("r",k===i?10:7));
+  }});
+})();
+
+/* ───── 7. 多做几年的三重效应 ───── */
+(function(){
+  const sal=$("cSal"), age=$("cAge");
+  const CAP=8000, HORIZON=90;
+  const rate=a=>a<60?0.355:a<65?0.26:0.165;
+  const contrib=(w,stop)=>{ let s=0; for(let a=55;a<stop;a++) s+=12*Math.min(w,CAP)*rate(a); return s; };
+  const lifeUp=stop=>Math.max(0,Math.min(stop,70)-65)*7;
+  const k=n=>"S$"+money(Math.round(n/100)*100);
+  const setBar=(id,v,max)=>{ $(id).style.width=(max?Math.max(2,v/max*100):0)+"%"; };
+  function draw(){
+    const w=+sal.value, stop=+age.value;
+    $("cSalV").textContent=money(w); $("cAgeV").textContent=stop;
+    ["l1b","l2b","l3b"].forEach(id=>$(id).textContent=stop+" 岁停");
+    const c60=contrib(w,60), cX=contrib(w,stop), cMax=contrib(w,70);
+    $("o1").textContent=stop>60?"多存 "+k(cX-c60):"和 60 岁停一样";
+    $("v1a").textContent=k(c60); $("v1b").textContent=k(cX);
+    setBar("b1a",c60,cMax); setBar("b1b",cX,cMax);
+    const y60=HORIZON-60, yX=HORIZON-stop;
+    $("o2").textContent=stop>60?"少撑 "+(y60-yX)+" 年":"要撑 "+y60+" 年";
+    $("v2a").textContent=y60+" 年"; $("v2b").textContent=yX+" 年";
+    setBar("b2a",y60,y60); setBar("b2b",yX,y60);
+    const u=lifeUp(stop);
+    $("o3").textContent=u?"最多约 +"+u+"%":"65 岁照常开始领";
+    $("v3a").textContent="+0%"; $("v3b").textContent="+"+u+"%";
+    setBar("b3a",0,35); setBar("b3b",u,35);
+    const msg = stop>65 ? "做到 "+stop+" 岁的话，可以选择 "+stop+" 岁才开始领 CPF LIFE，每月领得更多。"
+      : stop===65 ? "做到 65 岁，正好接上 CPF LIFE 的领取年龄，中间没有现金空档。"
+      : "在 65 岁前停工，到 CPF LIFE 开始领取之前，会有 "+(65-stop)+" 年要靠其他储蓄过渡。";
+    $("cSum").textContent=(w>CAP?"月薪超过 8,000 新元的部分不缴 CPF，测算按 8,000 新元计。":"")+msg;
+  }
+  sal.addEventListener("input",draw); age.addEventListener("input",draw);
+  draw();
+})();
+
+/* ───── 8. CPF 供款率柱 + SRS 提取年龄 ───── */
+(function(){
+  const G=[
+    {b:"55 – 60 岁",v:[32.5,34,35.5]},
+    {b:"60 – 65 岁",v:[23.5,25,26]},
+    {b:"65 – 70 岁",v:[16.5,16.5,16.5]}
+  ];
+  const Y=["2025","2026","2027"], C=["#93A9BE","#1B4269","#A9812F"], MAX=40;
+  $("rbars").innerHTML=G.map((g,gi)=>'<div class="rgrp"><b>'+g.b+'</b>'+g.v.map((v,i)=>
+    '<div class="rrow"><span>'+Y[i]+'</span><span class="rtrack"><i class="rfill" style="--w:'+(v/MAX*100)+'%;--d:'+(gi*0.12+i*0.08)+'s;background:'+C[i]+'"></i><i class="rref" style="left:'+(37/MAX*100)+'%"></i></span><strong>'+v+'%</strong></div>'
+  ).join("")+'</div>').join("");
+
+  const O=[
+    {k:"2022 年 7 月前",a:62,t:"你的提取年龄已经锁定在 62 岁，这次调整不影响你。"},
+    {k:"2022.7 – 2026.6",a:63,t:"你的提取年龄已经锁定在 63 岁，这次调整不影响你。"},
+    {k:"2026.7 – 2028.12",a:64,t:"按现行规则，这段时间第一次存入的，提取年龄锁定在 64 岁，2029 年的调整不影响你。"},
+    {k:"2029 年起",a:65,est:true,t:"按“跟随第一次存入时的法定退休年龄”的规则，2029 年起第一次存入的，预计要到 65 岁，以官方公布为准。"},
+    {k:"还没存过",a:64,est:true,t:"如果打算用 SRS，可以考虑在 2028 年 12 月 31 日前先存第一笔，把提取年龄锁定在 64 岁（预计）。之后每年存多少，再按省税需要决定。"}
+  ];
+  const nav=$("srsNav");
+  function show(i){
+    const d=O[i];
+    [...nav.children].forEach((b,j)=>{ b.classList.toggle("on",j===i); b.setAttribute("aria-pressed",j===i); });
+    $("srsAge").innerHTML=d.a+'<small>岁</small>'+(d.est?'<span class="tag-est">预计</span>':"");
+    $("srsTxt").textContent=d.t;
+  }
+  O.forEach((d,i)=>{ const b=document.createElement("button"); b.type="button"; b.textContent=d.k; b.addEventListener("click",()=>show(i)); nav.appendChild(b); });
+  show(4);
+})();
+
+/* ───── 9. 按人生阶段 ───── */
+(function(){
+  const Q=[
+    {k:"30 – 39 岁",ic:"ic-sprout",t:"职业生涯可能比父母长 5 到 10 年",li:[
+      "<b>按 40 年来规划职业，</b>中途换赛道、进修都来得及，别把 50 岁当成终点。",
+      "<b>让复利多跑几年：</b>投资期变长，每月固定投入的效果会被放大。",
+      "<b>买房留意 65 岁这条线：</b>贷款年限加上年龄超过 65 岁，银行贷款成数会被调低，这条线没有跟着退休年龄变。",
+      "<b>保障期放长：</b>定期寿险、重疾的保障期，考虑覆盖到 65 岁甚至更久。"
+    ]},
+    {k:"40 – 49 岁",ic:"ic-cap",t:"收入高峰，也是开销最大的十年",li:[
+      "<b>先算两个缺口：</b>55 岁（退休户头）和 65 岁（CPF LIFE）这两个节点，各差多少。",
+      "<b>技能更新：</b>40 岁以上的新加坡公民有额外 4,000 新元的 SkillsFuture 中年职业额度，可以用来转型或进修。",
+      "<b>趁健康配齐保障：</b>50 岁后核保会越来越严，住院、重疾最好在这之前配好。",
+      "<b>SRS：</b>还没存过的话，2028 年底前存第一笔，提取年龄预计锁定在 64 岁。"
+    ]},
+    {k:"50 – 59 岁",ic:"ic-target",t:"把“做到几岁”认真想一遍",li:[
+      "<b>55 岁的选择：</b>基本、全额、提高三档退休存款怎么选，直接决定 65 岁后每月领多少。2027 年满 55 岁的全额退休存款是 228,200 新元。",
+      "<b>到手工资会少一点：</b>55–65 岁的 CPF 供款率还在上调，多出来的部分进了退休户头。",
+      "<b>早点和雇主谈：</b>愿不愿意做到 65、70 岁，能不能转弹性岗位；新的弹性工作量计划从 50 岁起就适用。",
+      "<b>准备收入下台阶：</b>重新雇佣不一定原岗原薪，现金流按保守的情况算。"
+    ]},
+    {k:"60 岁以上",ic:"ic-renew",t:"用好重新雇佣和 CPF LIFE 的弹性",li:[
+      "<b>了解你的重新雇佣：</b>雇主要在你到退休年龄前提出续聘；条件可以调整，但要合理。",
+      "<b>65 岁后还在工作，</b>可以考虑延后领 CPF LIFE，每延后一年最多约多领 7%，最晚 70 岁。",
+      "<b>留意税务减免：</b>超龄工作者的劳动所得减免会加强，细节 2027 年公布。",
+      "<b>医疗衔接：</b>离开团体保险前，确认个人住院险已经接上。"
+    ]},
+    {k:"新移民 · EP / PR",ic:"ic-passport",t:"身份不同，保障差别很大",li:[
+      "<b>持 EP / S Pass：</b>退休与重新雇佣的法定保障只适用于公民和 PR，能工作到几岁，要看雇主和准证续签。",
+      "<b>EP 不缴 CPF，</b>退休储备只能靠自己搭：SRS、投资、储蓄型保险都是常见的工具；外国人的 SRS 也有自己的提取规则。",
+      "<b>拿到 PR 后：</b>适用退休与重新雇佣保障；头两年 CPF 是分级费率，第三年起按全额。",
+      "<b>打算回国养老的，</b>两地的养老金、医疗保障怎么衔接，要提前规划。"
+    ]},
+    {k:"我是雇主",ic:"ic-office",t:"2029 年之前，人事制度要跟上",li:[
+      "<b>更新合同与流程：</b>退休、重新雇佣的年龄条款，以及提出续聘的时间点。",
+      "<b>补贴衔接：</b>SEC、PTRG 到 2027 年底；2028 年起改为 REC 和弹性工作量计划（FLP）。",
+      "<b>2027 年 CPF 调整：</b>雇主部分 55–60 岁、60–65 岁各加 0.5 个百分点，有一年的过渡补贴。",
+      "<b>设计弹性岗位：</b>FLP 资助新增的兼职、按比例分配工作量岗位，也可以用来留住 50 岁以上的骨干。"
+    ]}
+  ];
+  const nav=$("stageNav"), note=$("stageNote");
+  function show(i){
+    const d=Q[i];
+    [...nav.children].forEach((b,k)=>{ b.classList.toggle("on",k===i); b.setAttribute("aria-pressed",k===i); });
+    note.innerHTML='<div class="note__row"><span class="ico-ring"><svg class="ico" viewBox="0 0 64 64" aria-hidden="true"><use href="#'+d.ic+'"/></svg></span><div>'
+      +"<b>"+d.t+"</b><ul>"+d.li.map(t=>"<li>"+t+"</li>").join("")+"</ul></div></div>";
+  }
+  Q.forEach((d,i)=>{
+    const b=document.createElement("button");
+    b.type="button";
+    b.innerHTML='<svg class="ico ico--xs" viewBox="0 0 64 64" aria-hidden="true"><use href="#'+d.ic+'"/></svg>'+d.k;
+    b.addEventListener("click",()=>show(i));
+    nav.appendChild(b);
+  });
+  show(1);
+})();
+
+/* 图表里的 data-live 容器在上面各模块挂好 SVG 之后再观察 */
+document.querySelectorAll("[data-live]").forEach(n=>liveObs.observe(n));
+
+frame();
+})();
+</script>
+</body>
+</html>
