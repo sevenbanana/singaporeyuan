@@ -1,615 +1,1031 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="zh-CN">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex">
-<meta name="theme-color" content="#172742">
 <title>家庭保障方案测算 · 住院险 + 意外险 | 新加坡小圆姐</title>
 <style>
 :root{
-  --navy:#172742; --navy-deep:#0F1C31; --navy-soft:#2E4068; --navy-tint:#EEF1F7;
-  --gold:#C7A15A; --gold-deep:#A8874C; --gold-tint:#F5EBD7;
-  --ivory:#F7F8FA; --paper:#FFFDF8; --ink:#172742; --muted:#687386; --line:#E2E6EC;
-  --green:#2F806B; --green-tint:#EAF4F1; --red:#B4433A; --red-tint:#FBEFEE;
+  --paper:#FBF6EA; --card:#FFFDF8;
+  --navy:#13286B; --navy-2:#1C3A8F;
+  --gold:#B8862B; --gold-deep:#9A6B17; --gold-light:#C9973A;
+  --gold-tint:#F5EAD2; --gold-tint-2:#FAF2E1; --blue-tint:#EEF3FB;
+  --green:#1E4D3B; --green-tint:#E7F0EA;
+  --red:#B4433A; --red-tint:#FBEAE6;
+  --line:#EADFC8; --ink:#2B2B2B; --muted:#6B6458;
+  --shadow:0 1px 6px rgba(120,90,30,.06);
+  --font:"Helvetica Neue","Avenir Next",Arial,"Hiragino Sans GB","PingFang SC",sans-serif;
 }
-*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-html{scroll-behavior:smooth}
-body{font-family:-apple-system,"PingFang SC","Hiragino Sans GB","Noto Sans SC","Microsoft YaHei",sans-serif;background:var(--ivory);color:var(--ink);line-height:1.7;font-size:15px;padding-bottom:86px}
-.wrap{max-width:860px;margin:0 auto;padding:0 16px 40px}
-.serif{font-family:"Songti SC","Noto Serif SC",Georgia,serif}
-svg{display:block}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--paper);color:var(--ink);font-family:var(--font);font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased}
+button,input{font-family:inherit}
+[hidden]{display:none!important}
+.num{font-variant-numeric:tabular-nums;letter-spacing:.03em}
+.page{position:relative;max-width:1040px;margin:0 auto;padding:44px 32px 40px;overflow:hidden}
+.deco{position:absolute;top:0;right:0;width:180px;height:130px;pointer-events:none}
+.ic{width:18px;height:18px;color:var(--gold);flex:0 0 auto}
+.ic-md{width:22px;height:22px}.ic-lg{width:30px;height:30px}
+.red{color:var(--red)!important}.green{color:var(--green)!important}
 
-/* header */
-header{background:linear-gradient(135deg,var(--navy) 0%,var(--navy-deep) 100%);color:var(--paper);padding:44px 16px 38px;position:relative;overflow:hidden}
-header::after{content:"";position:absolute;right:-80px;top:-96px;width:320px;height:320px;border-radius:50%;border:1px solid rgba(199,161,90,.3)}
-header::before{content:"";position:absolute;right:40px;top:40px;width:160px;height:160px;border-radius:50%;border:1px solid rgba(199,161,90,.15)}
-.hd-in{max-width:860px;margin:0 auto;position:relative;z-index:1}
-.hd-tag{font-size:12px;font-weight:600;letter-spacing:.3em;text-transform:uppercase;color:var(--gold)}
-h1{margin-top:12px;font-size:clamp(24px,4.2vw,34px);font-weight:900;line-height:1.35}
-h1 em{font-style:normal;color:var(--gold)}
-.hd-sub{margin-top:12px;font-size:14.5px;line-height:1.85;color:rgba(255,253,248,.82);max-width:600px}
-.hd-pills{margin-top:18px;display:flex;flex-wrap:wrap;gap:8px}
-.hd-pill{border-radius:20px;padding:5px 14px;font-size:12px;border:1px solid rgba(199,161,90,.5);color:var(--gold)}
-.hd-pill.solid{background:var(--gold);color:var(--navy);font-weight:600;border-color:var(--gold)}
+/* ---------- 标题 ---------- */
+.hero{position:relative;z-index:1}
+.hero h1{font-size:36px;line-height:1.2;font-weight:800;letter-spacing:-.3px;color:var(--navy)}
+.hero h1 .l2{display:block;color:var(--gold)}
+.meta{margin-top:16px;display:flex;flex-wrap:wrap;gap:8px}
+.meta span{display:inline-flex;align-items:center;gap:6px;background:var(--card);border:1px solid var(--line);border-radius:999px;padding:5px 13px;font-size:13px;color:var(--ink)}
+.meta span.who{background:var(--navy);border-color:var(--navy);color:#fff;font-weight:700}
+.meta .ic{width:15px;height:15px}
 
-/* sections */
-section{margin-top:36px}
-.sec-eyebrow{font-size:12px;letter-spacing:.28em;color:var(--gold-deep);margin-bottom:6px}
-.sec-title{font-size:20px;font-weight:600;color:var(--navy);margin-bottom:4px}
-.sec-sub{font-size:13px;color:var(--muted);margin-bottom:14px;max-width:680px}
+/* ---------- 吸顶切换 ---------- */
+.switch{position:sticky;top:10px;z-index:20;display:flex;justify-content:center;margin:24px 0 0}
+.switch .in{display:inline-flex;align-items:center;gap:3px;background:var(--card);border:1px solid var(--line);border-radius:999px;padding:4px;box-shadow:0 10px 26px -12px rgba(19,40,107,.35)}
+.switch .lb{display:inline-flex;align-items:center;gap:5px;font-size:12.5px;color:var(--muted);padding:0 6px 0 10px;white-space:nowrap}
+.switch .lb .ic{width:15px;height:15px}
+.switch button{border:0;background:transparent;border-radius:999px;padding:7px 13px;font-size:13.5px;font-weight:700;color:var(--navy);cursor:pointer;white-space:nowrap}
+.switch button.on{background:var(--navy);color:#fff}
+.scen-desc{margin:10px auto 0;max-width:640px;text-align:center;font-size:13px;color:var(--muted)}
+.scen-desc b{color:var(--navy)}
 
-/* member card */
-.member{background:#fff;border:1px solid var(--line);border-radius:18px;margin-bottom:18px;overflow:hidden}
-.m-head{display:flex;flex-wrap:wrap;gap:10px;align-items:center;padding:14px 18px;background:linear-gradient(150deg,#F2F4F8,#FBFCFE);border-bottom:1px solid var(--line)}
-.m-head input[type=text]{width:110px;border:1px solid var(--line);border-radius:9px;padding:8px 10px;font-size:14px;font-weight:600;color:var(--navy);font-family:inherit}
-.m-head input[type=number]{width:76px;border:1px solid var(--line);border-radius:9px;padding:8px 10px;font-size:14px;font-family:inherit}
-.m-head select{border:1px solid var(--line);border-radius:9px;padding:8px 10px;font-size:13.5px;font-family:inherit;background:#fff;max-width:200px}
-.m-head label{font-size:12px;color:var(--muted)}
-.m-del{margin-left:auto;border:0;background:none;color:#9AA3B2;font-size:13px;cursor:pointer;padding:6px}
-.m-del:hover{color:var(--red)}
-.m-body{padding:6px 18px 16px}
+/* ---------- 小节标题 ---------- */
+.sub-head{display:flex;align-items:center;gap:10px;margin:40px 0 16px;font-size:19px;font-weight:800;color:var(--navy)}
+.sub-head::after{content:"";flex:1;height:1px;background:var(--gold);opacity:.4}
 
-.prod{border:1px solid var(--line);border-radius:14px;margin-top:12px;overflow:hidden}
-.prod-head{display:flex;align-items:center;gap:10px;padding:12px 15px;background:#F8F9FB;flex-wrap:wrap}
-.prod-head .pname{font-weight:700;color:var(--navy);font-size:14.5px}
-.prod-head .psub{font-size:12px;color:var(--muted)}
-.prod-body{padding:12px 15px;border-top:1px dashed var(--line)}
-.switch{position:relative;width:40px;height:22px;flex-shrink:0;cursor:pointer}
-.switch input{opacity:0;width:0;height:0}
-.switch i{position:absolute;inset:0;background:#D4D9E1;border-radius:20px;transition:.2s}
-.switch i:before{content:"";position:absolute;width:18px;height:18px;border-radius:50%;background:#fff;top:2px;left:2px;transition:.2s;box-shadow:0 1px 3px rgba(0,0,0,.25)}
-.switch input:checked+i{background:var(--gold-deep)}
-.switch input:checked+i:before{left:20px}
+/* ---------- KPI 卡 ---------- */
+.kpis{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.kpis.two{grid-template-columns:minmax(0,1fr) minmax(0,1.15fr)}
+.kpi{border:1px solid var(--line);border-radius:14px;padding:18px 20px;background:var(--card);box-shadow:var(--shadow)}
+.kpi.blue{background:var(--blue-tint);border-color:#D9E2F2}
+.kpi .top{display:flex;gap:14px;align-items:flex-start}
+.badge{flex:0 0 44px;height:44px;border-radius:50%;background:var(--gold-tint);display:grid;place-items:center}
+.kpi .label{font-size:14px;font-weight:700;color:var(--navy)}
+.big{font-size:36px;line-height:1.15;font-weight:800;letter-spacing:.04em;background:linear-gradient(180deg,var(--gold-light),var(--gold-deep));-webkit-background-clip:text;background-clip:text;color:transparent}
+.big.navy{background:none;color:var(--navy)}
+.big.sm{font-size:25px;letter-spacing:.04em}
+.big-row{display:flex;flex-wrap:wrap;align-items:baseline;column-gap:8px;margin-top:4px}
+.big-row em{white-space:nowrap;font-style:normal;font-size:13px;color:var(--muted)}
+.kpi .eg{margin-top:10px;font-size:13.5px;color:var(--ink);display:flex;align-items:center;gap:7px}
+.kpi .eg b{font-weight:800}
+.kpi .cond{margin-top:6px;font-size:12.5px;color:var(--muted)}
+.kpi .pair{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}
+.kpi .pair>div{border-radius:12px;padding:10px 12px;background:var(--gold-tint-2);border:1px solid var(--line)}
+.kpi .pair>div.g2{background:var(--green-tint);border-color:#D3E3D9}
+.kpi .pair .who{display:block;font-size:12.5px;font-weight:700;color:var(--gold-deep)}
+.kpi .pair .g2 .who{color:var(--green)}
+.kpi .pair em{display:block;font-style:normal;font-size:12.5px;color:var(--muted)}
+.kpi .rows{margin-top:8px}
+.kpi .rows>div{display:flex;align-items:baseline;justify-content:space-between;gap:10px;padding:7px 0;border-top:1px dashed var(--line)}
+.kpi .rows>div:first-child{border-top:0}
+.kpi .rows .who{font-size:13px;font-weight:800}
+.kpi .rows .who.a{color:var(--navy)}.kpi .rows .who.b{color:var(--gold-deep)}
+.kpi .rows .v{text-align:right;font-size:17px;letter-spacing:.04em;font-weight:800;color:var(--navy);line-height:1.3}
+.kpi .rows .v small{display:block;font-size:11.5px;font-weight:600;color:var(--muted)}
 
-.plansel{display:flex;flex-wrap:wrap;gap:8px;margin:4px 0 10px}
-.plan-pill{position:relative;border:1.5px solid var(--line);border-radius:11px;padding:7px 14px;font-size:13px;cursor:pointer;background:#fff;font-family:inherit;color:var(--ink)}
-.plan-pill.on{border-color:var(--gold-deep);background:var(--gold-tint);color:var(--navy);font-weight:700}
-.pop-badge{position:absolute;top:-9px;right:-6px;background:var(--gold-deep);color:#fff;font-size:9.5px;font-weight:700;border-radius:6px;padding:1px 6px;letter-spacing:.03em;white-space:nowrap}
-.opt-row{display:flex;flex-wrap:wrap;gap:6px 16px;margin:6px 0 2px}
-.opt-row label{display:inline-flex;align-items:center;gap:6px;font-size:13px;color:var(--ink);cursor:pointer}
-.opt-row input{accent-color:var(--gold-deep);width:15px;height:15px}
-.opt-row select{border:1px solid var(--line);border-radius:8px;padding:4px 8px;font-size:12.5px;font-family:inherit;background:#fff}
+/* ---------- 方案胶囊标题 ---------- */
+.pill-head{display:flex;align-items:center;gap:16px;margin:46px 0 14px;background:linear-gradient(90deg,transparent 0,var(--gold-tint-2) 30%);border-radius:999px}
+.pill{flex:0 0 auto;padding:8px 24px 8px 20px;border-radius:999px;color:#fff;font-size:18px;font-weight:700;letter-spacing:.3px;white-space:nowrap}
+.pill.navy{background:var(--navy)}.pill.gold{background:var(--gold)}.pill.teal{background:var(--green)}
+.pill-head .formula{display:flex;align-items:center;gap:8px;font-size:14px;font-weight:600;color:var(--ink);padding-right:16px}
 
-.pres{margin-top:10px;background:#F8F9FB;border:1px solid var(--line);border-radius:11px;padding:10px 13px}
-.pres .row{display:flex;justify-content:space-between;gap:10px;font-size:13px;padding:2.5px 0}
-.pres .row .k{color:var(--muted)}
-.pres .row.tot{border-top:1px dashed var(--line);margin-top:5px;padding-top:7px;font-weight:800;color:var(--navy);font-size:14px}
-.pchips{display:flex;flex-wrap:wrap;gap:7px;margin-top:9px}
-.pchip{display:inline-flex;align-items:center;gap:6px;border-radius:8px;padding:5px 10px;font-size:12px;font-weight:600}
-.pchip.cash{background:var(--green-tint);color:var(--green)}
-.pchip.cpf{background:var(--navy-tint);color:var(--navy-soft)}
-.mnote{margin-top:8px;font-size:12px;line-height:1.7;color:#6D5318;background:var(--gold-tint);border-radius:9px;padding:8px 11px}
-.mnote.warn{background:var(--red-tint);color:var(--red)}
-.m-total{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:14px;padding:11px 15px;background:var(--navy);border-radius:12px;color:#fff;font-size:14px}
-.m-total b{font-size:18px}
-.addbtn{width:100%;border:1.5px dashed var(--gold-deep);background:var(--gold-tint);color:var(--gold-deep);border-radius:14px;padding:13px;font-size:14.5px;font-weight:700;cursor:pointer;font-family:inherit}
+/* ---------- 说明卡 ---------- */
+.cards2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.explain{display:flex;align-items:center;gap:16px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 20px;box-shadow:var(--shadow)}
+.explain .ico{display:flex;padding-right:16px;border-right:1px solid var(--line)}
+.explain b{display:block;font-size:15px;color:var(--navy)}
+.explain span{font-size:13.5px;color:var(--muted)}
+.giftline{margin-top:12px;display:flex;align-items:center;gap:10px;background:var(--gold-tint);border:1px solid #E3CFA4;border-radius:12px;padding:10px 18px;font-size:14px;font-weight:600;color:var(--ink)}
+.giftline b{color:var(--gold-deep)}
 
-/* advisor highlights */
-.tips{display:grid;gap:14px}
-@media(min-width:680px){.tips{grid-template-columns:1fr 1fr}}
-.tipcard{background:#fff;border:1px solid var(--line);border-radius:16px;padding:18px 20px;border-top:4px solid var(--gold-deep)}
-.tipcard h3{font-size:15.5px;color:var(--navy);display:flex;align-items:center;gap:9px;margin-bottom:10px}
-.tipcard h3 svg{width:19px;height:19px;color:var(--gold-deep);flex-shrink:0}
-.tipcard li{font-size:13px;color:var(--muted);line-height:1.75;list-style:none;padding-left:18px;position:relative;margin-bottom:8px}
-.tipcard li::before{content:"";position:absolute;left:2px;top:10px;width:5px;height:5px;border-radius:50%;background:var(--gold)}
-.tipcard li b{color:var(--gold-deep)}
+/* ---------- 色带 ---------- */
+.band{display:flex;gap:6px;margin-top:16px}
+.band span{display:flex;align-items:center;justify-content:center;gap:8px;border-radius:999px;padding:10px 14px;color:#fff;font-weight:700;font-size:14.5px;white-space:nowrap;overflow:hidden}
+.band .nv{background:var(--navy)}.band .gd{background:var(--gold)}.band .gn{background:var(--green)}
+.band .gy{background:#E4DACA;color:var(--muted)}
+.band .ic{color:currentColor;width:16px;height:16px}
 
-/* benefit tables */
-details.bene{background:#fff;border:1px solid var(--line);border-radius:16px;margin-bottom:14px;overflow:hidden}
-details.bene summary{list-style:none;cursor:pointer;padding:16px 20px;display:flex;align-items:center;gap:12px}
-details.bene summary::-webkit-details-marker{display:none}
-details.bene summary .bt{font-weight:700;color:var(--navy);font-size:15px}
-details.bene summary .bs{font-size:12px;color:var(--muted)}
-details.bene summary .arrow{margin-left:auto;transition:.2s;color:var(--gold-deep)}
-details[open].bene summary .arrow{transform:rotate(180deg)}
-.bene-in{border-top:1px solid var(--line)}
-.tbl-scroll{overflow-x:auto}
-table{width:100%;border-collapse:collapse;min-width:520px}
-th,td{padding:10px 14px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top;font-size:13px}
-th{background:var(--navy-tint);color:var(--navy);font-size:12.5px;font-weight:600;white-space:nowrap}
-td.num,th.num{text-align:right;white-space:nowrap}
-tr:last-child td{border-bottom:0}
-tr.hlrow td{background:var(--gold-tint)}
-tr.hlrow td.num{font-weight:700;color:var(--navy)}
-tr.grp td{background:var(--gold-tint);color:var(--gold-deep);font-weight:700;font-size:12px;letter-spacing:.05em}
-.hl-badge{display:inline-block;background:var(--gold-deep);color:#fff;font-size:10px;font-weight:700;border-radius:6px;padding:1.5px 7px;margin-left:7px;letter-spacing:.04em;white-space:nowrap}
-.bene-note{padding:12px 18px;background:#F8F9FB;border-top:1px solid var(--line);font-size:12px;color:var(--muted);line-height:1.75}
-.bene-note a{color:var(--gold-deep)}
-.bene-in td:first-child,.bene-in th:first-child{min-width:190px}
+/* ---------- 时间轴 ---------- */
+.tl{position:relative;display:grid;grid-template-columns:repeat(var(--n),1fr);gap:12px;margin-top:22px}
+.tl::before{content:"";position:absolute;left:calc(50% / var(--n));right:calc(50% / var(--n));top:17px;height:2px;background:linear-gradient(90deg,#E2D3B3,#D9C59C)}
+.node{position:relative;display:flex;flex-direction:column;align-items:center;text-align:center}
+.mk{position:relative;width:36px;height:36px;border-radius:50%;background:var(--paper);display:grid;place-items:center}
+.mk .dot{width:20px;height:20px;border-radius:50%;background:var(--gold-tint);border:3px solid var(--card);box-shadow:0 0 0 1px #D9C59C}
+.mk .dot.on{background:var(--gold)}
+.mk .ring{width:22px;height:22px;border-radius:50%;border:4px solid var(--navy);background:var(--card)}
+.mk svg{width:26px;height:26px}
+.when{margin-top:6px;font-size:16px;font-weight:800;color:var(--navy);line-height:1.25}
+.when small{display:block;font-size:12px;font-weight:600;color:var(--muted)}
+.box{width:100%;margin-top:10px;border-radius:12px;padding:12px 8px;background:var(--card);border:1.5px solid var(--line);display:flex;flex-direction:column;align-items:center;gap:1px;min-height:122px;justify-content:center}
+.box .ic{width:18px;height:18px;color:var(--navy);margin-bottom:2px}
+.box .lb{font-size:12.5px;color:var(--muted)}
+.box b{font-size:17px;letter-spacing:.04em;font-weight:800;color:var(--navy);line-height:1.3}
+.box small{font-size:11.5px;color:var(--muted)}
+.box .worst{font-size:11.5px;color:#9A9384}
+.chip{display:inline-block;margin-top:5px;font-size:12px;font-weight:700;border-radius:999px;padding:2px 10px;background:var(--gold-tint);color:var(--gold-deep);white-space:nowrap}
+.chip.ok{background:var(--green-tint);color:var(--green)}
+.chip.bad{background:var(--red-tint);color:var(--red)}
+.box.first{background:var(--blue-tint);border-color:#D9E2F2}
+.box.hl{background:var(--gold-tint-2);border-color:#E3CFA4}
+.box.end{border:1.5px dashed #D9C59C;background:transparent}
+.box.end b{font-size:16px}
+.box.gone b{color:var(--red)}
 
-/* hospital plan cards */
-.hplans{display:grid;gap:14px;padding:16px}
-@media(min-width:800px){.hplans{grid-template-columns:1fr 1fr 1fr}}
-.hplan{border:1px solid var(--line);border-radius:14px;overflow:hidden;border-top:3px solid var(--pc,var(--gold-deep))}
-.hplan h4{padding:11px 14px;background:linear-gradient(150deg,#F2F4F8,#FBFCFE);border-bottom:1px solid var(--line);color:var(--navy);font-size:14.5px}
-.hplan h4 small{display:block;font-weight:400;font-size:11px;color:var(--muted);margin-top:1px;line-height:1.6}
-.hfeat{padding:9px 14px;border-bottom:1px dashed var(--line);font-size:12.5px;line-height:1.7;color:var(--muted)}
-.hfeat:last-child{border-bottom:0}
-.hfeat b.k{display:block;color:var(--navy);font-size:12px}
+/* ---------- 金底 KPI 条 ---------- */
+.strip{margin-top:16px;display:grid;grid-template-columns:1fr 1fr;background:var(--gold-tint);border:1px solid #E3CFA4;border-radius:14px;padding:16px 22px}
+.strip>div{display:flex;align-items:center;gap:14px}
+.strip>div+div{border-left:1px solid #DCC9A2;padding-left:22px;margin-left:22px}
+.strip .ic{width:30px;height:30px;color:var(--gold-deep)}
+.strip .lb{font-size:13px;color:var(--ink)}
+.strip b{display:block;font-size:23px;letter-spacing:.04em;font-weight:800;color:var(--gold-deep);line-height:1.2}
+.strip b small{font-size:12.5px;letter-spacing:.02em;color:var(--muted);font-weight:600;margin-left:6px}
+.tip{margin-top:12px;display:flex;align-items:center;justify-content:center;gap:8px;text-align:center;font-size:13.5px;color:var(--ink);background:var(--gold-tint-2);border-radius:12px;padding:10px 14px}
+.tip .ic{width:17px;height:17px}
+.tip.warn{background:var(--red-tint)}
+.tip.warn .ic{color:var(--red)}
 
-/* claims examples */
-.claims{display:grid;gap:18px}
-@media(min-width:680px){.claims{grid-template-columns:1fr 1fr}}
-.ccard{background:#fff;border:1px solid var(--line);border-radius:16px;padding:18px}
-.ccard h3{font-size:16px;color:var(--navy)}
-.ccard .scope{font-size:12px;color:var(--muted);margin-bottom:10px}
-.bill{border:1px solid var(--line);border-radius:12px;padding:14px;margin-top:12px}
-.bill-title{display:flex;justify-content:space-between;align-items:center;font-weight:700;color:var(--navy);margin-bottom:9px;font-size:13.5px}
-.bill-title .amt{font-size:16px}
-.calc{display:grid;grid-template-columns:1fr auto;gap:4px 12px;font-size:12.5px}
-.calc .k{color:var(--muted)}
-.calc .self,.calc .self+div{font-weight:700;color:var(--red);padding-top:7px;margin-top:3px;border-top:1px dashed var(--line)}
-.calc .claim,.calc .claim+div{font-weight:700;color:var(--green);padding-top:7px;margin-top:3px;border-top:1px dashed var(--line)}
-.split{margin-top:10px}
-.split-bar{display:flex;height:9px;border-radius:6px;overflow:hidden;background:var(--red-tint)}
-.split-bar i{display:block;height:100%}
-.split-bar .s-claim{background:var(--green)}
-.split-bar .s-self{background:var(--red)}
-.split-legend{display:flex;flex-wrap:wrap;gap:3px 14px;margin-top:7px;font-size:11px;color:var(--muted)}
-.split-legend .dot{display:inline-block;width:8px;height:8px;border-radius:2px;margin-right:5px;vertical-align:1px}
-.split-legend .dot.claim{background:var(--green)}
-.split-legend .dot.self{background:var(--red)}
-.same-note{background:var(--green-tint);color:var(--green);border-radius:11px;padding:11px 13px;margin-top:12px;font-size:12.5px;line-height:1.7}
+/* ---------- 对比表 ---------- */
+.ctable{background:var(--card);border:1px solid var(--line);border-radius:12px;overflow-x:auto;box-shadow:var(--shadow)}
+.ctable table{width:100%;border-collapse:collapse;min-width:620px}
+.ctable th,.ctable td{text-align:left;padding:12px 16px;border-top:1px solid var(--line);font-size:14.5px;vertical-align:middle}
+.ctable th{border-top:0;font-size:14px;font-weight:700;color:#fff;white-space:nowrap}
+.ctable th:first-child{background:var(--gold-tint-2);color:var(--navy);width:24%}
+.ctable th.p1{background:var(--navy)}.ctable th.p2{background:var(--gold)}.ctable th.p3{background:var(--green)}
+.ctable td:first-child{color:var(--ink);font-weight:600}
+.ctable td{font-weight:600;color:var(--navy)}
+.ctable td.p1{background:#F7F9FD}.ctable td.p2{background:#FDF8EE}.ctable td.p3{background:#F4F8F5}
+.ctable td small{display:block;font-size:12px;font-weight:500;color:var(--muted)}
+.ctable tr.top td{background:var(--gold-tint)!important;font-weight:800}
+.ctable .yes,.ctable .no{display:inline-flex;align-items:center;gap:6px}
+.ctable .yes{color:var(--green)}.ctable .no{color:var(--red)}
+.ctable .yes .ic{color:var(--green)}.ctable .no .ic{color:var(--red)}
 
-/* family total bar */
-#totbar{position:fixed;left:0;right:0;bottom:0;z-index:50;background:var(--navy);color:#fff;box-shadow:0 -6px 24px rgba(16,42,67,.25)}
-#totbar .in{max-width:860px;margin:0 auto;padding:11px 16px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
-#totbar .lbl{font-size:12px;color:rgba(255,255,255,.65)}
-#totbar .amt{font-size:20px;font-weight:800;line-height:1.2}
-#totbar .sub{font-size:11.5px;color:rgba(255,255,255,.75)}
-#totbar .btns{margin-left:auto;display:flex;gap:8px}
-#totbar button,#totbar a{border:0;border-radius:10px;padding:9px 14px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;text-decoration:none;display:inline-flex;align-items:center;gap:6px}
-#totbar #wa-btn{background:var(--gold);color:var(--navy)}
-#totbar #wa-btn:active{background:#B8934E}
-#totbar #share-btn{background:transparent;color:var(--paper);border:1px solid rgba(199,161,90,.75);padding:8px 13px}
-#totbar #share-btn:active{background:rgba(199,161,90,.15)}
+/* ---------- 图标小卡 ---------- */
+.chips{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.ccard{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 16px;display:flex;gap:12px;align-items:center;box-shadow:var(--shadow)}
+.ccard .badge{flex:0 0 40px;height:40px}
+.ccard b{display:block;font-size:14.5px;color:var(--navy);line-height:1.4}
+.ccard span{font-size:13px;color:var(--muted);line-height:1.55}
 
-/* disclaimers */
-.disc{background:var(--navy-tint);border-radius:14px;padding:18px 20px;font-size:12px;color:var(--muted);line-height:1.85}
-.disc b{color:var(--navy-soft)}
-.disc li{margin-left:18px;margin-bottom:5px}
+/* ---------- 怎么选 ---------- */
+.pick{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.pk{border-radius:14px;padding:18px;border:1px solid var(--line)}
+.pk.a{background:var(--blue-tint);border-color:#D9E2F2}.pk.b{background:var(--gold-tint-2)}.pk.c{background:var(--green-tint);border-color:#D3E3D9}
+.pk .hd{display:flex;align-items:center;gap:10px;font-size:16px;font-weight:800;color:var(--navy);margin-bottom:10px}
+.pk .hd .badge{flex:0 0 38px;height:38px;background:var(--card)}
+.pk ul{list-style:none;font-size:13.5px;color:var(--ink)}
+.pk li{display:flex;gap:8px;align-items:flex-start;margin-bottom:7px;line-height:1.55}
+.pk li .ic{width:16px;height:16px;margin-top:3px;color:var(--gold-deep)}
 
-/* footer */
-.site-footer{margin-top:48px;border-top:1px solid rgba(199,161,90,.3);background:var(--gold-tint)}
-.site-footer a{color:inherit;text-decoration:none}
-.site-footer a:hover{color:var(--gold-deep)}
-.sf-in{max-width:860px;margin:0 auto;padding:36px 20px 28px}
-.sf-brand{font-size:17px;font-weight:700;color:var(--navy)}
-.sf-tag{margin-top:4px;font-size:13px;color:var(--gold-deep)}
-.sf-org{margin-top:10px;font-size:11.5px;line-height:1.8;color:var(--muted)}
-.sf-bottom{margin-top:20px;border-top:1px solid rgba(199,161,90,.3);padding-top:16px;font-size:11.5px;line-height:1.8;color:var(--muted)}
+/* ---------- 页尾小字 ---------- */
+.notes{margin-top:40px;padding-top:18px;border-top:1px solid var(--line);font-size:12px;color:var(--muted);line-height:1.8}
+.notes p{margin-bottom:5px;padding-left:12px;position:relative}
+.notes p::before{content:"";position:absolute;left:0;top:9px;width:4px;height:4px;border-radius:50%;background:var(--gold)}
 
-/* password gate · 与站点 /password 同一套视觉 */
+/* ---------- 密码门（同 pwv-plan-builder） ---------- */
 body.locked{overflow:hidden}
 body.locked>*:not(#pwGate){visibility:hidden}
-#pwGate{position:fixed;inset:0;z-index:99;display:none;align-items:center;justify-content:center;
-  background:#FAF7F0;padding:20px;visibility:visible;overflow:auto;
-  font-family:-apple-system,"PingFang SC","Hiragino Sans GB","Noto Sans SC","Microsoft YaHei",sans-serif}
+#pwGate{position:fixed;inset:0;z-index:99;display:none;align-items:center;justify-content:center;background:var(--paper);padding:20px}
 body.locked #pwGate{display:flex}
-#pwGate *{box-sizing:border-box}
-.pw-card{width:100%;max-width:940px;background:#fff;border-radius:26px;overflow:hidden;text-align:left;
-  box-shadow:0 30px 80px -40px rgba(23,39,66,.38);display:grid;grid-template-columns:1fr}
-.pw-left{padding:30px 26px;position:relative}
-.pw-top{display:flex;align-items:center;justify-content:space-between;gap:12px}
-.pw-chip{display:inline-flex;align-items:center;gap:9px;border:1px solid rgba(199,161,90,.45);
-  background:rgba(199,161,90,.08);border-radius:999px;padding:5px 15px 5px 5px;font-size:12.5px;
-  font-weight:700;color:#A8874C;line-height:1.4}
-.pw-chip img{width:26px;height:26px;border-radius:50%;object-fit:cover;display:block}
-#pwLang{flex:none;border:1px solid #E2E6EC;background:#fff;color:#687386;border-radius:999px;
-  padding:5px 13px;font-size:12px;font-weight:700;cursor:pointer;font-family:inherit;letter-spacing:.04em}
-#pwLang:hover{border-color:#C7A15A;color:#172742}
-.pw-card h2{font-size:27px;line-height:1.28;color:#172742;margin:20px 0 0;font-weight:800;letter-spacing:.01em}
-.pw-card .pw-sub{font-size:14.5px;line-height:1.9;color:#687386;margin:12px 0 0}
-.pw-label{display:block;margin:24px 0 9px;font-size:13px;font-weight:700;color:#172742}
-.pw-field{position:relative}
-.pw-field .pw-lock{position:absolute;left:15px;top:50%;transform:translateY(-50%);color:#687386;pointer-events:none}
-#pwInput{width:100%;border:1px solid #E2E6EC;border-radius:15px;background:#FCFBF7;
-  padding:14px 46px;font-size:15px;text-align:left;letter-spacing:0;outline:none;font-family:inherit;color:#172742}
-#pwInput::placeholder{color:#A6AEBC}
-#pwInput:focus{border-color:#C7A15A;background:#fff}
-#pwEye{position:absolute;right:9px;top:50%;transform:translateY(-50%);width:34px;height:34px;display:flex;
-  align-items:center;justify-content:center;border:0;background:none;border-radius:50%;cursor:pointer;color:#687386}
-#pwEye:hover{background:#EEF1F7;color:#172742}
-#pwForm{display:block}
-#pwSubmit{margin-top:18px;width:100%;display:flex;align-items:center;justify-content:center;gap:10px;border:0;
-  background:#172742;color:#fff;border-radius:15px;padding:15px;font-size:15.5px;font-weight:700;cursor:pointer;
-  font-family:inherit;transition:background .25s,box-shadow .25s}
-#pwSubmit:hover{background:#0F1C31;box-shadow:0 14px 30px -14px rgba(23,39,66,.7)}
-.pw-err{display:none;margin-top:12px;font-size:13px;color:#B4433A;font-weight:600}
+.pw-card{width:100%;max-width:420px;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:36px 32px;box-shadow:0 20px 60px -30px rgba(19,40,107,.35)}
+.pw-chip{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);background:var(--gold-tint-2);border-radius:999px;padding:4px 14px 4px 4px;font-size:12.5px;font-weight:700;color:var(--gold-deep)}
+.pw-chip img{width:26px;height:26px;border-radius:50%;object-fit:cover}
+.pw-card h2{margin-top:18px;font-size:24px;font-weight:800;color:var(--navy)}
+.pw-card p{margin-top:6px;font-size:14px;color:var(--muted)}
+#pwInput{margin-top:20px;width:100%;border:1px solid var(--line);border-radius:12px;background:#fff;padding:13px 16px;font-size:15px;outline:none}
+#pwInput:focus{border-color:var(--gold)}
+#pwSubmit{margin-top:12px;width:100%;border:0;border-radius:12px;background:var(--navy);color:#fff;padding:13px;font-size:15px;font-weight:700;cursor:pointer}
+.pw-err{display:none;margin-top:10px;font-size:13px;color:#B4433A;font-weight:600}
 .pw-err.show{display:block}
-.pw-div{display:flex;align-items:center;gap:14px;margin-top:30px;color:#687386;font-size:13px}
-.pw-div span{flex:1;height:1px;background:#E2E6EC}
-.pw-ask{margin-top:16px;text-align:center;font-size:14.5px;font-weight:700;color:#172742}
-.pw-ask b{border-bottom:2px solid rgba(199,161,90,.7);padding-bottom:1px;font-weight:700}
-.pw-contact{display:grid;gap:10px;margin-top:16px}
-.pw-c{display:flex;align-items:center;gap:11px;border:1px solid #E2E6EC;background:#FCFBF7;
-  border-radius:15px;padding:12px 14px;text-decoration:none;color:inherit;transition:border-color .25s,background .25s}
-a.pw-c:hover{border-color:#C7A15A;background:rgba(199,161,90,.07)}
-.pw-c i{flex:none;width:34px;height:34px;border-radius:50%;background:rgba(199,161,90,.16);color:#A8874C;
-  display:flex;align-items:center;justify-content:center;font-style:normal}
-.pw-c b{display:block;font-size:13.5px;color:#172742;font-weight:700}
-.pw-c s{display:block;font-size:13.5px;color:#687386;text-decoration:none}
-.pw-art{display:none}
-.pw-art img{width:100%;max-width:280px;height:auto;display:block}
-@media(min-width:820px){
-  .pw-card{grid-template-columns:minmax(0,1fr) minmax(0,.82fr)}
-  .pw-left{padding:46px 44px}
-  .pw-card h2{font-size:32px}
-  .pw-art{display:flex;align-items:flex-end;justify-content:center;background:#F7F4EC;
-    border-left:1px solid #E2E6EC;padding:30px 20px 46px}
-}
-@media(min-width:1024px){.pw-contact{grid-template-columns:1fr 1fr}.pw-art img{max-width:320px}}
-.pw-div{display:flex;align-items:center;gap:14px;margin-top:30px;color:var(--muted);font-size:13px}
-.pw-div span{flex:1;height:1px;background:var(--line)}
-.pw-ask{margin-top:16px;text-align:center;font-size:14.5px;font-weight:700;color:var(--navy)}
-.pw-ask b{border-bottom:2px solid rgba(199,161,90,.7);padding-bottom:1px;font-weight:700}
-.pw-contact{display:grid;gap:10px;margin-top:16px}
-.pw-c{display:flex;align-items:center;gap:11px;border:1px solid var(--line);background:#FCFBF7;
-  border-radius:15px;padding:12px 14px;text-decoration:none;color:inherit;transition:border-color .25s,background .25s}
-a.pw-c:hover{border-color:var(--gold);background:rgba(199,161,90,.07)}
-.pw-c i{flex:none;width:34px;height:34px;border-radius:50%;background:rgba(199,161,90,.16);color:var(--gold-deep);
-  display:flex;align-items:center;justify-content:center}
-.pw-c b{display:block;font-size:13.5px;color:var(--navy)}
-.pw-c s{display:block;font-size:13.5px;color:var(--muted);text-decoration:none}
-.pw-art{display:none}
-.pw-art img{width:100%;max-width:280px;height:auto;display:block}
-@media(min-width:820px){
-  .pw-card{grid-template-columns:minmax(0,1fr) minmax(0,.82fr)}
-  .pw-left{padding:46px 44px}
-  .pw-card h2{font-size:32px}
-  .pw-art{display:flex;align-items:flex-end;justify-content:center;background:#F7F4EC;
-    border-left:1px solid var(--line);padding:30px 20px 46px}
-}
-@media(min-width:1024px){.pw-contact{grid-template-columns:1fr 1fr}.pw-art img{max-width:320px}}
 
-/* watermark */
-#wm{position:fixed;inset:0;z-index:9999;pointer-events:none;overflow:hidden;opacity:.025}
-#wm .row{position:absolute;white-space:nowrap;font-size:20px;color:var(--navy);font-weight:500;letter-spacing:.06em;transform:rotate(-24deg);transform-origin:left center}
-@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
-@media print{body{background:#fff;padding-bottom:0}#totbar,.addbtn{display:none}section{break-inside:avoid}}
+/* ---------- 网站页脚（同样板页） ---------- */
+.site-foot{border-top:1px solid rgba(184,134,43,.2);background:#F4ECDB;margin-top:48px}
+.site-foot .in{max-width:1040px;margin:0 auto;padding:48px 32px 36px}
+.site-foot .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:32px}
+.site-foot .brand{font-size:19px;font-weight:700;color:var(--navy)}
+.site-foot .tag{margin-top:10px;font-size:14px;color:var(--gold-deep)}
+.site-foot .cred{margin-top:20px;font-size:14px;line-height:1.7;color:rgba(19,40,107,.7)}
+.site-foot h4{font-size:12px;font-weight:600;letter-spacing:.18em;color:var(--gold-deep)}
+.site-foot ul{list-style:none;margin-top:14px;font-size:14px}
+.site-foot li{line-height:1.9}
+.site-foot a{color:rgba(19,40,107,.8);text-decoration:none;display:inline-flex;align-items:center;gap:9px}
+.site-foot a:hover{color:var(--gold-deep)}
+.site-foot a svg{width:16px;height:16px;color:var(--gold-deep);flex:0 0 auto}
+.site-foot .legal{margin-top:40px;padding-top:24px;border-top:1px solid rgba(184,134,43,.2);font-size:12px;line-height:1.7;color:#7a7264}
+.site-foot .legal p+p{margin-top:12px}
+
+/* ---------- 手机 ---------- */
+@media (max-width:760px){
+  .page{padding:28px 16px}
+  .hero h1{font-size:26px}
+  .kpis,.kpis.two,.cards2,.chips,.pick{grid-template-columns:1fr}
+  .big{font-size:30px}.big.sm{font-size:23px}
+  .kpi,.kpi .top>div{min-width:0}
+  .kpi .pair{grid-template-columns:1fr}
+  .big-row em{white-space:normal}
+  .pill-head{flex-direction:column;align-items:flex-start;gap:6px;background:none}
+  .pill{font-size:16px;padding:7px 18px}
+  .pill-head .formula{font-size:13.5px;padding-left:6px}
+  .explain{padding:12px 14px;gap:12px}.explain .ico{padding-right:12px}
+  .band span{font-size:13px;padding:9px 10px}
+  .tl{grid-template-columns:1fr;gap:10px}
+  .tl::before{left:17px;right:auto;top:18px;bottom:18px;width:2px;height:auto;background:linear-gradient(180deg,#E2D3B3,#D9C59C)}
+  .node{display:grid;grid-template-columns:36px 70px 1fr;align-items:center;text-align:left;gap:10px}
+  .when{margin-top:0;font-size:15px}
+  .box{margin-top:0;min-height:0;align-items:flex-start;padding:10px 12px}
+  .box .ic{display:none}
+  .strip{grid-template-columns:1fr;padding:14px 16px}
+  .strip>div+div{border-left:0;padding-left:0;margin-left:0;border-top:1px solid #DCC9A2;padding-top:12px;margin-top:12px}
+  .strip b{font-size:21px}
+  .tip{justify-content:flex-start;text-align:left}
+  .site-foot .in{padding:36px 16px 28px}
+  .site-foot .grid{grid-template-columns:1fr 1fr;gap:28px 20px}
+}
+@media (max-width:420px){.site-foot .grid{grid-template-columns:1fr}.switch .lb{display:none}}
+@media print{body{background:#fff}.switch{position:static}.site-foot{display:none}}
+
+/* ---------- 行动区块：微信约咖啡 ---------- */
+.cta{margin-top:44px;display:grid;grid-template-columns:1fr auto;gap:28px;align-items:center;background:var(--navy);border-radius:18px;padding:28px 32px;color:#fff;position:relative;overflow:hidden}
+.cta::after{content:"";position:absolute;right:-60px;top:-60px;width:220px;height:220px;border-radius:50%;border:1px solid rgba(201,151,58,.35);pointer-events:none}
+.cta .who-row{display:flex;align-items:center;gap:14px}
+.cta .who-row img{width:56px;height:56px;border-radius:50%;object-fit:cover;border:2px solid var(--gold-light);background:#fff}
+.cta h3{font-size:24px;font-weight:800;line-height:1.3}
+.cta h3 span{color:var(--gold-light)}
+.cta p.sub{margin-top:4px;font-size:14.5px;color:rgba(255,255,255,.8)}
+.cta .perks{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.cta .perks span{display:inline-flex;align-items:center;gap:6px;border:1px solid rgba(201,151,58,.5);border-radius:999px;padding:5px 12px;font-size:13px;color:#F3E4C4}
+.cta .perks .ic{width:15px;height:15px;color:var(--gold-light)}
+.cta .acts{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
+.cta .btn{display:inline-flex;align-items:center;gap:8px;border-radius:999px;padding:11px 20px;font-size:15px;font-weight:700;cursor:pointer;text-decoration:none;border:0}
+.cta .btn .ic{width:18px;height:18px;color:currentColor}
+.cta .btn.wx{background:var(--gold);color:#fff}
+.cta .btn.wx:hover{background:var(--gold-deep)}
+.cta .btn.wx b{letter-spacing:.04em}
+.cta .btn.wa{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.45)}
+.cta .btn.wa:hover{border-color:var(--gold-light);color:var(--gold-light)}
+.cta .qr{position:relative;z-index:1;background:#fff;border-radius:14px;padding:10px 10px 8px;text-align:center}
+.cta .qr img{display:block;width:132px;height:132px;object-fit:contain}
+.cta .qr span{display:block;margin-top:4px;font-size:12.5px;font-weight:700;color:var(--navy)}
+@media (max-width:760px){
+  .cta{grid-template-columns:1fr;padding:22px 18px;gap:18px}
+  .cta h3{font-size:20px}
+  .cta .qr{justify-self:center}
+  .cta .btn{flex:1 1 auto;justify-content:center}
+}
+
+.ruler-card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px 24px 18px;box-shadow:var(--shadow)}
+.ruler{position:relative;margin:62px 8px 86px;height:14px;border-radius:7px;background:linear-gradient(90deg,#F4D9D5 0%,#F7F1E4 40%,#DCEBE1 100%)}
+.ruler .tick{position:absolute;top:18px;transform:translateX(-50%);font-size:12px;color:var(--muted)}
+.ruler .mk2{position:absolute;bottom:20px;transform:translateX(-50%);text-align:center;width:112px;font-size:12px;line-height:1.4;color:var(--navy)}
+.ruler .mk2 b{display:block;font-size:16px;color:var(--gold-deep)}
+.ruler .mk2::after{content:"";position:absolute;left:50%;bottom:-20px;width:2px;height:20px;background:var(--navy);transform:translateX(-50%)}
+.ruler .mk2.lo{bottom:auto;top:38px}
+.ruler .mk2.lo::after{bottom:auto;top:-24px;height:24px}
+.ruler-tips{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.ruler-tips>div{display:flex;gap:10px;align-items:flex-start;background:var(--gold-tint-2);border-radius:12px;padding:12px 14px;font-size:13.5px;line-height:1.6}
+.ruler-tips .ic{margin-top:2px}
+.ruler-tips b{color:var(--navy)}
+@media (max-width:760px){.ruler-tips{grid-template-columns:1fr}.ruler-card{padding:18px 14px}}
+
+/* ---------- 竖版左右对比时间轴 ---------- */
+.vtl-head,.vrow{display:grid;grid-template-columns:minmax(0,1fr) 112px minmax(0,1fr);gap:14px;align-items:center}
+.vtl-head{margin-bottom:10px}
+.vh{display:inline-flex;align-items:center;justify-content:center;gap:7px;border-radius:999px;padding:9px 12px;font-size:14.5px;font-weight:800;color:#fff}
+.vh .ic{color:#fff;width:16px;height:16px}
+.vh.a{background:var(--navy)}.vh.b{background:var(--gold)}
+.vh.mid{background:none;color:var(--muted);font-size:13px;font-weight:700}
+.vtl{position:relative}
+.vtl::before{content:"";position:absolute;left:50%;top:8px;bottom:8px;width:2px;transform:translateX(-50%);background:linear-gradient(180deg,#E2D3B3,#D9C59C)}
+.vrow{position:relative;margin-bottom:12px}
+.vmid{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;text-align:center;background:var(--paper);padding:6px 0}
+.vmid .dot{width:16px;height:16px;border-radius:50%;background:var(--gold-tint);border:3px solid var(--card);box-shadow:0 0 0 1px #D9C59C;margin-bottom:4px}
+.vrow.ms .vmid .dot{background:var(--gold);width:18px;height:18px}
+.vmid b{font-size:15.5px;font-weight:800;color:var(--navy);line-height:1.3}
+.vmid small{font-size:12px;color:var(--muted);font-weight:600}
+.vmid .paid{margin-top:3px;font-size:11.5px;font-weight:700;color:var(--gold-deep);background:var(--gold-tint-2);border-radius:999px;padding:1px 8px}
+.vcard{position:relative;z-index:1;background:var(--card);border:1.5px solid var(--line);border-radius:12px;padding:11px 14px;display:flex;flex-direction:column;gap:2px;box-shadow:var(--shadow)}
+.vcard.a{align-items:flex-end;text-align:right}
+.vcard.b{align-items:flex-start;text-align:left}
+.vcard b{font-size:18px;font-weight:800;color:var(--navy);letter-spacing:.04em;line-height:1.3}
+.vcard .tags{display:flex;flex-wrap:wrap;gap:5px}
+.vcard.a .tags{justify-content:flex-end}
+.vcard .chip{margin-top:2px}
+.vcard .ms{display:inline-block;margin-top:2px;font-size:12px;font-weight:800;border-radius:999px;padding:2px 10px;color:#fff}
+.vcard .ms.be{background:var(--green)}
+.vcard .ms.db{background:var(--gold)}
+.vcard.hit{border-color:#D9C59C;background:var(--gold-tint-2)}
+.vtl-note{margin-top:4px;text-align:center;font-size:12.5px;color:var(--muted)}
+@media (max-width:760px){
+  .vtl-head,.vrow{grid-template-columns:minmax(0,1fr) 66px minmax(0,1fr);gap:8px}
+  .vh{font-size:12.5px;padding:7px 8px;gap:5px}
+  .vh .ic{display:none}
+  .vcard{padding:9px 10px}
+  .vcard b{font-size:15px;letter-spacing:.02em}
+  .vmid b{font-size:14px}
+  .vmid small{font-size:11px}
+  .vcard .ms,.vcard .chip{font-size:11px;padding:1px 7px}
+}
+
+/* ---------- 对比表小标题行 ---------- */
+.ctable tr.sec td{background:var(--gold-tint-2)!important;color:var(--navy);font-weight:800;font-size:14.5px;padding:10px 16px}
+.ctable tr.sec td .ic{width:17px;height:17px;vertical-align:-3px;margin-right:6px}
+.ctable tr.sec td small{display:inline;margin-left:10px;font-size:12.5px;font-weight:600;color:var(--muted)}
+.ctable tr.sec.hi td{background:var(--gold-tint)!important;color:var(--gold-deep)}
+.ctable tr.sec.hi td .ic{color:var(--gold-deep)}
+.ctable tr.sec.lo td{background:var(--blue-tint)!important}
+.ctable tr.sec.lo td .ic{color:var(--navy)}
+
+
+/* ---------- 寿险对比页补充 ---------- */
+.hero h1 .l2 .heart{font-size:.8em;vertical-align:.06em}
+.kpis.four{grid-template-columns:repeat(2,minmax(0,1fr))}
+.kpi .rows .v small.ok{color:var(--green)}
+.kpi .rows .v small.bad{color:var(--red)}
+.vcard .lb{font-size:12px;font-weight:600;color:var(--muted)}
+.vcard small.sg{font-size:12px;color:var(--muted)}
+.vcard .ms.end{background:var(--red)}
+.vcard.off{background:transparent;border-style:dashed;box-shadow:none}
+.vcard.off b{color:var(--red)}
+.vcard.rn{background:var(--blue-tint);border-color:#D9E2F2}
+.vrow.rn .vmid .dot{background:var(--blue-tint);box-shadow:0 0 0 1px #B9C8E4}
+
+/* ---------- 横向比例条 ---------- */
+.bars-card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:8px 24px 18px;box-shadow:var(--shadow)}
+.bar-grp{display:grid;grid-template-columns:170px minmax(0,1fr) 92px;gap:16px;align-items:center;padding:14px 0;border-bottom:1px dashed var(--line)}
+.bar-grp .t{font-size:14.5px;font-weight:800;color:var(--navy);line-height:1.4}
+.bar-grp .t small{display:block;font-size:12px;font-weight:600;color:var(--muted)}
+.bar{display:grid;grid-template-columns:minmax(0,1fr) 150px;gap:10px;align-items:center;margin:5px 0}
+.bar .trk{height:20px}
+.bar i{display:block;height:100%;border-radius:999px;min-width:8px;transition:width .35s ease}
+.bar i.a{background:var(--navy)}.bar i.b{background:var(--gold)}
+.bar span{font-size:13.5px;font-weight:800;color:var(--navy);white-space:nowrap}
+.bar span em{font-style:normal;font-size:12px;font-weight:600;color:var(--muted);margin-right:6px}
+.bar-grp .x{justify-self:end;font-size:18px;font-weight:800;color:var(--gold-deep);white-space:nowrap}
+.bar-grp .x.g{color:var(--green)}
+.bars-card .ruler-tips{margin-top:16px}
+@media (max-width:760px){
+  .kpis.four{grid-template-columns:1fr}
+  .bars-card{padding:6px 14px 14px}
+  .bar-grp{grid-template-columns:minmax(0,1fr) auto;gap:6px 12px}
+  .bar-grp .x{grid-row:1;grid-column:2;font-size:16px}
+  .bar-grp>div:nth-child(2){grid-column:1/-1}
+  .bar{grid-template-columns:minmax(0,1fr) 126px;gap:8px}
+  .bar .trk{height:16px}
+  .bar span{font-size:12px}
+  .bar span em{font-size:11px;margin-right:4px}
+  .vmid .paid{font-size:10.5px;padding:1px 6px;white-space:nowrap}
+}
+
+/* ---------- 方案总结概要（图标对照） ---------- */
+.sumgrid{margin-top:26px;background:var(--card);border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow);overflow:hidden}
+.sg-row{display:grid;grid-template-columns:210px minmax(0,1fr) minmax(0,1fr);border-top:1px solid var(--line)}
+.sg-row.hd{border-top:0}
+.sg-row.hd .sg-v{padding:12px 18px;color:#fff;font-size:14.5px;font-weight:800;display:flex;flex-direction:row;justify-content:flex-start;align-items:center;gap:8px}
+.sg-row.hd .sg-v .ic{color:#fff;width:17px;height:17px}
+.sg-row.hd .sg-v.a{background:var(--navy)}.sg-row.hd .sg-v.b{background:var(--gold)}
+.sg-row.hd .sg-k{background:var(--gold-tint-2)}
+.sg-k{display:flex;align-items:center;gap:12px;padding:14px 18px;background:var(--gold-tint-2);font-size:14.5px;font-weight:800;color:var(--navy);line-height:1.35}
+.sg-ic{flex:0 0 40px;height:40px;border-radius:50%;background:var(--card);border:1px solid #E3CFA4;display:grid;place-items:center}
+.sg-ic .ic{width:21px;height:21px;color:var(--gold-deep)}
+.sg-v{position:relative;padding:14px 18px;display:flex;flex-direction:column;justify-content:center;gap:2px}
+.sg-v.a{background:#F7F9FD}.sg-v.b{background:#FDF8EE}
+.sg-v b{font-size:16.5px;font-weight:800;color:var(--navy);line-height:1.35;letter-spacing:.02em}
+.sg-v small{font-size:12.5px;color:var(--muted);line-height:1.5}
+.sg-v.bad b{color:var(--red)}
+.win{display:inline-flex;align-self:flex-start;align-items:center;gap:4px;margin-top:4px;font-size:12px;font-weight:800;color:var(--green);background:var(--green-tint);border-radius:999px;padding:2px 9px 2px 6px}
+.win .ic{width:14px;height:14px;color:var(--green)}
+.sum-line{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px}
+.sum-line>div{display:flex;gap:10px;align-items:flex-start;border-radius:12px;padding:12px 16px;font-size:14px;line-height:1.6}
+.sum-line .a{background:var(--blue-tint);border:1px solid #D9E2F2}
+.sum-line .b{background:var(--gold-tint-2);border:1px solid var(--line)}
+.sum-line b{color:var(--navy)}
+.sum-line .ic{margin-top:3px}
+
+/* ---------- 账单 → 自付 图 ---------- */
+.oop-card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 22px 16px;box-shadow:var(--shadow)}
+.oop-read{display:grid;grid-template-columns:1.1fr 1fr 1fr 1fr;gap:10px;margin-bottom:12px}
+.oop-read>div{border-radius:12px;padding:10px 12px;background:var(--gold-tint-2);display:flex;flex-direction:column;gap:1px}
+.oop-read span{font-size:12.5px;color:var(--muted);display:flex;align-items:center;gap:6px}
+.oop-read span i{display:inline-block;width:14px;height:3px;border-radius:2px}
+.oop-read b{font-size:19px;font-weight:800;color:var(--navy);letter-spacing:.03em}
+.oop-read .bill{background:var(--navy)}.oop-read .bill span,.oop-read .bill b{color:#fff}
+.oop-read .df b{color:var(--green)}
+.oop-svg{display:block;width:100%;height:260px;touch-action:pan-y}
+.oop-svg .grid{stroke:#EADFC8;stroke-width:1}
+.oop-svg .axis text{font-size:11px;fill:var(--muted)}
+.oop-svg .ln{fill:none;stroke-width:2.5;stroke-linejoin:round;stroke-linecap:round}
+.oop-svg .lbl{font-size:12px;font-weight:700;fill:var(--ink)}
+.oop-svg .cross{stroke:var(--navy);stroke-width:1;stroke-dasharray:3 3}
+.oop-svg .dot{stroke:var(--card);stroke-width:2}
+.oop-range{display:flex;align-items:center;gap:12px;margin-top:6px;font-size:13px;color:var(--muted)}
+.oop-range input{flex:1;accent-color:var(--navy)}
+.oop-legend{display:flex;flex-wrap:wrap;gap:16px;margin-top:8px;font-size:13px;color:var(--ink)}
+.oop-legend span{display:inline-flex;align-items:center;gap:7px}
+.oop-legend i{display:inline-block;width:18px;height:3px;border-radius:2px}
+.oop-card .ruler-tips{margin-top:14px}
+@media (max-width:760px){
+  .sg-row{grid-template-columns:1fr 1fr}
+  .sg-k{grid-column:1/-1;padding:10px 14px}
+  .sg-row.hd .sg-k{display:none}
+  .sg-ic{flex-basis:34px;height:34px}.sg-ic .ic{width:18px;height:18px}
+  .sg-v{padding:10px 12px}
+  .sg-v b{font-size:14.5px}
+  .sg-row.hd .sg-v{padding:10px 12px;font-size:13px}
+  .sum-line{grid-template-columns:1fr}
+  .oop-card{padding:14px 12px}
+  .oop-read{grid-template-columns:1fr 1fr}
+  .oop-read b{font-size:16px}
+}
+
+/* ---------- 方案二 4 个选项 ---------- */
+.opt-intro{margin:26px 0 10px;display:flex;align-items:center;gap:8px;font-size:14px;color:var(--muted)}
+.opt-intro b{color:var(--navy)}
+.optgrid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+.opt{position:relative;text-align:left;cursor:pointer;border:1.5px solid var(--line);background:var(--card);border-radius:14px;padding:12px 14px;display:flex;flex-direction:column;gap:2px;box-shadow:var(--shadow);font:inherit;color:var(--ink)}
+.opt:hover{border-color:#D9C59C}
+.opt .t{font-size:13px;font-weight:800;color:var(--gold-deep);letter-spacing:.02em}
+.opt .l{font-size:12.5px;color:var(--muted);line-height:1.5}
+.opt .p{margin-top:4px;font-size:19px;font-weight:800;color:var(--navy);letter-spacing:.03em}
+.opt .p small{font-size:12px;color:var(--muted);font-weight:600;margin-left:3px}
+.opt .m{font-size:12.5px;font-weight:700;color:var(--ink)}
+.opt .q{position:absolute;top:-9px;right:10px;font-size:11px;font-weight:800;color:#fff;background:var(--gold);border-radius:999px;padding:1px 8px}
+.opt .ck{position:absolute;top:10px;right:10px;width:20px;height:20px;border-radius:50%;border:1.5px solid var(--line);display:grid;place-items:center;background:var(--card)}
+.opt .ck .ic{width:13px;height:13px;color:#fff;opacity:0}
+.opt.on{border-color:var(--navy);background:var(--blue-tint);box-shadow:0 8px 22px -14px rgba(19,40,107,.6)}
+.opt.on .ck{background:var(--navy);border-color:var(--navy)}
+.opt.on .ck .ic{opacity:1}
+.ctable.opts table{min-width:760px}
+.ctable.opts th button{all:unset;cursor:pointer;display:block;width:100%}
+.ctable.opts th small{display:block;font-size:11.5px;font-weight:600;opacity:.85}
+.ctable.opts th.p0{background:var(--navy)}
+.ctable.opts th.po{background:#C9A65E}
+.ctable.opts th.po.sel{background:var(--gold)}
+.ctable.opts td.p0{background:#F7F9FD}
+.ctable.opts td.sel{background:var(--gold-tint)!important;color:var(--navy)}
+.ctable.opts td.best{color:var(--green)}
+@media (max-width:760px){
+  .optgrid{grid-template-columns:1fr 1fr}
+  .opt{padding:10px 12px}
+  .opt .p{font-size:17px}
+  .opt .l{font-size:11.5px}
+  .sg-row.hd .sg-v.b{flex-wrap:wrap;row-gap:0}
+  .sg-row.hd #hdB{flex-basis:100%;font-size:12px;padding-left:25px}
+}
+
+/* ---------- 报价工具（沿用方案对比页的版式） ---------- */
+body{padding-bottom:92px}
+.sec-sub{margin:-6px 0 16px;font-size:13.5px;color:var(--muted);max-width:760px}
+.sec-sub b{color:var(--navy)}
+.why-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.why-grid .explain{align-items:flex-start}
+.why-grid .explain .ico{padding-top:2px}
+.why-grid .explain small{display:block;margin-top:4px;font-size:12.5px;color:var(--gold-deep);font-weight:600}
+.flow-card{margin-top:16px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 20px 18px;box-shadow:var(--shadow)}
+.flow-card .ft{display:flex;align-items:center;gap:8px;font-size:15px;font-weight:800;color:var(--navy)}
+.flow-card .tl{margin-top:14px}
+.flow-card .box{min-height:104px}
+.flow-card .box b{font-size:14.5px;letter-spacing:.01em}
+.flow-card .box .who{margin-top:4px;font-size:11.5px;font-weight:800;border-radius:999px;padding:1px 9px}
+.flow-card .box .who.aia{background:var(--blue-tint);color:var(--navy)}
+.flow-card .box .who.yy{background:var(--gold-tint);color:var(--gold-deep)}
+
+/* 成员卡 */
+.member{background:var(--card);border:1px solid var(--line);border-radius:16px;margin-bottom:16px;overflow:hidden;box-shadow:var(--shadow)}
+.m-head{display:flex;flex-wrap:wrap;gap:10px;align-items:center;padding:12px 16px;background:var(--gold-tint-2);border-bottom:1px solid var(--line)}
+.m-head .mi{width:34px;height:34px;border-radius:50%;background:var(--navy);display:grid;place-items:center;flex:0 0 auto}
+.m-head .mi .ic{color:#fff;width:17px;height:17px}
+.m-head input,.m-head select,.cmp-ctl select,.cmp-ctl input[type=number]{font:inherit;border:1px solid var(--line);border-radius:10px;padding:7px 10px;font-size:14px;background:#fff;color:var(--ink)}
+.m-head input[type=text]{width:110px;font-weight:700;color:var(--navy)}
+.m-head input[type=number]{width:70px}
+.m-head label{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;color:var(--muted)}
+.m-del{margin-left:auto;border:0;background:none;color:#9A9384;font-size:13px;cursor:pointer;padding:6px;font-family:inherit}
+.m-del:hover{color:var(--red)}
+.m-body{padding:4px 16px 16px}
+.prod{border:1px solid var(--line);border-radius:14px;margin-top:12px;overflow:hidden}
+.prod-head{display:flex;align-items:center;gap:12px;padding:11px 14px;background:#FFFBF2;flex-wrap:wrap}
+.prod-head .pname{font-weight:800;color:var(--navy);font-size:15px}
+.prod-head .psub{font-size:12px;color:var(--muted)}
+.prod-head .cmp-link{margin-left:auto;display:inline-flex;align-items:center;gap:6px;border:1px solid #D9C59C;background:var(--card);color:var(--gold-deep);border-radius:999px;padding:5px 12px;font-size:12.5px;font-weight:800;cursor:pointer;font-family:inherit}
+.prod-head .cmp-link .ic{width:15px;height:15px}
+.prod-head .cmp-link:hover{background:var(--gold-tint-2)}
+.prod-body{padding:12px 14px;border-top:1px dashed var(--line)}
+.tgl{position:relative;width:40px;height:22px;flex-shrink:0;cursor:pointer}
+.tgl input{opacity:0;width:0;height:0}
+.tgl i{position:absolute;inset:0;background:#DCD3C2;border-radius:20px;transition:.2s}
+.tgl i:before{content:"";position:absolute;width:18px;height:18px;border-radius:50%;background:#fff;top:2px;left:2px;transition:.2s;box-shadow:0 1px 3px rgba(0,0,0,.18)}
+.tgl input:checked+i{background:var(--navy)}
+.tgl input:checked+i:before{left:20px}
+.grp-lb{font-size:12px;font-weight:800;color:var(--muted);margin:2px 0 6px;letter-spacing:.04em}
+.plansel{display:flex;flex-wrap:wrap;gap:8px;margin:2px 0 10px}
+.plan-pill{position:relative;display:inline-flex;align-items:center;gap:6px;border:1.5px solid var(--line);border-radius:999px;padding:7px 14px;font-size:13px;cursor:pointer;background:var(--card);color:var(--ink);font-family:inherit;font-weight:600}
+.plan-pill .ic{width:15px;height:15px}
+.plan-pill.on{border-color:var(--navy);background:var(--navy);color:#fff}
+.plan-pill.on .ic{color:#fff}
+.plan-pill.glb.on{border-color:var(--gold);background:var(--gold)}
+.plan-pill .new{font-size:10.5px;font-weight:800;background:var(--red);color:#fff;border-radius:999px;padding:0 6px;margin-left:2px}
+.plan-pill.on .new{background:#fff;color:var(--red)}
+.pop-badge{position:absolute;top:-9px;right:-6px;background:var(--gold);color:#fff;font-size:9.5px;font-weight:800;border-radius:999px;padding:1px 7px;white-space:nowrap}
+.subsel{display:flex;flex-wrap:wrap;gap:6px;margin:-2px 0 10px}
+.subsel button{border:1px solid var(--line);background:var(--card);border-radius:10px;padding:6px 11px;font-size:12.5px;cursor:pointer;font-family:inherit;color:var(--ink);text-align:left;line-height:1.35}
+.subsel button small{display:block;font-size:11px;color:var(--muted)}
+.subsel button.on{border-color:var(--gold);background:var(--gold-tint-2);color:var(--navy);font-weight:700}
+.opt-row{display:flex;flex-wrap:wrap;gap:6px 16px;margin:4px 0 2px}
+.opt-row label{display:inline-flex;align-items:center;gap:6px;font-size:13px;color:var(--ink);cursor:pointer}
+.opt-row input{accent-color:var(--navy);width:15px;height:15px}
+.opt-row select{border:1px solid var(--line);border-radius:8px;padding:4px 8px;font-size:12.5px;font-family:inherit;background:#fff}
+.pres{margin-top:10px;background:var(--gold-tint-2);border:1px solid var(--line);border-radius:12px;padding:10px 13px}
+.pres .row{display:flex;justify-content:space-between;gap:10px;font-size:13px;padding:2.5px 0}
+.pres .row .k{color:var(--muted)}
+.pres .row.tot{border-top:1px dashed #D9C59C;margin-top:5px;padding-top:7px;font-weight:800;color:var(--navy);font-size:14.5px}
+.pchips{display:flex;flex-wrap:wrap;gap:7px;margin-top:9px}
+.pchip{display:inline-flex;align-items:center;gap:6px;border-radius:999px;padding:3px 11px;font-size:12px;font-weight:700}
+.pchip.cash{background:var(--green-tint);color:var(--green)}
+.pchip.cpf{background:var(--blue-tint);color:var(--navy)}
+.mnote{margin-top:8px;font-size:12.5px;line-height:1.7;color:#6D5318;background:var(--gold-tint);border-radius:10px;padding:8px 11px}
+.mnote.warn{background:var(--red-tint);color:var(--red)}
+.m-total{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:14px;padding:11px 15px;background:var(--navy);border-radius:12px;color:#fff;font-size:13.5px}
+.m-total b{font-size:19px;letter-spacing:.03em}
+.addbtn{width:100%;border:1.5px dashed var(--gold);background:var(--gold-tint-2);color:var(--gold-deep);border-radius:14px;padding:13px;font-size:15px;font-weight:800;cursor:pointer;font-family:inherit;display:flex;align-items:center;justify-content:center;gap:8px}
+.addbtn .ic{width:18px;height:18px}
+
+/* 对比区 */
+.cmp-ctl{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 18px;box-shadow:var(--shadow);display:grid;grid-template-columns:auto 1fr;gap:12px 16px;align-items:center}
+.cmp-ctl .k{font-size:13px;font-weight:800;color:var(--navy);display:flex;align-items:center;gap:7px;white-space:nowrap}
+.cmp-ctl .k .ic{width:16px;height:16px}
+.cmp-ctl .age{display:flex;align-items:center;gap:12px}
+.cmp-ctl .age input[type=range]{flex:1;accent-color:var(--navy)}
+.cmp-ctl .age input[type=number]{width:74px}
+.cmp-ctl .age small{font-size:12px;color:var(--muted);white-space:nowrap}
+.chipsel{display:flex;flex-wrap:wrap;gap:6px}
+.chipsel button{border:1.5px solid var(--line);background:var(--card);border-radius:999px;padding:6px 13px;font-size:13px;cursor:pointer;font-family:inherit;color:var(--ink);font-weight:600}
+.chipsel button.on{border-color:var(--navy);background:var(--navy);color:#fff}
+.chipsel.g button.on{border-color:var(--gold);background:var(--gold)}
+.cmp-price{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px}
+.cmp-price>div{border-radius:14px;padding:14px 18px;color:#fff;position:relative;overflow:hidden}
+.cmp-price .a{background:var(--navy)}.cmp-price .b{background:var(--gold)}
+.cmp-price .t{font-size:13px;font-weight:700;opacity:.9;display:flex;align-items:center;gap:7px}
+.cmp-price .t .ic{color:#fff;width:16px;height:16px}
+.cmp-price b{display:block;margin-top:2px;font-size:28px;font-weight:800;letter-spacing:.03em;line-height:1.2}
+.cmp-price b small{font-size:13px;font-weight:600;opacity:.85;margin-left:4px;letter-spacing:0}
+.cmp-price .s{font-size:12.5px;opacity:.9;line-height:1.6}
+.cmp-future{margin-top:12px}
+.cmp-future table{min-width:520px}
+
+/* 理赔示例 */
+.claims{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.clm{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;box-shadow:var(--shadow);border-top:4px solid var(--pc,var(--navy))}
+.clm h3{font-size:16px;color:var(--navy)}
+.clm .scope{font-size:12px;color:var(--muted);margin-bottom:6px}
+.bill{border:1px solid var(--line);border-radius:12px;padding:12px;margin-top:10px;background:#fff}
+.bill-title{display:flex;justify-content:space-between;align-items:center;font-weight:800;color:var(--navy);margin-bottom:8px;font-size:13.5px}
+.calc{display:grid;grid-template-columns:1fr auto;gap:3px 12px;font-size:12.5px}
+.calc .k{color:var(--muted)}
+.calc .self,.calc .self+div{font-weight:800;color:var(--red);padding-top:6px;margin-top:3px;border-top:1px dashed var(--line)}
+.calc .claim,.calc .claim+div{font-weight:800;color:var(--green)}
+.split-bar{display:flex;height:8px;border-radius:6px;overflow:hidden;background:var(--red-tint);margin-top:9px}
+.split-bar i{display:block;height:100%}
+.split-bar .s-claim{background:var(--green)}.split-bar .s-self{background:var(--red)}
+
+/* 保障表 */
+.hplans{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.hplan{background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden;border-top:4px solid var(--pc,var(--navy));box-shadow:var(--shadow)}
+.hplan h4{padding:11px 14px;background:var(--gold-tint-2);border-bottom:1px solid var(--line);color:var(--navy);font-size:14.5px}
+.hplan h4 small{display:block;font-weight:500;font-size:11.5px;color:var(--muted);margin-top:1px;line-height:1.6}
+.hfeat{padding:8px 14px;border-bottom:1px dashed var(--line);font-size:12.5px;line-height:1.7;color:var(--muted)}
+.hfeat:last-child{border-bottom:0}
+.hfeat b.k{display:block;color:var(--navy);font-size:12px}
+.hfeat b{color:var(--navy)}
+.bene{background:var(--card);border:1px solid var(--line);border-radius:14px;margin-top:12px;overflow:hidden;box-shadow:var(--shadow)}
+.bene summary{list-style:none;display:flex;justify-content:space-between;align-items:center;gap:12px;padding:13px 16px;cursor:pointer}
+.bene summary::-webkit-details-marker{display:none}
+.bene .bt{font-size:15px;font-weight:800;color:var(--navy)}
+.bene .bs{font-size:12px;color:var(--muted)}
+.bene .arrow{width:18px;height:18px;color:var(--gold-deep);transition:transform .2s;flex:0 0 auto}
+.bene[open] .arrow{transform:rotate(180deg)}
+.bene-in{border-top:1px solid var(--line)}
+.tbl-scroll{overflow-x:auto}
+.bene table{width:100%;border-collapse:collapse;font-size:13px;min-width:560px}
+.bene th{background:var(--navy);color:#fff;text-align:left;padding:9px 12px;font-weight:700;white-space:nowrap}
+.bene td{padding:8px 12px;border-top:1px solid var(--line);color:var(--ink);vertical-align:top}
+.bene td.num,.bene th.num{text-align:right}
+.bene tr.hlrow td{background:var(--gold-tint)}
+.bene td:first-child{min-width:190px}
+.hl-badge{display:inline-block;background:var(--gold);color:#fff;font-size:10px;font-weight:800;border-radius:999px;padding:1px 7px;margin-left:6px;vertical-align:1px}
+.bene-note{padding:10px 16px;background:var(--gold-tint-2);border-top:1px solid var(--line);font-size:12px;color:var(--muted);line-height:1.75}
+.bene-note a{color:var(--gold-deep)}
+
+/* 底部合计条 */
+#totbar{position:fixed;left:0;right:0;bottom:0;z-index:50;background:var(--navy);color:#fff;box-shadow:0 -6px 24px rgba(19,40,107,.28)}
+#totbar .in{max-width:1040px;margin:0 auto;padding:10px 20px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+#totbar .lbl{font-size:12px;color:rgba(255,255,255,.7)}
+#totbar .amt{font-size:21px;font-weight:800;line-height:1.2;letter-spacing:.03em}
+#totbar .sub{font-size:11.5px;color:rgba(255,255,255,.78)}
+#totbar .btns{margin-left:auto;display:flex;gap:8px}
+#totbar button,#totbar a{border:0;border-radius:999px;padding:9px 16px;font-size:13px;font-weight:800;cursor:pointer;font-family:inherit;text-decoration:none}
+#totbar #wa-btn{background:var(--gold);color:#fff}
+#totbar #share-btn{background:transparent;color:#fff;border:1px solid rgba(201,151,58,.75)}
+
+/* 水印 */
+#wm{position:fixed;inset:0;pointer-events:none;z-index:40;overflow:hidden;opacity:.045}
+#wm .row{position:absolute;white-space:nowrap;font-size:15px;color:var(--navy);transform:rotate(-24deg);transform-origin:left top}
+
+@media (max-width:760px){
+  .why-grid,.hplans,.claims,.cmp-price{grid-template-columns:1fr}
+  .flow-card{padding:14px 12px}
+  .flow-card .box{min-height:0}
+  .m-head{padding:10px 12px}
+  .m-body{padding:2px 12px 14px}
+  .prod-head .cmp-link{margin-left:0}
+  .cmp-ctl{grid-template-columns:1fr;padding:12px 14px;gap:6px 0}
+  .cmp-ctl .k{margin-top:6px}
+  .cmp-price b{font-size:24px}
+  #cmpGrid .sg-row.hd .sg-v.b{flex-wrap:nowrap}
+  #totbar .in{padding:8px 14px;gap:10px}
+  #totbar .amt{font-size:18px}
+  #totbar .btns{width:100%;margin-left:0}
+  #totbar .btns>*{flex:1;text-align:center}
+  body{padding-bottom:132px}
+}
+@media print{#totbar,#wm{display:none}}
+
+/* 为什么选 AIA：数据条、奖项、来源 */
+.stat4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));background:var(--card);border:1px solid var(--line);border-radius:14px;margin-bottom:12px}
+.stat4>div{padding:12px 16px;display:flex;flex-direction:column;gap:1px;border-left:1px solid var(--line)}
+.stat4>div:first-child{border-left:0}
+.stat4 .lb{font-size:12.5px;color:var(--muted)}
+.stat4 b{font-size:19px;font-weight:800;color:var(--navy);line-height:1.35;letter-spacing:.02em}
+.stat4 small{font-size:12px;color:var(--muted);line-height:1.5}
+.ref{font-size:8.5px;font-weight:700;line-height:0;vertical-align:super;margin-left:1px;color:var(--gold-deep);letter-spacing:0}
+.ref a{color:inherit;text-decoration:none}
+.ref a:hover{text-decoration:underline}
+.award-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.award-row span{display:inline-flex;align-items:center;gap:6px;background:var(--gold-tint-2);border:1px solid #E3CFA4;border-radius:999px;padding:5px 12px;font-size:12.5px;font-weight:700;color:var(--navy)}
+.award-row .ic{width:15px;height:15px}
+.award-row .ref{align-self:flex-start;margin:1px 0 0 -4px;line-height:1}
+.srcs-wrap{margin-top:18px;padding-top:14px;border-top:1px dashed #D9C59C}
+.srcs-h{display:flex;align-items:center;gap:6px;font-size:13px;font-weight:800;color:var(--navy);margin-bottom:6px}
+.srcs-h .ic{width:15px;height:15px}
+.srcs{margin:0;padding-left:22px;font-size:11.5px;line-height:1.75;color:var(--muted)}
+.srcs a{color:var(--muted);text-decoration:underline;text-decoration-color:#D9C59C;word-break:break-word}
+.srcs li{border-radius:6px}
+.srcs li.hit{animation:srcHit 2.4s ease-out}
+@keyframes srcHit{0%,40%{background:var(--gold-tint)}100%{background:transparent}}
+@media (max-width:760px){
+  .stat4{grid-template-columns:1fr 1fr}
+  .stat4>div{padding:10px 12px}
+  .stat4>div:nth-child(3){border-left:0}
+  .stat4>div:nth-child(n+3){border-top:1px solid var(--line)}
+  .stat4 b{font-size:17px}
+}
+
+/* 不同身份价格对照 */
+.res-cmp{margin-top:12px}
+.res-cmp table{min-width:0}
+.res-cmp tr.cur td{background:var(--gold-tint)}
+.res-cmp tr.cur td:first-child{font-weight:800;color:var(--navy)}
+#cmpWhy{align-items:flex-start;line-height:1.65;text-align:left;justify-content:flex-start}
+@media (max-width:760px){
+  .res-cmp th,.res-cmp td{padding:10px 10px;font-size:13.5px}
+  .res-cmp th{white-space:normal}
+  .res-cmp td small{font-size:11.5px}
+}
+#cmpWhy .ic{flex:0 0 auto;margin-top:3px}
 </style>
 </head>
 <body class="locked">
-
 <div id="pwGate">
-  <div class="pw-card">
-    <div class="pw-left">
-      <div class="pw-top">
-        <span class="pw-chip"><img src="/avatar-round.png" alt="">
-          <b data-zh="新加坡小圆姐 · 客户专属" data-en="Yuan Yuan SG &middot; client only">新加坡小圆姐 · 客户专属</b>
-        </span>
-        <button type="button" id="pwLang" data-zh="EN" data-en="中文">EN</button>
-      </div>
-
-      <h2 data-zh="家庭住院险测算" data-en="Family cover quote">家庭住院险测算</h2>
-      <p class="pw-sub" data-zh="这是小圆姐为客户做的住院险 + 意外险测算页面。<br>为保护客户资料与报价内容，请输入访问密码。" data-en="A hospital &amp; accident cover quote prepared for Yuan Yuan&rsquo;s clients.<br>Enter the access password to view it.">这是小圆姐为客户做的住院险 + 意外险测算页面。<br>为保护客户资料与报价内容，请输入访问密码。</p>
-
-      <form id="pwForm">
-        <label class="pw-label" for="pwInput" data-zh="访问密码" data-en="Access password">访问密码</label>
-        <div class="pw-field">
-          <svg class="pw-lock" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <rect x="4.5" y="10.5" width="15" height="10.5" rx="2.5"/><path d="M8 10.5V7.8a4 4 0 0 1 8 0v2.7"/><path d="M12 15v2.2"/>
-          </svg>
-          <input id="pwInput" type="password" autocomplete="off" placeholder="输入密码" data-zh="输入密码" data-en="Enter password">
-          <button type="button" id="pwEye" aria-label="显示密码" aria-pressed="false">
-            <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <path d="M3 12c0-2.5 4-7 9-7s9 4.5 9 7c0 2.5-4 7-9 7s-9-4.5-9-7z"/><circle cx="12" cy="12" r="2.6"/>
-            </svg>
-          </button>
-        </div>
-        <div class="pw-err" id="pwErr" data-zh="密码不正确，再试一次；或者找我要一次新的。" data-en="That password didn&rsquo;t work. Try again, or ask me for a new one.">密码不正确，再试一次；或者找我要一次新的。</div>
-        <button type="submit" id="pwSubmit"><span data-zh="查看测算" data-en="View the quote">查看测算</span>
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-        </button>
-      </form>
-
-      <div class="pw-div"><span></span><b data-zh="还没有密码？" data-en="No password yet?" style="font-weight:400">还没有密码？</b><span></span></div>
-      <p class="pw-ask" data-zh="联系小圆姐索取访问密码" data-en="Ask Yuan Yuan for the password">联系小圆姐索取访问密码</p>
-      <div class="pw-contact">
-        <div class="pw-c">
-          <i><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.8A8.3 8.3 0 0 1 8.9 19L3.5 20.5 5 15.2A8.3 8.3 0 1 1 21 11.8z"/><path d="M8.5 11.8h.01M12.2 11.8h.01M15.9 11.8h.01"/></svg></i>
-          <span><b data-zh="微信" data-en="WeChat">微信</b><s>singaporeyuan</s></span>
-        </div>
-        <a class="pw-c" href="https://wa.me/6583750190?text=%E4%BD%A0%E5%A5%BD%E5%B0%8F%E5%9C%86%E5%A7%90%EF%BC%8C%E6%83%B3%E8%A6%81%E4%B8%80%E4%B8%8B%E4%BD%8F%E9%99%A2%E9%99%A9%E6%B5%8B%E7%AE%97%E9%A1%B5%E7%9A%84%E8%AE%BF%E9%97%AE%E5%AF%86%E7%A0%81%E3%80%82">
-          <i><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5.5 4H9l1.6 4.3L8.5 10a12.5 12.5 0 0 0 5.5 5.5l1.7-2.1L20 15v3.6A1.6 1.6 0 0 1 18.2 20C10.8 19.2 4.8 13.2 4 5.8A1.6 1.6 0 0 1 5.5 4z"/></svg></i>
-          <span><b>WhatsApp</b><s>+65 8375 0190</s></span>
-        </a>
-      </div>
-    </div>
-
-    <div class="pw-art">
-      <img src="/password/welcome-door.webp" alt="" width="720" height="1245">
-    </div>
-  </div>
+  <form class="pw-card" id="pwForm">
+    <span class="pw-chip"><img src="/avatar-round.png" alt="">新加坡小圆姐 · 专属方案</span>
+    <h2>家庭保障方案测算</h2>
+    <p>为保护客户资料，请输入访问密码。</p>
+    <input id="pwInput" type="password" autocomplete="off" placeholder="输入密码">
+    <div class="pw-err" id="pwErr">密码不正确，再试一次，或者找小圆姐要密码。</div>
+    <button type="submit" id="pwSubmit">查看方案</button>
+  </form>
 </div>
-<script>
-(function(){
-  var HASH="5647cdb5254a24d3a184f9136af8416c1ffb1050fd57c67dc133e588b73fc706", KEY="sy_quote_auth";
-  function sha(s){return crypto.subtle.digest("SHA-256",new TextEncoder().encode(s)).then(function(b){
-    return Array.prototype.map.call(new Uint8Array(b),function(x){return x.toString(16).padStart(2,"0")}).join("");
-  })}
-  try{ if(sessionStorage.getItem(KEY)===HASH){ document.body.classList.remove("locked"); } }catch(e){}
-  var eye=document.getElementById("pwEye"), inp=document.getElementById("pwInput");
-  if(eye){ eye.addEventListener("click",function(){
-    var show = inp.type==="password";
-    inp.type = show ? "text" : "password";
-    eye.setAttribute("aria-pressed", show ? "true" : "false");
-    eye.setAttribute("aria-label", show ? "隐藏密码" : "显示密码");
-    inp.focus();
-  }); }
-  // 眼睛开关 + 中英切换(不影响密码校验)
-  var eye=document.getElementById("pwEye"), inp=document.getElementById("pwInput");
-  if(eye){ eye.addEventListener("click",function(){
-    var show=inp.type==="password";
-    inp.type=show?"text":"password";
-    eye.setAttribute("aria-pressed",show?"true":"false");
-    eye.setAttribute("aria-label",show?(gateLang==="zh"?"隐藏密码":"Hide password"):(gateLang==="zh"?"显示密码":"Show password"));
-    inp.focus();
-  }); }
-  var gateLang="zh";
-  function applyLang(L){
-    gateLang=L;
-    var g=document.getElementById("pwGate");
-    if(!g)return;
-    g.querySelectorAll("[data-zh]").forEach(function(el){
-      var t=el.getAttribute(L==="zh"?"data-zh":"data-en");
-      if(t==null)return;
-      if(el.tagName==="INPUT") el.placeholder=t; else el.innerHTML=t;
-    });
-    var b=document.getElementById("pwLang");
-    if(b) b.textContent = L==="zh" ? "EN" : "中文";
-    if(eye) eye.setAttribute("aria-label", inp.type==="password" ? (L==="zh"?"显示密码":"Show password") : (L==="zh"?"隐藏密码":"Hide password"));
-  }
-  try{
-    var saved=localStorage.getItem("sy_gate_lang");
-    applyLang(saved || ((navigator.language||"").toLowerCase().indexOf("zh")===0 ? "zh" : "en"));
-  }catch(e){ applyLang("zh"); }
-  var lb=document.getElementById("pwLang");
-  if(lb) lb.addEventListener("click",function(){
-    var L = gateLang==="zh" ? "en" : "zh";
-    applyLang(L);
-    try{ localStorage.setItem("sy_gate_lang",L); }catch(e){}
-  });
-  document.getElementById("pwForm").addEventListener("submit",function(e){
-    e.preventDefault();
-    sha(document.getElementById("pwInput").value.trim()).then(function(h){
-      if(h===HASH){ try{sessionStorage.setItem(KEY,HASH);}catch(e){} document.body.classList.remove("locked"); window.scrollTo(0,0); }
-      else{ document.getElementById("pwErr").classList.add("show"); document.getElementById("pwInput").select(); }
-    });
-  });
-})();
-</script>
 
-<header>
-  <div class="hd-in">
-    <div class="hd-tag">FAMILY PROTECTION QUOTE</div>
-    <h1>家庭保障方案测算<br><em>住院险</em> + <em>意外险</em>，一次算清全家</h1>
-    <div class="hd-sub">输入年龄和身份，保障和保费自动算好；金色标注是小圆姐提醒你要注意的地方。</div>
-    <div class="hd-pills">
-      <span class="hd-pill solid">支持多位家庭成员</span>
-      <span class="hd-pill">AIA Singapore</span>
-      <span class="hd-pill">价格含 9% GST</span>
-      <span class="hd-pill">官方价格表自动匹配</span>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="i-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v5c0 4.5-3 8.3-7 10-4-1.7-7-5.5-7-10V6z"/><path d="M9 12l2 2 4-4"/></symbol>
+    <symbol id="i-coins" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="9" cy="6" rx="6" ry="2.5"/><path d="M3 6v4c0 1.4 2.7 2.5 6 2.5s6-1.1 6-2.5V6"/><ellipse cx="15" cy="14" rx="6" ry="2.5"/><path d="M9 14v4c0 1.4 2.7 2.5 6 2.5s6-1.1 6-2.5v-4"/></symbol>
+    <symbol id="i-gift" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M5 12v9h14v-9M12 8v13"/><path d="M12 8c-2-4-6-4-6-1.5S9 8 12 8zM12 8c2-4 6-4 6-1.5S15 8 12 8z"/></symbol>
+    <symbol id="i-cal" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4M7 14h2M11 14h2M15 14h2M7 17h2M11 17h2"/></symbol>
+    <symbol id="i-bars" viewBox="0 0 24 24" fill="currentColor"><rect x="4" y="13" width="4" height="8" rx="1.2"/><rect x="10" y="9" width="4" height="12" rx="1.2"/><rect x="16" y="4" width="4" height="17" rx="1.2"/></symbol>
+    <symbol id="i-doc" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h9l4 4v14H6z"/><path d="M15 3v4h4M9 11h7M9 14h7M9 17h5"/></symbol>
+    <symbol id="i-bulb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9c.6.5 1 1.2 1 2.1h5c0-.9.4-1.6 1-2.1A6 6 0 0 0 12 3z"/></symbol>
+    <symbol id="i-heart" viewBox="0 0 24 24"><path fill="#C0392B" d="M12 21s-7.5-4.6-9.6-9.2C.9 8.4 3 4.5 6.7 4.5c2.2 0 3.6 1.2 4.3 2.4.7-1.2 2.1-2.4 4.3-2.4 3.7 0 5.8 3.9 4.3 7.3C19.5 16.4 12 21 12 21z"/></symbol>
+    <symbol id="i-trend" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8"/><path d="M14 7h7v7"/></symbol>
+    <symbol id="i-chart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 15l4-4 3 3 6-7"/></symbol>
+    <symbol id="i-alert" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10.3 4 2.6 18a2 2 0 0 0 1.7 3h15.4a2 2 0 0 0 1.7-3L13.7 4a2 2 0 0 0-3.4 0z"/><path d="M12 9v4M12 17h.01"/></symbol>
+    <symbol id="i-cash" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="12" cy="12" r="2.6"/><path d="M6 12h.01M18 12h.01"/></symbol>
+    <symbol id="i-lock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4.5" y="10.5" width="15" height="10.5" rx="2.5"/><path d="M8 10.5V7.8a4 4 0 0 1 8 0v2.7M12 15v2.2"/></symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+    <symbol id="i-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M9 9l6 6M15 9l-6 6"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8 12.5l2.6 2.6L16 9.6"/></symbol>
+    <symbol id="i-usd" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 6.5v11M15 9.3c0-1.3-1.3-2.1-3-2.1s-3 .8-3 2.1c0 2.9 6 1.5 6 4.5 0 1.3-1.3 2.1-3 2.1s-3-.8-3-2.1"/></symbol>
+    <symbol id="i-swap" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 4 3 8l4 4M3 8h14M17 20l4-4-4-4M21 16H7"/></symbol>
+    <symbol id="i-door" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3h5a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-5"/><path d="M9 17l5-5-5-5M14 12H3"/></symbol>
+    <symbol id="i-family" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="7" r="3"/><path d="M3 21v-1a6 6 0 0 1 12 0v1"/><circle cx="17.5" cy="9" r="2.4"/><path d="M16 21v-.6a4.5 4.5 0 0 1 6-4.2"/></symbol>
+    <symbol id="i-scale" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18M6 21h12M5 7h14"/><path d="M5 7l-3 6a3 3 0 0 0 6 0zM19 7l-3 6a3 3 0 0 0 6 0z"/></symbol>
+    <symbol id="i-user" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></symbol>
+    <symbol id="i-mix" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="12" r="6"/><circle cx="15" cy="12" r="6"/></symbol>
+    <symbol id="i-coffee" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9h13v4a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5z"/><path d="M17 10h1.5a2.5 2.5 0 0 1 0 5H17M8 3v3M12 3v3M4 21h13"/></symbol>
+    <symbol id="i-chat" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20.5l1.4-4.8A8 8 0 1 1 21 12z"/><path d="M8.5 12h.01M12 12h.01M15.5 12h.01"/></symbol>
+    <symbol id="i-phone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5.5 4H9l1.6 4.3L8.5 10a12.5 12.5 0 0 0 5.5 5.5l1.7-2.1L20 15v3.6A1.6 1.6 0 0 1 18.2 20C10.8 19.2 4.8 13.2 4 5.8A1.6 1.6 0 0 1 5.5 4z"/></symbol>
+    <symbol id="i-renew" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 11a8 8 0 0 0-14.3-4.9L4 8"/><path d="M4 3v5h5"/><path d="M4 13a8 8 0 0 0 14.3 4.9L20 16"/><path d="M20 21v-5h-5"/></symbol>
+    <symbol id="i-hospital" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 21V8l8-5 8 5v13"/><path d="M2.5 21h19"/><path d="M12 8.5v6M9 11.5h6"/><path d="M10 21v-3.5h4V21"/></symbol>
+    <symbol id="i-globe" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3c2.4 2.5 3.7 5.5 3.7 9s-1.3 6.5-3.7 9c-2.4-2.5-3.7-5.5-3.7-9S9.6 5.5 12 3z"/></symbol>
+    <symbol id="i-wallet" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 7V5.5A1.5 1.5 0 0 0 16.5 4H5.5a2.5 2.5 0 0 0 0 5H19a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2H5.5A2.5 2.5 0 0 1 3 17.5V6.5"/><path d="M16.5 14.5h.01"/></symbol>
+    <symbol id="i-ribbon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8.5 21 14.6 9.8a3.6 3.6 0 1 0-5.2 0L15.5 21"/></symbol>
+    <symbol id="i-id" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2.5"/><circle cx="9" cy="11" r="2.2"/><path d="M5.8 16.2a3.4 3.4 0 0 1 6.4 0M14.5 10h4M14.5 13.5h3"/></symbol>
+    <symbol id="i-trophy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 4h8v5a4 4 0 0 1-8 0z"/><path d="M8 5.5H5a3 3 0 0 0 3 4.5M16 5.5h3a3 3 0 0 1-3 4.5"/><path d="M12 13v4M8.5 21h7M10 17h4v4h-4z"/></symbol>
+    <symbol id="i-mobile" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="6.5" y="2.5" width="11" height="19" rx="2.5"/><path d="M11 18.5h2"/><path d="M9.3 10.2l1.9 1.9 3.6-3.6"/></symbol>
+    <symbol id="i-card" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="5" width="19" height="14" rx="2.5"/><path d="M2.5 9.5h19"/><path d="M6 15h4"/></symbol>
+    <symbol id="i-steth" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3v5a4 4 0 0 0 8 0V3"/><path d="M9 12v2.5a5 5 0 0 0 10 0V12"/><circle cx="19" cy="10" r="2"/></symbol>
+    <symbol id="i-bed" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 19V6M3 15h18v4M21 15v-3a3 3 0 0 0-3-3h-7v6"/><circle cx="7" cy="11" r="2"/></symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></symbol>
+  </defs>
+</svg>
+
+<div class="page">
+  <svg class="deco" viewBox="0 0 220 160" aria-hidden="true">
+    <polygon points="60,0 220,0 220,150" fill="#EFE3C8" opacity=".7"/>
+    <polygon points="130,0 220,0 220,90" fill="#E4D3AE" opacity=".6"/>
+  </svg>
+  <header class="hero">
+    <h1><span style="white-space:nowrap">家庭保障方案测算</span><span class="l2">住院险 + 意外险，一次算清全家</span></h1>
+    <div class="meta">
+      <span class="who"><svg class="ic" style="color:#fff"><use href="#i-family"/></svg>支持多位家庭成员</span>
+      <span><svg class="ic"><use href="#i-shield"/></svg>AIA Singapore</span>
+      <span><svg class="ic"><use href="#i-globe"/></svg>新增全球医疗险（美国除外）</span>
+      <span><svg class="ic"><use href="#i-doc"/></svg>官方价格表 · 含 9% GST</span>
+    </div>
+  </header>
+
+  <!-- ===== 为什么 ===== -->
+  <div class="sub-head"><svg class="ic ic-md"><use href="#i-bulb"/></svg>报价之前，先了解：为什么选 AIA，为什么找小圆姐</div>
+  <div class="pill-head">
+    <div class="pill navy">为什么选 AIA</div>
+    <div class="formula"><svg class="ic"><use href="#i-doc"/></svg>数据都有出处，点右上角小数字看来源</div>
+  </div>
+  <div class="stat4 num">
+    <div><span class="lb">在新加坡</span><b>95 年</b><small>2026 年迎来 95 周年<sup class="ref"><a href="#src1">1</a></sup></small></div>
+    <div><span class="lb">过去 10 年赔付</span><b>S$400 亿+</b><small>住院、重疾、身故、意外、满期金<sup class="ref"><a href="#src1">1</a></sup></small></div>
+    <div><span class="lb">新加坡投保人</span><b>100 万+</b><small>5,700+ 位专属代理<sup class="ref"><a href="#src2">2</a></sup></small></div>
+    <div><span class="lb">AIA 合作专科医生</span><b>1,048 位</b><small>AIA+ 上直接查找预约<sup class="ref"><a href="#src3">3</a></sup></small></div>
+  </div>
+  <div class="why-grid">
+    <div class="explain"><div class="ico"><svg class="ic ic-lg"><use href="#i-coins"/></svg></div>
+      <div><b>赔付有底气</b><span>过去 10 年在新加坡赔付超过 S$400 亿<sup class="ref"><a href="#src1">1</a></sup>；AIA 集团穆迪评级 Aa2，2025 年 5 月展望回到稳定<sup class="ref"><a href="#src4">4</a></sup></span></div></div>
+    <div class="explain"><div class="ico"><svg class="ic ic-lg"><use href="#i-steth"/></svg></div>
+      <div><b>医生网络大</b><span>AIA 合作专科医生已有 1,048 位<sup class="ref"><a href="#src3">3</a></sup>，2025 年起莱佛士医院 90 多位专科也加入<sup class="ref"><a href="#src5">5</a></sup>；看 AIA 优选医生，住院前最长 13 个月、住院后最长 15 个月<sup class="ref"><a href="#src6">6</a>,<a href="#src7">7</a></sup></span></div></div>
+    <div class="explain"><div class="ico"><svg class="ic ic-lg"><use href="#i-mobile"/></svg></div>
+      <div><b>理赔数码化</b><span>在 AIA+ app 或网站发起预授权，证书直接在 AIA+ 下载；医生资料齐全后 3 个工作日内评估<sup class="ref"><a href="#src8">8</a></sup>，约九成当天就批<sup class="ref"><a href="#src9">9</a></sup></span></div></div>
+    <div class="explain"><div class="ico"><svg class="ic ic-lg"><use href="#i-card"/></svg></div>
+      <div><b>入院前就知道赔多少</b><span>私立医院、日间手术、门诊癌症中心可申请预授权<sup class="ref"><a href="#src8">8</a></sup>；公立医院用保证函（LOG），保障内的费用由保险公司直接付给医院<sup class="ref"><a href="#src10">10</a></sup></span></div></div>
+  </div>
+  <div class="award-row">
+    <span><svg class="ic"><use href="#i-trophy"/></svg>Insurance Asia Awards 2025 · 新加坡年度国际寿险公司<sup class="ref"><a href="#src11">11</a></sup></span>
+    <span><svg class="ic"><use href="#i-trophy"/></svg>Asia Trusted Life Agents &amp; Advisers Awards 2025 · 年度保险公司<sup class="ref"><a href="#src11">11</a></sup></span>
+    <span><svg class="ic"><use href="#i-trophy"/></svg>亚洲保险业大奖 2021 · 年度健康保险公司<sup class="ref"><a href="#src12">12</a></sup></span>
+  </div>
+
+  <div class="pill-head">
+    <div class="pill gold">跟小圆姐买，多了什么</div>
+    <div class="formula"><svg class="ic"><use href="#i-user"/></svg>出事时有人陪你走完每一步</div>
+  </div>
+  <div class="why-grid">
+    <div class="explain"><div class="ico"><svg class="ic ic-lg"><use href="#i-renew"/></svg></div>
+      <div><b>理赔数据同步 AIA 官方</b><span>同步小圆姐的 AIA 官方网站理赔数据，每一笔理赔进度小圆姐都看得到、帮你跟</span></div></div>
+    <div class="explain"><div class="ico"><svg class="ic ic-lg"><use href="#i-steth"/></svg></div>
+      <div><b>绿色通道约专科医生</b><span>公立、私立的专科医生都能帮你约，少排队、少走弯路</span></div></div>
+    <div class="explain"><div class="ico"><svg class="ic ic-lg"><use href="#i-bed"/></svg></div>
+      <div><b>Parkway 集团医院病房福利更好</b><span>在 Parkway 集团旗下医院住院，享更好的病房福利</span><small>Mount Elizabeth · Gleneagles · Parkway East 等</small></div></div>
+    <div class="explain"><div class="ico"><svg class="ic ic-lg"><use href="#i-chat"/></svg></div>
+      <div><b>中文一对一，从报价到理赔</b><span>选方案、核保、住院、理赔都有小圆姐在，微信随时问</span></div></div>
+  </div>
+
+  <div class="flow-card">
+    <div class="ft"><svg class="ic"><use href="#i-hospital"/></svg>生病住院，跟着这 5 步走</div>
+    <div class="tl num" style="--n:5">
+      <div class="node"><div class="mk"><svg class="ic"><use href="#i-chat"/></svg></div><div class="when">第 1 步<small>找小圆姐</small></div>
+        <div class="box first"><b>约专科医生</b><small>公立、私立都能约</small><span class="who yy">小圆姐</span></div></div>
+      <div class="node"><div class="mk"><svg class="ic"><use href="#i-doc"/></svg></div><div class="when">第 2 步<small>入院前</small></div>
+        <div class="box"><b>预授权 / 保证函</b><small>私立医院预授权，公立医院 LOG</small><span class="who aia">AIA</span></div></div>
+      <div class="node"><div class="mk"><svg class="ic"><use href="#i-bed"/></svg></div><div class="when">第 3 步<small>住院</small></div>
+        <div class="box hl"><b>安心住院</b><small>入院前就知道大概能赔多少</small><span class="who aia">AIA</span></div></div>
+      <div class="node"><div class="mk"><svg class="ic"><use href="#i-card"/></svg></div><div class="when">第 4 步<small>出院</small></div>
+        <div class="box"><b>医院直接结算</b><small>保障内的部分 AIA 直接付</small><span class="who aia">AIA</span></div></div>
+      <div class="node"><div class="mk"><svg class="ic"><use href="#i-renew"/></svg></div><div class="when">第 5 步<small>之后</small></div>
+        <div class="box first"><b>理赔进度同步</b><small>前后门诊也帮你跟进</small><span class="who yy">小圆姐</span></div></div>
     </div>
   </div>
-</header>
 
-<div class="wrap">
-
-<!-- ============ 成员报价 ============ -->
-<section id="calc">
-  <div class="sec-eyebrow">STEP 1 · GET QUOTES</div>
-  <h2 class="sec-title serif">添加家庭成员，自动报价</h2>
-  <p class="sec-sub">年龄填<b>实际年龄</b>（周岁）即可，系统自动按官方价格表折算。意外险默认按职业类别 1/2 报价，3/4 类（高风险职业）请联系小圆姐。</p>
+  <!-- ===== 报价 ===== -->
+  <div class="sub-head" id="calc"><svg class="ic ic-md"><use href="#i-coins"/></svg>第 1 步 · 添加家庭成员，自动报价</div>
+  <p class="sec-sub">年龄填<b>实际年龄</b>（周岁）就好，系统自动按官方价格表折算。住院险可以选<b>新加坡计划</b>或<b>全球医疗险（美国除外）</b>，旁边的「对比」按钮能一键看两者差别。意外险默认按职业类别 1/2 报价。</p>
   <div id="members"></div>
-  <button class="addbtn" id="addbtn">＋ 添加家庭成员</button>
-</section>
+  <button class="addbtn" id="addbtn" type="button"><svg class="ic"><use href="#i-plus"/></svg>添加家庭成员</button>
 
-<!-- ============ 小圆姐提醒 ============ -->
-<section id="tips">
-  <div class="sec-eyebrow">STEP 2 · WHAT TO WATCH</div>
-  <h2 class="sec-title serif">小圆姐提醒：报价之外，这些要想清楚</h2>
-  <div class="tips">
-    <div class="tipcard">
-      <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 21V5a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v16"/><path d="M2 21h20"/><path d="M12 7v4M10 9h4"/></svg>住院险 4 个关键点</h3>
-      <li><b>公立 vs 私立的就诊体验</b>：私立预约快、可自选医生；公立性价比高但等待和病房体验不同。选 A 还是 B，先想清楚你更在意哪个。</li>
-      <li><b>理赔按限额内计算</b>：各理赔单项都有隐形上限（合理惯常收费、单项限额），不是账单全额都能进报销基数。</li>
-      <li><b>既往症</b>：投保前已有的疾病，住院险一般不保或除外承保；意外险通常不受既往症影响。</li>
-      <li><b>核保严格</b>：需如实健康申报，具体保障范围以最终核保结果为准。</li>
-    </div>
-    <div class="tipcard">
-      <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/><path d="m9 12 2 2 4-4"/></svg>意外险 3 个关键点</h3>
-      <li><b>Plan 2 是最多人选择</b>：额度大约覆盖 1 次核磁共振（MRI）。如果一次意外要做两次核磁（比如检查一次、复诊一次），额度可能不够，在意的话直接选 Plan 3 或以上。</li>
-      <li><b>医疗报销 + 中医报销是最常用的理赔</b>：下方保障表中已用金色标出，选计划时重点看这两行。</li>
-      <li><b>单次意外额度</b>：表中额度均为单次意外限额，每次意外分别计算；意外险一般不受既往症影响，但仍以条款和核保为准。</li>
-    </div>
+  <!-- ===== 对比 ===== -->
+  <div class="sub-head" id="compare"><svg class="ic ic-md"><use href="#i-scale"/></svg>新加坡计划 vs 全球医疗险（美国除外），对比一下</div>
+  <p class="sec-sub">选年龄和身份，价格自动换算。<b>新加坡计划</b>按 HealthShield Gold Max + VitalHealth Pro 报价；<b>全球医疗险</b>是 AIA Platinum International Health。</p>
+  <div class="cmp-ctl">
+    <div class="k"><svg class="ic"><use href="#i-user"/></svg>年龄</div>
+    <div class="age"><input type="range" id="cAgeR" min="0" max="65" value="35" aria-label="年龄"><input type="number" id="cAge" min="0" max="65" value="35" aria-label="年龄"><small>周岁</small></div>
+    <div class="k"><svg class="ic"><use href="#i-id"/></svg>身份</div>
+    <div class="chipsel" id="cRes"></div>
+    <div class="k"><svg class="ic"><use href="#i-hospital"/></svg>新加坡计划</div>
+    <div class="chipsel" id="cSg"></div>
+    <div class="k"><svg class="ic"><use href="#i-globe"/></svg>全球医疗险</div>
+    <div class="chipsel g" id="cGl"></div>
   </div>
-</section>
+  <div class="cmp-price num">
+    <div class="a"><div class="t"><svg class="ic"><use href="#i-hospital"/></svg><span id="cpAt"></span></div><b id="cpA"></b><div class="s" id="cpAs"></div></div>
+    <div class="b"><div class="t"><svg class="ic"><use href="#i-globe"/></svg><span id="cpBt"></span></div><b id="cpB"></b><div class="s" id="cpBs"></div></div>
+  </div>
+  <div class="ctable res-cmp"><table class="num" id="cmpRes"></table></div>
+  <div class="tip" id="cmpWhy"><svg class="ic"><use href="#i-bulb"/></svg><span></span></div>
+  <div class="sumgrid num" id="cmpGrid"></div>
+  <div class="ctable cmp-future"><table class="num" id="cmpFuture"></table></div>
+  <div class="sum-line">
+    <div class="a"><svg class="ic"><use href="#i-hospital"/></svg><span><b>选新加坡计划：</b>主要在新加坡看病，想把每年自付压在 1 万以内，要保证续保</span></div>
+    <div class="b"><svg class="ic"><use href="#i-globe"/></svg><span><b>选全球医疗险：</b>常回国或在几个国家生活，想在国外也按实际赔，能接受自付更高、续保不保证</span></div>
+  </div>
 
-<!-- ============ 保障详情 ============ -->
-<section id="coverage">
-  <div class="sec-eyebrow">STEP 3 · COVERAGE DETAILS</div>
-  <h2 class="sec-title serif">保障内容速查</h2>
+  <!-- ===== 小圆姐提醒 ===== -->
+  <div class="sub-head"><svg class="ic ic-md"><use href="#i-alert"/></svg>第 2 步 · 小圆姐提醒：报价之外，这些要想清楚</div>
+  <div class="pick">
+    <div class="pk a"><div class="hd"><div class="badge"><svg class="ic ic-md"><use href="#i-hospital"/></svg></div>新加坡住院险</div>
+      <ul><li><svg class="ic"><use href="#i-check"/></svg><span><b>公立还是私立</b>：私立预约快、可选医生；公立性价比高，但等待和病房不同</span></li>
+      <li><svg class="ic"><use href="#i-check"/></svg><span><b>按合理收费赔</b>：各项有合理惯常收费和单项上限，不是账单全额都能赔</span></li>
+      <li><svg class="ic"><use href="#i-check"/></svg><span><b>既往症</b>：投保前已有的病一般不保或除外承保</span></li>
+      <li><svg class="ic"><use href="#i-check"/></svg><span><b>如实申报</b>：保障范围以最终核保结果为准</span></li></ul></div>
+    <div class="pk b"><div class="hd"><div class="badge"><svg class="ic ic-md"><use href="#i-globe"/></svg></div>全球医疗险</div>
+      <ul><li><svg class="ic"><use href="#i-check"/></svg><span><b>续保不保证</b>：保险公司有权不续保，这点和新加坡计划不同</span></li>
+      <li><svg class="ic"><use href="#i-check"/></svg><span><b>自付更高</b>：每年最多自付 S$16,500 或 S$23,000，看选哪个选项</span></li>
+      <li><svg class="ic"><use href="#i-check"/></svg><span><b>美国不保</b>；65 岁前才能投保</span></li>
+      <li><svg class="ic"><use href="#i-check"/></svg><span><b>公民 / PR</b>：MediShield Life 仍要保留</span></li></ul></div>
+    <div class="pk c"><div class="hd"><div class="badge"><svg class="ic ic-md"><use href="#i-shield"/></svg></div>意外险</div>
+      <ul><li><svg class="ic"><use href="#i-check"/></svg><span><b>Plan 2 最多人选</b>：医疗额度约够 1 次核磁共振（MRI），担心要做两次就选 Plan 3 以上</span></li>
+      <li><svg class="ic"><use href="#i-check"/></svg><span><b>医疗和中医报销最常用</b>：保障表里金色那两行</span></li>
+      <li><svg class="ic"><use href="#i-check"/></svg><span><b>按每次意外算</b>：意外险一般不受既往症影响，以条款和核保为准</span></li></ul></div>
+  </div>
+
+  <!-- ===== 保障内容 ===== -->
+  <div class="sub-head"><svg class="ic ic-md"><use href="#i-doc"/></svg>第 3 步 · 保障内容速查</div>
   <p class="sec-sub">金色行 = 最常用的理赔项目。完整条款以保单合同为准。</p>
-  <div id="beneTables">
-    <details class="bene" open>
-      <summary><div><div class="bt">住院险对比：私立 A ／ 公立 B ／ 公立 B Lite</div><div class="bs">HealthShield Gold Max + VitalHealth Pro</div></div>
-        <svg class="arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="m6 9 6 6 6-6"/></svg></summary>
-      <div class="bene-in">
-        <div class="hplans">
-          <div class="hplan" style="--pc:var(--navy)">
-            <h4>私立 A（私立医院单人病房）<small>HealthShield Gold Max A ＋ VitalHealth Pro A（可加 Cancer Care Pro）</small></h4>
-            <div class="hfeat"><b class="k">病房选择</b>私立医院标准单人房及以下，也可使用公立医院。</div>
-            <div class="hfeat"><b class="k">年度限额</b>由 AIA 合作医生治疗最高 <b>S$2,000,000</b> / 保单年度（一般 S$1,000,000）。</div>
-            <div class="hfeat"><b class="k">免赔额</b>S$3,500 / 保单年度。</div>
-            <div class="hfeat"><b class="k">自付结构</b>基础共同承担 10%；附加 VitalHealth Pro 后自付 5%，符合 AIA 合作医生 / 预授权 / 紧急治疗条件时每年封顶 S$6,000。</div>
-            <div class="hfeat"><b class="k">前后门诊</b>由 AIA 合作医生安排最长住院前后各 13 个月（一般各 100 天）。</div>
-            <div class="hfeat"><b class="k">既往症</b>投保前已有疾病一般不保或除外承保，以核保为准。</div>
-          </div>
-          <div class="hplan" style="--pc:var(--gold-deep)">
-            <h4>公立 B（公立医院单人病房）<small>HealthShield Gold Max B ＋ VitalHealth Pro B</small></h4>
-            <div class="hfeat"><b class="k">病房选择</b>公立医院 A 级病房及以下。</div>
-            <div class="hfeat"><b class="k">年度限额</b>由 AIA 合作医生治疗最高 <b>S$1,200,000</b> / 保单年度（一般 S$1,000,000）。</div>
-            <div class="hfeat"><b class="k">免赔额</b>S$3,500 / 保单年度（A 级病房）。</div>
-            <div class="hfeat"><b class="k">自付结构</b>基础共同承担 10%；附加 VitalHealth Pro 后自付 5%，符合条件每年封顶 S$6,000。</div>
-            <div class="hfeat"><b class="k">前后门诊</b>公立医院住院前后各 12 个月（私立一般各 100 天）。</div>
-            <div class="hfeat"><b class="k">使用提醒</b>若选择私立医院住院，费用通常按 70% 折算后再计算理赔。</div>
-          </div>
-          <div class="hplan" style="--pc:#B8A98C">
-            <h4>公立 B Lite（公立医院 B1 病房）<small>HealthShield Gold Max B Lite（仅限公民 / PR，预算之选）</small></h4>
-            <div class="hfeat"><b class="k">病房选择</b>公立医院 B1 级病房及以下。</div>
-            <div class="hfeat"><b class="k">年度限额</b>S$300,000 / 保单年度。</div>
-            <div class="hfeat"><b class="k">免赔额</b>S$2,500 / 保单年度（B1 病房）。</div>
-            <div class="hfeat"><b class="k">自付结构</b>基础共同承担 10%；附加 VitalHealth Pro B Lite 后自付 5%，符合条件每年封顶 S$6,000。</div>
-            <div class="hfeat"><b class="k">使用提醒</b>私立医院按 50%、公立 A 级病房按 80% 折算后再计算理赔。</div>
-            <div class="hfeat"><b class="k">既往症</b>投保前已有疾病一般不保或除外承保，以核保为准。</div>
-          </div>
-        </div>
-        <div class="bene-note">单项理赔均按限额内合理惯常收费计算，各单项设有上限；完整条款以保单合同为准。</div>
-      </div>
-    </details>
+  <div class="hplans">
+    <div class="hplan" style="--pc:var(--navy)">
+      <h4>私立 A · 私立医院标准房<small>HealthShield Gold Max A + VitalHealth Pro A（可加 Cancer Care Pro）</small></h4>
+      <div class="hfeat"><b class="k">病房</b>私立医院标准房及以下，也可去公立医院</div>
+      <div class="hfeat"><b class="k">每年最高赔</b>一般 S$100 万；全在 AIA 合作医院 <b>S$200 万</b></div>
+      <div class="hfeat"><b class="k">自付</b>免赔额 S$3,500；之后 5%，符合 AIA 合作医生 / 预授权 / 急诊条件每年封顶 S$6,000</div>
+      <div class="hfeat"><b class="k">住院前后</b>一般各 100 天；AIA 优选医生最长 13 个月，住院后最长 15 个月<sup class="ref"><a href="#src6">6</a>,<a href="#src7">7</a></sup></div>
+    </div>
+    <div class="hplan" style="--pc:#3355B5">
+      <h4>公立 B · 公立医院 A 级病房<small>HealthShield Gold Max B + VitalHealth Pro B</small></h4>
+      <div class="hfeat"><b class="k">病房</b>公立医院 A 级病房及以下</div>
+      <div class="hfeat"><b class="k">每年最高赔</b>一般 S$100 万；全在 AIA 合作医院 <b>S$120 万</b></div>
+      <div class="hfeat"><b class="k">自付</b>免赔额 S$3,500（A 级病房）；之后 5%，符合条件每年封顶 S$6,000</div>
+      <div class="hfeat"><b class="k">提醒</b>去私立医院住院，费用先按 70% 折算再赔</div>
+    </div>
+    <div class="hplan" style="--pc:#9A9384">
+      <h4>公立 B Lite · 公立医院 B1 病房<small>HealthShield Gold Max B Lite（只限公民 / PR，预算之选）</small></h4>
+      <div class="hfeat"><b class="k">病房</b>公立医院 B1 病房及以下</div>
+      <div class="hfeat"><b class="k">每年最高赔</b>S$30 万</div>
+      <div class="hfeat"><b class="k">自付</b>免赔额 S$2,500（B1 病房）；之后 5%，符合条件每年封顶 S$6,000</div>
+      <div class="hfeat"><b class="k">提醒</b>私立医院按 50%、公立 A 级病房按 80% 折算再赔</div>
+    </div>
+    <div class="hplan" style="--pc:var(--gold)">
+      <h4>全球医疗险 · 全球（美国除外）标准房<small>AIA Platinum International Health（SG Resident）· 新增</small></h4>
+      <div class="hfeat"><b class="k">病房</b>全球（美国除外）标准房，按实际赔</div>
+      <div class="hfeat"><b class="k">每年最高赔</b>Plan 1 <b>S$75 万</b>（终身 S$500 万）；Plan 2 <b>S$150 万</b>（终身 S$1,000 万）</div>
+      <div class="hfeat"><b class="k">自付</b>选项一：免赔额 S$1,500 + 10%（封顶 S$15,000）；选项二：免赔额 S$3,000 + 15%（封顶 S$20,000）</div>
+      <div class="hfeat"><b class="k">提醒</b>续保不保证；住院前后各 90 天；癌症门诊每年 S$50 万；最后投保年龄 65 岁</div>
+    </div>
   </div>
-</section>
+  <div id="beneTables"></div>
 
-<!-- ============ 理赔案例 ============ -->
-<section id="claimeg">
-  <div class="sec-eyebrow">CLAIM EXAMPLES</div>
-  <h2 class="sec-title serif">住院账单报销示例</h2>
-  <p class="sec-sub">以下假设账单全部属于可赔付的合理医疗费用，使用对应等级医院及病房，符合 AIA 合作医生、预授权或紧急治疗条件，已附加 VitalHealth Pro，且本保单年度尚未使用免赔额。</p>
-  <div class="claims">
-    <article class="ccard">
-      <h3>私立住院险</h3>
-      <div class="scope">私立医院标准房 · Gold Max A + VitalHealth Pro A</div>
-      <div class="bill">
-        <div class="bill-title"><span>大账单示例</span><span class="amt">S$200,000</span></div>
-        <div class="calc">
-          <div class="k">年度免赔额</div><div>S$3,500</div>
-          <div class="k">免赔额后金额</div><div>S$196,500</div>
-          <div class="k">5% 自付</div><div>S$9,825</div>
-          <div class="k">符合条件后按年封顶</div><div>S$6,000</div>
-          <div class="self">家庭预计自付</div><div>S$9,500</div>
-          <div class="claim">保险预计报销</div><div>S$190,500</div>
-        </div>
-        <div class="split">
-          <div class="split-bar"><i class="s-claim" style="width:95.25%"></i><i class="s-self" style="width:4.75%"></i></div>
-          <div class="split-legend"><span><i class="dot claim"></i>保险报销约 95%</span><span><i class="dot self"></i>家庭自付约 5%</span></div>
-        </div>
-      </div>
-      <div class="bill">
-        <div class="bill-title"><span>小账单示例</span><span class="amt">S$20,000</span></div>
-        <div class="calc">
-          <div class="k">年度免赔额</div><div>S$3,500</div>
-          <div class="k">免赔额后金额</div><div>S$16,500</div>
-          <div class="k">5% 自付</div><div>S$825</div>
-          <div class="self">家庭预计自付</div><div>S$4,325</div>
-          <div class="claim">保险预计报销</div><div>S$15,675</div>
-        </div>
-        <div class="split">
-          <div class="split-bar"><i class="s-claim" style="width:78.4%"></i><i class="s-self" style="width:21.6%"></i></div>
-          <div class="split-legend"><span><i class="dot claim"></i>保险报销约 78%</span><span><i class="dot self"></i>家庭自付约 22%</span></div>
-        </div>
-      </div>
-    </article>
-    <article class="ccard">
-      <h3>公立住院险</h3>
-      <div class="scope">公立医院 A 级病房 · Gold Max B + VitalHealth Pro B</div>
-      <div class="bill">
-        <div class="bill-title"><span>大账单示例</span><span class="amt">S$200,000</span></div>
-        <div class="calc">
-          <div class="k">年度免赔额</div><div>S$3,500</div>
-          <div class="k">免赔额后金额</div><div>S$196,500</div>
-          <div class="k">5% 自付</div><div>S$9,825</div>
-          <div class="k">符合条件后按年封顶</div><div>S$6,000</div>
-          <div class="self">家庭预计自付</div><div>S$9,500</div>
-          <div class="claim">保险预计报销</div><div>S$190,500</div>
-        </div>
-        <div class="split">
-          <div class="split-bar"><i class="s-claim" style="width:95.25%"></i><i class="s-self" style="width:4.75%"></i></div>
-          <div class="split-legend"><span><i class="dot claim"></i>保险报销约 95%</span><span><i class="dot self"></i>家庭自付约 5%</span></div>
-        </div>
-      </div>
-      <div class="bill">
-        <div class="bill-title"><span>小账单示例</span><span class="amt">S$20,000</span></div>
-        <div class="calc">
-          <div class="k">年度免赔额</div><div>S$3,500</div>
-          <div class="k">免赔额后金额</div><div>S$16,500</div>
-          <div class="k">5% 自付</div><div>S$825</div>
-          <div class="self">家庭预计自付</div><div>S$4,325</div>
-          <div class="claim">保险预计报销</div><div>S$15,675</div>
-        </div>
-        <div class="split">
-          <div class="split-bar"><i class="s-claim" style="width:78.4%"></i><i class="s-self" style="width:21.6%"></i></div>
-          <div class="split-legend"><span><i class="dot claim"></i>保险报销约 78%</span><span><i class="dot self"></i>家庭自付约 22%</span></div>
-        </div>
-      </div>
-      <div class="same-note">两个方案在各自对应的医院及病房等级内，免赔额与 5% 自付结构相同，因此本示例的报销金额一致。两者主要差别在就医范围、年度限额、前后门诊时间及保费。</div>
-    </article>
-  </div>
-</section>
+  <!-- ===== 理赔示例 ===== -->
+  <div class="sub-head"><svg class="ic ic-md"><use href="#i-wallet"/></svg>住院账单报销示例</div>
+  <p class="sec-sub">假设账单全部属于可赔的合理医疗费用，在对应医院和病房治疗；新加坡计划已附加 VitalHealth Pro，并符合 AIA 合作医生、预授权或急诊条件；本保单年度还没用过免赔额。</p>
+  <div class="claims num" id="claims"></div>
 
-<!-- ============ 合规声明 ============ -->
-<section id="notes">
-  <div class="disc">
-    <b>重要声明（请务必阅读）</b>
-    <ul style="margin-top:8px">
-      <li>本页面由持牌顾问袁媛（RNF：YY-300823216）整理，仅供初步了解与预算参考，<b>不构成要约、保险建议或投保邀请</b>，也非 AIA 官方渠道。</li>
-      <li>报价依据 AIA 官方产品资料：HealthShield Gold Max v8.7（2025年10月）、HealthShield Gold Max for Foreigners v6.7（2025年10月）、Max VitalHealth Pro v1.0（2026年4月）、Star Protector Plus v2.8（2024年7月）、Solitaire PA (II) v1.3（2024年7月）、Centurion PA v1.2（2024年7月）。所有价格含 9% GST。价格表如有更新，以 AIA 最新版本为准。</li>
-      <li>实际保费与承保以 AIA 正式报价单、保单条款及<b>核保结果</b>为准。住院险及意外险保费均非保证，保险公司可调整；住院险保费随年龄增长。</li>
-      <li>意外险报价默认按职业类别 1/2；类别 3/4 费率不同，请联系顾问。住院险最后投保年龄为 75 岁（下一生日年龄），更高年龄仅供续保参考。</li>
-      <li>MediSave 实际扣款受可扣额度、账户余额、补贴及 MediShield Life 保费调整影响；附加险（VitalHealth Pro 系列）不可用 MediSave 支付。</li>
-      <li>外国人投保需持有效准证（EP / PEP / EntrePass / S Pass / DP / Student Pass / 部分 LTVP 及 WP）。</li>
-      <li>健康保险产品是否适合自己，需结合个人情况判断；不建议在未评估利弊前退旧买新，转保可能带来保费上升或保障减少。本保单受 SDIC 保单持有人保障计划保护。</li>
-    </ul>
+  <!-- ===== 行动区块 ===== -->
+  <div class="cta">
+    <div style="position:relative;z-index:1">
+      <div class="who-row"><img src="/avatar-round.png" alt="小圆姐">
+        <div><h3>算好了？<br><span>发给小圆姐，帮你再看一遍</span></h3></div></div>
+      <p class="sub">点底部「发给小圆姐」，报价会一起带过来；也可以微信聊。</p>
+      <div class="perks">
+        <span><svg class="ic"><use href="#i-steth"/></svg>绿色通道约专科</span>
+        <span><svg class="ic"><use href="#i-renew"/></svg>理赔进度同步</span>
+        <span><svg class="ic"><use href="#i-scale"/></svg>按预算再细调</span>
+      </div>
+      <div class="acts">
+        <button type="button" class="btn wx" id="wxCopy"><svg class="ic"><use href="#i-chat"/></svg><span id="wxTxt">微信 <b>singaporeyuan</b> · 点击复制</span></button>
+        <a class="btn wa" href="https://wa.me/6583750190" target="_blank" rel="noopener noreferrer"><svg class="ic"><use href="#i-phone"/></svg>WhatsApp +65 8375 0190</a>
+      </div>
+    </div>
+    <div class="qr"><img src="/wechat-qr.png" alt="小圆姐微信二维码"><span>扫码加微信</span></div>
   </div>
-</section>
+
+  <div class="notes">
+    <p>本页面由持牌顾问袁媛（RNF：YY-300823216）整理，仅供初步了解与预算参考，<b>不构成要约、保险建议或投保邀请</b>，也非 AIA 官方渠道。</p>
+    <p>报价依据 AIA 官方产品资料：HealthShield Gold Max v8.7（2025年10月）、HealthShield Gold Max for Foreigners v6.8、Max VitalHealth Pro（外籍版 v1.1，2026年10月）、Platinum International Health（SG Resident）v1.0（2024年11月）、Star Protector Plus v2.8、Solitaire PA (II) v1.3、Centurion PA v1.2。所有价格含 9% GST，价格表如有更新以 AIA 最新版本为准。</p>
+    <p>实际保费与承保以 AIA 正式报价单、保单条款及<b>核保结果</b>为准。住院险及意外险保费都不保证，会随年龄和理赔经验调整。新加坡计划最后投保年龄 75 岁（下一生日年龄），全球医疗险最后投保年龄 65 岁（上一生日年龄），更高年龄只供续保参考。</p>
+    <p><b>全球医疗险</b>：续保由 AIA 决定，可拒绝续保；在美国连续逗留超过 90 天停保（期间只保紧急）；准证、居留身份或常住国家变化要通知 AIA。价格不分身份；公民 / PR 仍须保留 MediShield Life，本页对比已把它算进去。首年 Vitality 特别折扣以正式报价单为准，本页按原价。</p>
+    <p>MediSave 实际扣款受可扣额度、账户余额、补贴及 MediShield Life 保费调整影响；附加险（VitalHealth Pro 系列）和全球医疗险不可用 MediSave。外国人投保需持有效准证（EP / PEP / EntrePass / S Pass / DP / Student Pass / 部分 LTVP 及 WP）。意外险默认按职业类别 1/2，类别 3/4 请联系顾问。</p>
+    <p>"为什么选 AIA"的数据摘自页面最下方"资料来源"列出的 AIA 官网、新闻稿及媒体报道，以原文为准；公司及集团数据可能随时间更新。"跟小圆姐买"中的服务以实际情况为准；预授权与保证函须经 AIA 审批，紧急入院、公立医院及海外治疗不适用预授权。不建议在未评估利弊前退旧买新，转保可能带来保费上升或保障减少。本保单受 SDIC 保单持有人保障计划保护。</p>
+  </div>
+  <div class="srcs-wrap">
+    <div class="srcs-h"><svg class="ic"><use href="#i-doc"/></svg>资料来源</div>
+    <ol class="srcs">
+      <li id="src1">AIA Singapore 新闻稿，<a href="https://www.aia.com.sg/en/about-aia/media-centre/press-releases/2026/aia-singapore-surpasses-40-billion-in-payouts-over-the-last-decade" target="_blank" rel="noopener noreferrer">AIA Singapore surpasses S$40 Billion in payouts over the last decade</a>，2026 年 2 月 12 日</li>
+      <li id="src2">AIA Singapore，<a href="https://www.aia.com.sg/content/dam/sg-wise/en/docs/about-aia/aia-corporate-factsheet/aia-corporate-factsheet.pdf" target="_blank" rel="noopener noreferrer">Corporate Factsheet</a>（数据截至 2023 年 12 月）</li>
+      <li id="src3">AIA+，<a href="https://healthcare.aia.com.sg/aiaplus/find-specialist?v=specialist" target="_blank" rel="noopener noreferrer">Find a Specialist 专科医生查询</a>（2026 年 10 月查询结果）</li>
+      <li id="src4">FSMOne，<a href="https://secure.fundsupermart.com/fsmone/article/rcms378760" target="_blank" rel="noopener noreferrer">Will Your Insurer Pay Out? 2026 Guide to Singapore Insurer Ratings</a></li>
+      <li id="src5">AIA Singapore 新闻稿，<a href="https://aia.com.sg/en/about-aia/media-centre/press-releases/2025/aia-singapore-partnering-with-raffles-hospital-to-boost-accessibility-of-quality-healthcare-in-singapore" target="_blank" rel="noopener noreferrer">AIA Singapore partnering with Raffles Hospital to boost accessibility of quality healthcare</a>，2025 年 1 月 23 日</li>
+      <li id="src6">AIA Singapore，<a href="https://www.aia.com.sg/content/dam/sg-wise/en/docs/our-products/en/aia-healthshield-gold-max-english-brochure.pdf" target="_blank" rel="noopener noreferrer">AIA HealthShield Gold Max 产品手册</a>（HSG Max A 看 AIA 优选医生，住院前后最长 13 个月）</li>
+      <li id="src7">AIA Singapore，<a href="https://www.aia.com.sg/content/dam/sg-wise/en/docs/help-support/healthshieldsupport/faqs-on-HSG-changes-effective-1oct2026.pdf" target="_blank" rel="noopener noreferrer">FAQs on HSG changes effective 1 Oct 2026</a>（HSG Max A 搭配 Max VitalHealth 系列附加险、在 AIA 合作医院住院，住院后理赔期再延长 60 天）</li>
+      <li id="src8">AIA Singapore，<a href="https://www.aia.com.sg/en/health-wellness/healthcare-services/pre-authorisation" target="_blank" rel="noopener noreferrer">AIA Pre-authorisation</a></li>
+      <li id="src9">Asia Advisers Network，<a href="https://asiaadvisersnetwork.com/Article/aid/61203" target="_blank" rel="noopener noreferrer">AIA Singapore: Medical claims pre-authorisation process as easy as 1, 2, 3</a>，2020 年（AIA 营运总监访谈）</li>
+      <li id="src10">The Straits Times（Singapore Law Watch 转载），<a href="https://www.singaporelawwatch.sg/Headlines/what-is-pre-authorisation-and-can-insurers-refuse-to-give-it-askst" target="_blank" rel="noopener noreferrer">What is pre-authorisation and can insurers refuse to give it?</a></li>
+      <li id="src11">AIA Singapore，<a href="https://www.aia.com.sg/en/about-aia/our-awards" target="_blank" rel="noopener noreferrer">Our Awards</a></li>
+      <li id="src12">Asia Insurance Review，<a href="https://www.asiainsurancereview.com/Awards/Roll-Of-Honour" target="_blank" rel="noopener noreferrer">Asia Insurance Industry Awards Roll of Honour</a></li>
+    </ol>
+  </div>
 
 </div>
 
-<!-- family total bar -->
 <div id="totbar">
   <div class="in">
-    <div>
-      <div class="lbl">全家合计年保费</div>
-      <div class="amt" id="tb-total">S$0</div>
-    </div>
-    <div>
-      <div class="sub" id="tb-cash">现金 S$0</div>
-      <div class="sub" id="tb-cpf">MediSave S$0</div>
-    </div>
+    <div><div class="lbl">全家合计年保费</div><div class="amt num" id="tb-total">S$0</div></div>
+    <div><div class="sub num" id="tb-cash">现金 S$0</div><div class="sub num" id="tb-cpf">MediSave S$0</div></div>
     <div class="btns">
       <button id="share-btn" type="button">复制报价链接</button>
       <a id="wa-btn" href="#" target="_blank" rel="noopener noreferrer">发给小圆姐</a>
     </div>
   </div>
 </div>
-
-<footer class="site-footer">
-  <div class="sf-in">
-    <p class="sf-brand">新加坡小圆姐</p>
-    <p class="sf-tag">用专业和耐心，陪你一起日富一日</p>
-    <p class="sf-org">新加坡财富规划经理 · RNF：YY-300823216<br>微信：singaporeyuan ｜ WhatsApp：+65 8375 0190 ｜ 邮箱：yuanyuan@aia.com.sg</p>
-    <div class="sf-bottom">
-      <p>本网站内容仅供参考，不构成任何投资、保险、法律或税务建议。保险产品涉及条款与风险，具体以保险公司正式文件及相关专业意见为准。</p>
+<div id="wm" aria-hidden="true"></div>
+<footer class="site-foot">
+  <div class="in">
+    <div class="grid">
+      <div>
+        <p class="brand">新加坡小圆姐</p>
+        <p class="tag">用专业和耐心，陪你一起日富一日</p>
+        <p class="cred">新加坡财富规划经理<br>RNF：YY-300823216</p>
+      </div>
+      <div>
+        <h4>联系方式</h4>
+        <ul>
+          <li><a href="/wechat-qr.png" target="_blank" rel="noopener"><svg fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>微信 · singaporeyuan</a></li>
+          <li><a href="https://wa.me/6583750190" target="_blank" rel="noopener noreferrer"><svg fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>+65 8375 0190</a></li>
+          <li><a href="mailto:yuanyuan@aia.com.sg"><svg fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 5L2 7"/></svg>yuanyuan@aia.com.sg</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>关注我</h4>
+        <ul>
+          <li><a href="https://xhslink.com/m/9KS9V4ytFmj" target="_blank" rel="noopener noreferrer"><svg fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>小红书 · 新加坡小圆姐</a></li>
+          <li><a href="https://xhslink.com/m/2eFS3jpJutg" target="_blank" rel="noopener noreferrer"><svg fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>小红书 · 图文笔记</a></li>
+          <li><a href="https://www.linkedin.com/in/singaporeyuan/" target="_blank" rel="noopener noreferrer"><svg fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>LinkedIn</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>新加坡小圆姐</h4>
+        <ul>
+          <li><a href="/zh/about">关于我</a></li>
+          <li><a href="/zh/cases">规划案例</a></li>
+          <li><a href="/zh/services">业务范围</a></li>
+          <li><a href="/zh/corporate">企业团险</a></li>
+          <li><a href="/zh/resources">资源中心</a></li>
+          <li><a href="/zh/consult">预约咨询</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="legal">
+      <p>本网站内容仅供参考，不构成任何投资、保险、法律或税务建议。保险产品涉及条款与风险，部分收益为非保证。具体以保险公司正式文件及相关专业意见为准。</p>
       <p>© 2026 袁媛 Yuan Yuan. 版权所有。</p>
     </div>
   </div>
 </footer>
 
-<div id="wm" aria-hidden="true"></div>
 <script>
-(function(){
-  var text="新加坡小圆姐　　　singaporeyuan　　　仅供本人参考　　　　　　";
-  var wm=document.getElementById('wm');var unit=text.repeat(6);
-  for(var i=0;i<16;i++){var d=document.createElement('div');d.className='row';d.textContent=unit;d.style.top=(i*110-120)+'px';d.style.left='-200px';wm.appendChild(d);}
-})();
-</script>
 
-<script>
-/* =====================================================================
-   官方价格表数据（含 9% GST）
-   住院险按 ANB（下一生日年龄）= 实际年龄 + 1；意外险按实际年龄。
-   ===================================================================== */
+(function(){
+  var HASH="5647cdb5254a24d3a184f9136af8416c1ffb1050fd57c67dc133e588b73fc706", KEY="sy_quote_auth";
+  function sha(s){return crypto.subtle.digest("SHA-256",new TextEncoder().encode(s)).then(function(b){
+    return Array.prototype.map.call(new Uint8Array(b),function(x){return x.toString(16).padStart(2,"0")}).join("");})}
+  try{ if(sessionStorage.getItem(KEY)===HASH) document.body.classList.remove("locked"); }catch(e){}
+  document.getElementById("pwForm").addEventListener("submit",function(e){
+    e.preventDefault();
+    sha(document.getElementById("pwInput").value.trim()).then(function(h){
+      if(h===HASH){ try{sessionStorage.setItem(KEY,HASH)}catch(e){} document.body.classList.remove("locked"); window.scrollTo(0,0); }
+      else{ document.getElementById("pwErr").classList.add("show"); document.getElementById("pwInput").select(); }
+    });
+  });
+})();
 
 /* HSGM 本地（SC/PR）：[maxANB, MediShield Life, AWL, A附加, B附加, B Lite附加] */
 const HSGM_LOCAL=[
@@ -633,16 +1049,17 @@ const VHP_LOCAL=[
 [88,6844,63.14,1215.00,2287,1026.80],[90,7258,63.14,1227.30,2333,1123.00],[93,7501,63.14,1288.80,2506,1178.00],
 [95,7749,63.14,1353.30,2681,1219.30],[98,8009,63.14,1447.70,2938,1347.70],[999,8276,63.14,1462.50,3112,1476.00]];
 
-/* HSGM 外国人：[maxANB, MediSave提取上限MWL, A受养人, B受养人, A非受养人, B非受养人]（无 B Lite） */
+
+/* HSGM 外国人 v6.8：[maxANB, MediSave提取上限MWL, A受养人, B受养人, A非受养人, B非受养人]（无 B Lite） */
 const HSGM_F=[
-[20,500,510,320,536,336],[25,595,605,423,636,445],[30,595,694,423,729,445],
-[35,803,987,700,1037,735],[40,803,1042,700,1095,735],[45,1237,1853,1022,1946,1074],
-[50,1237,1956,1022,2054,1074],[55,1503,2782,1442,2922,1515],[60,1503,3290,1490,3455,1565],
-[65,1731,4356,1987,4574,2087],[70,1926,6065,2924,6369,3071],[73,2543,8334,3853,8751,4046],
-[75,2716,9227,4205,9689,4416],[78,2927,11282,5427,11847,5699],[80,3087,12503,5601,13129,5882],
-[83,3203,13267,5782,13931,6072],[85,3516,13705,6183,14391,6493],[88,3685,13992,6471,14692,6795],
-[90,3685,14103,6671,14809,7005],[93,3726,14706,7042,15442,7395],[95,3726,15294,7377,16059,7746],
-[98,3726,16154,7912,16962,8308],[999,3726,16288,8301,17103,8717]];
+[20,500,548,320,577,336],[25,595,643,423,677,445],[30,595,742,423,782,445],
+[35,803,1046,700,1102,735],[40,803,1107,700,1167,735],[45,1237,1999,1022,2104,1074],
+[50,1237,2115,1022,2225,1074],[55,1503,3008,1442,3165,1515],[60,1503,3577,1490,3762,1565],
+[65,1731,4743,1987,4988,2087],[70,1926,6634,2924,6975,3071],[73,2543,9137,3853,9604,4046],
+[75,2716,10117,4205,10634,4416],[78,2927,12393,5427,13026,5699],[80,3087,13741,5601,14443,5882],
+[83,3203,14583,5782,15327,6072],[85,3516,15036,6183,15804,6493],[88,3685,15337,6471,16121,6795],
+[90,3685,15462,6671,16252,7005],[93,3726,16132,7042,16956,7395],[95,3726,16791,7377,17647,7746],
+[98,3726,17754,7912,18659,8308],[100,3726,17904,8301,18817,8717],[999,3726,17904,8301,18817,8717]];
 
 /* VitalHealth Pro 外国人非受养人：[maxANB, ProA, ECP, CCP, ProB] */
 const VHP_F_NON=[
@@ -664,223 +1081,8 @@ const PA_ADULTS={basic:[224.11,371.82,595.93,855.69],lifestyle:[67.45,108.06,177
 /* Centurion PA：[max实际年龄, P1, P2, P3]，投保年龄 40–80 */
 const PA_ELDERLY=[[65,310.65,421.83,640.92],[75,457.80,590.78,898.16],[85,675.80,888.35,1438.80],[99,872.00,1463.87,2338.05]];
 
-/* ============ 工具 ============ */
-const fmt=n=>'S$'+n.toLocaleString('en-SG',{minimumFractionDigits:2,maximumFractionDigits:2});
-const band=(arr,key)=>{for(const r of arr){if(key<=r[0])return r;}return arr[arr.length-1];};
-
-/* ============ 状态 ============ */
-let people=[];
-function newPerson(i){return {name:'成员'+(i||people.length+1),age:35,res:'local',
-  h:{on:true,plan:'A',vhp:true,ccp:true,ecp:false},
-  p:{on:true,plan:2,grpLife:false,grpHosp:false,grpDis:false,ci:0}};}
-
-/* ============ 计算 ============ */
-function calcHosp(ps){
-  if(!ps.h.on)return null;
-  const anb=ps.age+1, out={rows:[],cash:0,cpf:0,total:0,notes:[]};
-  const plan=ps.res==='local'?ps.h.plan:(ps.h.plan==='BL'?'B':ps.h.plan);
-  if(ps.res==='local'){
-    const b=band(HSGM_LOCAL,anb), msl=b[1], awl=b[2];
-    const add=plan==='A'?b[3]:plan==='B'?b[4]:b[5];
-    const baseTotal=msl+add;
-    out.rows.push(['基础住院险（含 MediShield Life）',baseTotal]);
-    out.cpf+=msl+Math.min(add,awl); out.cash+=Math.max(add-awl,0); out.total+=baseTotal;
-    if(ps.h.vhp){
-      const v=band(VHP_LOCAL,anb), vp=plan==='A'?v[1]:plan==='B'?v[4]:v[5];
-      out.rows.push(['附加 VitalHealth Pro '+(plan==='BL'?'B Lite':plan),vp]);
-      out.cash+=vp; out.total+=vp;
-      if(plan==='A'&&ps.h.ccp){out.rows.push(['附加 Cancer Care Pro',v[3]]);out.cash+=v[3];out.total+=v[3];}
-      if(plan==='A'&&ps.h.ecp){out.rows.push(['附加 Emergency Care Pro',v[2]]);out.cash+=v[2];out.total+=v[2];}
-    }
-  }else{
-    const dep=ps.res==='fdep', b=band(HSGM_F,anb), mwl=b[1];
-    const base=plan==='A'?(dep?b[2]:b[4]):(dep?b[3]:b[5]);
-    out.rows.push(['基础住院险（外国人计划）',base]); out.total+=base;
-    if(dep){out.cpf+=Math.min(base,mwl);out.cash+=Math.max(base-mwl,0);
-      out.notes.push('直系家属（SC/PR 的配偶、子女等）保费可由 SC/PR 付款人的 MediSave 支付（上限内），保单持有人须为 SC/PR。');}
-    else{out.cash+=base;}
-    if(ps.h.vhp){
-      const v=dep?band(VHP_LOCAL,anb):band(VHP_F_NON,anb);
-      const vp=plan==='A'?v[1]:(dep?v[4]:v[4]);
-      out.rows.push(['附加 VitalHealth Pro '+plan,vp]); out.cash+=vp; out.total+=vp;
-      if(plan==='A'&&ps.h.ccp){out.rows.push(['附加 Cancer Care Pro',v[3]]);out.cash+=v[3];out.total+=v[3];}
-      if(plan==='A'&&ps.h.ecp){out.rows.push(['附加 Emergency Care Pro',v[2]]);out.cash+=v[2];out.total+=v[2];}
-    }
-  }
-  if(anb>75)out.notes.push('住院险最后投保年龄为 75（ANB）。此价格仅供已有保单续保参考。');
-  return out;
-}
-function paProduct(age){if(age<16)return 'kids';if(age<=65)return 'adults';return 'elderly';}
-function hasSolitaireP2(){return people.some(x=>x.p.on&&paProduct(x.age)==='adults'&&x.p.plan>=2);}
-function calcPA(ps){
-  if(!ps.p.on)return null;
-  const prod=paProduct(ps.age), out={rows:[],total:0,notes:[],prod};
-  if(prod==='kids'){
-    const disc=hasSolitaireP2();
-    const rate=(disc?PA_KIDS.disc:PA_KIDS.std)[ps.p.plan-1];
-    out.rows.push(['Star Protector Plus · Plan '+ps.p.plan,rate]); out.total+=rate;
-    if(ps.p.ci>0){const ci=(disc?PA_KIDS.ciDisc:PA_KIDS.ciStd)[ps.p.ci-1];
-      out.rows.push(['附加儿童重疾 '+PA_KIDS.ciAmt[ps.p.ci-1],ci]); out.total+=ci;}
-    if(disc)out.notes.push('已按优惠费率：家长同时投保 Solitaire PA (II) Plan 2 及以上（优惠适用至孩子 21 岁）。');
-  }else if(prod==='adults'){
-    const i=ps.p.plan-1;
-    out.rows.push(['Solitaire PA (II) · Plan '+ps.p.plan+'（职业类别 1/2）',PA_ADULTS.basic[i]]); out.total+=PA_ADULTS.basic[i];
-    if(ps.p.grpLife){out.rows.push(['附加 生活维持保障组',PA_ADULTS.lifestyle[i]]);out.total+=PA_ADULTS.lifestyle[i];}
-    if(ps.p.grpHosp){out.rows.push(['附加 意外住院保障组',PA_ADULTS.hosp[i]]);out.total+=PA_ADULTS.hosp[i];}
-    if(ps.p.grpDis){out.rows.push(['附加 月度伤残护理',PA_ADULTS.disability[i]]);out.total+=PA_ADULTS.disability[i];}
-  }else{
-    if(ps.age>80){out.notes.push('Centurion PA 最后投保年龄为 80 周岁，81 岁及以上仅限续保，请联系小圆姐评估其他方案。');return out;}
-    const plan=Math.min(ps.p.plan,3), b=band(PA_ELDERLY,Math.max(ps.age,40));
-    out.rows.push(['Centurion PA · Plan '+plan,b[plan]]); out.total+=b[plan];
-    out.notes.push('可选失智保障组（按性别及吸烟状况另行报价），有需要请联系小圆姐。');
-  }
-  return out;
-}
-
-/* ============ 渲染 ============ */
-const PRODNAME={kids:'少儿意外险 Star Protector Plus（0–15 岁）',adults:'成人意外险 Solitaire PA (II)（16–65 岁）',elderly:'乐龄意外险 Centurion PA（66 岁以上）'};
-function esc(s){return s.replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));}
-function render(){
-  const box=document.getElementById('members'); box.innerHTML='';
-  let famTotal=0,famCash=0,famCpf=0;
-  people.forEach((ps,idx)=>{
-    const hosp=calcHosp(ps), pa=calcPA(ps);
-    let subtotal=0,cash=0,cpf=0;
-    if(hosp){subtotal+=hosp.total;cash+=hosp.cash;cpf+=hosp.cpf;}
-    if(pa){subtotal+=pa.total;cash+=pa.total;}
-    famTotal+=subtotal;famCash+=cash;famCpf+=cpf;
-    const prod=paProduct(ps.age);
-    const isLocal=ps.res==='local';
-    const planOpts=isLocal?[['A','私立 A（私立医院单人病房）'],['B','公立 B（公立医院单人病房）'],['BL','公立 B Lite（公立医院 B1 病房）']]:[['A','私立 A（私立医院单人病房）'],['B','公立 B（公立医院单人病房）']];
-    const paPlans=prod==='adults'?[1,2,3,4]:[1,2,3];
-    const el=document.createElement('div'); el.className='member';
-    el.innerHTML=`
-    <div class="m-head">
-      <input type="text" value="${esc(ps.name)}" data-f="name" aria-label="称呼">
-      <label>年龄 <input type="number" min="0" max="105" value="${ps.age}" data-f="age"></label>
-      <select data-f="res">
-        <option value="local"${ps.res==='local'?' selected':''}>新加坡公民 / PR</option>
-        <option value="fdep"${ps.res==='fdep'?' selected':''}>外国人 · SC/PR直系家属</option>
-        <option value="fnon"${ps.res==='fnon'?' selected':''}>外国人 · 非直系家属</option>
-      </select>
-      ${people.length>1?'<button class="m-del" data-act="del">✕ 移除</button>':''}
-    </div>
-    <div class="m-body">
-
-      <div class="prod">
-        <div class="prod-head">
-          <label class="switch"><input type="checkbox" data-f="h.on"${ps.h.on?' checked':''}><i></i></label>
-          <div><div class="pname">住院险 HealthShield Gold Max${isLocal?'':' for Foreigners'}</div>
-          <div class="psub">按下一生日年龄 ${ps.age+1} 岁报价</div></div>
-        </div>
-        ${ps.h.on?`<div class="prod-body">
-          <div class="plansel">${planOpts.map(([v,l])=>`<button type="button" class="plan-pill${ps.h.plan===v?' on':''}" data-hplan="${v}">${l}</button>`).join('')}</div>
-          <div class="opt-row">
-            <label><input type="checkbox" data-f="h.vhp"${ps.h.vhp?' checked':''}>附加 VitalHealth Pro（自付降到 5%）</label>
-            ${ps.h.plan==='A'&&ps.h.vhp?`<label><input type="checkbox" data-f="h.ccp"${ps.h.ccp?' checked':''}>Cancer Care Pro</label>
-            <label><input type="checkbox" data-f="h.ecp"${ps.h.ecp?' checked':''}>Emergency Care Pro</label>`:''}
-          </div>
-          ${hosp?`<div class="pres">
-            ${hosp.rows.map(r=>`<div class="row"><span class="k">${r[0]}</span><span>${fmt(r[1])}</span></div>`).join('')}
-            <div class="row tot"><span>住院险小计 / 年</span><span>${fmt(hosp.total)}</span></div>
-            <div class="pchips">
-              <span class="pchip cash">现金约 ${fmt(hosp.cash)}</span>
-              ${hosp.cpf>0?`<span class="pchip cpf">MediSave 约 ${fmt(hosp.cpf)}</span>`:''}
-            </div>
-          </div>`:''}
-          ${hosp&&hosp.notes.length?hosp.notes.map(n=>`<div class="mnote">${n}</div>`).join(''):''}
-        </div>`:''}
-      </div>
-
-      <div class="prod">
-        <div class="prod-head">
-          <label class="switch"><input type="checkbox" data-f="p.on"${ps.p.on?' checked':''}><i></i></label>
-          <div><div class="pname">意外险（按年龄自动匹配）</div>
-          <div class="psub">${PRODNAME[prod]}</div></div>
-        </div>
-        ${ps.p.on?`<div class="prod-body">
-          <div class="plansel">${paPlans.map(n=>`<button type="button" class="plan-pill${ps.p.plan===n?' on':''}" data-pplan="${n}">Plan ${n}${n===2?'<span class="pop-badge">最多人选择</span>':''}</button>`).join('')}</div>
-          ${prod==='adults'?`<div class="opt-row">
-            <label><input type="checkbox" data-f="p.grpLife"${ps.p.grpLife?' checked':''}>生活维持组</label>
-            <label><input type="checkbox" data-f="p.grpHosp"${ps.p.grpHosp?' checked':''}>意外住院组</label>
-            <label><input type="checkbox" data-f="p.grpDis"${ps.p.grpDis?' checked':''}>月度伤残护理</label>
-          </div>`:''}
-          ${prod==='kids'?`<div class="opt-row"><label>附加儿童重疾
-            <select data-f="p.ci">
-              <option value="0"${ps.p.ci===0?' selected':''}>不附加</option>
-              <option value="1"${ps.p.ci===1?' selected':''}>保额 S$30,000</option>
-              <option value="2"${ps.p.ci===2?' selected':''}>保额 S$50,000</option>
-              <option value="3"${ps.p.ci===3?' selected':''}>保额 S$100,000</option>
-            </select></label></div>`:''}
-          ${pa&&pa.rows.length?`<div class="pres">
-            ${pa.rows.map(r=>`<div class="row"><span class="k">${r[0]}</span><span>${fmt(r[1])}</span></div>`).join('')}
-            <div class="row tot"><span>意外险小计 / 年</span><span>${fmt(pa.total)}</span></div>
-          </div>`:''}
-          ${ps.p.plan===2&&pa&&pa.rows.length?`<div class="mnote">Plan 2 医疗额度大约覆盖 1 次核磁共振（MRI）。若担心一次意外需要多次核磁（检查 + 复诊），建议选 Plan 3 或以上。</div>`:''}
-          ${pa&&pa.notes.length?pa.notes.map(n=>`<div class="mnote${n.includes('联系')&&!pa.rows.length?' warn':''}">${n}</div>`).join(''):''}
-        </div>`:''}
-      </div>
-
-      <div class="m-total"><span>${esc(ps.name)} 年保费合计</span><b>${fmt(subtotal)}</b></div>
-    </div>`;
-    /* events */
-    el.querySelectorAll('[data-f]').forEach(inp=>{
-      inp.addEventListener('change',()=>{
-        const path=inp.dataset.f.split('.');
-        let val=inp.type==='checkbox'?inp.checked:inp.value;
-        if(inp.dataset.f==='age'){val=Math.max(0,Math.min(105,parseInt(val||0,10)));}
-        if(inp.dataset.f==='p.ci'){val=parseInt(val,10);}
-        if(path.length===1)ps[path[0]]=val;else ps[path[0]][path[1]]=val;
-        if(inp.dataset.f==='res'&&ps.res!=='local'&&ps.h.plan==='BL')ps.h.plan='B';
-        if(inp.dataset.f==='age'){const np=paProduct(ps.age);if(np!=='adults'&&ps.p.plan>3)ps.p.plan=3;}
-        render();saveHash();
-      });
-    });
-    el.querySelectorAll('[data-hplan]').forEach(b=>b.addEventListener('click',()=>{ps.h.plan=b.dataset.hplan;render();saveHash();}));
-    el.querySelectorAll('[data-pplan]').forEach(b=>b.addEventListener('click',()=>{ps.p.plan=parseInt(b.dataset.pplan,10);render();saveHash();}));
-    const del=el.querySelector('[data-act=del]');
-    if(del)del.addEventListener('click',()=>{people.splice(idx,1);render();saveHash();});
-    box.appendChild(el);
-  });
-  document.getElementById('tb-total').textContent=fmt(famTotal);
-  document.getElementById('tb-cash').textContent='现金约 '+fmt(famCash);
-  document.getElementById('tb-cpf').textContent=famCpf>0?'MediSave 约 '+fmt(famCpf):'月均折算约 '+fmt(famTotal/12);
-  /* WhatsApp */
-  const lines=people.map(ps=>{
-    const hosp=calcHosp(ps),pa=calcPA(ps);let s=ps.name+'（'+ps.age+'岁）：';const seg=[];
-    if(hosp)seg.push('住院险 '+fmt(hosp.total));
-    if(pa&&pa.total)seg.push('意外险 '+fmt(pa.total));
-    return s+(seg.join(' + ')||'-');
-  });
-  const waText='你好小圆姐，我用保障方案测算工具算了全家方案：\n'+lines.join('\n')+'\n全家合计约 '+fmt(famTotal)+' / 年\n'+shareUrl()+'\n想进一步了解，麻烦你了！';
-  document.getElementById('wa-btn').href='https://wa.me/6583750190?text='+encodeURIComponent(waText);
-}
-
-/* ============ 分享链接 ============ */
-function encodeState(){
-  const state=people.map(ps=>[ps.name,ps.age,ps.res,ps.h.on?1:0,ps.h.plan,ps.h.vhp?1:0,ps.h.ccp?1:0,ps.h.ecp?1:0,ps.p.on?1:0,ps.p.plan,ps.p.grpLife?1:0,ps.p.grpHosp?1:0,ps.p.grpDis?1:0,ps.p.ci]);
-  return encodeURIComponent(btoa(unescape(encodeURIComponent(JSON.stringify(state)))));
-}
-function shareUrl(){return location.origin+location.pathname+'#q='+encodeState();}
-function saveHash(){history.replaceState(null,'','#q='+encodeState());}
-function loadHash(){
-  try{
-    const m=location.hash.match(/#q=(.+)/); if(!m)return false;
-    const arr=JSON.parse(decodeURIComponent(escape(atob(decodeURIComponent(m[1])))));
-    people=arr.map(r=>({name:String(r[0]).slice(0,20),age:+r[1],res:['local','fdep','fnon'].includes(r[2])?r[2]:'local',
-      h:{on:!!r[3],plan:['A','B','BL'].includes(r[4])?r[4]:'A',vhp:!!r[5],ccp:!!r[6],ecp:!!r[7]},
-      p:{on:!!r[8],plan:Math.min(4,Math.max(1,+r[9]||2)),grpLife:!!r[10],grpHosp:!!r[11],grpDis:!!r[12],ci:Math.min(3,Math.max(0,+r[13]||0))}}));
-    return people.length>0;
-  }catch(e){return false;}
-}
-document.getElementById('share-btn').addEventListener('click',function(){
-  const u=shareUrl();
-  (navigator.clipboard?navigator.clipboard.writeText(u):Promise.reject()).then(()=>{
-    this.textContent='已复制 ✓';setTimeout(()=>this.textContent='复制报价链接',1600);
-  }).catch(()=>{prompt('复制此链接：',u);});
-});
-document.getElementById('addbtn').addEventListener('click',()=>{people.push(newPerson());render();saveHash();});
-
+/* 全球医疗险 Platinum International Health（SG Resident）：[max上一生日年龄, Plan1选项一, Plan1选项二, Plan2选项一, Plan2选项二] */
+const PIH=[[15,1413,1232,1481,1291],[16,1474,1286,1545,1347],[17,1536,1340,1610,1404],[18,1599,1395,1675,1462],[19,1663,1451,1742,1520],[20,1727,1524,1810,1597],[21,1827,1611,1914,1688],[22,1913,1688,2004,1768],[23,2000,1764,2095,1849],[24,2088,1842,2187,1929],[25,2159,1925,2262,2016],[26,2271,2024,2379,2120],[27,2377,2118,2490,2219],[28,2485,2215,2603,2320],[29,2583,2303,2706,2412],[30,2698,2405,2827,2520],[31,2774,2473,2906,2590],[32,2816,2510,2950,2630],[33,2864,2553,3001,2674],[34,2903,2588,3041,2711],[35,2939,2620,3079,2745],[36,3011,2684,3155,2812],[37,3109,2771,3257,2903],[38,3202,2854,3355,2990],[39,3302,2943,3459,3083],[40,3434,3061,3598,3207],[41,3545,3160,3714,3310],[42,3656,3259,3830,3414],[43,3767,3357,3946,3517],[44,3878,3456,4062,3621],[45,3910,3485,4097,3651],[46,4090,3645,4284,3819],[47,4226,3767,4427,3946],[48,4403,3925,4613,4112],[49,4581,4083,4799,4277],[50,4806,4284,5035,4488],[51,4935,4399,5170,4608],[52,5064,4514,5305,4728],[53,5193,4628,5440,4849],[54,5322,4743,5575,4969],[55,5451,4858,5711,5090],[56,5637,5024,5905,5263],[57,5822,5189,6099,5436],[58,5989,5338,6274,5592],[59,6277,5595,6576,5861],[60,6914,6163,7244,6456],[61,7483,6669,7839,6987],[62,8051,7176,8435,7518],[63,8707,7760,9121,8130],[64,9281,8272,9723,8666],[65,9855,8784,10324,9202],[66,11125,9915,11654,10388],[67,12395,11047,12985,11573],[68,13664,12179,14315,12759],[69,14934,13311,15645,13945],[70,16204,14443,16976,15131],[71,18281,16294,19152,17070],[72,18661,16633,19550,17425],[73,19041,16971,19947,17779],[74,19420,17309,20345,18134],[75,19800,17648,20743,18488],[76,20178,17985,21139,18841],[77,20555,18321,21534,19194],[78,20933,18658,21930,19546],[79,23397,20854,24511,21847],[80,26150,23308,27395,24418],[81,26560,23673,27825,24801],[82,26970,24039,28255,25184],[83,27380,24404,28684,25566],[84,28201,25135,29544,26332],[85,28951,25804,30329,27033],[86,29701,26472,31115,27733],[87,30450,27141,31900,28433],[88,31200,27809,32686,29133],[89,31950,28477,33472,29834],[90,31981,28505,33504,29862],[91,32011,28532,33536,29891],[92,32103,28614,33632,29976],[93,32216,28714,33750,30082],[94,32329,28815,33868,30187],[95,32667,29116,34223,30503],[100,35180,31357,36856,32850],[999,35180,31357,36856,32850]];
 /* ============ 保障表 ============ */
 const BENE=[
 {id:'kids',title:'少儿意外险 Star Protector Plus（0–15 岁投保）',sub:'Plan 2 最多人选择 · 金色行最常理赔',
@@ -932,13 +1134,344 @@ const BENE=[
  ['居家改装报销','S$5,000','S$10,000','S$15,000']],
  note:'可选失智保障组（Plan 1–3，按性别与吸烟状况报价，70 岁前投保、保至 85 岁），请联系小圆姐。<a href="https://www.aia.com.sg/content/dam/sg-wise/en/docs/our-products/cn/aia-centurion-pa-chinese-brochure.pdf" target="_blank" rel="noopener noreferrer">中文产品手册 ↗</a>'}];
 
+/* ============ 工具 ============ */
+const fmt=n=>'S$'+n.toLocaleString('en-SG',{minimumFractionDigits:2,maximumFractionDigits:2});
+const sgd=n=>'S$'+Math.round(n).toLocaleString('en-US');
+const wan=n=>'S$'+(+(n/10000).toFixed(2)).toLocaleString('en-US')+' 万';
+const band=(arr,key)=>{for(const r of arr){if(key<=r[0])return r;}return arr[arr.length-1];};
+const RES=[['local','公民 / PR'],['fdep','外国人 · SC/PR 家属'],['fnon','外国人']];
+const SGNAME={A:'私立 A',B:'公立 B',BL:'公立 B Lite'};
+const GOPT=[{gp:1,go:1},{gp:1,go:2},{gp:2,go:1},{gp:2,go:2}];
+const GLIM={1:[750000,5000000],2:[1500000,10000000]};
+const GDED={1:{ded:1500,co:.10,cap:15000},2:{ded:3000,co:.15,cap:20000}};
+const SGLIM={A:[1000000,'全在 AIA 合作医院 S$200 万'],B:[1000000,'全在 AIA 合作医院 S$120 万'],BL:[300000,'']};
+const SGDED={A:3500,B:3500,BL:2500};
+function gName(gp,go){return 'Plan '+gp+' · '+(go===1?'选项一':'选项二');}
+function gDesc(go){const d=GDED[go];return '免赔额 '+sgd(d.ded)+' + '+Math.round(d.co*100)+'%（封顶 '+sgd(d.cap)+'）';}
+function oop(x,ded,co,cap){return x<=ded?x:ded+Math.min(co*(x-ded),cap);}
+
+/* ============ 状态 ============ */
+let people=[];
+function newPerson(i){return {name:'成员'+(i||people.length+1),age:35,res:'local',
+  h:{on:true,plan:'A',vhp:true,ccp:true,ecp:false,gp:2,go:2},
+  p:{on:true,plan:2,grpLife:false,grpHosp:false,grpDis:false,ci:0}};}
+
+/* ============ 计算 ============ */
+function calcHosp(ps){
+  if(!ps.h.on)return null;
+  const anb=ps.age+1, out={rows:[],cash:0,cpf:0,total:0,notes:[]};
+  const local=ps.res==='local';
+  if(ps.h.plan==='G'){
+    const gp=ps.h.gp||2, go=ps.h.go||2, price=band(PIH,ps.age)[(gp-1)*2+go];
+    out.rows.push(['全球医疗险 · '+gName(gp,go),price]); out.cash+=price; out.total+=price;
+    if(local){const msl=band(HSGM_LOCAL,anb)[1];
+      out.rows.push(['MediShield Life（公民 / PR 必须保留）',msl]); out.cpf+=msl; out.total+=msl;}
+    out.notes.push('全球医疗险（美国除外）：'+gDesc(go)+'；每年最高赔 '+wan(GLIM[gp][0])+'。续保不保证。');
+    if(local)out.notes.push('全球险保费不分国籍，住在新加坡的人都是同一个价；公民 / PR 另外要交政府强制的 MediShield Life（MediSave 付）。');
+    if(ps.age>65)out.notes.push('全球医疗险最后投保年龄为 65 岁，此价格仅供已有保单续保参考。');
+    return out;
+  }
+  const plan=local?ps.h.plan:(ps.h.plan==='BL'?'B':ps.h.plan);
+  if(local){
+    const b=band(HSGM_LOCAL,anb), msl=b[1], awl=b[2];
+    const add=plan==='A'?b[3]:plan==='B'?b[4]:b[5];
+    const baseTotal=msl+add;
+    out.rows.push(['基础住院险（含 MediShield Life）',baseTotal]);
+    out.cpf+=msl+Math.min(add,awl); out.cash+=Math.max(add-awl,0); out.total+=baseTotal;
+    if(ps.h.vhp){
+      const v=band(VHP_LOCAL,anb), vp=plan==='A'?v[1]:plan==='B'?v[4]:v[5];
+      out.rows.push(['附加 VitalHealth Pro '+(plan==='BL'?'B Lite':plan),vp]);
+      out.cash+=vp; out.total+=vp;
+      if(plan==='A'&&ps.h.ccp){out.rows.push(['附加 Cancer Care Pro',v[3]]);out.cash+=v[3];out.total+=v[3];}
+      if(plan==='A'&&ps.h.ecp){out.rows.push(['附加 Emergency Care Pro',v[2]]);out.cash+=v[2];out.total+=v[2];}
+    }
+  }else{
+    const dep=ps.res==='fdep', b=band(HSGM_F,anb), mwl=b[1];
+    const base=plan==='A'?(dep?b[2]:b[4]):(dep?b[3]:b[5]);
+    out.rows.push(['基础住院险（外国人计划）',base]); out.total+=base;
+    if(dep){out.cpf+=Math.min(base,mwl);out.cash+=Math.max(base-mwl,0);
+      out.notes.push('SC/PR 的配偶、子女等直系家属，保费可由 SC/PR 付款人的 MediSave 支付（上限内），保单持有人须为 SC/PR。');}
+    else{out.cash+=base;}
+    if(ps.h.vhp){
+      const v=dep?band(VHP_LOCAL,anb):band(VHP_F_NON,anb);
+      const vp=plan==='A'?v[1]:v[4];
+      out.rows.push(['附加 VitalHealth Pro '+plan,vp]); out.cash+=vp; out.total+=vp;
+      if(plan==='A'&&ps.h.ccp){out.rows.push(['附加 Cancer Care Pro',v[3]]);out.cash+=v[3];out.total+=v[3];}
+      if(plan==='A'&&ps.h.ecp){out.rows.push(['附加 Emergency Care Pro',v[2]]);out.cash+=v[2];out.total+=v[2];}
+    }
+  }
+  if(anb>75)out.notes.push('新加坡住院险最后投保年龄为 75（下一生日年龄）。此价格仅供已有保单续保参考。');
+  return out;
+}
+function paProduct(age){if(age<16)return 'kids';if(age<=65)return 'adults';return 'elderly';}
+function hasSolitaireP2(){return people.some(x=>x.p.on&&paProduct(x.age)==='adults'&&x.p.plan>=2);}
+function calcPA(ps){
+  if(!ps.p.on)return null;
+  const prod=paProduct(ps.age), out={rows:[],total:0,notes:[],prod};
+  if(prod==='kids'){
+    const disc=hasSolitaireP2();
+    const rate=(disc?PA_KIDS.disc:PA_KIDS.std)[ps.p.plan-1];
+    out.rows.push(['Star Protector Plus · Plan '+ps.p.plan,rate]); out.total+=rate;
+    if(ps.p.ci>0){const ci=(disc?PA_KIDS.ciDisc:PA_KIDS.ciStd)[ps.p.ci-1];
+      out.rows.push(['附加儿童重疾 '+PA_KIDS.ciAmt[ps.p.ci-1],ci]); out.total+=ci;}
+    if(disc)out.notes.push('已按优惠费率：家长同时投保 Solitaire PA (II) Plan 2 及以上（优惠适用至孩子 21 岁）。');
+  }else if(prod==='adults'){
+    const i=ps.p.plan-1;
+    out.rows.push(['Solitaire PA (II) · Plan '+ps.p.plan+'（职业类别 1/2）',PA_ADULTS.basic[i]]); out.total+=PA_ADULTS.basic[i];
+    if(ps.p.grpLife){out.rows.push(['附加 生活维持保障组',PA_ADULTS.lifestyle[i]]);out.total+=PA_ADULTS.lifestyle[i];}
+    if(ps.p.grpHosp){out.rows.push(['附加 意外住院保障组',PA_ADULTS.hosp[i]]);out.total+=PA_ADULTS.hosp[i];}
+    if(ps.p.grpDis){out.rows.push(['附加 月度伤残护理',PA_ADULTS.disability[i]]);out.total+=PA_ADULTS.disability[i];}
+  }else{
+    if(ps.age>80){out.notes.push('Centurion PA 最后投保年龄为 80 周岁，81 岁及以上仅限续保，请联系小圆姐评估其他方案。');return out;}
+    const plan=Math.min(ps.p.plan,3), b=band(PA_ELDERLY,Math.max(ps.age,40));
+    out.rows.push(['Centurion PA · Plan '+plan,b[plan]]); out.total+=b[plan];
+    out.notes.push('可选失智保障组（按性别及吸烟状况另行报价），有需要请联系小圆姐。');
+  }
+  return out;
+}
+
+/* ============ 成员报价 ============ */
+const PRODNAME={kids:'少儿意外险 Star Protector Plus（0–15 岁）',adults:'成人意外险 Solitaire PA (II)（16–65 岁）',elderly:'乐龄意外险 Centurion PA（66 岁以上）'};
+function esc(s){return String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));}
+function hospLabel(ps){return ps.h.plan==='G'?'全球医疗险 '+gName(ps.h.gp,ps.h.go):'新加坡 '+SGNAME[ps.h.plan];}
+function render(){
+  const box=document.getElementById('members'); box.innerHTML='';
+  let famTotal=0,famCash=0,famCpf=0;
+  people.forEach((ps,idx)=>{
+    const hosp=calcHosp(ps), pa=calcPA(ps);
+    let subtotal=0,cash=0,cpf=0;
+    if(hosp){subtotal+=hosp.total;cash+=hosp.cash;cpf+=hosp.cpf;}
+    if(pa){subtotal+=pa.total;cash+=pa.total;}
+    famTotal+=subtotal;famCash+=cash;famCpf+=cpf;
+    const prod=paProduct(ps.age), isLocal=ps.res==='local', glb=ps.h.plan==='G';
+    const planOpts=[['A','私立 A','i-hospital'],['B','公立 B','i-hospital']].concat(isLocal?[['BL','公立 B Lite','i-hospital']]:[]);
+    const paPlans=prod==='adults'?[1,2,3,4]:[1,2,3];
+    const el=document.createElement('div'); el.className='member';
+    el.innerHTML=`
+    <div class="m-head">
+      <span class="mi"><svg class="ic"><use href="#i-user"/></svg></span>
+      <input type="text" value="${esc(ps.name)}" data-f="name" aria-label="称呼">
+      <label>年龄 <input type="number" min="0" max="105" value="${ps.age}" data-f="age"></label>
+      <select data-f="res" aria-label="身份">${RES.map(([v,l])=>`<option value="${v}"${ps.res===v?' selected':''}>${l}</option>`).join('')}</select>
+      ${people.length>1?'<button class="m-del" type="button" data-act="del">✕ 移除</button>':''}
+    </div>
+    <div class="m-body">
+      <div class="prod">
+        <div class="prod-head">
+          <label class="tgl"><input type="checkbox" data-f="h.on"${ps.h.on?' checked':''} aria-label="住院险"><i></i></label>
+          <div><div class="pname">住院险</div>
+          <div class="psub">${glb?'Platinum International Health · 按实际年龄 '+ps.age+' 岁报价':'HealthShield Gold Max'+(isLocal?'':' for Foreigners')+' · 按下一生日年龄 '+(ps.age+1)+' 岁报价'}</div></div>
+          <button type="button" class="cmp-link" data-act="cmp"><svg class="ic"><use href="#i-scale"/></svg>新加坡 vs 全球 对比</button>
+        </div>
+        ${ps.h.on?`<div class="prod-body">
+          <div class="grp-lb">新加坡计划</div>
+          <div class="plansel">${planOpts.map(([v,l,ic])=>`<button type="button" class="plan-pill${ps.h.plan===v?' on':''}" data-hplan="${v}"><svg class="ic"><use href="#${ic}"/></svg>${l}</button>`).join('')}</div>
+          <div class="grp-lb">或者全球</div>
+          <div class="plansel"><button type="button" class="plan-pill glb${glb?' on':''}" data-hplan="G"><svg class="ic"><use href="#i-globe"/></svg>全球（美国除外）<span class="new">新</span></button></div>
+          ${glb?`<div class="subsel">${[1,2].map(gp=>`<button type="button" data-gp="${gp}" class="${ps.h.gp===gp?'on':''}">Plan ${gp}<small>每年最高赔 ${wan(GLIM[gp][0])}</small></button>`).join('')}
+            ${[1,2].map(go=>`<button type="button" data-go="${go}" class="${ps.h.go===go?'on':''}">${go===1?'选项一':'选项二'}<small>${gDesc(go)}</small></button>`).join('')}</div>`
+          :`<div class="opt-row">
+            <label><input type="checkbox" data-f="h.vhp"${ps.h.vhp?' checked':''}>附加 VitalHealth Pro（自付降到 5%）</label>
+            ${ps.h.plan==='A'&&ps.h.vhp?`<label><input type="checkbox" data-f="h.ccp"${ps.h.ccp?' checked':''}>Cancer Care Pro</label>
+            <label><input type="checkbox" data-f="h.ecp"${ps.h.ecp?' checked':''}>Emergency Care Pro</label>`:''}
+          </div>`}
+          ${hosp?`<div class="pres num">
+            ${hosp.rows.map(r=>`<div class="row"><span class="k">${r[0]}</span><span>${fmt(r[1])}</span></div>`).join('')}
+            <div class="row tot"><span>住院险小计 / 年</span><span>${fmt(hosp.total)}</span></div>
+            <div class="pchips"><span class="pchip cash">现金约 ${fmt(hosp.cash)}</span>
+              ${hosp.cpf>0?`<span class="pchip cpf">MediSave 约 ${fmt(hosp.cpf)}</span>`:''}</div>
+          </div>`:''}
+          ${hosp&&hosp.notes.length?hosp.notes.map(n=>`<div class="mnote">${n}</div>`).join(''):''}
+        </div>`:''}
+      </div>
+
+      <div class="prod">
+        <div class="prod-head">
+          <label class="tgl"><input type="checkbox" data-f="p.on"${ps.p.on?' checked':''} aria-label="意外险"><i></i></label>
+          <div><div class="pname">意外险（按年龄自动匹配）</div><div class="psub">${PRODNAME[prod]}</div></div>
+        </div>
+        ${ps.p.on?`<div class="prod-body">
+          <div class="plansel">${paPlans.map(n=>`<button type="button" class="plan-pill${ps.p.plan===n?' on':''}" data-pplan="${n}">Plan ${n}${n===2?'<span class="pop-badge">最多人选择</span>':''}</button>`).join('')}</div>
+          ${prod==='adults'?`<div class="opt-row">
+            <label><input type="checkbox" data-f="p.grpLife"${ps.p.grpLife?' checked':''}>生活维持组</label>
+            <label><input type="checkbox" data-f="p.grpHosp"${ps.p.grpHosp?' checked':''}>意外住院组</label>
+            <label><input type="checkbox" data-f="p.grpDis"${ps.p.grpDis?' checked':''}>月度伤残护理</label>
+          </div>`:''}
+          ${prod==='kids'?`<div class="opt-row"><label>附加儿童重疾
+            <select data-f="p.ci">${[['0','不附加'],['1','保额 S$30,000'],['2','保额 S$50,000'],['3','保额 S$100,000']].map(([v,l])=>`<option value="${v}"${ps.p.ci===+v?' selected':''}>${l}</option>`).join('')}</select></label></div>`:''}
+          ${pa&&pa.rows.length?`<div class="pres num">
+            ${pa.rows.map(r=>`<div class="row"><span class="k">${r[0]}</span><span>${fmt(r[1])}</span></div>`).join('')}
+            <div class="row tot"><span>意外险小计 / 年</span><span>${fmt(pa.total)}</span></div>
+          </div>`:''}
+          ${ps.p.plan===2&&pa&&pa.rows.length?`<div class="mnote">Plan 2 医疗额度大约够 1 次核磁共振（MRI）。担心一次意外要做多次核磁（检查 + 复诊），建议选 Plan 3 或以上。</div>`:''}
+          ${pa&&pa.notes.length?pa.notes.map(n=>`<div class="mnote${n.includes('联系')&&!pa.rows.length?' warn':''}">${n}</div>`).join(''):''}
+        </div>`:''}
+      </div>
+
+      <div class="m-total num"><span>${esc(ps.name)} 年保费合计</span><b>${fmt(subtotal)}</b></div>
+    </div>`;
+    el.querySelectorAll('[data-f]').forEach(inp=>{
+      inp.addEventListener('change',()=>{
+        const path=inp.dataset.f.split('.');
+        let val=inp.type==='checkbox'?inp.checked:inp.value;
+        if(inp.dataset.f==='age'){val=Math.max(0,Math.min(105,parseInt(val||0,10)));}
+        if(inp.dataset.f==='p.ci'){val=parseInt(val,10);}
+        if(path.length===1)ps[path[0]]=val;else ps[path[0]][path[1]]=val;
+        if(inp.dataset.f==='res'&&ps.res!=='local'&&ps.h.plan==='BL')ps.h.plan='B';
+        if(inp.dataset.f==='age'){const np=paProduct(ps.age);if(np!=='adults'&&ps.p.plan>3)ps.p.plan=3;}
+        render();saveHash();
+      });
+    });
+    el.querySelectorAll('[data-hplan]').forEach(b=>b.addEventListener('click',()=>{ps.h.plan=b.dataset.hplan;render();saveHash();}));
+    el.querySelectorAll('[data-gp]').forEach(b=>b.addEventListener('click',()=>{ps.h.gp=+b.dataset.gp;render();saveHash();}));
+    el.querySelectorAll('[data-go]').forEach(b=>b.addEventListener('click',()=>{ps.h.go=+b.dataset.go;render();saveHash();}));
+    el.querySelectorAll('[data-pplan]').forEach(b=>b.addEventListener('click',()=>{ps.p.plan=parseInt(b.dataset.pplan,10);render();saveHash();}));
+    el.querySelector('[data-act=cmp]').addEventListener('click',()=>{
+      cmp.age=Math.max(0,Math.min(65,ps.age)); cmp.res=ps.res;
+      cmp.sg=ps.h.plan==='G'?'A':(ps.res!=='local'&&ps.h.plan==='BL'?'B':ps.h.plan);
+      if(ps.h.plan==='G')cmp.gi=GOPT.findIndex(o=>o.gp===ps.h.gp&&o.go===ps.h.go);
+      renderCmp(); document.getElementById('compare').scrollIntoView({behavior:'smooth'});
+    });
+    const del=el.querySelector('[data-act=del]');
+    if(del)del.addEventListener('click',()=>{people.splice(idx,1);render();saveHash();});
+    box.appendChild(el);
+  });
+  document.getElementById('tb-total').textContent=fmt(famTotal);
+  document.getElementById('tb-cash').textContent='现金约 '+fmt(famCash);
+  document.getElementById('tb-cpf').textContent=famCpf>0?'MediSave 约 '+fmt(famCpf):'月均折算约 '+fmt(famTotal/12);
+  const lines=people.map(ps=>{
+    const hosp=calcHosp(ps),pa=calcPA(ps);const seg=[];
+    if(hosp)seg.push('住院险（'+hospLabel(ps)+'）'+fmt(hosp.total));
+    if(pa&&pa.total)seg.push('意外险 '+fmt(pa.total));
+    return ps.name+'（'+ps.age+'岁）：'+(seg.join(' + ')||'-');
+  });
+  const waText='你好小圆姐，我用保障方案测算工具算了全家方案：\n'+lines.join('\n')+'\n全家合计约 '+fmt(famTotal)+' / 年\n'+shareUrl()+'\n想进一步了解，麻烦你了！';
+  document.getElementById('wa-btn').href='https://wa.me/6583750190?text='+encodeURIComponent(waText);
+}
+
+/* ============ 分享链接 ============ */
+function encodeState(){
+  const state=people.map(ps=>[ps.name,ps.age,ps.res,ps.h.on?1:0,ps.h.plan,ps.h.vhp?1:0,ps.h.ccp?1:0,ps.h.ecp?1:0,ps.p.on?1:0,ps.p.plan,ps.p.grpLife?1:0,ps.p.grpHosp?1:0,ps.p.grpDis?1:0,ps.p.ci,ps.h.gp,ps.h.go]);
+  return encodeURIComponent(btoa(unescape(encodeURIComponent(JSON.stringify(state)))));
+}
+function shareUrl(){return location.origin+location.pathname+'#q='+encodeState();}
+function saveHash(){history.replaceState(null,'','#q='+encodeState());}
+function loadHash(){
+  try{
+    const m=location.hash.match(/#q=(.+)/); if(!m)return false;
+    const arr=JSON.parse(decodeURIComponent(escape(atob(decodeURIComponent(m[1])))));
+    people=arr.map(r=>({name:String(r[0]).slice(0,20),age:Math.max(0,Math.min(105,+r[1]||0)),res:['local','fdep','fnon'].includes(r[2])?r[2]:'local',
+      h:{on:!!r[3],plan:['A','B','BL','G'].includes(r[4])?r[4]:'A',vhp:!!r[5],ccp:!!r[6],ecp:!!r[7],gp:r[14]===1?1:2,go:r[15]===1?1:2},
+      p:{on:!!r[8],plan:Math.min(4,Math.max(1,+r[9]||2)),grpLife:!!r[10],grpHosp:!!r[11],grpDis:!!r[12],ci:Math.min(3,Math.max(0,+r[13]||0))}}));
+    return people.length>0;
+  }catch(e){return false;}
+}
+document.getElementById('share-btn').addEventListener('click',function(){
+  const u=shareUrl();
+  (navigator.clipboard?navigator.clipboard.writeText(u):Promise.reject()).then(()=>{
+    this.textContent='已复制 ✓';setTimeout(()=>this.textContent='复制报价链接',1600);
+  }).catch(()=>{prompt('复制此链接：',u);});
+});
+document.getElementById('addbtn').addEventListener('click',()=>{people.push(newPerson());render();saveHash();});
+
+/* ============ 新加坡 vs 全球 对比 ============ */
+const cmp={age:35,res:'local',sg:'A',gi:3};
+function sgPrice(age,res,plan){return calcHosp({age,res,h:{on:true,plan,vhp:true,ccp:false,ecp:false}});}
+function glPrice(age,res,gi){const o=GOPT[gi];return calcHosp({age,res,h:{on:true,plan:'G',gp:o.gp,go:o.go}});}
+function chips(id,list,cur,cb){
+  const box=document.getElementById(id);
+  box.innerHTML=list.map(([v,l])=>`<button type="button" data-v="${v}" class="${String(v)===String(cur)?'on':''}">${l}</button>`).join('');
+  box.querySelectorAll('button').forEach(b=>b.addEventListener('click',()=>{cb(b.dataset.v);renderCmp();}));
+}
+function split(o){return o.cpf>0?'MediSave 约 '+sgd(o.cpf)+' · 现金约 '+sgd(o.cash):'全部现金';}
+function renderCmp(){
+  if(cmp.res!=='local'&&cmp.sg==='BL')cmp.sg='B';
+  const local=cmp.res==='local', o=GOPT[cmp.gi];
+  chips('cRes',RES,cmp.res,v=>{cmp.res=v;});
+  chips('cSg',[['A','私立 A'],['B','公立 B']].concat(local?[['BL','公立 B Lite']]:[]),cmp.sg,v=>{cmp.sg=v;});
+  chips('cGl',GOPT.map((g,i)=>[i,gName(g.gp,g.go)]),cmp.gi,v=>{cmp.gi=+v;});
+  document.getElementById('cAge').value=cmp.age; document.getElementById('cAgeR').value=cmp.age;
+  const A=sgPrice(cmp.age,cmp.res,cmp.sg), B=glPrice(cmp.age,cmp.res,cmp.gi);
+  const $=id=>document.getElementById(id);
+  $('cpAt').textContent='新加坡 · '+SGNAME[cmp.sg]+'（含 VitalHealth Pro）';
+  $('cpA').innerHTML=sgd(A.total)+'<small>/ 年</small>'; $('cpAs').textContent=split(A);
+  $('cpBt').textContent='全球（美国除外）· '+gName(o.gp,o.go);
+  $('cpB').innerHTML=sgd(B.total)+'<small>/ 年</small>';
+  $('cpBs').textContent=local?'全球险 '+sgd(B.cash)+'（现金）+ MediShield Life '+sgd(B.cpf)+'（MediSave）':'全部现金';
+  renderResCmp();
+  const d=GDED[o.go], maxB=d.ded+d.cap, maxA=SGDED[cmp.sg]+6000, limB=GLIM[o.gp][0], limA=SGLIM[cmp.sg][0];
+  const win=t=>`<span class="win"><svg class="ic"><use href="#i-check"/></svg>${t}</span>`;
+  const where={A:['新加坡私立医院标准房','按实际赔；海外按新加坡收费赔'],B:['新加坡公立医院 A 级病房','去私立医院按 70% 折算再赔'],BL:['新加坡公立医院 B1 病房','私立按 50%、公立 A 级按 80% 折算']}[cmp.sg];
+  const cheap=Math.abs(A.total-B.total)>=50?(A.total<B.total?'a':'b'):'';
+  const rows=[
+    ['i-hospital','在哪看病能赔',`<b>${where[0]}</b><small>${where[1]}</small>`,`<b>全球（美国除外）标准房</b><small>按实际赔</small>${win('范围更广')}`],
+    ['i-coins','今年保费',`<b>${sgd(A.total)}</b><small>${split(A)}</small>${cheap==='a'?win('便宜 '+sgd(B.total-A.total)):''}`,`<b>${sgd(B.total)}</b><small>${local?'全球险 '+sgd(B.cash)+' + MediShield Life '+sgd(B.cpf):'全部现金'}</small>${cheap==='b'?win('便宜 '+sgd(A.total-B.total)):''}`],
+    ['i-wallet','每年自己最多付',`<b>约 ${sgd(maxA)}</b><small>免赔额 ${sgd(SGDED[cmp.sg])} + 5%（封顶 S$6,000）</small>${win('少付 '+sgd(maxB-maxA))}`,`<b>${sgd(maxB)}</b><small>${gDesc(o.go)}</small>`],
+    ['i-shield','每年最高赔',`<b>${wan(limA)}</b><small>${SGLIM[cmp.sg][1]||'终身不设上限'}</small>${limA>limB?win('更高'):''}`,`<b>${wan(limB)}</b><small>终身 ${wan(GLIM[o.gp][1])}</small>${limB>limA?win('更高'):''}`],
+    ['i-ribbon','癌症门诊',`<b>按国家癌症药物清单</b><small>私立 A 可加 Cancer Care Pro，额度更高</small>`,`<b>每年 S$50 万</b><small>化疗、免疫、放疗都算</small>${win('更宽松')}`],
+    ['i-renew','能不能一直续保',`<b>保证续保终身</b><small>交保费就续，不看身体状况</small>${win('更稳')}`,`<b style="color:var(--red)">不保证</b><small>保险公司有权不续保</small>`],
+    ['i-id','身份相关',local?`<b>含 MediShield Life</b><small>一部分可用 MediSave 付</small>${win('可用 MediSave')}`:`<b>拿 PR 后自动转本地健保</b><small>准证失效 60 天内没续，保单终止</small>`,
+      local?`<b>MediShield Life 仍要保留</b><small>全球险部分只能现金付</small>`:`<b>身份变化要通知 AIA</b><small>公司可调整或终止</small>`],
+    ['i-cal','最后投保年龄',`<b>75 岁</b><small>按下一生日年龄</small>`,`<b>65 岁</b><small>按上一生日年龄</small>`]
+  ];
+  $('cmpGrid').innerHTML=`<div class="sg-row hd"><div class="sg-k"></div><div class="sg-v a"><svg class="ic"><use href="#i-hospital"/></svg>新加坡 · ${SGNAME[cmp.sg]}</div><div class="sg-v b"><svg class="ic"><use href="#i-globe"/></svg>全球 · ${gName(o.gp,o.go)}</div></div>`+
+    rows.map(r=>`<div class="sg-row"><div class="sg-k"><span class="sg-ic"><svg class="ic"><use href="#${r[0]}"/></svg></span>${r[1]}</div><div class="sg-v a">${r[2]}</div><div class="sg-v b">${r[3]}</div></div>`).join('');
+  const ages=[cmp.age,cmp.age+5,cmp.age+10,cmp.age+20].filter(a=>a<=100);
+  const pa=ages.map(a=>sgPrice(a,cmp.res,cmp.sg).total), pb=ages.map(a=>glPrice(a,cmp.res,cmp.gi).total);
+  $('cmpFuture').innerHTML=`<thead><tr><th>以后每年保费</th>${ages.map(a=>`<th class="p1">${a} 岁</th>`).join('')}</tr></thead><tbody>`+
+    `<tr><td>新加坡 · ${SGNAME[cmp.sg]}</td>${pa.map((v,i)=>`<td class="p1${v<pb[i]?' green':''}">${sgd(v)}</td>`).join('')}</tr>`+
+    `<tr><td>全球 · ${gName(o.gp,o.go)}</td>${pb.map((v,i)=>`<td class="p2${v<pa[i]?' green':''}">${sgd(v)}</td>`).join('')}</tr></tbody>`;
+  renderClaims();
+}
+/* 同一年龄、三种身份的价格对照 */
+function renderResCmp(){
+  const $=id=>document.getElementById(id), ids=RES.map(r=>r[0]), o=GOPT[cmp.gi];
+  const sgAll=ids.map(r=>r!=='local'&&cmp.sg==='BL'?null:sgPrice(cmp.age,r,cmp.sg));
+  const glAll=ids.map(r=>glPrice(cmp.age,r,cmp.gi));
+  const td=(i,v,sm,k)=>`<td class="${k}">${v}<small>${sm}</small></td>`;
+  const sgCell=(x,i)=>!x?td(i,'—','外国人没有 B Lite','p1'):
+    td(i,sgd(x.total),ids[i]==='local'?'含 MediShield Life '+sgd(band(HSGM_LOCAL,cmp.age+1)[1]):ids[i]==='fdep'?'家人 MediSave 可付 '+sgd(x.cpf):'全部现金','p1');
+  const glCell=(x,i)=>td(i,sgd(x.total),ids[i]==='local'?'全球险 '+sgd(x.cash)+' + MediShield Life '+sgd(x.cpf):'全球险，全部现金','p2');
+  $('cmpRes').innerHTML=`<thead><tr><th>同样 ${cmp.age} 岁</th><th class="p1">新加坡 · ${SGNAME[cmp.sg]}</th><th class="p2">全球 · ${gName(o.gp,o.go)}</th></tr></thead><tbody>`+
+    RES.map((r,i)=>`<tr class="${r[0]===cmp.res?'cur':''}"><td>${r[1]}</td>${sgCell(sgAll[i],i)}${glCell(glAll[i],i)}</tr>`).join('')+'</tbody>';
+  const sgLine=sgAll[2]?`新加坡计划这边，外国人反而比公民 / PR 贵（${sgd(sgAll[2].total)} 对 ${sgd(sgAll[0].total)}）。`:'';
+  $('cmpWhy').querySelector('span').innerHTML=`<b>为什么全球险外国人看起来更便宜？</b>全球险本身不分国籍，住在新加坡的人都是 ${sgd(glAll[2].total)}。公民 / PR 多出来的 ${sgd(glAll[0].cpf)} 是政府强制的 MediShield Life，用 MediSave 付，等于多一层保障。${sgLine}`;
+}
+(function(){
+  const r=document.getElementById('cAgeR'), n=document.getElementById('cAge');
+  r.addEventListener('input',()=>{cmp.age=+r.value;renderCmp();});
+  n.addEventListener('change',()=>{cmp.age=Math.max(0,Math.min(65,parseInt(n.value||0,10)));renderCmp();});
+})();
+
+/* ============ 理赔示例 ============ */
+function renderClaims(){
+  const o=GOPT[cmp.gi], d=GDED[o.go];
+  const cards=[
+    {t:'私立住院险',s:'私立医院标准房 · Gold Max A + VitalHealth Pro A',pc:'var(--navy)',ded:3500,co:.05,cap:6000,pct:'5%'},
+    {t:'公立住院险',s:'公立医院 A 级病房 · Gold Max B + VitalHealth Pro B',pc:'#3355B5',ded:3500,co:.05,cap:6000,pct:'5%'},
+    {t:'全球医疗险',s:'全球（美国除外）标准房 · '+gName(o.gp,o.go),pc:'var(--gold)',ded:d.ded,co:d.co,cap:d.cap,pct:Math.round(d.co*100)+'%'}
+  ];
+  document.getElementById('claims').innerHTML=cards.map(c=>`<article class="clm" style="--pc:${c.pc}"><h3>${c.t}</h3><div class="scope">${c.s}</div>`+
+    [200000,20000].map(x=>{
+      const after=x-c.ded, part=c.co*after, capd=Math.min(part,c.cap), self=c.ded+capd, pay=x-self;
+      return `<div class="bill"><div class="bill-title"><span>${x>=100000?'大':'小'}账单</span><span>${sgd(x)}</span></div><div class="calc">
+        <div class="k">年度免赔额</div><div>${sgd(c.ded)}</div>
+        <div class="k">${c.pct} 自付</div><div>${sgd(part)}</div>
+        ${part>c.cap?`<div class="k">每年封顶</div><div>${sgd(c.cap)}</div>`:''}
+        <div class="self">自己付</div><div>${sgd(self)}</div>
+        <div class="claim">保险赔</div><div>${sgd(pay)}</div></div>
+        <div class="split-bar"><i class="s-claim" style="width:${(pay/x*100).toFixed(1)}%"></i><i class="s-self" style="width:${(self/x*100).toFixed(1)}%"></i></div></div>`;
+    }).join('')+`</article>`).join('');
+}
+
+/* ============ 意外险保障表 ============ */
 (function(){
   const box=document.getElementById('beneTables');
-  BENE.forEach((t,i)=>{
+  BENE.forEach(t=>{
     const d=document.createElement('details');d.className='bene';
     d.innerHTML=`<summary><div><div class="bt">${t.title}</div><div class="bs">${t.sub}</div></div>
-      <svg class="arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="m6 9 6 6 6-6"/></svg></summary>
-      <div class="bene-in"><div class="tbl-scroll"><table>
+      <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="m6 9 6 6 6-6"/></svg></summary>
+      <div class="bene-in"><div class="tbl-scroll"><table class="num">
       <thead><tr>${t.head.map((h,j)=>`<th${j?' class="num"':''}>${h}</th>`).join('')}</tr></thead>
       <tbody>${t.rows.map(r=>{
         const hl=r[r.length-1]==='hl';const cells=hl?r.slice(0,-1):r;
@@ -949,9 +1482,38 @@ const BENE=[
   });
 })();
 
+/* ============ 水印 ============ */
+(function(){
+  const text='新加坡小圆姐　　　singaporeyuan　　　仅供本人参考　　　　　　', wm=document.getElementById('wm'), unit=text.repeat(6);
+  for(let i=0;i<16;i++){const d=document.createElement('div');d.className='row';d.textContent=unit;d.style.top=(i*110-120)+'px';d.style.left='-200px';wm.appendChild(d);}
+})();
+
+/* 引用小编号：滚到来源，不改地址栏里的 #q= */
+document.addEventListener('click',e=>{
+  const a=e.target.closest('.ref a'); if(!a)return;
+  const li=document.querySelector(a.getAttribute('href')); if(!li)return;
+  e.preventDefault();
+  li.scrollIntoView({behavior:'smooth',block:'center'});
+  li.classList.remove('hit'); void li.offsetWidth; li.classList.add('hit');
+});
+
 /* ============ 启动 ============ */
 if(!loadHash()){people=[newPerson(1)];}
 render();
+renderCmp();
+
+(function(){
+  var b=document.getElementById('wxCopy'), t=document.getElementById('wxTxt');
+  if(!b) return;
+  var orig=t.innerHTML;
+  function done(ok){ t.innerHTML = ok ? '已复制微信号，打开微信添加' : '微信号：<b>singaporeyuan</b>'; setTimeout(function(){ t.innerHTML=orig; },2600); }
+  b.addEventListener('click',function(){
+    if(navigator.clipboard&&navigator.clipboard.writeText){
+      navigator.clipboard.writeText('singaporeyuan').then(function(){done(true)},function(){done(false)});
+    } else done(false);
+  });
+})();
+
 </script>
 </body>
 </html>
