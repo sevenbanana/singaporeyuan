@@ -688,6 +688,11 @@ body{padding-bottom:92px}
   .res-cmp td small{font-size:11.5px}
 }
 #cmpWhy .ic{flex:0 0 auto;margin-top:3px}
+
+/* 住在海外 */
+.res-hint{margin-top:6px;font-size:12px;color:var(--muted);line-height:1.6}
+.sumgrid.na-a .sg-v.a{opacity:.5}
+.sumgrid.na-a .sg-v.a .win{display:none}
 </style>
 </head>
 <body class="locked">
@@ -832,7 +837,7 @@ body{padding-bottom:92px}
     <div class="k"><svg class="ic"><use href="#i-user"/></svg>年龄</div>
     <div class="age"><input type="range" id="cAgeR" min="0" max="65" value="35" aria-label="年龄"><input type="number" id="cAge" min="0" max="65" value="35" aria-label="年龄"><small>周岁</small></div>
     <div class="k"><svg class="ic"><use href="#i-id"/></svg>身份</div>
-    <div class="chipsel" id="cRes"></div>
+    <div class="res-wrap"><div class="chipsel" id="cRes"></div><div class="res-hint">在新外国人：持准证在新加坡长期工作、生活或读书。住在海外：不常住新加坡、没有新加坡准证，全球险按住海外版报价。</div></div>
     <div class="k"><svg class="ic"><use href="#i-hospital"/></svg>新加坡计划</div>
     <div class="chipsel" id="cSg"></div>
     <div class="k"><svg class="ic"><use href="#i-globe"/></svg>全球医疗险</div>
@@ -896,11 +901,12 @@ body{padding-bottom:92px}
       <div class="hfeat"><b class="k">提醒</b>私立医院按 50%、公立 A 级病房按 80% 折算再赔</div>
     </div>
     <div class="hplan" style="--pc:var(--gold)">
-      <h4>全球医疗险 · 全球（美国除外）标准房<small>AIA Platinum International Health（SG Resident）· 新增</small></h4>
+      <h4>全球医疗险 · 全球（美国除外）标准房<small>AIA Platinum International Health · 住新加坡版 / 住海外版 · 新增</small></h4>
       <div class="hfeat"><b class="k">病房</b>全球（美国除外）标准房，按实际赔</div>
       <div class="hfeat"><b class="k">每年最高赔</b>Plan 1 <b>S$75 万</b>（终身 S$500 万）；Plan 2 <b>S$150 万</b>（终身 S$1,000 万）</div>
       <div class="hfeat"><b class="k">自付</b>选项一：免赔额 S$1,500 + 10%（封顶 S$15,000）；选项二：免赔额 S$3,000 + 15%（封顶 S$20,000）</div>
       <div class="hfeat"><b class="k">提醒</b>续保不保证；住院前后各 90 天；癌症门诊每年 S$50 万；最后投保年龄 65 岁</div>
+      <div class="hfeat"><b class="k">住海外版</b>给不常住新加坡的人；保障相同，保费贵约 10%，疾病等待期 180 天（住新加坡版 30 天）</div>
     </div>
   </div>
   <div id="beneTables"></div>
@@ -931,9 +937,9 @@ body{padding-bottom:92px}
 
   <div class="notes">
     <p>本页面由持牌顾问袁媛（RNF：YY-300823216）整理，仅供初步了解与预算参考，<b>不构成要约、保险建议或投保邀请</b>，也非 AIA 官方渠道。</p>
-    <p>报价依据 AIA 官方产品资料：HealthShield Gold Max v8.7（2025年10月）、HealthShield Gold Max for Foreigners v6.8、Max VitalHealth Pro（外籍版 v1.1，2026年10月）、Platinum International Health（SG Resident）v1.0（2024年11月）、Star Protector Plus v2.8、Solitaire PA (II) v1.3、Centurion PA v1.2。所有价格含 9% GST，价格表如有更新以 AIA 最新版本为准。</p>
+    <p>报价依据 AIA 官方产品资料：HealthShield Gold Max v8.7（2025年10月）、HealthShield Gold Max for Foreigners v6.8、Max VitalHealth Pro（外籍版 v1.1，2026年10月）、Platinum International Health（SG Resident 及 Non-SG Resident）v1.0（2024年11月）、Star Protector Plus v2.8、Solitaire PA (II) v1.3、Centurion PA v1.2。所有价格含 9% GST，价格表如有更新以 AIA 最新版本为准。</p>
     <p>实际保费与承保以 AIA 正式报价单、保单条款及<b>核保结果</b>为准。住院险及意外险保费都不保证，会随年龄和理赔经验调整。新加坡计划最后投保年龄 75 岁（下一生日年龄），全球医疗险最后投保年龄 65 岁（上一生日年龄），更高年龄只供续保参考。</p>
-    <p><b>全球医疗险</b>：续保由 AIA 决定，可拒绝续保；在美国连续逗留超过 90 天停保（期间只保紧急）；准证、居留身份或常住国家变化要通知 AIA。价格不分身份；公民 / PR 仍须保留 MediShield Life，本页对比已把它算进去。首年 Vitality 特别折扣以正式报价单为准，本页按原价。</p>
+    <p><b>全球医疗险</b>：续保由 AIA 决定，可拒绝续保；在美国连续逗留超过 90 天停保（期间只保紧急）；准证、居留身份或常住国家变化要通知 AIA。按住在哪里定价、不按国籍：住在新加坡的公民、PR 和持准证的外国人买 SG Resident 版；不常住新加坡、没有新加坡准证的买 Non-SG Resident 版，保费约高 10%，疾病等待期 180 天（SG Resident 版 30 天）。公民 / PR 仍须保留 MediShield Life，本页对比已把它算进去。首年 Vitality 特别折扣以正式报价单为准，本页按原价。</p>
     <p>MediSave 实际扣款受可扣额度、账户余额、补贴及 MediShield Life 保费调整影响；附加险（VitalHealth Pro 系列）和全球医疗险不可用 MediSave。外国人投保需持有效准证（EP / PEP / EntrePass / S Pass / DP / Student Pass / 部分 LTVP 及 WP）。意外险默认按职业类别 1/2，类别 3/4 请联系顾问。</p>
     <p>"为什么选 AIA"的数据摘自页面最下方"资料来源"列出的 AIA 官网、新闻稿及媒体报道，以原文为准；公司及集团数据可能随时间更新。"跟小圆姐买"中的服务以实际情况为准；预授权与保证函须经 AIA 审批，紧急入院、公立医院及海外治疗不适用预授权。不建议在未评估利弊前退旧买新，转保可能带来保费上升或保障减少。本保单受 SDIC 保单持有人保障计划保护。</p>
   </div>
@@ -1083,6 +1089,8 @@ const PA_ELDERLY=[[65,310.65,421.83,640.92],[75,457.80,590.78,898.16],[85,675.80
 
 /* 全球医疗险 Platinum International Health（SG Resident）：[max上一生日年龄, Plan1选项一, Plan1选项二, Plan2选项一, Plan2选项二] */
 const PIH=[[15,1413,1232,1481,1291],[16,1474,1286,1545,1347],[17,1536,1340,1610,1404],[18,1599,1395,1675,1462],[19,1663,1451,1742,1520],[20,1727,1524,1810,1597],[21,1827,1611,1914,1688],[22,1913,1688,2004,1768],[23,2000,1764,2095,1849],[24,2088,1842,2187,1929],[25,2159,1925,2262,2016],[26,2271,2024,2379,2120],[27,2377,2118,2490,2219],[28,2485,2215,2603,2320],[29,2583,2303,2706,2412],[30,2698,2405,2827,2520],[31,2774,2473,2906,2590],[32,2816,2510,2950,2630],[33,2864,2553,3001,2674],[34,2903,2588,3041,2711],[35,2939,2620,3079,2745],[36,3011,2684,3155,2812],[37,3109,2771,3257,2903],[38,3202,2854,3355,2990],[39,3302,2943,3459,3083],[40,3434,3061,3598,3207],[41,3545,3160,3714,3310],[42,3656,3259,3830,3414],[43,3767,3357,3946,3517],[44,3878,3456,4062,3621],[45,3910,3485,4097,3651],[46,4090,3645,4284,3819],[47,4226,3767,4427,3946],[48,4403,3925,4613,4112],[49,4581,4083,4799,4277],[50,4806,4284,5035,4488],[51,4935,4399,5170,4608],[52,5064,4514,5305,4728],[53,5193,4628,5440,4849],[54,5322,4743,5575,4969],[55,5451,4858,5711,5090],[56,5637,5024,5905,5263],[57,5822,5189,6099,5436],[58,5989,5338,6274,5592],[59,6277,5595,6576,5861],[60,6914,6163,7244,6456],[61,7483,6669,7839,6987],[62,8051,7176,8435,7518],[63,8707,7760,9121,8130],[64,9281,8272,9723,8666],[65,9855,8784,10324,9202],[66,11125,9915,11654,10388],[67,12395,11047,12985,11573],[68,13664,12179,14315,12759],[69,14934,13311,15645,13945],[70,16204,14443,16976,15131],[71,18281,16294,19152,17070],[72,18661,16633,19550,17425],[73,19041,16971,19947,17779],[74,19420,17309,20345,18134],[75,19800,17648,20743,18488],[76,20178,17985,21139,18841],[77,20555,18321,21534,19194],[78,20933,18658,21930,19546],[79,23397,20854,24511,21847],[80,26150,23308,27395,24418],[81,26560,23673,27825,24801],[82,26970,24039,28255,25184],[83,27380,24404,28684,25566],[84,28201,25135,29544,26332],[85,28951,25804,30329,27033],[86,29701,26472,31115,27733],[87,30450,27141,31900,28433],[88,31200,27809,32686,29133],[89,31950,28477,33472,29834],[90,31981,28505,33504,29862],[91,32011,28532,33536,29891],[92,32103,28614,33632,29976],[93,32216,28714,33750,30082],[94,32329,28815,33868,30187],[95,32667,29116,34223,30503],[100,35180,31357,36856,32850],[999,35180,31357,36856,32850]];
+/* 全球医疗险 Platinum International Health（Non-SG Resident，住海外版）：同上列 */
+const PIH_N=[[15,1551,1353,1625,1417],[16,1618,1411,1695,1479],[17,1686,1471,1767,1541],[18,1755,1531,1839,1604],[19,1825,1593,1912,1668],[20,1896,1673,1986,1753],[21,2005,1768,2100,1853],[22,2100,1852,2200,1941],[23,2195,1937,2300,2029],[24,2291,2021,2400,2117],[25,2370,2112,2483,2213],[26,2493,2222,2611,2327],[27,2608,2325,2733,2436],[28,2727,2431,2857,2546],[29,2836,2527,2971,2648],[30,2962,2640,3103,2765],[31,3045,2714,3190,2843],[32,3091,2755,3238,2886],[33,3144,2802,3293,2935],[34,3186,2840,3338,2975],[35,3226,2876,3380,3012],[36,3305,2946,3463,3086],[37,3412,3041,3574,3186],[38,3515,3133,3682,3282],[39,3624,3230,3796,3384],[40,3769,3360,3949,3520],[41,3891,3468,4076,3633],[42,4013,3577,4204,3747],[43,4134,3685,4331,3860],[44,4256,3793,4459,3974],[45,4292,3825,4496,4008],[46,4489,4001,4702,4191],[47,4638,4134,4859,4331],[48,4833,4308,5063,4513],[49,5027,4481,5267,4694],[50,5275,4701,5526,4925],[51,5416,4828,5674,5058],[52,5558,4954,5823,5190],[53,5700,5080,5971,5322],[54,5841,5206,6119,5454],[55,5983,5332,6268,5586],[56,6187,5514,6481,5777],[57,6390,5695,6694,5966],[58,6573,5859,6886,6137],[59,6889,6141,7217,6433],[60,7589,6764,7950,7086],[61,8213,7320,8604,7669],[62,8837,7876,9257,8251],[63,9556,8517,10011,8923],[64,10186,9079,10671,9511],[65,10816,9641,11331,10100],[66,12210,10883,12791,11401],[67,13604,12125,14252,12702],[68,14997,13367,15712,14004],[69,16391,14610,17172,15305],[70,17785,15852,18632,16607],[71,20065,17884,21020,18735],[72,20482,18255,21457,19125],[73,20898,18627,21893,19514],[74,21315,18998,22330,19903],[75,21732,19370,22767,20292],[76,22146,19739,23201,20679],[77,22561,20109,23635,21066],[78,22975,20478,24069,21453],[79,25680,22888,26902,23978],[80,28701,25582,30068,26800],[81,29152,25983,30540,27220],[82,29602,26384,31011,27640],[83,30052,26785,31483,28061],[84,30952,27588,32426,28901],[85,31775,28321,33288,29670],[86,32598,29055,34150,30438],[87,33421,29788,35013,31207],[88,34244,30522,35875,31976],[89,35067,31256,36737,32744],[90,35101,31286,36772,32775],[91,35135,31316,36808,32807],[92,35235,31405,36913,32901],[93,35359,31516,37043,33016],[94,35483,31626,37172,33132],[95,35854,31957,37561,33479],[100,38613,34416,40451,36055],[999,38613,34416,40451,36055]];
 /* ============ 保障表 ============ */
 const BENE=[
 {id:'kids',title:'少儿意外险 Star Protector Plus（0–15 岁投保）',sub:'Plan 2 最多人选择 · 金色行最常理赔',
@@ -1139,7 +1147,7 @@ const fmt=n=>'S$'+n.toLocaleString('en-SG',{minimumFractionDigits:2,maximumFract
 const sgd=n=>'S$'+Math.round(n).toLocaleString('en-US');
 const wan=n=>'S$'+(+(n/10000).toFixed(2)).toLocaleString('en-US')+' 万';
 const band=(arr,key)=>{for(const r of arr){if(key<=r[0])return r;}return arr[arr.length-1];};
-const RES=[['local','公民 / PR'],['fdep','外国人 · SC/PR 家属'],['fnon','外国人']];
+const RES=[['local','公民 / PR'],['fdep','在新外国人 · SC/PR 家属'],['fnon','在新外国人'],['nonsg','住在海外']];
 const SGNAME={A:'私立 A',B:'公立 B',BL:'公立 B Lite'};
 const GOPT=[{gp:1,go:1},{gp:1,go:2},{gp:2,go:1},{gp:2,go:2}];
 const GLIM={1:[750000,5000000],2:[1500000,10000000]};
@@ -1160,17 +1168,19 @@ function newPerson(i){return {name:'成员'+(i||people.length+1),age:35,res:'loc
 function calcHosp(ps){
   if(!ps.h.on)return null;
   const anb=ps.age+1, out={rows:[],cash:0,cpf:0,total:0,notes:[]};
-  const local=ps.res==='local';
+  const local=ps.res==='local', ovs=ps.res==='nonsg';
   if(ps.h.plan==='G'){
-    const gp=ps.h.gp||2, go=ps.h.go||2, price=band(PIH,ps.age)[(gp-1)*2+go];
-    out.rows.push(['全球医疗险 · '+gName(gp,go),price]); out.cash+=price; out.total+=price;
+    const gp=ps.h.gp||2, go=ps.h.go||2, price=band(ovs?PIH_N:PIH,ps.age)[(gp-1)*2+go];
+    out.rows.push(['全球医疗险 · '+gName(gp,go)+(ovs?' · 住海外版':''),price]); out.cash+=price; out.total+=price;
     if(local){const msl=band(HSGM_LOCAL,anb)[1];
       out.rows.push(['MediShield Life（公民 / PR 必须保留）',msl]); out.cpf+=msl; out.total+=msl;}
     out.notes.push('全球医疗险（美国除外）：'+gDesc(go)+'；每年最高赔 '+wan(GLIM[gp][0])+'。续保不保证。');
-    if(local)out.notes.push('全球险保费不分国籍，住在新加坡的人都是同一个价；公民 / PR 另外要交政府强制的 MediShield Life（MediSave 付）。');
+    if(local)out.notes.push('全球险按住在哪里定价，不按国籍；公民 / PR 另外要交政府强制的 MediShield Life（MediSave 付）。');
+    if(ovs)out.notes.push('住海外版（Non-SG Resident）只给不常住新加坡、没有新加坡准证的人；保费比住新加坡版贵约 10%，投保后 180 天内开始的疾病不赔（住新加坡版是 30 天）。');
     if(ps.age>65)out.notes.push('全球医疗险最后投保年龄为 65 岁，此价格仅供已有保单续保参考。');
     return out;
   }
+  if(ovs){out.na=true;out.notes.push('住在海外不能买新加坡住院险（要是公民 / PR 或持新加坡准证），请选全球医疗险。');return out;}
   const plan=local?ps.h.plan:(ps.h.plan==='BL'?'B':ps.h.plan);
   if(local){
     const b=band(HSGM_LOCAL,anb), msl=b[1], awl=b[2];
@@ -1208,6 +1218,7 @@ function hasSolitaireP2(){return people.some(x=>x.p.on&&paProduct(x.age)==='adul
 function calcPA(ps){
   if(!ps.p.on)return null;
   const prod=paProduct(ps.age), out={rows:[],total:0,notes:[],prod};
+  if(ps.res==='nonsg')out.notes.push('意外险一般要在新加坡居住（公民、PR 或持准证），住在海外请先和小圆姐确认能不能投保。');
   if(prod==='kids'){
     const disc=hasSolitaireP2();
     const rate=(disc?PA_KIDS.disc:PA_KIDS.std)[ps.p.plan-1];
@@ -1243,7 +1254,7 @@ function render(){
     if(hosp){subtotal+=hosp.total;cash+=hosp.cash;cpf+=hosp.cpf;}
     if(pa){subtotal+=pa.total;cash+=pa.total;}
     famTotal+=subtotal;famCash+=cash;famCpf+=cpf;
-    const prod=paProduct(ps.age), isLocal=ps.res==='local', glb=ps.h.plan==='G';
+    const prod=paProduct(ps.age), isLocal=ps.res==='local', ovs=ps.res==='nonsg', glb=ps.h.plan==='G';
     const planOpts=[['A','私立 A','i-hospital'],['B','公立 B','i-hospital']].concat(isLocal?[['BL','公立 B Lite','i-hospital']]:[]);
     const paPlans=prod==='adults'?[1,2,3,4]:[1,2,3];
     const el=document.createElement('div'); el.className='member';
@@ -1260,13 +1271,14 @@ function render(){
         <div class="prod-head">
           <label class="tgl"><input type="checkbox" data-f="h.on"${ps.h.on?' checked':''} aria-label="住院险"><i></i></label>
           <div><div class="pname">住院险</div>
-          <div class="psub">${glb?'Platinum International Health · 按实际年龄 '+ps.age+' 岁报价':'HealthShield Gold Max'+(isLocal?'':' for Foreigners')+' · 按下一生日年龄 '+(ps.age+1)+' 岁报价'}</div></div>
+          <div class="psub">${glb?'Platinum International Health'+(ovs?'（住海外版）':'')+' · 按实际年龄 '+ps.age+' 岁报价':'HealthShield Gold Max'+(isLocal?'':' for Foreigners')+' · 按下一生日年龄 '+(ps.age+1)+' 岁报价'}</div></div>
           <button type="button" class="cmp-link" data-act="cmp"><svg class="ic"><use href="#i-scale"/></svg>新加坡 vs 全球 对比</button>
         </div>
         ${ps.h.on?`<div class="prod-body">
-          <div class="grp-lb">新加坡计划</div>
+          ${ovs?`<div class="mnote">住在海外不能买新加坡住院险（要是公民 / PR 或持新加坡准证），只能选全球医疗险的住海外版。</div>
+          <div class="grp-lb">全球医疗险</div>`:`<div class="grp-lb">新加坡计划</div>
           <div class="plansel">${planOpts.map(([v,l,ic])=>`<button type="button" class="plan-pill${ps.h.plan===v?' on':''}" data-hplan="${v}"><svg class="ic"><use href="#${ic}"/></svg>${l}</button>`).join('')}</div>
-          <div class="grp-lb">或者全球</div>
+          <div class="grp-lb">或者全球</div>`}
           <div class="plansel"><button type="button" class="plan-pill glb${glb?' on':''}" data-hplan="G"><svg class="ic"><use href="#i-globe"/></svg>全球（美国除外）<span class="new">新</span></button></div>
           ${glb?`<div class="subsel">${[1,2].map(gp=>`<button type="button" data-gp="${gp}" class="${ps.h.gp===gp?'on':''}">Plan ${gp}<small>每年最高赔 ${wan(GLIM[gp][0])}</small></button>`).join('')}
             ${[1,2].map(go=>`<button type="button" data-go="${go}" class="${ps.h.go===go?'on':''}">${go===1?'选项一':'选项二'}<small>${gDesc(go)}</small></button>`).join('')}</div>`
@@ -1318,6 +1330,7 @@ function render(){
         if(inp.dataset.f==='p.ci'){val=parseInt(val,10);}
         if(path.length===1)ps[path[0]]=val;else ps[path[0]][path[1]]=val;
         if(inp.dataset.f==='res'&&ps.res!=='local'&&ps.h.plan==='BL')ps.h.plan='B';
+        if(inp.dataset.f==='res'&&ps.res==='nonsg')ps.h.plan='G';
         if(inp.dataset.f==='age'){const np=paProduct(ps.age);if(np!=='adults'&&ps.p.plan>3)ps.p.plan=3;}
         render();saveHash();
       });
@@ -1360,9 +1373,10 @@ function loadHash(){
   try{
     const m=location.hash.match(/#q=(.+)/); if(!m)return false;
     const arr=JSON.parse(decodeURIComponent(escape(atob(decodeURIComponent(m[1])))));
-    people=arr.map(r=>({name:String(r[0]).slice(0,20),age:Math.max(0,Math.min(105,+r[1]||0)),res:['local','fdep','fnon'].includes(r[2])?r[2]:'local',
+    people=arr.map(r=>({name:String(r[0]).slice(0,20),age:Math.max(0,Math.min(105,+r[1]||0)),res:['local','fdep','fnon','nonsg'].includes(r[2])?r[2]:'local',
       h:{on:!!r[3],plan:['A','B','BL','G'].includes(r[4])?r[4]:'A',vhp:!!r[5],ccp:!!r[6],ecp:!!r[7],gp:r[14]===1?1:2,go:r[15]===1?1:2},
       p:{on:!!r[8],plan:Math.min(4,Math.max(1,+r[9]||2)),grpLife:!!r[10],grpHosp:!!r[11],grpDis:!!r[12],ci:Math.min(3,Math.max(0,+r[13]||0))}}));
+    people.forEach(p=>{if(p.res==='nonsg')p.h.plan='G';});
     return people.length>0;
   }catch(e){return false;}
 }
@@ -1386,7 +1400,7 @@ function chips(id,list,cur,cb){
 function split(o){return o.cpf>0?'MediSave 约 '+sgd(o.cpf)+' · 现金约 '+sgd(o.cash):'全部现金';}
 function renderCmp(){
   if(cmp.res!=='local'&&cmp.sg==='BL')cmp.sg='B';
-  const local=cmp.res==='local', o=GOPT[cmp.gi];
+  const local=cmp.res==='local', ovs=cmp.res==='nonsg', o=GOPT[cmp.gi];
   chips('cRes',RES,cmp.res,v=>{cmp.res=v;});
   chips('cSg',[['A','私立 A'],['B','公立 B']].concat(local?[['BL','公立 B Lite']]:[]),cmp.sg,v=>{cmp.sg=v;});
   chips('cGl',GOPT.map((g,i)=>[i,gName(g.gp,g.go)]),cmp.gi,v=>{cmp.gi=+v;});
@@ -1394,24 +1408,24 @@ function renderCmp(){
   const A=sgPrice(cmp.age,cmp.res,cmp.sg), B=glPrice(cmp.age,cmp.res,cmp.gi);
   const $=id=>document.getElementById(id);
   $('cpAt').textContent='新加坡 · '+SGNAME[cmp.sg]+'（含 VitalHealth Pro）';
-  $('cpA').innerHTML=sgd(A.total)+'<small>/ 年</small>'; $('cpAs').textContent=split(A);
-  $('cpBt').textContent='全球（美国除外）· '+gName(o.gp,o.go);
+  $('cpA').innerHTML=ovs?'不适用':sgd(A.total)+'<small>/ 年</small>'; $('cpAs').textContent=ovs?'要是公民 / PR 或持新加坡准证才能买':split(A);
+  $('cpBt').textContent='全球（美国除外）· '+gName(o.gp,o.go)+(ovs?' · 住海外版':'');
   $('cpB').innerHTML=sgd(B.total)+'<small>/ 年</small>';
-  $('cpBs').textContent=local?'全球险 '+sgd(B.cash)+'（现金）+ MediShield Life '+sgd(B.cpf)+'（MediSave）':'全部现金';
+  $('cpBs').textContent=local?'全球险 '+sgd(B.cash)+'（现金）+ MediShield Life '+sgd(B.cpf)+'（MediSave）':ovs?'全部现金 · 比住新加坡版贵约 10%':'全部现金';
   renderResCmp();
   const d=GDED[o.go], maxB=d.ded+d.cap, maxA=SGDED[cmp.sg]+6000, limB=GLIM[o.gp][0], limA=SGLIM[cmp.sg][0];
   const win=t=>`<span class="win"><svg class="ic"><use href="#i-check"/></svg>${t}</span>`;
   const where={A:['新加坡私立医院标准房','按实际赔；海外按新加坡收费赔'],B:['新加坡公立医院 A 级病房','去私立医院按 70% 折算再赔'],BL:['新加坡公立医院 B1 病房','私立按 50%、公立 A 级按 80% 折算']}[cmp.sg];
-  const cheap=Math.abs(A.total-B.total)>=50?(A.total<B.total?'a':'b'):'';
+  const cheap=!ovs&&Math.abs(A.total-B.total)>=50?(A.total<B.total?'a':'b'):'';
   const rows=[
     ['i-hospital','在哪看病能赔',`<b>${where[0]}</b><small>${where[1]}</small>`,`<b>全球（美国除外）标准房</b><small>按实际赔</small>${win('范围更广')}`],
-    ['i-coins','今年保费',`<b>${sgd(A.total)}</b><small>${split(A)}</small>${cheap==='a'?win('便宜 '+sgd(B.total-A.total)):''}`,`<b>${sgd(B.total)}</b><small>${local?'全球险 '+sgd(B.cash)+' + MediShield Life '+sgd(B.cpf):'全部现金'}</small>${cheap==='b'?win('便宜 '+sgd(A.total-B.total)):''}`],
+    ['i-coins','今年保费',ovs?`<b>不适用</b><small>要持新加坡准证</small>`:`<b>${sgd(A.total)}</b><small>${split(A)}</small>${cheap==='a'?win('便宜 '+sgd(B.total-A.total)):''}`,`<b>${sgd(B.total)}</b><small>${local?'全球险 '+sgd(B.cash)+' + MediShield Life '+sgd(B.cpf):'全部现金'}</small>${cheap==='b'?win('便宜 '+sgd(A.total-B.total)):''}`],
     ['i-wallet','每年自己最多付',`<b>约 ${sgd(maxA)}</b><small>免赔额 ${sgd(SGDED[cmp.sg])} + 5%（封顶 S$6,000）</small>${win('少付 '+sgd(maxB-maxA))}`,`<b>${sgd(maxB)}</b><small>${gDesc(o.go)}</small>`],
     ['i-shield','每年最高赔',`<b>${wan(limA)}</b><small>${SGLIM[cmp.sg][1]||'终身不设上限'}</small>${limA>limB?win('更高'):''}`,`<b>${wan(limB)}</b><small>终身 ${wan(GLIM[o.gp][1])}</small>${limB>limA?win('更高'):''}`],
     ['i-ribbon','癌症门诊',`<b>按国家癌症药物清单</b><small>私立 A 可加 Cancer Care Pro，额度更高</small>`,`<b>每年 S$50 万</b><small>化疗、免疫、放疗都算</small>${win('更宽松')}`],
     ['i-renew','能不能一直续保',`<b>保证续保终身</b><small>交保费就续，不看身体状况</small>${win('更稳')}`,`<b style="color:var(--red)">不保证</b><small>保险公司有权不续保</small>`],
-    ['i-id','身份相关',local?`<b>含 MediShield Life</b><small>一部分可用 MediSave 付</small>${win('可用 MediSave')}`:`<b>拿 PR 后自动转本地健保</b><small>准证失效 60 天内没续，保单终止</small>`,
-      local?`<b>MediShield Life 仍要保留</b><small>全球险部分只能现金付</small>`:`<b>身份变化要通知 AIA</b><small>公司可调整或终止</small>`],
+    ['i-id','身份相关',local?`<b>含 MediShield Life</b><small>一部分可用 MediSave 付</small>${win('可用 MediSave')}`:ovs?`<b>不能买</b><small>要是公民 / PR 或持新加坡准证</small>`:`<b>拿 PR 后自动转本地健保</b><small>准证失效 60 天内没续，保单终止</small>`,
+      local?`<b>MediShield Life 仍要保留</b><small>全球险部分只能现金付</small>`:ovs?`<b>住海外版</b><small>投保后 180 天内开始的疾病不赔（住新加坡版 30 天）；搬来新加坡长住要通知 AIA</small>`:`<b>身份变化要通知 AIA</b><small>公司可调整或终止</small>`],
     ['i-cal','最后投保年龄',`<b>75 岁</b><small>按下一生日年龄</small>`,`<b>65 岁</b><small>按上一生日年龄</small>`]
   ];
   $('cmpGrid').innerHTML=`<div class="sg-row hd"><div class="sg-k"></div><div class="sg-v a"><svg class="ic"><use href="#i-hospital"/></svg>新加坡 · ${SGNAME[cmp.sg]}</div><div class="sg-v b"><svg class="ic"><use href="#i-globe"/></svg>全球 · ${gName(o.gp,o.go)}</div></div>`+
@@ -1419,23 +1433,24 @@ function renderCmp(){
   const ages=[cmp.age,cmp.age+5,cmp.age+10,cmp.age+20].filter(a=>a<=100);
   const pa=ages.map(a=>sgPrice(a,cmp.res,cmp.sg).total), pb=ages.map(a=>glPrice(a,cmp.res,cmp.gi).total);
   $('cmpFuture').innerHTML=`<thead><tr><th>以后每年保费</th>${ages.map(a=>`<th class="p1">${a} 岁</th>`).join('')}</tr></thead><tbody>`+
-    `<tr><td>新加坡 · ${SGNAME[cmp.sg]}</td>${pa.map((v,i)=>`<td class="p1${v<pb[i]?' green':''}">${sgd(v)}</td>`).join('')}</tr>`+
-    `<tr><td>全球 · ${gName(o.gp,o.go)}</td>${pb.map((v,i)=>`<td class="p2${v<pa[i]?' green':''}">${sgd(v)}</td>`).join('')}</tr></tbody>`;
+    `<tr><td>新加坡 · ${SGNAME[cmp.sg]}</td>${pa.map((v,i)=>ovs?'<td class="p1">不适用</td>':`<td class="p1${v<pb[i]?' green':''}">${sgd(v)}</td>`).join('')}</tr>`+
+    `<tr><td>全球 · ${gName(o.gp,o.go)}</td>${pb.map((v,i)=>`<td class="p2${!ovs&&v<pa[i]?' green':''}">${sgd(v)}</td>`).join('')}</tr></tbody>`;
+  $('cmpGrid').classList.toggle('na-a',ovs);
   renderClaims();
 }
 /* 同一年龄、三种身份的价格对照 */
 function renderResCmp(){
   const $=id=>document.getElementById(id), ids=RES.map(r=>r[0]), o=GOPT[cmp.gi];
-  const sgAll=ids.map(r=>r!=='local'&&cmp.sg==='BL'?null:sgPrice(cmp.age,r,cmp.sg));
+  const sgAll=ids.map(r=>r==='nonsg'||(r!=='local'&&cmp.sg==='BL')?null:sgPrice(cmp.age,r,cmp.sg));
   const glAll=ids.map(r=>glPrice(cmp.age,r,cmp.gi));
   const td=(i,v,sm,k)=>`<td class="${k}">${v}<small>${sm}</small></td>`;
-  const sgCell=(x,i)=>!x?td(i,'—','外国人没有 B Lite','p1'):
+  const sgCell=(x,i)=>!x?td(i,'—',ids[i]==='nonsg'?'要持新加坡准证':'外国人没有 B Lite','p1'):
     td(i,sgd(x.total),ids[i]==='local'?'含 MediShield Life '+sgd(band(HSGM_LOCAL,cmp.age+1)[1]):ids[i]==='fdep'?'家人 MediSave 可付 '+sgd(x.cpf):'全部现金','p1');
-  const glCell=(x,i)=>td(i,sgd(x.total),ids[i]==='local'?'全球险 '+sgd(x.cash)+' + MediShield Life '+sgd(x.cpf):'全球险，全部现金','p2');
+  const glCell=(x,i)=>td(i,sgd(x.total),ids[i]==='local'?'全球险 '+sgd(x.cash)+' + MediShield Life '+sgd(x.cpf):ids[i]==='nonsg'?'住海外版，全部现金':'住新加坡版，全部现金','p2');
   $('cmpRes').innerHTML=`<thead><tr><th>同样 ${cmp.age} 岁</th><th class="p1">新加坡 · ${SGNAME[cmp.sg]}</th><th class="p2">全球 · ${gName(o.gp,o.go)}</th></tr></thead><tbody>`+
     RES.map((r,i)=>`<tr class="${r[0]===cmp.res?'cur':''}"><td>${r[1]}</td>${sgCell(sgAll[i],i)}${glCell(glAll[i],i)}</tr>`).join('')+'</tbody>';
-  const sgLine=sgAll[2]?`新加坡计划这边，外国人反而比公民 / PR 贵（${sgd(sgAll[2].total)} 对 ${sgd(sgAll[0].total)}）。`:'';
-  $('cmpWhy').querySelector('span').innerHTML=`<b>为什么全球险外国人看起来更便宜？</b>全球险本身不分国籍，住在新加坡的人都是 ${sgd(glAll[2].total)}。公民 / PR 多出来的 ${sgd(glAll[0].cpf)} 是政府强制的 MediShield Life，用 MediSave 付，等于多一层保障。${sgLine}`;
+  const sgLine=sgAll[2]?`新加坡计划这边，在新外国人比公民 / PR 贵（${sgd(sgAll[2].total)} 对 ${sgd(sgAll[0].total)}）。`:'';
+  $('cmpWhy').querySelector('span').innerHTML=`<b>全球险按住在哪里定价，不按国籍。</b>住在新加坡的公民、PR 和持准证的外国人，都买住新加坡版（${sgd(glAll[2].total)}）；住在海外、没有新加坡准证的买住海外版（${sgd(glAll[3].total)}），贵约 10%，投保后 180 天内开始的疾病也不赔（住新加坡版是 30 天）。公民 / PR 另外要交政府强制的 MediShield Life ${sgd(glAll[0].cpf)}（MediSave 付）。${sgLine}`;
 }
 (function(){
   const r=document.getElementById('cAgeR'), n=document.getElementById('cAge');
