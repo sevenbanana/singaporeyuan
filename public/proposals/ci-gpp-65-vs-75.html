@@ -305,22 +305,21 @@ button{font-family:inherit}
   .yr-cap>span:first-child{display:none}
   .yr-cap .caps{font-size:11.5px}
 }
-/* 首年优惠 PROMO */
-.promo-tag{display:inline-flex;align-items:center;background:var(--red);color:#fff;font-size:10.5px;font-weight:800;letter-spacing:.1em;border-radius:5px;padding:1px 6px;line-height:1.5;vertical-align:1px}
-.meta span.promo{background:var(--red);border-color:var(--red);color:#fff;font-weight:800}
-.meta span.promo .ic{color:#fff}
-.promo-bar{margin-top:18px;display:flex;flex-wrap:wrap;align-items:center;gap:6px 12px;background:var(--red-tint);border:1px solid #EFC6BF;border-radius:14px;padding:11px 16px}
-.promo-bar .promo-tag{font-size:12px;padding:3px 9px;border-radius:6px}
-.promo-bar b{font-size:18px;font-weight:800;color:var(--red);letter-spacing:.02em}
+/* 首年优惠 Promo（橙色系） */
+:root{--promo:#D96C0F;--promo-deep:#B4560A;--promo-tint:#FFF3E4;--promo-line:#F5CFA2}
+.promo-tag{display:inline-flex;align-items:center;gap:2px;background:var(--promo-tint);color:var(--promo-deep);border:1px solid var(--promo-line);font-size:11px;font-weight:800;letter-spacing:.02em;border-radius:999px;padding:0 8px;line-height:1.6;vertical-align:1px;white-space:nowrap}
+.promo-bar{margin-top:18px;display:flex;flex-wrap:wrap;align-items:center;gap:6px 12px;background:var(--promo-tint);border:1px solid var(--promo-line);border-radius:14px;padding:11px 16px}
+.promo-bar .promo-tag{font-size:12.5px;padding:2px 11px;background:var(--promo);border-color:var(--promo);color:#fff}
+.promo-bar b{font-size:18px;font-weight:800;color:var(--promo-deep);letter-spacing:.02em}
 .promo-bar span.d{font-size:12.5px;color:var(--ink)}
 .promo-bar span.d em{font-style:normal;font-weight:700;color:var(--navy)}
 .cmp-price .fy{display:flex;flex-wrap:wrap;align-items:center;gap:4px 8px;margin:8px 0 6px;background:rgba(255,255,255,.14);border:1px dashed rgba(255,255,255,.55);border-radius:10px;padding:6px 10px;font-size:12.5px;font-weight:700}
 .cmp-price .fy b{display:inline;font-size:20px;margin:0;letter-spacing:.03em}
 .cmp-price .fy s{font-size:12px;opacity:.75;font-weight:600}
-.cmp-price .fy .save{font-size:11.5px;font-weight:700;background:#fff;color:var(--red);border-radius:999px;padding:0 8px}
+.cmp-price .fy .save{font-size:11.5px;font-weight:700;background:#fff;color:var(--promo-deep);border-radius:999px;padding:0 8px}
 .yr-bars{position:relative}
 .yr-bars span.off{position:relative}
-.yr-bars span.off::after{content:"9折";position:absolute;bottom:100%;left:50%;transform:translateX(-50%);margin-bottom:3px;background:var(--red);color:#fff;font-size:10px;font-weight:800;line-height:1.4;border-radius:4px;padding:0 4px;white-space:nowrap}
+.yr-bars span.off::after{content:"9折";position:absolute;bottom:100%;left:50%;transform:translateX(-50%);margin-bottom:3px;background:var(--promo);color:#fff;font-size:10px;font-weight:800;line-height:1.4;border-radius:4px;padding:0 4px;white-space:nowrap}
 .yr-row{padding-top:16px}
 @media (max-width:760px){.promo-bar{padding:10px 12px}.promo-bar b{font-size:16px}.cmp-price .fy b{font-size:18px}}
 @media (prefers-reduced-motion:no-preference){.cta .btn{transition:background .2s,border-color .2s,color .2s}}
@@ -415,19 +414,19 @@ body.locked #pwGate{display:flex}
     </div>
   </header>
 
-  <div class="promo-bar"><span class="promo-tag">PROMO</span><b>首年保费 9 折</b><span class="d">两个方案都适用 · AIA Power Your Future · <em>2026 年 11 月 30 日前投保</em></span></div>
+  <div class="promo-bar"><span class="promo-tag">🏷️ Promo</span><b>首年保费 9 折</b><span class="d">两个方案都适用 · AIA Power Your Future · <em>2026 年 11 月 30 日前投保</em></span></div>
 
   <div class="cmp-price num">
     <div class="a">
       <div class="t"><svg class="ic"><use href="#i-shield"/></svg>方案 A · $20 万保到 65 岁</div>
       <b>$4,816<small>/ 年</small></b>
-      <div class="fy"><span class="promo-tag">PROMO</span>首年 9 折 <b>$4,334.40</b><s>$4,816</s><span class="save">省 $481.60</span></div>
+      <div class="fy"><span class="promo-tag">🏷️ Promo</span>首年 9 折 <b>$4,334.40</b><s>$4,816</s><span class="save">省 $481.60</span></div>
       <div class="s">第 15–20 年 $1,952 · 20 年共 <b>$78,654.40</b></div>
     </div>
     <div class="b">
       <div class="t"><svg class="ic"><use href="#i-shield"/></svg>方案 B · $20 万保到 75 岁</div>
       <b>$6,016<small>/ 年</small></b>
-      <div class="fy"><span class="promo-tag">PROMO</span>首年 9 折 <b>$5,414.40</b><s>$6,016</s><span class="save">省 $601.60</span></div>
+      <div class="fy"><span class="promo-tag">🏷️ Promo</span>首年 9 折 <b>$5,414.40</b><s>$6,016</s><span class="save">省 $601.60</span></div>
       <div class="s">第 2–20 年不变 · 20 年共 <b>$119,718.40</b></div>
     </div>
   </div>
@@ -467,7 +466,7 @@ body.locked #pwGate{display:flex}
   </div>
 
   <div class="yr-card num">
-    <div class="yr-h">每年要交多少<small>第 1–20 个保单年度 · 首年 <span class="promo-tag">PROMO 9 折</span></small></div>
+    <div class="yr-h">每年要交多少<small>第 1–20 个保单年度 · 首年 <span class="promo-tag">🏷️ Promo 9 折</span></small></div>
     <div class="yr-row a"><span class="who">方案 A</span><div class="yr-bars" id="barsA"></div></div>
     <div class="yr-cap"><span></span><div class="caps"><span style="flex:14">$4,816 / 年<small>51–65 岁 · 首年 $4,334.40</small></span><span style="flex:6">$1,952 / 年<small>66–71 岁</small></span></div></div>
     <div class="yr-row b"><span class="who">方案 B</span><div class="yr-bars" id="barsB"></div></div>
@@ -506,7 +505,7 @@ body.locked #pwGate{display:flex}
   <div class="sub-head"><svg class="ic ic-md"><use href="#i-doc"/></svg>逐项对比</div>
   <div class="sumgrid num">
     <div class="sg-row hd"><div class="sg-k"></div><div class="sg-v a"><svg class="ic"><use href="#i-shield"/></svg>方案 A · 至 65 岁</div><div class="sg-v b"><svg class="ic"><use href="#i-shield"/></svg>方案 B · 至 75 岁</div></div>
-    <div class="sg-row"><div class="sg-k"><span class="sg-ic"><svg class="ic"><use href="#i-gift"/></svg></span><span>首年保费 <span class="promo-tag">PROMO</span><small>9 折优惠</small></span></div>
+    <div class="sg-row"><div class="sg-k"><span class="sg-ic"><svg class="ic"><use href="#i-gift"/></svg></span><span>首年保费 <span class="promo-tag">🏷️ Promo</span><small>9 折优惠</small></span></div>
       <div class="sg-v a"><b>$4,334.40</b><small>原价 $4,816 · 省 $481.60</small></div>
       <div class="sg-v b"><b>$5,414.40</b><small>原价 $6,016 · 省 $601.60</small></div></div>
     <div class="sg-row"><div class="sg-k"><span class="sg-ic"><svg class="ic"><use href="#i-coins"/></svg></span>第 2 年起年缴</div>
