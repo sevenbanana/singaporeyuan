@@ -290,6 +290,7 @@ button{font-family:inherit}
 .yr-row.a .who{color:var(--navy)}.yr-row.b .who{color:var(--gold-deep)}
 .yr-bars{display:flex;align-items:flex-end;gap:2px;height:54px;min-width:0}
 .yr-bars span{flex:1;background:var(--c);border-radius:3px 3px 0 0;min-width:0}
+.yr-bars span.off{opacity:.5}
 .yr-cap{display:grid;grid-template-columns:52px minmax(0,1fr);gap:10px}
 .yr-cap .caps{display:flex;font-size:12px;font-weight:700;color:var(--navy)}
 .yr-cap .caps span{text-align:center;border-top:1px solid var(--line);padding-top:3px;line-height:1.45;white-space:nowrap}
@@ -392,6 +393,7 @@ body.locked #pwGate{display:flex}
       <span class="who"><svg class="ic" style="color:#fff"><use href="#i-user"/></svg>罗先生 · 51 岁 · 男 · 不吸烟</span>
       <span><svg class="ic"><use href="#i-shield"/></svg>AIA Guaranteed Protect Plus (IV)</span>
       <span><svg class="ic"><use href="#i-heart"/></svg>+ ECPL (IV) 多阶段重疾</span>
+      <span><svg class="ic"><use href="#i-gift"/></svg>首年保费 9 折</span>
       <span><svg class="ic"><use href="#i-doc"/></svg>计划书 · 2026.10.27</span>
     </div>
   </header>
@@ -400,12 +402,12 @@ body.locked #pwGate{display:flex}
     <div class="a">
       <div class="t"><svg class="ic"><use href="#i-shield"/></svg>方案 A · $20 万保到 65 岁</div>
       <b>$4,816<small>/ 年</small></b>
-      <div class="s">第 15–20 年降至 $1,952 · 20 年共 <b>$79,136</b></div>
+      <div class="s">首年 9 折 <b>$4,334.40</b> · 第 15–20 年 $1,952 · 20 年共 <b>$78,654.40</b></div>
     </div>
     <div class="b">
       <div class="t"><svg class="ic"><use href="#i-shield"/></svg>方案 B · $20 万保到 75 岁</div>
       <b>$6,016<small>/ 年</small></b>
-      <div class="s">20 年保费不变 · 20 年共 <b>$120,320</b></div>
+      <div class="s">首年 9 折 <b>$5,414.40</b> · 之后不变 · 20 年共 <b>$119,718.40</b></div>
     </div>
   </div>
 
@@ -439,26 +441,26 @@ body.locked #pwGate{display:flex}
   <!-- 多交的钱 -->
   <div class="sub-head"><svg class="ic ic-md"><use href="#i-coins"/></svg>方案 B 多交的钱，换来什么</div>
   <div class="strip num">
-    <div><svg class="ic"><use href="#i-wallet"/></svg><div><span class="lb">方案 B 20 年合计多交</span><b>$41,184<small>前 14 年每年多 $1,200 · 后 6 年每年多 $4,064</small></b></div></div>
+    <div><svg class="ic"><use href="#i-wallet"/></svg><div><span class="lb">方案 B 20 年合计多交</span><b>$41,064<small>首年多 $1,080 · 第 2–14 年每年多 $1,200 · 后 6 年每年多 $4,064</small></b></div></div>
     <div><svg class="ic"><use href="#i-shield"/></svg><div><span class="lb">换来 65–75 岁保额高出</span><b>约 $14–16 万<small>$20 万 对 约 $4.4–5.7 万</small></b></div></div>
   </div>
 
   <div class="yr-card num">
-    <div class="yr-h">每年要交多少<small>第 1–20 个保单年度</small></div>
+    <div class="yr-h">每年要交多少<small>第 1–20 个保单年度 · 首年 9 折（浅色）</small></div>
     <div class="yr-row a"><span class="who">方案 A</span><div class="yr-bars" id="barsA"></div></div>
-    <div class="yr-cap"><span></span><div class="caps"><span style="flex:14">$4,816 × 14 年<small>51–65 岁</small></span><span style="flex:6">$1,952 × 6 年<small>66–71 岁</small></span></div></div>
+    <div class="yr-cap"><span></span><div class="caps"><span style="flex:14">$4,816 / 年<small>51–65 岁 · 首年 $4,334.40</small></span><span style="flex:6">$1,952 / 年<small>66–71 岁</small></span></div></div>
     <div class="yr-row b"><span class="who">方案 B</span><div class="yr-bars" id="barsB"></div></div>
-    <div class="yr-cap"><span></span><div class="caps"><span style="flex:20">$6,016 × 20 年<small>51–71 岁</small></span></div></div>
+    <div class="yr-cap"><span></span><div class="caps"><span style="flex:20">$6,016 / 年<small>51–71 岁 · 首年 $5,414.40</small></span></div></div>
   </div>
 
   <div class="bars-card num">
     <div class="bar-grp">
-      <div class="t">20 年总保费</div>
+      <div class="t">20 年总保费<small>首年 9 折后</small></div>
       <div>
-        <div class="bar"><div class="trk"><i class="a" style="width:65.8%"></i></div><span><em>A</em>$79,136</span></div>
-        <div class="bar"><div class="trk"><i class="b" style="width:100%"></i></div><span><em>B</em>$120,320</span></div>
+        <div class="bar"><div class="trk"><i class="a" style="width:65.7%"></i></div><span><em>A</em>$78,654.40</span></div>
+        <div class="bar"><div class="trk"><i class="b" style="width:100%"></i></div><span><em>B</em>$119,718.40</span></div>
       </div>
-      <div class="x">+$41,184</div>
+      <div class="x">+$41,064</div>
     </div>
     <div class="bar-grp">
       <div class="t">70 岁时的保障<small>身故 / 重疾，4.25% 演示</small></div>
@@ -483,12 +485,15 @@ body.locked #pwGate{display:flex}
   <div class="sub-head"><svg class="ic ic-md"><use href="#i-doc"/></svg>逐项对比</div>
   <div class="sumgrid num">
     <div class="sg-row hd"><div class="sg-k"></div><div class="sg-v a"><svg class="ic"><use href="#i-shield"/></svg>方案 A · 至 65 岁</div><div class="sg-v b"><svg class="ic"><use href="#i-shield"/></svg>方案 B · 至 75 岁</div></div>
-    <div class="sg-row"><div class="sg-k"><span class="sg-ic"><svg class="ic"><use href="#i-coins"/></svg></span>年缴保费</div>
+    <div class="sg-row"><div class="sg-k"><span class="sg-ic"><svg class="ic"><use href="#i-gift"/></svg></span><span>首年保费<small>9 折优惠</small></span></div>
+      <div class="sg-v a"><b>$4,334.40</b><small>原价 $4,816 · 省 $481.60</small></div>
+      <div class="sg-v b"><b>$5,414.40</b><small>原价 $6,016 · 省 $601.60</small></div></div>
+    <div class="sg-row"><div class="sg-k"><span class="sg-ic"><svg class="ic"><use href="#i-coins"/></svg></span>第 2 年起年缴</div>
       <div class="sg-v a"><b>$4,816</b><small>第 15–20 年 $1,952 · 月缴 $419</small></div>
-      <div class="sg-v b"><b>$6,016</b><small>20 年不变 · 月缴 $523.40</small></div></div>
-    <div class="sg-row"><div class="sg-k"><span class="sg-ic"><svg class="ic"><use href="#i-wallet"/></svg></span>20 年总保费</div>
-      <div class="sg-v a"><b>$79,136</b><span class="win"><svg class="ic"><use href="#i-check"/></svg>少交 $41,184</span></div>
-      <div class="sg-v b"><b>$120,320</b></div></div>
+      <div class="sg-v b"><b>$6,016</b><small>第 2–20 年不变 · 月缴 $523.40</small></div></div>
+    <div class="sg-row"><div class="sg-k"><span class="sg-ic"><svg class="ic"><use href="#i-wallet"/></svg></span><span>20 年总保费<small>首年 9 折后</small></span></div>
+      <div class="sg-v a"><b>$78,654.40</b><span class="win"><svg class="ic"><use href="#i-check"/></svg>少交 $41,064</span></div>
+      <div class="sg-v b"><b>$119,718.40</b></div></div>
     <div class="sg-row"><div class="sg-k"><span class="sg-ic"><svg class="ic"><use href="#i-heart"/></svg></span>$20 万身故 / 重疾</div>
       <div class="sg-v a"><b>至 65 岁</b><small>14 年</small></div>
       <div class="sg-v b"><b>至 75 岁</b><small>24 年</small><span class="win"><svg class="ic"><use href="#i-check"/></svg>多保 10 年</span></div></div>
@@ -558,6 +563,7 @@ body.locked #pwGate{display:flex}
   <div class="notes">
     <p>本页由持牌顾问袁媛（RNF：YY-300823216）根据 2026 年 10 月 27 日 AIA Guaranteed Protect Plus (IV) 计划书及产品说明整理，仅供理解两个方案的差异，<b>不构成要约或保险建议</b>。</p>
     <p>红利、退保价值、满期金及演示收益率均为非保证，按 4.25% / 3.00% 演示投资回报率计算，不代表回报上下限。重疾附约保费不保证。保障范围、定义及除外责任以保单条款和核保结果为准。</p>
+    <p>首年保费 9 折为 AIA Power Your Future 推广优惠（2026 年 11 月 30 日前投保），须符合推广条款，以 AIA 正式报价为准；退保价值、满期金及演示收益率按计划书原价保费计算。</p>
     <p>提早退保成本高，退保价值可能低于已缴保费。收到保单后有 14 天冷静期。本保单受 SDIC 保单持有人保障计划保护。</p>
   </div>
 </div>
@@ -715,12 +721,12 @@ body.locked #pwGate{display:flex}
     var host=document.getElementById(id);
     list.forEach(function(p,i){
       var sp=document.createElement('span');
-      sp.style.height=(p/6016*100)+'%';
-      sp.title='第 '+(i+1)+' 年（'+(52+i)+' 岁）：$'+p.toLocaleString('en-US');
+      sp.style.height=(p/6016*100)+'%'; if(i===0) sp.className='off';
+      sp.title='第 '+(i+1)+' 年（'+(52+i)+' 岁）：$'+p.toLocaleString('en-US',{minimumFractionDigits:p%1?2:0})+(i===0?'（9 折）':'');
       host.appendChild(sp);
     });
   }
-  var A=[],Bp=[]; for(var i=0;i<20;i++){A.push(i<14?4816:1952);Bp.push(6016);}
+  var A=[],Bp=[]; for(var i=0;i<20;i++){A.push(i===0?4334.4:i<14?4816:1952);Bp.push(i===0?5414.4:6016);}
   bars('barsA',A); bars('barsB',Bp);
 })();
 </script>
