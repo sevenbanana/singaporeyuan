@@ -1,0 +1,695 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>家庭保单总结 | 新加坡小圆姐</title>
+<!--
+  客户保单总结页：版式同 quote.html。样式和渲染代码是明文；客户资料（姓名、保单号、保费）
+  用访问密码加密后放在页面底部的 <script id="enc">，输对密码才在浏览器里解开。
+  改资料 / 给新客户做一页：复制本文件，用 scripts/policy-summary-crypt.mjs 解密、改 json、再加密。
+-->
+<style>
+:root{
+  --paper:#FBF6EA; --card:#FFFDF8;
+  --navy:#13286B; --navy-2:#1C3A8F;
+  --gold:#B8862B; --gold-deep:#9A6B17; --gold-light:#C9973A;
+  --gold-tint:#F5EAD2; --gold-tint-2:#FAF2E1; --blue-tint:#EEF3FB;
+  --green:#1E4D3B; --green-tint:#E7F0EA;
+  --red:#B4433A; --red-tint:#FBEAE6;
+  --line:#EADFC8; --ink:#2B2B2B; --muted:#6B6458;
+  --shadow:0 1px 6px rgba(120,90,30,.06);
+  --font:"Helvetica Neue","Avenir Next",Arial,"Hiragino Sans GB","PingFang SC",sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--paper);color:var(--ink);font-family:var(--font);font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased}
+button,input{font-family:inherit}
+[hidden]{display:none!important}
+.num{font-variant-numeric:tabular-nums;letter-spacing:.03em}
+.page{position:relative;max-width:1040px;margin:0 auto;padding:44px 32px 40px;overflow:hidden}
+.deco{position:absolute;top:0;right:0;width:180px;height:130px;pointer-events:none}
+.ic{width:18px;height:18px;color:var(--gold);flex:0 0 auto}
+.ic-md{width:22px;height:22px}.ic-lg{width:30px;height:30px}
+
+/* ---------- 标题 ---------- */
+.hero{position:relative;z-index:1}
+.hero h1{font-size:36px;line-height:1.2;font-weight:800;letter-spacing:-.3px;color:var(--navy)}
+.hero h1 .l2{display:block;color:var(--gold);letter-spacing:.02em}
+.meta{margin-top:16px;display:flex;flex-wrap:wrap;gap:8px}
+.meta span,.meta button{display:inline-flex;align-items:center;gap:6px;background:var(--card);border:1px solid var(--line);border-radius:999px;padding:5px 13px;font-size:13px;color:var(--ink)}
+.meta span.who{background:var(--navy);border-color:var(--navy);color:#fff;font-weight:700}
+.meta button{cursor:pointer;font-weight:700;color:var(--navy)}
+.meta button:hover{border-color:var(--gold)}
+.meta .ic{width:15px;height:15px}
+
+/* ---------- 小节标题 ---------- */
+.sub-head{display:flex;align-items:center;gap:10px;margin:40px 0 16px;font-size:19px;font-weight:800;color:var(--navy);scroll-margin-top:70px}
+.sub-head::after{content:"";flex:1;height:1px;background:var(--gold);opacity:.4}
+.sec-sub{margin:-6px 0 16px;font-size:13.5px;color:var(--muted);max-width:760px}
+.sec-sub b{color:var(--navy)}
+
+/* ---------- KPI 卡 ---------- */
+.kpis{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:28px}
+.kpi{border:1px solid var(--line);border-radius:14px;padding:18px 20px;background:var(--card);box-shadow:var(--shadow)}
+.kpi.blue{background:var(--blue-tint);border-color:#D9E2F2}
+.kpi .top{display:flex;gap:14px;align-items:flex-start}
+.kpi .top>div{min-width:0}
+.badge{flex:0 0 44px;height:44px;border-radius:50%;background:var(--gold-tint);display:grid;place-items:center}
+.kpi .label{font-size:14px;font-weight:700;color:var(--navy)}
+.big{font-size:34px;line-height:1.15;font-weight:800;letter-spacing:.04em;background:linear-gradient(180deg,var(--gold-light),var(--gold-deep));-webkit-background-clip:text;background-clip:text;color:transparent;margin-top:4px}
+.big.navy{background:none;color:var(--navy)}
+.big small{font-size:15px;letter-spacing:0}
+.big.sm{font-size:28px;letter-spacing:.02em}
+.kpi .eg{margin-top:8px;font-size:13.5px;color:var(--ink);display:flex;flex-wrap:wrap;align-items:center;gap:7px}
+.kpi .eg b{font-weight:800}
+.kpi .cond{margin-top:4px;font-size:12.5px;color:var(--muted)}
+.kpi .rows{margin-top:8px}
+.kpi .rows>div{display:flex;align-items:baseline;justify-content:space-between;gap:10px;padding:6px 0;border-top:1px dashed var(--line);font-size:13px}
+.kpi .rows>div:first-child{border-top:0}
+.kpi .rows b{font-size:15px;font-weight:800;color:var(--navy)}
+.chip{display:inline-block;font-size:12px;font-weight:700;border-radius:999px;padding:2px 10px;background:var(--gold-tint);color:var(--gold-deep);white-space:nowrap}
+.chip.ok{background:var(--green-tint);color:var(--green)}
+.chip.bad{background:var(--red-tint);color:var(--red)}
+.chip.off{background:#EFE9DC;color:var(--muted)}
+.tip{margin-top:14px;display:flex;align-items:flex-start;gap:8px;font-size:13.5px;color:var(--ink);background:var(--gold-tint-2);border:1px solid var(--line);border-radius:12px;padding:10px 14px}
+.tip .ic{width:17px;height:17px;margin-top:2px}
+.tip b{color:var(--navy)}
+.tip.warn{background:var(--red-tint);border-color:#F1D3CD}
+.tip.warn .ic{color:var(--red)}
+
+/* ---------- 保费日历 ---------- */
+.cal-card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:6px 20px 20px;box-shadow:var(--shadow)}
+.tl{position:relative;display:grid;grid-template-columns:repeat(var(--n),1fr);gap:14px;margin-top:16px}
+.tl::before{content:"";position:absolute;left:calc(50% / var(--n));right:calc(50% / var(--n));top:17px;height:2px;background:linear-gradient(90deg,#E2D3B3,#D9C59C)}
+.node{position:relative;display:flex;flex-direction:column;align-items:center;text-align:center}
+.mk{position:relative;width:36px;height:36px;border-radius:50%;background:var(--card);display:grid;place-items:center}
+.mk .dot{width:20px;height:20px;border-radius:50%;background:var(--gold-tint);border:3px solid var(--card);box-shadow:0 0 0 1px #D9C59C}
+.mk .ring{width:22px;height:22px;border-radius:50%;border:4px solid var(--navy);background:var(--card)}
+.when{margin-top:6px;font-size:16px;font-weight:800;color:var(--navy);line-height:1.25}
+.when small{display:block;font-size:12px;font-weight:600;color:var(--muted)}
+.box{width:100%;margin-top:10px;border-radius:12px;padding:12px 10px;background:var(--card);border:1.5px solid var(--line);display:flex;flex-direction:column;align-items:center;gap:2px}
+.box b{font-size:20px;letter-spacing:.04em;font-weight:800;color:var(--navy);line-height:1.3}
+.box .lb{font-size:13px;font-weight:700;color:var(--ink)}
+.box small{font-size:12px;color:var(--muted)}
+.box .chip{margin-top:4px}
+.box.hl{background:var(--gold-tint-2);border-color:#E3CFA4}
+.box.hl b{color:var(--gold-deep)}
+
+/* ---------- 按人看（吸顶） ---------- */
+.switch{position:sticky;top:10px;z-index:20;display:flex;justify-content:center;margin:0 0 18px}
+.switch .in{display:inline-flex;align-items:center;gap:3px;max-width:100%;overflow-x:auto;scrollbar-width:none;background:var(--card);border:1px solid var(--line);border-radius:999px;padding:4px;box-shadow:0 10px 26px -12px rgba(19,40,107,.35)}
+.switch .in::-webkit-scrollbar{display:none}
+.switch .lb{display:inline-flex;align-items:center;gap:5px;font-size:12.5px;color:var(--muted);padding:0 6px 0 10px;white-space:nowrap}
+.switch .lb .ic{width:15px;height:15px}
+.switch button{border:0;background:transparent;border-radius:999px;padding:7px 13px;font-size:13.5px;font-weight:700;color:var(--navy);cursor:pointer;white-space:nowrap}
+.switch button small{font-weight:600;opacity:.65;margin-left:4px}
+.switch button.on{background:var(--navy);color:#fff}
+
+/* ---------- 保单卡 ---------- */
+.pcard{background:var(--card);border:1px solid var(--line);border-top:4px solid var(--pc);border-radius:16px;box-shadow:var(--shadow);margin-bottom:20px;overflow:hidden}
+.pcard.t-gold{--pc:var(--gold);--pt:var(--gold-tint)}
+.pcard.t-navy{--pc:var(--navy);--pt:var(--blue-tint)}
+.pcard.t-green{--pc:var(--green);--pt:var(--green-tint)}
+.pc-hd{display:flex;gap:14px;align-items:flex-start;padding:18px 22px 14px}
+.pc-hd .badge{flex:0 0 48px;height:48px;background:var(--pt)}
+.pc-hd .badge .ic{color:var(--pc);width:24px;height:24px}
+.pc-hd .t{min-width:0;flex:1}
+.pc-kind{font-size:12.5px;font-weight:700;color:var(--gold-deep);letter-spacing:.04em}
+.pc-hd h3{font-size:21px;font-weight:800;color:var(--navy);line-height:1.3;margin-top:1px}
+.pc-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.pc-tags span{font-size:12px;font-weight:700;border-radius:999px;padding:2px 10px;background:var(--pt);color:var(--navy)}
+.pc-status{flex:0 0 auto;display:inline-flex;align-items:center;gap:6px;font-size:12.5px;font-weight:700;color:var(--green);background:var(--green-tint);border-radius:999px;padding:4px 12px;white-space:nowrap}
+.pc-status i{width:8px;height:8px;border-radius:50%;background:#2E9E6A}
+.pc-in{padding:0 22px 20px}
+.pc-h{display:flex;align-items:center;gap:6px;margin:16px 0 8px;font-size:13.5px;font-weight:800;color:var(--navy)}
+.pc-h .ic{width:16px;height:16px}
+
+.pc-items{border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.pc-items .row{display:grid;grid-template-columns:minmax(0,1fr) 150px 120px;gap:14px;align-items:center;padding:10px 14px;border-top:1px solid var(--line)}
+.pc-items .row:first-child{border-top:0}
+.pc-items .row.hd{background:var(--gold-tint-2);padding:6px 14px;font-size:12px;font-weight:700;color:var(--muted)}
+.pc-items .nm b{display:block;font-size:14px;font-weight:800;color:var(--navy);letter-spacing:.02em;line-height:1.4}
+.pc-items .nm small{font-size:12px;color:var(--muted)}
+.pc-items .no{font-size:14px;font-weight:700;color:var(--ink);letter-spacing:.06em}
+.pc-items .pr{text-align:right;font-size:15px;font-weight:800;color:var(--navy)}
+.pc-items .row.hd .pr{font-size:12px;font-weight:700;color:var(--muted)}
+.pc-items .row.sum{background:var(--gold-tint-2)}
+.pc-items .row.sum .nm{font-size:13px;font-weight:700;color:var(--ink)}
+.pc-items .row.sum .pr{color:var(--gold-deep)}
+.pc-items .m{display:none}
+.pc-h small{font-size:12px;font-weight:600;color:var(--muted);margin-left:4px}
+
+.band{display:flex;gap:4px;min-width:0}
+.band span{display:flex;align-items:center;justify-content:center;border-radius:999px;padding:8px 10px;color:#fff;font-weight:700;font-size:13.5px;white-space:nowrap;overflow:hidden;min-width:0}
+.band .nv{background:var(--navy)}.band .gd{background:var(--gold)}
+.band .gy{background:#E4DACA;color:var(--muted)}
+.scale{position:relative;height:18px;margin-top:4px;font-size:12px;color:var(--muted)}
+.scale span{position:absolute;top:0;transform:translateX(-50%);white-space:nowrap}
+.scale span:first-child{transform:none}
+.scale span:last-child{transform:translateX(-100%)}
+
+.pc-kv{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:12px;overflow:hidden;margin-top:12px}
+.pc-kv>div{background:var(--card);padding:10px 14px;min-width:0}
+.pc-kv .k{font-size:12.5px;color:var(--muted)}
+.pc-kv .v{font-size:16px;font-weight:800;color:var(--navy);line-height:1.35;overflow-wrap:anywhere}
+.pc-kv .s{font-size:12px;color:var(--muted);line-height:1.5}
+.pc-kv .due{background:var(--gold-tint-2)}
+.pc-kv .due .v{color:var(--gold-deep)}
+.pc-kv .warn .v{color:var(--red)}
+.nw{white-space:nowrap}
+
+.pc-cover{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:8px 20px}
+.pc-cover li{display:flex;gap:8px;align-items:flex-start;font-size:13.5px;line-height:1.6}
+.pc-cover li .ic{width:16px;height:16px;margin-top:3px;color:var(--pc)}
+.pc-cover li b{color:var(--navy);margin-right:4px}
+
+.paybar{display:flex;align-items:stretch;gap:6px}
+.paybar .cells{flex:3;display:grid;grid-template-columns:repeat(var(--n),1fr);gap:3px}
+.paybar .cells i{height:30px;border-radius:5px;background:var(--gold-tint);border:1px solid #E3CFA4}
+.paybar .cells i.on{background:var(--navy);border-color:var(--navy)}
+.paybar .after{flex:1.2;display:flex;align-items:center;justify-content:center;gap:6px;border-radius:8px;background:var(--green);color:#fff;font-size:13px;font-weight:700;white-space:nowrap;padding:0 8px}
+.paybar .after .ic{width:15px;height:15px;color:#fff}
+.payleg{display:flex;flex-wrap:wrap;gap:6px 16px;margin-top:8px;font-size:12.5px;color:var(--muted)}
+.payleg span{display:inline-flex;align-items:center;gap:6px}
+.payleg i{display:inline-block;width:12px;height:12px;border-radius:3px}
+.payleg b{color:var(--navy)}
+
+.pc-tbl{border:1px solid var(--line);border-radius:12px;overflow-x:auto}
+.pc-tbl table{width:100%;border-collapse:collapse;font-size:14px}
+.pc-tbl th,.pc-tbl td{padding:9px 14px;text-align:right;border-top:1px solid var(--line);white-space:nowrap}
+.pc-tbl th{border-top:0;background:var(--gold-tint-2);font-size:12.5px;font-weight:700;color:var(--muted)}
+.pc-tbl th:first-child,.pc-tbl td:first-child{text-align:left;white-space:normal;color:var(--ink);font-weight:600}
+.pc-tbl td{font-weight:800;color:var(--navy)}
+.pc-tbl tr.hl td{background:var(--gold-tint-2);color:var(--gold-deep)}
+.pc-tbl tr.hl td:first-child{color:var(--ink)}
+.pc-note{margin-top:6px;font-size:12px;color:var(--muted)}
+
+/* ---------- 小圆姐提醒 ---------- */
+.pick{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.pk{border-radius:14px;padding:18px;border:1px solid var(--line)}
+.pk.a{background:var(--blue-tint);border-color:#D9E2F2}.pk.b{background:var(--gold-tint-2)}.pk.c{background:var(--green-tint);border-color:#D3E3D9}
+.pk .hd{display:flex;align-items:center;gap:10px;font-size:16px;font-weight:800;color:var(--navy);margin-bottom:10px}
+.pk .hd .badge{flex:0 0 38px;height:38px;background:var(--card)}
+.pk ul{list-style:none;font-size:13.5px;color:var(--ink)}
+.pk li{display:flex;gap:8px;align-items:flex-start;margin-bottom:8px;line-height:1.55}
+.pk li:last-child{margin-bottom:0}
+.pk li .ic{width:16px;height:16px;margin-top:3px;color:var(--gold-deep)}
+.pk li b{display:block;color:var(--navy)}
+
+/* ---------- 行动区块：微信 ---------- */
+.cta{margin-top:44px;display:grid;grid-template-columns:1fr auto;gap:28px;align-items:center;background:var(--navy);border-radius:18px;padding:28px 32px;color:#fff;position:relative;overflow:hidden}
+.cta::after{content:"";position:absolute;right:-60px;top:-60px;width:220px;height:220px;border-radius:50%;border:1px solid rgba(201,151,58,.35);pointer-events:none}
+.cta .who-row{display:flex;align-items:center;gap:14px}
+.cta .who-row img{width:56px;height:56px;border-radius:50%;object-fit:cover;border:2px solid var(--gold-light);background:#fff}
+.cta h3{font-size:24px;font-weight:800;line-height:1.3}
+.cta h3 span{color:var(--gold-light)}
+.cta p.sub{margin-top:8px;font-size:14.5px;color:rgba(255,255,255,.8)}
+.cta .perks{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.cta .perks span{display:inline-flex;align-items:center;gap:6px;border:1px solid rgba(201,151,58,.5);border-radius:999px;padding:5px 12px;font-size:13px;color:#F3E4C4}
+.cta .perks .ic{width:15px;height:15px;color:var(--gold-light)}
+.cta .acts{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
+.cta .btn{display:inline-flex;align-items:center;gap:8px;border-radius:999px;padding:11px 20px;font-size:15px;font-weight:700;cursor:pointer;text-decoration:none;border:0}
+.cta .btn .ic{width:18px;height:18px;color:currentColor}
+.cta .btn.wx{background:var(--gold);color:#fff}
+.cta .btn.wx:hover{background:var(--gold-deep)}
+.cta .btn.wx b{letter-spacing:.04em}
+.cta .btn.wa{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.45)}
+.cta .btn.wa:hover{border-color:var(--gold-light);color:var(--gold-light)}
+.cta .qr{position:relative;z-index:1;background:#fff;border-radius:14px;padding:10px 10px 8px;text-align:center}
+.cta .qr img{display:block;width:132px;height:132px;object-fit:contain}
+.cta .qr span{display:block;margin-top:4px;font-size:12.5px;font-weight:700;color:var(--navy)}
+
+/* ---------- 页尾小字 ---------- */
+.notes{margin-top:40px;padding-top:18px;border-top:1px solid var(--line);font-size:12px;color:var(--muted);line-height:1.8}
+.notes p{margin-bottom:5px;padding-left:12px;position:relative}
+.notes p::before{content:"";position:absolute;left:0;top:9px;width:4px;height:4px;border-radius:50%;background:var(--gold)}
+.srcs-wrap{margin-top:18px;padding-top:14px;border-top:1px dashed #D9C59C}
+.srcs-h{display:flex;align-items:center;gap:6px;font-size:13px;font-weight:800;color:var(--navy);margin-bottom:6px}
+.srcs-h .ic{width:15px;height:15px}
+.srcs{margin:0;padding-left:22px;font-size:11.5px;line-height:1.75;color:var(--muted)}
+.srcs a{color:var(--muted);text-decoration:underline;text-decoration-color:#D9C59C;word-break:break-word}
+
+/* ---------- 密码门（同 quote.html） ---------- */
+body.locked{overflow:hidden}
+body.locked>*:not(#pwGate){visibility:hidden}
+#pwGate{position:fixed;inset:0;z-index:99;display:none;align-items:center;justify-content:center;background:var(--paper);padding:20px}
+body.locked #pwGate{display:flex}
+.pw-card{width:100%;max-width:420px;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:36px 32px;box-shadow:0 20px 60px -30px rgba(19,40,107,.35)}
+.pw-chip{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);background:var(--gold-tint-2);border-radius:999px;padding:4px 14px 4px 4px;font-size:12.5px;font-weight:700;color:var(--gold-deep)}
+.pw-chip img{width:26px;height:26px;border-radius:50%;object-fit:cover}
+.pw-card h2{margin-top:18px;font-size:24px;font-weight:800;color:var(--navy)}
+.pw-card p{margin-top:6px;font-size:14px;color:var(--muted)}
+#pwInput{margin-top:20px;width:100%;border:1px solid var(--line);border-radius:12px;background:#fff;padding:13px 16px;font-size:15px;outline:none}
+#pwInput:focus{border-color:var(--gold)}
+#pwSubmit{margin-top:12px;width:100%;border:0;border-radius:12px;background:var(--navy);color:#fff;padding:13px;font-size:15px;font-weight:700;cursor:pointer}
+#pwSubmit:disabled{opacity:.7;cursor:wait}
+.pw-err{display:none;margin-top:10px;font-size:13px;color:#B4433A;font-weight:600}
+.pw-err.show{display:block}
+
+/* ---------- 水印 ---------- */
+#wm{position:fixed;inset:0;pointer-events:none;z-index:40;overflow:hidden;opacity:.045}
+#wm .row{position:absolute;white-space:nowrap;font-size:15px;color:var(--navy);transform:rotate(-24deg);transform-origin:left top}
+
+/* ---------- 网站页脚（同样板页） ---------- */
+.site-foot{border-top:1px solid rgba(184,134,43,.2);background:#F4ECDB;margin-top:48px}
+.site-foot .in{max-width:1040px;margin:0 auto;padding:48px 32px 36px}
+.site-foot .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:32px}
+.site-foot .brand{font-size:19px;font-weight:700;color:var(--navy)}
+.site-foot .tag{margin-top:10px;font-size:14px;color:var(--gold-deep)}
+.site-foot .cred{margin-top:20px;font-size:14px;line-height:1.7;color:rgba(19,40,107,.7)}
+.site-foot h4{font-size:12px;font-weight:600;letter-spacing:.18em;color:var(--gold-deep)}
+.site-foot ul{list-style:none;margin-top:14px;font-size:14px}
+.site-foot li{line-height:1.9}
+.site-foot a{color:rgba(19,40,107,.8);text-decoration:none;display:inline-flex;align-items:center;gap:9px}
+.site-foot a:hover{color:var(--gold-deep)}
+.site-foot a svg{width:16px;height:16px;color:var(--gold-deep);flex:0 0 auto}
+.site-foot .legal{margin-top:40px;padding-top:24px;border-top:1px solid rgba(184,134,43,.2);font-size:12px;line-height:1.7;color:#7a7264}
+.site-foot .legal p+p{margin-top:12px}
+
+/* ---------- 手机 ---------- */
+@media (max-width:760px){
+  .page{padding:28px 16px}
+  .hero h1{font-size:27px}
+  .kpis,.pick,.pc-cover{grid-template-columns:1fr}
+  .kpis{gap:12px}
+  .big{font-size:29px}
+  .tl{grid-template-columns:1fr;gap:10px}
+  .tl::before{left:17px;right:auto;top:18px;bottom:18px;width:2px;height:auto;background:linear-gradient(180deg,#E2D3B3,#D9C59C)}
+  .node{display:grid;grid-template-columns:36px 82px 1fr;align-items:center;text-align:left;gap:10px}
+  .when{margin-top:0;font-size:15px;white-space:nowrap}
+  .box{margin-top:0;align-items:flex-start;padding:10px 12px}
+  .box b{font-size:18px}
+  .cal-card{padding:4px 14px 16px}
+  .pc-hd{padding:16px 16px 12px;flex-wrap:wrap}
+  .pc-hd .badge{flex-basis:42px;height:42px}
+  .pc-hd h3{font-size:19px}
+  .pc-hd .badge{order:-2}
+  .pc-status{order:-1;margin-left:auto}
+  .pc-hd .t{flex-basis:100%}
+  .pc-in{padding:0 16px 18px}
+  .pc-items .row{grid-template-columns:minmax(0,1fr) auto;gap:4px 12px}
+  .pc-items .row.hd{display:none}
+  .pc-items .no{grid-column:1;grid-row:2;font-size:13px}
+  .pc-items .m{display:inline;font-weight:600;color:var(--muted);letter-spacing:0;margin-right:4px}
+  .pc-items .pr{grid-column:2;grid-row:1 / span 2}
+  .pc-kv{grid-template-columns:1fr 1fr}
+  .pc-kv>div{padding:10px 12px}
+  .pc-kv .v{font-size:14.5px;letter-spacing:0}
+  .paybar .after{font-size:12px}
+  .band span{font-size:12px;padding:7px 6px}
+  /* 手机：每行标题单独一行，下面三列数字 */
+  .pc-tbl table,.pc-tbl thead,.pc-tbl tbody{display:block;font-size:13px}
+  .pc-tbl tr{display:grid;grid-template-columns:repeat(3,minmax(0,1fr))}
+  .pc-tbl th,.pc-tbl td{padding:6px 10px}
+  .pc-tbl th:first-child{display:none}
+  .pc-tbl td:first-child{grid-column:1 / -1;padding:8px 10px 0;font-size:12.5px;color:var(--muted)}
+  .pc-tbl td:not(:first-child){border-top:0;padding-top:2px}
+  .cta{grid-template-columns:1fr;padding:22px 18px;gap:18px}
+  .cta h3{font-size:20px}
+  .cta .qr{justify-self:center}
+  .cta .btn{flex:1 1 auto;justify-content:center}
+  .site-foot .in{padding:36px 16px 28px}
+  .site-foot .grid{grid-template-columns:1fr 1fr;gap:28px 20px}
+}
+@media (max-width:420px){.site-foot .grid{grid-template-columns:1fr}.switch .lb,.switch button .n{display:none}.switch button{padding:7px 12px}}
+@media print{
+  body{background:#fff}
+  .switch,.site-foot,.cta,#wm,.meta button{display:none!important}
+  .pcard{break-inside:avoid}
+}
+</style>
+</head>
+<body class="locked">
+<div id="pwGate">
+  <form class="pw-card" id="pwForm">
+    <span class="pw-chip"><img src="/avatar-round.png" alt="">新加坡小圆姐 · 保单总结</span>
+    <h2>家庭保单总结</h2>
+    <p>为保护你的保单资料，请输入访问密码。</p>
+    <input id="pwInput" type="password" autocomplete="off" placeholder="输入密码">
+    <div class="pw-err" id="pwErr">密码不正确，再试一次，或者找小圆姐要密码。</div>
+    <button type="submit" id="pwSubmit">查看保单</button>
+  </form>
+</div>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="i-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v5c0 4.5-3 8.3-7 10-4-1.7-7-5.5-7-10V6z"/><path d="M9 12l2 2 4-4"/></symbol>
+    <symbol id="i-coins" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="9" cy="6" rx="6" ry="2.5"/><path d="M3 6v4c0 1.4 2.7 2.5 6 2.5s6-1.1 6-2.5V6"/><ellipse cx="15" cy="14" rx="6" ry="2.5"/><path d="M9 14v4c0 1.4 2.7 2.5 6 2.5s6-1.1 6-2.5v-4"/></symbol>
+    <symbol id="i-cal" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4M7 14h2M11 14h2M15 14h2M7 17h2M11 17h2"/></symbol>
+    <symbol id="i-doc" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h9l4 4v14H6z"/><path d="M15 3v4h4M9 11h7M9 14h7M9 17h5"/></symbol>
+    <symbol id="i-bulb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9c.6.5 1 1.2 1 2.1h5c0-.9.4-1.6 1-2.1A6 6 0 0 0 12 3z"/></symbol>
+    <symbol id="i-heart" viewBox="0 0 24 24"><path fill="#C0392B" d="M12 21s-7.5-4.6-9.6-9.2C.9 8.4 3 4.5 6.7 4.5c2.2 0 3.6 1.2 4.3 2.4.7-1.2 2.1-2.4 4.3-2.4 3.7 0 5.8 3.9 4.3 7.3C19.5 16.4 12 21 12 21z"/></symbol>
+    <symbol id="i-alert" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10.3 4 2.6 18a2 2 0 0 0 1.7 3h15.4a2 2 0 0 0 1.7-3L13.7 4a2 2 0 0 0-3.4 0z"/><path d="M12 9v4M12 17h.01"/></symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8 12.5l2.6 2.6L16 9.6"/></symbol>
+    <symbol id="i-family" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="7" r="3"/><path d="M3 21v-1a6 6 0 0 1 12 0v1"/><circle cx="17.5" cy="9" r="2.4"/><path d="M16 21v-.6a4.5 4.5 0 0 1 6-4.2"/></symbol>
+    <symbol id="i-user" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></symbol>
+    <symbol id="i-chat" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20.5l1.4-4.8A8 8 0 1 1 21 12z"/><path d="M8.5 12h.01M12 12h.01M15.5 12h.01"/></symbol>
+    <symbol id="i-phone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5.5 4H9l1.6 4.3L8.5 10a12.5 12.5 0 0 0 5.5 5.5l1.7-2.1L20 15v3.6A1.6 1.6 0 0 1 18.2 20C10.8 19.2 4.8 13.2 4 5.8A1.6 1.6 0 0 1 5.5 4z"/></symbol>
+    <symbol id="i-renew" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 11a8 8 0 0 0-14.3-4.9L4 8"/><path d="M4 3v5h5"/><path d="M4 13a8 8 0 0 0 14.3 4.9L20 16"/><path d="M20 21v-5h-5"/></symbol>
+    <symbol id="i-hospital" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 21V8l8-5 8 5v13"/><path d="M2.5 21h19"/><path d="M12 8.5v6M9 11.5h6"/><path d="M10 21v-3.5h4V21"/></symbol>
+    <symbol id="i-steth" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3v5a4 4 0 0 0 8 0V3"/><path d="M9 12v2.5a5 5 0 0 0 10 0V12"/><circle cx="19" cy="10" r="2"/></symbol>
+  </defs>
+</svg>
+
+<div class="page">
+  <svg class="deco" viewBox="0 0 220 160" aria-hidden="true">
+    <polygon points="60,0 220,0 220,150" fill="#EFE3C8" opacity=".7"/>
+    <polygon points="130,0 220,0 220,90" fill="#E4D3AE" opacity=".6"/>
+  </svg>
+  <header class="hero">
+    <h1><span style="white-space:nowrap">家庭保单总结</span><span class="l2" id="hFamily"></span></h1>
+    <div class="meta" id="hMeta"></div>
+  </header>
+
+  <div class="kpis num" id="kpis"></div>
+  <div class="tip" id="scope"><svg class="ic"><use href="#i-doc"/></svg><span></span></div>
+
+  <!-- ===== 保费日历 ===== -->
+  <div class="sub-head"><svg class="ic ic-md"><use href="#i-cal"/></svg>保费日历：接下来要交的钱</div>
+  <p class="sec-sub">按交费日期排好；同一天交的主险和附加险合在一起算。</p>
+  <div class="cal-card"><div class="tl num" id="cal"></div></div>
+
+  <!-- ===== 保单明细 ===== -->
+  <div class="sub-head" id="list"><svg class="ic ic-md"><use href="#i-shield"/></svg>保单明细</div>
+  <div class="switch"><div class="in" id="who"></div></div>
+  <div id="cards"></div>
+
+  <!-- ===== 小圆姐提醒 ===== -->
+  <div class="sub-head"><svg class="ic ic-md"><use href="#i-bulb"/></svg>小圆姐提醒</div>
+  <div class="pick" id="tips"></div>
+
+  <!-- ===== 行动区块 ===== -->
+  <div class="cta">
+    <div style="position:relative;z-index:1">
+      <div class="who-row"><img src="/avatar-round.png" alt="小圆姐">
+        <div><h3>保单有问题？<br><span>微信直接问小圆姐</span></h3></div></div>
+      <p class="sub">理赔、改资料、指定受益人，或者想把其他公司的保单一起整理进来，都可以找我。</p>
+      <div class="perks">
+        <span><svg class="ic"><use href="#i-steth"/></svg>绿色通道约专科</span>
+        <span><svg class="ic"><use href="#i-renew"/></svg>理赔进度同步</span>
+        <span><svg class="ic"><use href="#i-doc"/></svg>每年保单检视</span>
+      </div>
+      <div class="acts">
+        <button type="button" class="btn wx" id="wxCopy"><svg class="ic"><use href="#i-chat"/></svg><span id="wxTxt">微信 <b>singaporeyuan</b> · 点击复制</span></button>
+        <a class="btn wa" href="https://wa.me/6583750190" target="_blank" rel="noopener noreferrer"><svg class="ic"><use href="#i-phone"/></svg>WhatsApp +65 8375 0190</a>
+      </div>
+    </div>
+    <div class="qr"><img src="/wechat-qr.png" alt="小圆姐微信二维码"><span>扫码加微信</span></div>
+  </div>
+
+  <div class="notes">
+    <p>本页由持牌顾问袁媛（RNF：YY-300823216）根据 AIA 保单系统截至 <span id="asOfNote"></span> 的资料整理，只包含目前已知的 AIA 保单，<b>不是完整的家庭保障规划，也不构成保险建议</b>。</p>
+    <p>保障范围是简要摘要，实际理赔以 AIA 保单合同、条款、批单及核保结果为准。退休储蓄的领取金额、红利和回报引自 AIA 计划书（Policy Illustration），以正式保单为准。</p>
+    <p>住院医疗险（HealthShield Gold Max 及 VitalHealth 附加险）保费不保证，每年随年龄和理赔经验调整；主险部分可按规定用 MediSave 支付（有额度上限），附加险须用现金。意外险保费同样每年续保时可能调整。</p>
+    <p>卫生部（MOH）新规：2026 年 4 月 1 日起新买的住院附加险不再赔付免赔额，5% 自付每年封顶 S$6,000（不含免赔额）；2025 年 11 月 27 日之前买的附加险按 AIA 说明继续享有现有保障，如有调整 AIA 会提前通知。</p>
+    <p>分红型保单的红利、终期红利和演示回报（4.25% / 3.00%）都不保证，取决于分红基金的实际表现，也不代表回报上下限；提早退保拿回的钱可能少于所交保费。保单受新加坡存款保险公司（SDIC）保单持有人保障计划保障，保障上限以 SDIC 规定为准。</p>
+  </div>
+  <div class="srcs-wrap">
+    <div class="srcs-h"><svg class="ic"><use href="#i-doc"/></svg>资料来源</div>
+    <ol class="srcs">
+      <li>AIA Singapore，<a href="https://www.aia.com.sg/en/our-products/health/medical-insurance/aia-healthshield-gold-max/moh-updates-ip-riders" target="_blank" rel="noopener noreferrer">Revision to MOH Guidelines on Integrated Shield Plan Riders</a>（附加险新规及过渡安排）</li>
+      <li>AIA Singapore，<a href="https://www.aia.com.sg/content/dam/sg-wise/en/docs/our-products/en/aia-healthshield-gold-max-english-brochure.pdf" target="_blank" rel="noopener noreferrer">AIA HealthShield Gold Max 产品手册</a>；<a href="https://www.aia.com.sg/content/dam/sg-wise/en/docs/help-support/healthshieldsupport/faqs-on-HSG-changes-effective-1oct2026.pdf" target="_blank" rel="noopener noreferrer">FAQs on HSG changes effective 1 Oct 2026</a></li>
+      <li>AIA Singapore，<a href="https://www.aia.com.sg/content/dam/sg-wise/en/docs/our-products/cn/aia-star-protector-plus-chinese-brochure.pdf" target="_blank" rel="noopener noreferrer">AIA Star Protector Plus 中文产品手册</a>（少儿意外险保障项目）</li>
+      <li>AIA Singapore，<a href="https://www.aia.com.sg/en/help-support/faq/aia-healthshield-gold-max/updates-faqs" target="_blank" rel="noopener noreferrer">AIA HealthShield Gold Max Updates &amp; FAQs</a>（Cancer Care Booster 癌症药物保障）</li>
+    </ol>
+  </div>
+</div>
+
+<div id="wm" aria-hidden="true"></div>
+<footer class="site-foot">
+  <div class="in">
+    <div class="grid">
+      <div>
+        <p class="brand">新加坡小圆姐</p>
+        <p class="tag">用专业和耐心，陪你一起日富一日</p>
+        <p class="cred">新加坡财富规划经理<br>RNF：YY-300823216</p>
+      </div>
+      <div>
+        <h4>联系方式</h4>
+        <ul>
+          <li><a href="/wechat-qr.png" target="_blank" rel="noopener"><svg fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>微信 · singaporeyuan</a></li>
+          <li><a href="https://wa.me/6583750190" target="_blank" rel="noopener noreferrer"><svg fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>+65 8375 0190</a></li>
+          <li><a href="mailto:yuanyuan@aia.com.sg"><svg fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 5L2 7"/></svg>yuanyuan@aia.com.sg</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>关注我</h4>
+        <ul>
+          <li><a href="https://xhslink.com/m/9KS9V4ytFmj" target="_blank" rel="noopener noreferrer"><svg fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>小红书 · 新加坡小圆姐</a></li>
+          <li><a href="https://xhslink.com/m/2eFS3jpJutg" target="_blank" rel="noopener noreferrer"><svg fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>小红书 · 图文笔记</a></li>
+          <li><a href="https://www.linkedin.com/in/singaporeyuan/" target="_blank" rel="noopener noreferrer"><svg fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>LinkedIn</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>新加坡小圆姐</h4>
+        <ul>
+          <li><a href="/zh/about">关于我</a></li>
+          <li><a href="/zh/cases">规划案例</a></li>
+          <li><a href="/zh/services">业务范围</a></li>
+          <li><a href="/zh/corporate">企业团险</a></li>
+          <li><a href="/zh/resources">资源中心</a></li>
+          <li><a href="/zh/consult">预约咨询</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="legal">
+      <p>本网站内容仅供参考，不构成任何投资、保险、法律或税务建议。保险产品涉及条款与风险，部分收益为非保证。具体以保险公司正式文件及相关专业意见为准。</p>
+      <p>© 2026 袁媛 Yuan Yuan. 版权所有。</p>
+    </div>
+  </div>
+</footer>
+
+<!-- 客户资料（加密）：用 scripts/policy-summary-crypt.mjs 生成，不要手改 -->
+<script id="enc" type="application/json">{"v":1,"it":600000,"salt":"Dtsy1Zn+RW5OrjwPgJsW9Q==","iv":"wuMZX3Ngc6Z66+m8","ct":"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"}</script>
+<script>
+/* ============ 小工具 ============ */
+const esc=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const money=n=>'S$'+n.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});
+const pd=iso=>{const [y,m,d]=iso.split('-').map(Number);return new Date(y,m-1,d);};
+const fD=iso=>{const t=pd(iso);return t.getFullYear()+' 年 '+(t.getMonth()+1)+' 月 '+t.getDate()+' 日';};
+/* 日期在窄格子里只在「年」后面换行 */
+const fDh=iso=>{const t=pd(iso);return '<span class="nw">'+t.getFullYear()+' 年</span> <span class="nw">'+(t.getMonth()+1)+' 月 '+t.getDate()+' 日</span>';};
+const fMD=iso=>{const t=pd(iso);return (t.getMonth()+1)+' 月 '+t.getDate()+' 日';};
+const ico=(id,cls)=>'<svg class="ic'+(cls?' '+cls:'')+'"><use href="#i-'+id+'"/></svg>';
+const daysTo=iso=>{const n=new Date();n.setHours(0,0,0,0);return Math.round((pd(iso)-n)/864e5);};
+function countdown(iso){
+  const d=daysTo(iso);
+  if(d>0) return '<span class="chip'+(d<=45?'':' ok')+'">还有 '+d+' 天</span>';
+  if(d===0) return '<span class="chip bad">今天交费</span>';
+  return '<span class="chip off">已过交费日</span>';
+}
+const prem=p=>p.items.reduce((s,i)=>s+i.prem,0);
+
+/* ============ 渲染 ============ */
+function render(D){
+  const P=D.policies, people=D.people;
+  const nItems=P.reduce((s,p)=>s+p.items.length,0);
+  const total=P.reduce((s,p)=>s+prem(p),0);
+
+  /* 标题 */
+  document.getElementById('hFamily').textContent=D.family;
+  document.getElementById('hMeta').innerHTML=
+    '<span class="who">'+ico('cal','')+'截至 '+esc(fD(D.asOf))+'</span>'+
+    '<span>'+ico('shield')+'AIA Singapore</span>'+
+    '<span>'+ico('doc')+nItems+' 份有效保单</span>'+
+    '<span>'+ico('family')+people.length+' 位家人</span>'+
+    '<button type="button" id="printBtn">'+ico('doc')+'打印 / 存 PDF</button>';
+  document.querySelector('#hMeta .who .ic').style.color='#fff';
+  document.getElementById('printBtn').addEventListener('click',()=>window.print());
+  document.getElementById('asOfNote').textContent=fD(D.asOf);
+
+  /* 保费日历：同一天的合在一起 */
+  const byDate={};
+  P.forEach(p=>{(byDate[p.due]=byDate[p.due]||[]).push(p);});
+  const dates=Object.keys(byDate).sort();
+  const cal=document.getElementById('cal');
+  cal.style.setProperty('--n',dates.length);
+  cal.innerHTML=dates.map((iso,i)=>{
+    const ps=byDate[iso], amt=ps.reduce((s,p)=>s+prem(p),0);
+    return '<div class="node"><div class="mk">'+(i===0?'<div class="ring"></div>':'<div class="dot"></div>')+'</div>'+
+      '<div class="when">'+fMD(iso)+'<small>'+pd(iso).getFullYear()+' 年</small></div>'+
+      '<div class="box'+(i===0?' hl':'')+'"><b>'+money(amt)+'</b>'+
+      ps.map(p=>'<span class="lb">'+esc(p.title)+'</span><small>'+p.items.length+' 份保单</small>').join('')+
+      countdown(iso)+'</div></div>';
+  }).join('');
+
+  /* KPI */
+  const next=dates[0], nextPs=byDate[next];
+  const kinds={};
+  P.forEach(p=>{const k=p.kind.split(' · ')[0];kinds[k]=(kinds[k]||0)+prem(p);});
+  document.getElementById('kpis').innerHTML=
+    '<div class="kpi"><div class="top"><div class="badge">'+ico('shield','ic-md')+'</div><div>'+
+      '<div class="label">有效保单</div><div class="big">'+nItems+'<small> 份</small></div>'+
+      '<div class="eg"><span class="chip ok">全部有效 Inforce</span></div>'+
+      '<div class="cond">'+P.length+' 套保障 · '+people.length+' 位家人</div></div></div></div>'+
+    '<div class="kpi"><div class="top"><div class="badge">'+ico('coins','ic-md')+'</div><div style="flex:1">'+
+      '<div class="label">一年保费合计</div><div class="big'+(total>=1e4?' sm':'')+'">'+money(total)+'</div>'+
+      '<div class="rows">'+Object.keys(kinds).map(k=>'<div><span>'+esc(k)+'</span><b>'+money(kinds[k])+'</b></div>').join('')+'</div>'+
+    '</div></div></div>'+
+    '<div class="kpi blue"><div class="top"><div class="badge">'+ico('clock','ic-md')+'</div><div>'+
+      '<div class="label">下一笔交费</div><div class="big navy">'+fMD(next)+'</div>'+
+      '<div class="eg"><b>'+money(nextPs.reduce((s,p)=>s+prem(p),0))+'</b>'+countdown(next)+'</div>'+
+      '<div class="cond">'+nextPs.map(p=>esc(p.title)).join('、')+'</div></div></div></div>';
+
+  document.querySelector('#scope span').innerHTML=
+    '本页整理的是小圆姐目前掌握的 <b>'+nItems+' 份 AIA 保单</b>；其他保险公司的保单不在其中。想把全家保单放在一页看，发给小圆姐一起整理。';
+
+  /* 保单卡 */
+  document.getElementById('cards').innerHTML=P.map(p=>{
+    const kv=[
+      {k:'被保险人',v:p.insured.v,s:p.insured.s},
+      {k:'保单持有人',v:p.owner.v,s:p.owner.s},
+      {k:'投保日期',v:fDh(p.start),html:true},
+      {k:'交费期',v:p.term.v,s:p.term.s},
+      {k:'保障到',v:p.to.v,s:p.to.s},
+      p.extra,
+      {k:'下次交费',v:fDh(p.due),html:true,s:money(prem(p))+(p.items.length>1?'（'+p.items.length+' 份合计）':'')+(p.dueNote?'（'+p.dueNote+'）':''),cls:'due'},
+      {k:'受益人',v:p.bene.v,s:p.bene.s,cls:p.bene.warn?'warn':''}
+    ];
+    /* 保额随年龄变化（如 Booster 到 65 岁结束） */
+    let band='';
+    if(p.band){
+      band='<div class="pc-h">'+ico('shield')+esc(p.band.title)+'</div>'+
+        '<div class="band num">'+p.band.segs.map(s=>'<span class="'+s.cls+'" style="flex:'+s.w+'">'+esc(s.label)+'</span>').join('')+'</div>'+
+        '<div class="scale">'+p.band.ticks.map(t=>'<span style="left:'+t.at+'%">'+esc(t.t)+'</span>').join('')+'</div>';
+    }
+    /* 一份保单里的主险 / 附加险拆分（来自计划书） */
+    let parts='';
+    if(p.parts){
+      parts='<div class="pc-h">'+ico('doc')+'保单结构'+(p.partsSrc?'<small>'+esc(p.partsSrc)+'</small>':'')+'</div>'+
+        '<div class="pc-items num"><div class="row hd"><span>计划 / 附加险</span><span>保额</span><span class="pr">年保费</span></div>'+
+        p.parts.map(x=>'<div class="row"><div class="nm"><b>'+esc(x.name)+'</b><small>'+esc(x.note)+'</small></div>'+
+          '<div class="no"><span class="m">保额</span>S$'+x.sa.toLocaleString('en-US')+'</div><div class="pr">'+money(x.prem)+'</div></div>').join('')+
+        (p.partsSum||[]).map(r=>'<div class="row sum"><div class="nm">'+esc(r.k)+'</div><div></div><div class="pr">'+money(r.v)+'</div></div>').join('')+
+        '</div>';
+    }
+    /* 计划书里的领取 / 回报数字（保证 vs 演示） */
+    let tbl='';
+    if(p.table){
+      const T=p.table;
+      tbl='<div class="pc-h">'+ico('coins')+esc(T.title)+(T.src?'<small>'+esc(T.src)+'</small>':'')+'</div>'+
+        '<div class="pc-tbl"><table class="num"><thead><tr>'+T.head.map(c=>'<th>'+esc(c)+'</th>').join('')+'</tr></thead><tbody>'+
+        T.rows.map((r,i)=>'<tr'+((T.hl||[]).includes(i)?' class="hl"':'')+'>'+r.map(c=>'<td>'+esc(c)+'</td>').join('')+'</tr>').join('')+
+        '</tbody></table></div>'+(T.note?'<p class="pc-note">'+esc(T.note)+'</p>':'');
+    }
+    let pay='';
+    if(p.pay){
+      const y0=pd(p.start).getFullYear(), n=p.pay.years, asOf=pd(D.asOf);
+      let paid=0;
+      for(let k=0;k<n;k++){const t=pd(p.start);t.setFullYear(y0+k);if(t<=asOf)paid++;}
+      const last=pd(p.start);last.setFullYear(y0+n-1);
+      pay='<div class="pc-h">'+ico('coins')+'交费进度</div>'+
+        '<div class="paybar" role="img" aria-label="共交 '+n+' 年，已交 '+paid+' 年"><div class="cells" style="--n:'+n+'">'+
+        Array.from({length:n},(_,k)=>'<i class="'+(k<paid?'on':'')+'" title="'+(y0+k)+' 年"></i>').join('')+
+        '</div><div class="after">'+ico('shield')+esc(p.pay.after||'交完继续保 · 终身')+'</div></div>'+
+        '<div class="payleg"><span><i style="background:var(--navy)"></i>已交 <b>'+paid+'</b> 年</span>'+
+        '<span><i style="background:var(--gold-tint);border:1px solid #E3CFA4"></i>还要交 <b>'+(n-paid)+'</b> 年</span>'+
+        '<span>最后一次：<b>'+last.getFullYear()+' 年 '+(last.getMonth()+1)+' 月 '+last.getDate()+' 日</b></span></div>';
+    }
+    return '<article class="pcard t-'+p.tone+'" data-who="'+p.who.join(' ')+'">'+
+      '<div class="pc-hd"><div class="badge">'+ico(p.icon)+'</div><div class="t">'+
+        '<div class="pc-kind">'+esc(p.kind)+'</div><h3>'+esc(p.title)+'</h3>'+
+        '<div class="pc-tags">'+p.tags.map(t=>'<span>'+esc(t)+'</span>').join('')+'</div></div>'+
+        '<span class="pc-status"><i></i>有效 Inforce</span></div>'+
+      '<div class="pc-in">'+
+        '<div class="pc-items num"><div class="row hd"><span>保单名称</span><span>保单号</span><span class="pr">年保费</span></div>'+
+        p.items.map(i=>'<div class="row"><div class="nm"><b>'+esc(i.name)+'</b><small>'+esc(i.role)+'</small></div>'+
+          '<div class="no"><span class="m">保单号</span>'+esc(i.no)+'</div><div class="pr">'+money(i.prem)+'</div></div>').join('')+
+        (p.items.length>1?'<div class="row sum"><div class="nm">合计</div><div></div><div class="pr">'+money(prem(p))+'</div></div>':'')+
+        '</div>'+
+        '<div class="pc-kv num">'+kv.map(x=>'<div class="'+(x.cls||'')+'"><div class="k">'+esc(x.k)+'</div><div class="v">'+(x.html?x.v:esc(x.v))+'</div>'+
+          (x.s?'<div class="s">'+esc(x.s)+'</div>':'')+'</div>').join('')+'</div>'+
+        band+
+        '<div class="pc-h">'+ico('check')+'保障范围</div>'+
+        '<ul class="pc-cover">'+p.cover.map(c=>'<li>'+ico('check')+'<span><b>'+esc(c.b)+'</b>'+esc(c.t)+'</span></li>').join('')+'</ul>'+
+        tbl+
+        parts+
+        pay+
+        (p.tip?'<div class="tip'+(p.tipWarn?' warn':'')+'">'+ico(p.tipWarn?'alert':'bulb')+'<span>'+esc(p.tip)+'</span></div>':'')+
+      '</div></article>';
+  }).join('');
+
+  /* 按人看 */
+  const who=document.getElementById('who');
+  /* 手机上有称呼的只显示称呼，省位置 */
+  const opts=[{id:'all',label:'全部',n:P.length}].concat(people.map(x=>({id:x.id,
+    label:x.role?esc(x.role)+'<span class="n"> '+esc(x.name)+'</span>':esc(x.name),n:P.filter(p=>p.who.includes(x.id)).length})));
+  who.innerHTML='<span class="lb">'+ico('user')+'按人看</span>'+
+    opts.map((o,i)=>'<button type="button" data-id="'+o.id+'"'+(i===0?' class="on"':'')+'>'+o.label+'<small>'+o.n+'</small></button>').join('');
+  who.addEventListener('click',e=>{
+    const b=e.target.closest('button');if(!b)return;
+    who.querySelectorAll('button').forEach(x=>x.classList.toggle('on',x===b));
+    const id=b.dataset.id;
+    document.querySelectorAll('#cards .pcard').forEach(c=>{c.hidden=id!=='all'&&!c.dataset.who.split(' ').includes(id);});
+  });
+
+  /* 小圆姐提醒 */
+  document.getElementById('tips').innerHTML=D.reminders.map(r=>
+    '<div class="pk '+r.tone+'"><div class="hd"><div class="badge">'+ico(r.icon,'ic-md')+'</div>'+esc(r.title)+'</div><ul>'+
+    r.items.map(i=>'<li>'+ico('check')+'<span><b>'+esc(i.b)+'</b>'+esc(i.t)+'</span></li>').join('')+'</ul></div>').join('');
+}
+
+/* ============ 密码门：输对密码才解得开资料（PBKDF2 + AES-GCM） ============ */
+(function(){
+  const KEY='sy_policy_key:'+location.pathname;
+  const E=JSON.parse(document.getElementById('enc').textContent);
+  const unb64=s=>Uint8Array.from(atob(s),c=>c.charCodeAt(0));
+  const b64=u=>btoa(String.fromCharCode.apply(null,new Uint8Array(u)));
+  const subtle=window.crypto&&crypto.subtle;
+  const form=document.getElementById('pwForm'), inp=document.getElementById('pwInput'),
+        btn=document.getElementById('pwSubmit'), err=document.getElementById('pwErr');
+
+  async function derive(pw){
+    const base=await subtle.importKey('raw',new TextEncoder().encode(pw),'PBKDF2',false,['deriveKey']);
+    return subtle.deriveKey({name:'PBKDF2',salt:unb64(E.salt),iterations:E.it,hash:'SHA-256'},base,{name:'AES-GCM',length:256},true,['decrypt']);
+  }
+  async function unlock(key){
+    const pt=await subtle.decrypt({name:'AES-GCM',iv:unb64(E.iv)},key,unb64(E.ct));
+    render(JSON.parse(new TextDecoder().decode(pt)));
+    document.body.classList.remove('locked');
+  }
+
+  /* 同一会话里刷新不用再输 */
+  try{
+    const raw=sessionStorage.getItem(KEY);
+    if(raw&&subtle) subtle.importKey('raw',unb64(raw),'AES-GCM',false,['decrypt']).then(unlock).catch(()=>sessionStorage.removeItem(KEY));
+  }catch(e){}
+
+  form.addEventListener('submit',async e=>{
+    e.preventDefault();
+    if(!subtle){err.textContent='这个浏览器打不开加密资料，请换 Safari 或 Chrome 再试。';err.classList.add('show');return;}
+    btn.disabled=true;btn.textContent='正在打开…';err.classList.remove('show');
+    try{
+      const key=await derive(inp.value.trim());
+      await unlock(key);
+      try{sessionStorage.setItem(KEY,b64(await subtle.exportKey('raw',key)));}catch(_){}
+      window.scrollTo(0,0);
+    }catch(_){
+      err.classList.add('show');inp.select();
+    }finally{btn.disabled=false;btn.textContent='查看保单';}
+  });
+})();
+
+/* ============ 水印 ============ */
+(function(){
+  const text='新加坡小圆姐　　　singaporeyuan　　　仅供本人参考　　　　　　', wm=document.getElementById('wm'), unit=text.repeat(6);
+  for(let i=0;i<16;i++){const d=document.createElement('div');d.className='row';d.textContent=unit;d.style.top=(i*110-120)+'px';d.style.left='-200px';wm.appendChild(d);}
+})();
+
+/* ============ 复制微信号 ============ */
+(function(){
+  var b=document.getElementById('wxCopy'), t=document.getElementById('wxTxt');
+  if(!b) return;
+  var orig=t.innerHTML;
+  function done(ok){ t.innerHTML = ok ? '已复制微信号，打开微信添加' : '微信号：<b>singaporeyuan</b>'; setTimeout(function(){ t.innerHTML=orig; },2600); }
+  b.addEventListener('click',function(){
+    if(navigator.clipboard&&navigator.clipboard.writeText){
+      navigator.clipboard.writeText('singaporeyuan').then(function(){done(true)},function(){done(false)});
+    } else done(false);
+  });
+})();
+</script>
+</body>
+</html>

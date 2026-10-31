@@ -60,6 +60,7 @@ button,input{font-family:inherit}
 .big{font-size:34px;line-height:1.15;font-weight:800;letter-spacing:.04em;background:linear-gradient(180deg,var(--gold-light),var(--gold-deep));-webkit-background-clip:text;background-clip:text;color:transparent;margin-top:4px}
 .big.navy{background:none;color:var(--navy)}
 .big small{font-size:15px;letter-spacing:0}
+.big.sm{font-size:28px;letter-spacing:.02em}
 .kpi .eg{margin-top:8px;font-size:13.5px;color:var(--ink);display:flex;flex-wrap:wrap;align-items:center;gap:7px}
 .kpi .eg b{font-weight:800}
 .kpi .cond{margin-top:4px;font-size:12.5px;color:var(--muted)}
@@ -505,7 +506,7 @@ function render(D){
       '<div class="eg"><span class="chip ok">全部有效 Inforce</span></div>'+
       '<div class="cond">'+P.length+' 套保障 · '+people.length+' 位家人</div></div></div></div>'+
     '<div class="kpi"><div class="top"><div class="badge">'+ico('coins','ic-md')+'</div><div style="flex:1">'+
-      '<div class="label">一年保费合计</div><div class="big">'+money(total)+'</div>'+
+      '<div class="label">一年保费合计</div><div class="big'+(total>=1e4?' sm':'')+'">'+money(total)+'</div>'+
       '<div class="rows">'+Object.keys(kinds).map(k=>'<div><span>'+esc(k)+'</span><b>'+money(kinds[k])+'</b></div>').join('')+'</div>'+
     '</div></div></div>'+
     '<div class="kpi blue"><div class="top"><div class="badge">'+ico('clock','ic-md')+'</div><div>'+
