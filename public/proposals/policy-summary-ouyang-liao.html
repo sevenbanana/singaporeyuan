@@ -260,10 +260,6 @@ body.locked #pwGate{display:flex}
 .pw-err{display:none;margin-top:10px;font-size:13px;color:#B4433A;font-weight:600}
 .pw-err.show{display:block}
 
-/* ---------- 水印 ---------- */
-#wm{position:fixed;inset:0;pointer-events:none;z-index:40;overflow:hidden;opacity:.045}
-#wm .row{position:absolute;white-space:nowrap;font-size:15px;color:var(--navy);transform:rotate(-24deg);transform-origin:left top}
-
 /* ---------- 网站页脚（同样板页） ---------- */
 .site-foot{border-top:1px solid rgba(184,134,43,.2);background:#F4ECDB;margin-top:48px}
 .site-foot .in{max-width:1040px;margin:0 auto;padding:48px 32px 36px}
@@ -336,7 +332,7 @@ body.locked #pwGate{display:flex}
 @media (max-width:420px){.site-foot .grid{grid-template-columns:1fr}.switch .lb,.switch button .n{display:none}.switch button{padding:7px 12px}}
 @media print{
   body{background:#fff}
-  .switch,.site-foot,.cta,#wm,.meta button{display:none!important}
+  .switch,.site-foot,.cta,.meta button{display:none!important}
   .pcard{break-inside:avoid}
 }
 </style>
@@ -438,7 +434,6 @@ body.locked #pwGate{display:flex}
   </div>
 </div>
 
-<div id="wm" aria-hidden="true"></div>
 <footer class="site-foot">
   <div class="in">
     <div class="grid">
@@ -712,12 +707,6 @@ function render(D){
       err.classList.add('show');inp.select();
     }finally{btn.disabled=false;btn.textContent='查看保单';}
   });
-})();
-
-/* ============ 水印 ============ */
-(function(){
-  const text='新加坡小圆姐　　　singaporeyuan　　　仅供本人参考　　　　　　', wm=document.getElementById('wm'), unit=text.repeat(6);
-  for(let i=0;i<16;i++){const d=document.createElement('div');d.className='row';d.textContent=unit;d.style.top=(i*110-120)+'px';d.style.left='-200px';wm.appendChild(d);}
 })();
 
 /* ============ 复制微信号 ============ */
