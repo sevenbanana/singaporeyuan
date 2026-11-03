@@ -523,10 +523,23 @@ body{padding-bottom:92px}
 .plan-pill .new{font-size:10.5px;font-weight:800;background:var(--red);color:#fff;border-radius:999px;padding:0 6px;margin-left:2px}
 .plan-pill.on .new{background:#fff;color:var(--red)}
 .pop-badge{position:absolute;top:-9px;right:-6px;background:var(--gold);color:#fff;font-size:9.5px;font-weight:800;border-radius:999px;padding:1px 7px;white-space:nowrap}
-.subsel{display:flex;flex-wrap:wrap;gap:6px;margin:-2px 0 10px}
-.subsel button{border:1px solid var(--line);background:var(--card);border-radius:10px;padding:6px 11px;font-size:12.5px;cursor:pointer;font-family:inherit;color:var(--ink);text-align:left;line-height:1.35}
-.subsel button small{display:block;font-size:11px;color:var(--muted)}
-.subsel button.on{border-color:var(--gold);background:var(--gold-tint-2);color:var(--navy);font-weight:700}
+/* 二级设置：挂在所选计划下面，缩进 + 左侧色条表示从属 */
+.cfg{position:relative;margin:-2px 0 12px 12px;padding:11px 12px 12px;border:1px solid var(--line);border-left:3px solid var(--navy);border-radius:3px 12px 12px 3px;background:var(--card)}
+.cfg.glb{border-left-color:var(--gold);background:var(--gold-tint-2)}
+.cfg.glb:before{content:"";position:absolute;top:-7px;left:22px;width:11px;height:11px;background:inherit;border-left:1px solid var(--line);border-top:1px solid var(--line);transform:rotate(45deg)}
+.cfg-row+.cfg-row{margin-top:11px;padding-top:11px;border-top:1px dashed var(--line)}
+.cfg-lb{display:flex;align-items:baseline;flex-wrap:wrap;gap:2px 8px;font-size:12.5px;font-weight:800;color:var(--navy);margin-bottom:7px}
+.cfg-lb small{font-size:11.5px;font-weight:600;color:var(--muted)}
+.cfg .opt-row{margin:0}
+.seg{display:grid;grid-template-columns:1fr 1fr;gap:7px;max-width:640px}
+.seg button{position:relative;display:flex;flex-direction:column;gap:1px;border:1.5px solid var(--line);background:#fff;border-radius:10px;padding:7px 10px 8px 11px;text-align:left;font-family:inherit;color:var(--ink);cursor:pointer;line-height:1.4}
+.seg button b{font-size:13.5px;color:var(--navy);padding-right:22px}
+.seg button small{font-size:11.5px;color:var(--muted)}
+.seg .nw{white-space:nowrap}
+.seg button:after{content:"";position:absolute;top:9px;right:10px;width:14px;height:14px;border-radius:50%;border:1.5px solid #D9C59C;background:#fff;box-sizing:border-box}
+.seg button.on{border-color:var(--gold);box-shadow:inset 0 0 0 1px var(--gold)}
+.seg button.on b{color:var(--gold-deep)}
+.seg button.on:after{border:4px solid var(--gold)}
 .opt-row{display:flex;flex-wrap:wrap;gap:6px 16px;margin:4px 0 2px}
 .opt-row label{display:inline-flex;align-items:center;gap:6px;font-size:13px;color:var(--ink);cursor:pointer}
 .opt-row input{accent-color:var(--navy);width:15px;height:15px}
@@ -835,8 +848,10 @@ body{padding-bottom:92px}
     <div class="chipsel" id="cRes"></div>
     <div class="k"><svg class="ic"><use href="#i-hospital"/></svg>新加坡计划</div>
     <div class="chipsel" id="cSg"></div>
-    <div class="k"><svg class="ic"><use href="#i-globe"/></svg>全球医疗险</div>
-    <div class="chipsel g" id="cGl"></div>
+    <div class="k"><svg class="ic"><use href="#i-globe"/></svg>全球 · 保额</div>
+    <div class="chipsel g" id="cGp"></div>
+    <div class="k"><svg class="ic"><use href="#i-globe"/></svg>全球 · 自付</div>
+    <div class="chipsel g" id="cGo"></div>
   </div>
   <div class="cmp-price num">
     <div class="a"><div class="t"><svg class="ic"><use href="#i-hospital"/></svg><span id="cpAt"></span></div><b id="cpA"></b><div class="s" id="cpAs"></div></div>
@@ -1266,15 +1281,26 @@ function render(){
         ${ps.h.on?`<div class="prod-body">
           <div class="grp-lb">新加坡计划</div>
           <div class="plansel">${planOpts.map(([v,l,ic])=>`<button type="button" class="plan-pill${ps.h.plan===v?' on':''}" data-hplan="${v}"><svg class="ic"><use href="#${ic}"/></svg>${l}</button>`).join('')}</div>
+          ${glb?'':`<div class="cfg"><div class="cfg-row">
+            <div class="cfg-lb">${SGNAME[ps.h.plan]} · 附加保障</div>
+            <div class="opt-row">
+              <label><input type="checkbox" data-f="h.vhp"${ps.h.vhp?' checked':''}>附加 VitalHealth Pro（自付降到 5%）</label>
+              ${ps.h.plan==='A'&&ps.h.vhp?`<label><input type="checkbox" data-f="h.ccp"${ps.h.ccp?' checked':''}>Cancer Care Pro</label>
+              <label><input type="checkbox" data-f="h.ecp"${ps.h.ecp?' checked':''}>Emergency Care Pro</label>`:''}
+            </div>
+          </div></div>`}
           <div class="grp-lb">或者全球</div>
           <div class="plansel"><button type="button" class="plan-pill glb${glb?' on':''}" data-hplan="G"><svg class="ic"><use href="#i-globe"/></svg>全球（美国除外）<span class="new">新</span></button></div>
-          ${glb?`<div class="subsel">${[1,2].map(gp=>`<button type="button" data-gp="${gp}" class="${ps.h.gp===gp?'on':''}">Plan ${gp}<small>每年最高赔 ${wan(GLIM[gp][0])}</small></button>`).join('')}
-            ${[1,2].map(go=>`<button type="button" data-go="${go}" class="${ps.h.go===go?'on':''}">${go===1?'选项一':'选项二'}<small>${gDesc(go)}</small></button>`).join('')}</div>`
-          :`<div class="opt-row">
-            <label><input type="checkbox" data-f="h.vhp"${ps.h.vhp?' checked':''}>附加 VitalHealth Pro（自付降到 5%）</label>
-            ${ps.h.plan==='A'&&ps.h.vhp?`<label><input type="checkbox" data-f="h.ccp"${ps.h.ccp?' checked':''}>Cancer Care Pro</label>
-            <label><input type="checkbox" data-f="h.ecp"${ps.h.ecp?' checked':''}>Emergency Care Pro</label>`:''}
-          </div>`}
+          ${glb?`<div class="cfg glb">
+            <div class="cfg-row">
+              <div class="cfg-lb">保额档次<small>每年最高赔多少</small></div>
+              <div class="seg">${[1,2].map(gp=>`<button type="button" data-gp="${gp}" class="${ps.h.gp===gp?'on':''}" aria-pressed="${ps.h.gp===gp}"><b>Plan ${gp}</b><small><span class="nw">每年最高赔</span> <span class="nw">${wan(GLIM[gp][0])}</span></small><small class="nw">终身 ${wan(GLIM[gp][1])}</small></button>`).join('')}</div>
+            </div>
+            <div class="cfg-row">
+              <div class="cfg-lb">自付方式<small>免赔额 + 之后自付比例</small></div>
+              <div class="seg">${[1,2].map(go=>{const d=GDED[go];return `<button type="button" data-go="${go}" class="${ps.h.go===go?'on':''}" aria-pressed="${ps.h.go===go}"><b>${go===1?'选项一':'选项二'}</b><small class="nw">免赔额 ${sgd(d.ded)}</small><small><span class="nw">之后 ${Math.round(d.co*100)}%</span><span class="nw">（封顶 ${sgd(d.cap)}）</span></small></button>`;}).join('')}</div>
+            </div>
+          </div>`:''}
           ${hosp?`<div class="pres num">
             ${hosp.rows.map(r=>`<div class="row"><span class="k">${r[0]}</span><span>${fmt(r[1])}</span></div>`).join('')}
             <div class="row tot"><span>住院险小计 / 年</span><span>${fmt(hosp.total)}</span></div>
@@ -1389,7 +1415,9 @@ function renderCmp(){
   const local=cmp.res==='local', o=GOPT[cmp.gi];
   chips('cRes',RES,cmp.res,v=>{cmp.res=v;});
   chips('cSg',[['A','私立 A'],['B','公立 B']].concat(local?[['BL','公立 B Lite']]:[]),cmp.sg,v=>{cmp.sg=v;});
-  chips('cGl',GOPT.map((g,i)=>[i,gName(g.gp,g.go)]),cmp.gi,v=>{cmp.gi=+v;});
+  const gIdx=(gp,go)=>GOPT.findIndex(x=>x.gp===gp&&x.go===go);
+  chips('cGp',[1,2].map(gp=>[gp,'Plan '+gp+' · 每年 '+wan(GLIM[gp][0])]),o.gp,v=>{cmp.gi=gIdx(+v,o.go);});
+  chips('cGo',[1,2].map(go=>[go,(go===1?'选项一':'选项二')+' · 免赔额 '+sgd(GDED[go].ded)]),o.go,v=>{cmp.gi=gIdx(o.gp,+v);});
   document.getElementById('cAge').value=cmp.age; document.getElementById('cAgeR').value=cmp.age;
   const A=sgPrice(cmp.age,cmp.res,cmp.sg), B=glPrice(cmp.age,cmp.res,cmp.gi);
   const $=id=>document.getElementById(id);
