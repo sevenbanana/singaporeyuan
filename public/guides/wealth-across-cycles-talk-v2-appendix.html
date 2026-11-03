@@ -1467,7 +1467,14 @@ html.light .krange .kr b{color:var(--l-gold)}
 
 /* 演示模式：新页微调 */
 html.deck #s-me .me__list li{padding:10px 14px}
-html.deck .case-split .chartbox svg{max-height:360px}
+html.deck .case-split .chartbox svg{max-height:480px}
+/* v6：优势页小字、案例缺口图例、案例切换 */
+.adv__c p.adv__fine{margin-top:8px;font-size:.78rem;line-height:1.5;color:#E2C48A}
+html.light .adv__c p.adv__fine{color:var(--l-gold)}
+.q1legend i.gapkey{background:rgba(233,145,124,.2);border:1px dashed #E9917C;box-sizing:border-box}
+#c2Rate button{min-height:32px}
+.cs-nums .tot{grid-template-columns:minmax(0,1fr)}
+.cs-nums .tot b{margin-top:2px}
 </style>
 <style>.deckbar a{display:inline-flex;align-items:center;height:36px;padding:0 12px;border-radius:999px;color:var(--paper);text-decoration:none;font-weight:600}.deckbar a:hover{background:rgba(244,238,225,.1)}html.light .deckbar a{color:inherit}</style>
 </head>
@@ -1777,21 +1784,22 @@ body.locked #pwGate{display:flex}
     <div class="rule rise" style="--d:.1s"></div>
     <p class="lede rise" style="--d:.12s;margin-top:0">点一个问题直接跳过去；演示时按 Home 回到这一页。</p>
     <div class="toc rise" style="--d:.16s">
-      <div class="toc__g"><h3>投资原则与产品</h3>
+      <div class="toc__g"><h3>保险公司的钱，怎么管？</h3>
         <a href="#s-rules" data-go="s-rules"><span>01</span>保险公司投资的五条原则</a>
         <a href="#s-kinds" data-go="s-kinds"><span>02</span>保证型、分红型、投资相连型，回报差在哪？</a>
         <a href="#s-nov" data-go="s-nov"><span>03</span>2026 年 11 月，三只基金调整了什么？</a>
-        <a href="#s-ex5" data-go="s-ex5"><span>04</span>同样交 S$30 万：直接领，还是先增值？</a>
       </div>
-      <div class="toc__g"><h3>和标普 500 比</h3>
-        <a href="#s-vol" data-go="s-vol"><span>05</span>近两年：GAIF / ELITE 与标普 500</a>
-        <a href="#s-fees" data-go="s-fees"><span>06</span>ILP 的收费，到底贵不贵？</a>
-        <a href="#s-q2" data-go="s-q2"><span>07</span>自己定投标普 500，要看清三件事</a>
-        <a href="#s-flex" data-go="s-flex"><span>08</span>随时能用，是优点也是缺点</a>
-        <a href="#s-legacy" data-go="s-legacy"><span>09</span>人走了，钱怎么到家人手里？</a>
-        <a href="#s-who" data-go="s-who"><span>10</span>自己买，还是做配置？</a>
+      <div class="toc__g"><h3>自己买 ETF，到底省多少？</h3>
+        <a href="#s-vol" data-go="s-vol"><span>04</span>近两年：GAIF / ELITE 与标普 500</a>
+        <a href="#s-fees" data-go="s-fees"><span>05</span>ILP 的收费，到底贵不贵？</a>
+        <a href="#s-q2" data-go="s-q2"><span>06</span>自己定投标普 500，要看清三件事</a>
+        <a href="#s-flex" data-go="s-flex"><span>07</span>随时能用，是优点也是缺点</a>
+        <a href="#s-legacy" data-go="s-legacy"><span>08</span>人走了，钱怎么到家人手里？美国遗产税</a>
+        <a href="#s-who" data-go="s-who"><span>09</span>自己买，还是做配置？</a>
       </div>
-      <div class="toc__g"><h3>ILP 的历史</h3>
+      <div class="toc__g"><h3>更多方案示例</h3>
+        <a href="#s-ex5b" data-go="s-ex5b"><span>10</span>5 年缴、每年 S$6 万：第 1 年起领分红</a>
+        <h3 style="margin-top:14px">为什么有人买 ILP 会后悔？</h3>
         <a href="#s-ilp-tl" data-go="s-ilp-tl"><span>11</span>ILP 在新加坡的三十年：行业与我</a>
         <a href="#s-ilp-chart" data-go="s-ilp-chart"><span>12</span>ILP 三十年的起落</a>
         <a href="#s-ilp-cmp" data-go="s-ilp-cmp"><span>13</span>初代 ILP 与今天的 ILP</a>
@@ -1837,7 +1845,7 @@ body.locked #pwGate{display:flex}
       <div class="card card--dark rise" style="--d:.2s">
         <h3 class="kname" id="kName2"></h3>
         <div class="krow"><span>走法</span><b id="kShape2"></b></div>
-        <div class="krow krange"><span>大概收益区间（每年）</span><div class="kr"><div><em>新币</em><b id="kSgd2"></b></div><div><em>美元</em><b id="kUsd2"></b></div></div><small id="kNote2"></small></div>
+        <div class="krow krange"><span>大概区间（每年，示意，以具体产品计划书为准）</span><div class="kr"><div><em>新币</em><b id="kSgd2"></b></div><div><em>美元</em><b id="kUsd2"></b></div></div><small id="kNote2"></small></div>
         <div class="krow"><span>谁承担投资风险</span><b id="kRisk2"></b></div>
         <div class="krow"><span>适合哪个钱袋子</span><b id="kBag2"></b></div>
       </div>
@@ -1868,40 +1876,6 @@ body.locked #pwGate{display:flex}
       </div>
     </div>
     <p class="src rise" id="novSrc">资料来源 AIA Investments, Stewardship Solutions 简报（2026 年 11 月）。「历史模拟」是用新旧中性配置回测过去的走势，按扣费前计算，不是基金实际表现，也不代表未来；实际配置由基金经理酌情调整。派息不保证。</p>
-  </div>
-</section>
-
-<section class="scene" id="s-ex5" data-title="示例 · 先增值还是直接领" data-tint="#0E2B45">
-  <div class="inner">
-    <p class="eyebrow rise">方案示例 · 第三个钱袋子 · 5 年缴</p>
-    <h2 class="h-sec rise" style="--d:.06s">同样交 S$30 万：直接领，还是先增值再领？</h2>
-    <div class="rule rise" style="--d:.1s"></div>
-    <div class="ex-strip rise" style="--d:.12s">年保费 <b>S$60,000</b> × 5 年 = <b>S$300,000</b><span>迎新红利 3% + 4% + 5%，2026 Q4 第 1 年另送 10%</span><span>第 8 年起：没有补充费，另有投资红利与表现奖金</span><span>身故赔付已缴保费与保单价值较高者</span></div>
-    <div class="split exa">
-      <div class="chartbox chartbox--dark dark-chart rise" data-live style="--d:.16s">
-        <div class="exa-bar">
-          <span class="q1legend" style="margin:0;color:var(--mist)"><span><i style="background:#8DB9E2"></i>直接领：GAIF 第 1 年起分红</span><span><i style="background:#D6A94C"></i>先增值：ELITE 到 65 岁，再转 GAIF</span></span>
-          <small>实线 = 保单价值 + 累计到手分红 · 虚线 = 累计到手分红</small>
-        </div>
-        <div class="scroller scroller--wide"><svg id="ch-ex5" viewBox="0 0 720 370" role="img" aria-label="5 年缴两种用法：直接领分红与先增值后分红，40 到 100 岁的保单价值加累计分红"></svg></div>
-      </div>
-      <div class="exa-side">
-        <div class="card card--dark exa-card rise" style="--d:.2s">
-          <table class="exa-tab" id="exaTab">
-            <thead><tr><th></th><th class="a">直接领</th><th class="b">先增值</th></tr></thead>
-            <tbody>
-              <tr><td>65 岁前每年分红</td><td class="a">约 S$1.8–2 万<small>第 5 年起</small></td><td class="b" data-k="1">不领<small>先滚存</small></td></tr>
-              <tr><td>65 岁时保单价值</td><td class="a">S$264,700</td><td class="b" data-k="1">S$1,211,700</td></tr>
-              <tr><td>65 岁前已领分红</td><td class="a">S$453,400<small>26 年</small></td><td class="b" data-k="1">S$0</td></tr>
-              <tr class="hi"><td>65 岁起每年分红</td><td class="a">S$18,500</td><td class="b" data-k="2">S$84,819<small>S$7,068 / 月</small></td></tr>
-              <tr><td>到 100 岁累计领</td><td class="a">S$1,101,900</td><td class="b" data-k="2">S$2,968,665</td></tr>
-            </tbody>
-          </table>
-        </div>
-        <p class="exa-say rise" id="exaSay" style="--d:.26s"></p>
-      </div>
-    </div>
-    <p class="src rise">示意，非保证。直接领：GAIF 假设基金价格 0 增长、分红率 7%，保单价值按 PWV 3.0 BI 体现的费用推算（前 7 年补充费，含迎新红利、2026 Q4 第 1 年加送与投资红利），估算。先增值：40–65 岁 ELITE 按 PWV 3.0 BI 8% 假设回报（已扣所有费用，含基本迎新红利；Q4 加送只加本金、不计增值），65 岁转 GAIF 后假设基金 0 增长、分红率 7%。两条路都未计第 8 年起每年 0.4% 表现奖金（BI 期间除外），偏保守。具体以 AIA 正式产品资料及 BI 为准。</p>
   </div>
 </section>
 
@@ -2041,9 +2015,10 @@ body.locked #pwGate{display:flex}
       <div class="flow" id="flow"></div>
       <div class="flow-sum" id="flowSum"></div>
     </div>
-    <div class="grid g2 legacy-notes">
+    <div class="grid g3 legacy-notes">
       <div class="card card--dark rise" style="--d:.2s;padding:18px 22px"><h3 style="font-size:1rem;color:var(--gold)">没有做提名的保单</h3><p style="margin-top:6px;font-size:.9rem">理赔时可能也要先拿到遗产认证或遗产管理书。在此之前，保险公司最多可先付 S$150,000 给合适的申领人。</p></div>
       <div class="card card--dark rise" style="--d:.26s;padding:18px 22px"><h3 style="font-size:1rem;color:var(--gold)">提名有限制</h3><p style="margin-top:6px;font-size:.9rem">信托提名不适用于用 CPFIS、SRS 等资金购买的保单；保单持有人须为受保人本人，且年满 18 岁。</p></div>
+      <div class="card card--dark rise" style="--d:.32s;padding:18px 22px"><h3 style="font-size:1rem;color:var(--gold)">买爱尔兰注册的 ETF 呢？</h3><p style="margin-top:6px;font-size:.9rem">爱尔兰注册的 UCITS ETF 不属于美国境内资产，同样不涉及美国遗产税；但它仍是券商账户里的资产，人走后要先办遗产认证，券商才能过户。</p></div>
     </div>
     <div class="takeaway rise">这一点平时很少有人讲，<b>对跨境家庭尤其重要</b>：钱到家人手里的速度和路径，和收益一样值得提前安排。</div>
     <p class="src rise">资料来源 LIA, Your Guide to Nomination of Insurance Nominees（2026）：有效提名下，保险公司可无需遗产认证或遗产管理书直接赔付；IRS, Some nonresidents with U.S. assets must file estate tax returns。以上为一般性说明，不构成法律或税务建议。</p>
@@ -2078,6 +2053,60 @@ body.locked #pwGate{display:flex}
       </div>
     </div>
     <p class="src rise">以上为一般性比较，不针对任何个人情况。具体费用、锁定期与利益以产品摘要、Policy Illustration 和保单条款为准。核心资产用指数 ETF、一部分长期资金用保单做配置与传承，两者可以并存。</p>
+  </div>
+</section>
+
+<section class="scene" id="s-ex5b" data-title="示例 · 5 年缴，第 1 年起领" data-tint="#10314E">
+  <div class="inner">
+    <div class="plan-head rise">
+      <div class="plan-tag"><i>#</i>基金<br>定投</div>
+      <div class="plan-ttl">
+        <h2 class="h-sec">Global Adventurous Income Fund <em>For You</em> <span class="plan-heart" aria-hidden="true">♥</span></h2>
+        <p class="plan-sub">方案示例 · AIA Platinum Wealth Venture 3.0 · 5 Pay（缴费 5 年），第 1 年起直接领分红</p>
+      </div>
+    </div>
+    <div class="plan-body ex2 rise" style="--d:.08s">
+      <p class="plan-prem">年保费 <b>S$60,000</b> × 5年 = <b>S$300,000</b><small>身故赔付已缴保费与保单价值两者较高者*</small></p>
+      <div class="plan-info card card--dark">
+        <div>
+          <p><b class="g">22%</b> Welcome Bonus 迎新红利：<b class="g">S$13,200</b>（第 1–3 年 3%、4%、5%）</p>
+          <p class="promo">🎁 限时促销：第1年额外送 10%，即 S$6,000</p>
+          <p><b class="g">7-8%</b> 目标分红，按季度领取；保单生效即开始领</p>
+        </div>
+        <div>
+          <p class="hd">第8年起：</p>
+          <p>10% 投资红利：Y8 至 Y11 每年 2.5% of AP，S$1,500 × 4 = <b class="g">S$6,000</b></p>
+          <p>没有补充费和退保费；另有每年 0.4% 表现奖金</p>
+        </div>
+      </div>
+      <div class="tl">
+        <div class="tl-left">
+          <div class="tn"><span class="call">3% + 🎁 10%</span><span class="pct big">+13%</span><span class="coin">$</span><b>40</b><small></small></div>
+          <div class="tn"><span class="pct">+4%</span><span class="coin">$</span><b>41</b><small></small></div>
+          <div class="tn"><span class="pct">+5%</span><span class="coin">$</span><b>42</b><small></small></div>
+          <div class="tn"><span class="pct"></span><span class="hollow"></span><b>44</b><small>交完</small></div>
+        </div>
+        <div class="tm" data-k="1"><span class="tot" data-to="380500">S$380,500</span><span class="dot"></span><b>47</b><small>第8年</small></div>
+        <div class="tm" data-k="2"><span class="tot" data-to="718100">S$718,100</span><span class="dot"></span><b>65</b><small></small></div>
+        <div class="tm" data-k="3"><span class="tot" data-to="1088700">S$1,088,700</span><span class="dot"></span><b>85</b><small></small></div>
+        <div class="tm" data-k="4"><span class="tot" data-to="1366600">S$1,366,600</span><span class="heart">♥</span><b>100</b><small></small></div>
+      </div>
+      <div class="tl-cards">
+        <div class="pl-left">
+          <div class="pl-assume">假设<br>基金 0 增长</div>
+          <div class="divtab"><h4>按照每年分红 7%</h4><div class="yrs" style="grid-template-columns:repeat(3,1fr)">
+            <div><span>第1年</span><b>S$4,700</b></div><div><span>第2年</span><b>S$8,900</b></div><div><span>第3年</span><b>S$13,000</b></div>
+            <div><span>第4年</span><b>S$16,700</b></div><div><span>第5年</span><b>S$20,300</b></div><div class="last"><span>第8年起</span><b>约 S$18,500</b></div>
+          </div></div>
+        </div>
+        <div class="mc" data-k="1"><div class="pv"><span>保单价值</span><b data-to="260200">S$260,200</b></div><div class="dv"><span>到手分红</span><b data-to="120300">S$120,300</b></div><small>（8年，第1至8年）</small></div>
+        <div class="mc" data-k="2"><div class="pv"><span>保单价值</span><b data-to="264700">S$264,700</b></div><div class="dv"><span>到手分红</span><b data-to="453400">S$453,400</b></div><small>（26年，第1至26年）</small></div>
+        <div class="mc" data-k="3"><div class="pv"><span>保单价值</span><b data-to="264700">S$264,700</b></div><div class="dv"><span>到手分红</span><b data-to="824000">S$824,000</b></div><small>（46年，第1至46年）</small></div>
+        <div class="mc" data-k="4"><div class="pv death"><span style="color:var(--gold);font-weight:800;font-size:.95rem">身故利益</span><b>至少拿回已缴保费*</b></div><div class="dv"><span>累计分红</span><b data-to="1101900">S$1,101,900</b></div><small>（61年，第1至61年）</small></div>
+      </div>
+      <div class="plan-free-row" data-k="5"><div></div><div class="plan-free">第8年起自由灵活，没有补充费和退保费，随时都可以提取现金价值</div></div>
+    </div>
+    <p class="src rise" style="margin-top:12px">* 示意，非保证：假设除了分红，没有其他现金价值提取；基金价格 0 增长、分红率 7% 不变。保单价值按 PWV 3.0 BI 体现的费用推算（前 7 年补充费，含迎新红利、Q4 加送与投资红利），估算，未计第 8 年起每年 0.4% 表现奖金。身故赔付为已缴保费（扣除提取）与保单价值两者较高者。具体以 AIA 正式产品资料及 BI 为准。</p>
   </div>
 </section>
 
@@ -3280,7 +3309,7 @@ document.addEventListener("click",e=>{
   const idx=k=>N.findIndex(d=>d[0]===k);
   const M=[
     {a:"20/02",b:"20/12",t:"2020 · 新冠暴跌",what:"2020 年 2 月到 3 月急跌，净值从 1.137 跌到 0.788，跌了约 31%。",did:"逆势把高信念的成长股，提高到股票部分的最多 40%。",res:'约 4 个半月收复前高；2020 全年 <em>+28.8%</em>'},
-    {a:"23/01",b:"24/12",t:"2023–2024 · 大盘股领涨、开始降息",what:"少数大型科技股领涨，接着美国开始降息。",did:"加回成长股、退出亚洲（日本除外），股票 ETF 从最多 9.9% 加到 14.3%，更精准地跟上行情。",res:'2023 年 <em>+14.89%</em>、2024 年 <em>+15.74%</em>'},
+    {a:"22/01",b:"22/12",t:"2022 · 加息，股债一起跌",what:"美国快速加息，股票和债券一起跌。净值从 2021 年底的 1.539 跌到 2022 年 9 月的 1.141（月末价），跌了约 26%；2022 全年 <em>−22.7%</em>。",did:"降低成长股比重，加入一位跟踪误差更低的管理人，股票配置更分散。",res:'这一年没能躲过下跌；2024 年 11 月回到前高，前后近 3 年'},
     {a:"25/02",b:"25/12",t:"2025 · 关税冲击",what:"4 月关税冲击，全球股市急跌。",did:"加入防守型的质量管理人，减少集中的成长股，分散到更多风格。",res:'回撤约 15%，比 2020、2022 都浅；约 6 个月收复，2025 全年 <em>+10.44%</em>'}
   ];
   [1,1.5,2].forEach(v=>{ el("line",{class:"gl",x1:L,x2:Wd-R,y1:y(v),y2:y(v)},svg); tx(L-8,y(v)+5,v.toFixed(1),"tick",{"text-anchor":"end","font-size":"13"},svg); });
@@ -3300,8 +3329,8 @@ document.addEventListener("click",e=>{
   const card=document.getElementById("hiCard");
   function show(k){
     bands.forEach((b,j)=>b.style.opacity=k<0?"0":(j===k?"1":".25"));
-    if(k<0){ card.innerHTML='<div class="hk"><i>★</i><b>七年多，主动管理</b></div><div class="hr"><span>成立以来（2019.07–2026.09）</span><p>净值从 1.000 到 1.879；年化 9.4%，同类平均 5.8%。</p></div><div class="hr"><span>怎么做到的</span><p>不是一直买同一批股票：市场变了，管理人和配置也跟着调。下面看三个关键时刻。</p></div>'; }
-    else{ const m=M[k]; card.innerHTML='<div class="hk"><i>'+(k+1)+'</i><b>'+m.t+'</b></div><div class="hr"><span>市场发生了什么</span><p>'+m.what+'</p></div><div class="hr"><span>我们做了什么</span><p>'+m.did+'</p></div><div class="hr res"><span>结果</span><p>'+m.res+'</p></div>'; }
+    if(k<0){ card.innerHTML='<div class="hk"><i>★</i><b>七年多，持续调整</b></div><div class="hr"><span>成立以来（2019.07–2026.09）</span><p>净值从 1.000 到 1.879；年化 9.4%，同类平均 5.8%。</p></div><div class="hr"><span>怎么做到的</span><p>不是一直买同一批股票：市场变了，管理人和配置也跟着调。下面看三个关键时刻，其中一次是跌得最深的 2022 年。</p></div>'; }
+    else{ const m=M[k]; card.innerHTML='<div class="hk"><i>'+(k+1)+'</i><b>'+m.t+'</b></div><div class="hr"><span>市场发生了什么</span><p>'+m.what+'</p></div><div class="hr"><span>基金做了什么调整</span><p>'+m.did+'</p></div><div class="hr res"><span>之后</span><p>'+m.res+'</p></div>'; }
     card.classList.remove("swap"); void card.offsetWidth; card.classList.add("swap");
   }
   seq(svg.closest(".scene"),4,i=>show(i-1));
@@ -3341,63 +3370,77 @@ document.addEventListener("click",e=>{
   seq(sc,c.length,i=>c.forEach((e,j)=>hid(e,j>i)));
 })();
 
-/* 真实案例：每月退休现金流 */
-function caseChart(svg,o){
-  const Wd=720,Ht=360,L=58,R=18,T=26,B=40;
-  const a0=o.a0, a1=95, n=a1-a0+1, bw=(Wd-L-R)/n;
-  const x=a=>L+(a-a0)*bw, y=v=>T+(o.hi-v)/(o.hi-o.lo)*(Ht-T-B);
+/* 实际的案例：每月现金流（按今天的购买力，通胀 2%） */
+function caseDraw(svg,o){
+  svg.innerHTML="";
+  const Wd=720,Ht=svg.viewBox.baseVal.height||360,L=58,R=18,T=30,B=40, n=o.a1-o.a0+1, bw=(Wd-L-R)/n;
+  const x=a=>L+(a-o.a0)*bw, y=v=>T+(o.hi-v)/(o.hi-o.lo)*(Ht-T-B);
   for(let v=o.lo; v<=o.hi; v+=o.step){ el("line",{class:v?"gl":"ax",x1:L,x2:Wd-R,y1:y(v),y2:y(v)},svg); tx(L-8,y(v)+4,v?(v<0?"−":"")+money(Math.abs(v)):"0","tick",{"text-anchor":"end","font-size":"12"},svg); }
-  tx(L-8,T-10,"S$ / 月","tick",{"text-anchor":"end","font-size":"11.5"},svg);
-  for(let a=a0;a<=a1;a+=5) tx(x(a)+bw/2,Ht-B+20,a===a0?a+" 岁":String(a),"tick",{"text-anchor":"middle","font-size":"12"},svg);
-  const layers={};
-  o.series.forEach(s=>{ const g=el("g",{class:"cl",style:"opacity:0;transition:opacity .5s ease"},svg); layers[s.k]=g;
-    s.pts.forEach(([a,v,base])=>{ base=base||0; const y0=y(base), y1=y(base+v);
-      el("rect",{x:(x(a)+bw*.12).toFixed(1),y:Math.min(y0,y1).toFixed(1),width:(bw*.76).toFixed(1),height:Math.abs(y1-y0).toFixed(1),rx:1.5,fill:s.c},g); }); });
-  return {layers,x,y,bw,Wd,Ht,T,B,L,R};
+  tx(6,T-14,"S$ / 月（今天的钱）","tick",{"font-size":"11.5"},svg);
+  for(let a=o.a0;a<=o.a1;a+=5) tx(x(a)+bw/2,Ht-B+20,a===o.a0?a+" 岁":String(a),"tick",{"text-anchor":"middle","font-size":"12"},svg);
+  const G={}, top={};
+  const mk=k=>{ const g=el("g",{style:"opacity:0;transition:opacity .5s ease"},svg); G[k]=g; return g; };
+  o.layers.forEach(s=>{ const g=mk(s.k);
+    s.pts.forEach(([a,v])=>{ if(!v) return; let b0=0; if(v>0){ b0=top[a]||0; top[a]=b0+v; }
+      const y0=y(b0), y1=y(b0+v);
+      el("rect",{x:(x(a)+bw*.12).toFixed(1),y:Math.min(y0,y1).toFixed(1),width:(bw*.76).toFixed(1),height:Math.max(.5,Math.abs(y1-y0)).toFixed(1),rx:1.5,fill:s.c},g); }); });
+  const gap=mk("gap");
+  for(let a=o.tFrom;a<=o.a1;a++){ const h=top[a]||0; if(h<o.target-25)
+    el("rect",{x:(x(a)+bw*.12).toFixed(1),y:y(o.target).toFixed(1),width:(bw*.76).toFixed(1),height:(y(h)-y(o.target)).toFixed(1),fill:"rgba(233,145,124,.2)",stroke:"#E9917C","stroke-width":.9,"stroke-dasharray":"2 2"},gap); }
+  const tg=mk("target");
+  el("line",{x1:x(o.tFrom),x2:Wd-R,y1:y(o.target),y2:y(o.target),stroke:"#F4EEE1","stroke-width":1.6,"stroke-dasharray":"7 5"},tg);
+  tx(Wd-R,y(o.target)-8,o.tLabel,"lab",{"text-anchor":"end","font-size":"13",fill:"#F4EEE1"},tg);
+  return {G,x,y,bw,top,L,R,T,B,Wd,Ht};
 }
 (function(){
   const svg=document.getElementById("ch-case1"); if(!svg) return;
-  const C1=[[40,3092],[41,6002],[42,5821],[43,5645],[44,5475],[45,5310],[46,5149],[47,5023],[48,5052],[49,5081],[50,5110],[51,5110],[52,5110],[53,5110],[54,5110],[55,5110],[56,5110],[57,5110],[58,5110],[59,5110],[60,5110],[61,5110],[62,5110],[63,5110],[64,5110],[65,5110],[66,5110],[67,5110],[68,5110],[69,5110],[70,5110],[71,5110],[72,5110],[73,5110],[74,5110],[75,5110],[76,5110],[77,5110],[78,5110],[79,5110],[80,5110],[81,5110],[82,5110],[83,5110],[84,5110],[85,5110],[86,5110],[87,5110],[88,5110],[89,5110],[90,5110],[91,5110],[92,5110],[93,5110],[94,5110],[95,5110]];
-  const c=caseChart(svg,{a0:40,lo:0,hi:9000,step:2000,series:[
-    {k:"pwv",c:"#D6A94C",pts:C1.map(p=>[p[0],p[1]])},
-    {k:"cpf",c:"#8DB9E2",pts:C1.filter(p=>p[0]>=65).map(p=>[p[0],3000,p[1]])}]});
-  const ann=el("g",{style:"opacity:0;transition:opacity .5s ease"},svg);
-  el("line",{x1:c.L,x2:c.Wd-c.R,y1:c.y(5000),y2:c.y(5000),stroke:"#F4EEE1","stroke-width":1.2,"stroke-dasharray":"6 5"},ann);
-  tx(c.x(52),c.y(5000)-8,"目标 S$5,000","lab",{"font-size":"13",fill:"#F4EEE1"},ann);
-  const tot=el("g",{style:"opacity:0;transition:opacity .5s ease"},svg);
-  el("line",{x1:c.x(65),x2:c.x(65),y1:c.T,y2:c.Ht-c.B,stroke:"rgba(141,185,226,.7)","stroke-dasharray":"4 4"},tot);
-  tx(c.x(66),c.y(8300)-10,"65 岁起每月约 S$8,000","lab",{"font-size":"14",fill:"#F4EEE1"},tot);
-  tx(c.x(66),c.y(8300)+8,"按今天的消费水平","tick",{"font-size":"12"},tot);
-  tx(c.x(40),c.T+4,"40–41 岁交 S$100 万（2 年缴）","tick",{"font-size":"12",fill:"#E2C48A"},ann);
+  const C1=[[40,3092],[41,6002],[42,5821],[43,5645],[44,5475],[45,5310],[46,5149],[47,5023],[48,5052],[49,5081],[50,5110],[51,5110],[52,5110],[53,5110],[54,5110],[55,5110],[56,5110],[57,5110],[58,5110],[59,5110],[60,5110],[61,5110],[62,5110],[63,5110],[64,5110],[65,5110],[66,5110],[67,5110],[68,5110],[69,5110],[70,5110],[71,5110],[72,5110],[73,5110],[74,5110],[75,5110],[76,5110],[77,5110],[78,5110],[79,5110],[80,5110],[81,5110],[82,5110],[83,5110],[84,5110],[85,5110],[86,5110],[87,5110],[88,5110],[89,5110],[90,5110],[91,5110],[92,5110],[93,5110],[94,5110],[95,5110]].filter(p=>p[0]<=90), f=a=>Math.pow(1.02,a-40);
+  const pwv=C1.map(p=>[p[0],p[1]/f(p[0])]), cash=[[40,5000-C1[0][1]]];
+  const cpf=C1.filter(p=>p[0]>=65).map(p=>[p[0],3000/Math.pow(1.02,p[0]-65)]);
+  const c=caseDraw(svg,{a0:40,a1:90,lo:0,hi:7000,step:1000,tFrom:40,target:5000,tLabel:"生活费 S$5,000",
+    layers:[{k:"pwv",c:"#D6A94C",pts:pwv},{k:"cash",c:"#9CC9A6",pts:cash},{k:"cpf",c:"#8DB9E2",pts:cpf}]});
+  const at=a=>c.x(a)+c.bw/2;
+  tx(at(40)-2,c.T+2,"40–41 岁交 S$100 万（2 年缴）","tick",{"font-size":"12",fill:"#E2C48A"},c.G.pwv);
+  const v64=pwv.find(p=>p[0]===64)[1];
+  tx(at(60),c.y(v64)+22,"64 岁约 S$"+money(Math.round(v64/100)*100),"lab",{"text-anchor":"middle","font-size":"12.5",fill:"#20180A"},c.G.pwv);
+  tx(at(66),c.y(6200)-6,"65 岁 CPF LIFE 接上","lab",{"font-size":"13",fill:"#BFD7EE"},c.G.cpf);
+  tx(at(57),c.y(4350),"通胀吃掉的购买力","lab",{"text-anchor":"middle","font-size":"12.5",fill:"#F2B7A9"},c.G.gap);
   const nums=[...document.querySelectorAll("#c1Nums [data-k]")];
-  seq(svg.closest(".scene"),4,i=>{ c.layers.pwv.style.opacity=i>=1?"1":"0"; ann.style.opacity=i>=1?"1":"0"; c.layers.cpf.style.opacity=i>=2?"1":"0"; tot.style.opacity=i>=3?"1":"0";
-    nums.forEach(e=>hid(e,+e.dataset.k>i)); });
-  onShow(svg.closest(".scene"),()=>{ [c.layers.pwv,c.layers.cpf,ann,tot].forEach(g=>g.style.opacity="1"); });
-  [c.layers.pwv,c.layers.cpf,ann,tot].forEach(g=>g.style.opacity="1");
+  const vis=i=>{ c.G.target.style.opacity="1"; c.G.pwv.style.opacity=c.G.cash.style.opacity=i>=1?"1":"0"; c.G.cpf.style.opacity=i>=2?"1":"0"; c.G.gap.style.opacity=i>=3?"1":"0";
+    nums.forEach(e=>hid(e,+e.dataset.k>i)); };
+  seq(svg.closest(".scene"),4,vis);
+  vis(3);
 })();
 (function(){
   const svg=document.getElementById("ch-case2"); if(!svg) return;
-  const G=[[36,44500],[37,90600],[38,138400],[39,185400],[40,233800],[41,240200],[42,246900],[43,265300],[44,284900],[45,305900],[46,328300],[47,351200],[48,375700],[49,402000],[50,430000],[51,460000],[52,492100],[53,526400],[54,563100],[55,602400]], V=602400, MD=3514;
-  const pin=[], div=[], cpf=[];
-  for(let a=35;a<=95;a++){ if(a<=39) pin.push([a,-3500]); if(a>=55) div.push([a,MD]); if(a>=65) cpf.push([a,1600,MD]); }
-  const c=caseChart(svg,{a0:35,lo:-4000,hi:6000,step:2000,series:[{k:"in",c:"#E9917C",pts:pin},{k:"pwv",c:"#D6A94C",pts:div},{k:"cpf",c:"#8DB9E2",pts:cpf}]});
-  // 35–55 岁：保单价值增长（小图，单独刻度）
-  const gx=a=>c.x(a)+c.bw/2, gy=v=>c.y(0)-8-v/V*(c.y(0)-c.y(5200));
-  const grow=el("g",{style:"opacity:0;transition:opacity .5s ease"},svg);
-  const pts=[[35,0]].concat(G);
-  el("path",{d:pts.map((p,i)=>(i?"L":"M")+gx(p[0]).toFixed(1)+" "+gy(p[1]).toFixed(1)).join(" ")+" L"+gx(55)+" "+gy(0)+" L"+gx(35)+" "+gy(0)+" Z",fill:"rgba(214,169,76,.16)"},grow);
-  const gp=el("path",{d:pts.map((p,i)=>(i?"L":"M")+gx(p[0]).toFixed(1)+" "+gy(p[1]).toFixed(1)).join(" "),stroke:"#D6A94C","stroke-width":2.6,fill:"none","stroke-dasharray":"6 4"},grow);
-  el("circle",{cx:gx(55),cy:gy(V),r:5,fill:"#D6A94C"},grow);
-  tx(gx(55)-6,gy(V)-10,"55 岁保单价值约 S$60.2 万","lab",{"text-anchor":"end","font-size":"13",fill:"#E2C48A"},grow);
-  tx(gx(44),gy(V*0.42)+4,"ELITE 增值 20 年","tick",{"text-anchor":"middle","font-size":"12",fill:"#E2C48A"},grow);
-  tx(gx(37),c.y(-3500)+16,"每月存 S$3,500 × 5 年","tick",{"text-anchor":"start","font-size":"12",fill:"#F2B7A9"},grow);
-  const tot=el("g",{style:"opacity:0;transition:opacity .5s ease"},svg);
-  tx(c.x(66),c.y(MD+1600)-12,"65 岁起每月约 S$5,100","lab",{"font-size":"14",fill:"#F4EEE1"},tot);
-  tx(c.x(66),c.y(MD+1600)+6,"按今天的消费水平","tick",{"font-size":"12"},tot);
-  const nums=[...document.querySelectorAll("#c2Nums [data-k]")];
-  seq(svg.closest(".scene"),4,i=>{ c.layers.in.style.opacity=i>=1?"1":"0"; grow.style.opacity=i>=1?"1":"0"; c.layers.pwv.style.opacity=i>=2?"1":"0"; c.layers.cpf.style.opacity=i>=3?"1":"0"; tot.style.opacity=i>=3?"1":"0";
-    nums.forEach(e=>hid(e,+e.dataset.k>i)); });
-  [c.layers.in,c.layers.pwv,c.layers.cpf,grow,tot].forEach(g=>g.style.opacity="1");
+  const D={8:{g:[[36,44515],[37,90752],[38,138763],[39,186005],[40,234617],[41,241421],[42,248422],[43,266751],[44,286349],[45,307304],[46,329710],[47,352546],[48,376964],[49,403072],[50,430989],[51,460839],[52,492757],[53,526885],[54,563377],[55,602397]],V:602397,m:3514},4:{g:[[36,42784],[37,85513],[38,128187],[39,168315],[40,208002],[41,205714],[42,203451],[43,210452],[44,217657],[45,225071],[46,232701],[47,239473],[48,246441],[49,253613],[50,260993],[51,268588],[52,276404],[53,284447],[54,292724],[55,301243]],V:301243,m:1757}};
+  const f=a=>Math.pow(1.02,a-35), tg=document.getElementById("c2Rate"), nums=[...document.querySelectorAll("#c2Nums [data-k]")];
+  let R=8, step=4, c;
+  function draw(){
+    const d=D[R], pin=[], div=[], cpf=[];
+    for(let a=35;a<=90;a++){ if(a<=39) pin.push([a,-3500/f(a)]); if(a>=55) div.push([a,d.m/f(a)]); if(a>=65) cpf.push([a,3200/Math.pow(1.02,a-65)]); }
+    c=caseDraw(svg,{a0:35,a1:90,lo:-4000,hi:6000,step:2000,tFrom:55,target:3500,tLabel:"生活费 S$3,500",
+      layers:[{k:"in",c:"#E9917C",pts:pin},{k:"pwv",c:"#D6A94C",pts:div},{k:"cpf",c:"#8DB9E2",pts:cpf}]});
+    const at=a=>c.x(a)+c.bw/2, V8=D[8].V, gy=v=>c.y(0)-6-v/V8*(c.y(0)-c.y(4600));
+    const g=c.G.grow=el("g",{style:"opacity:0;transition:opacity .5s ease"},svg);
+    const pts=[[35,0]].concat(d.g), P=pts.map((p,i)=>(i?"L":"M")+at(p[0]).toFixed(1)+" "+gy(p[1]).toFixed(1)).join(" ");
+    el("path",{d:P+" L"+at(55)+" "+gy(0)+" L"+at(35)+" "+gy(0)+" Z",fill:"rgba(214,169,76,.16)"},g);
+    el("path",{d:P,stroke:"#D6A94C","stroke-width":2.6,fill:"none","stroke-dasharray":"6 4"},g);
+    el("circle",{cx:at(55),cy:gy(d.V),r:5,fill:"#D6A94C"},g);
+    tx(at(55)-8,gy(d.V)-10,"55 岁保单价值约 S$"+(d.V/10000).toFixed(1)+" 万（到时候的钱）","lab",{"text-anchor":"end","font-size":"12.5",fill:"#E2C48A"},g);
+    tx(at(36),c.y(-3500)+16,"每月存 S$3,500 × 5 年","tick",{"font-size":"12",fill:"#F2B7A9"},g);
+    tx(at(59.5),c.y(3500)-9,"55–64 岁缺口","lab",{"text-anchor":"middle","font-size":"12.5",fill:"#F2B7A9"},c.G.gap);
+    tx(at(66),c.y(5200)-8,"65 岁两份 CPF LIFE 接上","lab",{"font-size":"13",fill:"#BFD7EE"},c.G.cpf);
+  }
+  function vis(){ const i=step, G=c.G; G.target.style.opacity="1"; G.in.style.opacity=G.grow.style.opacity=i>=1?"1":"0";
+    G.pwv.style.opacity=i>=2?"1":"0"; G.cpf.style.opacity=i>=3?"1":"0"; G.gap.style.opacity=i>=4?"1":"0";
+    nums.forEach(e=>hid(e,+e.dataset.k>i)); }
+  function setR(r){ R=r; [...tg.children].forEach(b=>b.classList.toggle("on",+b.dataset.r===r));
+    document.querySelectorAll("#c2Nums [data-r8]").forEach(e=>e.textContent=e.dataset["r"+r]); draw(); requestAnimationFrame(vis); }
+  tg.addEventListener("click",e=>{ const b=e.target.closest("button"); if(!b) return; setR(+b.dataset.r); });
+  // 空格：生活费线 → 投入与增值 → 55 岁起分红 → CPF → 缺口 → 换成 BI 4%
+  seq(svg.closest(".scene"),6,i=>{ step=Math.min(i,4); const r=i===5?4:8; if(r!==R) setR(r); else vis(); });
+  setR(8);
 })();
 
 /* 三种待遇（附录）：直线上涨 / 稳定上涨 / 波动中上涨 */
