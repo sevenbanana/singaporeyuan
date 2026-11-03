@@ -1222,14 +1222,24 @@ html.deck #s-nov .stk{height:50px}
 /* ═════════════ v4（2026 年 11 月 3 日晚）═════════════ */
 /* 左上角：小号启航财富 logo + 新加坡小圆姐（封面不再重复） */
 .brandbar b.bb{display:flex;align-items:center;gap:12px;font-size:.92rem;letter-spacing:.06em}
-.bb-logo{height:26px;width:auto;display:block}
+.bb-logo{height:29px;width:auto;display:block}
 .bb-logo--l{display:none}
 .brandbar b.bb i{display:block;width:1px;height:18px;background:rgba(244,238,225,.35)}
 html.light .bb-logo--d{display:none}
 html.light .bb-logo--l{display:block}
 html.light .brandbar b.bb i{background:rgba(30,42,94,.25)}
-@media(max-width:620px){.bb-logo{height:21px}.brandbar b.bb{font-size:.82rem;gap:9px}.brandbar span{display:none}}
-.hero h1{font-size:clamp(2.3rem,6vw,4rem);line-height:1.08}
+@media(max-width:620px){.bb-logo{height:23px}.brandbar b.bb{font-size:.82rem;gap:9px}.brandbar span{display:none}}
+.hero h1{font-size:clamp(2.6rem,7.6vw,4.8rem);line-height:1.06}
+html.deck .hero>.inner{width:860px}
+html.deck .hero h1{font-size:4.6rem}
+html.deck .hero__sub{margin-top:20px}
+html.deck .hero__meta{margin-top:26px}
+html.deck .hero .theme-switch{margin-top:20px}
+/* 序章：大「序」字压在背景，问题句与时间轴同一页 */
+.ilp-zh{top:4%;right:2%;font-size:clamp(7rem,18vw,13rem)}
+.ilp-q{margin:0 0 10px;font-size:1.08rem;color:#DCE6EE}
+html.light .ilp-q{color:var(--l-ink)}
+html.deck #s-ilp-tl .itl{padding-top:22px}
 .hero__sub{margin-top:24px}
 .hero__meta{margin-top:34px}
 
@@ -1595,28 +1605,15 @@ body.locked #pwGate{display:flex}
   <div class="scroll-hint" aria-hidden="true">向下滑动<span></span></div>
 </section>
 
-<!-- ══════════ 序章 · ILP 在新加坡的三十年 ══════════ -->
-<section class="scene chapter" id="s-ilp0" data-title="序 · ILP 的三十年" data-tint="#0B2135">
-  <div class="scene__art">
-    <div class="chapter__no zh" data-depth="-0.2">序</div>
-    <div class="chapter__art" data-depth="-0.3"><svg viewBox="0 0 340 340" style="width:100%;height:auto;color:rgba(244,238,225,.4)"><use href="#ill-pillars"/></svg></div>
-  </div>
-  <div class="inner narrow">
-    <p class="eyebrow rise">Prologue · ILP in Singapore</p>
-    <h2 class="rise" style="--d:.08s">ILP 在<br>新加坡的<br>三十年</h2>
-    <div class="rule rise" style="--d:.14s"></div>
-    <p class="lede rise" style="--d:.18s">同样叫 ILP，为什么当年没人愿意卖，<br>今天却越来越多客户主动来问？</p>
-    <p class="ilp-me rise" style="--d:.26s">一个从业者的视角：2017 年在大东方做数码化转型，2024 年转做理财顾问。</p>
-  </div>
-</section>
-
-<!-- ══════════ 序章 · 两条线：行业与我（互动） ══════════ -->
-<section class="scene" id="s-ilp-tl" data-title="行业与我" data-tint="#10314E">
+<!-- ══════════ 序章 · ILP 在新加坡的三十年：行业与我（互动） ══════════ -->
+<section class="scene" id="s-ilp-tl" data-title="序 · ILP 的三十年" data-tint="#10314E">
+  <div class="scene__art"><div class="chapter__no zh ilp-zh" data-depth="-0.2">序</div></div>
   <div class="inner">
-    <p class="eyebrow rise">Two timelines</p>
-    <h2 class="h-sec rise" style="--d:.06s">三十五年的两条线：行业与我</h2>
+    <p class="eyebrow rise">Prologue · ILP in Singapore</p>
+    <h2 class="h-sec rise" style="--d:.06s">ILP 在新加坡的三十年：行业与我</h2>
     <div class="rule rise" style="--d:.1s"></div>
-    <div class="itl-scroll rise" style="--d:.14s">
+    <p class="lede rise ilp-q" style="--d:.12s">同样叫 ILP，为什么当年没人愿意卖，今天却越来越多客户主动来问？</p>
+    <div class="itl-scroll rise" style="--d:.16s">
       <div class="itl" id="itl">
         <span class="itl-label up">行业与监管</span>
         <div class="itl-track"><i class="itl-fill" id="itlFill"></i></div>
@@ -1624,7 +1621,7 @@ body.locked #pwGate{display:flex}
         <span class="itl-label">我的经历</span>
       </div>
     </div>
-    <div class="card itl-detail rise" id="itlDetail" style="--d:.2s" aria-live="polite"></div>
+    <div class="card itl-detail rise" id="itlDetail" style="--d:.22s" aria-live="polite"></div>
     <p class="src rise">点年份看细节，时间轴按事件排列，非等比例。资料来源 MAS Notice 307 及 2004、2013、2015 年咨询文件；LIA 行业业绩；AIA Platinum Wealth Venture 2.0 产品摘要。</p>
   </div>
 </section>
