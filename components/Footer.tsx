@@ -129,7 +129,24 @@ export default function Footer() {
         </div>
 
         <div className="mt-12 border-t border-gold/20 pt-8">
-          <p className="text-xs leading-relaxed text-mist">{t('disclaimer')}</p>
+          {/* AIA 合规:官方 logo + 授权代表声明(AFA-AGY Compliance liner / Validate AIA Logo)
+              logo 为 aia.com.sg 官方原文件,勿改色、勿变形、勿裁切;
+              声明英文原句为合规指定措辞,中英文版都保留 */}
+          <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:gap-5">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/brand/aia-logo.svg"
+              alt="AIA"
+              width={52}
+              height={52}
+              className="-ml-1 h-[52px] w-[52px] shrink-0"
+            />
+            <div className="text-sm leading-relaxed text-navy/80">
+              <p>{t('repStatement')}</p>
+              {!en && <p className="mt-1 text-xs text-navy/60">{t('repStatementLocal')}</p>}
+            </div>
+          </div>
+          <p className="mt-6 text-xs leading-relaxed text-mist">{t('disclaimer')}</p>
           <p className="mt-4 text-xs text-mist">{t('rights')}</p>
         </div>
       </div>
