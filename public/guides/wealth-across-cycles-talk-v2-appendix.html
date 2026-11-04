@@ -1859,6 +1859,80 @@ html.deck .pyr__list li{padding:8px 12px}
 html.deck #s-pyramid .lede{margin-bottom:4px}
 html.deck .pyr__fig svg{max-height:430px}
 html.deck .pyr__take{margin-top:8px;padding-top:10px}
+/* ═════════════ v10：ELITE 团队表格、立体金字塔 ═════════════ */
+.team-sub{margin-top:6px;font-size:1.25rem;letter-spacing:.12em;color:#C3D3E0}
+html.light .team-sub{color:#3D4A6B}
+html.deck .team-sub{font-size:22px}
+.team{display:grid;grid-template-columns:minmax(0,.62fr) minmax(0,1.5fr);gap:clamp(16px,3vw,36px);align-items:stretch;margin-top:4px}
+@media(max-width:900px){html:not(.deck) .team{grid-template-columns:minmax(0,1fr)}}
+.team__panel{background:#12294A;border-radius:6px;padding:26px 24px 22px;color:#F4EEE1;display:flex;flex-direction:column;align-items:center;text-align:center;box-shadow:0 24px 40px -28px rgba(10,20,40,.7)}
+.team__big{font-family:Georgia,"Times New Roman",serif;font-size:7.2rem;line-height:1;font-weight:700;color:#E2BD72;background:linear-gradient(180deg,#F3D99A,#C9973F);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.team__k{margin-top:8px;font-size:1.25rem;font-weight:700;letter-spacing:.12em}
+.team__hr{display:block;width:84%;height:2px;background:#D6A94C;margin:16px 0 14px}
+.team__k2{font-size:1.4rem;font-weight:800;letter-spacing:.08em}
+.team__k2 b{font-family:Georgia,serif;font-size:1.25em}
+.team__mix{display:flex;gap:18px;justify-content:center;margin-top:10px;font-size:1.15rem;font-weight:800}
+.team__mix .eq{color:#E2BD72}.team__mix .fi{color:#9CC3E6}
+.team__mix b{font-family:Georgia,serif;font-size:1.15em}
+.team__risk{margin:14px 0 0;background:rgba(255,255,255,.08)!important;border-color:rgba(214,169,76,.4)!important}
+.team__risk button{color:#C3D3E0!important}
+.team__risk button.on{background:#D6A94C!important;color:#1B1407!important}
+.team__note{margin-top:auto;padding-top:14px;font-size:.98rem;line-height:1.6;color:#DCE6EE;align-self:flex-start;text-align:left}
+.team__tab{display:flex;flex-direction:column}
+.tt-h,.tt-r{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr) minmax(0,.78fr);gap:12px;align-items:center}
+.tt-h{padding:0 14px 8px;border-bottom:2px solid #C9A25C;font-size:1.05rem;font-weight:800;letter-spacing:.14em;color:var(--paper)}
+.tt-r{padding:9px 14px;border-bottom:1px solid rgba(214,169,76,.22);transition:opacity .35s ease,background .35s ease}
+.tt-m b{display:block;font-size:1.12rem;font-weight:800;letter-spacing:.01em;color:var(--paper)}
+.tt-m small{display:block;font-size:.76rem;color:var(--mist);margin-top:1px}
+.tt-s{font-size:1.08rem;letter-spacing:.06em;color:#DCE6EE}
+.tt-p{display:flex;flex-direction:column;gap:2px}
+.tt-p em{font-style:normal;font-weight:800;font-size:1.12rem;font-variant-numeric:tabular-nums;transition:opacity .35s}
+.tt-p em.eq{color:#D6A94C}.tt-p em.fi{color:#8DB9E2}
+.team__tab.focus .tt-r:not(.hl){opacity:.32}
+.team__tab.focus .tt-r.hl{background:rgba(214,169,76,.1)}
+.tt-p em.dim{opacity:.35}
+html.light .tt-h{color:var(--l-ink)}
+html.light .tt-r{border-bottom-color:var(--l-line)}
+html.light .tt-m b{color:var(--l-ink)}
+html.light .tt-m small{color:var(--l-sub)}
+html.light .tt-s{color:#3D4A6B}
+html.light .tt-p em.eq{color:#A8742A}
+html.light .tt-p em.fi{color:#4F7DA8}
+html.light .team__tab.focus .tt-r.hl{background:rgba(176,122,38,.07)}
+html.deck .team__big{font-size:124px}
+html.deck .team__k{font-size:21px}
+html.deck .team__k2{font-size:24px}
+html.deck .team__mix{font-size:20px}
+html.deck .team__note{font-size:16.5px}
+html.deck .tt-h{font-size:17px}
+html.deck .tt-m b{font-size:19px}
+html.deck .tt-m small{font-size:13px}
+html.deck .tt-s{font-size:18px}
+html.deck .tt-p em{font-size:19px}
+/* 立体金字塔 */
+.pyr{grid-template-columns:minmax(0,1.08fr) minmax(0,1fr);gap:0;align-items:stretch}
+.pyr__fig{display:flex;align-items:center}
+.pyr__fig svg{width:100%;height:auto}
+html.deck .pyr__fig svg{max-height:none}
+#ch-pyr .pyr-shadow{fill:rgba(0,0,0,.45)}
+html.light #ch-pyr .pyr-shadow{fill:rgba(30,42,94,.28)}
+#ch-pyr .pyn{font-family:Georgia,"Times New Roman",serif;letter-spacing:.04em}
+#ch-pyr .pyl-l{stroke:#C9A25C;stroke-width:1.4;transition:opacity .45s ease}
+@media(max-width:900px){html:not(.deck) #ch-pyr .pyl{display:none}}
+.pyr__list{justify-content:space-around;padding-left:6px}
+.pyr__list li{grid-template-columns:58px minmax(0,1fr);padding:6px 10px;border-bottom-color:rgba(214,169,76,.35)}
+.pyr__list li>span{font-size:1.9rem}
+html.deck .pyr__list li{padding:7px 10px}
+html.deck .pyr__list li>span{font-size:32px}
+html.deck .pyr__list h3{font-size:27px;letter-spacing:.04em}
+html.deck .pyr__list h3 em{font-size:14px;vertical-align:5px}
+html.deck .pyr__list .ex{font-size:20.5px;letter-spacing:.04em;margin-top:4px}
+html.deck .pyr__list .nt{font-size:17.5px;letter-spacing:.04em;margin-top:2px}
+html.deck .pyr__take{font-size:30px;margin-top:10px}
+html.deck #s-pyramid .rule{margin:10px 0 8px}
+html.deck .tt-r{padding:12px 14px}
+html.deck .pyr__list li{padding:5px 10px}
+html.deck .pyr__list .ex{margin-top:2px}
 </style>
 <style>.deckbar a{display:inline-flex;align-items:center;height:36px;padding:0 12px;border-radius:999px;color:var(--paper);text-decoration:none;font-weight:600}.deckbar a:hover{background:rgba(244,238,225,.1)}html.light .deckbar a{color:inherit}</style>
 </head>
@@ -3122,6 +3196,26 @@ function redraw(p){ // 切换后重新播放描线动画
   go(-1);
 })();
 
+/* ───── ELITE 全球投资团队：表格 + 风险等级切换 ───── */
+(function(){
+  const sc=document.getElementById("s-partners"); if(!sc||!sc.querySelector(".team")) return;
+  const SL={a:[90,10],b:[60,40],c:[30,70]}, f1=v=>(Math.round(v*10)/10)+"%";
+  const rows=[...sc.querySelectorAll(".tt-r")], tg=document.getElementById("teamRisk");
+  function setRisk(r){
+    [...tg.children].forEach(b=>b.classList.toggle("on",b.dataset.r===r));
+    document.getElementById("tmEq").textContent=SL[r][0]+"%"; document.getElementById("tmFi").textContent=SL[r][1]+"%";
+    sc.querySelectorAll("[data-eq]").forEach(e=>e.textContent="股票 "+f1(SL[r][0]*e.dataset.eq/100));
+    sc.querySelectorAll("[data-fi]").forEach(e=>e.textContent="债券 "+f1(SL[r][1]*e.dataset.fi/100));
+  }
+  tg.addEventListener("click",e=>{ const b=e.target.closest("button"); if(b) setRisk(b.dataset.r); });
+  // 空格：全部 → 股票策略 → 债券策略
+  const MODE=["","eq","fi"];
+  seq(sc,3,i=>{ const m=MODE[i]; sc.querySelector(".team__tab").classList.toggle("focus",!!m);
+    rows.forEach(r=>{ const k=r.dataset.k; r.classList.toggle("hl", !!m && (k===m||k==="both")); });
+    sc.querySelectorAll(".tt-p em").forEach(e=>e.classList.toggle("dim", !!m && !e.classList.contains(m))); });
+  setRisk("a");
+})();
+
 /* ───── ELITE 策略轮：8 家管理人 · 9 个策略（空格逐个看） ───── */
 (function(){
   const svg=document.getElementById("ch-wheel"); if(!svg) return;
@@ -3778,35 +3872,71 @@ document.addEventListener("click",e=>{
   seq(sc,c.length,i=>c.forEach((e,j)=>hid(e,j>i)));
 })();
 
-/* 家庭的钱，也需要分散风险：金字塔从下往上逐层出现 */
+/* 家庭的钱，也需要分散风险：立体金字塔，从下往上逐层出现 */
 (function(){
   const svg=document.getElementById("ch-pyr"); if(!svg) return;
-  const A=[250,16], FL=[24,462], FR=[392,462], BR=[512,418];
-  const E=(P,t)=>[A[0]+(P[0]-A[0])*t, A[1]+(P[1]-A[1])*t], pt=p=>p[0].toFixed(1)+","+p[1].toFixed(1);
-  el("ellipse",{cx:282,cy:470,rx:262,ry:16,class:"pyr-shadow"},svg);
-  // 01 在最下面；[起点, 终点, 正面颜色, 侧面颜色]
-  const L=[[0.83,1,"#1E3A5F","#132941"],[0.645,0.81,"#365A7E","#26445F"],[0.46,0.625,"#6588A8","#4A6B89"],[0.265,0.44,"#C9A25C","#9A783A"],[0,0.245,"#DFBB6A","#AF893D"]];
-  const gs=L.map(([t0,t1,cf,cs],i)=>{
-    const g=el("g",{class:"pl",role:"button",tabindex:"0","aria-label":"第 "+(i+1)+" 层"},svg);
-    const front=t0===0?[A,E(FR,t1),E(FL,t1)]:[E(FL,t0),E(FR,t0),E(FR,t1),E(FL,t1)];
-    const side=t0===0?[A,E(BR,t1),E(FR,t1)]:[E(FR,t0),E(BR,t0),E(BR,t1),E(FR,t1)];
-    el("polygon",{points:front.map(pt).join(" "),fill:cf},g);
-    el("polygon",{points:side.map(pt).join(" "),fill:cs},g);
-    const tm=t0===0?t1*.7:(t0+t1)/2, y=E(FL,tm)[1], x=(E(FL,tm)[0]+E(FR,tm)[0])/2;
-    tx(x,y+13,"0"+(i+1),"pyn",{"text-anchor":"middle","font-size":t0===0?"30":"38",fill:"#FBF6EC"},g);
-    return g;
-  });
+  const VW=600, VH=600;
+  const TH=24*Math.PI/180, PH=14*Math.PI/180, Wd=1, Hh=2.45, GAP=.06;
+  const P0=(x,y,z)=>{ const xr=x*Math.cos(TH)-z*Math.sin(TH), zr=x*Math.sin(TH)+z*Math.cos(TH); return [xr, -(y*Math.cos(PH)-zr*Math.sin(PH))]; };
+  // 自动缩放：金字塔放在左侧 [14, VW-120]，上下 [10, VH-30]
+  const cs=[]; [-1,1].forEach(a=>[-1,1].forEach(b=>cs.push(P0(a*Wd,0,b*Wd)))); cs.push(P0(0,Hh,0));
+  const mnx=Math.min(...cs.map(c=>c[0])), mxx=Math.max(...cs.map(c=>c[0])), mny=Math.min(...cs.map(c=>c[1])), mxy=Math.max(...cs.map(c=>c[1]));
+  const S=Math.min((VW-104)/(mxx-mnx),(VH-40)/(mxy-mny)), OX=14-mnx*S, OY=VH-30-mxy*S;
+  const P=(x,y,z)=>{ const q=P0(x,y,z); return [OX+S*q[0], OY+S*q[1]]; };
+  const w=y=>Wd*(1-y/Hh), pt=p=>p[0].toFixed(1)+","+p[1].toFixed(1);
+  // 渐变与阴影
+  const defs=el("defs",{},svg);
+  const C=[ // 01 → 05：正面上/下、侧面上/下、顶面
+    ["#2B4D74","#16304F","#142A45","#0D1F35","#4B6E95"],
+    ["#3E668E","#264B71","#203F60","#173250","#6B8DB2"],
+    ["#86A6C3","#5F84A6","#577A99","#3F5F7E","#B7CCDE"],
+    ["#E2BD72","#B98B3F","#A57A35","#7E5B25","#F3DCA5"],
+    ["#F0D38E","#CDA155","#B88D45","#8F6A2E","#FAEBC4"]];
+  const lg=(id,a,b,x2,y2)=>{ const g=el("linearGradient",{id,x1:0,y1:0,x2,y2},defs); el("stop",{offset:"0","stop-color":a},g); el("stop",{offset:"1","stop-color":b},g); };
+  C.forEach((c,k)=>{ lg("pf"+k,c[0],c[1],.35,1); lg("ps"+k,c[2],c[3],.2,1); });
+  const sh=el("filter",{id:"pyrBlur",x:"-20%",y:"-80%",width:"140%",height:"260%"},defs); el("feGaussianBlur",{stdDeviation:"10"},sh);
+  const lglow=el("linearGradient",{id:"pyrShine",x1:0,y1:0,x2:1,y2:0},defs); [["0",".0"],[".45",".28"],["1",".0"]].forEach(([o,a])=>el("stop",{offset:o,"stop-color":"#FFFFFF","stop-opacity":a},lglow));
+  // 地面阴影
+  const b0=P(-Wd,0,Wd), b1=P(Wd,0,Wd), b2=P(Wd,0,-Wd);
+  el("ellipse",{cx:(b0[0]+b2[0])/2+18,cy:b1[1]+6,rx:(b2[0]-b0[0])/2+30,ry:20,class:"pyr-shadow",filter:"url(#pyrBlur)"},svg);
+  const step=Hh/5, layers=[], gLines=el("g",{class:"pyl"},svg);
+  for(let k=0;k<5;k++){
+    const yb=k*step+(k?GAP/2:0), yt=(k+1)*step-(k<4?GAP/2:0), wb=w(yb), wt=w(yt);
+    const g=el("g",{class:"pl",role:"button",tabindex:"0","aria-label":"第 "+(k+1)+" 层"},svg);
+    const FL=P(-wb,yb,wb), FR=P(wb,yb,wb), BR=P(wb,yb,-wb), tFL=P(-wt,yt,wt), tFR=P(wt,yt,wt), tBR=P(wt,yt,-wt), tBL=P(-wt,yt,-wt);
+    if(k<4) el("polygon",{points:[tFL,tFR,tBR,tBL].map(pt).join(" "),fill:C[k][4]},g);
+    el("polygon",{points:[FR,BR,tBR,tFR].map(pt).join(" "),fill:"url(#ps"+k+")"},g);
+    el("polygon",{points:[FL,FR,tFR,tFL].map(pt).join(" "),fill:"url(#pf"+k+")"},g);
+    el("polygon",{points:[FL,FR,tFR,tFL].map(pt).join(" "),fill:"url(#pyrShine)",opacity:k>=3?".9":".45"},g);
+    if(k<4) el("line",{x1:tFL[0],y1:tFL[1],x2:tFR[0],y2:tFR[1],stroke:"#FFF7E6","stroke-opacity":".55","stroke-width":1.2},g);
+    // 数字放在正面中间
+    const ym=(FL[1]+tFL[1])/2, xm=(FL[0]+FR[0]+tFL[0]+tFR[0])/4, fs=Math.min(46,(FL[1]-tFL[1])*.46);
+    const t=el("text",{x:xm.toFixed(1),y:(ym+(k<4?fs*.36:fs*.62)).toFixed(1),"text-anchor":"middle",class:"pyn",fill:"#FBF6EC"},g); t.textContent="0"+(k+1); t.style.fontSize=(k<4?fs:fs*.92)+"px";
+    // 引线：从侧面外缘中点画到右边
+    const yL=k<4?ym:FL[1]-(FL[1]-tFL[1])*.32, xR=Math.max(BR[0],tBR[0])-(BR[0]-tBR[0])*(yL-BR[1])/(tBR[1]-BR[1]||1);
+    const ln=el("polyline",{points:"",class:"pyl-l",fill:"none"},gLines);
+    layers.push({g,ln,y:yL,x:xR+12});
+  }
   const sc=svg.closest(".scene"), items=[...sc.querySelectorAll(".pyr__list li")], take=document.getElementById("pyrTake");
+  // 引线：从每一层水平拉出，最后一段对准右边那一项的中线
+  function wire(){
+    const r=svg.getBoundingClientRect(); if(!r.height) return; const k=VH/r.height;
+    layers.forEach((L,i)=>{ const li=items.find(e=>+e.dataset.l===i+1); if(!li) return; const q=li.getBoundingClientRect();
+      const ty=Math.max(4,Math.min(VH-4,(q.top+q.height/2-r.top)*k)), xe=VW-34;
+      L.ln.setAttribute("points",L.x.toFixed(1)+","+L.y.toFixed(1)+" "+xe+","+L.y.toFixed(1)+" "+VW+","+ty.toFixed(1)); });
+  }
+  wire(); addEventListener("resize",wire); if(window.ResizeObserver) new ResizeObserver(wire).observe(sc.querySelector(".pyr"));
+  if(document.fonts&&document.fonts.ready) document.fonts.ready.then(wire);
   // i：0 = 只有轮廓；1–5 = 第 1–5 层；6 = 全部 + 结论
   function show(i){
-    gs.forEach((g,k)=>{ const l=k+1; g.style.opacity= i===0?".16": i>5?"1": l===i?"1": l<i?".5":".1"; });
+    layers.forEach(({g,ln},k)=>{ const l=k+1; const o= i===0?".14": i>5?"1": l===i?"1": l<i?".55":".1"; g.style.opacity=o; ln.style.opacity= i>5||l===i?"1": l<i?".45":"0"; });
     items.forEach(li=>{ const l=+li.dataset.l; hid(li, i<=5 && l>i); li.classList.toggle("on", i>=1 && i<=5 && l===i); });
     hid(take,i<6);
   }
-  function pick(l){ gs.forEach((g,k)=>g.style.opacity=k+1===l?"1":".4"); items.forEach(li=>li.classList.toggle("on",+li.dataset.l===l)); }
-  gs.forEach((g,k)=>{ g.addEventListener("click",()=>pick(k+1)); g.addEventListener("keydown",e=>{ if(e.key==="Enter"){ e.preventDefault(); pick(k+1); } }); });
+  function pick(l){ layers.forEach(({g,ln},k)=>{ g.style.opacity=k+1===l?"1":".4"; ln.style.opacity=k+1===l?"1":".3"; }); items.forEach(li=>li.classList.toggle("on",+li.dataset.l===l)); }
+  layers.forEach(({g},k)=>{ g.addEventListener("click",()=>pick(k+1)); g.addEventListener("keydown",e=>{ if(e.key==="Enter"){ e.preventDefault(); pick(k+1); } }); });
   items.forEach(li=>li.addEventListener("click",()=>pick(+li.dataset.l)));
-  seq(sc,7,show);
+  seq(sc,7,i=>{ show(i); wire(); });
   show(6);
 })();
 
