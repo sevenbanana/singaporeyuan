@@ -1720,6 +1720,32 @@ html.light .qa__asks span{background:var(--l-card);border-color:var(--l-line);co
 .exa-tab th small{display:block;font-size:.7rem;font-weight:600;opacity:.75;margin-top:2px}
 .adv3__c:not(.bh) .adv__bars i{transform:scaleX(1)}
 html.light .adv3__c .adv__bars em{color:var(--l-sub)}
+/* 家庭的钱，也需要分散风险：金字塔 */
+.pyr{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:clamp(16px,3vw,44px);align-items:center;margin-top:6px}
+@media(max-width:900px){html:not(.deck) .pyr{grid-template-columns:minmax(0,1fr)}}
+.pyr__fig svg{width:100%;height:auto;display:block}
+html.deck .pyr__fig svg{max-height:calc(100vh - 360px);margin:0 auto}
+#ch-pyr .pl{cursor:pointer;transition:opacity .45s ease}
+#ch-pyr .pyn{font-family:Georgia,"Times New Roman",serif;letter-spacing:.04em}
+#ch-pyr .pyr-shadow{fill:rgba(0,0,0,.32)}
+html.light #ch-pyr .pyr-shadow{fill:rgba(30,42,94,.1)}
+.pyr__list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
+.pyr__list li{display:grid;grid-template-columns:52px minmax(0,1fr);gap:10px;padding:11px 14px;border-bottom:1px solid rgba(214,169,76,.3);border-radius:12px;cursor:pointer;transition:background .3s ease}
+.pyr__list li:last-child{border-bottom:0}
+.pyr__list li>span{font-family:Georgia,"Times New Roman",serif;font-size:1.65rem;line-height:1.1;color:var(--gold)}
+.pyr__list h3{font-size:1.18rem}
+.pyr__list h3 em{font-style:normal;font-size:.7rem;font-weight:800;letter-spacing:.04em;margin-left:10px;padding:2px 10px;border-radius:999px;border:1px solid rgba(214,169,76,.55);color:var(--gold);vertical-align:3px}
+.pyr__list .ex{font-size:.98rem;margin-top:3px;color:#DCE6EE}
+.pyr__list .nt{font-size:.84rem;margin-top:2px;color:var(--mist)}
+.pyr__list li.on{background:rgba(214,169,76,.13)}
+.pyr__take{margin-top:12px;border-top:1px solid rgba(214,169,76,.55);padding-top:12px;font-size:clamp(1.2rem,2.2vw,1.65rem);font-weight:900;letter-spacing:.04em;color:var(--paper)}
+html.light .pyr__list li{border-bottom-color:var(--l-line)}
+html.light .pyr__list li>span,html.light .pyr__list h3 em{color:var(--l-gold)}
+html.light .pyr__list h3 em{border-color:rgba(176,122,38,.5)}
+html.light .pyr__list .ex{color:var(--l-ink)}
+html.light .pyr__list .nt{color:var(--l-sub)}
+html.light .pyr__list li.on{background:rgba(176,122,38,.09)}
+html.light .pyr__take{color:var(--l-ink);border-top-color:var(--l-gold)}
 </style>
 <style>.deckbar a{display:inline-flex;align-items:center;height:36px;padding:0 12px;border-radius:999px;color:var(--paper);text-decoration:none;font-weight:600}.deckbar a:hover{background:rgba(244,238,225,.1)}html.light .deckbar a{color:inherit}</style>
 </head>
@@ -2190,6 +2216,27 @@ body.locked #pwGate{display:flex}
       </div>
     </div>
     <p class="src rise">示意分类。越接近用钱的时间，越要选价格稳定的工具；具体配置需结合家庭情况完整分析后确定。</p>
+  </div>
+</section>
+
+<section class="scene" id="s-pyramid" data-title="按风险分层" data-tint="#10314E">
+  <div class="inner">
+    <p class="eyebrow rise">Family asset allocation</p>
+    <h2 class="h-sec rise" style="--d:.06s">家庭的钱，也需要分散风险</h2>
+    <div class="rule rise" style="--d:.1s"></div>
+    <p class="lede rise" style="--d:.12s;margin-top:0">不同用途的钱，承担不同程度的风险。</p>
+    <div class="pyr">
+      <div class="pyr__fig rise" style="--d:.14s"><svg id="ch-pyr" viewBox="0 0 560 500" role="img" aria-label="家庭资产按风险分五层的金字塔：01 基础储备、02 稳健配置、03 多元股债投资、04 股票主导投资、05 集中与投机，越往上风险越高"></svg></div>
+      <ol class="pyr__list">
+        <li data-l="5"><span>05</span><div><h3>集中与投机</h3><p class="ex">集中个股、窄行业主题、杠杆及加密资产</p><p class="nt">控制金额，不影响家庭生活与长期计划</p></div></li>
+        <li data-l="4"><span>04</span><div><h3>股票主导投资<em>本场的 ELITE 进取</em></h3><p class="ex">全球股票基金、宽基股票 ETF</p><p class="nt">争取长期增长，承受较大的市场波动</p></div></li>
+        <li data-l="3"><span>03</span><div><h3>多元股债投资<em>本场的 GAIF</em></h3><p class="ex">股债混合基金、多资产收益基金</p><p class="nt">股债搭配、追求收益，仍有本金亏损风险</p></div></li>
+        <li data-l="2"><span>02</span><div><h3>稳健配置</h3><p class="ex">优质短债、符合期限需求的储蓄型保险等</p><p class="nt">按信用质量、保证利益及持有期限选择</p></div></li>
+        <li data-l="1"><span>01</span><div><h3>基础储备</h3><p class="ex">CPF、存款、SSB、T-bills、货币基金*</p><p class="nt">CPF 提取受限，应急现金另外留足</p></div></li>
+      </ol>
+    </div>
+    <div class="pyr__take" id="pyrTake">守住生活所需，再给长期增长留出空间</div>
+    <p class="src rise">CPF 基础利率（2026 年第四季度）：OA 2.5%，SA / MA / RA 4%；后者 4% 保底至 2027 年底。资料来源 CPF Board、MoneySense。*货币基金不保本，保单提前退保可能亏损。分层仅作示意，同层风险亦有差别，具体取决于持仓、期限及条款；面积不代表配置比例。</p>
   </div>
 </section>
 
@@ -3696,6 +3743,38 @@ document.addEventListener("click",e=>{
   const sc=document.getElementById("s-adv"); if(!sc) return;
   const c=[...sc.querySelectorAll(".adv3__c")];
   seq(sc,c.length,i=>c.forEach((e,j)=>hid(e,j>i)));
+})();
+
+/* 家庭的钱，也需要分散风险：金字塔从下往上逐层出现 */
+(function(){
+  const svg=document.getElementById("ch-pyr"); if(!svg) return;
+  const A=[250,16], FL=[24,462], FR=[392,462], BR=[512,418];
+  const E=(P,t)=>[A[0]+(P[0]-A[0])*t, A[1]+(P[1]-A[1])*t], pt=p=>p[0].toFixed(1)+","+p[1].toFixed(1);
+  el("ellipse",{cx:282,cy:470,rx:262,ry:16,class:"pyr-shadow"},svg);
+  // 01 在最下面；[起点, 终点, 正面颜色, 侧面颜色]
+  const L=[[0.83,1,"#1E3A5F","#132941"],[0.645,0.81,"#365A7E","#26445F"],[0.46,0.625,"#6588A8","#4A6B89"],[0.265,0.44,"#C9A25C","#9A783A"],[0,0.245,"#DFBB6A","#AF893D"]];
+  const gs=L.map(([t0,t1,cf,cs],i)=>{
+    const g=el("g",{class:"pl",role:"button",tabindex:"0","aria-label":"第 "+(i+1)+" 层"},svg);
+    const front=t0===0?[A,E(FR,t1),E(FL,t1)]:[E(FL,t0),E(FR,t0),E(FR,t1),E(FL,t1)];
+    const side=t0===0?[A,E(BR,t1),E(FR,t1)]:[E(FR,t0),E(BR,t0),E(BR,t1),E(FR,t1)];
+    el("polygon",{points:front.map(pt).join(" "),fill:cf},g);
+    el("polygon",{points:side.map(pt).join(" "),fill:cs},g);
+    const tm=t0===0?t1*.7:(t0+t1)/2, y=E(FL,tm)[1], x=(E(FL,tm)[0]+E(FR,tm)[0])/2;
+    tx(x,y+13,"0"+(i+1),"pyn",{"text-anchor":"middle","font-size":t0===0?"30":"38",fill:"#FBF6EC"},g);
+    return g;
+  });
+  const sc=svg.closest(".scene"), items=[...sc.querySelectorAll(".pyr__list li")], take=document.getElementById("pyrTake");
+  // i：0 = 只有轮廓；1–5 = 第 1–5 层；6 = 全部 + 结论
+  function show(i){
+    gs.forEach((g,k)=>{ const l=k+1; g.style.opacity= i===0?".16": i>5?"1": l===i?"1": l<i?".5":".1"; });
+    items.forEach(li=>{ const l=+li.dataset.l; hid(li, i<=5 && l>i); li.classList.toggle("on", i>=1 && i<=5 && l===i); });
+    hid(take,i<6);
+  }
+  function pick(l){ gs.forEach((g,k)=>g.style.opacity=k+1===l?"1":".4"); items.forEach(li=>li.classList.toggle("on",+li.dataset.l===l)); }
+  gs.forEach((g,k)=>{ g.addEventListener("click",()=>pick(k+1)); g.addEventListener("keydown",e=>{ if(e.key==="Enter"){ e.preventDefault(); pick(k+1); } }); });
+  items.forEach(li=>li.addEventListener("click",()=>pick(+li.dataset.l)));
+  seq(sc,7,show);
+  show(6);
 })();
 
 /* 收尾：三个问题逐个出现 */
