@@ -1687,6 +1687,39 @@ html.deck .wheel-scroll::after{display:none}
 html.deck .wheel-scroll #ch-wheel{min-width:0}
 .gfunds{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
 @media(max-width:700px){html:not(.deck) .gfunds{grid-template-columns:minmax(0,1fr)}}
+/* v8：GPT 反馈后 */
+.q1legend i.altkey{background:none;border-top:2px dotted #E9917C;height:0;border-radius:0}
+.adv3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:8px}
+@media(max-width:900px){html:not(.deck) .adv3{grid-template-columns:minmax(0,1fr)}}
+.adv3__c{position:relative;border-radius:20px;padding:20px 22px;border-top:3px solid var(--gold);background:rgba(255,255,255,.04);border-left:1px solid rgba(244,238,225,.12);border-right:1px solid rgba(244,238,225,.12);border-bottom:1px solid rgba(244,238,225,.12)}
+.adv3__c>svg{width:44px;height:44px;color:var(--gold)}
+.adv3__c>span{position:absolute;right:18px;top:14px;font-size:2rem;font-weight:800;color:rgba(214,169,76,.25)}
+.adv3__c h3{font-size:1.2rem;margin-top:8px}
+.adv3__c ul{margin:10px 0 0;padding-left:1.1em;display:flex;flex-direction:column;gap:6px}
+.adv3__c li{font-size:.92rem;line-height:1.6;color:#C3D3E0}
+.adv3__c .adv__bars{margin-top:8px}
+.adv3__c p.adv__fine{margin-top:10px;font-size:.82rem;color:#E2C48A}
+html.light .adv3__c{background:var(--l-card);border-color:var(--l-line);border-top-color:var(--l-gold)}
+html.light .adv3__c>svg{color:var(--l-gold)}
+html.light .adv3__c li{color:var(--l-sub)}
+html.light .adv3__c p.adv__fine{color:var(--l-gold)}
+.wrap3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:10px}
+@media(max-width:900px){html:not(.deck) .wrap3{grid-template-columns:minmax(0,1fr)}}
+.wq{border-radius:20px;padding:24px 24px 22px;background:linear-gradient(160deg,var(--card-l1),var(--card-l2));border:1px solid var(--card-line);color:var(--ink)}
+.wq span{display:block;font-size:2.4rem;font-weight:800;line-height:1;color:#B07A26}
+.wq h3{font-size:1.3rem;line-height:1.45;margin-top:14px}
+.wq p{font-size:.95rem;line-height:1.65;margin-top:8px;color:#3D4A6B}
+.wrap-say{margin-top:22px;border-left:3px solid var(--gold);padding:12px 18px;font-size:1.1rem;line-height:1.7;background:rgba(214,169,76,.1);border-radius:0 14px 14px 0;color:#DCE6EE}
+html.light .wq{background:var(--l-card);border-color:var(--l-line);color:var(--l-ink)}
+html.light .wq span{color:var(--l-gold)}
+html.light .wq p{color:var(--l-sub)}
+html.light .wrap-say{background:rgba(176,122,38,.08);border-left-color:var(--l-gold);color:var(--l-ink)}
+.qa__asks{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:16px}
+.qa__asks span{border-radius:999px;padding:8px 18px;font-weight:700;font-size:1rem;background:rgba(255,255,255,.06);border:1px solid rgba(244,238,225,.25);color:#DCE6EE}
+html.light .qa__asks span{background:var(--l-card);border-color:var(--l-line);color:var(--l-ink)}
+.exa-tab th small{display:block;font-size:.7rem;font-weight:600;opacity:.75;margin-top:2px}
+.adv3__c:not(.bh) .adv__bars i{transform:scaleX(1)}
+html.light .adv3__c .adv__bars em{color:var(--l-sub)}
 </style>
 <style>.deckbar a{display:inline-flex;align-items:center;height:36px;padding:0 12px;border-radius:999px;color:var(--paper);text-decoration:none;font-weight:600}.deckbar a:hover{background:rgba(244,238,225,.1)}html.light .deckbar a{color:inherit}</style>
 </head>
@@ -3005,7 +3038,7 @@ function redraw(p){ // 切换后重新播放描线动画
   function draw(){
     if(sel<0){
       card.innerHTML='<div class="wc-ov"><b class="wc-big">ELITE</b><span class="wc-mix">'+RN[risk]+' · 股 '+SL[risk][0]+' · 债 '+SL[risk][1]+'</span>'+
-        '<p>8 家管理人 · 9 个策略</p><div class="wc-why"><span><b>严选</b>业绩经过验证的全球资产管理公司</span><span><b>分散</b>股票 6 种风格，债券 3 种，各管一块</span></div></div>';
+        '<p>8 家管理人 · 9 个策略</p><div class="wc-why"><span><b>分工</b>有的挑股票，有的管债券，地区和方法各不相同</span><span><b>分散</b>股票 6 种风格、债券 3 种，不押一家</span></div></div>';
     } else {
       const s=S[sel];
       card.innerHTML='<div class="wc-s"><div class="wc-tag '+(s.eq?"eq":"fi")+'">'+(s.eq?"股票策略":"债券策略")+' · '+RN[risk]+'配置 '+f1(w(s,risk))+'%</div>'+
@@ -3017,8 +3050,9 @@ function redraw(p){ // 切换后重新播放描线动画
   document.getElementById("wheelRisk").addEventListener("click",e=>{ const b=e.target.closest("button"); if(b) setRisk(b.dataset.r); });
   nodes.forEach((n,i)=>{ const v=w(S[i],risk); n.t.textContent=f1(v)+"%"; });
   layout(); setRisk("a"); pick(-1);
-  // 空格：总览 → 9 个策略逐个看
-  seq(svg.closest(".scene"),10,i=>pick(i-1));
+  // 空格：总览 → 三家代表（基本面选股、量化选股、公司债），其余点圆圈看
+  const REP=[-1,0,3,7];
+  seq(svg.closest(".scene"),REP.length,i=>pick(REP[i]));
 })();
 
 /* ───── 七年怎么管：逐年时间轴 ───── */
@@ -3411,31 +3445,31 @@ function redraw(p){ // 切换后重新播放描线动画
   const Z=[[1,40,65300,4700,4700],[2,41,122900,8900,13700],[3,42,178900,13000,26700],[4,43,230000,16700,43400],[5,44,279200,20300,63700],[6,45,268700,19500,83300],[7,46,258700,18800,102100],[8,47,260200,18200,120300],[9,48,261700,18300,138600],[10,49,263200,18400,157000],[11,50,264700,18500,175500],[12,51,264700,18500,194100],[13,52,264700,18500,212600],[14,53,264700,18500,231100],[15,54,264700,18500,249700],[16,55,264700,18500,268200],[17,56,264700,18500,286700],[18,57,264700,18500,305200],[19,58,264700,18500,323800],[20,59,264700,18500,342300],[21,60,264700,18500,360800],[22,61,264700,18500,379300],[23,62,264700,18500,397900],[24,63,264700,18500,416400],[25,64,264700,18500,434900],[26,65,264700,18500,453400],[27,66,264700,18500,472000],[28,67,264700,18500,490500],[29,68,264700,18500,509000],[30,69,264700,18500,527600],[31,70,264700,18500,546100],[32,71,264700,18500,564600],[33,72,264700,18500,583100],[34,73,264700,18500,601700],[35,74,264700,18500,620200],[36,75,264700,18500,638700],[37,76,264700,18500,657200],[38,77,264700,18500,675800],[39,78,264700,18500,694300],[40,79,264700,18500,712800],[41,80,264700,18500,731300],[42,81,264700,18500,749900],[43,82,264700,18500,768400],[44,83,264700,18500,786900],[45,84,264700,18500,805400],[46,85,264700,18500,824000],[47,86,264700,18500,842500],[48,87,264700,18500,861000],[49,88,264700,18500,879600],[50,89,264700,18500,898100],[51,90,264700,18500,916600],[52,91,264700,18500,935100],[53,92,264700,18500,953700],[54,93,264700,18500,972200],[55,94,264700,18500,990700],[56,95,264700,18500,1009200],[57,96,264700,18500,1027800],[58,97,264700,18500,1046300],[59,98,264700,18500,1064800],[60,99,264700,18500,1083300],[61,100,264700,18500,1101900]];   // [保单年度, 年龄, 保单价值, 当年分红, 累计分红]：GAIF 0 增长、分红 7%，按 BI 费用推算
   const E=[69500,135400,203800,270900,339900,349200,358700,384900,413000,443000,475100,507800,542800,580200,620300,663100,709000,758000,810500,866600,926600,990900,1059600,1133100,1211700];   // ELITE：PWV 3.0 BI 8%，第 1–25 年末保单价值（含 Q4 加送本金），对应 41–65 岁
   const V=E[24], DV=Math.round(V*.07);
-  const Wd=720,Ht=370,L=62,R=106,T=20,B=38, top=4500000;
-  const x=a=>L+(a-40)/60*(Wd-L-R), y=v=>Ht-B-v/top*(Ht-T-B);
-  [0,1000000,2000000,3000000,4000000].forEach(v=>{ el("line",{class:v?"gl":"ax",x1:L,x2:Wd-R,y1:y(v),y2:y(v)},svg); tx(L-8,y(v)+5,v?(v/10000)+" 万":"0","tick",{"text-anchor":"end","font-size":"13"},svg); });
-  [40,50,60,65,70,80,90,100].forEach(a=>tx(x(a),Ht-B+22,a===100?"100 岁":String(a),"tick",{"text-anchor":"middle","font-size":"13"},svg));
+  const Wd=720,Ht=370,L=62,R=106,T=20,B=38, top=3200000, A1=85;
+  const x=a=>L+(a-40)/(A1-40)*(Wd-L-R), y=v=>Ht-B-v/top*(Ht-T-B);
+  [0,1000000,2000000,3000000].forEach(v=>{ el("line",{class:v?"gl":"ax",x1:L,x2:Wd-R,y1:y(v),y2:y(v)},svg); tx(L-8,y(v)+5,v?(v/10000)+" 万":"0","tick",{"text-anchor":"end","font-size":"13"},svg); });
+  [40,50,60,65,70,75,80,85].forEach(a=>tx(x(a),Ht-B+22,a===A1?"85 岁":String(a),"tick",{"text-anchor":"middle","font-size":"13"},svg));
   el("line",{x1:x(65),x2:x(65),y1:T,y2:Ht-B,stroke:"rgba(214,169,76,.55)","stroke-width":1.4,"stroke-dasharray":"4 4"},svg);
   tx(x(65)-6,T+14,"65 岁退休 · 转分红基金","tick",{"text-anchor":"end","font-size":"12.5",fill:"#E2C48A"},svg);
   const P=pts=>pts.map((p,i)=>(i?"L":"M")+x(p[0]).toFixed(1)+" "+y(p[1]).toFixed(1)).join(" ");
-  const dT=Z.map(r=>[r[1],r[2]+r[4]]), dC=Z.map(r=>[r[1],r[4]]);
+  const Zc=Z.filter(r=>r[1]<=A1), dT=Zc.map(r=>[r[1],r[2]+r[4]]), dC=Zc.map(r=>[r[1],r[4]]);
   const gA=[[40,0]].concat(E.map((v,i)=>[41+i,v]));
-  const gB=[], gC=[]; for(let a=65;a<=100;a++){ gB.push([a,V+DV*(a-65)]); gC.push([a,DV*(a-65)]); }
+  const gB=[], gC=[]; for(let a=65;a<=A1;a++){ gB.push([a,V+DV*(a-65)]); gC.push([a,DV*(a-65)]); }
   const mk=(d,c,w,dash)=>el("path",{class:"ln",d:d,stroke:c,"stroke-width":w,"stroke-dasharray":dash||null},svg);
   const pdC=mk(P(dC),"#8DB9E2",2,"5 5"), pdT=mk(P(dT),"#8DB9E2",3.2);
   const pgC=mk(P(gC),"#D6A94C",2,"5 5"), pgA=mk(P(gA),"#D6A94C",3.6), pgB=mk(P(gB),"#D6A94C",3.6);
   const lab=(g,xx,yy,t,c,anc)=>tx(xx,yy,t,"val",{"font-size":"15",fill:c,"text-anchor":anc||"start"},g);
-  const m0=el("g",{class:"mk"},svg); lab(m0,x(100)+6,y(dT[dT.length-1][1])+5,"S$"+(dT[dT.length-1][1]/10000).toFixed(1)+" 万","#BFD7EE");
+  const m0=el("g",{class:"mk"},svg); lab(m0,x(A1)+6,y(dT[dT.length-1][1])+5,"S$"+(dT[dT.length-1][1]/10000).toFixed(1)+" 万","#BFD7EE");
   const m1=el("g",{class:"mk"},svg); el("circle",{cx:x(65),cy:y(V),r:6,fill:"#D6A94C",stroke:"#0B1E31","stroke-width":2},m1); lab(m1,x(65)-10,y(V)-10,"S$"+(V/10000).toFixed(1)+" 万","#D6A94C","end");
-  const m2=el("g",{class:"mk"},svg); const gEnd=gB[gB.length-1][1]; lab(m2,x(100)+6,y(gEnd)+5,"S$"+(gEnd/10000).toFixed(1)+" 万","#D6A94C");
+  const m2=el("g",{class:"mk"},svg); const gEnd=gB[gB.length-1][1]; lab(m2,x(A1)+6,y(gEnd)+5,"S$"+(gEnd/10000).toFixed(1)+" 万","#D6A94C");
   function vis(p,on,anim){ if(!on){ p.style.transition="none"; p.style.opacity="0"; return; } p.style.opacity="1"; if(anim) redraw(p); else { p.style.transition="none"; p.style.strokeDasharray=p.getAttribute("stroke-dasharray")||"none"; p.style.strokeDashoffset="0"; } }
   const dash=[pdC,pgC]; // 虚线不做描线动画，只淡入
   function show(p,on,anim){ if(dash.includes(p)){ p.style.transition="opacity .6s ease"; p.style.opacity=on?"1":"0"; } else vis(p,on,anim); }
   const tab=document.getElementById("exaTab"), cells=[...tab.querySelectorAll("[data-k]")], say=document.getElementById("exaSay");
-  const SAY=["<b>直接领</b>：第 1 年起每季就有分红，65 岁前已经领到约 S$45 万。适合现在就需要现金流的人。",
-             "<b>先增值</b>：40–65 岁一分不领，让钱在 ELITE 里滚。65 岁时保单价值约 S$121 万。",
-             "65 岁转到分红基金，每年领 <b>S$84,819</b>（每月约 S$7,068），是直接领的 4.6 倍。",
-             "差别不在产品，在用法：<b>不急用的钱先滚大，要用的时候再领。</b>两条路都可以，看这笔钱什么时候要用。"];
+  const SAY=["<b>现在开始领</b>：第 1 年起按季派息，按 7% 假设派息率，到 65 岁前累计约 S$45 万。适合现在就需要这笔收入的人。",
+             "<b>退休再领</b>：40–65 岁先不领，留在增长型 ELITE 里。按 BI 8% 假设回报，65 岁时保单价值约 S$121 万；回报更低时会少很多。",
+             "65 岁转到分红型基金，按 7% 假设派息率，每年约 <b>S$84,819</b>（每月约 S$7,068）。代价是前 25 年一分不领。",
+             "两条路没有对错，<b>看这笔钱什么时候要用</b>：现在需要收入，就先领；暂时用不到，可以先累积。"];
   const set=seq(svg.closest(".scene"),4,(i,fwd)=>{
     show(pdT,true,fwd&&i===0); show(pdC,true); m0.style.opacity="1";
     show(pgA,i>=1,fwd&&i===1); m1.style.opacity=i>=1?"1":"0";
@@ -3599,8 +3633,15 @@ document.addEventListener("click",e=>{
 /* 配置的优势：五张卡逐张出现 */
 (function(){
   const sc=document.getElementById("s-adv"); if(!sc) return;
-  const c=[...sc.querySelectorAll(".adv__c")];
+  const c=[...sc.querySelectorAll(".adv3__c")];
   seq(sc,c.length,i=>c.forEach((e,j)=>hid(e,j>i)));
+})();
+
+/* 收尾：三个问题逐个出现 */
+(function(){
+  const sc=document.getElementById("s-wrap"); if(!sc) return;
+  const qs=[...sc.querySelectorAll(".wq")], say=sc.querySelector(".wrap-say");
+  seq(sc,4,i=>{ qs.forEach((q,j)=>hid(q,j>i)); hid(say,i<3); });
 })();
 
 /* 实际的案例：讲故事的现金流图（每月到手金额） */
@@ -3609,7 +3650,7 @@ function storyChart(svg,o){
   const Wd=720,Ht=svg.viewBox.baseVal.height||460,L=58,R=18,T=34,B=40, n=o.a1-o.a0+1, bw=(Wd-L-R)/n;
   const x=a=>L+(a-o.a0)*bw, y=v=>T+(o.hi-v)/(o.hi-o.lo)*(Ht-T-B), at=a=>x(a)+bw/2;
   for(let v=o.lo; v<=o.hi; v+=o.step){ el("line",{class:v?"gl":"ax",x1:L,x2:Wd-R,y1:y(v),y2:y(v)},svg); tx(L-8,y(v)+4,v?(v<0?"−":"")+money(Math.abs(v)):"0","tick",{"text-anchor":"end","font-size":"12"},svg); }
-  tx(6,T-16,"S$ / 月","tick",{"font-size":"11.5"},svg);
+  tx(6,T-16,"S$ / 月（到手金额）","tick",{"font-size":"11.5"},svg);
   for(let a=o.a0;a<=o.a1;a+=5) tx(at(a),Ht-B+20,a===o.a0?a+" 岁":String(a),"tick",{"text-anchor":"middle","font-size":"12"},svg);
   const bars=[], top={};
   o.layers.forEach(s=>s.pts.forEach(([a,v])=>{ if(!v) return; let b0=0; if(v>0){ b0=top[a]||0; top[a]=b0+v; }
@@ -3633,37 +3674,48 @@ function storySteps(sc,n,apply){
   const C1=[[40,3092],[41,6002],[42,5821],[43,5645],[44,5475],[45,5310],[46,5149],[47,5023],[48,5052],[49,5081],[50,5110],[51,5110],[52,5110],[53,5110],[54,5110],[55,5110],[56,5110],[57,5110],[58,5110],[59,5110],[60,5110],[61,5110],[62,5110],[63,5110],[64,5110],[65,5110],[66,5110],[67,5110],[68,5110],[69,5110],[70,5110],[71,5110],[72,5110],[73,5110],[74,5110],[75,5110],[76,5110],[77,5110],[78,5110],[79,5110],[80,5110],[81,5110],[82,5110],[83,5110],[84,5110],[85,5110],[86,5110],[87,5110],[88,5110],[89,5110],[90,5110],[91,5110],[92,5110],[93,5110],[94,5110],[95,5110]].filter(p=>p[0]<=90);
   const c=storyChart(svg,{a0:40,a1:90,lo:0,hi:10000,step:1000,tFrom:40,target:5000,tLabel:"生活费 S$5,000",
     layers:[{c:"#D6A94C",pts:C1.map(p=>[p[0],p[1]])},{c:"#9CC9A6",pts:[[40,5000-C1[0][1]]]},{c:"#8DB9E2",pts:C1.filter(p=>p[0]>=65).map(p=>[p[0],3000])}]});
-  const L=(k,a,v,t,fill,anc,fs)=>c.A(k,g=>tx(c.at(a),c.y(v),t,"lab",{"text-anchor":anc||"middle","font-size":fs||"14",fill:fill||"#F4EEE1"},g));
+  const L=(k,a,v,t,fill,anc,fs)=>c.A(k,g=>tx(c.at(a),c.y(v),t,"lab",{"text-anchor":anc||"middle","font-size":fs||"15",fill:fill||"#F4EEE1"},g));
   L(0,60,7000,"每月 S$5,000，从哪里来？","#E2C48A","middle","19");
-  L(1,40,6200,"第 1 年：分红约 S$3,100 + 现金约 S$1,900","#E2C48A","start","15");
-  L(2,52,6700,"每月分红约 S$5,000–6,000","#E2C48A","middle","15");
-  L(3,77,8700,"+ CPF LIFE：合计约 S$8,000","#BFD7EE","middle","15");
-  L(4,77,9550,"♥ 身故赔付 ≥ 已缴保费 S$100 万","#E2C48A","middle","15"); L(4,77,9000,"做好提名，直接给到孩子","#F4EEE1","middle","13");
-  const R=[[0,-1],[40,40],[41,64],[65,90],[0,0]];
+  L(1,40,6200,"第 1 年：派息约 S$3,100 + 过渡现金约 S$1,900","#E2C48A","start");
+  L(2,52,6700,"按 7% 假设：每月约 S$5,000–6,000","#E2C48A");
+  // 如果派息少了：派息率降到 5% 时的水平
+  const low=5110*5/7;
+  c.A(3,g=>{ el("line",{x1:c.x(41),x2:c.x(65),y1:c.y(low),y2:c.y(low),stroke:"#E9917C","stroke-width":2.2,"stroke-dasharray":"7 5"},g);
+    el("rect",{x:c.x(41),y:c.y(5000),width:c.x(65)-c.x(41),height:c.y(low)-c.y(5000),fill:"rgba(156,201,166,.28)"},g); });
+  L(3,52,6900,"假如派息率降到 5%：每月约 S$"+money(Math.round(low/10)*10),"#F2B7A9");
+  L(3,52,6300,"差额由过渡现金、应急金来补，或先少花一点","#F4EEE1","middle","13.5");
+  L(4,77,8700,"+ CPF LIFE：合计约 S$8,000","#BFD7EE");
+  const R=[[0,-1],[40,40],[41,64],[41,64],[65,90]];
   storySteps(svg.closest(".scene"),5,i=>{ c.ann.forEach((g,k)=>{ if(g) g.style.opacity=k===i?"1":"0"; }); c.stage(R[i][0],R[i][1],i===4); });
 })();
 (function(){
   const svg=document.getElementById("ch-case2"); if(!svg) return;
-  const G=[[36,44515],[37,90752],[38,138763],[39,186005],[40,234617],[41,241421],[42,248422],[43,266751],[44,286349],[45,307304],[46,329710],[47,352546],[48,376964],[49,403072],[50,430989],[51,460839],[52,492757],[53,526885],[54,563377],[55,602397]], V=602397, MD=3514;
+  const G=[[36,44515],[37,90752],[38,138763],[39,186005],[40,234617],[41,241421],[42,248422],[43,266751],[44,286349],[45,307304],[46,329710],[47,352546],[48,376964],[49,403072],[50,430989],[51,460839],[52,492757],[53,526885],[54,563377],[55,602397]], V=602397, MD=3514, G4=[[36,42784],[37,85513],[38,128187],[39,168315],[40,208002],[41,205714],[42,203451],[43,210452],[44,217657],[45,225071],[46,232701],[47,239473],[48,246441],[49,253613],[50,260993],[51,268588],[52,276404],[53,284447],[54,292724],[55,301243]], V4=301243, M4=1757;
   const pin=[],div=[],cpf=[];
   for(let a=35;a<=90;a++){ if(a<=39) pin.push([a,-3500]); if(a>=55) div.push([a,MD]); if(a>=65) cpf.push([a,3200]); }
   const c=storyChart(svg,{a0:35,a1:90,lo:-4000,hi:8000,step:2000,tFrom:55,target:3500,tLabel:"生活费 S$3,500",
     layers:[{c:"#E9917C",pts:pin},{c:"#D6A94C",pts:div},{c:"#8DB9E2",pts:cpf}]});
-  // 35–55 岁：保单价值增长（单独刻度）
+  // 35–55 岁：保单价值（单独刻度，两个情景）
   const gy=v=>c.y(0)-6-v/V*(c.y(0)-c.y(5400));
   const grow=el("g",{style:"transition:opacity .5s ease"},svg);
-  const pts=[[35,0]].concat(G), P=pts.map((p,i)=>(i?"L":"M")+c.at(p[0]).toFixed(1)+" "+gy(p[1]).toFixed(1)).join(" ");
-  el("path",{d:P+" L"+c.at(55)+" "+gy(0)+" L"+c.at(35)+" "+gy(0)+" Z",fill:"rgba(214,169,76,.16)"},grow);
-  el("path",{d:P,stroke:"#D6A94C","stroke-width":2.6,fill:"none","stroke-dasharray":"6 4"},grow);
-  el("circle",{cx:c.at(55),cy:gy(V),r:5,fill:"#D6A94C"},grow);
-  const L=(k,a,v,t,fill,anc,fs)=>c.A(k,g=>tx(c.at(a),c.y(v),t,"lab",{"text-anchor":anc||"middle","font-size":fs||"14",fill:fill||"#F4EEE1"},g));
+  const path=g=>[[35,0]].concat(g).map((p,i)=>(i?"L":"M")+c.at(p[0]).toFixed(1)+" "+gy(p[1]).toFixed(1)).join(" ");
+  el("path",{d:path(G)+" L"+c.at(55)+" "+gy(0)+" L"+c.at(35)+" "+gy(0)+" Z",fill:"rgba(214,169,76,.14)"},grow);
+  el("path",{d:path(G),stroke:"#D6A94C","stroke-width":2.6,fill:"none","stroke-dasharray":"6 4"},grow);
+  el("path",{d:path(G4),stroke:"#E9917C","stroke-width":2.2,fill:"none","stroke-dasharray":"3 4"},grow);
+  el("circle",{cx:c.at(55),cy:gy(V),r:5,fill:"#D6A94C"},grow); el("circle",{cx:c.at(55),cy:gy(V4),r:4.5,fill:"#E9917C"},grow);
+  const L=(k,a,v,t,fill,anc,fs)=>c.A(k,g=>tx(c.at(a),c.y(v),t,"lab",{"text-anchor":anc||"middle","font-size":fs||"15",fill:fill||"#F4EEE1"},g));
   L(0,62,6200,"55 岁起，每月 S$3,500？","#E2C48A","middle","19");
-  L(1,36,-3900,"每月存 S$3,500 × 5 年（共 S$21 万）","#F2B7A9","start");
-  L(2,46,6700,"保单在 ELITE 里增值：55 岁约 S$60 万","#E2C48A","middle","15");
-  L(3,60,4300,"转 GAIF：每月分红约 S$3,500","#E2C48A","middle","15");
-  L(4,77,7350,"+ 两份 CPF LIFE：合计约 S$6,700","#BFD7EE","middle","15");
-  const R=[[0,-1],[35,39],[40,54],[55,64],[0,0]];
-  storySteps(svg.closest(".scene"),5,i=>{ c.ann.forEach((g,k)=>{ if(g) g.style.opacity=k===i?"1":"0"; }); c.stage(R[i][0],R[i][1],i===4); grow.style.opacity=i>=2?(i===2?"1":".55"):"0"; });
+  L(1,36,-3900,"每月留 S$3,500 × 5 年（共 S$21 万）","#F2B7A9","start");
+  L(2,46,6700,"55 岁保单价值：BI 8% 约 S$"+(V/10000).toFixed(0)+" 万 · BI 4% 约 S$"+(V4/10000).toFixed(0)+" 万","#E2C48A","middle","14.5");
+  L(3,60,4500,"BI 8%：每月约 S$"+money(MD),"#E2C48A");
+  L(4,77,7350,"+ 两份 CPF LIFE：每人约 S$1,600","#BFD7EE");
+  // BI 4% 情景的派息水平：从 55 岁起一直显示
+  const alt=el("g",{style:"transition:opacity .4s ease;opacity:0"},svg);
+  el("line",{x1:c.x(55),x2:c.Wd-c.R,y1:c.y(M4),y2:c.y(M4),stroke:"#E9917C","stroke-width":2.2,"stroke-dasharray":"3 4"},alt);
+  tx(c.at(54)-4,c.y(M4)+5,"BI 4%：每月约 S$"+money(Math.round(M4/10)*10),"lab",{"text-anchor":"end","font-size":"14",fill:"#F2B7A9"},alt);
+  const R=[[0,-1],[35,39],[40,54],[55,64],[65,90]];
+  storySteps(svg.closest(".scene"),5,i=>{ c.ann.forEach((g,k)=>{ if(g) g.style.opacity=k===i?"1":"0"; }); c.stage(R[i][0],R[i][1],i===4);
+    grow.style.opacity=i>=2?(i===2?"1":".5"):"0"; alt.style.opacity=i>=3?"1":"0"; });
 })();
 
 /* 三种待遇（附录）：直线上涨 / 稳定上涨 / 波动中上涨 */
