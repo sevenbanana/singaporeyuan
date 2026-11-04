@@ -1475,6 +1475,218 @@ html.light .adv__c p.adv__fine{color:var(--l-gold)}
 #c2Rate button{min-height:32px}
 .cs-nums .tot{grid-template-columns:minmax(0,1fr)}
 .cs-nums .tot b{margin-top:2px}
+/* ═════════════ v7：主讲版第二轮 ═════════════ */
+/* 自我介绍：主页版人像（沙色圆盘 + 金色细环） */
+.me__photo--home{position:relative;overflow:visible;border:0;border-radius:0;background:none;box-shadow:none;aspect-ratio:470/650;height:min(68vh,620px);width:auto;max-width:100%;margin:0 auto}
+.me__photo--home .me__disc,.me__photo--home .me__ring,.me__photo--home .me__dot{position:absolute;border-radius:50%;transform:translate(-50%,-50%);aspect-ratio:1}
+.me__photo--home .me__disc{left:44%;top:60%;width:94%;background:rgba(230,217,191,.8)}
+.me__photo--home .me__ring{left:64%;top:40%;width:81%;border:1px solid rgba(201,165,92,.45)}
+.me__photo--home .me__dot{left:10%;top:14%;width:10%;border:1px solid rgba(201,165,92,.4);transform:none}
+.me__photo--home img{position:absolute;bottom:0;left:50%;transform:translateX(-50%);height:100%;width:auto;max-width:none;object-fit:contain;z-index:1}
+html:not(.light) .me__photo--home .me__disc{background:rgba(214,169,76,.14)}
+@media(max-width:760px){html:not(.deck) .me__photo--home{height:420px}}
+
+/* ELITE 策略轮：只留轮子，空格逐个看 */
+.wheel-solo{margin-top:6px}
+.wheel-hint{font-size:.78rem;opacity:.8}
+#ch-wheel{display:block;width:100%;height:auto;margin-top:4px}
+html.deck #ch-wheel{max-height:calc(100vh - 330px)}
+#ch-wheel .wtrack{stroke:rgba(244,238,225,.18)}
+#ch-wheel .wn circle.b{stroke:#0B1E31;stroke-width:3;transition:fill .3s,stroke .3s}
+#ch-wheel .wn{transition:opacity .35s ease}
+#ch-wheel.has-sel .wn{opacity:.28}
+#ch-wheel.has-sel .wn.on{opacity:1}
+#ch-wheel .wn.on circle.b{stroke:#F4EEE1;stroke-width:4}
+#ch-wheel .wl1{font-weight:800}
+.wc{width:100%;height:100%;box-sizing:border-box;border-radius:26px;padding:20px 26px;display:flex;flex-direction:column;justify-content:center;
+  background:#0F2A44;border:2px solid rgba(214,169,76,.7);color:#DCE6EE;font-size:16px;line-height:1.6}
+.wc.swap{animation:wcIn .35s ease}
+@keyframes wcIn{from{opacity:.2;transform:translateY(6px)}to{opacity:1;transform:none}}
+.wc-ov{text-align:center}
+.wc-big{display:block;font-size:40px;line-height:1.1;color:var(--gold);letter-spacing:.06em}
+.wc-mix{display:block;margin-top:4px;font-size:18px;font-weight:700;color:#F4EEE1}
+.wc-ov p{margin:4px 0 10px;font-size:15px;color:#9FB3C8}
+.wc-why{display:grid;grid-template-columns:1fr 1fr;gap:8px;text-align:left}
+.wc-why span{font-size:13.5px;line-height:1.5;border-radius:12px;padding:8px 10px;background:rgba(214,169,76,.1)}
+.wc-why b{display:block;color:var(--gold);font-size:12px;letter-spacing:.2em}
+.wc-tag{align-self:flex-start;font-size:13px;font-weight:800;letter-spacing:.06em;border-radius:999px;padding:3px 12px;border:1px solid}
+.wc-tag.eq{color:var(--gold);border-color:rgba(214,169,76,.6)}
+.wc-tag.fi{color:#9CC3E6;border-color:rgba(141,185,226,.6)}
+.wc-s h3{font-size:30px;line-height:1.2;margin-top:8px;color:#F4EEE1}
+.wc-n{margin-top:2px;font-size:15px;font-weight:700;color:var(--gold)}
+.wc-d{margin-top:8px;font-size:16px;line-height:1.65}
+html.light #ch-wheel .wtrack{stroke:rgba(30,42,94,.2)}
+html.light #ch-wheel .wn.on circle.b{stroke:var(--l-ink)}
+html.light .wc{background:var(--l-tan);border-color:rgba(176,122,38,.55);color:var(--l-ink)}
+html.light .wc-mix,html.light .wc-s h3{color:var(--l-ink)}
+html.light .wc-big,html.light .wc-n,html.light .wc-why b,html.light .wc-tag.eq{color:var(--l-gold)}
+html.light .wc-ov p{color:var(--l-sub)}
+html.light .wc-why span{background:var(--l-card)}
+html.light .wc-tag.fi{color:#3D6E9E}
+
+/* ELITE 长期表现 */
+.perf-split{grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);align-items:stretch;margin-top:6px}
+@media(max-width:900px){html:not(.deck) .perf-split{grid-template-columns:minmax(0,1fr)}}
+.perf-side{display:flex;flex-direction:column;gap:12px}
+.perf-kpi{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.pk{border-radius:16px;padding:12px 16px;border:1px solid rgba(141,185,226,.4);background:rgba(141,185,226,.08)}
+.pk.e{border-color:rgba(214,169,76,.6);background:rgba(214,169,76,.12)}
+.pk span{display:block;font-size:.8rem;color:#C3D3E0}
+.pk b{display:block;font-size:2.3rem;line-height:1.15;font-variant-numeric:tabular-nums;color:#9CC3E6}
+.pk.e b{color:var(--gold)}
+.pk small{font-size:.78rem;color:var(--mist)}
+.perf-years{border-radius:16px;padding:12px 16px;background:linear-gradient(160deg,var(--card-l1),var(--card-l2));border:1px solid var(--card-line);color:var(--ink)}
+.perf-years h3{font-size:.95rem;margin-bottom:6px}
+.py{display:grid;grid-template-columns:68px minmax(0,1fr) 64px;gap:8px;align-items:center;font-size:.85rem;padding:2px 0}
+.py span small{display:block;font-size:.66rem;opacity:.7;line-height:1}
+.py b{text-align:right;font-variant-numeric:tabular-nums;color:#8A6416}
+.py b.neg{color:#B5503C}
+.pyb{position:relative;height:12px}
+.pyb::before{content:"";position:absolute;left:50%;top:-3px;bottom:-3px;width:1px;background:rgba(30,42,94,.3)}
+.pyb i{position:absolute;top:0;height:100%;border-radius:3px;width:var(--w)}
+.pyb i.p{left:50%;background:#C99A3E}
+.pyb i.n{right:50%;background:#D9765F}
+.perf-say{border-radius:14px;padding:10px 14px;font-size:.88rem;line-height:1.6;background:rgba(214,169,76,.12);border:1px solid rgba(214,169,76,.45);color:#DCE6EE}
+html.light .pk{background:var(--l-card);border-color:var(--l-line)}
+html.light .pk.e{background:rgba(176,122,38,.08);border-color:rgba(176,122,38,.45)}
+html.light .pk span,html.light .pk small{color:var(--l-sub)}
+html.light .pk b{color:#3D6E9E}
+html.light .pk.e b{color:var(--l-gold)}
+html.light .perf-years{background:var(--l-card);border-color:var(--l-line);color:var(--l-ink)}
+html.light .perf-say{background:rgba(176,122,38,.08);border-color:rgba(176,122,38,.4);color:var(--l-ink)}
+
+/* GAIF：表现总结 + 四只底层基金 */
+.gkpi{display:grid;grid-template-columns:1.5fr repeat(4,minmax(0,1fr));gap:10px;margin-top:4px}
+.gk{border-radius:16px;padding:12px 16px;border:1px solid rgba(141,185,226,.35);background:rgba(141,185,226,.07)}
+.gk span{display:block;font-size:.8rem;color:#C3D3E0}
+.gk b{display:block;font-size:1.7rem;line-height:1.2;color:var(--gold);font-variant-numeric:tabular-nums}
+.gk small{font-size:.74rem;color:var(--mist)}
+.gk.main{border-color:rgba(214,169,76,.6);background:rgba(214,169,76,.12)}
+.gk.main b{font-size:2rem}
+.gk-note{margin:6px 0 0;font-size:.74rem;color:var(--mist)}
+.gmix{display:grid;grid-template-columns:minmax(0,.62fr) minmax(0,1.8fr);gap:14px;margin-top:12px;align-items:stretch}
+@media(max-width:900px){html:not(.deck) .gkpi{grid-template-columns:repeat(2,minmax(0,1fr))} html:not(.deck) .gk.main{grid-column:1/-1} html:not(.deck) .gmix{grid-template-columns:minmax(0,1fr)}}
+.gdonut{display:flex;align-items:center;justify-content:center;padding:12px}
+.gdonut svg{width:100%;max-width:290px;height:auto;display:block}
+.gseg{transition:opacity .35s ease}
+.gfunds{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.gf{border-radius:16px;padding:12px 16px;background:linear-gradient(160deg,var(--card-l1),var(--card-l2));border:1px solid var(--card-line);color:var(--ink);cursor:pointer;transition:box-shadow .3s,border-color .3s,transform .3s}
+.gf.on{border-color:#C99A3E;box-shadow:0 0 0 2px rgba(201,154,62,.45);transform:translateY(-2px)}
+.gf__top{display:flex;align-items:center;gap:8px}
+.gf__top i{width:12px;height:12px;border-radius:3px}
+.gf__top b{font-size:.95rem}
+.gf__rg{font-size:.7rem;font-weight:800;letter-spacing:.1em;border-radius:999px;padding:1px 8px;border:1px solid rgba(30,42,94,.25);color:#4A5470}
+.gf__top em{margin-left:auto;font-style:normal;font-weight:800;font-size:1.25rem;color:#8A6416}
+.gf h4{font-size:.86rem;margin-top:4px;color:#3D4A6B}
+.gf p{font-size:.84rem;line-height:1.6;margin-top:4px;color:#3D4A6B}
+.gf p strong{display:block;color:var(--ink);margin-top:2px}
+html.light .gk{background:var(--l-card);border-color:var(--l-line)}
+html.light .gk.main{background:rgba(176,122,38,.08);border-color:rgba(176,122,38,.45)}
+html.light .gk span,html.light .gk small,html.light .gk-note{color:var(--l-sub)}
+html.light .gk b{color:var(--l-gold)}
+html.light .gf{background:var(--l-card);border-color:var(--l-line);color:var(--l-ink)}
+html.light .gf.on{border-color:var(--l-gold);box-shadow:0 0 0 2px rgba(176,122,38,.3)}
+html.light .gf p strong{color:var(--l-ink)}
+
+/* 实际的案例：故事时间线 + 现金流图 */
+.story-split{grid-template-columns:minmax(0,1fr) minmax(0,1.45fr);align-items:stretch;margin-top:6px}
+@media(max-width:900px){html:not(.deck) .story-split{grid-template-columns:minmax(0,1fr)}}
+.story{list-style:none;margin:0;padding:0 0 0 22px;position:relative;display:flex;flex-direction:column;gap:8px}
+.story::before{content:"";position:absolute;left:7px;top:10px;bottom:10px;width:2px;background:linear-gradient(var(--gold),rgba(214,169,76,.15))}
+.story li{position:relative;border-radius:16px;padding:10px 16px;border:1px solid rgba(244,238,225,.14);background:rgba(255,255,255,.04);transition:background .3s,border-color .3s,opacity .3s}
+.story li::before{content:"";position:absolute;left:-21px;top:16px;width:12px;height:12px;border-radius:50%;background:#0B1E31;border:2px solid var(--gold)}
+.story li.on{background:linear-gradient(160deg,var(--card-l1),var(--card-l2));border-color:var(--card-line);color:var(--ink)}
+.story li.on::before{background:var(--gold)}
+.st-age{display:inline-block;font-size:.74rem;font-weight:800;letter-spacing:.08em;color:var(--gold);margin-right:8px}
+.story h4{display:inline;font-size:1rem}
+.story p{font-size:.88rem;line-height:1.65;margin-top:4px;color:#C3D3E0}
+.story li.on p{color:#3D4A6B}
+.story li.on .st-age{color:#8A6416}
+html.deck .story li:not(.on){opacity:.7}
+html.deck .story li:not(.on) p{display:none}
+.tline{stroke:#F4EEE1}
+.sann{transition:opacity .4s ease}
+html.light .story::before{background:linear-gradient(var(--l-gold),rgba(176,122,38,.15))}
+html.light .story li{background:var(--l-card);border-color:var(--l-line);color:var(--l-ink)}
+html.light .story li::before{background:var(--l-bg);border-color:var(--l-gold)}
+html.light .story li.on{background:var(--l-tan);border-color:rgba(176,122,38,.5)}
+html.light .story li.on::before{background:var(--l-gold)}
+html.light .story p,html.light .story li.on p{color:#3D4A6B}
+html.light .st-age,html.light .story li.on .st-age{color:var(--l-gold)}
+html.light .tline{stroke:var(--l-ink)}
+html.deck .story-split .chartbox svg{max-height:calc(100vh - 330px)}
+
+/* Q&A */
+.qa .qa__inner{text-align:center;display:flex;flex-direction:column;align-items:center}
+.qa__big{font-family:Georgia,"Times New Roman","Songti SC",serif;font-size:clamp(4.5rem,13vw,9rem);line-height:1;letter-spacing:.06em;color:var(--paper);margin-top:6px}
+.qa__big i{font-style:italic;color:var(--gold);font-weight:400}
+.qa__rule{display:flex;align-items:center;gap:14px;width:min(520px,80%);margin:22px auto 18px}
+.qa__rule span{flex:1;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+.qa__rule i{width:12px;height:12px;transform:rotate(45deg);border:1.5px solid var(--gold)}
+.qa__rule--l{margin-left:0;justify-content:flex-start}
+.qa__rule--l span:first-child{display:none}
+.qa__rule--l span{background:linear-gradient(90deg,var(--gold),transparent)}
+.qa__zh{font-size:clamp(2.2rem,6vw,3.6rem);font-weight:900;letter-spacing:.3em;color:var(--paper);margin-left:.3em}
+.qa__sub{margin-top:12px;font-size:1.1rem;color:#C3D3E0}
+.qa__link{margin-top:26px;display:inline-flex;align-items:center;gap:6px;border-radius:999px;padding:10px 22px;font-weight:700;text-decoration:none;color:var(--gold);border:1px solid rgba(214,169,76,.55);background:rgba(214,169,76,.08)}
+.qa__link:hover{background:rgba(214,169,76,.18)}
+.qa__boat,.thx__boat{position:absolute;right:4%;bottom:6%;width:min(34vw,420px);color:rgba(244,238,225,.3)}
+.qa__boat svg,.thx__boat svg{width:100%;height:auto;display:block}
+html.light .qa__big,html.light .qa__zh{color:var(--l-ink)}
+html.light .qa__big i,html.light .qa__link{color:var(--l-gold)}
+html.light .qa__rule span{background:linear-gradient(90deg,transparent,var(--l-gold),transparent)}
+html.light .qa__rule--l span{background:linear-gradient(90deg,var(--l-gold),transparent)}
+html.light .qa__rule i{border-color:var(--l-gold)}
+html.light .qa__sub{color:var(--l-sub)}
+html.light .qa__link{border-color:rgba(176,122,38,.5);background:rgba(176,122,38,.06)}
+html.light .qa__boat,html.light .thx__boat{color:rgba(30,42,94,.22)}
+
+/* 问卷反馈 */
+.thx__grid{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,.85fr);gap:clamp(24px,5vw,64px);align-items:center}
+@media(max-width:900px){html:not(.deck) .thx__grid{grid-template-columns:minmax(0,1fr)}}
+.thx__big{font-family:Georgia,"Times New Roman",serif;font-size:clamp(3.6rem,9vw,6.6rem);line-height:1;letter-spacing:.03em;color:var(--paper);margin-top:8px}
+.thx__big em{font-style:normal;color:var(--gold)}
+.thx__gift{display:grid;grid-template-columns:56px minmax(0,1fr);gap:16px;align-items:center;margin-top:4px}
+.thx__gift svg{width:56px;height:56px;color:var(--gold)}
+.thx__gift p{font-size:1.12rem;line-height:1.7;color:#DCE6EE}
+.thx__gift b{color:var(--gold)}
+.thx__who{display:inline-flex;align-items:center;gap:14px;margin-top:22px;border-radius:999px;padding:8px 22px 8px 8px;border:1px solid rgba(214,169,76,.45);background:rgba(255,255,255,.04);font-weight:700}
+.thx__who img{width:40px;height:40px;border-radius:50%}
+.thx__who i{width:1px;height:20px;background:rgba(214,169,76,.5)}
+.thx__card{border-radius:26px;padding:22px 26px 18px;text-align:center;background:linear-gradient(160deg,var(--card-l1),var(--card-l2));border:1px solid var(--card-line);box-shadow:0 30px 60px -36px rgba(0,0,0,.6);color:var(--ink)}
+.thx__tag{display:inline-block;border-radius:999px;padding:7px 18px;font-weight:800;font-size:.95rem;letter-spacing:.04em;color:#20180A;background:linear-gradient(90deg,#E8C987,#C99A3E)}
+.thx__qr{margin:16px auto 10px;width:min(100%,250px);aspect-ratio:1;padding:10px;border-radius:16px;background:#fff;border:1px solid rgba(201,154,62,.5)}
+.thx__qr img{width:100%;height:100%;display:block}
+.thx__scan{display:inline-flex;align-items:center;gap:8px;font-weight:700;color:#3D4A6B}
+.thx__scan svg{width:20px;height:20px;color:#B07A26}
+html.light .thx__big{color:var(--l-ink)}
+html.light .thx__big em,html.light .thx__gift svg,html.light .thx__gift b{color:var(--l-gold)}
+html.light .thx__gift p{color:var(--l-ink)}
+html.light .thx__who{background:var(--l-card);border-color:var(--l-line);color:var(--l-ink)}
+html.light .thx__card{background:var(--l-card);border-color:var(--l-line);box-shadow:0 30px 60px -36px rgba(30,42,94,.45)}
+.q1legend i.tkey{background:none;border-top:2px dashed #F4EEE1;height:0;border-radius:0}
+html.light .q1legend i.tkey{border-top-color:var(--l-ink)}
+.story h4{font-size:1.06rem}
+.story p{font-size:.95rem}
+.st-age{font-size:.8rem}
+.thx__zh{font-size:clamp(1.8rem,3.6vw,2.6rem);font-weight:900;letter-spacing:.12em;color:var(--paper)}
+html.light .thx__zh{color:var(--l-ink)}
+.thx__big{font-size:clamp(3rem,6.4vw,5.6rem);white-space:nowrap}
+.thx__boat{right:5%;bottom:2%;width:min(22vw,280px)}
+.wc{font-size:18px}
+.wc-s h3{font-size:34px}
+.wc-n{font-size:16px}
+.wc-d{font-size:18px}
+.wc-tag{font-size:14px}
+.wc-big{font-size:46px}
+.wc-mix{font-size:20px}
+.wc-ov p{font-size:17px}
+.wc-why span{font-size:15px}
+.wheel-scroll #ch-wheel{min-width:880px}
+html.deck .wheel-scroll::after{display:none}
+html.deck .wheel-scroll #ch-wheel{min-width:0}
+.gfunds{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+@media(max-width:700px){html:not(.deck) .gfunds{grid-template-columns:minmax(0,1fr)}}
 </style>
 <style>.deckbar a{display:inline-flex;align-items:center;height:36px;padding:0 12px;border-radius:999px;color:var(--paper);text-decoration:none;font-weight:600}.deckbar a:hover{background:rgba(244,238,225,.1)}html.light .deckbar a{color:inherit}</style>
 </head>
@@ -2736,80 +2948,77 @@ function redraw(p){ // 切换后重新播放描线动画
   go(-1);
 })();
 
-/* ───── ELITE 策略轮：8 家管理人 · 9 个策略 ───── */
+/* ───── ELITE 策略轮：8 家管理人 · 9 个策略（空格逐个看） ───── */
 (function(){
   const svg=document.getElementById("ch-wheel"); if(!svg) return;
   const SL={a:[90,10],b:[60,40],c:[30,70]}, RN={a:"进取",b:"平衡",c:"保守"};
   const S=[
-    {m:"Capital Group",n:"AIA Global Select Equity",z:"基本面精选",eq:1,sh:20,old:{a:31.5,b:21,c:10.5},d:"基本面主动选股。2021 年加入 ELITE；Global Select 近三年同类排名前四分之一，2025 年上半年跑赢基准（AIA 资料）。"},
-    {m:"GMO",n:"AIA World Quality Equity",z:"质量型",eq:1,sh:20,old:{a:18,b:12,c:6},d:"偏好高质量公司：盈利稳定、资产负债表稳健。2025 年第四季加入，补上「质量」这一种风格。"},
-    {m:"Wellington",n:"AIA New Multinationals",z:"全球跨国企业",eq:1,sh:10,old:{a:18,b:12,c:6},d:"聚焦业务遍布全球的跨国企业。这次调整后比重减半，把位置让给新管理人。"},
-    {m:"BlackRock",n:"AIA Global Systematic Equity",z:"量化选股",eq:1,sh:15,old:{a:18,b:12,c:6},d:"BlackRock 的量化系统化选股策略，用模型在全球市场分散选股。"},
-    {m:"Lazard",n:"AIA Global Equity Advantage",z:"量化 + 基本面",eq:1,sh:20,nw:1,aum:"资产规模 US$2,850 亿",old:{a:0,b:0,c:0},d:"透明的量化方法，以基本面为根；价值、成长、质量、市场情绪多个因子保持平衡，不押单一风格。2026 年 11 月推出。"},
-    {m:"Fisher Investments",n:"AIA Global Developed Equity",z:"自上而下",eq:1,sh:15,nw:1,aum:"资产规模 US$4,400 亿",old:{a:4.5,b:3,c:1.5},d:"自上而下：先看经济、政治、市场情绪等宏观驱动与主题变化，再决定配置。2026 年 11 月推出。",rep:"接替 Baillie Gifford 的 AIA Global Quality Growth（集中的成长风格），上表「调整前」是 Baillie Gifford 的比重。"},
-    {m:"BlackRock",n:"AIA Diversified Fixed Income",z:"分散债券",eq:0,sh:30,old:{a:5,b:20,c:35},d:"分散配置的固定收益，以投资级债券为主。"},
-    {m:"M&G",n:"AIA Global Corporate Bond",z:"全球公司债",eq:0,sh:50,old:{a:5,b:20,c:35},d:"全球公司债，以投资级为主。2025 年第四季加入。"},
-    {m:"Morgan Stanley IM",n:"AIA Global Fixed Income Opportunities",z:"多板块债券",eq:0,sh:20,nw:1,aum:"资产规模 US$1.9 万亿",old:{a:0,b:0,c:0},d:"政府债、信用债、新兴市场、证券化资产都能投；至少 50% 投资级，久期 0–6 年，对冲回美元。2026 年 11 月推出。"}
+    {m:"Capital Group",n:"AIA Global Select Equity",z:"基本面精选",eq:1,sh:20,d:"基本面主动选股，精挑个股。Global Select 近三年同类排名前四分之一，2025 年上半年跑赢基准（AIA 资料）。"},
+    {m:"GMO",n:"AIA World Quality Equity",z:"质量型",eq:1,sh:20,d:"偏好高质量公司：盈利稳定、资产负债表稳健，市场震荡时更抗跌。"},
+    {m:"Wellington",n:"AIA New Multinationals",z:"全球跨国企业",eq:1,sh:10,d:"聚焦业务遍布全球的跨国企业，分享全球增长。"},
+    {m:"BlackRock",n:"AIA Global Systematic Equity",z:"量化选股",eq:1,sh:15,d:"用量化模型在全球市场系统化、分散地选股。"},
+    {m:"Lazard",n:"AIA Global Equity Advantage",z:"量化 + 基本面",eq:1,sh:20,aum:"资产规模 US$2,850 亿",d:"透明的量化方法，以基本面为根；价值、成长、质量、市场情绪多个因子保持平衡，不押单一风格。"},
+    {m:"Fisher Investments",n:"AIA Global Developed Equity",z:"自上而下",eq:1,sh:15,aum:"资产规模 US$4,400 亿",d:"自上而下：先看经济、政治、市场情绪等宏观驱动与主题变化，再决定配置。"},
+    {m:"BlackRock",n:"AIA Diversified Fixed Income",z:"分散债券",eq:0,sh:30,d:"分散配置的固定收益，以投资级债券为主，是组合里的稳定器。"},
+    {m:"M&G",n:"AIA Global Corporate Bond",z:"全球公司债",eq:0,sh:50,d:"全球公司债，以投资级为主，提供稳定的利息收入。"},
+    {m:"Morgan Stanley IM",n:"AIA Global Fixed Income Opportunities",z:"多板块债券",eq:0,sh:20,aum:"资产规模 US$1.9 万亿",d:"政府债、信用债、新兴市场、证券化资产都能投；至少 50% 投资级，久期 0–6 年，对冲回美元。"}
   ];
-  const CX=360,CY=280,RR=170,LR=236;
-  const w=(s,r)=>SL[r][s.eq?0:1]*s.sh/100, rad=v=>14+Math.sqrt(v)*7.2;
-  el("circle",{cx:CX,cy:CY,r:RR,fill:"none",stroke:"rgba(244,238,225,.16)","stroke-width":2,"stroke-dasharray":"4 7"},svg);
-  // 股票 / 债券两段弧
-  const arcPath=(a0,a1,r)=>{const p=a=>[CX+r*Math.cos(a*Math.PI/180),CY+r*Math.sin(a*Math.PI/180)];const [x0,y0]=p(a0),[x1,y1]=p(a1);return "M"+x0.toFixed(1)+" "+y0.toFixed(1)+" A"+r+" "+r+" 0 "+(a1-a0>180?1:0)+" 1 "+x1.toFixed(1)+" "+y1.toFixed(1);};
-  el("path",{d:arcPath(-108,128,RR+0),stroke:"rgba(214,169,76,.35)","stroke-width":5,fill:"none","stroke-linecap":"round"},svg);
-  el("path",{d:arcPath(132,248,RR+0),stroke:"rgba(141,185,226,.4)","stroke-width":5,fill:"none","stroke-linecap":"round"},svg);
-  const ctr=el("g",{class:"wctr"},svg);
-  el("circle",{cx:CX,cy:CY,r:72,fill:"#0F2A44",stroke:"#D6A94C","stroke-width":2.5},ctr);
-  tx(CX,CY-14,"ELITE","val",{"text-anchor":"middle","font-size":"26",fill:"#D6A94C"},ctr);
-  const cMix=tx(CX,CY+14,"","lab",{"text-anchor":"middle","font-size":"15",fill:"#F4EEE1"},ctr);
-  const cSub=tx(CX,CY+34,"8 家 · 9 个策略","tick",{"text-anchor":"middle","font-size":"12"},ctr);
-  let risk="a", sel=4;
+  const CX=620,CY=325,RX=450,RY=215;
+  const w=(s,r)=>SL[r][s.eq?0:1]*s.sh/100, rad=v=>20+Math.sqrt(v)*8.5, f1=v=>(v%1?v.toFixed(1):String(v));
+  const ep=a=>[CX+RX*Math.cos(a*Math.PI/180),CY+RY*Math.sin(a*Math.PI/180)];
+  const arc=(a0,a1)=>{ let d=""; for(let a=a0;a<=a1;a+=2){ const [x,y]=ep(a); d+=(d?"L":"M")+x.toFixed(1)+" "+y.toFixed(1); } return d; };
+  el("ellipse",{cx:CX,cy:CY,rx:RX,ry:RY,fill:"none",class:"wtrack","stroke-width":2,"stroke-dasharray":"4 8"},svg);
+  el("path",{d:arc(-108,128),stroke:"rgba(214,169,76,.38)","stroke-width":6,fill:"none","stroke-linecap":"round"},svg);
+  el("path",{d:arc(132,248),stroke:"rgba(141,185,226,.5)","stroke-width":6,fill:"none","stroke-linecap":"round"},svg);
+  // 中间的说明卡
+  const fo=el("foreignObject",{x:CX-230,y:CY-123,width:460,height:246},svg);
+  const card=document.createElement("div"); card.className="wc"; fo.appendChild(card);
+  let risk="a", sel=-1;
   const nodes=S.map((s,i)=>{
-    const a=(-90+i*40)*Math.PI/180, nx=CX+RR*Math.cos(a), ny=CY+RR*Math.sin(a);
+    const a=-90+i*40, [nx,ny]=ep(a), ca=Math.cos(a*Math.PI/180), sa=Math.sin(a*Math.PI/180);
     const g=el("g",{class:"wn",role:"button",tabindex:"0","aria-label":s.m+" · "+s.n},svg);
-    const c=el("circle",{class:"b",cx:nx,cy:ny,r:rad(w(s,risk)),fill:s.eq?"#D6A94C":"#8DB9E2",stroke:"#0B1E31","stroke-width":2.5},g);
-    const t=tx(nx,ny+6,"","val",{"text-anchor":"middle","font-size":"17",fill:"#0A1C2E"},g);
-    const lx=CX+LR*Math.cos(a), ly=CY+LR*Math.sin(a), ca=Math.cos(a), sa=Math.sin(a);
-    const anc=ca>.35?"start":ca<-.35?"end":"middle", y0=sa<-.6?ly-14:sa>.6?ly+8:ly-2;
-    const l1=tx(lx,y0,s.m,"lab",{"text-anchor":anc,"font-size":"15",fill:"#F4EEE1"},g);
-    tx(lx,y0+18,s.z,"tick",{"text-anchor":anc,"font-size":"12.5"},g);
-    let tag=null;
-    if(s.nw){ tag=el("g",{},g); el("rect",{width:44,height:20,rx:10,fill:"#B5503C"},tag); tx(22,14.5,"NEW","lab",{"text-anchor":"middle","font-size":"11",fill:"#fff"},tag); }
-    g.addEventListener("click",()=>pick(i));
-    g.addEventListener("keydown",e=>{ if(e.key==="Enter"||e.key===" "){ e.preventDefault(); e.stopPropagation(); pick(i); } });
-    return {g,c,t,tag,nx,ny,r:rad(w(s,risk))};
+    const c=el("circle",{class:"b",cx:nx,cy:ny,r:rad(w(s,risk)),fill:s.eq?"#D6A94C":"#8DB9E2"},g);
+    const t=tx(nx,ny+7,"","val",{"text-anchor":"middle","font-size":"20",fill:"#0A1C2E"},g);
+    const l1=tx(0,0,s.m,"lab wl1",{"font-size":"21"},g), l2=tx(0,0,s.z,"tick wl2",{"font-size":"15.5"},g);
+    g.addEventListener("click",()=>pick(i===sel?-1:i));
+    g.addEventListener("keydown",e=>{ if(e.key==="Enter"){ e.preventDefault(); pick(i); } });
+    return {g,c,t,l1,l2,nx,ny,ca,sa,r:rad(w(s,risk))};
   });
-  function layout(rr){ // 按半径摆放比例数字和 NEW 标签
-    nodes.forEach((n,i)=>{ const r=rr?rr[i]:n.r; n.c.setAttribute("r",r.toFixed(1));
-      if(n.tag) n.tag.setAttribute("transform","translate("+(n.nx+r*.55-6).toFixed(1)+" "+(n.ny-r-14).toFixed(1)+")"); });
+  function place(n,r){ // 名字放在圆圈外侧
+    let x,y,anc;
+    if(Math.abs(n.ca)>.35){ anc=n.ca>0?"start":"end"; x=n.nx+(n.ca>0?1:-1)*(r+14); y=n.ny-4; }
+    else{ anc="middle"; x=n.nx; y=n.sa<0? n.ny-r-34 : n.ny+r+26; }
+    [n.l1,n.l2].forEach((l,k)=>{ l.setAttribute("x",x.toFixed(1)); l.setAttribute("y",(y+k*20).toFixed(1)); l.setAttribute("text-anchor",anc); });
   }
+  function layout(rr){ nodes.forEach((n,i)=>{ const r=rr?rr[i]:n.r; n.c.setAttribute("r",r.toFixed(1)); place(n,r); }); }
   let anim=null;
   function setRisk(r){
     risk=r; const to=S.map(s=>rad(w(s,r))), from=nodes.map(n=>n.r);
     [...document.getElementById("wheelRisk").children].forEach(b=>b.classList.toggle("on",b.dataset.r===r));
-    nodes.forEach((n,i)=>{ const v=w(S[i],r); n.t.textContent=(v%1?v.toFixed(1):v)+"%"; n.t.setAttribute("font-size",to[i]<30?"13":"17"); });
-    cMix.textContent="股 "+SL[r][0]+" · 债 "+SL[r][1];
+    nodes.forEach((n,i)=>{ const v=w(S[i],r); n.t.textContent=f1(v)+"%"; n.t.setAttribute("font-size",to[i]<36?"15":"20"); });
     cancelAnimationFrame(anim); const t0=performance.now();
     (function step(t){ const p=Math.min(1,(t-t0)/700), e=1-Math.pow(1-p,3);
-      const rr=from.map((f,i)=>f+(to[i]-f)*e); layout(rr);
+      layout(from.map((f,i)=>f+(to[i]-f)*e));
       if(p<1) anim=requestAnimationFrame(step); else nodes.forEach((n,i)=>n.r=to[i]); })(t0);
-    card();
+    draw();
   }
-  const cardEl=document.getElementById("wCard");
-  function card(){
-    const s=S[sel], o=s.old[risk], v=w(s,risk);
-    cardEl.innerHTML='<div class="wtag"><span class="'+(s.eq?"eq":"fi")+'">'+(s.eq?"股票策略":"债券策略")+'</span>'+(s.nw?'<span class="new">2026.11 新增</span>':'')+'</div>'+
-      '<h3>'+s.n+'</h3><p class="wmgr">'+s.m+(s.aum?' · '+s.aum:'')+'</p><p class="wdesc">'+s.d+'</p>'+
-      '<div class="wwt"><div><span>调整前 · '+RN[risk]+'</span><b>'+(o?o+"%":"—")+'</b></div><div class="n"><span>调整后 · '+RN[risk]+'</span><b>'+(v%1?v.toFixed(1):v)+'%</b></div></div>'+
-      '<p class="wnote">'+(s.rep||"")+'</p><div class="wwhy"><div><b>严选</b>业绩经过验证的全球资产管理公司，各管一种擅长的风格</div><div><b>分散</b>8 家管理人、9 个策略：股票 6 种风格，债券 3 种</div><div><b>监督</b>持续评估，表现不达标就换：2026 年 11 月 Baillie Gifford 由 Fisher 接替</div></div>';
-    cardEl.classList.remove("swap"); void cardEl.offsetWidth; cardEl.classList.add("swap");
+  function draw(){
+    if(sel<0){
+      card.innerHTML='<div class="wc-ov"><b class="wc-big">ELITE</b><span class="wc-mix">'+RN[risk]+' · 股 '+SL[risk][0]+' · 债 '+SL[risk][1]+'</span>'+
+        '<p>8 家管理人 · 9 个策略</p><div class="wc-why"><span><b>严选</b>业绩经过验证的全球资产管理公司</span><span><b>分散</b>股票 6 种风格，债券 3 种，各管一块</span></div></div>';
+    } else {
+      const s=S[sel];
+      card.innerHTML='<div class="wc-s"><div class="wc-tag '+(s.eq?"eq":"fi")+'">'+(s.eq?"股票策略":"债券策略")+' · '+RN[risk]+'配置 '+f1(w(s,risk))+'%</div>'+
+        '<h3>'+s.m+'</h3><p class="wc-n">'+s.n+' · '+s.z+(s.aum?' · '+s.aum:'')+'</p><p class="wc-d">'+s.d+'</p></div>';
+    }
+    card.classList.remove("swap"); void card.offsetWidth; card.classList.add("swap");
   }
-  function pick(i){ sel=i; nodes.forEach((n,k)=>n.g.classList.toggle("on",k===i)); card(); }
+  function pick(i){ sel=i; svg.classList.toggle("has-sel",i>=0); nodes.forEach((n,k)=>n.g.classList.toggle("on",k===i)); draw(); }
   document.getElementById("wheelRisk").addEventListener("click",e=>{ const b=e.target.closest("button"); if(b) setRisk(b.dataset.r); });
-  const order="abc", scene=svg.closest(".scene");
-  layout(); pick(4); setRisk("a");
-  // 空格：Lazard → Fisher → Morgan Stanley IM（三位新管理人）→ 平衡 → 保守
-  seq(scene,5,i=>{ pick([4,5,8][Math.min(i,2)]); const r=i<3?"a":i===3?"b":"c"; if(r!==risk) setRisk(r); });
+  nodes.forEach((n,i)=>{ const v=w(S[i],risk); n.t.textContent=f1(v)+"%"; });
+  layout(); setRisk("a"); pick(-1);
+  // 空格：总览 → 9 个策略逐个看
+  seq(svg.closest(".scene"),10,i=>pick(i-1));
 })();
 
 /* ───── 七年怎么管：逐年时间轴 ───── */
@@ -3300,6 +3509,29 @@ document.addEventListener("click",e=>{
   draw();
 })();
 
+/* ELITE 长期表现：与同类平均比较 */
+(function(){
+  const svg=document.getElementById("ch-elite-perf"); if(!svg) return;
+  const N=[["19/07",0.998],["19/08",0.992],["19/09",0.982],["19/10",0.994],["19/11",1.026],["19/12",1.037],["20/01",1.065],["20/02",1.004],["20/03",0.904],["20/04",1],["20/05",1.059],["20/06",1.098],["20/07",1.167],["20/08",1.232],["20/09",1.216],["20/10",1.189],["20/11",1.294],["20/12",1.336],["21/01",1.365],["21/02",1.383],["21/03",1.398],["21/04",1.446],["21/05",1.446],["21/06",1.489],["21/07",1.505],["21/08",1.525],["21/09",1.482],["21/10",1.531],["21/11",1.519],["21/12",1.539],["22/01",1.437],["22/02",1.388],["22/03",1.427],["22/04",1.332],["22/05",1.295],["22/06",1.188],["22/07",1.261],["22/08",1.228],["22/09",1.141],["22/10",1.18],["22/11",1.226],["22/12",1.189],["23/01",1.228],["23/02",1.228],["23/03",1.246],["23/04",1.261],["23/05",1.264],["23/06",1.324],["23/07",1.331],["23/08",1.323],["23/09",1.275],["23/10",1.229],["23/11",1.305],["23/12",1.366],["24/01",1.4],["24/02",1.443],["24/03",1.494],["24/04",1.463],["24/05",1.486],["24/06",1.522],["24/07",1.517],["24/08",1.515],["24/09",1.519],["24/10",1.524],["24/11",1.587],["24/12",1.581],["25/01",1.633],["25/02",1.587],["25/03",1.508],["25/04",1.481],["25/05",1.555],["25/06",1.591],["25/07",1.634],["25/08",1.646],["25/09",1.688],["25/10",1.736],["25/11",1.733],["25/12",1.746],["26/01",1.755],["26/02",1.756],["26/03",1.66],["26/04",1.762],["26/05",1.844],["26/06",1.875],["26/07",1.872],["26/08",1.912],["26/09",1.879]], P=[100.1,99.0,99.5,100.2,102.2,103.6,104.5,102.2,92.3,93.5,98.0,99.9,102.5,105.7,105.2,104.0,108.5,112.4,114.2,116.3,117.9,120.5,121.2,123.4,124.9,125.6,124.4,125.1,125.6,125.5,120.2,116.3,117.5,114.4,111.4,107.1,107.5,108.0,103.8,102.0,104.1,102.5,104.0,105.2,104.7,105.2,106.2,108.4,109.8,109.4,107.5,104.3,106.6,110.1,111.9,114.5,117.7,117.7,117.9,119.5,119.6,118.9,119.5,120.5,123.0,123.5,125.3,125.3,121.9,118.8,120.2,122.5,126.0,127.4,130.1,133.9,134.1,134.1,135.7,136.9,131.3,135.7,142.6,144.0,142.9,144.9,144.0];
+  const n=N.length, e0=N[0][1], p0=P[0], Wd=720,Ht=480,L=46,R=92,T=20,B=38, lo=80, hi=200;
+  const x=i=>L+i/(n-1)*(Wd-L-R), y=v=>Ht-B-(v-lo)/(hi-lo)*(Ht-T-B);
+  [80,100,120,140,160,180,200].forEach(v=>{ el("line",{class:v===100?"ax":"gl",x1:L,x2:Wd-R,y1:y(v),y2:y(v)},svg); tx(L-8,y(v)+5,String(v),"tick",{"text-anchor":"end","font-size":"13"},svg); });
+  ["2020","2021","2022","2023","2024","2025","2026"].forEach(Y=>{ const i=N.findIndex(d=>d[0]===Y.slice(2)+"/01"); if(i>=0) tx(x(i),Ht-B+22,Y,"tick",{"text-anchor":"middle","font-size":"13"},svg); });
+  const E=N.map(d=>d[1]/e0*100), Q=P.map(v=>v/p0*100);
+  const path=a=>a.map((v,i)=>(i?"L":"M")+x(i).toFixed(1)+" "+y(v).toFixed(1)).join(" ");
+  el("path",{class:"draw",d:path(Q),stroke:"#8DB9E2","stroke-width":3,fill:"none",style:"--d:.1s"},svg);
+  el("path",{class:"fade",d:path(E)+" L"+x(n-1)+" "+y(lo)+" L"+x(0)+" "+y(lo)+" Z",fill:"rgba(214,169,76,.08)",style:"--d:1s"},svg);
+  el("path",{class:"draw",d:path(E),stroke:"#D6A94C","stroke-width":3.4,fill:"none",style:"--d:.3s"},svg);
+  const g=el("g",{class:"fade",style:"--d:1.8s"},svg);
+  const eN=E[n-1], qN=Q[Q.length-1];
+  el("circle",{cx:x(n-1),cy:y(eN),r:5,fill:"#D6A94C"},g); el("circle",{cx:x(Q.length-1),cy:y(qN),r:5,fill:"#8DB9E2"},g);
+  tx(x(n-1)+10,y(eN)+2,"9.4% p.a.","val",{"font-size":"17",fill:"#D6A94C"},g); tx(x(n-1)+10,y(eN)+20,"约 "+Math.round(eN),"tick",{"font-size":"12.5"},g);
+  tx(x(n-1)+10,y(qN)+2,"5.8% p.a.","val",{"font-size":"17",fill:"#6FA3D4"},g); tx(x(n-1)+10,y(qN)+20,"约 "+Math.round(qN),"tick",{"font-size":"12.5"},g);
+  arm(svg);
+  const sc=svg.closest(".scene"), kpi=sc.querySelector(".perf-kpi"), yrs=[sc.querySelector(".perf-years"),sc.querySelector(".perf-say")];
+  seq(sc,3,i=>{ hid(kpi,i<1); hid(yrs,i<2); });
+})();
+
 /* ELITE 的三个高光时刻 */
 (function(){
   const svg=document.getElementById("ch-elite-hi"); if(!svg) return;
@@ -3329,7 +3561,7 @@ document.addEventListener("click",e=>{
   const card=document.getElementById("hiCard");
   function show(k){
     bands.forEach((b,j)=>b.style.opacity=k<0?"0":(j===k?"1":".25"));
-    if(k<0){ card.innerHTML='<div class="hk"><i>★</i><b>七年多，持续调整</b></div><div class="hr"><span>成立以来（2019.07–2026.09）</span><p>净值从 1.000 到 1.879；年化 9.4%，同类平均 5.8%。</p></div><div class="hr"><span>怎么做到的</span><p>不是一直买同一批股票：市场变了，管理人和配置也跟着调。下面看三个关键时刻，其中一次是跌得最深的 2022 年。</p></div>'; }
+    if(k<0){ card.innerHTML='<div class="hk"><i>★</i><b>七年多，持续调整</b></div><div class="hr"><span>成立以来（2019.07–2026.09）</span><p>净值从 1.000 到 1.879，中间有涨有跌。</p></div><div class="hr"><span>怎么做到的</span><p>不是一直买同一批股票：市场变了，管理人和配置也跟着调。下面看三个关键时刻，其中一次是跌得最深的 2022 年。</p></div>'; }
     else{ const m=M[k]; card.innerHTML='<div class="hk"><i>'+(k+1)+'</i><b>'+m.t+'</b></div><div class="hr"><span>市场发生了什么</span><p>'+m.what+'</p></div><div class="hr"><span>基金做了什么调整</span><p>'+m.did+'</p></div><div class="hr res"><span>之后</span><p>'+m.res+'</p></div>'; }
     card.classList.remove("swap"); void card.offsetWidth; card.classList.add("swap");
   }
@@ -3338,29 +3570,30 @@ document.addEventListener("click",e=>{
   show(-1);
 })();
 
-/* 分红型策略 GAIF */
+/* 分红型策略 GAIF：四只底层基金，各管一块 */
 (function(){
-  const svg=document.getElementById("ch-gaif"); if(!svg) return;
-  const D=[["2024.03",7.25],["2024.06",7.24],["2024.09",7.03],["2024.12",7.02],["2025.03",6.99],["2025.06",7.03],["2025.09",7.04],["2025.12",7.10],["2026.03",7.03],["2026.06",7.00]];
-  const Wd=720,Ht=300,L=48,R=20,T=34,B=38, lo=0, hi=8, n=D.length, bw=(Wd-L-R)/n;
-  const x=i=>L+bw*i+bw/2, y=v=>Ht-B-(v-lo)/(hi-lo)*(Ht-T-B);
-  [0,2,4,6,8].forEach(v=>{ el("line",{class:v?"gl":"ax",x1:L,x2:Wd-R,y1:y(v),y2:y(v)},svg); tx(L-8,y(v)+5,v+"%","tick",{"text-anchor":"end","font-size":"13"},svg); });
-  D.forEach((d,i)=>{
-    el("rect",{class:"bar",x:x(i)-bw*.32,y:y(d[1]),width:bw*.64,height:y(0)-y(d[1]),rx:4,fill:"#D6A94C",style:"--d:"+(i*.06).toFixed(2)+"s"},svg);
-    tx(x(i),y(d[1])-8,d[1].toFixed(2)+"%","val",{"text-anchor":"middle","font-size":"13",class:"val fade",style:"--d:"+(.6+i*.06).toFixed(2)+"s"},svg);
-    tx(x(i),Ht-B+20,d[0].replace(".","."),"tick",{"text-anchor":"middle","font-size":"11.5"},svg);
+  const svg=document.getElementById("ch-gaif-mix"); if(!svg) return;
+  const F=[["#D6A94C",20,"Allianz"],["#B98E3A",20,"Franklin"],["#EBCB86",40,"Wellington"],["#9CC3E6",20,"Amundi"]];
+  const CX=160,CY=160,R0=146,R1=88;
+  const pt=(a,r)=>[CX+r*Math.cos(a),CY+r*Math.sin(a)];
+  let a=-Math.PI/2; const gap=.025;
+  const segs=F.map(([c,v,nm])=>{
+    const a0=a+gap/2, a1=a+v/100*Math.PI*2-gap/2; a+=v/100*Math.PI*2;
+    const big=a1-a0>Math.PI?1:0, [x0,y0]=pt(a0,R0),[x1,y1]=pt(a1,R0),[x2,y2]=pt(a1,R1),[x3,y3]=pt(a0,R1);
+    const g=el("g",{class:"gseg"},svg);
+    el("path",{d:"M"+x0+" "+y0+" A"+R0+" "+R0+" 0 "+big+" 1 "+x1+" "+y1+" L"+x2+" "+y2+" A"+R1+" "+R1+" 0 "+big+" 0 "+x3+" "+y3+" Z",fill:c},g);
+    const m=(a0+a1)/2, [lx,ly]=pt(m,(R0+R1)/2);
+    tx(lx,ly+6,v+"%","val",{"text-anchor":"middle","font-size":"17",fill:"#20180A"},g);
+    return g;
   });
-  el("line",{x1:L,x2:Wd-R,y1:y(7.07),y2:y(7.07),stroke:"#F4EEE1","stroke-width":1.4,"stroke-dasharray":"6 5",class:"fade",style:"--d:1.2s"},svg);
-  tx(Wd-R,y(7.07)-26,"平均约 7.07%","lab",{"text-anchor":"end","font-size":"13",class:"lab fade",style:"--d:1.3s"},svg);
-  const C={al:"#D6A94C",fr:"#B98E3A",we:"#EBCB86",am:"#9CC3E6"};
-  const I=[["al","Allianz Income & Growth",90,20],["fr","Franklin Income",0,20],["we","Wellington · AIA 股票入息",10,40],["am","Amundi Income Opportunities",0,20,1]];
-  const bar=(host,idx)=>{ host.innerHTML=I.filter(it=>it[idx]>0).map(it=>'<i style="background:'+C[it[0]]+'" data-w="'+it[idx]+'">'+it[idx]+'%</i>').join("");
-    requestAnimationFrame(()=>requestAnimationFrame(()=>[...host.children].forEach(c=>c.style.flexBasis=c.dataset.w+"%"))); };
-  const so=document.getElementById("gStkOld"), sn=document.getElementById("gStkNew");
-  document.getElementById("gaifKey").innerHTML=I.map(it=>'<span><i style="background:'+C[it[0]]+'"></i>'+it[1]+(it[4]?' <em>NEW</em>':'')+'</span>').join("");
-  const mix=document.getElementById("gaifMix"), st=document.getElementById("gaifStats"), why=document.getElementById("gaifWhy");
-  seq(svg.closest(".scene"),3,(i,fwd)=>{ hid(mix,i<1); hid(st,i<2); hid(why,i<2); if(i===1&&fwd){ bar(so,2); bar(sn,3); } });
-  bar(so,2); bar(sn,3);
+  tx(CX,CY-8,"4 位管理人","lab",{"text-anchor":"middle","font-size":"18",class:"lab gctr"},svg);
+  tx(CX,CY+16,"美国 + 全球","tick",{"text-anchor":"middle","font-size":"13.5"},svg);
+  const sc=svg.closest(".scene"), cards=[...sc.querySelectorAll(".gf")];
+  const show=i=>{ cards.forEach((c,j)=>{ hid(c,j>=i); c.classList.toggle("on",j===i-1); }); segs.forEach((s,j)=>s.style.opacity=(i===0||i>4||j===i-1)?"1":".3"); };
+  cards.forEach((c,j)=>c.addEventListener("click",()=>{ cards.forEach((d,k)=>d.classList.toggle("on",k===j)); segs.forEach((s,k)=>s.style.opacity=k===j?"1":".3"); }));
+  // 空格：总览 → 四只基金逐个出现 → 合起来
+  seq(sc,6,show);
+  show(5);
 })();
 
 /* 配置的优势：五张卡逐张出现 */
@@ -3370,77 +3603,67 @@ document.addEventListener("click",e=>{
   seq(sc,c.length,i=>c.forEach((e,j)=>hid(e,j>i)));
 })();
 
-/* 实际的案例：每月现金流（按今天的购买力，通胀 2%） */
-function caseDraw(svg,o){
+/* 实际的案例：讲故事的现金流图（每月到手金额） */
+function storyChart(svg,o){
   svg.innerHTML="";
-  const Wd=720,Ht=svg.viewBox.baseVal.height||360,L=58,R=18,T=30,B=40, n=o.a1-o.a0+1, bw=(Wd-L-R)/n;
-  const x=a=>L+(a-o.a0)*bw, y=v=>T+(o.hi-v)/(o.hi-o.lo)*(Ht-T-B);
+  const Wd=720,Ht=svg.viewBox.baseVal.height||460,L=58,R=18,T=34,B=40, n=o.a1-o.a0+1, bw=(Wd-L-R)/n;
+  const x=a=>L+(a-o.a0)*bw, y=v=>T+(o.hi-v)/(o.hi-o.lo)*(Ht-T-B), at=a=>x(a)+bw/2;
   for(let v=o.lo; v<=o.hi; v+=o.step){ el("line",{class:v?"gl":"ax",x1:L,x2:Wd-R,y1:y(v),y2:y(v)},svg); tx(L-8,y(v)+4,v?(v<0?"−":"")+money(Math.abs(v)):"0","tick",{"text-anchor":"end","font-size":"12"},svg); }
-  tx(6,T-14,"S$ / 月（今天的钱）","tick",{"font-size":"11.5"},svg);
-  for(let a=o.a0;a<=o.a1;a+=5) tx(x(a)+bw/2,Ht-B+20,a===o.a0?a+" 岁":String(a),"tick",{"text-anchor":"middle","font-size":"12"},svg);
-  const G={}, top={};
-  const mk=k=>{ const g=el("g",{style:"opacity:0;transition:opacity .5s ease"},svg); G[k]=g; return g; };
-  o.layers.forEach(s=>{ const g=mk(s.k);
-    s.pts.forEach(([a,v])=>{ if(!v) return; let b0=0; if(v>0){ b0=top[a]||0; top[a]=b0+v; }
-      const y0=y(b0), y1=y(b0+v);
-      el("rect",{x:(x(a)+bw*.12).toFixed(1),y:Math.min(y0,y1).toFixed(1),width:(bw*.76).toFixed(1),height:Math.max(.5,Math.abs(y1-y0)).toFixed(1),rx:1.5,fill:s.c},g); }); });
-  const gap=mk("gap");
-  for(let a=o.tFrom;a<=o.a1;a++){ const h=top[a]||0; if(h<o.target-25)
-    el("rect",{x:(x(a)+bw*.12).toFixed(1),y:y(o.target).toFixed(1),width:(bw*.76).toFixed(1),height:(y(h)-y(o.target)).toFixed(1),fill:"rgba(233,145,124,.2)",stroke:"#E9917C","stroke-width":.9,"stroke-dasharray":"2 2"},gap); }
-  const tg=mk("target");
-  el("line",{x1:x(o.tFrom),x2:Wd-R,y1:y(o.target),y2:y(o.target),stroke:"#F4EEE1","stroke-width":1.6,"stroke-dasharray":"7 5"},tg);
-  tx(Wd-R,y(o.target)-8,o.tLabel,"lab",{"text-anchor":"end","font-size":"13",fill:"#F4EEE1"},tg);
-  return {G,x,y,bw,top,L,R,T,B,Wd,Ht};
+  tx(6,T-16,"S$ / 月","tick",{"font-size":"11.5"},svg);
+  for(let a=o.a0;a<=o.a1;a+=5) tx(at(a),Ht-B+20,a===o.a0?a+" 岁":String(a),"tick",{"text-anchor":"middle","font-size":"12"},svg);
+  const bars=[], top={};
+  o.layers.forEach(s=>s.pts.forEach(([a,v])=>{ if(!v) return; let b0=0; if(v>0){ b0=top[a]||0; top[a]=b0+v; }
+    const y0=y(b0), y1=y(b0+v);
+    const r=el("rect",{x:(x(a)+bw*.12).toFixed(1),y:Math.min(y0,y1).toFixed(1),width:(bw*.76).toFixed(1),height:Math.max(.5,Math.abs(y1-y0)).toFixed(1),rx:1.5,fill:s.c,style:"transition:opacity .45s ease"},svg);
+    bars.push({a,r}); }));
+  const tgt=el("g",{},svg);
+  el("line",{x1:x(o.tFrom),x2:Wd-R,y1:y(o.target),y2:y(o.target),class:"tline","stroke-width":1.8,"stroke-dasharray":"7 5"},tgt);
+  const ann=[]; const A=(k,f)=>{ const g=ann[k]||(ann[k]=el("g",{class:"sann"},svg)); f(g); };
+  // a0..a1 正在讲；之前的变淡，之后的还没出现
+  function stage(r0,r1,all){ bars.forEach(b=>b.r.style.opacity= all||(b.a>=r0&&b.a<=r1)?"1":(b.a<r0?".3":"0")); }
+  return {x,y,at,bw,T,B,L,R,Wd,Ht,stage,A,ann,top};
+}
+function storySteps(sc,n,apply){
+  const items=[...sc.querySelectorAll(".story li")];
+  const set=i=>{ items.forEach((e,j)=>{ hid(e,j>i); e.classList.toggle("on",j===i); }); apply(i); };
+  seq(sc,n,set); set(n-1);
 }
 (function(){
   const svg=document.getElementById("ch-case1"); if(!svg) return;
-  const C1=[[40,3092],[41,6002],[42,5821],[43,5645],[44,5475],[45,5310],[46,5149],[47,5023],[48,5052],[49,5081],[50,5110],[51,5110],[52,5110],[53,5110],[54,5110],[55,5110],[56,5110],[57,5110],[58,5110],[59,5110],[60,5110],[61,5110],[62,5110],[63,5110],[64,5110],[65,5110],[66,5110],[67,5110],[68,5110],[69,5110],[70,5110],[71,5110],[72,5110],[73,5110],[74,5110],[75,5110],[76,5110],[77,5110],[78,5110],[79,5110],[80,5110],[81,5110],[82,5110],[83,5110],[84,5110],[85,5110],[86,5110],[87,5110],[88,5110],[89,5110],[90,5110],[91,5110],[92,5110],[93,5110],[94,5110],[95,5110]].filter(p=>p[0]<=90), f=a=>Math.pow(1.02,a-40);
-  const pwv=C1.map(p=>[p[0],p[1]/f(p[0])]), cash=[[40,5000-C1[0][1]]];
-  const cpf=C1.filter(p=>p[0]>=65).map(p=>[p[0],3000/Math.pow(1.02,p[0]-65)]);
-  const c=caseDraw(svg,{a0:40,a1:90,lo:0,hi:7000,step:1000,tFrom:40,target:5000,tLabel:"生活费 S$5,000",
-    layers:[{k:"pwv",c:"#D6A94C",pts:pwv},{k:"cash",c:"#9CC9A6",pts:cash},{k:"cpf",c:"#8DB9E2",pts:cpf}]});
-  const at=a=>c.x(a)+c.bw/2;
-  tx(at(40)-2,c.T+2,"40–41 岁交 S$100 万（2 年缴）","tick",{"font-size":"12",fill:"#E2C48A"},c.G.pwv);
-  const v64=pwv.find(p=>p[0]===64)[1];
-  tx(at(60),c.y(v64)+22,"64 岁约 S$"+money(Math.round(v64/100)*100),"lab",{"text-anchor":"middle","font-size":"12.5",fill:"#20180A"},c.G.pwv);
-  tx(at(66),c.y(6200)-6,"65 岁 CPF LIFE 接上","lab",{"font-size":"13",fill:"#BFD7EE"},c.G.cpf);
-  tx(at(57),c.y(4350),"通胀吃掉的购买力","lab",{"text-anchor":"middle","font-size":"12.5",fill:"#F2B7A9"},c.G.gap);
-  const nums=[...document.querySelectorAll("#c1Nums [data-k]")];
-  const vis=i=>{ c.G.target.style.opacity="1"; c.G.pwv.style.opacity=c.G.cash.style.opacity=i>=1?"1":"0"; c.G.cpf.style.opacity=i>=2?"1":"0"; c.G.gap.style.opacity=i>=3?"1":"0";
-    nums.forEach(e=>hid(e,+e.dataset.k>i)); };
-  seq(svg.closest(".scene"),4,vis);
-  vis(3);
+  const C1=[[40,3092],[41,6002],[42,5821],[43,5645],[44,5475],[45,5310],[46,5149],[47,5023],[48,5052],[49,5081],[50,5110],[51,5110],[52,5110],[53,5110],[54,5110],[55,5110],[56,5110],[57,5110],[58,5110],[59,5110],[60,5110],[61,5110],[62,5110],[63,5110],[64,5110],[65,5110],[66,5110],[67,5110],[68,5110],[69,5110],[70,5110],[71,5110],[72,5110],[73,5110],[74,5110],[75,5110],[76,5110],[77,5110],[78,5110],[79,5110],[80,5110],[81,5110],[82,5110],[83,5110],[84,5110],[85,5110],[86,5110],[87,5110],[88,5110],[89,5110],[90,5110],[91,5110],[92,5110],[93,5110],[94,5110],[95,5110]].filter(p=>p[0]<=90);
+  const c=storyChart(svg,{a0:40,a1:90,lo:0,hi:10000,step:1000,tFrom:40,target:5000,tLabel:"生活费 S$5,000",
+    layers:[{c:"#D6A94C",pts:C1.map(p=>[p[0],p[1]])},{c:"#9CC9A6",pts:[[40,5000-C1[0][1]]]},{c:"#8DB9E2",pts:C1.filter(p=>p[0]>=65).map(p=>[p[0],3000])}]});
+  const L=(k,a,v,t,fill,anc,fs)=>c.A(k,g=>tx(c.at(a),c.y(v),t,"lab",{"text-anchor":anc||"middle","font-size":fs||"14",fill:fill||"#F4EEE1"},g));
+  L(0,60,7000,"每月 S$5,000，从哪里来？","#E2C48A","middle","19");
+  L(1,40,6200,"第 1 年：分红约 S$3,100 + 现金约 S$1,900","#E2C48A","start","15");
+  L(2,52,6700,"每月分红约 S$5,000–6,000","#E2C48A","middle","15");
+  L(3,77,8700,"+ CPF LIFE：合计约 S$8,000","#BFD7EE","middle","15");
+  L(4,77,9550,"♥ 身故赔付 ≥ 已缴保费 S$100 万","#E2C48A","middle","15"); L(4,77,9000,"做好提名，直接给到孩子","#F4EEE1","middle","13");
+  const R=[[0,-1],[40,40],[41,64],[65,90],[0,0]];
+  storySteps(svg.closest(".scene"),5,i=>{ c.ann.forEach((g,k)=>{ if(g) g.style.opacity=k===i?"1":"0"; }); c.stage(R[i][0],R[i][1],i===4); });
 })();
 (function(){
   const svg=document.getElementById("ch-case2"); if(!svg) return;
-  const D={8:{g:[[36,44515],[37,90752],[38,138763],[39,186005],[40,234617],[41,241421],[42,248422],[43,266751],[44,286349],[45,307304],[46,329710],[47,352546],[48,376964],[49,403072],[50,430989],[51,460839],[52,492757],[53,526885],[54,563377],[55,602397]],V:602397,m:3514},4:{g:[[36,42784],[37,85513],[38,128187],[39,168315],[40,208002],[41,205714],[42,203451],[43,210452],[44,217657],[45,225071],[46,232701],[47,239473],[48,246441],[49,253613],[50,260993],[51,268588],[52,276404],[53,284447],[54,292724],[55,301243]],V:301243,m:1757}};
-  const f=a=>Math.pow(1.02,a-35), tg=document.getElementById("c2Rate"), nums=[...document.querySelectorAll("#c2Nums [data-k]")];
-  let R=8, step=4, c;
-  function draw(){
-    const d=D[R], pin=[], div=[], cpf=[];
-    for(let a=35;a<=90;a++){ if(a<=39) pin.push([a,-3500/f(a)]); if(a>=55) div.push([a,d.m/f(a)]); if(a>=65) cpf.push([a,3200/Math.pow(1.02,a-65)]); }
-    c=caseDraw(svg,{a0:35,a1:90,lo:-4000,hi:6000,step:2000,tFrom:55,target:3500,tLabel:"生活费 S$3,500",
-      layers:[{k:"in",c:"#E9917C",pts:pin},{k:"pwv",c:"#D6A94C",pts:div},{k:"cpf",c:"#8DB9E2",pts:cpf}]});
-    const at=a=>c.x(a)+c.bw/2, V8=D[8].V, gy=v=>c.y(0)-6-v/V8*(c.y(0)-c.y(4600));
-    const g=c.G.grow=el("g",{style:"opacity:0;transition:opacity .5s ease"},svg);
-    const pts=[[35,0]].concat(d.g), P=pts.map((p,i)=>(i?"L":"M")+at(p[0]).toFixed(1)+" "+gy(p[1]).toFixed(1)).join(" ");
-    el("path",{d:P+" L"+at(55)+" "+gy(0)+" L"+at(35)+" "+gy(0)+" Z",fill:"rgba(214,169,76,.16)"},g);
-    el("path",{d:P,stroke:"#D6A94C","stroke-width":2.6,fill:"none","stroke-dasharray":"6 4"},g);
-    el("circle",{cx:at(55),cy:gy(d.V),r:5,fill:"#D6A94C"},g);
-    tx(at(55)-8,gy(d.V)-10,"55 岁保单价值约 S$"+(d.V/10000).toFixed(1)+" 万（到时候的钱）","lab",{"text-anchor":"end","font-size":"12.5",fill:"#E2C48A"},g);
-    tx(at(36),c.y(-3500)+16,"每月存 S$3,500 × 5 年","tick",{"font-size":"12",fill:"#F2B7A9"},g);
-    tx(at(59.5),c.y(3500)-9,"55–64 岁缺口","lab",{"text-anchor":"middle","font-size":"12.5",fill:"#F2B7A9"},c.G.gap);
-    tx(at(66),c.y(5200)-8,"65 岁两份 CPF LIFE 接上","lab",{"font-size":"13",fill:"#BFD7EE"},c.G.cpf);
-  }
-  function vis(){ const i=step, G=c.G; G.target.style.opacity="1"; G.in.style.opacity=G.grow.style.opacity=i>=1?"1":"0";
-    G.pwv.style.opacity=i>=2?"1":"0"; G.cpf.style.opacity=i>=3?"1":"0"; G.gap.style.opacity=i>=4?"1":"0";
-    nums.forEach(e=>hid(e,+e.dataset.k>i)); }
-  function setR(r){ R=r; [...tg.children].forEach(b=>b.classList.toggle("on",+b.dataset.r===r));
-    document.querySelectorAll("#c2Nums [data-r8]").forEach(e=>e.textContent=e.dataset["r"+r]); draw(); requestAnimationFrame(vis); }
-  tg.addEventListener("click",e=>{ const b=e.target.closest("button"); if(!b) return; setR(+b.dataset.r); });
-  // 空格：生活费线 → 投入与增值 → 55 岁起分红 → CPF → 缺口 → 换成 BI 4%
-  seq(svg.closest(".scene"),6,i=>{ step=Math.min(i,4); const r=i===5?4:8; if(r!==R) setR(r); else vis(); });
-  setR(8);
+  const G=[[36,44515],[37,90752],[38,138763],[39,186005],[40,234617],[41,241421],[42,248422],[43,266751],[44,286349],[45,307304],[46,329710],[47,352546],[48,376964],[49,403072],[50,430989],[51,460839],[52,492757],[53,526885],[54,563377],[55,602397]], V=602397, MD=3514;
+  const pin=[],div=[],cpf=[];
+  for(let a=35;a<=90;a++){ if(a<=39) pin.push([a,-3500]); if(a>=55) div.push([a,MD]); if(a>=65) cpf.push([a,3200]); }
+  const c=storyChart(svg,{a0:35,a1:90,lo:-4000,hi:8000,step:2000,tFrom:55,target:3500,tLabel:"生活费 S$3,500",
+    layers:[{c:"#E9917C",pts:pin},{c:"#D6A94C",pts:div},{c:"#8DB9E2",pts:cpf}]});
+  // 35–55 岁：保单价值增长（单独刻度）
+  const gy=v=>c.y(0)-6-v/V*(c.y(0)-c.y(5400));
+  const grow=el("g",{style:"transition:opacity .5s ease"},svg);
+  const pts=[[35,0]].concat(G), P=pts.map((p,i)=>(i?"L":"M")+c.at(p[0]).toFixed(1)+" "+gy(p[1]).toFixed(1)).join(" ");
+  el("path",{d:P+" L"+c.at(55)+" "+gy(0)+" L"+c.at(35)+" "+gy(0)+" Z",fill:"rgba(214,169,76,.16)"},grow);
+  el("path",{d:P,stroke:"#D6A94C","stroke-width":2.6,fill:"none","stroke-dasharray":"6 4"},grow);
+  el("circle",{cx:c.at(55),cy:gy(V),r:5,fill:"#D6A94C"},grow);
+  const L=(k,a,v,t,fill,anc,fs)=>c.A(k,g=>tx(c.at(a),c.y(v),t,"lab",{"text-anchor":anc||"middle","font-size":fs||"14",fill:fill||"#F4EEE1"},g));
+  L(0,62,6200,"55 岁起，每月 S$3,500？","#E2C48A","middle","19");
+  L(1,36,-3900,"每月存 S$3,500 × 5 年（共 S$21 万）","#F2B7A9","start");
+  L(2,46,6700,"保单在 ELITE 里增值：55 岁约 S$60 万","#E2C48A","middle","15");
+  L(3,60,4300,"转 GAIF：每月分红约 S$3,500","#E2C48A","middle","15");
+  L(4,77,7350,"+ 两份 CPF LIFE：合计约 S$6,700","#BFD7EE","middle","15");
+  const R=[[0,-1],[35,39],[40,54],[55,64],[0,0]];
+  storySteps(svg.closest(".scene"),5,i=>{ c.ann.forEach((g,k)=>{ if(g) g.style.opacity=k===i?"1":"0"; }); c.stage(R[i][0],R[i][1],i===4); grow.style.opacity=i>=2?(i===2?"1":".55"):"0"; });
 })();
 
 /* 三种待遇（附录）：直线上涨 / 稳定上涨 / 波动中上涨 */
