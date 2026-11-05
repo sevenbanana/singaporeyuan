@@ -1984,6 +1984,10 @@ html.deck #s-recap>.inner{width:1000px}
 .rcp__box:fullscreen{border:0;border-radius:0;box-shadow:none;aspect-ratio:auto;width:100vw;height:100vh}
 .rcp__box:-webkit-full-screen{border:0;border-radius:0;box-shadow:none;aspect-ratio:auto;width:100vw;height:100vh}
 @media (max-width:700px){.rcp__play{justify-content:flex-end;padding:0 4% 4% 0}.rcp__btn{width:50px;height:50px;box-shadow:0 0 0 6px rgba(214,169,76,.22)}.rcp__btn svg{width:22px;height:22px;margin-left:3px}.rcp__lbl{display:none}}
+/* ── v19 案例「担心」改成图片卡 ── */
+.prof:has(.prof__worry--img){grid-template-columns:minmax(0,1fr) minmax(0,1.18fr)}
+.prof__worry--img{margin:0;padding:0;overflow:hidden;border-radius:20px;display:flex;flex-direction:column;justify-content:flex-end}
+.prof__worry--img img{display:block;width:100%;height:auto}
 </style>
 <style>.deckbar a{display:inline-flex;align-items:center;height:36px;padding:0 12px;border-radius:999px;color:var(--paper);text-decoration:none;font-weight:600}.deckbar a:hover{background:rgba(244,238,225,.1)}html.light .deckbar a{color:inherit}</style>
 </head>
@@ -2739,15 +2743,7 @@ body.locked #pwGate{display:flex}
           <li><svg viewBox="0 0 64 64" aria-hidden="true"><use href="#ic-bag3"/></svg><span>65 岁以后的退休金，<b>基本不用担心</b></span></li>
         </ul>
       </div>
-      <div class="prof__worry" data-k="1">
-        <h3>他的担心</h3>
-        <p class="prof__q">“如果明天被裁，<br>下个月的生活费从哪里来？”</p>
-        <ul>
-          <li>大厂近年裁员不断，40 岁这道坎让他睡不踏实</li>
-          <li>一旦离职，公司的团体医疗保险通常也就停了</li>
-          <li>不想为了生活费，在市场低点卖掉投资</li>
-        </ul>
-      </div>
+      <figure class="prof__worry prof__worry--img" data-k="1" style="background:#10294B"><img src="/guides/media/wac-case1-worry.jpg" width="1376" height="991" alt="他的担心：“如果明天被裁，下个月的生活费从哪里来？”大厂近年裁员不断，40 岁这道坎让他睡不踏实；一旦离职，公司的团体医疗保障通常也就停了；不想为了生活费，在市场低点卖掉投资。"></figure>
     </div>
     <p class="prof__risk" data-k="2">聊下来，他能接受中等的波动，但更看重<b>稳定的现金流</b>。</p>
   </div>
@@ -2792,15 +2788,7 @@ body.locked #pwGate{display:flex}
           <li><svg viewBox="0 0 64 64" aria-hidden="true"><use href="#ic-bag3"/></svg><span>双方父母都在国内，想 <b>55 岁</b>一起退下来，多回去陪陪老人</span></li>
         </ul>
       </div>
-      <div class="prof__worry" data-k="1">
-        <h3>他们的担心</h3>
-        <p class="prof__q">“CPF LIFE 65 岁才开始领，<br>55 到 65 岁这十年，<br>生活费从哪里来？”</p>
-        <ul>
-          <li>存款一直放在活期和定存里，二十年后跑不跑得赢通胀，心里没底</li>
-          <li>两人工作都忙，没时间研究和盯盘，也怕自己追涨杀跌</li>
-          <li>这笔钱不碰孩子的教育金，专门留给「退休后、CPF LIFE 之前」这十年</li>
-        </ul>
-      </div>
+      <figure class="prof__worry prof__worry--img" data-k="1" style="background:#142946"><img src="/guides/media/wac-case2-worry.jpg" width="1361" height="856" alt="他们的担心：“CPF LIFE 65 岁才开始领，55 到 65 岁这十年，生活费从哪里来？”存款一直放在活期和定存里，二十年后跑不赢通胀，心里没底；两人工作都忙，没时间研究和盯盘，也怕自己追涨杀跌；这笔钱不碰孩子的教育金，专门留给「退休后、CPF LIFE 之前」这十年。"></figure>
     </div>
     <p class="prof__risk" data-k="2">聊下来，离用这笔钱还有 20 年，他们能接受较大的波动，更看重<b>长期增长</b>。</p>
   </div>
