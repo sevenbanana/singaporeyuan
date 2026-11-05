@@ -3106,7 +3106,7 @@ function redraw(p){ // 切换后重新播放描线动画
     const pick=()=>{ const b=nav.children[i]; if(b) b.click(); };
     fig.addEventListener("click",pick);
     fig.addEventListener("keydown",e=>{ if(e.key==="Enter"||e.key===" "){ e.preventDefault(); e.stopPropagation(); pick(); } });
-    return {fig:fig,hx:cx+P.h[0]*2.1,hy:cy-8+P.h[1]*2.1,bad:tone==="#B5503C"};
+    return {fig:fig,wrap:wrap,x:cx,hx:cx+P.h[0]*2.1,hy:cy-8+P.h[1]*2.1,bad:tone==="#B5503C"};
   });
   // 内心 OS 气泡：统一放在图表顶部一条，用小圆点连到当前小人的头
   const bub=el("g",{class:"os-bub","aria-hidden":"true"},svg), bin=el("g",{class:"os-in"},bub);
@@ -3128,12 +3128,38 @@ function redraw(p){ // 切换后重新播放描线动画
     bub.classList.toggle("bad",f.bad);
     bub.classList.remove("show"); void bub.getBoundingClientRect(); bub.classList.add("show");
   }
+  // 曲线逐步出现：只画到当前这一步，后面的走势、圆点和小人都先藏起来；最后出结论时才画完整条
+  const take=svg.closest(".scene")&&svg.closest(".scene").querySelector(".takeaway");
+  const cursor=svg.querySelector(".emo-cursor");
+  const cp=el("clipPath",{id:"emoReveal",clipPathUnits:"userSpaceOnUse"},el("defs",{},svg));
+  const crect=el("rect",{x:-20,y:-130,height:480,width:0},cp);
+  [svg.querySelector("path.draw"),svg.querySelector("path.fade")].forEach(p=>{ if(p) p.setAttribute("clip-path","url(#emoReveal)"); });
+  const xs=figs.map(f=>f.x);
+  let curX=null, raf=0, tgtI=-1, lastI=null, pend=null;
+  function paint(){
+    crect.setAttribute("width",Math.max(0,curX+23).toFixed(1));
+    figs.forEach((f,k)=>{ const v=xs[k]<=curX+1?"":"hidden"; f.wrap.style.visibility=v; dots[k].style.visibility=v; });
+    if(cursor) cursor.style.visibility=(tgtI<0||xs[tgtI]<=curX+1)?"":"hidden";
+  }
+  function reveal(target,done){
+    cancelAnimationFrame(raf);
+    if(curX===null||Math.abs(target-curX)<1){ curX=target; paint(); if(done) done(); return; }
+    const from=curX, t0=performance.now(), D=Math.min(1500,550+Math.abs(target-from)*2.4);
+    const tick=now=>{ const q=Math.min(1,(now-t0)/D), e=q<.5?2*q*q:1-Math.pow(-2*q+2,2)/2; curX=from+(target-from)*e; paint();
+      if(q<1) raf=requestAnimationFrame(tick); else if(done) done(); };
+    raf=requestAnimationFrame(tick);
+  }
   function sync(){
     const i=[...nav.children].findIndex(b=>b.classList.contains("on"));
     figs.forEach((f,k)=>{ f.fig.classList.toggle("act",k===i); f.fig.classList.toggle("dim",i>=0&&k!==i); });
-    if(i>=0) place(i);
+    const full=i===figs.length-1&&!(take&&take.classList.contains("bh"));
+    const target=i<0?xs[0]:(full?900:xs[i]);
+    tgtI=i;
+    if(i!==lastI){ bub.classList.remove("show"); pend=i; lastI=i; }
+    reveal(target,()=>{ if(pend!==null&&pend===tgtI&&pend>=0){ place(pend); pend=null; } });
   }
   new MutationObserver(sync).observe(nav,{subtree:true,attributes:true,attributeFilter:["class"]});
+  if(take) new MutationObserver(sync).observe(take,{attributes:true,attributeFilter:["class"]});
   sync();
 })();
 
