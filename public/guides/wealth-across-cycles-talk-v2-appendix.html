@@ -1984,6 +1984,10 @@ html.deck #s-recap>.inner{width:1000px}
 .rcp__box:fullscreen{border:0;border-radius:0;box-shadow:none;aspect-ratio:auto;width:100vw;height:100vh}
 .rcp__box:-webkit-full-screen{border:0;border-radius:0;box-shadow:none;aspect-ratio:auto;width:100vw;height:100vh}
 @media (max-width:700px){.rcp__play{justify-content:flex-end;padding:0 4% 4% 0}.rcp__btn{width:50px;height:50px;box-shadow:0 0 0 6px rgba(214,169,76,.22)}.rcp__btn svg{width:22px;height:22px;margin-left:3px}.rcp__lbl{display:none}}
+/* ── v19 案例「担心」改成图片卡 ── */
+.prof:has(.prof__worry--img){grid-template-columns:minmax(0,1fr) minmax(0,1.18fr)}
+.prof__worry--img{margin:0;padding:0;overflow:hidden;border-radius:20px;display:flex;flex-direction:column;justify-content:flex-end}
+.prof__worry--img img{display:block;width:100%;height:auto}
 </style>
 <style>.deckbar a{display:inline-flex;align-items:center;height:36px;padding:0 12px;border-radius:999px;color:var(--paper);text-decoration:none;font-weight:600}.deckbar a:hover{background:rgba(244,238,225,.1)}html.light .deckbar a{color:inherit}</style>
 </head>
