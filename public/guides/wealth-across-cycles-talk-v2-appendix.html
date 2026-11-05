@@ -4152,23 +4152,17 @@ function storySteps(sc,n,apply){
   const path=g=>[[35,0]].concat(g).map((p,i)=>(i?"L":"M")+c.at(p[0]).toFixed(1)+" "+gy(p[1]).toFixed(1)).join(" ");
   el("path",{d:path(G)+" L"+c.at(55)+" "+gy(0)+" L"+c.at(35)+" "+gy(0)+" Z",fill:"rgba(214,169,76,.14)"},grow);
   el("path",{d:path(G),stroke:"#D6A94C","stroke-width":2.6,fill:"none","stroke-dasharray":"6 4"},grow);
-  el("path",{d:path(G4),stroke:"#E9917C","stroke-width":2.2,fill:"none","stroke-dasharray":"3 4"},grow);
-  el("circle",{cx:c.at(55),cy:gy(V),r:5,fill:"#D6A94C"},grow); el("circle",{cx:c.at(55),cy:gy(V4),r:4.5,fill:"#E9917C"},grow);
+  el("circle",{cx:c.at(55),cy:gy(V),r:5,fill:"#D6A94C"},grow);
   const L=(k,a,v,t,fill,anc,fs)=>c.A(k,g=>tx(c.at(a),c.y(v),t,"lab",{"text-anchor":anc||"middle","font-size":fs||"15",fill:fill||"#F4EEE1"},g));
   L(0,36,-3900,"每月留 S$3,500 × 5 年（共 S$21 万）","#F2B7A9","start");
-  L(0,36,6700,"55 岁保单价值：BI 8% 约 S$"+(V/10000).toFixed(0)+" 万 · BI 4% 约 S$"+(V4/10000).toFixed(0)+" 万","#E2C48A","start","14.5");
+  L(0,36,6700,"55 岁保单价值：按 BI 8% 约 S$"+(V/10000).toFixed(0)+" 万","#E2C48A","start","14.5");
   c.A(1,g=>{ el("rect",{x:c.x(55),y:c.y(5000),width:c.x(65)-c.x(55),height:c.y(0)-c.y(5000),fill:"rgba(214,169,76,.10)",stroke:"#D6A94C","stroke-width":1.2,"stroke-dasharray":"5 4"},g); });
   L(1,60,5600,"55–65 岁：保单分红补上这十年","#E2C48A");
   L(1,60,4500,"BI 8%：每月约 S$"+money(MD),"#E2C48A");
-  L(2,72,5600,"回报不如预期：多存一点、晚几年退休或调整开支","#F2B7A9");
-  L(3,77,7350,"+ 两份 CPF LIFE：每人约 S$1,600","#BFD7EE");
-  // BI 4% 情景的派息水平：从 55 岁起一直显示
-  const alt=el("g",{style:"transition:opacity .4s ease;opacity:0"},svg);
-  el("line",{x1:c.x(55),x2:c.Wd-c.R,y1:c.y(M4),y2:c.y(M4),stroke:"#E9917C","stroke-width":2.2,"stroke-dasharray":"3 4"},alt);
-  tx(c.at(54)-4,c.y(M4)+5,"BI 4%：每月约 S$"+money(Math.round(M4/10)*10),"lab",{"text-anchor":"end","font-size":"14",fill:"#F2B7A9"},alt);
-  const R=[[35,54],[55,64],[55,64],[65,90]];
-  storySteps(svg.closest(".scene"),4,i=>{ c.ann.forEach((g,k)=>{ if(g) g.style.opacity=k===i?"1":"0"; }); c.stage(R[i][0],R[i][1],i===3);
-    grow.style.opacity=i===0?"1":".5"; alt.style.opacity=i>=2?"1":"0"; });
+  L(2,77,7350,"+ 两份 CPF LIFE：每人约 S$1,600","#BFD7EE");
+  const R=[[35,54],[55,64],[65,90]];
+  storySteps(svg.closest(".scene"),3,i=>{ c.ann.forEach((g,k)=>{ if(g) g.style.opacity=k===i?"1":"0"; }); c.stage(R[i][0],R[i][1],i===2);
+    grow.style.opacity=i===0?"1":".5"; });
 })();
 
 /* 三种待遇（附录）：直线上涨 / 稳定上涨 / 波动中上涨 */
