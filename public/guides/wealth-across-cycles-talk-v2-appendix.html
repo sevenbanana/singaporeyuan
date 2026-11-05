@@ -4159,18 +4159,21 @@ function storySteps(sc,n,apply){
       if(v.webkitEnterFullscreen) v.webkitEnterFullscreen();
     }catch(e){}
   }
-  function exitFS(){
-    try{ if(fsEl()===box){ const x=document.exitFullscreen||document.webkitExitFullscreen; const p=x&&x.call(document); if(p&&p.catch) p.catch(()=>{}); } }catch(e){}
+  function exitFS(){ // 视频框或视频本身（原生全屏按钮 / iPad 播放器）在全屏时都退出
+    try{ const f=fsEl(); if(f&&(f===box||box.contains(f))){ const x=document.exitFullscreen||document.webkitExitFullscreen; const p=x&&x.call(document); if(p&&p.catch) p.catch(()=>{}); } }catch(e){}
+    try{ if(v.webkitDisplayingFullscreen&&v.webkitExitFullscreen) v.webkitExitFullscreen(); }catch(e){}
   }
   function play(){ v.controls=true; enterFS(); const p=v.play(); if(p&&p.catch) p.catch(()=>{}); }
   function stop(){ try{ v.pause(); }catch(e){} exitFS(); try{ if(v.currentTime>0) v.currentTime=0; }catch(e){} v.controls=false; setS("idle"); }
   v.addEventListener("play",()=>setS("playing"));
   v.addEventListener("pause",()=>{ if(!v.ended&&box.dataset.state!=="idle") setS("paused"); });
   v.addEventListener("ended",()=>{ v.controls=false; setS("ended"); exitFS(); });
+  ["fullscreenchange","webkitfullscreenchange"].forEach(t=>document.addEventListener(t,()=>{ if(box.dataset.state==="ended") exitFS(); })); // 嵌套全屏时一路退到幻灯片
   sc.querySelector(".rcp__play").addEventListener("click",play);
   sc.querySelector(".rcp__again").addEventListener("click",()=>{ try{ v.currentTime=0; }catch(e){} play(); });
-  box.addEventListener("wheel",e=>e.stopPropagation(),{passive:true}); // 视频上滚动滚轮不翻页
-  sc._next=()=>{ if(box.dataset.state==="ended") return false; if(v.paused) play(); else v.pause(); return true; };
+  box.addEventListener("wheel",e=>{ if(box.dataset.state==="playing") e.stopPropagation(); },{passive:true}); // 只在播放中屏蔽滚轮，播完照常翻页
+  const done=()=>box.dataset.state==="ended"||v.ended||(v.duration&&v.currentTime>=v.duration-.25);
+  sc._next=()=>{ if(done()){ exitFS(); setS("ended"); return false; } if(v.paused) play(); else v.pause(); return true; };
   sc._prev=()=>{ if(box.dataset.state==="idle") return false; stop(); return true; };
   sc._reset=stop; sc._end=stop;
   // 演示模式翻走这一页、滚动模式滚出视野时停下
