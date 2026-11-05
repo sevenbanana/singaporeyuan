@@ -1988,6 +1988,63 @@ html.deck #s-recap>.inner{width:1000px}
 .prof:has(.prof__worry--img){grid-template-columns:minmax(0,1fr) minmax(0,1.18fr)}
 .prof__worry--img{margin:0;padding:0;overflow:hidden;border-radius:20px;display:flex;flex-direction:column;justify-content:flex-end}
 .prof__worry--img img{display:block;width:100%;height:auto}
+
+/* ── v20 议程 / 收尾：航线面板 ── */
+.route{position:relative;margin-top:8px;border-radius:24px;overflow:hidden;padding:30px 28px 16px;color:#E6EDF4;
+  background:radial-gradient(120% 150% at 0% 0%,#1D3D66 0%,#132B4D 52%,#0D2140 100%);border:1px solid rgba(214,169,76,.3);
+  box-shadow:0 34px 70px -40px rgba(8,18,36,.8),inset 0 1px 0 rgba(255,255,255,.06)}
+.route::before{content:"";position:absolute;inset:0;background:radial-gradient(55% 70% at 100% 0%,rgba(214,169,76,.13),transparent 62%);pointer-events:none}
+.route__waves{position:absolute;left:0;bottom:0;width:100%;height:44%;opacity:.6;pointer-events:none}
+.route__grid{position:relative;display:grid;grid-template-columns:repeat(3,minmax(0,1fr))}
+.route .route__stop{position:relative;border:0;background:none;border-radius:0;padding:4px 24px 8px;color:inherit;display:flex;flex-direction:column}
+.route .route__stop+.route__stop{border-left:1px solid rgba(214,169,76,.24)}
+html.light .route .route__stop{background:none;color:inherit}
+html.light .route .route__stop+.route__stop{border-left-color:rgba(214,169,76,.24)}
+.route__ill{display:block;height:92px;width:auto;max-width:100%;color:var(--gold);margin:0 0 16px;align-self:flex-start}
+.route .route__stop p.route__tag{font-size:13px;letter-spacing:.22em;color:#E2BD72;font-weight:700;margin:0}
+.route .route__stop span.route__no{display:block;font-family:"Archivo",var(--sans);font-size:62px;font-weight:800;line-height:1;margin:10px 0 10px;color:transparent;-webkit-text-stroke:1.3px #D6A94C;letter-spacing:.02em}
+.route .route__stop h3{font-size:1.2rem;line-height:1.45;color:#FBF6EC;margin:0}
+.route .route__stop p.route__sub{margin-top:12px;font-size:.9rem;color:#9FB4CA;letter-spacing:.06em}
+.route__track{position:relative;height:50px;margin:12px 0 0}
+.route__line{position:absolute;left:3%;right:3%;top:34px;border-top:1.5px dashed rgba(214,169,76,.5)}
+.route__track b{position:absolute;top:34px;width:11px;height:11px;margin:-5px 0 0 -5.5px;border-radius:50%;background:#0D2140;border:2px solid #D6A94C;transition:background .5s ease}
+.route__track b.on{background:#D6A94C;box-shadow:0 0 0 5px rgba(214,169,76,.18)}
+.route__boat{position:absolute;top:-2px;left:var(--bx,16.667%);width:46px;height:auto;margin-left:-23px;fill:none;stroke:#F4EEE1;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;transition:left 1.2s cubic-bezier(.45,.05,.25,1);animation:hbBob 4.6s ease-in-out infinite;transform-origin:50% 85%}
+/* 收尾三个问题 */
+.route--q{padding-top:26px}
+.route__head{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+.route__badge{width:62px;height:62px;border-radius:50%;display:grid;place-items:center;border:1.5px solid rgba(214,169,76,.55);background:rgba(214,169,76,.08);color:var(--gold)}
+.route__badge svg{width:44px;height:44px}
+.route--q .route__stop span.route__no{margin:0;font-size:54px}
+.route .route__stop.wq p{font-size:.95rem;line-height:1.7;color:#B9C8D8;margin-top:10px}
+.route .route__stop.wq .route__chip{margin-top:auto;padding-top:16px;font-size:13px;letter-spacing:.18em;color:#E2BD72;font-weight:700}
+.route .route__say.wrap-say{position:relative;display:flex;align-items:center;gap:18px;margin:22px 0 4px;padding:14px 20px;border:0;border-top:1px solid rgba(214,169,76,.3);border-radius:0;background:none;color:#F1F5FA}
+.route .route__say.wrap-say p{margin:0;line-height:1.6}
+.route__lh{flex:none;width:44px;height:52px;color:var(--gold)}
+html.deck .route .route__stop h3{font-size:22px}
+html.deck .route .route__stop p.route__sub{font-size:15px}
+html.deck .route .route__stop.wq p{font-size:16px}
+html.deck .route .route__say.wrap-say{font-size:19px}
+@media(max-width:860px){html:not(.deck) .route__grid{grid-template-columns:minmax(0,1fr)}html:not(.deck) .route .route__stop+.route__stop{border-left:0;border-top:1px solid rgba(214,169,76,.24);margin-top:14px;padding-top:18px}html:not(.deck) .route__track{display:none}}
+/* 封面：帆船轻轻起伏，海浪慢慢流动 */
+.hb-boat{transform-box:fill-box;transform-origin:50% 85%;animation:hbBob 5.2s ease-in-out infinite}
+.hb-flag{transform-box:fill-box;transform-origin:0% 50%;animation:hbFlag 2.6s ease-in-out infinite}
+.hb-rays{transform-box:fill-box;transform-origin:center;animation:hbSpin 70s linear infinite}
+.hb-w1{animation:hbFlow1 9s linear infinite}
+.hb-w2{animation:hbFlow2 12s linear infinite}
+.hb-w3{animation:hbFlow1 15s linear infinite}
+@keyframes hbBob{0%,100%{transform:translateY(0) rotate(-1.4deg)}50%{transform:translateY(-6px) rotate(1.4deg)}}
+@keyframes hbFlag{0%,100%{transform:scaleX(1)}50%{transform:scaleX(.82)}}
+@keyframes hbSpin{to{transform:rotate(360deg)}}
+@keyframes hbFlow1{from{transform:translateX(0)}to{transform:translateX(120px)}}
+@keyframes hbFlow2{from{transform:translateX(0)}to{transform:translateX(-136px)}}
+.hero__sea{position:absolute;left:0;right:0;bottom:0;height:30%;opacity:.28;pointer-events:none;-webkit-mask-image:linear-gradient(180deg,transparent,#000 40%);mask-image:linear-gradient(180deg,transparent,#000 40%)}
+.hero__sea svg{width:100%;height:100%;display:block}
+.hero__sea .hs1{animation:hbSea 26s linear infinite}
+.hero__sea .hs2{animation:hbSea 34s linear infinite reverse;opacity:.7}
+.hero__sea .hs3{animation:hbSea 42s linear infinite;opacity:.5}
+@keyframes hbSea{from{transform:translateX(0)}to{transform:translateX(240px)}}
+@media (prefers-reduced-motion:reduce){.hb-boat,.hb-flag,.hb-rays,.hb-w1,.hb-w2,.hb-w3,.hero__sea path,.route__boat{animation:none}}
 </style>
 <style>.deckbar a{display:inline-flex;align-items:center;height:36px;padding:0 12px;border-radius:999px;color:var(--paper);text-decoration:none;font-weight:600}.deckbar a:hover{background:rgba(244,238,225,.1)}html.light .deckbar a{color:inherit}</style>
 </head>
@@ -3725,7 +3782,10 @@ function redraw(p){ // 切换后重新播放描线动画
     seq(emo,7,i=>{ const b=nav.children[Math.min(i,5)]; if(b&&!b.classList.contains("on")) b.click(); hid(take,i<6); }); }
   // 议程：三件事逐条出现
   const ag=$s("s-agenda");
-  if(ag){ const it=all(ag,".agenda__item"); seq(ag,it.length,i=>it.forEach((e,j)=>hid(e,j>i))); }
+  if(ag){ const it=all(ag,".agenda__item"), rt=ag.querySelector(".route"), dots=all(ag,".route__track b");
+    const sail=i=>{ if(rt) rt.style.setProperty("--bx",(16.667+33.333*i).toFixed(3)+"%"); dots.forEach((d,j)=>d.classList.toggle("on",j<=i)); };
+    seq(ag,it.length,i=>{ it.forEach((e,j)=>hid(e,j>i)); sail(i); });
+    onShow(ag,()=>{ let i=0; sail(0); const t=setInterval(()=>{ i++; if(i>2){ clearInterval(t); return; } sail(i); },1400); }); }
   // AIA 怎么管钱：引言 → 三根支柱 → 数字
   const st=$s("s-steward");
   if(st){ const pil=st.querySelector(".stw-pillars"), sts=st.querySelector(".stw-stats");
@@ -3854,9 +3914,9 @@ document.addEventListener("click",e=>{
   function setDur(y){ DUR=y; [...$("cDur").children].forEach(c=>c.classList.toggle("on",+c.dataset.y===y));
     $("vDur").textContent=[...$("cDur").children].find(c=>+c.dataset.y===y).textContent; }
   $("cDur").addEventListener("click",e=>{ const b=e.target.closest("button"); if(!b) return; setDur(+b.dataset.y); draw(); });
-  // 空格：30 岁开始 → 40 岁开始 → 30 岁开始但只投 10 年
-  const P=[[30,0],[40,0],[30,10]];
-  seq(age.closest(".scene"),3,i=>{ age.value=P[i][0]; amt.value=1000; rate.value=6; setDur(P[i][1]); draw(); });
+  // 空格：25 岁开始 → 35 岁开始 → 25 岁开始但只投 10 年（每月 S$1,000，假设 4%）
+  const P=[[25,0],[35,0],[25,10]];
+  seq(age.closest(".scene"),3,i=>{ age.value=P[i][0]; amt.value=1000; rate.value=4; setDur(P[i][1]); draw(); });
   draw();
 })();
 

@@ -1988,6 +1988,63 @@ html.deck #s-recap>.inner{width:1000px}
 .prof:has(.prof__worry--img){grid-template-columns:minmax(0,1fr) minmax(0,1.18fr)}
 .prof__worry--img{margin:0;padding:0;overflow:hidden;border-radius:20px;display:flex;flex-direction:column;justify-content:flex-end}
 .prof__worry--img img{display:block;width:100%;height:auto}
+
+/* ── v20 议程 / 收尾：航线面板 ── */
+.route{position:relative;margin-top:8px;border-radius:24px;overflow:hidden;padding:30px 28px 16px;color:#E6EDF4;
+  background:radial-gradient(120% 150% at 0% 0%,#1D3D66 0%,#132B4D 52%,#0D2140 100%);border:1px solid rgba(214,169,76,.3);
+  box-shadow:0 34px 70px -40px rgba(8,18,36,.8),inset 0 1px 0 rgba(255,255,255,.06)}
+.route::before{content:"";position:absolute;inset:0;background:radial-gradient(55% 70% at 100% 0%,rgba(214,169,76,.13),transparent 62%);pointer-events:none}
+.route__waves{position:absolute;left:0;bottom:0;width:100%;height:44%;opacity:.6;pointer-events:none}
+.route__grid{position:relative;display:grid;grid-template-columns:repeat(3,minmax(0,1fr))}
+.route .route__stop{position:relative;border:0;background:none;border-radius:0;padding:4px 24px 8px;color:inherit;display:flex;flex-direction:column}
+.route .route__stop+.route__stop{border-left:1px solid rgba(214,169,76,.24)}
+html.light .route .route__stop{background:none;color:inherit}
+html.light .route .route__stop+.route__stop{border-left-color:rgba(214,169,76,.24)}
+.route__ill{display:block;height:92px;width:auto;max-width:100%;color:var(--gold);margin:0 0 16px;align-self:flex-start}
+.route .route__stop p.route__tag{font-size:13px;letter-spacing:.22em;color:#E2BD72;font-weight:700;margin:0}
+.route .route__stop span.route__no{display:block;font-family:"Archivo",var(--sans);font-size:62px;font-weight:800;line-height:1;margin:10px 0 10px;color:transparent;-webkit-text-stroke:1.3px #D6A94C;letter-spacing:.02em}
+.route .route__stop h3{font-size:1.2rem;line-height:1.45;color:#FBF6EC;margin:0}
+.route .route__stop p.route__sub{margin-top:12px;font-size:.9rem;color:#9FB4CA;letter-spacing:.06em}
+.route__track{position:relative;height:50px;margin:12px 0 0}
+.route__line{position:absolute;left:3%;right:3%;top:34px;border-top:1.5px dashed rgba(214,169,76,.5)}
+.route__track b{position:absolute;top:34px;width:11px;height:11px;margin:-5px 0 0 -5.5px;border-radius:50%;background:#0D2140;border:2px solid #D6A94C;transition:background .5s ease}
+.route__track b.on{background:#D6A94C;box-shadow:0 0 0 5px rgba(214,169,76,.18)}
+.route__boat{position:absolute;top:-2px;left:var(--bx,16.667%);width:46px;height:auto;margin-left:-23px;fill:none;stroke:#F4EEE1;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;transition:left 1.2s cubic-bezier(.45,.05,.25,1);animation:hbBob 4.6s ease-in-out infinite;transform-origin:50% 85%}
+/* 收尾三个问题 */
+.route--q{padding-top:26px}
+.route__head{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+.route__badge{width:62px;height:62px;border-radius:50%;display:grid;place-items:center;border:1.5px solid rgba(214,169,76,.55);background:rgba(214,169,76,.08);color:var(--gold)}
+.route__badge svg{width:44px;height:44px}
+.route--q .route__stop span.route__no{margin:0;font-size:54px}
+.route .route__stop.wq p{font-size:.95rem;line-height:1.7;color:#B9C8D8;margin-top:10px}
+.route .route__stop.wq .route__chip{margin-top:auto;padding-top:16px;font-size:13px;letter-spacing:.18em;color:#E2BD72;font-weight:700}
+.route .route__say.wrap-say{position:relative;display:flex;align-items:center;gap:18px;margin:22px 0 4px;padding:14px 20px;border:0;border-top:1px solid rgba(214,169,76,.3);border-radius:0;background:none;color:#F1F5FA}
+.route .route__say.wrap-say p{margin:0;line-height:1.6}
+.route__lh{flex:none;width:44px;height:52px;color:var(--gold)}
+html.deck .route .route__stop h3{font-size:22px}
+html.deck .route .route__stop p.route__sub{font-size:15px}
+html.deck .route .route__stop.wq p{font-size:16px}
+html.deck .route .route__say.wrap-say{font-size:19px}
+@media(max-width:860px){html:not(.deck) .route__grid{grid-template-columns:minmax(0,1fr)}html:not(.deck) .route .route__stop+.route__stop{border-left:0;border-top:1px solid rgba(214,169,76,.24);margin-top:14px;padding-top:18px}html:not(.deck) .route__track{display:none}}
+/* 封面：帆船轻轻起伏，海浪慢慢流动 */
+.hb-boat{transform-box:fill-box;transform-origin:50% 85%;animation:hbBob 5.2s ease-in-out infinite}
+.hb-flag{transform-box:fill-box;transform-origin:0% 50%;animation:hbFlag 2.6s ease-in-out infinite}
+.hb-rays{transform-box:fill-box;transform-origin:center;animation:hbSpin 70s linear infinite}
+.hb-w1{animation:hbFlow1 9s linear infinite}
+.hb-w2{animation:hbFlow2 12s linear infinite}
+.hb-w3{animation:hbFlow1 15s linear infinite}
+@keyframes hbBob{0%,100%{transform:translateY(0) rotate(-1.4deg)}50%{transform:translateY(-6px) rotate(1.4deg)}}
+@keyframes hbFlag{0%,100%{transform:scaleX(1)}50%{transform:scaleX(.82)}}
+@keyframes hbSpin{to{transform:rotate(360deg)}}
+@keyframes hbFlow1{from{transform:translateX(0)}to{transform:translateX(120px)}}
+@keyframes hbFlow2{from{transform:translateX(0)}to{transform:translateX(-136px)}}
+.hero__sea{position:absolute;left:0;right:0;bottom:0;height:30%;opacity:.28;pointer-events:none;-webkit-mask-image:linear-gradient(180deg,transparent,#000 40%);mask-image:linear-gradient(180deg,transparent,#000 40%)}
+.hero__sea svg{width:100%;height:100%;display:block}
+.hero__sea .hs1{animation:hbSea 26s linear infinite}
+.hero__sea .hs2{animation:hbSea 34s linear infinite reverse;opacity:.7}
+.hero__sea .hs3{animation:hbSea 42s linear infinite;opacity:.5}
+@keyframes hbSea{from{transform:translateX(0)}to{transform:translateX(240px)}}
+@media (prefers-reduced-motion:reduce){.hb-boat,.hb-flag,.hb-rays,.hb-w1,.hb-w2,.hb-w3,.hero__sea path,.route__boat{animation:none}}
 </style>
 <style>.deckbar a{display:inline-flex;align-items:center;height:36px;padding:0 12px;border-radius:999px;color:var(--paper);text-decoration:none;font-weight:600}.deckbar a:hover{background:rgba(244,238,225,.1)}html.light .deckbar a{color:inherit}</style>
 </head>
@@ -2291,7 +2348,7 @@ body.locked #pwGate{display:flex}
 <nav class="dots" id="dots" aria-label="章节导航"></nav>
 <!-- ══════════ 封面 ══════════ -->
 <section class="scene hero" id="s-cover" data-title="封面" data-tint="#0F2A44">
-  <div class="scene__art"><div class="hero__art" data-depth="-0.42"><svg viewBox="0 0 620 340" style="width:100%;height:auto;color:rgba(244,238,225,.34)"><use href="#ill-boat"/></svg></div></div>
+  <div class="scene__art"><div class="hero__art" data-depth="-0.42"><svg class="hboat" viewBox="0 0 620 340" style="width:100%;height:auto;color:rgba(244,238,225,.34)" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><g class="hb-sun"><g filter="url(#rough)"><circle cx="497" cy="86" r="46" stroke="var(--gold)" stroke-width="2.6"/></g><g class="hb-rays" stroke="var(--gold)" stroke-width="2" opacity=".75"><path d="M497 20v-14M497 166v14M417 86h-14M591 86h14M441 30l-10-10M553 142l10 10M553 30l10-10M441 142l-10 10"/></g></g><g filter="url(#rough)" opacity=".55" stroke-width="2"><path d="M40 214v-52h26v52M78 214v-74h22v74M112 214v-40h20v40M556 214v-58h24v58"/><path d="M150 214v-96l18-14 18 14v96"/><path d="M150 132h36M40 176h26M78 158h22"/></g><g class="hb-boat"><g filter="url(#rough)"><path d="M228 214h150l-20 30q-55 12-110 0z" fill="rgba(214,169,76,.16)"/><path d="M300 214V72"/><path d="M308 84v122h74z" fill="rgba(214,169,76,.22)"/><path d="M292 92v112h-64z" fill="rgba(244,238,225,.1)"/><path class="hb-flag" d="M300 72l30 12-30 11z" fill="var(--gold)" stroke="var(--gold)"/></g></g><g stroke-width="2.6"><path class="hb-w1" d="M-114 254q30-18 60 0t60 0 60 0 60 0 60 0 60 0 60 0 60 0 60 0 60 0 60 0 60 0 60 0 60 0"/><path class="hb-w2" d="M-150 288q34-20 68 0t68 0 68 0 68 0 68 0 68 0 68 0 68 0 68 0 68 0 68 0 68 0 68 0" opacity=".7"/><path class="hb-w3" d="M-114 320q30-18 60 0t60 0 60 0 60 0 60 0 60 0 60 0 60 0 60 0 60 0 60 0 60 0 60 0 60 0" opacity=".45"/></g></g></svg></div><div class="hero__sea" aria-hidden="true"><svg viewBox="0 0 1200 300" preserveAspectRatio="none"><g fill="none" stroke="var(--gold)" stroke-width="1.4"><path class="hs1" d="M-240 70q60-28 120 0t120 0 120 0 120 0 120 0 120 0 120 0 120 0 120 0 120 0 120 0 120 0 120 0"/><path class="hs2" d="M-240 150q60-28 120 0t120 0 120 0 120 0 120 0 120 0 120 0 120 0 120 0 120 0 120 0 120 0 120 0"/><path class="hs3" d="M-240 230q60-28 120 0t120 0 120 0 120 0 120 0 120 0 120 0 120 0 120 0 120 0 120 0 120 0 120 0"/></g></svg></div></div>
   <div class="inner">
     <h1 class="rise" style="--d:.1s">让家庭财富<em>穿越周期</em></h1>
     <p class="hero__sub rise" style="--d:.22s">保险公司怎么做长期投资，<br>落到你家，又该怎么配。</p>
@@ -2349,16 +2406,16 @@ body.locked #pwGate{display:flex}
       <div class="calc">
         <div>
           <div class="ctrl">
-            <div class="ctrl__top"><label for="cAge">开始年龄</label><span class="ctrl__v"><span id="vAge">30</span> 岁</span></div>
-            <input id="cAge" type="range" min="22" max="55" step="1" value="30">
+            <div class="ctrl__top"><label for="cAge">开始年龄</label><span class="ctrl__v"><span id="vAge">25</span> 岁</span></div>
+            <input id="cAge" type="range" min="22" max="55" step="1" value="25">
           </div>
           <div class="ctrl">
             <div class="ctrl__top"><label for="cAmt">每月投入</label><span class="ctrl__v">S$<span id="vAmt">1,000</span></span></div>
             <input id="cAmt" type="range" min="100" max="5000" step="100" value="1000">
           </div>
           <div class="ctrl">
-            <div class="ctrl__top"><label for="cRate">假设年化回报</label><span class="ctrl__v"><span id="vRate">6.0</span>%</span></div>
-            <input id="cRate" type="range" min="3" max="10" step="0.5" value="6">
+            <div class="ctrl__top"><label for="cRate">假设年化回报</label><span class="ctrl__v"><span id="vRate">4.0</span>%</span></div>
+            <input id="cRate" type="range" min="3" max="10" step="0.5" value="4">
           </div>
           <div class="ctrl">
             <div class="ctrl__top"><span>定投年限</span><span class="ctrl__v" id="vDur">一直投到 65 岁</span></div>
@@ -2389,13 +2446,17 @@ body.locked #pwGate{display:flex}
 
 <section class="scene" id="s-agenda" data-title="接下来聊什么" data-tint="#10314E">
   <div class="inner">
-    <p class="eyebrow rise">Agenda</p>
+    <p class="eyebrow rise">Agenda · 今天的航线</p>
     <h2 class="h-sec rise" style="--d:.06s">接下来，我们聊三件事</h2>
     <div class="rule rise" style="--d:.1s"></div>
-    <div class="agenda agenda--3">
-      <div class="agenda__item rise" style="--d:.14s"><svg class="agenda__ic" viewBox="0 0 64 64" aria-hidden="true"><use href="#ic-bag2"/></svg><span>01</span><h3>家里的钱，哪些要留着用，哪些可以长期投资？</h3></div>
-      <div class="agenda__item rise" style="--d:.22s"><svg class="agenda__ic" viewBox="0 0 64 64" aria-hidden="true"><use href="#ic-pillar"/></svg><span>02</span><h3>通过保单投资，钱由谁来管理？</h3></div>
-      <div class="agenda__item rise" style="--d:.3s"><svg class="agenda__ic" viewBox="0 0 64 64" aria-hidden="true"><use href="#ic-learn"/></svg><span>03</span><h3>现在需要收入，和以后才退休，安排有什么不同？</h3></div>
+    <div class="route rise" style="--d:.14s">
+      <svg class="route__waves" viewBox="0 0 1200 300" preserveAspectRatio="none" aria-hidden="true"><use href="#ill-wavefield"/></svg>
+      <div class="route__grid">
+        <div class="agenda__item route__stop"><svg class="route__ill" viewBox="0 0 360 340" aria-hidden="true"><use href="#ill-shelter"/></svg><p class="route__tag">第一章 · 家里的钱</p><span class="route__no">01</span><h3>家里的钱，哪些要留着用，哪些可以长期投资？</h3><p class="route__sub">三个钱袋子 · 风险分层</p></div>
+        <div class="agenda__item route__stop"><svg class="route__ill" viewBox="0 0 340 340" aria-hidden="true"><use href="#ill-pillars"/></svg><p class="route__tag">第二章 · 谁来管理</p><span class="route__no">02</span><h3>通过保单投资，钱由谁来管理？</h3><p class="route__sub">管理人团队 · 增长型与分红型</p></div>
+        <div class="agenda__item route__stop"><svg class="route__ill" viewBox="0 0 340 340" aria-hidden="true"><use href="#ill-sprout"/></svg><p class="route__tag">第三章 · 领钱的安排</p><span class="route__no">03</span><h3>现在需要收入，和以后才退休，安排有什么不同？</h3><p class="route__sub">两种领法 · 两个家庭情境</p></div>
+      </div>
+      <div class="route__track" aria-hidden="true"><i class="route__line"></i><b style="left:16.667%"></b><b style="left:50%"></b><b style="left:83.333%"></b><svg class="route__boat" viewBox="0 0 64 48"><path d="M10 34h44l-6 8q-16 4-32 0z" fill="rgba(214,169,76,.3)"/><path d="M32 34V5"/><path d="M35 8v24h16z" fill="rgba(214,169,76,.35)"/><path d="M29 12v20H15z" fill="rgba(244,238,225,.12)"/><path d="M32 5l9 3.5-9 3.5z" fill="#D6A94C" stroke="#D6A94C"/></svg></div>
     </div>
   </div>
 </section>
@@ -2820,12 +2881,15 @@ body.locked #pwGate{display:flex}
     <p class="eyebrow rise">今天的收尾</p>
     <h2 class="h-sec rise" style="--d:.06s">回去之后，先想三个问题</h2>
     <div class="rule rise" style="--d:.1s"></div>
-    <div class="wrap3">
-      <div class="wq rise" style="--d:.14s"><span>01</span><h3>未来三五年，家里有哪些大笔钱一定要花？</h3><p>孩子教育、买房换房、父母养老……这些钱，提前留出来了吗？</p></div>
-      <div class="wq rise" style="--d:.2s"><span>02</span><h3>如果明天市场跌了 20%，我还能安心持有吗？</h3><p>会不会着急卖掉？会不会影响家庭生活？先想清楚自己能承受多大的波动。</p></div>
-      <div class="wq rise" style="--d:.26s"><span>03</span><h3>等到退休不领工资了，每个月的生活费从哪里来？</h3><p>CPF LIFE、储蓄、投资收入……未来的现金流，安排好了吗？</p></div>
+    <div class="route route--q rise" style="--d:.12s">
+      <svg class="route__waves" viewBox="0 0 1200 300" preserveAspectRatio="none" aria-hidden="true"><use href="#ill-wavefield"/></svg>
+      <div class="route__grid">
+        <div class="wq route__stop"><div class="route__head"><span class="route__badge"><svg viewBox="0 0 64 64" aria-hidden="true"><use href="#ic-bag1"/></svg></span><span class="route__no">01</span></div><h3>未来三五年，家里有哪些大笔钱一定要花？</h3><p>孩子教育、买房换房、父母养老……这些钱，提前留出来了吗？</p><p class="route__chip">要用的钱 · 先留出来</p></div>
+        <div class="wq route__stop"><div class="route__head"><span class="route__badge"><svg viewBox="0 0 64 64" aria-hidden="true"><use href="#ic-shield"/></svg></span><span class="route__no">02</span></div><h3>如果明天市场跌了 20%，我还能安心持有吗？</h3><p>会不会着急卖掉？会不会影响家庭生活？先想清楚自己能承受多大的波动。</p><p class="route__chip">波动 · 拿得住</p></div>
+        <div class="wq route__stop"><div class="route__head"><span class="route__badge"><svg viewBox="0 0 64 64" aria-hidden="true"><use href="#ic-glass"/></svg></span><span class="route__no">03</span></div><h3>等到退休不领工资了，每个月的生活费从哪里来？</h3><p>CPF LIFE、储蓄、投资收入……未来的现金流，安排好了吗？</p><p class="route__chip">现金流 · 接得上</p></div>
+      </div>
+      <div class="wrap-say route__say"><svg class="route__lh" viewBox="0 0 320 380" aria-hidden="true"><use href="#ill-lighthouse"/></svg><p>我们今天先算一个起点。以后收入、家庭开支和投资表现变了，计划也要跟着调整。</p></div>
     </div>
-    <p class="wrap-say rise" style="--d:.3s">我们今天先算一个起点。以后收入、家庭开支和投资表现变了，计划也要跟着调整。</p>
   </div>
 </section>
 
@@ -3880,7 +3944,10 @@ function redraw(p){ // 切换后重新播放描线动画
     seq(emo,7,i=>{ const b=nav.children[Math.min(i,5)]; if(b&&!b.classList.contains("on")) b.click(); hid(take,i<6); }); }
   // 议程：三件事逐条出现
   const ag=$s("s-agenda");
-  if(ag){ const it=all(ag,".agenda__item"); seq(ag,it.length,i=>it.forEach((e,j)=>hid(e,j>i))); }
+  if(ag){ const it=all(ag,".agenda__item"), rt=ag.querySelector(".route"), dots=all(ag,".route__track b");
+    const sail=i=>{ if(rt) rt.style.setProperty("--bx",(16.667+33.333*i).toFixed(3)+"%"); dots.forEach((d,j)=>d.classList.toggle("on",j<=i)); };
+    seq(ag,it.length,i=>{ it.forEach((e,j)=>hid(e,j>i)); sail(i); });
+    onShow(ag,()=>{ let i=0; sail(0); const t=setInterval(()=>{ i++; if(i>2){ clearInterval(t); return; } sail(i); },1400); }); }
   // AIA 怎么管钱：引言 → 三根支柱 → 数字
   const st=$s("s-steward");
   if(st){ const pil=st.querySelector(".stw-pillars"), sts=st.querySelector(".stw-stats");
@@ -4009,9 +4076,9 @@ document.addEventListener("click",e=>{
   function setDur(y){ DUR=y; [...$("cDur").children].forEach(c=>c.classList.toggle("on",+c.dataset.y===y));
     $("vDur").textContent=[...$("cDur").children].find(c=>+c.dataset.y===y).textContent; }
   $("cDur").addEventListener("click",e=>{ const b=e.target.closest("button"); if(!b) return; setDur(+b.dataset.y); draw(); });
-  // 空格：30 岁开始 → 40 岁开始 → 30 岁开始但只投 10 年
-  const P=[[30,0],[40,0],[30,10]];
-  seq(age.closest(".scene"),3,i=>{ age.value=P[i][0]; amt.value=1000; rate.value=6; setDur(P[i][1]); draw(); });
+  // 空格：25 岁开始 → 35 岁开始 → 25 岁开始但只投 10 年（每月 S$1,000，假设 4%）
+  const P=[[25,0],[35,0],[25,10]];
+  seq(age.closest(".scene"),3,i=>{ age.value=P[i][0]; amt.value=1000; rate.value=4; setDur(P[i][1]); draw(); });
   draw();
 })();
 
