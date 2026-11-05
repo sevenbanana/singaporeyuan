@@ -2863,15 +2863,14 @@ body.locked #pwGate{display:flex}
       <ol class="story rise" style="--d:.14s">
         <li data-k="0"><span class="st-age">35–39 岁</span><h4>每月留 S$3,500，留 5 年</h4><p>共 S$21 万，放进 PWV 3.0 5 年缴，先投增长型 ELITE。五年交完就不用再交，继续持有，每年一起检查进度。</p></li>
         <li data-k="1"><span class="st-age">55 岁</span><h4>转成分红，补上这十年</h4><p>按 BI 8% 假设，55 岁时保单价值约 S$60 万；转到分红型 GAIF，按 7% 假设派息率，每月约 S$3,500，正好接上生活费。</p></li>
-        <li data-k="2"><span class="st-age">回报不如预期</span><h4>BI 4% 情景</h4><p>55 岁时约 S$30 万，每月约 S$1,760。差额靠多存一点、晚几年退休或调整开支，所以每年都要一起看进度。</p></li>
-        <li data-k="3"><span class="st-age">65 岁</span><h4>两份 CPF LIFE 接上</h4><p>两人各领约 S$1,600。到时再结合实际开支、物价和 CPF 收入，检查是否足够。</p></li>
+        <li data-k="2"><span class="st-age">65 岁</span><h4>两份 CPF LIFE 接上</h4><p>两人各领约 S$1,600。到时再结合实际开支、物价和 CPF 收入，检查是否足够。</p></li>
       </ol>
       <div class="chartbox chartbox--dark dark-chart rise" data-live style="--d:.18s">
-        <div class="hi-bar"><span class="q1legend" style="margin:0;color:var(--mist)"><span><i style="background:#E9917C"></i>每月存入</span><span><i style="background:#D6A94C"></i>PWV 分红</span><span><i style="background:#8DB9E2"></i>CPF LIFE</span><span><i class="tkey"></i>生活费 S$3,500</span><span><i class="altkey"></i>BI 4% 情景</span></span></div>
+        <div class="hi-bar"><span class="q1legend" style="margin:0;color:var(--mist)"><span><i style="background:#E9917C"></i>每月存入</span><span><i style="background:#D6A94C"></i>PWV 分红</span><span><i style="background:#8DB9E2"></i>CPF LIFE</span><span><i class="tkey"></i>生活费 S$3,500</span></span></div>
         <div class="scroller scroller--wide"><svg id="ch-case2" viewBox="0 0 720 520" role="img" aria-label="林先生和林太太 35 到 90 岁每月现金流：35 到 39 岁每月存 3,500，55 岁保单价值约 60 万，55 岁起每月分红约 3,500，65 岁起加两份 CPF LIFE 约 3,200，合计约 6,700"></svg></div>
       </div>
     </div>
-    <p class="src rise">示意，非保证；家庭情境示例，人物与情节为虚构并已简化。金额为每月到手金额，未按通胀折算。PWV 3.0（5 年缴，年缴 S$42,000 档位：迎新红利 3% + 4% + 5%）。35–55 岁 ELITE 保单价值按 PWV 3.0 BI 8% 假设回报推算（已扣所有费用）；按 BI 4% 假设回报，55 岁时约 S$30.1 万，每月分红约 S$1,757（图中虚线）。55 岁转 GAIF 后假设基金价格 0 增长、分红率 7%，分红按季派发，图中为月均。CPF LIFE：假设两人 55 岁时各自存够全额退休存款（FRS），标准计划 65 岁起领取；CPF 官网估算 2026 年满 55 岁者 FRS 约 S$1,780 / 月，这里取保守值每人 S$1,600。</p>
+    <p class="src rise">示意，非保证；家庭情境示例，人物与情节为虚构并已简化。金额为每月到手金额，未按通胀折算。PWV 3.0（5 年缴，年缴 S$42,000 档位：迎新红利 3% + 4% + 5%）。35–55 岁 ELITE 保单价值按 PWV 3.0 BI 8% 假设回报推算（已扣所有费用）；按 BI 4% 假设回报，55 岁时约 S$30.1 万，每月分红约 S$1,757。55 岁转 GAIF 后假设基金价格 0 增长、分红率 7%，分红按季派发，图中为月均。CPF LIFE：假设两人 55 岁时各自存够全额退休存款（FRS），标准计划 65 岁起领取；CPF 官网估算 2026 年满 55 岁者 FRS 约 S$1,780 / 月，这里取保守值每人 S$1,600。</p>
   </div>
 </section>
 
@@ -4313,23 +4312,17 @@ function storySteps(sc,n,apply){
   const path=g=>[[35,0]].concat(g).map((p,i)=>(i?"L":"M")+c.at(p[0]).toFixed(1)+" "+gy(p[1]).toFixed(1)).join(" ");
   el("path",{d:path(G)+" L"+c.at(55)+" "+gy(0)+" L"+c.at(35)+" "+gy(0)+" Z",fill:"rgba(214,169,76,.14)"},grow);
   el("path",{d:path(G),stroke:"#D6A94C","stroke-width":2.6,fill:"none","stroke-dasharray":"6 4"},grow);
-  el("path",{d:path(G4),stroke:"#E9917C","stroke-width":2.2,fill:"none","stroke-dasharray":"3 4"},grow);
-  el("circle",{cx:c.at(55),cy:gy(V),r:5,fill:"#D6A94C"},grow); el("circle",{cx:c.at(55),cy:gy(V4),r:4.5,fill:"#E9917C"},grow);
+  el("circle",{cx:c.at(55),cy:gy(V),r:5,fill:"#D6A94C"},grow);
   const L=(k,a,v,t,fill,anc,fs)=>c.A(k,g=>tx(c.at(a),c.y(v),t,"lab",{"text-anchor":anc||"middle","font-size":fs||"15",fill:fill||"#F4EEE1"},g));
   L(0,36,-3900,"每月留 S$3,500 × 5 年（共 S$21 万）","#F2B7A9","start");
-  L(0,36,6700,"55 岁保单价值：BI 8% 约 S$"+(V/10000).toFixed(0)+" 万 · BI 4% 约 S$"+(V4/10000).toFixed(0)+" 万","#E2C48A","start","14.5");
+  L(0,36,6700,"55 岁保单价值：按 BI 8% 约 S$"+(V/10000).toFixed(0)+" 万","#E2C48A","start","14.5");
   c.A(1,g=>{ el("rect",{x:c.x(55),y:c.y(5000),width:c.x(65)-c.x(55),height:c.y(0)-c.y(5000),fill:"rgba(214,169,76,.10)",stroke:"#D6A94C","stroke-width":1.2,"stroke-dasharray":"5 4"},g); });
   L(1,60,5600,"55–65 岁：保单分红补上这十年","#E2C48A");
   L(1,60,4500,"BI 8%：每月约 S$"+money(MD),"#E2C48A");
-  L(2,72,5600,"回报不如预期：多存一点、晚几年退休或调整开支","#F2B7A9");
-  L(3,77,7350,"+ 两份 CPF LIFE：每人约 S$1,600","#BFD7EE");
-  // BI 4% 情景的派息水平：从 55 岁起一直显示
-  const alt=el("g",{style:"transition:opacity .4s ease;opacity:0"},svg);
-  el("line",{x1:c.x(55),x2:c.Wd-c.R,y1:c.y(M4),y2:c.y(M4),stroke:"#E9917C","stroke-width":2.2,"stroke-dasharray":"3 4"},alt);
-  tx(c.at(54)-4,c.y(M4)+5,"BI 4%：每月约 S$"+money(Math.round(M4/10)*10),"lab",{"text-anchor":"end","font-size":"14",fill:"#F2B7A9"},alt);
-  const R=[[35,54],[55,64],[55,64],[65,90]];
-  storySteps(svg.closest(".scene"),4,i=>{ c.ann.forEach((g,k)=>{ if(g) g.style.opacity=k===i?"1":"0"; }); c.stage(R[i][0],R[i][1],i===3);
-    grow.style.opacity=i===0?"1":".5"; alt.style.opacity=i>=2?"1":"0"; });
+  L(2,77,7350,"+ 两份 CPF LIFE：每人约 S$1,600","#BFD7EE");
+  const R=[[35,54],[55,64],[65,90]];
+  storySteps(svg.closest(".scene"),3,i=>{ c.ann.forEach((g,k)=>{ if(g) g.style.opacity=k===i?"1":"0"; }); c.stage(R[i][0],R[i][1],i===2);
+    grow.style.opacity=i===0?"1":".5"; });
 })();
 
 /* 三种待遇（附录）：直线上涨 / 稳定上涨 / 波动中上涨 */
