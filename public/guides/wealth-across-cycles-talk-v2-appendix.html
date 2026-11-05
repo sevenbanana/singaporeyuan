@@ -4052,9 +4052,9 @@ function storySteps(sc,n,apply){
 }
 /* 示例一（上）：陈先生的情况 → 担心 → 风险偏好 */
 (function(){
-  const sc=document.getElementById("s-case1a"); if(!sc) return;
-  const w=sc.querySelector(".prof__worry"), r=sc.querySelector(".prof__risk");
-  seq(sc,3,i=>{ hid(w,i<1); hid(r,i<2); });
+  ["s-case1a","s-case2a"].forEach(id=>{ const sc=document.getElementById(id); if(!sc) return;
+    const w=sc.querySelector(".prof__worry"), r=sc.querySelector(".prof__risk");
+    seq(sc,3,i=>{ hid(w,i<1); hid(r,i<2); }); });
 })();
 /* 示例一（下）：陈先生的规划，被裁时的现金流 */
 (function(){
@@ -4091,20 +4091,20 @@ function storySteps(sc,n,apply){
   el("path",{d:path(G4),stroke:"#E9917C","stroke-width":2.2,fill:"none","stroke-dasharray":"3 4"},grow);
   el("circle",{cx:c.at(55),cy:gy(V),r:5,fill:"#D6A94C"},grow); el("circle",{cx:c.at(55),cy:gy(V4),r:4.5,fill:"#E9917C"},grow);
   const L=(k,a,v,t,fill,anc,fs)=>c.A(k,g=>tx(c.at(a),c.y(v),t,"lab",{"text-anchor":anc||"middle","font-size":fs||"15",fill:fill||"#F4EEE1"},g));
-  L(0,62,6200,"55 岁起，每月 S$3,500？","#E2C48A","middle","19");
-  c.A(1,g=>{ el("rect",{x:c.x(55),y:c.y(5000),width:c.x(65)-c.x(55),height:c.y(0)-c.y(5000),fill:"rgba(233,145,124,.14)",stroke:"#E9917C","stroke-width":1.2,"stroke-dasharray":"5 4"},g); });
-  L(1,60,5600,"CPF LIFE 65 岁才开始：这十年靠什么？","#F2B7A9");
-  L(2,36,-3900,"每月留 S$3,500 × 5 年（共 S$21 万）","#F2B7A9","start");
-  L(2,46,6700,"55 岁保单价值：BI 8% 约 S$"+(V/10000).toFixed(0)+" 万 · BI 4% 约 S$"+(V4/10000).toFixed(0)+" 万","#E2C48A","middle","14.5");
-  L(3,60,4500,"BI 8%：每月约 S$"+money(MD),"#E2C48A");
-  L(4,77,7350,"+ 两份 CPF LIFE：每人约 S$1,600","#BFD7EE");
+  L(0,36,-3900,"每月留 S$3,500 × 5 年（共 S$21 万）","#F2B7A9","start");
+  L(0,36,6700,"55 岁保单价值：BI 8% 约 S$"+(V/10000).toFixed(0)+" 万 · BI 4% 约 S$"+(V4/10000).toFixed(0)+" 万","#E2C48A","start","14.5");
+  c.A(1,g=>{ el("rect",{x:c.x(55),y:c.y(5000),width:c.x(65)-c.x(55),height:c.y(0)-c.y(5000),fill:"rgba(214,169,76,.10)",stroke:"#D6A94C","stroke-width":1.2,"stroke-dasharray":"5 4"},g); });
+  L(1,60,5600,"55–65 岁：保单分红补上这十年","#E2C48A");
+  L(1,60,4500,"BI 8%：每月约 S$"+money(MD),"#E2C48A");
+  L(2,72,5600,"回报不如预期：多存一点、晚几年退休或调整开支","#F2B7A9");
+  L(3,77,7350,"+ 两份 CPF LIFE：每人约 S$1,600","#BFD7EE");
   // BI 4% 情景的派息水平：从 55 岁起一直显示
   const alt=el("g",{style:"transition:opacity .4s ease;opacity:0"},svg);
   el("line",{x1:c.x(55),x2:c.Wd-c.R,y1:c.y(M4),y2:c.y(M4),stroke:"#E9917C","stroke-width":2.2,"stroke-dasharray":"3 4"},alt);
   tx(c.at(54)-4,c.y(M4)+5,"BI 4%：每月约 S$"+money(Math.round(M4/10)*10),"lab",{"text-anchor":"end","font-size":"14",fill:"#F2B7A9"},alt);
-  const R=[[0,-1],[0,-1],[35,54],[55,64],[65,90]];
-  storySteps(svg.closest(".scene"),5,i=>{ c.ann.forEach((g,k)=>{ if(g) g.style.opacity=k===i?"1":"0"; }); c.stage(R[i][0],R[i][1],i===4);
-    grow.style.opacity=i>=2?(i===2?"1":".5"):"0"; alt.style.opacity=i>=3?"1":"0"; });
+  const R=[[35,54],[55,64],[55,64],[65,90]];
+  storySteps(svg.closest(".scene"),4,i=>{ c.ann.forEach((g,k)=>{ if(g) g.style.opacity=k===i?"1":"0"; }); c.stage(R[i][0],R[i][1],i===3);
+    grow.style.opacity=i===0?"1":".5"; alt.style.opacity=i>=2?"1":"0"; });
 })();
 
 /* 三种待遇（附录）：直线上涨 / 稳定上涨 / 波动中上涨 */
