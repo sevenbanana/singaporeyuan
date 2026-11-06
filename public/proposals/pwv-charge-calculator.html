@@ -4,15 +4,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex">
-<title>PWV 3.0 费用计算表 · 新加坡小圆姐</title>
+<title>扣在前面几年，还是扣一辈子 · PWV 3.0 费用对比 · 新加坡小圆姐</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;700;900&display=swap">
 <style>
 :root{
-  --ink:#0A1C2E; --ink-2:#0F2A44; --ink-3:#1B4269;
-  --paper:#F4EEE1; --gold:#D6A94C; --gold-2:#A9812F;
-  --ember:#B5503C; --ember-l:#E9917C; --mist:#93A9BE; --blue:#8DB9E2; --soft:#C3D3E0;
+  --ink:#0A1C2E; --paper:#F4EEE1; --gold:#D6A94C; --ember-l:#E9917C; --mist:#93A9BE; --blue:#8DB9E2; --soft:#C3D3E0;
   --card-l1:#F1F5FA; --card-l2:#DFE7F1; --card-line:rgba(141,185,226,.45);
   --navy:#13285A; --navy-2:#30455F; --navy-3:#4B6380;
   --shadow:0 24px 60px -28px rgba(0,0,0,.75);
@@ -23,201 +21,107 @@ html{-webkit-text-size-adjust:100%}
 body{min-height:100vh;color:var(--paper);font-family:var(--sans);font-size:16px;line-height:1.65;-webkit-font-smoothing:antialiased;
   background:radial-gradient(70% 520px at 12% 0%,#173B5E 0%,transparent 70%),radial-gradient(45% 420px at 100% 340px,rgba(214,169,76,.08),transparent 70%),var(--ink)}
 button,input{font-family:inherit}
-.num,table,.kpi b,.ph .rate,.riy-c b,.money-in input{font-variant-numeric:tabular-nums}
+.money-in input{font-variant-numeric:tabular-nums}
 .wrap{max-width:1080px;margin:0 auto;padding:0 24px}
 @media(max-width:620px){.wrap{padding:0 16px}}
 
-/* 顶栏 */
 .topbar{max-width:1080px;margin:0 auto;padding:22px 24px;display:flex;justify-content:space-between;align-items:center;gap:12px}
 .topbar b{font-size:.95rem;letter-spacing:.06em}
 .topbar span{font-size:.74rem;letter-spacing:.22em;color:var(--mist)}
 @media(max-width:620px){.topbar{padding:18px 16px}.topbar span{display:none}}
 
-/* 开篇 */
 .hero{padding:30px 0 30px}
 .eyebrow{font-size:.78rem;letter-spacing:.22em;color:var(--gold);font-weight:700}
-h1{font-size:clamp(2rem,5.4vw,3.3rem);line-height:1.18;font-weight:900;margin-top:12px}
+h1{font-size:clamp(2rem,5.4vw,3.2rem);line-height:1.2;font-weight:900;margin-top:12px}
 .rule{width:64px;height:3px;background:var(--gold);border-radius:2px;margin:20px 0 18px}
-.lede{max-width:760px;color:var(--soft);font-size:1.06rem}
+.lede{max-width:780px;color:var(--soft);font-size:1.06rem}
 .lede b{color:var(--paper)}
 
-/* 输入面板 */
-.panel{background:linear-gradient(160deg,#12314F,#0C2135);border:1px solid rgba(214,169,76,.25);border-radius:22px;padding:26px 28px 22px;box-shadow:var(--shadow);
-  display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:24px 36px}
+/* 输入 */
+.panel{background:linear-gradient(160deg,#12314F,#0C2135);border:1px solid rgba(214,169,76,.25);border-radius:22px;padding:24px 28px 20px;box-shadow:var(--shadow);
+  display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:22px 36px}
 @media(max-width:820px){.panel{grid-template-columns:minmax(0,1fr);padding:20px 18px;gap:20px}}
-.col{display:flex;flex-direction:column;gap:22px;min-width:0}
-.lab{display:flex;justify-content:space-between;align-items:baseline;font-size:.8rem;letter-spacing:.14em;color:var(--mist);font-weight:700;margin-bottom:10px}
-.lab b{font-size:1.15rem;letter-spacing:0;color:var(--gold)}
+.col{display:flex;flex-direction:column;gap:20px;min-width:0}
+.lab{font-size:.8rem;letter-spacing:.14em;color:var(--mist);font-weight:700;margin-bottom:10px}
 .money-in{display:flex;align-items:center;border:1px solid rgba(244,238,225,.25);border-radius:14px;background:rgba(255,255,255,.06);padding:0 16px}
 .money-in:focus-within{border-color:var(--gold)}
-.money-in span{color:var(--gold);font-weight:800;font-size:1.2rem;margin-right:8px}
-.money-in input{flex:1;min-width:0;width:100%;border:0;background:none;color:var(--paper);font-size:1.75rem;font-weight:800;padding:9px 0;outline:none}
+.money-in span{color:var(--gold);font-weight:800;font-size:1.15rem;margin-right:8px}
+.money-in input{flex:1;min-width:0;width:100%;border:0;background:none;color:var(--paper);font-size:1.6rem;font-weight:800;padding:8px 0;outline:none}
 .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
 .chips button{border:1px solid rgba(244,238,225,.2);background:transparent;color:var(--soft);border-radius:999px;padding:5px 13px;font-size:.85rem;font-weight:600;cursor:pointer}
 .chips button:hover{border-color:rgba(214,169,76,.6)}
 .chips button.on{border-color:var(--gold);color:var(--gold)}
 .seg{display:flex;padding:4px;border-radius:14px;background:rgba(244,238,225,.07);gap:4px}
-.seg button{flex:1;border:0;background:transparent;color:var(--soft);font-weight:700;font-size:.95rem;padding:10px 8px;border-radius:10px;cursor:pointer;line-height:1.3}
-.seg button small{display:block;font-size:.74rem;font-weight:600;opacity:.8}
+.seg button{flex:1;border:0;background:transparent;color:var(--soft);font-weight:700;font-size:.93rem;padding:10px 8px;border-radius:10px;cursor:pointer;line-height:1.3}
+.seg button small{display:block;font-size:.72rem;font-weight:600;opacity:.8}
 .seg button:hover{background:rgba(244,238,225,.06)}
 .seg button.on{background:var(--gold);color:#20180A}
 .seg.sm{display:inline-flex}
 .seg.sm button{flex:none;padding:7px 16px;font-size:.86rem}
 .hint{display:block;margin-top:8px;font-size:.82rem;color:var(--mist);line-height:1.6}
-input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:30px;background:transparent;cursor:pointer}
-input[type=range]::-webkit-slider-runnable-track{height:6px;border-radius:3px;background:linear-gradient(90deg,var(--gold) var(--p,60%),rgba(244,238,225,.16) var(--p,60%))}
-input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:22px;height:22px;margin-top:-8px;border-radius:50%;background:#F4EEE1;border:3px solid var(--gold);box-shadow:0 2px 8px rgba(0,0,0,.4)}
-input[type=range]::-moz-range-track{height:6px;border-radius:3px;background:rgba(244,238,225,.16)}
-input[type=range]::-moz-range-progress{height:6px;border-radius:3px;background:var(--gold)}
-input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;background:#F4EEE1;border:3px solid var(--gold)}
-.ticks{position:relative;height:18px;font-size:.74rem;color:var(--mist)}
-.ticks span{position:absolute;transform:translateX(-50%)}
-.ticks span:first-child{transform:none}.ticks span:last-child{transform:translateX(-100%)}
-.switch{display:flex;align-items:center;gap:12px;cursor:pointer;font-size:.92rem;color:var(--soft);user-select:none}
+.switch{display:flex;align-items:center;gap:12px;cursor:pointer;font-size:.9rem;color:var(--soft);user-select:none}
 .switch input{position:absolute;opacity:0;pointer-events:none}
 .switch i{flex:none;width:44px;height:26px;border-radius:13px;background:rgba(244,238,225,.18);position:relative;transition:background .2s}
 .switch i::after{content:"";position:absolute;top:3px;left:3px;width:20px;height:20px;border-radius:50%;background:#fff;transition:left .2s}
 .switch input:checked+i{background:var(--gold)}
 .switch input:checked+i::after{left:21px}
 .switch input:focus-visible+i{outline:2px solid var(--gold);outline-offset:2px}
-.tier{grid-column:1/-1;border-radius:14px;padding:12px 16px;background:rgba(214,169,76,.1);border:1px solid rgba(214,169,76,.3);font-size:.9rem;color:#E9DFC9;line-height:1.75}
+.tier{grid-column:1/-1;border-radius:14px;padding:11px 16px;background:rgba(214,169,76,.1);border:1px solid rgba(214,169,76,.3);font-size:.88rem;color:#E9DFC9;line-height:1.75}
 .tier b{color:var(--gold)}
-.tier.up{margin-top:-12px;background:rgba(141,185,226,.08);border-color:rgba(141,185,226,.3)}
-.tier.up b{color:var(--blue)}
-.tier[hidden]{display:none}
 
-/* KPI */
-.kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin-top:22px}
-@media(max-width:900px){.kpis{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media(max-width:380px){.kpis{grid-template-columns:minmax(0,1fr)}}
-.kpi{background:linear-gradient(160deg,var(--card-l1),var(--card-l2));border:1px solid var(--card-line);border-radius:18px;padding:18px 18px 16px;color:var(--navy)}
-.kpi span{font-size:.8rem;font-weight:800;letter-spacing:.06em;color:var(--navy-3)}
-.kpi b{display:block;font-size:clamp(1.35rem,2.7vw,1.95rem);font-weight:900;margin-top:6px;line-height:1.2}
-.kpi small{display:block;margin-top:7px;font-size:.8rem;color:#5A6F86;line-height:1.55}
-.kpi.hl{box-shadow:inset 0 0 0 2px var(--gold)}
-.kpi.hl b{color:#8E6516}
-
-/* 区块 */
-.block{margin-top:60px}
-.block h2{font-size:clamp(1.4rem,3vw,1.85rem);font-weight:800;line-height:1.3}
-.block .sub{color:var(--soft);margin-top:8px;max-width:780px;font-size:.98rem}
-.block-head{display:flex;justify-content:space-between;align-items:flex-end;gap:14px;flex-wrap:wrap}
-.btn{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(214,169,76,.55);background:transparent;color:var(--gold);border-radius:999px;padding:8px 16px;font-size:.86rem;font-weight:700;cursor:pointer;text-decoration:none}
-.btn:hover{background:rgba(214,169,76,.12)}
-.btn svg{width:16px;height:16px}
-.acts{display:flex;gap:10px;flex-wrap:wrap}
-
-/* 三段费率 */
-.phases{display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:14px;margin-top:20px}
-@media(max-width:860px){.phases{grid-template-columns:1fr}}
-.ph{border-radius:18px;padding:18px 18px 14px 22px;background:linear-gradient(160deg,var(--card-l1),var(--card-l2));border:1px solid var(--card-line);color:var(--navy);position:relative;overflow:hidden}
-.ph::before{content:"";position:absolute;left:0;top:0;bottom:0;width:6px;background:var(--ember)}
-.ph.b::before{background:var(--gold)}
-.ph.c::before{background:var(--blue)}
-.ph .yrs{font-size:.8rem;font-weight:800;letter-spacing:.12em;color:var(--navy-3)}
-.ph .rate{font-size:2rem;font-weight:900;margin-top:2px;line-height:1.25}
-.ph .rate small{font-size:.82rem;font-weight:700;color:var(--navy-3);margin-left:6px}
-.ph ul{list-style:none;margin-top:10px;font-size:.88rem;line-height:1.6;color:var(--navy-2)}
-.ph li{display:flex;justify-content:space-between;align-items:baseline;gap:12px;border-top:1px dashed rgba(19,40,90,.16);padding:7px 0}
-.ph li b{white-space:nowrap;font-weight:800}
-.ph li.plus b{color:#A3412E}
-.ph li.minus b{color:#2F6EA5}
-.ph li.mute{color:#7D8EA2}
-
-/* 图表 */
-.chartbox{margin-top:18px;background:linear-gradient(165deg,#12314F,#0B1E31);border:1px solid rgba(214,169,76,.2);border-radius:20px;padding:14px 14px 10px}
+/* 对比主体 */
+.split{display:grid;grid-template-columns:minmax(0,1.62fr) minmax(0,1fr);gap:18px;margin-top:22px;align-items:start}
+@media(max-width:900px){.split{grid-template-columns:minmax(0,1fr)}}
+.chartbox{background:linear-gradient(165deg,#12314F,#0B1E31);border:1px solid rgba(214,169,76,.2);border-radius:22px;padding:16px 14px 10px}
+.cbar{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;padding:0 4px 6px}
+.play{border:1px solid rgba(214,169,76,.6);background:transparent;color:var(--gold);border-radius:999px;padding:7px 16px;font-size:.86rem;font-weight:800;cursor:pointer}
+.play:hover{background:rgba(214,169,76,.12)}
 #chart{display:block;max-width:100%;touch-action:pan-y;user-select:none}
 #chart text{font-family:var(--sans)}
 .legend{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:.82rem;color:var(--mist);padding:8px 8px 2px}
 .legend i{display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:6px;vertical-align:-1px}
-.legend i.ln{width:18px;height:3px;border-radius:2px;vertical-align:3px}
-.yrcard{margin-top:14px;background:linear-gradient(160deg,#12314F,#0C2135);border:1px solid rgba(214,169,76,.22);border-radius:18px;padding:16px 20px}
-.yc-head{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
-.yc-head b{font-size:1.15rem}
-.yc-head .base{font-size:.86rem;color:var(--mist);margin-left:auto}
-.yc-nav{width:34px;height:34px;border-radius:50%;border:1px solid rgba(244,238,225,.25);background:transparent;color:var(--paper);font-size:1.1rem;cursor:pointer;line-height:1}
-.yc-nav:hover{border-color:var(--gold);color:var(--gold)}
-.yc-nav:disabled{opacity:.3;cursor:default}
-.yc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0 26px;margin-top:10px}
-@media(max-width:820px){.yc-grid{grid-template-columns:1fr}}
-.yc-row{display:flex;justify-content:space-between;gap:12px;padding:7px 0;border-top:1px solid rgba(244,238,225,.08);font-size:.9rem;color:var(--soft)}
-.yc-row b{white-space:nowrap;color:var(--paper)}
-.yc-row.chg b{color:var(--ember-l)}
-.yc-row.bon b{color:var(--blue)}
-.yc-row.tot b{color:var(--gold)}
 
-/* 明细表 */
-.tablebox{margin-top:18px;background:linear-gradient(160deg,var(--card-l1),var(--card-l2));border:1px solid var(--card-line);border-radius:20px;overflow:hidden;color:var(--navy)}
-.tscroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
-table{width:100%;border-collapse:collapse;font-size:.84rem;min-width:960px}
-table.lite{min-width:0;font-size:.86rem}
-table.lite th,table.lite td{padding:9px 8px}
-@media(max-width:620px){table.lite{font-size:.8rem}table.lite th,table.lite td{padding:9px 4px}table.lite th:first-child,table.lite td:first-child{padding-left:12px}}
-th,td{padding:9px 9px;text-align:right;white-space:nowrap}
-thead th{font-size:.76rem;letter-spacing:.02em;color:var(--navy-3);font-weight:800;background:#DCE5F0;vertical-align:bottom;line-height:1.35}
-thead th small{display:block;font-weight:600;color:#7D8EA2;letter-spacing:0}
-th:first-child,td:first-child{text-align:left;position:sticky;left:0;z-index:1;background:#E4EBF4}
-thead th:first-child{background:#D4DEEB}
-tbody tr{border-top:1px solid rgba(19,40,90,.08);cursor:pointer}
-tbody tr:hover td{background-color:rgba(214,169,76,.08)}
-tbody tr.p1 td:first-child{box-shadow:inset 4px 0 0 var(--ember)}
-tbody tr.p2 td:first-child{box-shadow:inset 4px 0 0 var(--gold)}
-tbody tr.p3 td:first-child{box-shadow:inset 4px 0 0 var(--blue)}
-td.chg{color:#A3412E}
-td.bon{color:#2F6EA5}
-td.net{font-weight:800}
-td.z{color:#A3B1C1}
-tr.sel td{background-color:rgba(214,169,76,.24)!important}
-tr.sel td:first-child{background:#EED9A8!important}
-tr.subt{cursor:default}
-tr.subt td{background:rgba(214,169,76,.13);font-weight:800}
-tr.subt td:first-child{background:#ECE2CB}
-tr.more{cursor:default}
-tr.more td{text-align:left;padding:12px;background:rgba(19,40,90,.04)}
-table.lite tr.more td{text-align:center}
-tr.more td:first-child{position:static;background:rgba(19,40,90,.04)}
-tr.more button{position:sticky;left:12px;border:1px solid rgba(19,40,90,.25);background:#fff;color:var(--navy);border-radius:999px;padding:7px 18px;font-size:.86rem;font-weight:700;cursor:pointer}
-tfoot td{font-weight:800;border-top:2px solid rgba(19,40,90,.2);background:#E9EFF6}
-tfoot tr+tr td{border-top:1px solid rgba(19,40,90,.1)}
-tfoot td:first-child{background:#DCE5F0}
-.tnote{padding:10px 16px 12px;font-size:.8rem;color:#5A6F86;border-top:1px solid rgba(19,40,90,.08)}
+.side{display:flex;flex-direction:column;gap:12px}
+.cmp-card{background:linear-gradient(160deg,var(--card-l1),var(--card-l2));border:1px solid var(--card-line);border-radius:22px;padding:20px 20px 18px;color:var(--navy)}
+.cmp-card .seg{background:rgba(19,40,90,.07)}
+.cmp-card .seg button{color:var(--navy-3);font-size:.86rem;padding:9px 6px}
+.cmp-card .seg button.on{background:var(--navy);color:var(--paper)}
+.yrline{display:flex;align-items:baseline;gap:8px;margin-top:16px;color:var(--navy-3);font-weight:800;font-size:.98rem}
+.yrline b{font-size:2.4rem;line-height:1;color:var(--navy);font-weight:900}
+.rel{margin-top:14px}
+.rel-row{margin-top:10px}
+.rel-row span{display:block;font-size:.86rem;color:var(--navy-2);font-weight:700}
+.rel-track{height:16px;border-radius:8px;background:rgba(19,40,90,.08);margin-top:6px;overflow:hidden}
+.rel-track i{display:block;height:100%;border-radius:8px;transition:width .25s}
+.rel-row.a i{background:linear-gradient(90deg,#C49235,#D6A94C)}
+.rel-row.b i{background:linear-gradient(90deg,#6E9FCB,#8DB9E2)}
+.verdict{margin-top:16px;padding-top:14px;border-top:1px solid rgba(19,40,90,.12);font-size:1.35rem;font-weight:900;line-height:1.35}
+.verdict.good{color:#1F6A4A}
+.verdict.more{color:#9A5A1A}
+.say{margin-top:8px;font-size:.92rem;line-height:1.8;color:var(--navy-2)}
+.say b{color:var(--navy)}
+.steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.steps button{border:1px solid var(--card-line);background:linear-gradient(160deg,var(--card-l1),var(--card-l2));color:var(--navy);border-radius:14px;padding:10px 6px;font-weight:800;font-size:.9rem;cursor:pointer;line-height:1.35}
+.steps button small{display:block;font-size:.74rem;font-weight:600;color:var(--navy-3)}
+.steps button.on{box-shadow:inset 0 0 0 2px var(--gold);background:#EADFC4}
 
-/* 实际年化 */
-.riy{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:20px}
-@media(max-width:820px){.riy{grid-template-columns:1fr}}
-.riy-c{background:linear-gradient(160deg,var(--card-l1),var(--card-l2));border:1px solid var(--card-line);border-radius:18px;padding:18px;color:var(--navy)}
-.riy-c span{font-size:.8rem;font-weight:800;letter-spacing:.12em;color:var(--navy-3)}
-.riy-c b{display:block;font-size:2rem;font-weight:900;line-height:1.25;margin-top:4px}
-.riy-c small{font-size:.8rem;color:#5A6F86}
-.riy-c .gap{margin-top:10px;font-size:.92rem;color:var(--navy-2)}
-.riy-c .gap em{font-style:normal;font-weight:900;color:#A3412E}
-.riy-c .pv{margin-top:8px;padding-top:8px;border-top:1px dashed rgba(19,40,90,.16);font-size:.84rem;color:#5A6F86;line-height:1.7}
-.riy-c .pv b{display:inline;font-size:inherit;font-weight:800;color:var(--navy)}
+.src{margin-top:16px;font-size:.8rem;line-height:1.85;color:#7F95AA;max-width:960px}
+.acts{margin-top:14px;display:flex;gap:10px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(214,169,76,.55);background:transparent;color:var(--gold);border-radius:999px;padding:8px 16px;font-size:.86rem;font-weight:700;cursor:pointer}
+.btn:hover{background:rgba(214,169,76,.12)}
+.btn svg{width:16px;height:16px}
 
-/* 说明 */
-.notes ol{margin:16px 0 0 1.2em;color:var(--soft);font-size:.9rem;line-height:1.85;max-width:860px}
-.notes li{padding-left:4px;margin-top:4px}
-.notes li b{color:var(--paper)}
-
-/* 联系卡 */
-.contact{margin-top:60px;display:flex;align-items:center;gap:22px;flex-wrap:wrap;background:linear-gradient(160deg,#12314F,#0C2135);border:1px solid rgba(214,169,76,.3);border-radius:22px;padding:22px 24px;box-shadow:var(--shadow)}
+.contact{margin-top:56px;display:flex;align-items:center;gap:22px;flex-wrap:wrap;background:linear-gradient(160deg,#12314F,#0C2135);border:1px solid rgba(214,169,76,.3);border-radius:22px;padding:22px 24px;box-shadow:var(--shadow)}
 .contact img.av{width:72px;height:72px;border-radius:50%;object-fit:cover;border:2px solid var(--gold)}
 .contact .who{flex:1;min-width:200px}
 .contact .who b{font-size:1.15rem}
 .contact .who p{font-size:.88rem;color:var(--soft);line-height:1.75;margin-top:2px}
 .contact .who a{color:var(--paper);text-decoration:none;border-bottom:1px solid rgba(214,169,76,.6)}
 .contact img.qr{width:96px;height:96px;border-radius:10px;background:#fff;padding:4px}
-.legal{margin:26px 0 0;padding:0 0 48px;font-size:.78rem;line-height:1.85;color:#7F95AA}
+.legal{margin:24px 0 0;padding:0 0 48px;font-size:.78rem;line-height:1.85;color:#7F95AA}
 .legal p+p{margin-top:8px}
-
 .toast{position:fixed;left:50%;bottom:28px;transform:translateX(-50%) translateY(20px);background:#F4EEE1;color:#0A1C2E;font-weight:700;font-size:.9rem;padding:10px 18px;border-radius:999px;opacity:0;pointer-events:none;transition:all .25s;z-index:50;box-shadow:0 10px 30px rgba(0,0,0,.4)}
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
-
-@media print{
-  body{background:#0A1C2E;-webkit-print-color-adjust:exact;print-color-adjust:exact}
-  .acts,.chips,tr.more{display:none!important}
-  tbody tr.hide{display:table-row!important}
-}
 </style>
 </head>
 <body>
@@ -252,8 +156,8 @@ body.locked #pwGate{display:flex}
 <div id="pwGate" role="dialog" aria-modal="true" aria-labelledby="pwTitle">
   <div class="pw-card">
     <div class="pw-brand">新加坡小圆姐</div>
-    <h2 id="pwTitle">PWV 3.0 费用计算表</h2>
-    <p>输入年缴保费、缴费年期和基金，逐年看清楚每一笔 charge。请输入密码查看。</p>
+    <h2 id="pwTitle">扣在前面几年，还是扣一辈子</h2>
+    <p>PWV 3.0 和其他投资方式的费用对比，请输入密码查看。</p>
     <form id="pwForm" autocomplete="off">
       <div class="pw-field">
         <input id="pwInput" type="password" placeholder="请输入访问密码" aria-label="访问密码" autofocus>
@@ -261,7 +165,7 @@ body.locked #pwGate{display:flex}
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12z"/><circle cx="12" cy="12" r="3"/></svg>
         </button>
       </div>
-      <button type="submit" id="pwSubmit">进入计算表</button>
+      <button type="submit" id="pwSubmit">进入</button>
       <div class="pw-err" id="pwErr">密码不正确，请再试一次。</div>
     </form>
     <div class="pw-ask">还没有密码？联系小圆姐<br>WhatsApp <a href="https://wa.me/6583750190" target="_blank" rel="noopener">+65 8375 0190</a> · 微信 singaporeyuan</div>
@@ -298,20 +202,20 @@ body.locked #pwGate{display:flex}
 })();
 </script>
 
-<header class="topbar"><b>新加坡小圆姐</b><span>PWV 3.0 · 费用计算表</span></header>
+<header class="topbar"><b>新加坡小圆姐</b><span>PWV 3.0 · 费用对比</span></header>
 
 <main class="wrap">
   <section class="hero">
-    <p class="eyebrow">AIA PLATINUM WEALTH VENTURE 3.0 · 费用计算表</p>
-    <h1>每一年，到底扣了多少</h1>
+    <p class="eyebrow">AIA PLATINUM WEALTH VENTURE 3.0 · GAIF · 费用对比</p>
+    <h1>扣在前面几年，还是扣一辈子</h1>
     <div class="rule"></div>
-    <p class="lede">补充费和基金管理费，都是用<b>当年的账户价值 × 费率</b>来扣；迎新红利、投资红利和表现奖金会抵回一部分。填上年缴保费、缴费年期和基金，30 年逐年算给你看。</p>
+    <p class="lede">PWV 的补充费<b>只收前 7 年</b>，第 8 年起还有奖金抵回；很多账户的费用则<b>每年都收、一直收</b>。选一个对比对象，看两边每年扣多少、累计扣多少。</p>
   </section>
 
   <section class="panel" aria-label="方案输入">
     <div class="col">
       <div>
-        <div class="lab"><span>年缴保费</span></div>
+        <div class="lab">年缴保费</div>
         <div class="money-in"><span>S$</span><input id="apIn" inputmode="numeric" autocomplete="off" aria-label="年缴保费（新元）" value="150,000"></div>
         <div class="chips" id="apChips">
           <button type="button" data-v="50000">5 万</button>
@@ -321,107 +225,60 @@ body.locked #pwGate{display:flex}
           <button type="button" data-v="300000">30 万</button>
         </div>
       </div>
+    </div>
+    <div class="col">
       <div>
-        <div class="lab"><span>缴费年期</span></div>
+        <div class="lab">缴费年期</div>
         <div class="seg" id="segT" role="group" aria-label="缴费年期">
           <button type="button" data-v="2">2 年缴</button>
           <button type="button" data-v="5">5 年缴</button>
         </div>
         <span class="hint" id="tNote"></span>
       </div>
-    </div>
-    <div class="col">
-      <div>
-        <div class="lab"><span>基金</span></div>
-        <div class="seg" id="segF" role="group" aria-label="基金">
-          <button type="button" data-v="gaif">GAIF<small>1.5% / 年</small></button>
-          <button type="button" data-v="elite">Elite<small>1.45% / 年</small></button>
-          <button type="button" data-v="index">Index<small>1% / 年</small></button>
-        </div>
-        <span class="hint" id="fNote"></span>
-      </div>
-      <div>
-        <div class="lab"><span>扣费前年回报（示意）</span><b id="rOut">6%</b></div>
-        <input type="range" id="rIn" min="0" max="10" step="0.5" value="6" aria-label="扣费前年回报">
-        <div class="ticks"><span style="left:0">0%</span><span style="left:40%">4%</span><span style="left:60%">6%</span><span style="left:80%">8%</span><span style="left:100%">10%</span></div>
-      </div>
       <label class="switch"><input type="checkbox" id="q4In" checked><i></i><span>计入 2026 Q4 限时加送的迎新红利</span></label>
     </div>
     <div class="tier" id="tierNow"></div>
-    <div class="tier up" id="tierUp" hidden></div>
   </section>
 
-  <section class="kpis" aria-live="polite">
-    <div class="kpi"><span>前 7 年扣费</span><b id="k1">—</b><small id="k1s"></small></div>
-    <div class="kpi"><span>前 7 年奖金抵回</span><b id="k2">—</b><small id="k2s"></small></div>
-    <div class="kpi hl"><span>前 7 年净扣费</span><b id="k3">—</b><small id="k3s"></small></div>
-    <div class="kpi"><span>30 年累计净扣费</span><b id="k4">—</b><small id="k4s"></small></div>
-  </section>
-
-  <section class="block">
-    <h2>费率是怎么叠加的</h2>
-    <p class="sub">费率都按<b style="color:var(--paper)">账户价值</b>算，奖金有的按年保费、有的按账户价值。分成三段看最清楚：</p>
-    <div class="phases" id="phases"></div>
-  </section>
-
-  <section class="block">
-    <div class="block-head">
-      <div>
-        <h2>每年扣多少、抵回多少</h2>
-        <p class="sub">点图上任意一年，看那一年的扣费是怎么算出来的。</p>
+  <section class="split">
+    <div class="chartbox">
+      <div class="cbar">
+        <div class="seg sm" id="segV" role="group" aria-label="切换视图">
+          <button type="button" data-v="yr">每年扣多少</button>
+          <button type="button" data-v="cum">累计扣多少</button>
+        </div>
+        <button type="button" class="play" id="playBtn">▶ 播放 30 年</button>
       </div>
-      <div class="seg sm" id="segV" role="group" aria-label="切换视图">
-        <button type="button" data-v="yr">每年</button>
-        <button type="button" data-v="cum">累计</button>
-      </div>
+      <svg id="chart" role="img" aria-label="PWV 与对比账户的扣费对比图"></svg>
+      <div class="legend" id="legend"></div>
     </div>
-    <div class="chartbox"><svg id="chart" role="img" aria-label="每年扣费与奖金抵回柱状图"></svg><div class="legend" id="legend"></div></div>
-    <div class="yrcard" id="yrCard"></div>
-  </section>
-
-  <section class="block">
-    <div class="block-head">
-      <div>
-        <h2>逐年明细</h2>
-        <p class="sub">扣费基数 = 年初账户价值（已含当年保费和奖金）；补充费、基金管理费都按它乘费率。</p>
+    <div class="side">
+      <div class="cmp-card">
+        <div class="seg" id="segC" role="group" aria-label="对比对象">
+          <button type="button" data-v="adv">顾问管理账户</button>
+          <button type="button" data-v="web">网上平台基金</button>
+          <button type="button" data-v="etf">自己买 ETF</button>
+        </div>
+        <div class="yrline"><span>到第</span><b id="yrNum">30</b><span>年，累计扣费</span></div>
+        <div class="rel">
+          <div class="rel-row a"><span id="nameA">PWV 3.0（2 年缴 · GAIF）</span><div class="rel-track"><i id="barA"></i></div></div>
+          <div class="rel-row b"><span id="nameB">顾问管理账户</span><div class="rel-track"><i id="barB"></i></div></div>
+        </div>
+        <div class="verdict" id="verdict"></div>
+        <p class="say" id="say"></p>
       </div>
-      <div class="acts">
-        <div class="seg sm" id="segM" role="group" aria-label="表格样式"><button type="button" data-v="lite">简表</button><button type="button" data-v="full">完整表</button></div>
-        <button type="button" class="btn" id="linkBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 14a5 5 0 0 0 7 0l3-3a5 5 0 0 0-7-7l-1 1"/><path d="M14 10a5 5 0 0 0-7 0l-3 3a5 5 0 0 0 7 7l1-1"/></svg>复制这个方案的链接</button>
-        <button type="button" class="btn" id="csvBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg>下载表格（CSV）</button>
+      <div class="steps" id="steps">
+        <button type="button" data-y="7">第 1–7 年<small>扣得多，有补充费</small></button>
+        <button type="button" data-y="15">第 8–15 年<small>补充费归零</small></button>
+        <button type="button" data-y="30">第 16–30 年<small>差距拉开</small></button>
       </div>
-    </div>
-    <div class="tablebox">
-      <div class="tscroll">
-        <table id="tbl">
-          <thead id="thead"></thead>
-          <tbody id="tbody"></tbody>
-          <tfoot id="tfoot"></tfoot>
-        </table>
-      </div>
-      <p class="tnote"><span id="tnoteMode"></span>左侧色条：<span style="color:#A3412E;font-weight:700">红</span> 第 1–7 年补充费期，<span style="color:#8E6516;font-weight:700">金</span> 第 8–11 年投资红利期，<span style="color:#2F6EA5;font-weight:700">蓝</span> 第 12 年起。净扣费为负数，表示当年奖金比扣费多。</p>
     </div>
   </section>
 
-  <section class="block">
-    <h2>扣费让年回报少了多少</h2>
-    <p class="sub" id="riySub"></p>
-    <div class="riy" id="riy"></div>
-  </section>
-
-  <section class="block notes">
-    <h2>计算说明</h2>
-    <ol id="notes">
-      <li><b>按年计算：</b>每个保单年度开始时，当年保费、迎新红利、投资红利先进入账户，第 8 年起再加 0.4% 表现奖金；然后按这个「年初账户价值」扣补充费和基金管理费，余下部分按扣费前年回报增长。实际是按月扣、按基金每日价格计算，所以和保单说明书（BI）的数字会有小差异。</li>
-      <li><b>补充费：</b>第 1–7 个保单年度，每年按保单价值扣，2 年缴 2.9%，5 年缴 3.6%；第 8 年起为 0。</li>
-      <li><b>基金管理费：</b>GAIF（AIA Global Adventurous Income Fund）每年 1.5%，Elite（AIA Elite Adventurous Fund）每年 1.45%，Index（AIA Adventurous Index Fund）每年 1%，体现在基金价格里，一直都有。</li>
-      <li><b>迎新红利：</b>按 2026 Q4 PWV 促销档位、以年保费计。2 年缴：年保费 ≥ S$84,000 第 1 年 2%；≥ S$138,000 第 1 年 2%、第 2 年 3%；≥ S$150,000 再加 Q4 限时第 1 年 4%。5 年缴：≥ S$24,000 第 1 年 3%；≥ S$42,000 第 1–3 年 3%、4%、5%；≥ S$48,000 / S$60,000 再加 Q4 限时第 1 年 5% / 10%。Q4 限时加送不在 BI 里，可以用上面的开关去掉。</li>
-      <li><b>投资红利：</b>第 8–11 年，每年为年保费的 1%（2 年缴）或 2.5%（5 年缴）。<b>表现奖金：</b>第 8 年起，每年为账户价值的 0.4%。</li>
-      <li><b>GAIF 按分红再投资计算。</b>如果选择每期领出分红，账户价值会小一些，按比例扣的费用也会相应少一些。</li>
-      <li><b>实际年化：</b>把每年投入的保费和第 N 年末的账户价值放在一起，算出内部回报率（IRR）。它和扣费前年回报之差，就是扣费（扣掉奖金之后）让每年回报少掉的部分。</li>
-      <li><b>未计入：</b>提前退保、部分提取可能产生的费用，以及换汇等成本，以产品摘要为准。</li>
-    </ol>
-  </section>
+  <p class="src" id="src"></p>
+  <div class="acts">
+    <button type="button" class="btn" id="linkBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 14a5 5 0 0 0 7 0l3-3a5 5 0 0 0-7-7l-1 1"/><path d="M14 10a5 5 0 0 0-7 0l-3 3a5 5 0 0 0 7 7l1-1"/></svg>复制这个方案的链接</button>
+  </div>
 
   <section class="contact">
     <img class="av" src="/avatar-round.png" alt="袁媛">
@@ -433,7 +290,7 @@ body.locked #pwGate{display:flex}
   </section>
 
   <div class="legal">
-    <p>本页为示意计算，非预测，不代表未来回报。费率取自 AIA Platinum Wealth Venture 3.0 产品摘要（2026 年 10 月版），迎新红利按 2026 Q4 促销档位；假设扣费前年回报每年固定不变、按年计算。实际扣费、奖金和保单价值以 AIA 正式的产品摘要、保单说明书（Benefit Illustration）和保单条款为准。</p>
+    <p>本页为示意对比，非预测，不代表未来回报。PWV 费率取自 AIA Platinum Wealth Venture 3.0 产品摘要（2026 年 10 月版），迎新红利按 2026 Q4 促销档位；对比账户的费率为市场常见水平的示意，以各产品实际收费为准。实际扣费、奖金和保单价值以 AIA 正式的产品摘要、保单说明书（Benefit Illustration）和保单条款为准。</p>
     <p>AIA Platinum Wealth Venture 3.0 是 AIA Singapore Private Limited 提供的投资联结保险（ILP）。投资有风险，基金价值可升可跌，可能损失本金；过往表现不代表未来表现。本页内容仅供参考，不构成任何投资、保险、法律或税务建议。</p>
     <p>© 2026 袁媛 Yuan Yuan</p>
   </div>
@@ -444,332 +301,217 @@ body.locked #pwGate{display:flex}
 <script>
 (function(){
 /* ---------- 规则数据（改费率 / 促销只改这里） ---------- */
-const FUNDS = {
-  gaif:  { k:"GAIF",  n:"AIA Global Adventurous Income Fund", fmc:1.5  },
-  elite: { k:"Elite", n:"AIA Elite Adventurous Fund",         fmc:1.45 },
-  index: { k:"Index", n:"AIA Adventurous Index Fund",         fmc:1    }
-};
-const SUPP = { 2:2.9, 5:3.6 };      // 补充费：第 1–7 年每年，按保单价值 %
+const FMC = 0.015;                       // GAIF 基金管理费，每年，按账户价值
+const SUPP = { 2:0.029, 5:0.036 };      // 补充费：第 1–7 年每年，按账户价值
 const SUPP_YRS = 7;
-// 迎新红利：与 PWV 方案生成器相同（2026 Q4 PWV 2.0 / 3.0 档位），y = 各年 % 年保费；extra = Q4 限时第 1 年加送
+// 迎新红利：与 PWV 方案生成器相同（2026 Q4 档位），y = 各年 % 年保费；extra = Q4 限时第 1 年加送
 const WB = {
   2: [ {min:48000,  y:[0,0]}, {min:84000, y:[2,0]}, {min:138000, y:[2,3]},
        {min:150000, y:[2,3], extra:4} ],
   5: [ {min:18000,  y:[0,0,0]}, {min:24000, y:[3,0,0]}, {min:42000, y:[3,4,5]},
        {min:48000,  y:[3,4,5], extra:5}, {min:60000, y:[3,4,5], extra:10} ]
 };
-const IB = { 2:1, 5:2.5 }, IB_FROM = 8, IB_TO = 11;   // 投资红利：% 年保费
-const PB = 0.4, PB_FROM = 8;                          // 表现奖金：% 账户价值
-const YEARS = 30, SHOW = 15;
+const IB = { 2:1, 5:2.5 };              // 投资红利：第 8–11 年，% 年保费
+const PB = 0.004;                        // 表现奖金：第 8 年起，账户价值 0.4%
+const R = 0;                             // 基金不增不减
+const CMP = {
+  adv: { n:"顾问管理账户", on:0.025,  fx:0.005, rate:"2.5",  desc:"基金持续费用 1.5% + 顾问费 1%" },
+  web: { n:"网上平台基金", on:0.0185, fx:0.005, rate:"1.85", desc:"基金持续费用 1.5% + 平台费 0.35%" },
+  etf: { n:"自己买 ETF",   on:0.0007, fx:0.005, rate:"0.07", desc:"总费用率 0.07%" }
+};
+const YEARS = 30;
 
-const S = { ap:150000, t:2, f:"gaif", r:6, q4:true, view:"yr", sel:7, open:false, tm:(window.innerWidth < 720 ? "lite" : "full") };
+const S = { ap:150000, t:2, q4:true, c:"adv", view:"yr", yr:30 };
 const $ = id => document.getElementById(id);
-
-/* ---------- 格式 ---------- */
 const num = v => Math.round(v).toLocaleString("en-US");
-const money = v => (Math.round(v) < 0 ? "−" : "") + "S$" + Math.abs(Math.round(v)).toLocaleString("en-US");
-const r2 = v => Math.round(v * 100) / 100;
-const pct = v => r2(v) + "%";
-const short = v => { const a = Math.abs(v); if (a >= 10000) return (Math.round(a / 1000) / 10) + " 万"; return num(a); };
 
-/* ---------- 迎新红利档位 ---------- */
 function tierOf(t, ap){ let hit = null; for (const tr of WB[t]) if (ap >= tr.min) hit = tr; return hit || { min:0, y:WB[t][0].y.map(() => 0) }; }
 const sumOf = (tr, q4) => tr.y.reduce((a, b) => a + b, 0) + (q4 ? (tr.extra || 0) : 0);
-function nextTier(t, ap, q4){ const cur = sumOf(tierOf(t, ap), q4); return WB[t].find(tr => tr.min > ap && sumOf(tr, q4) > cur) || null; }
 
-/* ---------- 逐年模型 ---------- */
-function model(){
-  const tr = tierOf(S.t, S.ap), fmc = FUNDS[S.f].fmc / 100, sup = SUPP[S.t] / 100, R = S.r / 100;
-  const rows = []; let pv = 0, gv = 0, cn = 0, cc = 0, cb = 0;
+/* ---------- 模型：每年净扣费（扣费 − 奖金） ---------- */
+function pwv(){
+  const tr = tierOf(S.t, S.ap), a = [0]; let pv = 0;
   for (let y = 1; y <= YEARS; y++){
-    const prem = y <= S.t ? S.ap : 0;
-    const wbPct = y <= S.t ? (tr.y[y - 1] || 0) + (y === 1 && S.q4 ? (tr.extra || 0) : 0) : 0;
-    const wb = S.ap * wbPct / 100;
-    const ib = (y >= IB_FROM && y <= IB_TO) ? S.ap * IB[S.t] / 100 : 0;
-    pv += prem + wb + ib;
-    const pb = y >= PB_FROM ? pv * PB / 100 : 0;
-    pv += pb;
-    const start = pv, sc = y <= SUPP_YRS ? pv * sup : 0, fc = pv * fmc;
-    pv = pv * (1 + R) - sc - fc;
-    gv = (gv + prem) * (1 + R);
-    const bonus = wb + ib + pb, chg = sc + fc, net = chg - bonus;
-    cn += net; cc += chg; cb += bonus;
-    rows.push({ y, prem, wbPct, wb, ib, pb, start, sc, fc, bonus, chg, net, end:pv, gross:gv, cum:cn, cumChg:cc, cumBonus:cb });
+    let bonus = 0;
+    if (y <= S.t){ pv += S.ap; bonus += S.ap * ((tr.y[y - 1] || 0) + (y === 1 && S.q4 ? (tr.extra || 0) : 0)) / 100; }
+    if (y >= 8 && y <= 11) bonus += S.ap * IB[S.t] / 100;
+    pv += bonus;
+    if (y >= 8){ const pb = pv * PB; bonus += pb; pv += pb; }
+    const chg = pv * (FMC + (y <= SUPP_YRS ? SUPP[S.t] : 0));
+    a.push(chg - bonus); pv = pv * (1 + R) - chg;
   }
-  return { rows, tr };
+  return a;
 }
-// 内部回报率：每年初投入保费，第 N 年末取回账户价值
-function irr(rows, N){
-  const n = Math.min(S.t, N), V = rows[N - 1].end;
-  if (!(S.ap > 0) || !(V > 0)) return null;
-  const f = r => { let a = 0; for (let y = 1; y <= n; y++) a += S.ap * Math.pow(1 + r, N - y + 1); return a - V; };
-  let lo = -0.99, hi = 1;
-  for (let i = 0; i < 120; i++){ const m = (lo + hi) / 2; if (f(m) > 0) hi = m; else lo = m; }
-  return (lo + hi) / 2;
+function other(c){
+  let v = 0; const a = [0];
+  for (let y = 1; y <= YEARS; y++){ let up = 0; if (y <= S.t){ up = S.ap * c.fx; v += S.ap - up; } const f = v * c.on; a.push(f + up); v = v * (1 + R) - f; }
+  return a;
 }
-const sumR = (rows, a, b, k) => rows.slice(a - 1, b).reduce((s, r) => s + r[k], 0);
+const cum = a => a.reduce((o, v, i) => (o.push(i ? o[i - 1] + v : 0), o), []);
+let A, B, cA, cB, cy;
+// 从哪一年起，对比账户的累计扣费一直比 PWV 多
+function crossYear(){ let y = null; for (let t = YEARS; t >= 1; t--){ if (cB[t] > cA[t]) y = t; else break; } return y; }
+function compute(){ A = pwv(); B = other(CMP[S.c]); cA = cum(A); cB = cum(B); cy = crossYear(); }
 
-/* ---------- 渲染：输入区 ---------- */
-function renderInputs(m){
-  const f = FUNDS[S.f];
-  [...$("segT").children].forEach(b => { const on = +b.dataset.v === S.t; b.classList.toggle("on", on); b.setAttribute("aria-pressed", on); });
-  [...$("segF").children].forEach(b => { const on = b.dataset.v === S.f; b.classList.toggle("on", on); b.setAttribute("aria-pressed", on); });
-  [...$("segV").children].forEach(b => { const on = b.dataset.v === S.view; b.classList.toggle("on", on); b.setAttribute("aria-pressed", on); });
-  [...$("apChips").children].forEach(b => b.classList.toggle("on", +b.dataset.v === S.ap));
-  $("tNote").textContent = `补充费：第 1–7 年每年 ${SUPP[S.t]}%，按账户价值扣` + (S.t === 5 ? "；保费交 5 年" : "；保费交 2 年");
-  $("fNote").textContent = `${f.n} · 基金管理费每年 ${f.fmc}%`;
-  $("rOut").textContent = S.r + "%";
-  $("rIn").value = S.r; $("rIn").style.setProperty("--p", (S.r * 10) + "%");
-  $("q4In").checked = S.q4;
-
-  const tr = m.tr, tot = sumOf(tr, S.q4), nx = nextTier(S.t, S.ap, S.q4);
-  let h;
-  if (!(S.ap > 0)) h = "先填年缴保费。";
-  else if (!tot) h = `年保费 ${money(S.ap)} 未达 ${S.t} 年缴的迎新红利门槛，迎新红利 <b>0%</b>。`;
-  else {
-    const parts = tr.y.map((v, i) => v ? `第 ${i + 1} 年 ${v}%` : null).filter(Boolean).join("、");
-    h = `迎新红利档位：年保费 ≥ ${money(tr.min)}，${parts}` +
-        (tr.extra ? (S.q4 ? `，Q4 限时第 1 年加送 ${tr.extra}%` : `（Q4 限时加送 ${tr.extra}% 已关闭）`) : "") +
-        `，合计 <b>${tot}%</b>，即 <b>${money(S.ap * tot / 100)}</b>。`;
+/* ---------- 相对比较文案（不出现金额） ---------- */
+function rel(a, b){
+  if (a <= 0) return { cls:"good", t:"PWV 的奖金比扣费还多" };
+  const r = a / b;
+  if (Math.abs(r - 1) < 0.03) return { cls:"", t:"两边差不多" };
+  if (r < 1) return { cls:"good", t:`PWV 少扣约 ${Math.round((1 - r) * 100)}%` };
+  if (r < 2) return { cls:"more", t:`PWV 多扣约 ${Math.round((r - 1) * 100)}%` };
+  return { cls:"more", t:`PWV 约是它的 ${r < 10 ? r.toFixed(1) : Math.round(r)} 倍` };
+}
+const times = (a, b) => { const r = a / b; return r >= 1 ? (r < 10 ? r.toFixed(1) : Math.round(r)) + " 倍" : Math.round(r * 100) + "%"; };
+function sayText(){
+  const c = CMP[S.c], etf = S.c === "etf", y = S.yr, sup = (SUPP[S.t] * 100).toFixed(1).replace(/\.0$/, "");
+  if (y <= 7){
+    return `前 7 年，PWV 每年扣补充费 ${sup}% 加基金管理费 1.5%，再用迎新红利抵回一部分，所以这几年<b>扣得比${c.n}多</b>：到第 7 年，PWV 累计扣费约是它的 <b>${times(cA[7], cB[7])}</b>。`;
   }
-  $("tierNow").innerHTML = h;
-  if (S.ap > 0 && nx){
-    const s = sumOf(nx, S.q4);
-    $("tierUp").hidden = false;
-    $("tierUp").innerHTML = `年保费再加 <b>${money(nx.min - S.ap)}</b>（到 ${money(nx.min)}），迎新红利合计升到 <b>${s}%</b>，即 ${money(nx.min * s / 100)}。`;
-  } else $("tierUp").hidden = true;
+  if (y <= 15){
+    if (etf) return `第 8 年起补充费归零，还有投资红利和 0.4% 表现奖金，PWV 每年净扣约 1.1%；自己买 ETF 每年只有 0.07%，<b>费用上 PWV 一直追不上</b>。`;
+    return `第 8 年起补充费归零，还有投资红利和 0.4% 表现奖金，PWV 每年净扣约 1.1%；${c.n}每年 ${c.rate}% 照扣。` +
+      (cy && cy <= 15 ? `<b>第 ${cy} 年起，PWV 的累计扣费比${c.n}少。</b>` : cy ? `两边的累计差距每年都在缩小，第 ${cy} 年起 PWV 累计更少。` : `两边的累计差距每年都在缩小。`);
+  }
+  if (etf) return `费用上，自己买 ETF 一直最便宜。它的取舍不在费用，而在要自己选市场、自己管理，并且几十年都坚持下去。`;
+  if (cy) return `第 ${cy} 年起 PWV 累计扣费更少，而且<b>越往后差距越大</b>：${c.n}的 ${c.rate}% 每年都收，PWV 第 8 年起每年净扣约 1.1%。`;
+  return `到第 30 年，两边的累计扣费已经很接近；${c.n}的 ${c.rate}% 每年都收，PWV 第 8 年起每年净扣约 1.1%。`;
 }
 
-/* ---------- 渲染：KPI ---------- */
-function renderKPIs(m){
-  const R = m.rows, f = FUNDS[S.f];
-  const sc7 = sumR(R, 1, 7, "sc"), fc7 = sumR(R, 1, 7, "fc"), b7 = sumR(R, 1, 7, "bonus"), n7 = R[6].cum;
-  const paid = S.ap * S.t, tot = sumOf(m.tr, S.q4);
-  $("k1").textContent = money(sc7 + fc7);
-  $("k1s").textContent = `补充费 ${money(sc7)} + 基金管理费 ${money(fc7)}`;
-  $("k2").textContent = money(b7);
-  $("k2s").textContent = tot ? `迎新红利 ${tot}% × 年保费` + (S.q4 && m.tr.extra ? "（含 Q4 加送）" : "") : "这个保费档位没有迎新红利";
-  $("k3").textContent = money(n7);
-  $("k3s").textContent = paid > 0 ? `约占已交保费 ${money(paid)} 的 ${pct(n7 / paid * 100)}` : "";
-  $("k4").textContent = money(R[YEARS - 1].cum);
-  $("k4s").textContent = `第 12 年起，每年净扣约账户价值的 ${r2(f.fmc - PB)}%`;
-}
-
-/* ---------- 渲染：三段费率 ---------- */
-function renderPhases(m){
-  const f = FUNDS[S.f], sup = SUPP[S.t], tr = m.tr;
-  const wbs = tr.y.map((v, i) => ({ y:i + 1, v:v + (i === 0 && S.q4 ? (tr.extra || 0) : 0) })).filter(o => o.v > 0);
-  const wbTxt = wbs.length ? wbs.map(o => `第 ${o.y} 年 ${o.v}%`).join("、") + " 年保费" : "这个档位没有";
-  const ibAmt = S.ap * IB[S.t] / 100;
-  const li = (cls, a, b) => `<li class="${cls}"><span>${a}</span><b>${b}</b></li>`;
-  $("phases").innerHTML =
-    `<div class="ph a"><div class="yrs">第 1–7 年 · 补充费期</div>
-       <div class="rate">${r2(sup + f.fmc)}%<small>/ 年 · 按账户价值</small></div>
-       <ul>${li("plus", "补充费", "+" + sup + "%")}${li("plus", "基金管理费 · " + f.k, "+" + f.fmc + "%")}${li(wbs.length ? "minus" : "mute", "迎新红利抵回", wbTxt)}</ul></div>` +
-    `<div class="ph b"><div class="yrs">第 8–11 年 · 投资红利期</div>
-       <div class="rate">${r2(f.fmc - PB)}%<small>/ 年 · 按账户价值</small></div>
-       <ul>${li("mute", "补充费", "0%")}${li("plus", "基金管理费 · " + f.k, "+" + f.fmc + "%")}${li("minus", "表现奖金", "−" + PB + "%")}${li("minus", "投资红利 " + IB[S.t] + "% 年保费", "每年 " + money(ibAmt))}</ul></div>` +
-    `<div class="ph c"><div class="yrs">第 12 年起</div>
-       <div class="rate">${r2(f.fmc - PB)}%<small>/ 年 · 按账户价值</small></div>
-       <ul>${li("mute", "补充费", "0%")}${li("plus", "基金管理费 · " + f.k, "+" + f.fmc + "%")}${li("minus", "表现奖金", "−" + PB + "%")}</ul></div>`;
-}
-
-/* ---------- 渲染：图表 ---------- */
+/* ---------- 图表 ---------- */
 const NS = "http://www.w3.org/2000/svg";
 function el(tag, attrs, parent){ const e = document.createElementNS(NS, tag); for (const k in attrs) e.setAttribute(k, attrs[k]); if (parent) parent.appendChild(e); return e; }
 function tx(x, y, s, attrs, parent){ const e = el("text", Object.assign({ x, y }, attrs), parent); e.textContent = s; return e; }
-function niceStep(range){ const raw = range / 5 || 1, p = Math.pow(10, Math.floor(Math.log10(raw))), q = raw / p; return (q <= 1 ? 1 : q <= 2 ? 2 : q <= 2.5 ? 2.5 : q <= 5 ? 5 : 10) * p; }
-let M = null;
 function renderChart(){
-  const m = M, svg = $("chart"); svg.innerHTML = "";
-  const W = Math.round(Math.max(300, Math.min(1040, svg.parentNode.clientWidth - 28)));
-  const sm = W < 560, H = sm ? 300 : 360, L = sm ? 42 : 60, Rr = 10, T = 34, B = 30, fs = sm ? 11 : 12.5;
+  const svg = $("chart"); svg.innerHTML = "";
+  const W = Math.round(Math.max(290, Math.min(720, svg.parentNode.clientWidth - 28)));
+  const sm = W < 520, H = sm ? 290 : 360, L = 14, Rr = 12, T = 40, Bm = 30, fs = sm ? 11 : 12.5;
   svg.setAttribute("viewBox", `0 0 ${W} ${H}`); svg.setAttribute("width", W); svg.setAttribute("height", H);
   const gw = (W - L - Rr) / YEARS, x0 = y => L + (y - 1) * gw, xc = y => L + (y - 0.5) * gw;
-  const R = m.rows, yr = S.view === "yr";
-  let top, bot;
-  if (yr){ top = Math.max(...R.map(r => r.chg)); bot = -Math.max(0, ...R.map(r => r.bonus)); }
-  else { top = Math.max(...R.map(r => Math.max(r.cumChg, r.cumBonus, r.cum))); bot = Math.min(0, ...R.map(r => r.cum)); }
-  if (!(top > 0)) top = 1;
-  const st = niceStep(top - bot); top = Math.ceil(top * 1.04 / st) * st; bot = Math.floor(bot * 1.04 / st) * st;
-  const Y = v => T + (top - v) / (top - bot) * (H - T - B);
-
-  el("rect", { x:x0(1), y:T, width:gw * 7, height:H - T - B, fill:"rgba(181,80,60,.13)" }, svg);
-  tx(x0(1) + 6, T + 15, sm ? "补充费期" : "第 1–7 年：补充费期", { "font-size":fs, fill:"#E9917C", "font-weight":700 }, svg);
-  const n = Math.round((top - bot) / st);
-  for (let i = 0; i <= n; i++){
-    const v = bot + i * st;
-    el("line", { x1:L, x2:W - Rr, y1:Y(v), y2:Y(v), stroke:Math.abs(v) < 1e-6 ? "rgba(244,238,225,.5)" : "rgba(244,238,225,.08)", "stroke-width":1 }, svg);
-    tx(L - 6, Y(v) + 4, Math.abs(v) < 1e-6 ? "0" : short(v), { "font-size":fs, fill:"#93A9BE", "text-anchor":"end" }, svg);
-  }
-  tx(L - 6, T - 14, "S$", { "font-size":fs, fill:"#93A9BE", "text-anchor":"end" }, svg);
-  [1, 5, 10, 15, 20, 25, 30].forEach(y => tx(xc(y), H - B + 18, sm ? (y === 1 ? "第1年" : String(y)) : `第 ${y} 年`, { "font-size":fs, fill:"#93A9BE", "text-anchor":"middle" }, svg));
-
-  el("rect", { x:x0(S.sel), y:T, width:gw, height:H - T - B, fill:"rgba(244,238,225,.09)" }, svg);
+  const yrV = S.view === "yr";
+  const ser = yrV ? [A, B] : [cA, cB];
+  let top = Math.max(...ser[0].slice(1), ...ser[1].slice(1)), bot = Math.min(0, ...ser[0].slice(1), ...ser[1].slice(1));
+  top *= 1.08; bot *= 1.15;
+  const Y = v => T + (top - v) / (top - bot) * (H - T - Bm);
+  el("rect", { x:x0(1), y:T, width:gw * 7, height:H - T - Bm, fill:"rgba(181,80,60,.13)" }, svg);
+  tx(x0(1) + 6, T + 15, sm ? "补充费期" : "第 1–7 年：PWV 收补充费", { "font-size":fs, fill:"#E9917C", "font-weight":700 }, svg);
+  for (let i = 1; i <= 4; i++) el("line", { x1:L, x2:W - Rr, y1:Y(top / 1.08 * i / 4), y2:Y(top / 1.08 * i / 4), stroke:"rgba(244,238,225,.07)" }, svg);
+  el("line", { x1:L, x2:W - Rr, y1:Y(0), y2:Y(0), stroke:"rgba(244,238,225,.45)" }, svg);
+  tx(L, T - 22, yrV ? "每年扣费 · 越高扣得越多" : "累计扣费 · 越高扣得越多", { "font-size":fs, fill:"#93A9BE" }, svg);
+  [1, 5, 10, 15, 20, 25, 30].forEach(y => tx(xc(y), H - Bm + 18, sm ? (y === 1 ? "第1年" : String(y)) : `第 ${y} 年`, { "font-size":fs, fill:"#93A9BE", "text-anchor":"middle" }, svg));
   const g = el("g", {}, svg);
-  if (yr){
-    const bw = Math.max(2, gw * .64), bx = y => xc(y) - bw / 2, z = Y(0);
-    R.forEach(r => {
-      if (r.sc > 0) el("rect", { x:bx(r.y), y:Y(r.sc), width:bw, height:Math.max(0, z - Y(r.sc)), fill:"#E9917C", rx:1.5 }, g);
-      el("rect", { x:bx(r.y), y:Y(r.chg), width:bw, height:Math.max(0, Y(r.sc) - Y(r.chg)), fill:"#D6A94C", rx:1.5 }, g);
-      if (r.bonus > 0) el("rect", { x:bx(r.y), y:z, width:bw, height:Math.max(0, Y(-r.bonus) - z), fill:"#8DB9E2", rx:1.5 }, g);
-    });
-    let d = ""; R.forEach((r, i) => d += (i ? "L" : "M") + xc(r.y).toFixed(1) + " " + Y(r.net).toFixed(1) + " ");
-    el("path", { d, stroke:"#F4EEE1", "stroke-width":2, fill:"none", "stroke-linejoin":"round", opacity:.9 }, g);
-    R.forEach(r => el("circle", { cx:xc(r.y), cy:Y(r.net), r:r.y === S.sel ? 4.5 : 2.4, fill:"#F4EEE1" }, g));
-  } else {
-    const line = (k, c, w) => { let d = ""; R.forEach((r, i) => d += (i ? "L" : "M") + xc(r.y).toFixed(1) + " " + Y(r[k]).toFixed(1) + " "); el("path", { d, stroke:c, "stroke-width":w, fill:"none", "stroke-linejoin":"round" }, g); };
-    line("cumChg", "#D6A94C", 2.6); line("cumBonus", "#8DB9E2", 2.6); line("cum", "#F4EEE1", 3.4);
-    const r = R[S.sel - 1];
-    [["cumChg", "#D6A94C"], ["cumBonus", "#8DB9E2"], ["cum", "#F4EEE1"]].forEach(([k, c]) => el("circle", { cx:xc(r.y), cy:Y(r[k]), r:4.5, fill:c }, g));
+  if (yrV){
+    const bw = Math.max(1.5, gw * 0.36);
+    for (let t = 1; t <= S.yr; t++){
+      const a = A[t], b = B[t];
+      el("rect", { x:xc(t) - bw - 0.5, y:Math.min(Y(a), Y(0)), width:bw, height:Math.abs(Y(0) - Y(a)), rx:1.5, fill:"#D6A94C" }, g);
+      el("rect", { x:xc(t) + 0.5, y:Y(b), width:bw, height:Math.max(0, Y(0) - Y(b)), rx:1.5, fill:"#8DB9E2" }, g);
+    }
+  } else if (S.yr > 0){
+    const line = (arr, c, w) => { let d = ""; for (let t = 0; t <= S.yr; t++) d += (t ? "L" : "M") + (t ? xc(t) : x0(1)).toFixed(1) + " " + Y(arr[t]).toFixed(1) + " "; el("path", { d, stroke:c, "stroke-width":w, fill:"none", "stroke-linejoin":"round", "stroke-linecap":"round" }, g); };
+    line(cB, "#8DB9E2", 3); line(cA, "#D6A94C", 3.4);
+    el("circle", { cx:xc(S.yr), cy:Y(cA[S.yr]), r:4.5, fill:"#D6A94C" }, g);
+    el("circle", { cx:xc(S.yr), cy:Y(cB[S.yr]), r:4.5, fill:"#8DB9E2" }, g);
+    if (cy && cy > 1 && S.yr >= cy){
+      const cx = xc(cy), cyy = Y(cB[cy]);
+      el("circle", { cx, cy:cyy, r:10, fill:"none", stroke:"#F4EEE1", "stroke-width":2 }, g);
+      tx(Math.min(Math.max(cx, L + 60), W - Rr - 60), cyy - 16, `第 ${cy} 年起 PWV 累计更少`, { "font-size":fs + 0.5, fill:"#F4EEE1", "font-weight":700, "text-anchor":"middle" }, g);
+    }
   }
-  const s = R[S.sel - 1], lx = Math.min(Math.max(xc(S.sel), L + 30), W - Rr - 30);
-  tx(lx, T - 14, `第 ${S.sel} 年`, { "font-size":fs + 1, fill:"#F4EEE1", "font-weight":700, "text-anchor":"middle" }, svg);
-
+  if (S.yr > 0){
+    const lx = Math.min(Math.max(xc(S.yr), L + 26), W - Rr - 26);
+    el("line", { x1:xc(S.yr), x2:xc(S.yr), y1:T - 4, y2:H - Bm, stroke:"rgba(244,238,225,.18)", "stroke-dasharray":"3 4" }, svg);
+    tx(lx, T - 8, `第 ${S.yr} 年`, { "font-size":fs, fill:"#F4EEE1", "font-weight":700, "text-anchor":"middle" }, svg);
+  }
   for (let y = 1; y <= YEARS; y++){
-    const h = el("rect", { x:x0(y), y:T, width:gw, height:H - T - B, fill:"transparent", style:"cursor:pointer" }, svg);
-    h.addEventListener("pointerenter", e => { if (e.pointerType === "mouse") select(y); });
-    h.addEventListener("click", () => select(y));
+    const h = el("rect", { x:x0(y), y:T, width:gw, height:H - T - Bm, fill:"transparent", style:"cursor:pointer" }, svg);
+    h.addEventListener("click", () => { stop(); S.yr = y; renderAll(); });
   }
-  $("legend").innerHTML = yr
-    ? `<span><i style="background:#E9917C"></i>补充费</span><span><i style="background:#D6A94C"></i>基金管理费</span><span><i style="background:#8DB9E2"></i>奖金抵回</span><span><i class="ln" style="background:#F4EEE1"></i>当年净扣费</span><span>零线以上是扣费，以下是奖金抵回</span>`
-    : `<span><i class="ln" style="background:#D6A94C"></i>累计扣费</span><span><i class="ln" style="background:#8DB9E2"></i>累计奖金</span><span><i class="ln" style="background:#F4EEE1"></i>累计净扣费</span>`;
+  const c = CMP[S.c];
+  $("legend").innerHTML = `<span><i style="background:#D6A94C"></i>PWV 3.0 · GAIF：补充费 + 基金管理费 − 各项奖金</span><span><i style="background:#8DB9E2"></i>${c.n}：每年 ${c.rate}% + 换汇</span>`;
 }
 
-/* ---------- 渲染：某一年 ---------- */
-function renderYr(){
-  const r = M.rows[S.sel - 1], f = FUNDS[S.f], row = (cls, a, b) => `<div class="yc-row ${cls}"><span>${a}</span><b>${b}</b></div>`;
-  const items = [];
-  items.push(row("", "投入保费", r.prem ? money(r.prem) : "—"));
-  items.push(row("chg", r.y <= SUPP_YRS ? `补充费 ${SUPP[S.t]}% × 基数` : "补充费（第 8 年起为 0）", r.sc ? "−" + money(r.sc) : "S$0"));
-  items.push(row("chg", `基金管理费 ${f.fmc}% × 基数`, "−" + money(r.fc)));
-  if (r.wb) items.push(row("bon", `迎新红利 ${r.wbPct}% × 年保费`, "+" + money(r.wb)));
-  if (r.ib) items.push(row("bon", `投资红利 ${IB[S.t]}% × 年保费`, "+" + money(r.ib)));
-  if (r.pb) items.push(row("bon", `表现奖金 ${PB}% × 账户价值`, "+" + money(r.pb)));
-  items.push(row("tot", "当年净扣费", money(r.net)));
-  items.push(row("", "累计净扣费", money(r.cum)));
-  items.push(row("", "年末账户价值", money(r.end)));
-  $("yrCard").innerHTML = `<div class="yc-head"><button type="button" class="yc-nav" id="ycPrev" aria-label="上一年" ${S.sel <= 1 ? "disabled" : ""}>‹</button><b>第 ${r.y} 年</b><button type="button" class="yc-nav" id="ycNext" aria-label="下一年" ${S.sel >= YEARS ? "disabled" : ""}>›</button><span class="base">扣费基数（年初账户价值）${money(r.start)}</span></div><div class="yc-grid">${items.join("")}</div>`;
-  $("ycPrev").onclick = () => select(S.sel - 1);
-  $("ycNext").onclick = () => select(S.sel + 1);
+/* ---------- 右侧对比卡 ---------- */
+function renderSide(){
+  const c = CMP[S.c], y = Math.max(1, S.yr);
+  [...$("segC").children].forEach(b => { const on = b.dataset.v === S.c; b.classList.toggle("on", on); b.setAttribute("aria-pressed", on); });
+  $("yrNum").textContent = y;
+  $("nameA").textContent = `PWV 3.0（${S.t} 年缴 · GAIF）`;
+  $("nameB").textContent = c.n;
+  const a = Math.max(0, cA[y]), b = Math.max(0, cB[y]), mx = Math.max(a, b) || 1;
+  $("barA").style.width = (a / mx * 100) + "%";
+  $("barB").style.width = (b / mx * 100) + "%";
+  const v = rel(cA[y], cB[y]);
+  $("verdict").className = "verdict " + v.cls; $("verdict").textContent = v.t;
+  $("say").innerHTML = sayText();
+  [...$("steps").children].forEach((bt, i) => bt.classList.toggle("on", i === 0 ? y <= 7 : i === 1 ? y > 7 && y <= 15 : y > 15));
 }
 
-/* ---------- 渲染：明细表 ---------- */
-function tableCols(){
-  const f = FUNDS[S.f];
-  if (S.tm === "lite") return [
-    { k:"chg",   h:"扣费",     s:"补充+基金", cls:"chg", sign:"−" },
-    { k:"bonus", h:"奖金抵回", s:"三项奖金",        cls:"bon", sign:"+" },
-    { k:"net",   h:"净扣费",   s:"扣费−奖金",     cls:"net", raw:true },
-    { k:"end",   h:"年末价值", s:"账户价值",      raw:true, nosum:true }
-  ];
-  return [
-    { k:"prem",  h:"投入保费" },
-    { k:"start", h:"扣费基数",   s:"年初账户价值", raw:true, nosum:true },
-    { k:"sc",    h:"补充费",     s:`${SUPP[S.t]}% × 基数`, cls:"chg", sign:"−" },
-    { k:"fc",    h:"基金管理费", s:`${f.fmc}% × 基数`, cls:"chg", sign:"−" },
-    { k:"wb",    h:"迎新红利",   s:"按年保费", cls:"bon", sign:"+" },
-    { k:"ib",    h:"投资红利",   s:"按年保费", cls:"bon", sign:"+" },
-    { k:"pb",    h:"表现奖金",   s:"账户价值 0.4%", cls:"bon", sign:"+" },
-    { k:"net",   h:"当年净扣费", s:"扣费 − 奖金", cls:"net", raw:true },
-    { k:"cum",   h:"累计净扣费", s:"&nbsp;", raw:true, nosum:true },
-    { k:"end",   h:"年末账户价值", s:"&nbsp;", raw:true, nosum:true }
-  ];
-}
-function renderTable(){
-  const R = M.rows, out = [], lite = S.tm === "lite", C = tableCols();
-  const fm = v => lite ? (Math.round(v) < 0 ? "−" : "") + num(Math.abs(v)) : money(v);
-  const td = (c, v) => {
-    if (c.raw) return `<td class="${c.cls || ""}">${fm(v)}</td>`;
-    if (!Math.round(v)) return `<td class="z">—</td>`;
-    return `<td class="${c.cls || ""}">${c.sign || ""}${fm(v)}</td>`;
-  };
-  const yl = y => lite ? `${y}` : `第 ${y} 年`;
-  $("tbl").classList.toggle("lite", lite);
-  $("thead").innerHTML = `<tr><th>${lite ? "年度" : "保单年度"}${lite ? "<small>S$</small>" : ""}</th>` + C.map(c => `<th>${c.h}${c.s ? `<small>${c.s}</small>` : ""}</th>`).join("") + `</tr>`;
-  const sub = (label, a, b, cls) => `<tr${cls ? ` class="${cls}"` : ""}><td>${label}</td>` + C.map(c => c.nosum ? "<td></td>" : td(c, sumR(R, a, b, c.k))).join("") + `</tr>`;
-  R.forEach(r => {
-    const ph = r.y <= 7 ? "p1" : r.y <= 11 ? "p2" : "p3", hide = !S.open && r.y > SHOW;
-    out.push(`<tr data-y="${r.y}" class="${ph}${r.y === S.sel ? " sel" : ""}${hide ? " hide" : ""}"${hide ? ' style="display:none"' : ""}><td>${yl(r.y)}</td>` + C.map(c => td(c, r[c.k])).join("") + `</tr>`);
-    if (r.y === 7) out.push(sub(lite ? "1–7 小计" : "第 1–7 年小计", 1, 7, "subt"));
-    if (r.y === SHOW && !S.open) out.push(`<tr class="more"><td colspan="${C.length + 1}"><button type="button" id="moreBtn">展开第 ${SHOW + 1}–${YEARS} 年</button></td></tr>`);
-  });
-  $("tbody").innerHTML = out.join("");
-  $("tfoot").innerHTML = sub(lite ? `8–${YEARS} 小计` : `第 8–${YEARS} 年小计`, 8, YEARS) + sub(lite ? `${YEARS} 年合计` : `${YEARS} 年合计`, 1, YEARS);
-  $("tnoteMode").textContent = lite ? "简表单位为新元；补充费、基金管理费、各项奖金分开看，请切换到「完整表」。" : (window.innerWidth < 1100 ? "完整表可以左右滑动查看。" : "");
-  [...$("segM").children].forEach(b => { const on = b.dataset.v === S.tm; b.classList.toggle("on", on); b.setAttribute("aria-pressed", on); });
-  const mb = $("moreBtn"); if (mb) mb.onclick = e => { e.stopPropagation(); S.open = true; renderTable(); };
-}
-$("tbody").addEventListener("click", e => { const tr = e.target.closest("tr[data-y]"); if (tr) select(+tr.dataset.y, true); });
-
-/* ---------- 渲染：实际年化 ---------- */
-function renderRIY(){
-  const R = M.rows;
-  $("riySub").textContent = `把每年投入的保费和第 N 年末的账户价值放在一起，算出扣完费、加上奖金之后的实际年化回报，再和扣费前的 ${S.r}% 比较。`;
-  $("riy").innerHTML = [10, 20, 30].map(N => {
-    const r = R[N - 1], i = irr(R, N);
-    const gap = i == null ? null : S.r - i * 100;
-    return `<div class="riy-c"><span>第 ${N} 年</span><b>${i == null ? "—" : pct(i * 100)}</b><small>扣费后实际年化</small>
-      <p class="gap">比扣费前 ${S.r}% 少 <em>${gap == null ? "—" : r2(gap) + " 个百分点"}</em></p>
-      <p class="pv">第 ${N} 年末账户价值 <b>${money(r.end)}</b><br>如果不扣费、也没有奖金：${money(r.gross)}</p></div>`;
-  }).join("");
+function renderInputs(){
+  [...$("segT").children].forEach(b => { const on = +b.dataset.v === S.t; b.classList.toggle("on", on); b.setAttribute("aria-pressed", on); });
+  [...$("segV").children].forEach(b => { const on = b.dataset.v === S.view; b.classList.toggle("on", on); b.setAttribute("aria-pressed", on); });
+  [...$("apChips").children].forEach(b => b.classList.toggle("on", +b.dataset.v === S.ap));
+  $("q4In").checked = S.q4;
+  $("tNote").textContent = `PWV 补充费：第 1–7 年每年 ${(SUPP[S.t] * 100).toFixed(1).replace(/\.0$/, "")}%，按账户价值扣`;
+  const tr = tierOf(S.t, S.ap), tot = sumOf(tr, S.q4);
+  let h;
+  if (!(S.ap > 0)) h = "先填年缴保费。";
+  else if (!tot) h = `这个保费未达 ${S.t} 年缴的迎新红利门槛。`;
+  else {
+    const parts = tr.y.map((v, i) => v ? `第 ${i + 1} 年 ${v}%` : null).filter(Boolean).join("、");
+    h = `迎新红利（按年保费）：${parts}` + (tr.extra ? (S.q4 ? `，Q4 限时第 1 年加送 ${tr.extra}%` : `（Q4 限时加送已关闭）`) : "") + `，合计 <b>${tot}%</b>。`;
+  }
+  $("tierNow").innerHTML = h;
+  const c = CMP[S.c], sup = (SUPP[S.t] * 100).toFixed(1).replace(/\.0$/, "");
+  $("src").textContent = `示意：两边投入同样的保费、同样交 ${S.t} 年，基金按不增不减（0% 回报）假设，分红不计入，只比较扣费。PWV 3.0（GAIF）扣费 = 补充费（第 1–7 年每年 ${sup}%，按账户价值）+ 基金管理费 1.5% − 迎新红利、投资红利（第 8–11 年每年 ${IB[S.t]}% 年保费）与表现奖金（第 8 年起每年 0.4%），取自 AIA Platinum Wealth Venture 3.0 产品摘要（2026 年 10 月版）${S.q4 ? "，含 2026 Q4 限时加送" : "，未计 2026 Q4 限时加送"}。对比账户：顾问管理账户 = 基金持续费用 1.5% + 顾问费 1%；网上平台基金 = 1.5% + 平台费 0.35%；自己买 ETF = 总费用率 0.07%；三者另计投入时换汇 0.5%。费率均为示意，以实际产品为准。图中只比较高低，不代表实际金额。`;
 }
 
-/* ---------- 联动 ---------- */
-function select(y, fromTable){
-  y = Math.max(1, Math.min(YEARS, y)); if (y === S.sel && !fromTable) return;
-  S.sel = y;
-  if (y > SHOW && !S.open){ S.open = true; renderTable(); }
-  renderChart(); renderYr();
-  document.querySelectorAll("#tbody tr[data-y]").forEach(tr => tr.classList.toggle("sel", +tr.dataset.y === y));
-}
-function writeHash(){ try{ history.replaceState(null, "", `#ap=${S.ap}&t=${S.t}&f=${S.f}&r=${S.r}&q4=${S.q4 ? 1 : 0}`); }catch(e){} }
+function writeHash(){ try{ history.replaceState(null, "", `#ap=${S.ap}&t=${S.t}&q4=${S.q4 ? 1 : 0}&c=${S.c}&v=${S.view}`); }catch(e){} }
 function readHash(){
   const h = new URLSearchParams(location.hash.slice(1));
   const ap = parseInt(h.get("ap"), 10); if (ap > 0) S.ap = Math.min(ap, 99999999);
   const t = +h.get("t"); if (t === 2 || t === 5) S.t = t;
-  const f = h.get("f"); if (FUNDS[f]) S.f = f;
-  const r = parseFloat(h.get("r")); if (r >= 0 && r <= 10) S.r = Math.round(r * 2) / 2;
   if (h.has("q4")) S.q4 = h.get("q4") !== "0";
+  const c = h.get("c"); if (CMP[c]) S.c = c;
+  const v = h.get("v"); if (v === "yr" || v === "cum") S.view = v;
 }
-function render(){
-  M = model();
-  renderInputs(M); renderKPIs(M); renderPhases(M); renderChart(); renderYr(); renderTable(); renderRIY(); writeHash();
-}
+function renderAll(){ renderChart(); renderSide(); }
+function update(){ compute(); renderInputs(); renderAll(); writeHash(); }
 
+/* ---------- 播放 ---------- */
+let timer = null;
+function stop(){ clearInterval(timer); timer = null; }
+function animTo(target, speed){
+  stop();
+  if (target <= S.yr) S.yr = target === 7 ? 0 : target === 15 ? 7 : 15;
+  timer = setInterval(() => { if (S.yr >= target){ stop(); return; } S.yr++; renderAll(); }, speed || 110);
+}
+$("playBtn").addEventListener("click", () => { S.yr = 0; renderAll(); animTo(30, 90); });
+$("steps").addEventListener("click", e => { const b = e.target.closest("button"); if (!b) return; animTo(+b.dataset.y); });
+
+/* ---------- 输入 ---------- */
 const apIn = $("apIn");
-apIn.addEventListener("input", () => { const d = apIn.value.replace(/[^\d]/g, ""); S.ap = d ? Math.min(+d, 99999999) : 0; render(); });
+apIn.addEventListener("input", () => { const d = apIn.value.replace(/[^\d]/g, ""); S.ap = d ? Math.min(+d, 99999999) : 0; update(); });
 apIn.addEventListener("blur", () => { apIn.value = S.ap ? num(S.ap) : ""; });
 apIn.addEventListener("keydown", e => { if (e.key === "Enter") apIn.blur(); });
-$("apChips").addEventListener("click", e => { const b = e.target.closest("button"); if (!b) return; S.ap = +b.dataset.v; apIn.value = num(S.ap); render(); });
-$("segT").addEventListener("click", e => { const b = e.target.closest("button"); if (!b) return; S.t = +b.dataset.v; render(); });
-$("segF").addEventListener("click", e => { const b = e.target.closest("button"); if (!b) return; S.f = b.dataset.v; render(); });
-$("segV").addEventListener("click", e => { const b = e.target.closest("button"); if (!b) return; S.view = b.dataset.v; renderInputs(M); renderChart(); });
-$("rIn").addEventListener("input", () => { S.r = +$("rIn").value; render(); });
-$("segM").addEventListener("click", e => { const b = e.target.closest("button"); if (!b) return; S.tm = b.dataset.v; renderTable(); });
-$("q4In").addEventListener("change", () => { S.q4 = $("q4In").checked; render(); });
+$("apChips").addEventListener("click", e => { const b = e.target.closest("button"); if (!b) return; S.ap = +b.dataset.v; apIn.value = num(S.ap); update(); });
+$("segT").addEventListener("click", e => { const b = e.target.closest("button"); if (!b) return; S.t = +b.dataset.v; update(); });
+$("segC").addEventListener("click", e => { const b = e.target.closest("button"); if (!b) return; S.c = b.dataset.v; update(); });
+$("segV").addEventListener("click", e => { const b = e.target.closest("button"); if (!b) return; S.view = b.dataset.v; update(); });
+$("q4In").addEventListener("change", () => { S.q4 = $("q4In").checked; update(); });
 
 function toast(s){ const t = $("toast"); t.textContent = s; t.classList.add("show"); clearTimeout(toast.h); toast.h = setTimeout(() => t.classList.remove("show"), 2200); }
 $("linkBtn").addEventListener("click", () => {
-  const url = location.href;
-  const done = () => toast("链接已复制，对方打开同样需要密码");
+  const url = location.href, done = () => toast("链接已复制，对方打开同样需要密码");
   if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(url).then(done, () => prompt("复制这个链接：", url));
   else prompt("复制这个链接：", url);
 });
-$("csvBtn").addEventListener("click", () => {
-  const f = FUNDS[S.f], head = ["保单年度","投入保费","迎新红利","投资红利","表现奖金","扣费基数(年初账户价值)",`补充费(${SUPP[S.t]}%)`,`基金管理费(${f.fmc}%)`,"当年净扣费","累计净扣费","年末账户价值"];
-  const lines = [`PWV 3.0 费用计算表 · 年缴保费 S$${S.ap} · ${S.t} 年缴 · ${f.k} · 扣费前年回报 ${S.r}% · ${S.q4 ? "含" : "不含"} Q4 加送 · 示意，以 AIA 产品摘要和 BI 为准`, head.join(",")];
-  M.rows.forEach(r => lines.push([r.y, r.prem, r.wb, r.ib, r.pb, r.start, r.sc, r.fc, r.net, r.cum, r.end].map((v, i) => i ? Math.round(v) : v).join(",")));
-  const blob = new Blob(["﻿" + lines.join("\n")], { type:"text/csv;charset=utf-8" });
-  const a = document.createElement("a"); a.href = URL.createObjectURL(blob); a.download = `pwv-charge-${S.ap}-${S.t}pay-${S.f}.csv`;
-  document.body.appendChild(a); a.click(); setTimeout(() => { URL.revokeObjectURL(a.href); a.remove(); }, 500);
-});
-let rz; window.addEventListener("resize", () => { clearTimeout(rz); rz = setTimeout(() => M && renderChart(), 120); });
+let rz; window.addEventListener("resize", () => { clearTimeout(rz); rz = setTimeout(renderChart, 120); });
 
 readHash();
 apIn.value = num(S.ap);
-render();
-window.__pwvCharge = { model, irr, S };
+update();
+window.__pwvCmp = { S, get: () => ({ A, B, cA, cB, cy }), update };
 })();
 </script>
 </body>
