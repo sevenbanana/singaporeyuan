@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex">
-<title>重疾保障方案对比 · 消费型 vs 分红型 · Eric 专属 | 新加坡小圆姐</title>
+<title>重疾保障方案对比 · 消费型 vs 分红型 20 年 / 15 年缴 · Eric 专属 | 新加坡小圆姐</title>
 <style>
 /* Layout: singaporeyuan.com proposal style (quote.html). Ivory paper, navy + gold, compact type. Hero → price pair → coverage bands → A|B vertical timeline → cost bars → summary grid → shared CI cover → how to choose → CTA → notes. Single light theme by design. */
 :root{
@@ -444,6 +444,56 @@ body.locked #pwGate{display:flex}
   .cl-grid{grid-template-columns:1fr 1fr}
   .cd{padding:6px 8px;font-size:12px}
 }
+
+/* ---------- 三方案（A / B / C） ---------- */
+:root{--teal:#2C7A73;--teal-deep:#1F5E58;--teal-tint:#E8F2F0}
+.cmp-price.c3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.cmp-price .c{background:var(--teal)}
+.cmp-price .c .t .off{color:var(--teal-deep)}
+.cmp-price.c3>div{padding:14px 16px}
+.cmp-price.c3 .pr b{font-size:22px}
+.cmp-price.c3 .pr>div+div{padding-left:12px}
+.band .tl{background:var(--teal)}
+.bandrow .who.c{color:var(--teal-deep)}
+.oop-read .cc b{color:var(--teal-deep)}
+.yr-row.c{--c:var(--teal)}
+.yr-row.c .who{color:var(--teal-deep)}
+.bar i.c{background:var(--teal)}
+.bars-card.b3 .bar-grp{grid-template-columns:170px minmax(0,1fr)}
+.bars-card.b3 .bar{margin:3px 0}
+.bars-card.b3 .bar .trk{height:13px}
+.sumgrid.g3 .sg-row{grid-template-columns:170px repeat(3,minmax(0,1fr))}
+.sumgrid.g3 .sg-row.hd .sg-v.c{background:var(--teal)}
+.sumgrid.g3 .sg-v.c{background:#F2F8F7}
+.sumgrid.g3 .sg-v.bc{grid-column:3 / -1;background:#FAF7EF;border-left:1px solid var(--line)}
+.sumgrid.g3 .sg-v.b{border-left:1px solid var(--line)}
+.sumgrid.g3 .sg-v.c{border-left:1px solid var(--line)}
+.sumgrid.g3 .sg-v b{font-size:14px}
+.sumgrid i{font-style:normal}
+.sumgrid .sm{display:none}
+.sum-line.s3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.sum-line .c{background:var(--teal-tint);border:1px solid #CFE3DF}
+.sum-line .b .ic{color:var(--gold-deep)}
+@media (max-width:900px){
+  .cmp-price.c3{grid-template-columns:1fr}
+  .cmp-price.c3 .pr b{font-size:23px}
+  .sum-line.s3{grid-template-columns:1fr}
+}
+@media (max-width:760px){
+  .bars-card.b3 .bar-grp{grid-template-columns:1fr}
+  .sumgrid.g3 .sg-row{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .sumgrid.g3 .sg-v.bc{grid-column:2 / -1}
+  .sumgrid.g3 .sg-v{padding:8px 9px}
+  .sumgrid.g3 .sg-v b{font-size:12.5px}
+  .sumgrid.g3 .sg-v small{font-size:11px}
+  .sumgrid.g3 .sg-row.hd .sg-v{padding:8px 9px;font-size:12px}
+  .sumgrid .lg{display:none}.sumgrid .sm{display:inline}
+  .sumgrid .win{font-size:10.5px}
+}
+
+.strip b small.blk{display:block;margin:2px 0 0}
+.sumgrid.g3 .sg-row{grid-template-columns:180px repeat(3,minmax(0,1fr))}
+@media (max-width:760px){.sumgrid.g3 .sg-row{grid-template-columns:repeat(3,minmax(0,1fr))}}
 </style>
 </head>
 <body class="locked">
@@ -451,7 +501,7 @@ body.locked #pwGate{display:flex}
   <form class="pw-card" id="pwForm">
     <span class="pw-chip"><img src="/avatar-round.png" alt="">新加坡小圆姐 · 专属方案</span>
     <h2>Eric 的重疾保障方案</h2>
-    <p>消费型 Term vs 分红型终身。为保护客户资料，请输入访问密码。</p>
+    <p>消费型 vs 分红型（20 年 / 15 年缴）。为保护客户资料，请输入访问密码。</p>
     <input id="pwInput" type="password" autocomplete="off" placeholder="输入密码">
     <div class="pw-err" id="pwErr">密码不正确，再试一次，或者找小圆姐要密码。</div>
     <button type="submit" id="pwSubmit">查看方案</button>
@@ -492,21 +542,21 @@ body.locked #pwGate{display:flex}
   </svg>
 
   <header class="hero">
-    <h1><span style="white-space:nowrap">Eric · 重疾保障方案对比</span><span class="l2">消费型 Term vs 分红型终身</span></h1>
+    <h1><span style="white-space:nowrap">Eric · 重疾保障方案对比</span><span class="l2">消费型 vs 分红型 20 年缴 vs 15 年缴</span></h1>
     <div class="meta">
       <span class="who"><svg class="ic" style="color:#fff"><use href="#i-user"/></svg>Eric · 32 岁 · 男 · 不吸烟</span>
       <span><svg class="ic"><use href="#i-shield"/></svg>A · AIA Secure Flexi Term 30 年</span>
-      <span><svg class="ic"><use href="#i-heart"/></svg>B · AIA Guaranteed Protect Plus (IV) + ECPL (IV)</span>
-      <span><svg class="ic"><use href="#i-doc"/></svg>计划书 · 2026.11.09</span>
+      <span><svg class="ic"><use href="#i-heart"/></svg>B / C · AIA Guaranteed Protect Plus (IV) + ECPL (IV)</span>
+      <span><svg class="ic"><use href="#i-doc"/></svg>计划书 · 2026.11.09–10</span>
     </div>
   </header>
 
   <div class="sa-note"><span class="sa-tag"><svg class="ic"><use href="#i-scale"/></svg>保额说明</span>
     <span class="d"><b>方案 A：</b>人寿部分最低 <em>$25 万</em>（$20 万的报价开不出来），重疾早中晚期 <em>$20 万</em></span>
-    <span class="d"><b>方案 B：</b>人寿和重疾早中晚期都是 <em>$20 万</em></span>
+    <span class="d"><b>方案 B、C：</b>人寿和重疾早中晚期都是 <em>$20 万</em>，只是交费年期不同</span>
   </div>
 
-  <div class="cmp-price num">
+  <div class="cmp-price c3 num">
     <div class="a">
       <div class="t"><span class="nm"><svg class="ic"><use href="#i-shield"/></svg>方案 A · 消费型 Term</span><span class="off">首年 8 折</span></div>
       <div class="pr">
@@ -516,29 +566,39 @@ body.locked #pwGate{display:flex}
       <div class="s">缴 30 年 · 共 $45,772.80 · 保到 62 岁</div>
     </div>
     <div class="b">
-      <div class="t"><span class="nm"><svg class="ic"><use href="#i-shield"/></svg>方案 B · 分红型终身</span><span class="off">首年 9 折</span></div>
+      <div class="t"><span class="nm"><svg class="ic"><use href="#i-shield"/></svg>方案 B · 分红型 20 年缴</span><span class="off">首年 9 折</span></div>
       <div class="pr">
         <div><span>首年</span><b>$2,217.60</b></div>
         <div><span>第 2 年起</span><b>$2,464<small>/ 年</small></b></div>
       </div>
       <div class="s">缴 20 年 · 共 $49,033.60 · 保到 100 岁</div>
     </div>
+    <div class="c">
+      <div class="t"><span class="nm"><svg class="ic"><use href="#i-shield"/></svg>方案 C · 分红型 15 年缴</span><span class="off">首年 9 折</span></div>
+      <div class="pr">
+        <div><span>首年</span><b>$2,772</b></div>
+        <div><span>第 2 年起</span><b>$3,080<small>/ 年</small></b></div>
+      </div>
+      <div class="s">缴 15 年 · 共 $45,892 · 保到 100 岁</div>
+    </div>
   </div>
 
   <!-- 保障期 -->
   <div class="sub-head"><svg class="ic ic-md"><use href="#i-clock"/></svg>差别在 62 岁之后</div>
-  <p class="sec-sub">A 是 30 年定期，到 62 岁就结束；B 的 $20 万保到 65 岁，之后变成 <b>$4 万 + 红利</b>，一直保到 100 岁。</p>
-  <div class="bands num" role="img" aria-label="方案 A 的保障从 32 岁到 62 岁；方案 B 的 20 万保障从 32 岁到 65 岁，之后为 4 万加红利保到 100 岁">
+  <p class="sec-sub">A 是 30 年定期，到 62 岁就结束；B、C 的 $20 万保到 65 岁，之后变成 <b>$4 万 + 红利</b>，一直保到 100 岁。B 和 C 保障相同，只是交费年期不同。</p>
+  <div class="bands num" role="img" aria-label="方案 A 的保障从 32 岁到 62 岁；方案 B 和 C 的 20 万保障从 32 岁到 65 岁，之后为 4 万加红利保到 100 岁">
     <div class="bandrow"><span class="who a">方案 A</span>
       <div class="band"><span class="nv" style="flex:30"><i class="lg">$20 万重疾 · $25 万人寿</i><i class="sm">$20 万 / $25 万</i></span><span class="no" style="flex:38"><i class="lg">62 岁后无保障</i><i class="sm">无保障</i></span></div></div>
     <div class="bandrow"><span class="who b">方案 B</span>
       <div class="band"><span class="gd" style="flex:33"><i class="lg">$20 万重疾 · $20 万人寿</i><i class="sm">$20 万</i></span><span class="gy" style="flex:35">$4 万 + 红利</span></div></div>
+    <div class="bandrow"><span class="who c">方案 C</span>
+      <div class="band"><span class="tl" style="flex:33"><i class="lg">$20 万重疾 · $20 万人寿</i><i class="sm">$20 万</i></span><span class="gy" style="flex:35">$4 万 + 红利</span></div></div>
     <div class="scale"><span style="left:0">32 岁</span><span class="r" style="left:44.1%">62</span><span class="l" style="left:48.5%">65</span><span style="left:100%">100 岁</span></div>
   </div>
 
   <div class="oop-card">
     <div class="oop-top">
-      <div class="oop-legend"><span><i style="background:var(--navy)"></i>方案 A</span><span><i style="background:var(--gold)"></i>方案 B</span><span><i class="dash"></i>保证 $40,000</span></div>
+      <div class="oop-legend"><span><i style="background:var(--navy)"></i>方案 A</span><span><i style="background:var(--gold)"></i>方案 B</span><span><i style="background:var(--teal)"></i>方案 C</span><span><i class="dash"></i>保证 $40,000</span></div>
       <div class="segs">
         <div class="seg" role="group" aria-label="保障类型"><button type="button" id="mCI" class="on" aria-pressed="true">重疾</button><button type="button" id="mDB" aria-pressed="false">身故</button></div>
         <div class="seg" role="group" aria-label="演示投资回报率"><button type="button" id="r425" class="on" aria-pressed="true">4.25% 演示</button><button type="button" id="r300" aria-pressed="false">3.00% 演示</button></div>
@@ -548,119 +608,128 @@ body.locked #pwGate{display:flex}
       <div class="age"><span>年龄</span><b id="rdAge">70 岁</b></div>
       <div><span><i style="background:var(--navy)"></i>方案 A</span><b id="rdA">$0</b></div>
       <div><span><i style="background:var(--gold)"></i>方案 B</span><b id="rdB">$72,594</b></div>
-      <div class="df"><span>相差</span><b id="rdD">$72,594</b></div>
+      <div class="cc"><span><i style="background:var(--teal)"></i>方案 C</span><b id="rdC">$76,856</b></div>
     </div>
     <div class="swipe">← 左右滑动看 32–100 岁完整图表 →</div>
-    <div class="scroll-x"><div class="chart-box"><svg id="chart" class="oop-svg" viewBox="0 0 760 290" role="img" aria-label="两个方案 32 至 100 岁的重疾或身故赔付额"></svg></div></div>
-    <p class="cnote">点图上任意年龄看当年数值。B 的 $40,000 为保证部分，红利不保证；A 到期后可免核保续保，但保费按届时年龄重新计算。</p>
+    <div class="scroll-x"><div class="chart-box"><svg id="chart" class="oop-svg" viewBox="0 0 760 290" role="img" aria-label="三个方案 32 至 100 岁的重疾或身故赔付额"></svg></div></div>
+    <p class="cnote">点图上任意年龄看当年数值。65 岁前 B、C 重合；B、C 的 $40,000 为保证部分，红利不保证；A 到期后可免核保续保，但保费按届时年龄重新计算。</p>
   </div>
 
-  <!-- 多交的钱 -->
-  <div class="sub-head"><svg class="ic ic-md"><use href="#i-coins"/></svg>方案 B 多交的钱，换来什么</div>
+  <!-- 保费与现金价值 -->
+  <div class="sub-head"><svg class="ic ic-md"><use href="#i-coins"/></svg>交多少，留下多少</div>
   <div class="strip num">
-    <div><svg class="ic"><use href="#i-wallet"/></svg><div><span class="lb">方案 B 总共多交</span><b>$3,261<small>第 2 年起每年多 $928，但少交 10 年</small></b></div></div>
-    <div><svg class="ic"><use href="#i-cash"/></svg><div><span class="lb">62 岁时 B 的退保价值</span><b>$13,920–$21,570<small>保证 $8,120 · A 为 $0</small></b></div></div>
+    <div><svg class="ic"><use href="#i-wallet"/></svg><div><span class="lb">C 和 A 的总保费只差</span><b>$119<small>C 15 年交清，A 要交 30 年</small></b></div></div>
+    <div><svg class="ic"><use href="#i-cash"/></svg><div><span class="lb">62 岁退保价值（4.25% 演示）</span><b>C $23,329 · B $21,570<small class="blk">保证部分都是 $8,120 · A 为 $0</small></b></div></div>
   </div>
 
   <div class="yr-card num">
-    <div class="yr-h">每年要交多少<small>第 1–30 个保单年度 · 首年 A 8 折、B 9 折</small></div>
+    <div class="yr-h">每年要交多少<small>第 1–30 个保单年度 · 首年 A 8 折、B / C 9 折</small></div>
     <div class="yr-row a"><span class="who">方案 A</span><div class="yr-bars" id="barsA"></div></div>
     <div class="yr-cap"><span></span><div class="caps"><span style="flex:30">$1,536 / 年<small>缴 30 年 · 首年 $1,228.80</small></span></div></div>
     <div class="yr-row b"><span class="who">方案 B</span><div class="yr-bars" id="barsB"></div></div>
-    <div class="yr-cap"><span></span><div class="caps"><span style="flex:20">$2,464 / 年<small>缴 20 年 · 首年 $2,217.60</small></span><span class="done" style="flex:10">已交清<small>52 岁起不用再交</small></span></div></div>
+    <div class="yr-cap"><span></span><div class="caps"><span style="flex:20">$2,464 / 年<small>缴 20 年 · 首年 $2,217.60</small></span><span class="done" style="flex:10">已交清<small>52 岁起</small></span></div></div>
+    <div class="yr-row c"><span class="who">方案 C</span><div class="yr-bars" id="barsC"></div></div>
+    <div class="yr-cap"><span></span><div class="caps"><span style="flex:15">$3,080 / 年<small>缴 15 年 · 首年 $2,772</small></span><span class="done" style="flex:15">已交清<small>47 岁起不用再交</small></span></div></div>
   </div>
 
-  <div class="bars-card num">
+  <div class="bars-card b3 num">
     <div class="bar-grp">
-      <div class="t">总保费<small>A 30 年 · B 20 年</small></div>
+      <div class="t">总保费<small>A 30 年 · B 20 年 · C 15 年</small></div>
       <div>
-        <div class="bar"><div class="trk"><i class="a" style="width:93.4%"></i></div><span><em>A</em>$45,772.80</span></div>
+        <div class="bar"><div class="trk"><i class="a" style="width:93.35%"></i></div><span><em>A</em>$45,772.80</span></div>
         <div class="bar"><div class="trk"><i class="b" style="width:100%"></i></div><span><em>B</em>$49,033.60</span></div>
+        <div class="bar"><div class="trk"><i class="c" style="width:93.59%"></i></div><span><em>C</em>$45,892</span></div>
       </div>
-      <div class="x">+$3,261</div>
     </div>
     <div class="bar-grp">
-      <div class="t">62 岁退保价值<small>4.25% 演示 · 3.00% 为 $13,920</small></div>
+      <div class="t">62 岁退保价值<small>4.25% 演示</small></div>
       <div>
         <div class="bar"><div class="trk"><i class="a zero" style="width:0"></i></div><span><em>A</em>$0</span></div>
-        <div class="bar"><div class="trk"><i class="b" style="width:100%"></i></div><span><em>B</em>$21,570</span></div>
+        <div class="bar"><div class="trk"><i class="b" style="width:92.46%"></i></div><span><em>B</em>$21,570</span></div>
+        <div class="bar"><div class="trk"><i class="c" style="width:100%"></i></div><span><em>C</em>$23,329</span></div>
       </div>
-      <div class="x g">+$21,570</div>
     </div>
     <div class="bar-grp">
       <div class="t">70 岁时的保障<small>身故 / 重疾 · 4.25% 演示</small></div>
       <div>
         <div class="bar"><div class="trk"><i class="a zero" style="width:0"></i></div><span><em>A</em>$0</span></div>
-        <div class="bar"><div class="trk"><i class="b" style="width:100%"></i></div><span><em>B</em>$72,594</span></div>
+        <div class="bar"><div class="trk"><i class="b" style="width:94.45%"></i></div><span><em>B</em>$72,594</span></div>
+        <div class="bar"><div class="trk"><i class="c" style="width:100%"></i></div><span><em>C</em>$76,856</span></div>
       </div>
-      <div class="x g">+$72,594</div>
     </div>
   </div>
-  <div class="tip"><svg class="ic"><use href="#i-bulb"/></svg><span>两方案总保费只差约 $3,261：A 把钱全部用在 62 岁前的保障上；B 交得更快，保障延到终身，还留有现金价值</span></div>
+  <div class="tip"><svg class="ic"><use href="#i-bulb"/></svg><span>C 的总保费和 A 几乎一样，却 15 年交清、保到终身；B 每年比 C 少交 $616，但要多交 5 年，总保费反而多约 $3,142</span></div>
 
   <!-- 逐项对比 -->
   <div class="sub-head"><svg class="ic ic-md"><use href="#i-scale"/></svg>逐项对比</div>
-  <div class="sumgrid num">
-    <div class="sg-row hd"><div class="sg-k"></div><div class="sg-v a"><svg class="ic"><use href="#i-shield"/></svg>方案 A · 消费型 Term</div><div class="sg-v b"><svg class="ic"><use href="#i-shield"/></svg>方案 B · 分红型终身</div></div>
-    <div class="sg-row"><div class="sg-k"><span class="sg-ic"><svg class="ic"><use href="#i-wallet"/></svg></span><span>年缴保费<small>月缴</small></span></div>
-      <div class="sg-v a"><b>$1,536</b><small>首年 8 折 $1,228.80 · 月缴 $133.64</small></div>
-      <div class="sg-v b"><b>$2,464</b><small>首年 9 折 $2,217.60 · 月缴 $214.37</small></div></div>
+  <div class="sumgrid g3 num">
+    <div class="sg-row hd"><div class="sg-k"></div>
+      <div class="sg-v a"><i class="lg">方案 A · 消费型 Term</i><i class="sm">A · 消费型</i></div>
+      <div class="sg-v b"><i class="lg">方案 B · 分红型 20 年缴</i><i class="sm">B · 分红 20 年</i></div>
+      <div class="sg-v c"><i class="lg">方案 C · 分红型 15 年缴</i><i class="sm">C · 分红 15 年</i></div></div>
+    <div class="sg-row"><div class="sg-k"><span class="sg-ic"><svg class="ic"><use href="#i-wallet"/></svg></span><span>年缴保费<small>首年折后 · 月缴</small></span></div>
+      <div class="sg-v a"><b>$1,536</b><small>首年 $1,228.80 · 月缴 $133.64</small></div>
+      <div class="sg-v b"><b>$2,464</b><small>首年 $2,217.60 · 月缴 $214.37</small></div>
+      <div class="sg-v c"><b>$3,080</b><small>首年 $2,772 · 月缴 $267.96</small></div></div>
     <div class="sg-row"><div class="sg-k"><span class="sg-ic"><svg class="ic"><use href="#i-cal"/></svg></span>缴费期 · 总保费</div>
       <div class="sg-v a"><b>30 年 · $45,772.80</b><small>缴到 62 岁</small></div>
-      <div class="sg-v b"><b>20 年 · $49,033.60</b><small>缴到 52 岁</small><span class="win"><svg class="ic"><use href="#i-check"/></svg>少交 10 年</span></div></div>
+      <div class="sg-v b"><b>20 年 · $49,033.60</b><small>缴到 52 岁</small></div>
+      <div class="sg-v c"><b>15 年 · $45,892</b><small>缴到 47 岁</small><span class="win"><svg class="ic"><use href="#i-check"/></svg>最早交清</span></div></div>
     <div class="sg-row"><div class="sg-k"><span class="sg-ic"><svg class="ic"><use href="#i-shield"/></svg></span>身故 / 末期疾病</div>
-      <div class="sg-v a"><b>$250,000 · 至 62 岁</b><small>人寿部分最低 $25 万</small><span class="win"><svg class="ic"><use href="#i-check"/></svg>多 $5 万</span></div>
-      <div class="sg-v b"><b>$200,000 · 至 65 岁</b><small>之后 $4 万 + 红利，至 100 岁</small><span class="win"><svg class="ic"><use href="#i-check"/></svg>终身保障</span></div></div>
+      <div class="sg-v a"><b>$250,000 · 至 62 岁</b><small>人寿部分最低 $25 万</small></div>
+      <div class="sg-v bc"><span class="eq">B、C 相同</span><b>$200,000 · 至 65 岁</b><small>之后 $4 万 + 红利，至 100 岁</small><span class="win"><svg class="ic"><use href="#i-check"/></svg>终身保障</span></div></div>
     <div class="sg-row"><div class="sg-k"><span class="sg-ic"><svg class="ic"><use href="#i-heart"/></svg></span><span>重疾<small>早期 / 中期 / 重度</small></span></div>
-      <div class="sg-v a"><b>$200,000 · 至 62 岁</b><small>早中晚期确诊都赔 $20 万</small></div>
-      <div class="sg-v b"><b>$200,000 · 至 65 岁</b><small>之后 $4 万 + 红利，终身</small><span class="win"><svg class="ic"><use href="#i-check"/></svg>多保 3 年 + 终身</span></div></div>
+      <div class="sg-v a"><b>$200,000 · 至 62 岁</b></div>
+      <div class="sg-v bc"><span class="eq">B、C 相同</span><b>$200,000 · 至 65 岁</b><small>之后 $4 万 + 红利，终身</small></div></div>
     <div class="sg-row"><div class="sg-k"><span class="sg-ic"><svg class="ic"><use href="#i-steth"/></svg></span>覆盖疾病</div>
       <div class="sg-v a"><b>104 种</b><small>早期 32 · 中期 29 · 重度 43</small></div>
-      <div class="sg-v b"><b>150 种</b><small>早期 42 · 中期 35 · 重度 73</small><span class="win"><svg class="ic"><use href="#i-check"/></svg>多 46 种</span></div></div>
+      <div class="sg-v bc"><span class="eq">B、C 相同</span><b>150 种</b><small>早期 42 · 中期 35 · 重度 73</small><span class="win"><svg class="ic"><use href="#i-check"/></svg>多 46 种</span></div></div>
     <div class="sg-row"><div class="sg-k"><span class="sg-ic"><svg class="ic"><use href="#i-plus"/></svg></span><span>特定疾病额外赔<small>不减保额</small></span></div>
-      <div class="sg-v a"><b>5 种 · 每种 $25,000</b><small>每种限赔 1 次</small><span class="win"><svg class="ic"><use href="#i-check"/></svg>单次更高</span></div>
-      <div class="sg-v b"><b>15 种 · 每次 $8,000</b><small>最多 5 次 · 保至 85 岁</small></div></div>
+      <div class="sg-v a"><b>5 种 · 每种 $25,000</b><small>每种限赔 1 次</small></div>
+      <div class="sg-v bc"><span class="eq">B、C 相同</span><b>15 种 · 每次 $8,000</b><small>按 Accumulator 保额 $4 万的 20% · 最多 5 次 · 保至 85 岁</small></div></div>
     <div class="sg-row"><div class="sg-k"><span class="sg-ic"><svg class="ic"><use href="#i-hospital"/></svg></span>完全永久残疾 TPD</div>
       <div class="sg-v a"><b>$250,000 · 至 62 岁</b></div>
-      <div class="sg-v b"><b>$200,000 · 至 65 岁</b><small>65–70 岁为 $4 万 + 红利</small></div></div>
+      <div class="sg-v bc"><span class="eq">B、C 相同</span><b>$200,000 · 至 65 岁</b><small>65–70 岁为 $4 万 + 红利</small></div></div>
     <div class="sg-row"><div class="sg-k"><span class="sg-ic"><svg class="ic"><use href="#i-clock"/></svg></span>62 岁到期后</div>
       <div class="sg-v a"><b>保障结束</b><small>可免核保续保，年缴约 $23,854（现行费率，不保证）</small></div>
-      <div class="sg-v b"><b>已交清，保障继续</b><small>65 岁前 $20 万，之后 $4 万 + 红利</small></div></div>
+      <div class="sg-v bc"><span class="eq">B、C 相同</span><b>已交清，保障继续</b><small>65 岁前 $20 万，之后 $4 万 + 红利</small></div></div>
     <div class="sg-row"><div class="sg-k"><span class="sg-ic"><svg class="ic"><use href="#i-cash"/></svg></span><span>退保价值 / 满期金<small>4.25% / 3.00% 演示</small></span></div>
       <div class="sg-v a"><b>无</b><small>退保、到期均为 $0</small></div>
-      <div class="sg-v b"><b>65 岁 $25,310 / $16,116</b><small>100 岁满期 $105,396 / $66,562（保证 $40,000）· 72 岁退保演示收益率 1.40% / −0.08%</small></div></div>
+      <div class="sg-v b"><b>65 岁 $25,310 / $16,116</b><small>100 岁满期 $105,396 / $66,562 · 72 岁退保收益率 1.40% / −0.08%</small></div>
+      <div class="sg-v c"><b>65 岁 $27,417 / $16,836</b><small>100 岁满期 $126,146 / $73,270 · 72 岁退保收益率 2.11% / 0.49%</small><span class="win"><svg class="ic"><use href="#i-check"/></svg>三者最高</span></div></div>
     <div class="sg-row"><div class="sg-k"><span class="sg-ic"><svg class="ic"><use href="#i-gift"/></svg></span><span>Vitality 权益<small>加入 Vitality 会员时</small></span></div>
       <div class="sg-v a"><b>保费折扣</b><small>第 2 年起按等级在原价 85%–100% 之间</small></div>
-      <div class="sg-v b"><b>PowerUp Dollar $10,000</b><small>按等级 $0–$15,000，身故、重疾全额赔付或满期时支付</small></div></div>
+      <div class="sg-v bc"><span class="eq">B、C 相同</span><b>PowerUp Dollar $10,000</b><small>按等级 $0–$15,000，身故、重疾全额赔付或满期时支付</small></div></div>
     <div class="sg-row"><div class="sg-k"><span class="sg-ic"><svg class="ic"><use href="#i-lock"/></svg></span>保费是否保证</div>
-      <div class="sg-v same"><span class="eq">两方案相同</span><b>基本计划保证；重疾附约不保证</b><small>A 的基本计划和 TPD 保证首 30 年</small></div></div>
+      <div class="sg-v same"><span class="eq">三个方案相同</span><b>基本计划保证；重疾附约不保证</b><small>A 的基本计划和 TPD 保证首 30 年</small></div></div>
   </div>
 
   <!-- 重疾细节 -->
   <div class="sub-head"><svg class="ic ic-md"><use href="#i-heart"/></svg>重疾保障细节</div>
   <div class="pill-head">
     <div class="pill navy">A · Critical Cover + Early Critical Cover</div>
-    <div class="pill gold">B · Early Critical Protector Life (IV)</div>
+    <div class="pill gold">B、C · Early Critical Protector Life (IV)</div>
   </div>
 <div class="cl-tabs num" role="tablist" aria-label="疾病清单"><button type="button" role="tab" class="cl-tab on" data-p="cl-major" aria-selected="true"><span class="lb">重度</span><b><i class="na">43</i><i class="vs">vs</i><i class="nb">73</i></b><small>重大癌症、心梗、中风等</small></button><button type="button" role="tab" class="cl-tab" data-p="cl-early" aria-selected="false"><span class="lb">早期</span><b><i class="na">32</i><i class="vs">vs</i><i class="nb">42</i></b><small>原位癌、早期甲状腺癌等</small></button><button type="button" role="tab" class="cl-tab" data-p="cl-inter" aria-selected="false"><span class="lb">中期</span><b><i class="na">29</i><i class="vs">vs</i><i class="nb">35</i></b><small>慢性肾病、肝硬化等</small></button><button type="button" role="tab" class="cl-tab" data-p="cl-spec" aria-selected="false"><span class="lb">特定疾病</span><b><i class="na">5</i><i class="vs">vs</i><i class="nb">15</i></b><small>糖尿病并发症、骨质疏松等</small></button></div>
-<div class="cl-box"><div class="cl-panel" id="cl-major" role="tabpanel"><div class="cl-legend"><span><i class="g"></i>只有 B 保 · 30 种</span><span><i class="w"></i>两方案都保 · 43 种</span></div><div class="cl-grid"><div class="cd g">后天性脑损伤<em>Acquired Brain Damage</em></div><div class="cd g">急性重度溃疡性结肠炎<em>Acute Severe Ulcerative Colitis</em></div><div class="cd g">艾迪生病 / 自身免疫性肾上腺炎<em>Addison Disease or Autoimmune Adrenalitis</em></div><div class="cd g">肾上腺腺瘤切除术<em>Adrenalectomy for Adrenal Adenoma</em></div><div class="cd g">胆道闭锁接受肝移植<em>Biliary Atresia having undergone Liver Transplantation</em></div><div class="cd g">脑部手术<em>Brain Surgery</em></div><div class="cd g">慢性自身免疫性肝炎<em>Chronic Auto-Immune Hepatitis</em></div><div class="cd g">埃博拉病毒感染<em>Ebola</em></div><div class="cd g">全身性破伤风<em>Generalized Tetanus</em></div><div class="cd g">感染性心内膜炎<em>Infective Endocarditis</em></div><div class="cd g">胰岛素依赖型糖尿病<em>Insulin Dependent Diabetes Mellitus</em></div><div class="cd g">青少年亨廷顿病<em>Juvenile Huntington Disease</em></div><div class="cd g">医疗过程中感染 HIV<em>Medically Acquired HIV Infection</em></div><div class="cd g">臂丛神经多根损伤<em>Multiple Root of Brachial Plexus Injury</em></div><div class="cd g">职业感染乙型 / 丙型肝炎<em>Occupationally Acquired Hepatitis B or C</em></div><div class="cd g">成骨不全症（脆骨病）<em>Osteogenesis Imperfecta</em></div><div class="cd g">持续性重度幼年类风湿关节炎<em>Persistent Severe Juvenile Rheumatoid Arthritis</em></div><div class="cd g">嗜铬细胞瘤<em>Pheochromocytoma</em></div><div class="cd g">狂犬病<em>Rabies</em></div><div class="cd g">全小肠切除术<em>Resection of the Whole Small Intestine</em></div><div class="cd g">重度心肌病<em>Severe Cardiomyopathy</em></div><div class="cd g">重度克罗恩病<em>Severe Crohn&#x27;s Disease</em></div><div class="cd g">重度艾森曼格综合征<em>Severe Eisenmenger&#x27;s Syndrome</em></div><div class="cd g">重度血友病<em>Severe Haemophilia</em></div><div class="cd g">重度肺纤维化<em>Severe Pulmonary Fibrosis</em></div><div class="cd g">特发性脊柱侧弯手术<em>Surgery for Idiopathic Scoliosis</em></div><div class="cd g">末期疾病 *<em>Terminal Illness</em></div><div class="cd g">结核性脑膜炎<em>Tuberculosis Meningitis</em></div><div class="cd g">1 型青少年脊髓性肌萎缩<em>Type 1 Juvenile Spinal Muscular Atrophy</em></div><div class="cd g">威尔逊病（肝豆状核变性）<em>Wilson&#x27;s Disease</em></div></div><details class="cl-more"><summary>两方案都保的 43 种重度疾病 · 含 LIA 37 种标准定义大病<span class="tg">展开</span></summary><div class="cl-grid"><div class="cd">重大癌症<em>Major Cancer</em></div><div class="cd">特定严重程度的心肌梗塞<em>Heart Attack of Specified Severity</em></div><div class="cd">中风伴永久性神经功能障碍<em>Stroke with Permanent Neurological Deficit</em></div><div class="cd">末期肾衰竭<em>End Stage Kidney Failure</em></div><div class="cd">末期肝衰竭<em>End Stage Liver Failure</em></div><div class="cd">末期肺病<em>End Stage Lung Disease</em></div><div class="cd">冠状动脉搭桥手术<em>Coronary Artery By-pass Surgery</em></div><div class="cd">冠状动脉血管成形术及其他侵入性治疗<em>Angioplasty &amp; Other Invasive Treatment for Coronary Artery</em></div><div class="cd">其他严重冠状动脉疾病<em>Other Serious Coronary Artery Disease</em></div><div class="cd">开心式心脏瓣膜手术<em>Open-Heart Heart Valve Surgery</em></div><div class="cd">主动脉手术<em>Surgery to Aorta</em></div><div class="cd">原发性肺动脉高压<em>Primary Pulmonary Hypertension</em></div><div class="cd">主要器官 / 骨髓移植<em>Major Organ / Bone Marrow Transplantation</em></div><div class="cd">阿尔茨海默病 / 重度失智<em>Alzheimer&#x27;s Disease / Severe Dementia</em></div><div class="cd">原发性帕金森病<em>Idiopathic Parkinson&#x27;s Disease</em></div><div class="cd">运动神经元病<em>Motor Neurone Disease</em></div><div class="cd">多发性硬化症<em>Multiple Sclerosis</em></div><div class="cd">良性脑肿瘤<em>Benign Brain Tumour</em></div><div class="cd">严重头部创伤<em>Major Head Trauma</em></div><div class="cd">昏迷<em>Coma</em></div><div class="cd">持续性植物人状态<em>Persistent Vegetative State (Apallic Syndrome)</em></div><div class="cd">瘫痪（不可逆肢体功能丧失）<em>Paralysis (Irreversible Loss of Use of Limbs)</em></div><div class="cd">失明（不可逆视力丧失）<em>Blindness (Irreversible Loss of Sight)</em></div><div class="cd">失聪（不可逆听力丧失）<em>Deafness (Irreversible Loss of Hearing)</em></div><div class="cd">不可逆语言能力丧失<em>Irreversible Loss of Speech</em></div><div class="cd">丧失独立生活能力<em>Loss of Independent Existence</em></div><div class="cd">严重烧伤<em>Major Burns</em></div><div class="cd">暴发性肝炎<em>Fulminant Hepatitis</em></div><div class="cd">因输血或职业感染的 HIV<em>HIV Due to Blood Transfusion and Occupationally Acquired HIV</em></div><div class="cd">不可逆再生障碍性贫血<em>Irreversible Aplastic Anaemia</em></div><div class="cd">克雅二氏病<em>Creutzfeldt-Jakob Disease</em></div><div class="cd">肌营养不良症<em>Muscular Dystrophy</em></div><div class="cd">重度重症肌无力<em>Severe Myasthenia Gravis</em></div><div class="cd">严重细菌性脑膜炎<em>Severe Bacterial Meningitis</em></div><div class="cd">严重脑炎<em>Severe Encephalitis</em></div><div class="cd">脊髓灰质炎（小儿麻痹症）<em>Poliomyelitis</em></div><div class="cd">进行性硬皮病<em>Progressive Scleroderma</em></div><div class="cd">进行性核上性麻痹<em>Progressive Supranuclear Palsy</em></div><div class="cd">系统性红斑狼疮伴狼疮性肾炎<em>Systemic Lupus Erythematosus with Lupus Nephritis</em></div><div class="cd">坏死性筋膜炎<em>Necrotising Fasciitis</em></div><div class="cd">象皮病<em>Elephantiasis</em></div><div class="cd">髓质囊性病<em>Medullary Cystic Disease</em></div><div class="cd">胰腺炎 **<em>A：Acute Necrohemorrhagic Pancreatitis · B：Chronic Relapsing Pancreatitis</em></div></div></details><p class="cl-note">* 末期疾病在 A 由基本计划承保（$25 万），只是不在重疾附约清单里。** 胰腺炎：A 的重度为急性坏死出血性胰腺炎；B 把它提前到早期 / 中期就赔，重度对应慢性复发性胰腺炎。</p></div><div class="cl-panel" id="cl-early" role="tabpanel" hidden><div class="cl-legend"><span><i class="g"></i>只有 B 保 · 10 种</span><span><i class="w"></i>两方案都保 · 32 种</span></div><div class="cl-grid"><div class="cd g">急性溃疡性结肠炎<em>Acute Ulcerative Colitis</em></div><div class="cd g">胆道闭锁（确诊即赔）<em>Biliary Atresia (on diagnosis)</em></div><div class="cd g">急性坏死出血性胰腺炎<em>Acute Necrohemorrhagic Pancreatitis</em></div><div class="cd g">较轻度克雅二氏病<em>Less Severe Creutzfeldt-Jakob Disease</em></div><div class="cd g">较轻度感染性心内膜炎<em>Less Severe Infective Endocarditis</em></div><div class="cd g">丧失独立生活能力（早期）<em>Loss of Independent Existence (Early Stage)</em></div><div class="cd g">重度幼年类风湿关节炎<em>Severe Juvenile Rheumatoid Arthritis</em></div><div class="cd g">闭锁综合征<em>Locked-in Syndrome</em></div><div class="cd g">较轻度进行性核上性麻痹<em>Less Severe Progressive Supranuclear Palsy</em></div><div class="cd g">较轻度克罗恩病<em>Less Severe Crohn&#x27;s Disease</em></div></div><details class="cl-more"><summary>两方案都保的 32 种早期疾病<span class="tg">展开</span></summary><div class="cl-grid"><div class="cd">早期癌症 †<em>原位癌、早期前列腺癌、早期甲状腺癌、早期神经内分泌肿瘤、早期膀胱癌、早期慢性淋巴细胞白血病、骨髓恶性肿瘤<span class="add">B 另加：早期黑色素瘤、胃肠道间质瘤</span></em></div><div class="cd">确诊失智症（含阿尔茨海默病）<em>Diagnosis of Dementia including Alzheimer&#x27;s Disease</em></div><div class="cd">垂体瘤切除术<em>Surgical Removal of Pituitary Tumour</em></div><div class="cd">单眼不可逆失明<em>Irreversible Loss of Sight in One Eye</em></div><div class="cd">昏迷 48 小时<em>Coma for 48 hours</em></div><div class="cd">微创冠脉搭桥 / 冠脉斑块切除等<em>Keyhole Coronary By-pass, Atherectomy, Laser Revascularisation, EECP</em></div><div class="cd">部分听力丧失 / 海绵窦血栓手术<em>Partial Loss of Hearing / Cavernous Sinus Thrombosis Surgery</em></div><div class="cd">单侧肾切除<em>Surgical Removal of One Kidney</em></div><div class="cd">肝脏手术<em>Liver Surgery</em></div><div class="cd">重度哮喘 / 腔静脉滤器植入<em>Severe Asthma / Insertion of a Vena Cava Filter</em></div><div class="cd">胆道重建手术 / 肝炎伴肝硬化<em>Biliary Tract Reconstruction Surgery / Hepatitis with Cirrhosis</em></div><div class="cd">心脏起搏器植入 / 心包切除术<em>Cardiac Pacemaker Insertion / Pericardiectomy</em></div><div class="cd">因袭击或职业感染 HIV<em>HIV due to Assault or Occupationally Acquired HIV</em></div><div class="cd">早期帕金森病<em>Early Parkinson&#x27;s Disease</em></div><div class="cd">可逆性再生障碍性贫血<em>Reversible Aplastic Anaemia</em></div><div class="cd">永久或暂时气管造口<em>Permanent (or Temporary) Tracheostomy</em></div><div class="cd">轻度烧伤<em>Mild Severe Burns</em></div><div class="cd">硬膜下血肿手术 / 面部重建手术<em>Surgery for Subdural Haematoma / Facial Reconstructive Surgery</em></div><div class="cd">小肠移植 / 角膜移植<em>Small Bowel Transplant / Corneal Transplant</em></div><div class="cd">周围神经病变<em>Peripheral Neuropathy</em></div><div class="cd">早期多发性硬化<em>Early Multiple Sclerosis</em></div><div class="cd">脊髓疾病或损伤致大小便功能障碍<em>Spinal Cord Disease or Injury resulting in Bowel and Bladder Dysfunction</em></div><div class="cd">经皮瓣膜成形术或瓣膜切开术<em>Percutaneous Valvuloplasty or Valvotomy</em></div><div class="cd">早期其他严重冠状动脉疾病<em>Early Stage Other Serious Coronary Artery Disease</em></div><div class="cd">单肢功能丧失<em>Loss of Use of One Limb</em></div><div class="cd">早期肺动脉高压<em>Early Pulmonary Hypertension</em></div><div class="cd">早期进行性硬皮病<em>Early Progressive Scleroderma</em></div><div class="cd">细菌性脑膜炎（完全康复）<em>Bacterial Meningitis with full recovery</em></div><div class="cd">病毒性脑炎（完全康复）<em>Viral Encephalitis with full recovery</em></div><div class="cd">脑动脉瘤手术 / 脑分流术<em>Brain Aneurysm Surgery / Cerebral Shunt Insertion</em></div><div class="cd">大型无症状主动脉瘤<em>Large Asymptomatic Aortic Aneurysm</em></div><div class="cd">轻度系统性红斑狼疮<em>Mild Systemic Lupus Erythematosus</em></div></div></details><p class="cl-note">早期确诊两方案都赔 $20 万。† 早期癌症一项里，B 另加早期黑色素瘤、胃肠道间质瘤。</p></div><div class="cl-panel" id="cl-inter" role="tabpanel" hidden><div class="cl-legend"><span><i class="g"></i>只有 B 保 · 6 种</span><span><i class="w"></i>两方案都保 · 29 种</span></div><div class="cl-grid"><div class="cd g">急性坏死出血性胰腺炎伴胰腺切除<em>Acute Necrohemorrhagic Pancreatitis with Pancreatectomy</em></div><div class="cd g">中度克雅二氏病<em>Moderately Severe Creutzfeldt-Jakob Disease</em></div><div class="cd g">中度脊髓灰质炎<em>Moderately Severe Poliomyelitis</em></div><div class="cd g">轻度细菌性脑膜炎<em>Mild Bacterial Meningitis</em></div><div class="cd g">重度艾森曼格综合征（中期）<em>Severe Eisenmenger&#x27;s Syndrome (Intermediate)</em></div><div class="cd g">中重度系统性红斑狼疮伴狼疮性肾炎<em>Moderate Severe SLE with Lupus Nephritis</em></div></div><details class="cl-more"><summary>两方案都保的 29 种中期疾病<span class="tg">展开</span></summary><div class="cl-grid"><div class="cd">特定器官原位癌经根治手术<em>Carcinoma in situ of Specified Organs treated with Radical Surgery</em></div><div class="cd">中度阿尔茨海默病<em>Moderately Severe Alzheimer&#x27;s Disease</em></div><div class="cd">垂体瘤切除（开颅 / 经蝶）<em>Surgical Removal of Pituitary Tumour</em></div><div class="cd">视神经萎缩伴低视力<em>Optic Nerve Atrophy with Low Vision</em></div><div class="cd">昏迷 72 小时 / 严重癫痫<em>Coma for 72 hours / Severe Epilepsy</em></div><div class="cd">人工耳蜗植入<em>Cochlear Implant Surgery</em></div><div class="cd">慢性肾病<em>Chronic Kidney Disease</em></div><div class="cd">肝硬化<em>Liver Cirrhosis</em></div><div class="cd">单侧肺切除<em>Surgical Removal of One Lung</em></div><div class="cd">慢性原发性硬化性胆管炎<em>Chronic Primary Sclerosing Cholangitis</em></div><div class="cd">心脏除颤器植入 / 早期心肌病<em>Cardiac Defibrillator Insertion / Early Cardiomyopathy</em></div><div class="cd">因器官移植感染 HIV<em>HIV due to Organ Transplant</em></div><div class="cd">中度帕金森病<em>Moderately Severe Parkinson&#x27;s Disease</em></div><div class="cd">骨髓增生异常综合征 / 骨髓纤维化<em>Myelodysplastic Syndrome or Myelofibrosis</em></div><div class="cd">语言能力丧失（非声带病变）<em>Loss of Speech (other than injury or illness to the vocal cords)</em></div><div class="cd">中度烧伤<em>Moderately Severe Burns</em></div><div class="cd">中期严重头部创伤<em>Intermediate Stage Major Head Trauma</em></div><div class="cd">主要器官 / 骨髓移植（列入等候名单）<em>Major Organ / Bone Marrow Transplant (on waitlist)</em></div><div class="cd">早期运动神经元病<em>Early Motor Neurone Disease</em></div><div class="cd">轻度多发性硬化<em>Mild Multiple Sclerosis</em></div><div class="cd">中度肌营养不良<em>Moderate Muscular Dystrophy</em></div><div class="cd">经皮瓣膜置换或修复<em>Percutaneous Valve Replacement or Device Repair</em></div><div class="cd">中期其他严重冠状动脉疾病<em>Intermediate Stage Other Serious Coronary Artery Disease</em></div><div class="cd">单肢功能丧失需装义肢<em>Loss of Use of One Limb requiring Prosthesis</em></div><div class="cd">继发性肺动脉高压<em>Secondary Pulmonary Hypertension</em></div><div class="cd">进行性硬皮病伴 CREST 综合征<em>Progressive Scleroderma with CREST Syndrome</em></div><div class="cd">轻度病毒性脑炎<em>Mild Viral Encephalitis</em></div><div class="cd">颈动脉手术<em>Carotid Artery Surgery</em></div><div class="cd">微创主动脉手术<em>Minimally Invasive Surgery to Aorta</em></div></div></details><p class="cl-note">中期确诊两方案都赔 $20 万。</p></div><div class="cl-panel" id="cl-spec" role="tabpanel" hidden><div class="cl-legend"><span><i class="g"></i>只有 B 保 · 10 种</span><span><i class="w"></i>两方案都保 · 5 种</span></div><div class="cl-grid"><div class="cd">糖尿病并发症<em>Diabetic Complications</em></div><div class="cd">骨质疏松<em>Osteoporosis</em></div><div class="cd">重度类风湿关节炎<em>Severe Rheumatoid Arthritis</em></div><div class="cd">登革出血热<em>Dengue Haemorrhagic Fever</em></div><div class="cd">因原位癌 / 恶性病变切除乳房<em>Mastectomy due to Carcinoma in situ or Malignant Breast Condition</em></div></div><div class="cl-grid"><div class="cd g">因癌症切除子宫<em>Hysterectomy due to Cancer</em></div><div class="cd g">因癌症切除外阴<em>Vulvectomy due to Cancer</em></div><div class="cd g">重度痛风<em>Severe Gout</em></div><div class="cd g">需手术的坏死性筋膜炎<em>Necrotising Fasciitis requiring Surgery</em></div><div class="cd g">妥瑞氏症<em>Tourette Syndrome</em></div><div class="cd g">注意力缺陷多动症 ADHD<em>Attention-deficit Hyperactivity Disorder</em></div><div class="cd g">自闭症谱系障碍<em>Autism Spectrum Disorder</em></div><div class="cd g">读写障碍<em>Dyslexia</em></div><div class="cd g">川崎病伴心脏并发症<em>Kawasaki Disease with Heart Complications</em></div><div class="cd g">风湿热伴心脏受累<em>Rheumatic Fever with Heart Involvement</em></div></div><p class="cl-note">额外赔付、不减保额。A 每种 $25,000、限 1 次；B 每次 $8,000、最多 5 次、保至 85 岁。B 的妥瑞氏症、自闭症、读写障碍、川崎病、风湿热有 90 天等待期，ADHD 为 1 年。</p></div><p class="cl-foot">点上方切换阶段 · 中文名称仅供理解，理赔以保单英文定义为准</p></div>
+<div class="cl-box"><div class="cl-panel" id="cl-major" role="tabpanel"><div class="cl-legend"><span><i class="g"></i>只有 B、C 保 · 30 种</span><span><i class="w"></i>A 与 B、C 都保 · 43 种</span></div><div class="cl-grid"><div class="cd g">后天性脑损伤<em>Acquired Brain Damage</em></div><div class="cd g">急性重度溃疡性结肠炎<em>Acute Severe Ulcerative Colitis</em></div><div class="cd g">艾迪生病 / 自身免疫性肾上腺炎<em>Addison Disease or Autoimmune Adrenalitis</em></div><div class="cd g">肾上腺腺瘤切除术<em>Adrenalectomy for Adrenal Adenoma</em></div><div class="cd g">胆道闭锁接受肝移植<em>Biliary Atresia having undergone Liver Transplantation</em></div><div class="cd g">脑部手术<em>Brain Surgery</em></div><div class="cd g">慢性自身免疫性肝炎<em>Chronic Auto-Immune Hepatitis</em></div><div class="cd g">埃博拉病毒感染<em>Ebola</em></div><div class="cd g">全身性破伤风<em>Generalized Tetanus</em></div><div class="cd g">感染性心内膜炎<em>Infective Endocarditis</em></div><div class="cd g">胰岛素依赖型糖尿病<em>Insulin Dependent Diabetes Mellitus</em></div><div class="cd g">青少年亨廷顿病<em>Juvenile Huntington Disease</em></div><div class="cd g">医疗过程中感染 HIV<em>Medically Acquired HIV Infection</em></div><div class="cd g">臂丛神经多根损伤<em>Multiple Root of Brachial Plexus Injury</em></div><div class="cd g">职业感染乙型 / 丙型肝炎<em>Occupationally Acquired Hepatitis B or C</em></div><div class="cd g">成骨不全症（脆骨病）<em>Osteogenesis Imperfecta</em></div><div class="cd g">持续性重度幼年类风湿关节炎<em>Persistent Severe Juvenile Rheumatoid Arthritis</em></div><div class="cd g">嗜铬细胞瘤<em>Pheochromocytoma</em></div><div class="cd g">狂犬病<em>Rabies</em></div><div class="cd g">全小肠切除术<em>Resection of the Whole Small Intestine</em></div><div class="cd g">重度心肌病<em>Severe Cardiomyopathy</em></div><div class="cd g">重度克罗恩病<em>Severe Crohn&#x27;s Disease</em></div><div class="cd g">重度艾森曼格综合征<em>Severe Eisenmenger&#x27;s Syndrome</em></div><div class="cd g">重度血友病<em>Severe Haemophilia</em></div><div class="cd g">重度肺纤维化<em>Severe Pulmonary Fibrosis</em></div><div class="cd g">特发性脊柱侧弯手术<em>Surgery for Idiopathic Scoliosis</em></div><div class="cd g">末期疾病 *<em>Terminal Illness</em></div><div class="cd g">结核性脑膜炎<em>Tuberculosis Meningitis</em></div><div class="cd g">1 型青少年脊髓性肌萎缩<em>Type 1 Juvenile Spinal Muscular Atrophy</em></div><div class="cd g">威尔逊病（肝豆状核变性）<em>Wilson&#x27;s Disease</em></div></div><details class="cl-more"><summary>A 与 B、C 都保的 43 种重度疾病 · 含 LIA 37 种标准定义大病<span class="tg">展开</span></summary><div class="cl-grid"><div class="cd">重大癌症<em>Major Cancer</em></div><div class="cd">特定严重程度的心肌梗塞<em>Heart Attack of Specified Severity</em></div><div class="cd">中风伴永久性神经功能障碍<em>Stroke with Permanent Neurological Deficit</em></div><div class="cd">末期肾衰竭<em>End Stage Kidney Failure</em></div><div class="cd">末期肝衰竭<em>End Stage Liver Failure</em></div><div class="cd">末期肺病<em>End Stage Lung Disease</em></div><div class="cd">冠状动脉搭桥手术<em>Coronary Artery By-pass Surgery</em></div><div class="cd">冠状动脉血管成形术及其他侵入性治疗<em>Angioplasty &amp; Other Invasive Treatment for Coronary Artery</em></div><div class="cd">其他严重冠状动脉疾病<em>Other Serious Coronary Artery Disease</em></div><div class="cd">开心式心脏瓣膜手术<em>Open-Heart Heart Valve Surgery</em></div><div class="cd">主动脉手术<em>Surgery to Aorta</em></div><div class="cd">原发性肺动脉高压<em>Primary Pulmonary Hypertension</em></div><div class="cd">主要器官 / 骨髓移植<em>Major Organ / Bone Marrow Transplantation</em></div><div class="cd">阿尔茨海默病 / 重度失智<em>Alzheimer&#x27;s Disease / Severe Dementia</em></div><div class="cd">原发性帕金森病<em>Idiopathic Parkinson&#x27;s Disease</em></div><div class="cd">运动神经元病<em>Motor Neurone Disease</em></div><div class="cd">多发性硬化症<em>Multiple Sclerosis</em></div><div class="cd">良性脑肿瘤<em>Benign Brain Tumour</em></div><div class="cd">严重头部创伤<em>Major Head Trauma</em></div><div class="cd">昏迷<em>Coma</em></div><div class="cd">持续性植物人状态<em>Persistent Vegetative State (Apallic Syndrome)</em></div><div class="cd">瘫痪（不可逆肢体功能丧失）<em>Paralysis (Irreversible Loss of Use of Limbs)</em></div><div class="cd">失明（不可逆视力丧失）<em>Blindness (Irreversible Loss of Sight)</em></div><div class="cd">失聪（不可逆听力丧失）<em>Deafness (Irreversible Loss of Hearing)</em></div><div class="cd">不可逆语言能力丧失<em>Irreversible Loss of Speech</em></div><div class="cd">丧失独立生活能力<em>Loss of Independent Existence</em></div><div class="cd">严重烧伤<em>Major Burns</em></div><div class="cd">暴发性肝炎<em>Fulminant Hepatitis</em></div><div class="cd">因输血或职业感染的 HIV<em>HIV Due to Blood Transfusion and Occupationally Acquired HIV</em></div><div class="cd">不可逆再生障碍性贫血<em>Irreversible Aplastic Anaemia</em></div><div class="cd">克雅二氏病<em>Creutzfeldt-Jakob Disease</em></div><div class="cd">肌营养不良症<em>Muscular Dystrophy</em></div><div class="cd">重度重症肌无力<em>Severe Myasthenia Gravis</em></div><div class="cd">严重细菌性脑膜炎<em>Severe Bacterial Meningitis</em></div><div class="cd">严重脑炎<em>Severe Encephalitis</em></div><div class="cd">脊髓灰质炎（小儿麻痹症）<em>Poliomyelitis</em></div><div class="cd">进行性硬皮病<em>Progressive Scleroderma</em></div><div class="cd">进行性核上性麻痹<em>Progressive Supranuclear Palsy</em></div><div class="cd">系统性红斑狼疮伴狼疮性肾炎<em>Systemic Lupus Erythematosus with Lupus Nephritis</em></div><div class="cd">坏死性筋膜炎<em>Necrotising Fasciitis</em></div><div class="cd">象皮病<em>Elephantiasis</em></div><div class="cd">髓质囊性病<em>Medullary Cystic Disease</em></div><div class="cd">胰腺炎 **<em>A：Acute Necrohemorrhagic Pancreatitis · B：Chronic Relapsing Pancreatitis</em></div></div></details><p class="cl-note">* 末期疾病在 A 由基本计划承保（$25 万），只是不在重疾附约清单里。** 胰腺炎：A 的重度为急性坏死出血性胰腺炎；B、C 把它提前到早期 / 中期就赔，重度对应慢性复发性胰腺炎。</p></div><div class="cl-panel" id="cl-early" role="tabpanel" hidden><div class="cl-legend"><span><i class="g"></i>只有 B、C 保 · 10 种</span><span><i class="w"></i>A 与 B、C 都保 · 32 种</span></div><div class="cl-grid"><div class="cd g">急性溃疡性结肠炎<em>Acute Ulcerative Colitis</em></div><div class="cd g">胆道闭锁（确诊即赔）<em>Biliary Atresia (on diagnosis)</em></div><div class="cd g">急性坏死出血性胰腺炎<em>Acute Necrohemorrhagic Pancreatitis</em></div><div class="cd g">较轻度克雅二氏病<em>Less Severe Creutzfeldt-Jakob Disease</em></div><div class="cd g">较轻度感染性心内膜炎<em>Less Severe Infective Endocarditis</em></div><div class="cd g">丧失独立生活能力（早期）<em>Loss of Independent Existence (Early Stage)</em></div><div class="cd g">重度幼年类风湿关节炎<em>Severe Juvenile Rheumatoid Arthritis</em></div><div class="cd g">闭锁综合征<em>Locked-in Syndrome</em></div><div class="cd g">较轻度进行性核上性麻痹<em>Less Severe Progressive Supranuclear Palsy</em></div><div class="cd g">较轻度克罗恩病<em>Less Severe Crohn&#x27;s Disease</em></div></div><details class="cl-more"><summary>A 与 B、C 都保的 32 种早期疾病<span class="tg">展开</span></summary><div class="cl-grid"><div class="cd">早期癌症 †<em>原位癌、早期前列腺癌、早期甲状腺癌、早期神经内分泌肿瘤、早期膀胱癌、早期慢性淋巴细胞白血病、骨髓恶性肿瘤<span class="add">B、C 另加：早期黑色素瘤、胃肠道间质瘤</span></em></div><div class="cd">确诊失智症（含阿尔茨海默病）<em>Diagnosis of Dementia including Alzheimer&#x27;s Disease</em></div><div class="cd">垂体瘤切除术<em>Surgical Removal of Pituitary Tumour</em></div><div class="cd">单眼不可逆失明<em>Irreversible Loss of Sight in One Eye</em></div><div class="cd">昏迷 48 小时<em>Coma for 48 hours</em></div><div class="cd">微创冠脉搭桥 / 冠脉斑块切除等<em>Keyhole Coronary By-pass, Atherectomy, Laser Revascularisation, EECP</em></div><div class="cd">部分听力丧失 / 海绵窦血栓手术<em>Partial Loss of Hearing / Cavernous Sinus Thrombosis Surgery</em></div><div class="cd">单侧肾切除<em>Surgical Removal of One Kidney</em></div><div class="cd">肝脏手术<em>Liver Surgery</em></div><div class="cd">重度哮喘 / 腔静脉滤器植入<em>Severe Asthma / Insertion of a Vena Cava Filter</em></div><div class="cd">胆道重建手术 / 肝炎伴肝硬化<em>Biliary Tract Reconstruction Surgery / Hepatitis with Cirrhosis</em></div><div class="cd">心脏起搏器植入 / 心包切除术<em>Cardiac Pacemaker Insertion / Pericardiectomy</em></div><div class="cd">因袭击或职业感染 HIV<em>HIV due to Assault or Occupationally Acquired HIV</em></div><div class="cd">早期帕金森病<em>Early Parkinson&#x27;s Disease</em></div><div class="cd">可逆性再生障碍性贫血<em>Reversible Aplastic Anaemia</em></div><div class="cd">永久或暂时气管造口<em>Permanent (or Temporary) Tracheostomy</em></div><div class="cd">轻度烧伤<em>Mild Severe Burns</em></div><div class="cd">硬膜下血肿手术 / 面部重建手术<em>Surgery for Subdural Haematoma / Facial Reconstructive Surgery</em></div><div class="cd">小肠移植 / 角膜移植<em>Small Bowel Transplant / Corneal Transplant</em></div><div class="cd">周围神经病变<em>Peripheral Neuropathy</em></div><div class="cd">早期多发性硬化<em>Early Multiple Sclerosis</em></div><div class="cd">脊髓疾病或损伤致大小便功能障碍<em>Spinal Cord Disease or Injury resulting in Bowel and Bladder Dysfunction</em></div><div class="cd">经皮瓣膜成形术或瓣膜切开术<em>Percutaneous Valvuloplasty or Valvotomy</em></div><div class="cd">早期其他严重冠状动脉疾病<em>Early Stage Other Serious Coronary Artery Disease</em></div><div class="cd">单肢功能丧失<em>Loss of Use of One Limb</em></div><div class="cd">早期肺动脉高压<em>Early Pulmonary Hypertension</em></div><div class="cd">早期进行性硬皮病<em>Early Progressive Scleroderma</em></div><div class="cd">细菌性脑膜炎（完全康复）<em>Bacterial Meningitis with full recovery</em></div><div class="cd">病毒性脑炎（完全康复）<em>Viral Encephalitis with full recovery</em></div><div class="cd">脑动脉瘤手术 / 脑分流术<em>Brain Aneurysm Surgery / Cerebral Shunt Insertion</em></div><div class="cd">大型无症状主动脉瘤<em>Large Asymptomatic Aortic Aneurysm</em></div><div class="cd">轻度系统性红斑狼疮<em>Mild Systemic Lupus Erythematosus</em></div></div></details><p class="cl-note">早期确诊三个方案都赔 $20 万。† 早期癌症一项里，B、C 另加早期黑色素瘤、胃肠道间质瘤。</p></div><div class="cl-panel" id="cl-inter" role="tabpanel" hidden><div class="cl-legend"><span><i class="g"></i>只有 B、C 保 · 6 种</span><span><i class="w"></i>A 与 B、C 都保 · 29 种</span></div><div class="cl-grid"><div class="cd g">急性坏死出血性胰腺炎伴胰腺切除<em>Acute Necrohemorrhagic Pancreatitis with Pancreatectomy</em></div><div class="cd g">中度克雅二氏病<em>Moderately Severe Creutzfeldt-Jakob Disease</em></div><div class="cd g">中度脊髓灰质炎<em>Moderately Severe Poliomyelitis</em></div><div class="cd g">轻度细菌性脑膜炎<em>Mild Bacterial Meningitis</em></div><div class="cd g">重度艾森曼格综合征（中期）<em>Severe Eisenmenger&#x27;s Syndrome (Intermediate)</em></div><div class="cd g">中重度系统性红斑狼疮伴狼疮性肾炎<em>Moderate Severe SLE with Lupus Nephritis</em></div></div><details class="cl-more"><summary>A 与 B、C 都保的 29 种中期疾病<span class="tg">展开</span></summary><div class="cl-grid"><div class="cd">特定器官原位癌经根治手术<em>Carcinoma in situ of Specified Organs treated with Radical Surgery</em></div><div class="cd">中度阿尔茨海默病<em>Moderately Severe Alzheimer&#x27;s Disease</em></div><div class="cd">垂体瘤切除（开颅 / 经蝶）<em>Surgical Removal of Pituitary Tumour</em></div><div class="cd">视神经萎缩伴低视力<em>Optic Nerve Atrophy with Low Vision</em></div><div class="cd">昏迷 72 小时 / 严重癫痫<em>Coma for 72 hours / Severe Epilepsy</em></div><div class="cd">人工耳蜗植入<em>Cochlear Implant Surgery</em></div><div class="cd">慢性肾病<em>Chronic Kidney Disease</em></div><div class="cd">肝硬化<em>Liver Cirrhosis</em></div><div class="cd">单侧肺切除<em>Surgical Removal of One Lung</em></div><div class="cd">慢性原发性硬化性胆管炎<em>Chronic Primary Sclerosing Cholangitis</em></div><div class="cd">心脏除颤器植入 / 早期心肌病<em>Cardiac Defibrillator Insertion / Early Cardiomyopathy</em></div><div class="cd">因器官移植感染 HIV<em>HIV due to Organ Transplant</em></div><div class="cd">中度帕金森病<em>Moderately Severe Parkinson&#x27;s Disease</em></div><div class="cd">骨髓增生异常综合征 / 骨髓纤维化<em>Myelodysplastic Syndrome or Myelofibrosis</em></div><div class="cd">语言能力丧失（非声带病变）<em>Loss of Speech (other than injury or illness to the vocal cords)</em></div><div class="cd">中度烧伤<em>Moderately Severe Burns</em></div><div class="cd">中期严重头部创伤<em>Intermediate Stage Major Head Trauma</em></div><div class="cd">主要器官 / 骨髓移植（列入等候名单）<em>Major Organ / Bone Marrow Transplant (on waitlist)</em></div><div class="cd">早期运动神经元病<em>Early Motor Neurone Disease</em></div><div class="cd">轻度多发性硬化<em>Mild Multiple Sclerosis</em></div><div class="cd">中度肌营养不良<em>Moderate Muscular Dystrophy</em></div><div class="cd">经皮瓣膜置换或修复<em>Percutaneous Valve Replacement or Device Repair</em></div><div class="cd">中期其他严重冠状动脉疾病<em>Intermediate Stage Other Serious Coronary Artery Disease</em></div><div class="cd">单肢功能丧失需装义肢<em>Loss of Use of One Limb requiring Prosthesis</em></div><div class="cd">继发性肺动脉高压<em>Secondary Pulmonary Hypertension</em></div><div class="cd">进行性硬皮病伴 CREST 综合征<em>Progressive Scleroderma with CREST Syndrome</em></div><div class="cd">轻度病毒性脑炎<em>Mild Viral Encephalitis</em></div><div class="cd">颈动脉手术<em>Carotid Artery Surgery</em></div><div class="cd">微创主动脉手术<em>Minimally Invasive Surgery to Aorta</em></div></div></details><p class="cl-note">中期确诊三个方案都赔 $20 万。</p></div><div class="cl-panel" id="cl-spec" role="tabpanel" hidden><div class="cl-legend"><span><i class="g"></i>只有 B、C 保 · 10 种</span><span><i class="w"></i>A 与 B、C 都保 · 5 种</span></div><div class="cl-grid"><div class="cd">糖尿病并发症<em>Diabetic Complications</em></div><div class="cd">骨质疏松<em>Osteoporosis</em></div><div class="cd">重度类风湿关节炎<em>Severe Rheumatoid Arthritis</em></div><div class="cd">登革出血热<em>Dengue Haemorrhagic Fever</em></div><div class="cd">因原位癌 / 恶性病变切除乳房<em>Mastectomy due to Carcinoma in situ or Malignant Breast Condition</em></div></div><div class="cl-grid"><div class="cd g">因癌症切除子宫<em>Hysterectomy due to Cancer</em></div><div class="cd g">因癌症切除外阴<em>Vulvectomy due to Cancer</em></div><div class="cd g">重度痛风<em>Severe Gout</em></div><div class="cd g">需手术的坏死性筋膜炎<em>Necrotising Fasciitis requiring Surgery</em></div><div class="cd g">妥瑞氏症<em>Tourette Syndrome</em></div><div class="cd g">注意力缺陷多动症 ADHD<em>Attention-deficit Hyperactivity Disorder</em></div><div class="cd g">自闭症谱系障碍<em>Autism Spectrum Disorder</em></div><div class="cd g">读写障碍<em>Dyslexia</em></div><div class="cd g">川崎病伴心脏并发症<em>Kawasaki Disease with Heart Complications</em></div><div class="cd g">风湿热伴心脏受累<em>Rheumatic Fever with Heart Involvement</em></div></div><p class="cl-note">额外赔付、不减保额。A 每种 $25,000、限 1 次；B、C 每次 $8,000、最多 5 次、保至 85 岁。B、C 的妥瑞氏症、自闭症、读写障碍、川崎病、风湿热有 90 天等待期，ADHD 为 1 年。</p></div><p class="cl-foot">点上方切换阶段 · 数字左为 A、右为 B / C · 中文名称仅供理解，理赔以保单英文定义为准</p></div>
 
   <div class="why-grid">
     <div class="explain"><div class="ico"><svg class="ic ic-lg"><use href="#i-check"/></svg></div>
-      <div><b>早期也全额赔</b><span>两方案早期、中期、重度确诊都一次赔 <em>$200,000</em>，不用等到重症</span></div></div>
+      <div><b>早期也全额赔</b><span>三个方案早期、中期、重度确诊都一次赔 <em>$200,000</em>，不用等到重症</span></div></div>
     <div class="explain"><div class="ico"><svg class="ic ic-lg"><use href="#i-swap"/></svg></div>
-      <div><b>提前给付</b><span>重疾赔付是提前支付身故保额，不是另赔一份。A 赔完还剩 <em>$5 万</em>身故保障；B 在 65 岁前全额赔付后保单终止</span></div></div>
+      <div><b>提前给付</b><span>重疾赔付是提前支付身故保额，不是另赔一份。A 赔完还剩 <em>$5 万</em>身故保障；B、C 在 65 岁前全额赔付后保单终止</span></div></div>
     <div class="explain"><div class="ico"><svg class="ic ic-lg"><use href="#i-heart"/></svg></div>
-      <div><b>血管成形术</b><span>两方案都赔重疾保额的 10%（$20 万保额下为 <em>$20,000</em>），限一次</span></div></div>
+      <div><b>血管成形术</b><span>都赔重疾保额的 10%（$20 万保额下为 <em>$20,000</em>），限一次</span></div></div>
     <div class="explain"><div class="ico"><svg class="ic ic-lg"><use href="#i-clock"/></svg></div>
       <div><b>90 天等待期</b><span>癌症、心脏病、冠脉搭桥等，投保 90 天内确诊不赔</span></div></div>
   </div>
 
   <!-- 怎么选 -->
   <div class="sub-head"><svg class="ic ic-md"><use href="#i-bulb"/></svg>怎么选</div>
-  <div class="sum-line">
-    <div class="a"><svg class="ic" style="color:var(--navy)"><use href="#i-shield"/></svg><span><b>选方案 A：</b>前 20 年每年少交 $928；保障集中在 62 岁前的工作期；人寿多 $5 万；62 岁后另有安排</span></div>
-    <div class="b"><svg class="ic"><use href="#i-shield"/></svg><span><b>选方案 B：</b>52 岁交清；65 岁前 $20 万，之后终身 $4 万 + 红利；不用面对 62 岁后的高额续保；没理赔也有现金价值</span></div>
+  <div class="sum-line s3">
+    <div class="a"><svg class="ic" style="color:var(--navy)"><use href="#i-shield"/></svg><span><b>选方案 A：</b>每年保费最低；保障集中在 62 岁前的工作期；人寿多 $5 万；62 岁后另有安排</span></div>
+    <div class="b"><svg class="ic"><use href="#i-shield"/></svg><span><b>选方案 B：</b>要终身保障，又想把每年保费压低一些（比 C 少 $616）；52 岁交清</span></div>
+    <div class="c"><svg class="ic" style="color:var(--teal)"><use href="#i-shield"/></svg><span><b>选方案 C：</b>总保费和 A 差不多，却保到终身；47 岁交清；现金价值和 65 岁后的保障三者最高</span></div>
   </div>
 
   <!-- 行动区块 -->
@@ -668,7 +737,7 @@ body.locked #pwGate{display:flex}
     <div style="position:relative;z-index:1">
       <div class="who-row"><img src="/avatar-round.png" alt="小圆姐">
         <div><h3>有疑问？<br><span>找小圆姐再聊聊</span></h3></div></div>
-      <p class="sub">两个方案总保费只差约 $3,261，差别在 62 岁之后。</p>
+      <p class="sub">三个方案总保费都在 $4.6 万–$4.9 万之间，差别在交几年、62 岁后还有没有保障。</p>
       <div class="acts">
         <button type="button" class="btn wx" id="wxCopy"><svg class="ic"><use href="#i-chat"/></svg><span id="wxTxt">微信 <b>singaporeyuan</b> · 点击复制</span></button>
         <a class="btn wa" href="https://wa.me/6583750190" target="_blank" rel="noopener noreferrer"><svg class="ic"><use href="#i-phone"/></svg>WhatsApp +65 8375 0190</a>
@@ -678,10 +747,10 @@ body.locked #pwGate{display:flex}
   </div>
 
   <div class="notes">
-    <p>本页由持牌顾问袁媛（RNF：YY-300823216）根据 2026 年 11 月 9 日 AIA Secure Flexi Term 及 AIA Guaranteed Protect Plus (IV) 计划书、产品说明整理，仅供理解两个方案的差异，<b>不构成要约或保险建议</b>。</p>
-    <p><b>保额说明：</b>方案 A 的人寿部分（AIA Secure Flexi Term）报价最低为 $250,000，$200,000 的报价开不出来，因此人寿及 TPD 为 $25 万，重疾早中晚期为 $20 万；方案 B 的人寿和重疾早中晚期均为 $20 万。</p>
-    <p>红利、退保价值、满期金及演示收益率均为非保证，按 4.25% / 3.00% 演示投资回报率计算，不代表回报上下限。两方案的重疾附约保费都不保证；方案 A 的续保保费按届时年龄计算，不保证。</p>
-    <p>首年保费折扣（方案 A 8 折、方案 B 9 折）须符合 AIA Vitality 及推广条款，以 AIA 正式报价为准；总保费按首年折后、其后原价计算。方案 A 第 2 年起按 Vitality 等级在原价 85%–100% 之间调整。退保价值、满期金及演示收益率按计划书原价保费计算；方案 B 的 PowerUp Dollar 须为 Vitality 会员，不计入本页数字。</p>
+    <p>本页由持牌顾问袁媛（RNF：YY-300823216）根据 2026 年 11 月 9 日至 10 日的 AIA Secure Flexi Term 及 AIA Guaranteed Protect Plus (IV)（20 年缴、15 年缴）计划书和产品说明整理，仅供理解三个方案的差异，<b>不构成要约或保险建议</b>。</p>
+    <p><b>保额说明：</b>方案 A 的人寿部分（AIA Secure Flexi Term）报价最低为 $250,000，$200,000 的报价开不出来，因此人寿及 TPD 为 $25 万，重疾早中晚期为 $20 万；方案 B、C 的人寿和重疾早中晚期均为 $20 万。</p>
+    <p>红利、退保价值、满期金及演示收益率均为非保证，按 4.25% / 3.00% 演示投资回报率计算，不代表回报上下限。三个方案的重疾附约保费都不保证；方案 A 的续保保费按届时年龄计算，不保证。</p>
+    <p>首年保费折扣（方案 A 8 折，方案 B、C 9 折）须符合 AIA Vitality 及推广条款，以 AIA 正式报价为准；总保费按首年折后、其后原价计算。方案 A 第 2 年起按 Vitality 等级在原价 85%–100% 之间调整。退保价值、满期金及演示收益率按计划书原价保费计算；方案 B、C 的 PowerUp Dollar 须为 Vitality 会员，不计入本页数字。</p>
     <p>保障范围、疾病定义及除外责任以保单条款和核保结果为准。提早退保成本高，退保价值可能低于已缴保费。收到保单后有 14 天冷静期。本保单受 SDIC 保单持有人保障计划保护。</p>
   </div>
 </div>
@@ -755,18 +824,21 @@ body.locked #pwGate{display:flex}
 })();
 
 (function(){
-  // 方案 B 非保证红利（计划书 Death Benefit 表 C / D 栏）
+  // 非保证红利（计划书 Death Benefit 表 C / D 栏）：B = 20 年缴，C = 15 年缴
   var bonus={
-    r425:{65:27781,66:28730,67:29685,68:30648,69:31617,70:32594,72:34568,77:39628,82:44874,87:50311,92:55947,97:61789,100:65396},
-    r300:{65:11925,66:12314,67:12704,68:13096,69:13489,70:13884,72:14680,77:16698,82:18760,87:20867,92:23020,97:25219,100:26562}
+    B:{r425:{65:27781,66:28730,67:29685,68:30648,69:31617,70:32594,72:34568,77:39628,82:44874,87:50311,92:55947,97:61789,100:65396},
+       r300:{65:11925,66:12314,67:12704,68:13096,69:13489,70:13884,72:14680,77:16698,82:18760,87:20867,92:23020,97:25219,100:26562}},
+    C:{r425:{65:31414,66:32487,67:33567,68:34656,69:35752,70:36856,72:45536,77:52203,82:59113,87:66275,92:73700,97:81395,100:86146},
+       r300:{65:13167,66:13596,67:14026,68:14459,69:14893,70:15329,72:18387,77:20915,82:23498,87:26137,92:28834,97:31589,100:33270}}
   };
   var BASE=40000, MINB=200000, rate='r425', mode='ci', cur=70;
   var late=[66,67,68,69,70,72,77,82,87,92,97,100];
   var ages=[]; for(var a=32;a<=42;a++) ages.push(a);
   [47,52,57,62,63,64,65].concat(late).forEach(function(v){ages.push(v);});
   function vA(age){ if(age>62) return 0; return mode==='ci'?200000:250000; }
-  function vB(age){ return age<=65?MINB:BASE+bonus[rate][age]; }
+  function vP(p,age){ return age<=65?MINB:BASE+bonus[p][rate][age]; }
   var W=760,H=290,L=56,R=20,T=22,B=262,X0=32,X1=100,YM=270000;
+  var NAVY='#13286B', GOLD='#B8862B', TEAL='#2C7A73';
   function x(a){return L+(a-X0)/(X1-X0)*(W-L-R);}
   function y(v){return T+(1-v/YM)*(B-T);}
   var NS='http://www.w3.org/2000/svg', svg=document.getElementById('chart');
@@ -791,43 +863,51 @@ body.locked #pwGate{display:flex}
   el('line',{x1:x(65),x2:x(100),y1:y(BASE),y2:y(BASE),stroke:'#A79E8E','stroke-width':1.5,'stroke-dasharray':'4 4'});
   txt({x:x(100),y:y(BASE)+16,'text-anchor':'end',class:'lbl2'},'保证 $40,000');
   var dyn=el('g',{}), hov;
-  function line(pts,color,dash){var at={d:path(pts),fill:'none',stroke:color,'stroke-width':2.5,'stroke-linejoin':'round','stroke-linecap':'round'};if(dash)at['stroke-dasharray']=dash;return el('path',at,dyn);}
+  function line(pts,color,dash){var at={d:path(pts),fill:'none',stroke:color,'stroke-width':2.5,'stroke-linejoin':'round','stroke-linecap':dash?'butt':'round'};if(dash)at['stroke-dasharray']=dash;return el('path',at,dyn);}
+  function tail(p){var bz=bonus[p][rate];return [[65,MINB],[65,BASE+bz[65]]].concat(late.map(function(a){return [a,BASE+bz[a]];}));}
   function draw(){
     while(dyn.firstChild) dyn.removeChild(dyn.firstChild);
-    var bz=bonus[rate], aTop=mode==='ci'?200000:250000;
-    // 方案 B
-    line([[32,MINB],[65,MINB],[65,BASE+bz[65]]].concat(late.map(function(a){return [a,BASE+bz[a]];})),'#B8862B');
+    var aTop=mode==='ci'?200000:250000;
+    // B、C：65 岁前重合（金 / 青相间），之后分开
+    line([[32,MINB],[65,MINB]],GOLD);
+    line([[32,MINB],[65,MINB]],TEAL,'7 7');
+    line(tail('B'),GOLD); line(tail('C'),TEAL);
     // 方案 A
-    line([[32,aTop],[62,aTop],[62,0]],'#13286B');
+    line([[32,aTop],[62,aTop],[62,0]],NAVY);
     line([[62,0],[100,0]],'#B4433A','2 5');
-    el('circle',{cx:x(100),cy:y(BASE+bz[100]),r:4.5,fill:'#B8862B',stroke:'#FFFDF8','stroke-width':2},dyn);
-    txt({x:x(100),y:y(BASE+bz[100])-11,'text-anchor':'end',class:'lbl'},'100 岁 '+fmt(BASE+bz[100]),dyn);
+    var vB=BASE+bonus.B[rate][100], vC=BASE+bonus.C[rate][100];
+    el('circle',{cx:x(100),cy:y(vB),r:4.5,fill:GOLD,stroke:'#FFFDF8','stroke-width':2},dyn);
+    el('circle',{cx:x(100),cy:y(vC),r:4.5,fill:TEAL,stroke:'#FFFDF8','stroke-width':2},dyn);
+    txt({x:x(100)-8,y:y(vC)-11,'text-anchor':'end',class:'lbl',style:'fill:'+TEAL},'C '+fmt(vC),dyn);
+    txt({x:x(100)-8,y:y(vB)+19,'text-anchor':'end',class:'lbl',style:'fill:#9A6B17'},'B '+fmt(vB),dyn);
     if(mode==='ci'){
-      txt({x:x(33),y:y(MINB)-9,class:'lbl'},'两方案都是 $20 万',dyn);
+      txt({x:x(33),y:y(MINB)-9,class:'lbl'},'三个方案都是 $20 万',dyn);
     }else{
       txt({x:x(33),y:y(aTop)-9,class:'lbl'},'方案 A $25 万',dyn);
-      txt({x:x(33),y:y(MINB)+20,class:'lbl'},'方案 B $20 万',dyn);
+      txt({x:x(33),y:y(MINB)+20,class:'lbl'},'方案 B、C $20 万',dyn);
     }
     txt({x:x(62)-6,y:y(0)-30,'text-anchor':'end',class:'lbl'},'方案 A 62 岁到期',dyn);
     txt({x:x(62)-6,y:y(0)-14,'text-anchor':'end',class:'lbl2'},'续保年缴约 $2.4 万',dyn);
-    txt({x:x(65)+8,y:y(MINB)+(mode==='ci'?4:-26),class:'lbl2'},'← 62–65 岁只有 B 仍保 $20 万',dyn);
-    txt({x:x(70),y:y(BASE+bz[77])-22,class:'lbl'},'方案 B：$4 万 + 红利，保到 100 岁',dyn);
+    txt({x:x(65)+8,y:y(MINB)+(mode==='ci'?4:-26),class:'lbl2'},'← 62–65 岁只有 B、C 仍保 $20 万',dyn);
+    txt({x:x(66),y:y(BASE+bonus.C[rate][87])-26,class:'lbl'},'B、C：$4 万 + 红利，保到 100 岁',dyn);
     hov=el('g',{},dyn);
-    hov.line=el('line',{y1:T,y2:B,stroke:'#13286B','stroke-width':1,'stroke-dasharray':'3 3'},hov);
-    hov.a=el('circle',{r:5,fill:'#13286B',stroke:'#FFFDF8','stroke-width':2},hov);
-    hov.b=el('circle',{r:5,fill:'#B8862B',stroke:'#FFFDF8','stroke-width':2},hov);
+    hov.line=el('line',{y1:T,y2:B,stroke:NAVY,'stroke-width':1,'stroke-dasharray':'3 3'},hov);
+    hov.a=el('circle',{r:5,fill:NAVY,stroke:'#FFFDF8','stroke-width':2},hov);
+    hov.b=el('circle',{r:5,fill:GOLD,stroke:'#FFFDF8','stroke-width':2},hov);
+    hov.c=el('circle',{r:5,fill:TEAL,stroke:'#FFFDF8','stroke-width':2},hov);
     el('rect',{x:L,y:T,width:W-L-R,height:B-T,fill:'transparent'},dyn);
     show(cur);
   }
   function show(age){
-    cur=age; var a=vA(age), b=vB(age);
+    cur=age; var a=vA(age), b=vP('B',age), c=vP('C',age);
     hov.line.setAttribute('x1',x(age)); hov.line.setAttribute('x2',x(age));
     hov.a.setAttribute('cx',x(age)); hov.a.setAttribute('cy',y(a));
     hov.b.setAttribute('cx',x(age)); hov.b.setAttribute('cy',y(b));
+    hov.c.setAttribute('cx',x(age)); hov.c.setAttribute('cy',y(c));
     document.getElementById('rdAge').textContent=age+' 岁'+(age===32?'（投保）':'');
     document.getElementById('rdA').textContent=a===0?'$0 · 已到期':fmt(a);
     document.getElementById('rdB').textContent=fmt(b);
-    document.getElementById('rdD').textContent=a===b?'相同':fmt(Math.abs(b-a));
+    document.getElementById('rdC').textContent=fmt(c);
   }
   function pick(ev){
     var r=svg.getBoundingClientRect(), sx=(ev.clientX-r.left)/r.width*W;
@@ -859,8 +939,9 @@ body.locked #pwGate{display:flex}
       host.appendChild(sp);
     });
   }
-  var A=[],Bp=[]; for(var i=0;i<30;i++){A.push(i===0?1228.8:1536);Bp.push(i===0?2217.6:i<20?2464:0);}
-  bars('barsA',A,2464,'8折'); bars('barsB',Bp,2464,'9折');
+  var A=[],Bp=[],Cp=[];
+  for(var i=0;i<30;i++){A.push(i===0?1228.8:1536);Bp.push(i===0?2217.6:i<20?2464:0);Cp.push(i===0?2772:i<15?3080:0);}
+  bars('barsA',A,3080,'8折'); bars('barsB',Bp,3080,'9折'); bars('barsC',Cp,3080,'9折');
 })();
 
 (function(){
