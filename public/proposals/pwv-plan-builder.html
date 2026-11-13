@@ -250,6 +250,10 @@ details.adv summary{cursor:pointer;font-size:13px;font-weight:700;color:var(--go
 #rTiers tr.on td:first-child{box-shadow:inset 3px 0 0 var(--gold)}
 #rYears tr.sep td{border-top:2px solid #E3CFA4}
 #rYears tr.tot td{background:var(--gold-tint-2);font-weight:700;border-top:2px solid #E3CFA4}
+#rYears tr.grand td{background:var(--navy);color:#fff;font-weight:800;font-size:15px;border-bottom:0}
+#rYears tr.grand small{color:rgba(255,255,255,.78);font-weight:600}
+#rYears tr.grand .amt{margin-left:0;font-size:17px;font-weight:800;color:#fff}
+#rYears tr.grand .amt.up{color:#F3D48A}
 .ph{display:flex;flex-wrap:wrap;align-items:flex-start;justify-content:space-between;gap:10px 16px;margin-bottom:16px}
 .ph h3{margin-bottom:0}
 .mini{display:inline-flex;flex:0 0 auto;border:1px solid var(--line);border-radius:999px;overflow:hidden;background:#fff}
@@ -1108,11 +1112,14 @@ function drawRef(){
       ${cell(r.scP, r.sc, "c", "−")}${cell(r.wbP, r.wb, "b", "+", r.exP)}${cell(r.ibP, r.ib, "b", "+")}${cell(r.y >= 8 ? GB : 0, r.pb, "b", "+")}
       <td class="r">${anp ? `<div class="cv"><span class="amt pos">+${money(r.div)}</span><small>${L("累计", "Total")} ${money(r.cum)}</small></div>` : `<span class="pl b">${pct(d)}</span>`}</td></tr>`;
   });
+  y += `<tr><td>${L(`第 ${n + 1} 年起`, `Year ${n + 1}+`)}</td><td class="r mu">–</td><td></td><td class="r">${L("不收", "None")}</td><td class="r mu">–</td><td class="r mu">–</td>
+      <td class="r"><span class="pl b">${pct(GB)} ${L("/ 年", "/ yr")}</span></td><td class="r"><span class="pl b">${pct(d)} ${L("/ 年", "/ yr")}</span></td></tr>`;
   if (anp) y += `<tr class="tot"><td>${L(`第 1 至 ${n} 年合计`, `Total, Y1 to Y${n}`)}</td><td class="r">${money(sumK("prem"))}</td><td></td>
       <td class="r"><span class="amt neg">−${money(sumK("sc"))}</span></td><td class="r"><span class="amt pos">+${money(sumK("wb"))}</span></td>
       <td class="r"><span class="amt pos">+${money(sumK("ib"))}</span></td><td class="r"><span class="amt pos">+${money(sumK("pb"))}</span></td><td class="r"><span class="amt pos">+${money(sumK("div"))}</span></td></tr>`;
-  y += `<tr><td>${L(`第 ${n + 1} 年起`, `Year ${n + 1}+`)}</td><td class="r mu">–</td><td></td><td class="r">${L("不收", "None")}</td><td class="r mu">–</td><td class="r mu">–</td>
-      <td class="r"><span class="pl b">${pct(GB)} ${L("/ 年", "/ yr")}</span></td><td class="r"><span class="pl b">${pct(d)} ${L("/ 年", "/ yr")}</span></td></tr>`;
+  if (anp) y += `<tr class="grand"><td colspan="3">${L(`第 1 至 ${n} 年累计`, `Cumulative, Y1 to Y${n}`)}</td>
+      <td class="r"><div class="cv"><small>${L("累计扣费", "Charges")}</small><span class="amt">−${money(sumK("sc"))}</span></div></td>
+      <td class="r" colspan="4"><div class="cv"><small>${L("累计 Bonus + 分红", "Bonuses + dividends")}</small><span class="amt up">+${money(["wb", "ib", "pb", "div"].reduce((x, k) => x + Math.round(sumK(k)), 0))}</span></div></td></tr>`;
   $("rYears").innerHTML = y + "</tbody>";
 }
 function renderRef(){
