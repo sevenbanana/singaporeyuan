@@ -247,6 +247,13 @@ details.adv summary{cursor:pointer;font-size:13px;font-weight:700;color:var(--go
 #rTiers tr.on td:first-child{box-shadow:inset 3px 0 0 var(--gold)}
 #rYears tr.sep td{border-top:2px solid #E3CFA4}
 #rYears tr.tot td{background:var(--gold-tint-2);font-weight:700;border-top:2px solid #E3CFA4}
+.ph{display:flex;flex-wrap:wrap;align-items:flex-start;justify-content:space-between;gap:10px 16px;margin-bottom:16px}
+.ph h3{margin-bottom:0}
+.mini{display:inline-flex;flex:0 0 auto;border:1px solid var(--line);border-radius:999px;overflow:hidden;background:#fff}
+.mini button{border:0;background:transparent;padding:6px 14px;font-size:13px;font-weight:700;color:var(--muted);cursor:pointer}
+.mini button+button{border-left:1px solid var(--line)}
+.mini button.on{background:var(--navy);color:#fff}
+#rYears tr.mk td{background:#FFFBF2}
 .ref-up{margin-top:14px;font-size:13.5px;color:var(--ink)}
 .ref-up:empty{display:none}
 .ref-up b{color:var(--gold-deep)}
@@ -453,7 +460,14 @@ details.adv summary{cursor:pointer;font-size:13px;font-weight:700;color:var(--go
     </div>
 
     <div class="panel">
-      <h3 id="rYearH"></h3>
+      <div class="ph">
+        <h3 id="rYearH"></h3>
+        <div class="mini" id="rN" role="group" aria-label="显示年数 Years shown">
+          <button type="button" data-n="12" data-en="12 yrs">12 年</button>
+          <button type="button" data-n="20" data-en="20 yrs">20 年</button>
+          <button type="button" data-n="30" data-en="30 yrs">30 年</button>
+        </div>
+      </div>
       <div class="tscroll"><table class="rt" id="rYears"></table></div>
     </div>
 
@@ -969,16 +983,15 @@ function fitSheet(){
 window.addEventListener("resize", fitSheet);
 
 /* ---------- 第三页：奖励与收费速查 ---------- */
-const REF_YRS = 12;
 const DEF_ANP = { 2: 150000, 5: 60000 };
-const RS = { t: 5, anp: 0 };
+const RS = { t: 5, anp: 0, n: 20 };   // n：逐年明细显示到第几年（12 / 20 / 30）
 const fmt = n => Math.round(n).toLocaleString("en-US");
 // 逐年估算：年初先进保费、Welcome Bonus、Investment Bonus，第 8 年起再加 Performance Bonus，
 // 然后按这个年初保单价值扣补充费；假设基金 0 增长
-function refRows(t, anp){
+function refRows(t, anp, n){
   const tr = tierOf(t, anp), rows = [];
   let pv = 0;
-  for (let y = 1; y <= REF_YRS; y++){
+  for (let y = 1; y <= n; y++){
     const prem = y <= t ? anp : 0;
     const wbP = tr.y[y-1] || 0, exP = y === 1 ? (tr.extra || 0) : 0;
     const ibP = y >= 8 && y <= 11 ? IB[t] : 0;
@@ -1018,8 +1031,9 @@ function refOverview(){
   $("rOv").innerHTML = h + "</tbody>";
 }
 function drawRef(){
-  const t = RS.t, anp = RS.anp, { tr, rows } = refRows(t, anp), tiers = WB[t];
+  const t = RS.t, anp = RS.anp, n = RS.n, { tr, rows } = refRows(t, anp, n), tiers = WB[t];
   [...$("rSegT").children].forEach(b => b.classList.toggle("on", +b.dataset.t === t));
+  [...$("rN").children].forEach(b => { const on = +b.dataset.n === n; b.classList.toggle("on", on); b.setAttribute("aria-pressed", on); });
   $("rOv").querySelectorAll("[data-t]").forEach(c => c.classList.toggle("on", +c.dataset.t === t));
   const sumK = k => rows.reduce((a, r) => a + r[k], 0);
   const amt = s => anp ? s : L("先填年保费", "Enter the annual premium");
@@ -1040,9 +1054,9 @@ function drawRef(){
 
   // Welcome Bonus 档位表
   $("rTierH").innerHTML = L(`Welcome Bonus 档位<small>${t} 年交 · 按年保费</small>`, `Welcome Bonus tiers<small>${t} Pay · of annual premium</small>`);
-  const n = tiers[0].y.length;
+  const ny = tiers[0].y.length;
   let h = `<thead><tr><th>${L("年保费 (S$)", "Annual premium (S$)")}</th>`;
-  for (let i = 1; i <= n; i++) h += `<th class="r">${L(`第 ${i} 年`, `Y${i}`)}</th>`;
+  for (let i = 1; i <= ny; i++) h += `<th class="r">${L(`第 ${i} 年`, `Y${i}`)}</th>`;
   h += `<th class="r">${L("Q4 额外送", "Q4 extra")}</th><th class="r">${L("合计", "Total")}</th></tr></thead><tbody>`;
   tiers.forEach((x, i) => {
     const nx = tiers[i + 1], tot = sumOf(x);
@@ -1070,15 +1084,15 @@ function drawRef(){
   let y = `<thead><tr><th>${L("保单年度", "Policy year")}</th><th class="r">${L("交保费", "Premium")}</th><th class="r">${L("年初保单价值（估）", "Start-of-year value (est.)")}</th>
     <th class="r">${L("补充费 Charge", "Supplementary charge")}</th><th class="r">Welcome Bonus</th><th class="r">Investment Bonus</th><th class="r">Performance Bonus</th></tr></thead><tbody>`;
   rows.forEach(r => {
-    y += `<tr${r.y === 8 ? ' class="sep"' : ""}><td>${L(`第 ${r.y} 年`, `Year ${r.y}`)}</td>
+    y += `<tr${r.y === 8 ? ' class="sep"' : r.y % 10 === 0 ? ' class="mk"' : ""}><td>${L(`第 ${r.y} 年`, `Year ${r.y}`)}</td>
       <td class="r">${r.prem ? money(r.prem) : '<span class="mu">–</span>'}</td>
       <td class="r">${anp ? money(r.start) : '<span class="mu">–</span>'}</td>
       ${cell(r.scP, r.sc, "c", "−")}${cell(r.wbP, r.wb, "b", "+", r.exP)}${cell(r.ibP, r.ib, "b", "+")}${cell(r.y >= 8 ? GB : 0, r.pb, "b", "+")}</tr>`;
   });
-  if (anp) y += `<tr class="tot"><td>${L(`第 1 至 ${REF_YRS} 年合计`, `Total, Y1 to Y${REF_YRS}`)}</td><td class="r">${money(sumK("prem"))}</td><td></td>
+  if (anp) y += `<tr class="tot"><td>${L(`第 1 至 ${n} 年合计`, `Total, Y1 to Y${n}`)}</td><td class="r">${money(sumK("prem"))}</td><td></td>
       <td class="r"><span class="amt neg">−${money(sumK("sc"))}</span></td><td class="r"><span class="amt pos">+${money(sumK("wb"))}</span></td>
       <td class="r"><span class="amt pos">+${money(sumK("ib"))}</span></td><td class="r"><span class="amt pos">+${money(sumK("pb"))}</span></td></tr>`;
-  y += `<tr><td>${L(`第 ${REF_YRS + 1} 年起`, `Year ${REF_YRS + 1}+`)}</td><td class="r mu">–</td><td></td><td class="r">${L("不收", "None")}</td><td class="r mu">–</td><td class="r mu">–</td>
+  y += `<tr><td>${L(`第 ${n + 1} 年起`, `Year ${n + 1}+`)}</td><td class="r mu">–</td><td></td><td class="r">${L("不收", "None")}</td><td class="r mu">–</td><td class="r mu">–</td>
       <td class="r"><span class="pl b">${pct(GB)} ${L("/ 年", "/ yr")}</span></td></tr>`;
   $("rYears").innerHTML = y + "</tbody>";
 }
@@ -1096,6 +1110,10 @@ document.querySelectorAll(".toRef").forEach(a => a.addEventListener("click", () 
 $("rSegT").addEventListener("click", e => {
   const b = e.target.closest("button"); if (!b) return;
   RS.t = +b.dataset.t; drawRef();
+});
+$("rN").addEventListener("click", e => {
+  const b = e.target.closest("button"); if (!b) return;
+  RS.n = +b.dataset.n; drawRef();
 });
 $("rOv").addEventListener("click", e => {
   const c = e.target.closest("[data-t]"); if (!c) return;
