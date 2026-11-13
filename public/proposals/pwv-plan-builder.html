@@ -77,7 +77,7 @@ details.adv summary{cursor:pointer;font-size:13px;font-weight:700;color:var(--go
 /* ---------- 第二页：工具条 ---------- */
 .bar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;margin-bottom:18px}
 .bar .l{display:flex;gap:10px;align-items:center}
-.btn{display:inline-flex;align-items:center;gap:7px;border:1px solid var(--line);background:var(--card);color:var(--navy);border-radius:999px;padding:8px 16px;font-size:13.5px;font-weight:700;cursor:pointer}
+.btn{display:inline-flex;align-items:center;gap:7px;text-decoration:none;border:1px solid var(--line);background:var(--card);color:var(--navy);border-radius:999px;padding:8px 16px;font-size:13.5px;font-weight:700;cursor:pointer}
 .btn:hover{border-color:var(--gold);color:var(--gold-deep)}
 .btn.pri{background:var(--navy);color:#fff;border-color:var(--navy)}
 .btn.pri:hover{background:var(--navy-2);color:#fff}
@@ -201,6 +201,71 @@ details.adv summary{cursor:pointer;font-size:13px;font-weight:700;color:var(--go
 .band small{font-size:12.5px;font-weight:600;opacity:.85}
 .cap.as{color:var(--gold-deep);font-weight:600}
 .box.fill small{font-size:12px;color:var(--muted);font-weight:600}
+/* ---------- 第三页：奖励与收费速查 ---------- */
+.hero-row{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;margin-top:18px}
+.hero-row .steps{margin-top:0}
+.sum .vlink{margin-top:12px}
+#pageRef .hero{margin-bottom:24px}
+.ref{display:grid;gap:20px}
+.ref>*{min-width:0}
+.panel h3 small{font-size:12.5px;font-weight:500;color:var(--muted);margin-left:8px}
+.tscroll{overflow-x:auto;margin:0 -6px;padding:0 6px}
+.rt{width:100%;border-collapse:collapse;font-size:14px;font-variant-numeric:tabular-nums}
+.rt th,.rt td{padding:11px 14px;text-align:left;border-bottom:1px solid var(--line);white-space:nowrap;vertical-align:middle}
+.rt tbody tr:last-child td{border-bottom:0}
+.rt thead th{font-size:12.5px;font-weight:700;color:var(--muted);background:var(--gold-tint-2)}
+.rt .r{text-align:right}
+.rt td.k{font-weight:700;color:var(--navy)}
+.rt td.k small{display:block;font-size:12px;font-weight:500;color:var(--muted)}
+.rt .ln{line-height:1.9}
+#rOv thead th[data-t]{cursor:pointer;font-size:14px;color:var(--navy)}
+#rOv .on{background:var(--gold-tint-2)}
+#rOv thead th.on{background:var(--gold-tint);box-shadow:inset 0 -3px 0 var(--gold)}
+.pl{display:inline-block;padding:1px 10px;border-radius:999px;font-size:13px;font-weight:700;white-space:nowrap}
+.pl.b{background:var(--gold-tint);color:var(--gold-deep)}
+.pl.c{background:var(--blue-tint);color:var(--navy);border:1px solid #D9E2F2}
+.pl.x{background:#FBE3DC;color:#B03A2E;border:1px solid #F2C2B5}
+.mu{color:var(--muted)}
+.amt{margin-left:8px;font-weight:600}
+.amt.neg{color:var(--navy)}
+.amt.pos{color:var(--gold-deep)}
+.cv{display:flex;flex-direction:column;align-items:flex-end;gap:3px}
+.cv .amt{margin-left:0}
+#rYears th,#rYears td{padding:10px 12px}
+#rYears thead th{white-space:normal;line-height:1.35;vertical-align:bottom}
+#rYears tr.tot .amt{margin-left:0}
+.ref-ctl{display:flex;flex-wrap:wrap;gap:16px 28px;align-items:flex-end}
+.ref-ctl .field{margin-bottom:0;width:280px}
+.tiles{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.tile{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px;box-shadow:var(--shadow)}
+.tile .k{display:block;font-size:12.5px;font-weight:700;color:var(--muted)}
+.tile .v{display:block;margin-top:2px;font-size:24px;font-weight:800;line-height:1.35;color:var(--navy)}
+.tile.b .v{color:var(--gold-deep)}
+.tile .s{display:block;margin-top:2px;font-size:12.5px;color:var(--muted);line-height:1.6}
+.tile .s b{color:var(--ink)}
+#rTiers tr.on td{background:var(--gold-tint-2);font-weight:700}
+#rTiers tr.on td:first-child{box-shadow:inset 3px 0 0 var(--gold)}
+#rYears tr.sep td{border-top:2px solid #E3CFA4}
+#rYears tr.tot td{background:var(--gold-tint-2);font-weight:700;border-top:2px solid #E3CFA4}
+.ph{display:flex;flex-wrap:wrap;align-items:flex-start;justify-content:space-between;gap:10px 16px;margin-bottom:16px}
+.ph h3{margin-bottom:0}
+.mini{display:inline-flex;flex:0 0 auto;border:1px solid var(--line);border-radius:999px;overflow:hidden;background:#fff}
+.mini button{border:0;background:transparent;padding:6px 14px;font-size:13px;font-weight:700;color:var(--muted);cursor:pointer}
+.mini button+button{border-left:1px solid var(--line)}
+.mini button.on{background:var(--navy);color:#fff}
+#rYears tr.mk td{background:#FFFBF2}
+.ref-up{margin-top:14px;font-size:13.5px;color:var(--ink)}
+.ref-up:empty{display:none}
+.ref-up b{color:var(--gold-deep)}
+.ref-notes{padding-left:18px;font-size:13px;color:var(--muted);line-height:1.75}
+.ref-notes li+li{margin-top:4px}
+.ref-notes b{color:var(--navy)}
+@media (max-width:900px){ .tiles{grid-template-columns:1fr 1fr} }
+@media (max-width:520px){
+  .tiles{grid-template-columns:1fr}
+  .ref-ctl .field{width:100%}
+  .rt th,.rt td{padding:10px 10px}
+}
 [hidden]{display:none!important}
 @media (max-width:760px){
   .wrap{padding:26px 16px}
@@ -239,7 +304,10 @@ details.adv summary{cursor:pointer;font-size:13px;font-weight:700;color:var(--go
   <header class="hero">
     <h1 data-en="PWV Plan Builder<br><span>Fill in the details, get the plan in one click</span>">PWV 方案生成器<br><span>填好资料，一键出方案图</span></h1>
     <p data-en="Welcome Bonus is calculated from the 2026 Q4 PWV 2.0 / 3.0 promotion tiers. Assumes 0% fund growth; the dividend rate is adjustable.">Welcome Bonus 按 2026 Q4 PWV 2.0 / 3.0 促销档位自动计算；假设基金 0 增长，分红率可调。</p>
-    <div class="steps"><span class="on" data-en="1 Client details">1 客户资料</span><span data-en="2 Plan preview">2 方案预览</span></div>
+    <div class="hero-row">
+      <div class="steps"><span class="on" data-en="1 Client details">1 客户资料</span><span data-en="2 Plan preview">2 方案预览</span></div>
+      <a class="btn toRef" href="#ref"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 10h18M9 10v10"/></svg><span data-en="Bonuses &amp; charges">奖励与收费速查</span></a>
+    </div>
   </header>
 
   <div class="form-grid">
@@ -330,6 +398,7 @@ details.adv summary{cursor:pointer;font-size:13px;font-weight:700;color:var(--go
       <dl class="num" id="sumDl"></dl>
       <div class="tier" id="tierNow"></div>
       <div class="tier up" id="tierUp" hidden></div>
+      <a class="vlink toRef" href="#ref" data-en="All tiers and year-by-year details →">查看全部档位和逐年明细 →</a>
       <p class="hint" data-en="This panel is for you only and will not appear on the plan.">右侧内容只给你看，不会出现在方案图上。</p>
     </aside>
   </div>
@@ -348,6 +417,71 @@ details.adv summary{cursor:pointer;font-size:13px;font-weight:700;color:var(--go
     </div>
   </div>
   <div class="fit" id="fit"><div class="sheet" id="sheet"></div></div>
+</section>
+
+<!-- 第三页：奖励与收费速查（#ref） -->
+<section id="pageRef" class="wrap" hidden>
+  <div class="bar">
+    <div class="l">
+      <button class="btn" id="rBack"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg><span data-en="Back to builder">返回生成器</span></button>
+    </div>
+  </div>
+  <header class="hero">
+    <h1 data-en="PWV Bonuses &amp; Charges<br><span>Quick reference · 2 Pay / 5 Pay</span>">PWV 奖励与收费速查<br><span>2 年交 / 5 年交</span></h1>
+    <p data-en="2026 Q4 PWV 2.0 / 3.0. The supplementary charge applies in Years 1 to 7 only. From Year 8: Investment Bonus (Y8 to Y11) and a 0.4% Performance Bonus every year.">2026 Q4 PWV 2.0 / 3.0。补充费只收第 1 至 7 年；第 8 年起发 Investment Bonus（第 8 至 11 年），以及每年 0.4% 的 Performance Bonus。</p>
+  </header>
+
+  <div class="ref">
+    <div class="panel">
+      <h3 data-en="2 Pay vs 5 Pay<small>Click a column to switch</small>">两种交期总览<small>点列标题可切换交期</small></h3>
+      <div class="tscroll"><table class="rt" id="rOv"></table></div>
+    </div>
+
+    <div class="panel ref-ctl">
+      <div class="field">
+        <label data-en="Premium term">交费年期</label>
+        <div class="seg" id="rSegT">
+          <button type="button" data-t="2" data-en="2 Pay (2 years)">2 年交 (2 Pay)</button>
+          <button type="button" data-t="5" data-en="5 Pay (5 years)">5 年交 (5 Pay)</button>
+        </div>
+      </div>
+      <div class="field">
+        <label for="rAnp" data-en="Annual premium (ANP)">年保费 (ANP)</label>
+        <div class="pre"><b>S$</b><input id="rAnp" inputmode="numeric" autocomplete="off" placeholder="60,000"></div>
+      </div>
+    </div>
+
+    <div class="tiles" id="rTiles"></div>
+
+    <div class="panel">
+      <h3 id="rTierH"></h3>
+      <div class="tscroll"><table class="rt" id="rTiers"></table></div>
+      <p class="ref-up" id="rTierNote"></p>
+    </div>
+
+    <div class="panel">
+      <div class="ph">
+        <h3 id="rYearH"></h3>
+        <div class="mini" id="rN" role="group" aria-label="显示年数 Years shown">
+          <button type="button" data-n="12" data-en="12 yrs">12 年</button>
+          <button type="button" data-n="20" data-en="20 yrs">20 年</button>
+          <button type="button" data-n="30" data-en="30 yrs">30 年</button>
+        </div>
+      </div>
+      <div class="tscroll"><table class="rt" id="rYears"></table></div>
+    </div>
+
+    <div class="panel">
+      <h3 data-en="Notes">说明</h3>
+      <ul class="ref-notes">
+        <li data-en="<b>Basis:</b> Welcome Bonus and Investment Bonus are a % of the annual premium; the supplementary charge and Performance Bonus are a % of the policy value."><b>计算基数：</b>Welcome Bonus、Investment Bonus 按年保费算；补充费、Performance Bonus 按保单价值算。</li>
+        <li data-en="<b>Estimated amounts:</b> the charge and Performance Bonus amounts use the policy value at the start of each year, assuming 0% fund growth (as on the plan): premiums paid + bonuses credited − charges deducted. With fund growth the policy value, and so both amounts, will be higher. AIA deducts monthly at daily unit prices, so the BI will differ slightly."><b>金额是估算：</b>补充费和 Performance Bonus 的金额按每年年初的保单价值算，假设基金 0 增长（与方案图一致），即已交保费 + 已发红利 − 已扣补充费。基金有增长时，保单价值更高，这两项金额也会更大。AIA 实际按月扣、按基金每日价格计算，和 BI 会有小差异。</li>
+        <li data-en="<b>Fund management charge</b> is built into the fund price and is not deducted separately, so it is not in the year-by-year table."><b>基金管理费</b>已体现在基金价格里，不另外扣，所以没有放进逐年表。</li>
+        <li data-en="<b>Q4 extra bonus:</b> paid in Year 1 and not included in the BI."><b>Q4 限时额外送：</b>第 1 年发放，不在 BI 里。</li>
+        <li data-en="For internal reference. AIA's official Product Summary and BI prevail.">以上为内部速查，一切以 AIA 官方 Product Summary 和 BI 为准。</li>
+      </ul>
+    </div>
+  </div>
 </section>
 
 <footer class="site-foot">
@@ -451,7 +585,10 @@ const WB = {
 };
 // 投资红利：第 8 到 11 年，每年为年保费的百分比，按交期固定
 const IB = { 2: 1, 5: 2.5 };
-const GB = 0.4;              // 每年保证基金红利，保单价值的 %
+const GB = 0.4;              // Performance Bonus 表现奖金：第 8 年起每年，保单价值的 %（方案图上写作保证基金红利）
+const SUPP = { 2: 2.9, 5: 3.6 };   // 补充费 Charge：第 1 至 7 年每年，保单价值的 %；第 8 年起不收
+const SUPP_YRS = 7;
+const FMC = [["GAIF", 1.5], ["Elite", 1.45], ["Index", 1]];   // 基金管理费，每年，体现在基金价格里
 const MILESTONES_DEFAULT = [65, 85]; // 直接领分红：第 8 年之后的两个节点（可调），最后固定 100 岁
 const MILESTONES_LEGACY = [60, 70];  // 旧链接没有存节点时沿用原来的 60 / 70
 const MATURE = 100;
@@ -845,12 +982,159 @@ function fitSheet(){
 }
 window.addEventListener("resize", fitSheet);
 
-/* ---------- 路由：有 #p= 就显示第二页 ---------- */
+/* ---------- 第三页：奖励与收费速查 ---------- */
+const DEF_ANP = { 2: 150000, 5: 60000 };
+const RS = { t: 5, anp: 0, n: 20 };   // n：逐年明细显示到第几年（12 / 20 / 30）
+const fmt = n => Math.round(n).toLocaleString("en-US");
+// 逐年估算：年初先进保费、Welcome Bonus、Investment Bonus，第 8 年起再加 Performance Bonus，
+// 然后按这个年初保单价值扣补充费；假设基金 0 增长
+function refRows(t, anp, n){
+  const tr = tierOf(t, anp), rows = [];
+  let pv = 0;
+  for (let y = 1; y <= n; y++){
+    const prem = y <= t ? anp : 0;
+    const wbP = tr.y[y-1] || 0, exP = y === 1 ? (tr.extra || 0) : 0;
+    const ibP = y >= 8 && y <= 11 ? IB[t] : 0;
+    const wb = anp * (wbP + exP) / 100, ib = anp * ibP / 100;
+    pv += prem + wb + ib;
+    const pb = y >= 8 ? pv * GB / 100 : 0;
+    pv += pb;
+    const start = pv, scP = y <= SUPP_YRS ? SUPP[t] : 0, sc = pv * scP / 100;
+    pv -= sc;
+    rows.push({ y, prem, wbP, exP, wb, ibP, ib, pb, start, scP, sc });
+  }
+  return { tr, rows };
+}
+function refOverview(){
+  const yrsOf = t => WB[t][0].y.map((_, i) => i + 1);
+  const ladder = t => WB[t].filter(tr => !tr.extra && sumOf(tr) > 0).map(tr => {
+    const parts = tr.y.filter(v => v > 0);
+    const s = parts.length > 1 ? parts.map(v => v + "%").join(" + ") + " = " + pct(sumOf(tr)) : L(`第 1 年 ${pct(sumOf(tr))}`, `${pct(sumOf(tr))} in Y1`);
+    return `<span class="mu">≥ ${fmt(tr.min)}</span>　<span class="pl b">${s}</span>`;
+  }).join("<br>");
+  const extras = t => WB[t].filter(tr => tr.extra).map(tr => `<span class="mu">≥ ${fmt(tr.min)}</span>　<span class="pl x">🎁 +${pct(tr.extra)}</span>`).join("<br>");
+  const rows = [
+    [L("补充费 Charge", "Supplementary charge"), L("第 1 至 7 年 · 按保单价值", "Y1 to Y7 · of policy value"), t => `<span class="pl c">${pct(SUPP[t])} ${L("/ 年", "/ yr")}</span>`],
+    [L("补充费 Charge", "Supplementary charge"), L("第 8 年起", "From Y8"), () => L("不收", "None")],
+    ["Welcome Bonus", L("发放年度", "Paid in"), t => L(`第 ${yrsOf(t).join("、")} 年`, "Y" + yrsOf(t).join(", Y"))],
+    ["Welcome Bonus", L("档位 · 按年保费 (S$)", "Tiers · of annual premium (S$)"), ladder],
+    [L("Q4 限时额外送", "Q4 extra bonus"), L("第 1 年发 · BI 不含", "Paid in Y1 · not in BI"), extras],
+    ["Investment Bonus", L("第 8 至 11 年 · 按年保费", "Y8 to Y11 · of annual premium"), t => `<span class="pl b">${pct(IB[t])} × 4 = ${pct(IB[t] * 4)}</span>`],
+    ["Performance Bonus", L("第 8 年起每年 · 按保单价值", "Every year from Y8 · of policy value"), () => `<span class="pl b">${pct(GB)} ${L("/ 年", "/ yr")}</span>`]
+  ];
+  let h = `<thead><tr><th></th>${[2, 5].map(t => `<th data-t="${t}">${L(`${t} 年交 (${t} Pay)`, `${t} Pay`)}</th>`).join("")}</tr></thead><tbody>`;
+  rows.forEach(([k, s, f]) => {
+    h += `<tr><td class="k">${k}<small>${s}</small></td>${[2, 5].map(t => `<td class="ln" data-t="${t}">${f(t)}</td>`).join("")}</tr>`;
+  });
+  h += `<tr><td class="k">${L("基金管理费", "Fund management charge")}<small>${L("每年 · 体现在基金价格里", "Per year · built into the fund price")}</small></td>
+        <td colspan="2">${FMC.map(([n, v]) => `${n} <b>${pct(v)}</b>`).join('<span class="mu">　·　</span>')}</td></tr>`;
+  $("rOv").innerHTML = h + "</tbody>";
+}
+function drawRef(){
+  const t = RS.t, anp = RS.anp, n = RS.n, { tr, rows } = refRows(t, anp, n), tiers = WB[t];
+  [...$("rSegT").children].forEach(b => b.classList.toggle("on", +b.dataset.t === t));
+  [...$("rN").children].forEach(b => { const on = +b.dataset.n === n; b.classList.toggle("on", on); b.setAttribute("aria-pressed", on); });
+  $("rOv").querySelectorAll("[data-t]").forEach(c => c.classList.toggle("on", +c.dataset.t === t));
+  const sumK = k => rows.reduce((a, r) => a + r[k], 0);
+  const amt = s => anp ? s : L("先填年保费", "Enter the annual premium");
+
+  // 结果卡
+  const wbPct = sumOf(tr), sc7 = sumK("sc"), pb8 = rows[7].pb;
+  const tile = (cls, k, v, s) => `<div class="tile ${cls}"><span class="k">${k}</span><span class="v num">${v}</span><span class="s">${s}</span></div>`;
+  $("rTiles").innerHTML =
+    tile("b", L("Welcome Bonus 合计", "Welcome Bonus total"), pct(wbPct),
+      amt(wbPct ? money(anp * wbPct / 100) + (tr.extra ? L(`，含 Q4 额外送 ${money(anp * tr.extra / 100)}`, `, incl. Q4 extra ${money(anp * tr.extra / 100)}`) : "")
+               : L("这个保费档位没有 Welcome Bonus", "No Welcome Bonus at this premium"))) +
+    tile("b", L("Investment Bonus 合计", "Investment Bonus total"), pct(IB[t] * 4),
+      amt(L(`第 8 至 11 年 ${money(anp * IB[t] / 100)} × 4 = <b>${money(anp * IB[t] * 4 / 100)}</b>`, `Y8 to Y11: ${money(anp * IB[t] / 100)} × 4 = <b>${money(anp * IB[t] * 4 / 100)}</b>`))) +
+    tile("b", "Performance Bonus", `${pct(GB)} ${L("/ 年", "/ yr")}`,
+      L(`第 8 年起每年，按保单价值${anp ? `；第 8 年约 <b>${money(pb8)}</b>` : ""}`, `Every year from Y8, of policy value${anp ? `; about <b>${money(pb8)}</b> in Y8` : ""}`)) +
+    tile("c", L("补充费 Charge", "Supplementary charge"), `${pct(SUPP[t])} ${L("/ 年", "/ yr")}`,
+      L(`第 1 至 7 年，按保单价值${anp ? `；7 年合计约 <b>${money(sc7)}</b>` : ""}`, `Y1 to Y7, of policy value${anp ? `; about <b>${money(sc7)}</b> over 7 years` : ""}`));
+
+  // Welcome Bonus 档位表
+  $("rTierH").innerHTML = L(`Welcome Bonus 档位<small>${t} 年交 · 按年保费</small>`, `Welcome Bonus tiers<small>${t} Pay · of annual premium</small>`);
+  const ny = tiers[0].y.length;
+  let h = `<thead><tr><th>${L("年保费 (S$)", "Annual premium (S$)")}</th>`;
+  for (let i = 1; i <= ny; i++) h += `<th class="r">${L(`第 ${i} 年`, `Y${i}`)}</th>`;
+  h += `<th class="r">${L("Q4 额外送", "Q4 extra")}</th><th class="r">${L("合计", "Total")}</th></tr></thead><tbody>`;
+  tiers.forEach((x, i) => {
+    const nx = tiers[i + 1], tot = sumOf(x);
+    h += `<tr${x === tr ? ' class="on"' : ""}><td>${nx ? `${fmt(x.min)} – ${fmt(nx.min - 1)}` : `≥ ${fmt(x.min)}`}</td>`;
+    x.y.forEach(v => { h += `<td class="r">${v ? pct(v) : '<span class="mu">–</span>'}</td>`; });
+    h += `<td class="r">${x.extra ? `<span class="pl x">🎁 +${pct(x.extra)}</span>` : '<span class="mu">–</span>'}</td>`;
+    h += `<td class="r">${tot ? `<span class="pl b">${pct(tot)}</span>` : '<span class="mu">0%</span>'}</td></tr>`;
+  });
+  $("rTiers").innerHTML = h + "</tbody>";
+  const up = nextTier(t, anp);
+  $("rTierNote").innerHTML = !anp ? ""
+    : anp < tiers[0].min ? L(`年保费低于 ${money(tiers[0].min)}，不在档位表内。`, `The premium is below ${money(tiers[0].min)}, outside the tier table.`)
+    : up ? L(`年保费再加 <b>${money(up.min - anp)}</b>（到 ${money(up.min)}），合计升到 <b>${pct(sumOf(up))}</b>，Welcome Bonus 变成 <b>${money(up.min * sumOf(up) / 100)}</b>。`,
+             `Add <b>${money(up.min - anp)}</b> to the premium (to ${money(up.min)}) and the total rises to <b>${pct(sumOf(up))}</b>, a Welcome Bonus of <b>${money(up.min * sumOf(up) / 100)}</b>.`)
+    : L("已在最高档。", "Already in the top tier.");
+
+  // 逐年明细
+  $("rYearH").innerHTML = L(`逐年明细<small>${t} 年交${anp ? " · 年保费 " + money(anp) : ""} · 保单价值和按它算的金额为估算（基金 0 增长）</small>`,
+                            `Year by year<small>${t} Pay${anp ? " · ANP " + money(anp) : ""} · policy value and the amounts based on it are estimates (0% fund growth)</small>`);
+  const cell = (p, a, cls, sign, extra) => {
+    if (!p && !extra) return '<td class="r mu">–</td>';
+    const pills = (p ? `<span class="pl ${cls}">${pct(p)}</span>` : "") + (extra ? ` <span class="pl x">🎁 +${pct(extra)}</span>` : "");
+    return `<td class="r"><div class="cv"><div>${pills}</div>${anp ? `<span class="amt ${sign === "−" ? "neg" : "pos"}">${sign}${money(a)}</span>` : ""}</div></td>`;
+  };
+  let y = `<thead><tr><th>${L("保单年度", "Policy year")}</th><th class="r">${L("交保费", "Premium")}</th><th class="r">${L("年初保单价值（估）", "Start-of-year value (est.)")}</th>
+    <th class="r">${L("补充费 Charge", "Supplementary charge")}</th><th class="r">Welcome Bonus</th><th class="r">Investment Bonus</th><th class="r">Performance Bonus</th></tr></thead><tbody>`;
+  rows.forEach(r => {
+    y += `<tr${r.y === 8 ? ' class="sep"' : r.y % 10 === 0 ? ' class="mk"' : ""}><td>${L(`第 ${r.y} 年`, `Year ${r.y}`)}</td>
+      <td class="r">${r.prem ? money(r.prem) : '<span class="mu">–</span>'}</td>
+      <td class="r">${anp ? money(r.start) : '<span class="mu">–</span>'}</td>
+      ${cell(r.scP, r.sc, "c", "−")}${cell(r.wbP, r.wb, "b", "+", r.exP)}${cell(r.ibP, r.ib, "b", "+")}${cell(r.y >= 8 ? GB : 0, r.pb, "b", "+")}</tr>`;
+  });
+  if (anp) y += `<tr class="tot"><td>${L(`第 1 至 ${n} 年合计`, `Total, Y1 to Y${n}`)}</td><td class="r">${money(sumK("prem"))}</td><td></td>
+      <td class="r"><span class="amt neg">−${money(sumK("sc"))}</span></td><td class="r"><span class="amt pos">+${money(sumK("wb"))}</span></td>
+      <td class="r"><span class="amt pos">+${money(sumK("ib"))}</span></td><td class="r"><span class="amt pos">+${money(sumK("pb"))}</span></td></tr>`;
+  y += `<tr><td>${L(`第 ${n + 1} 年起`, `Year ${n + 1}+`)}</td><td class="r mu">–</td><td></td><td class="r">${L("不收", "None")}</td><td class="r mu">–</td><td class="r mu">–</td>
+      <td class="r"><span class="pl b">${pct(GB)} ${L("/ 年", "/ yr")}</span></td></tr>`;
+  $("rYears").innerHTML = y + "</tbody>";
+}
+function renderRef(){
+  if (!RS.anp) RS.anp = DEF_ANP[RS.t];
+  $("rAnp").value = fmt(RS.anp);
+  refOverview();
+  drawRef();
+}
+document.querySelectorAll(".toRef").forEach(a => a.addEventListener("click", () => {
+  RS.t = T;
+  const p = Number(iAnp.value.replace(/[^\d]/g, ""));
+  if (p) RS.anp = p;
+}));
+$("rSegT").addEventListener("click", e => {
+  const b = e.target.closest("button"); if (!b) return;
+  RS.t = +b.dataset.t; drawRef();
+});
+$("rN").addEventListener("click", e => {
+  const b = e.target.closest("button"); if (!b) return;
+  RS.n = +b.dataset.n; drawRef();
+});
+$("rOv").addEventListener("click", e => {
+  const c = e.target.closest("[data-t]"); if (!c) return;
+  RS.t = +c.dataset.t; drawRef();
+});
+$("rAnp").addEventListener("input", e => {
+  const raw = e.target.value.replace(/[^\d]/g, "");
+  e.target.value = raw ? fmt(+raw) : "";
+  RS.anp = +raw || 0; drawRef();
+});
+$("rBack").addEventListener("click", () => { history.pushState(null, "", location.pathname); route(); });
+
+/* ---------- 路由：#p= 显示第二页，#ref 显示速查页 ---------- */
 function route(){
-  const d = decode(location.hash);
-  $("pageInput").hidden = !!d;
+  const ref = /^#ref\b/.test(location.hash);
+  const d = ref ? null : decode(location.hash);
+  $("pageInput").hidden = !!d || ref;
   $("pagePlan").hidden = !d;
+  $("pageRef").hidden = !ref;
   if (d){ fill(d); render(d); window.scrollTo(0,0); }
+  if (ref){ renderRef(); window.scrollTo(0,0); }
   live();
 }
 window.addEventListener("hashchange", route);
