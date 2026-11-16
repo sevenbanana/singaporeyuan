@@ -1,0 +1,29 @@
+/* 设计变量：颜色、字体、间距都在这里改。
+   三种线缆色取自机房里光纤跳线的护套颜色（单模黄、OM3 水蓝、OM4 紫），
+   在首页图示和服务列表里代表同一条业务线，请成对修改。 */
+:root {
+  --c-ground: #E8ECEA;      /* 页面底色：机房地面的冷灰 */
+  --c-panel: #F6F8F7;       /* 浅色面板 */
+  --c-ink: #15202B;         /* 正文与深色面板 */
+  --c-ink-soft: #45525D;    /* 次级文字 */
+  --c-rule: #B7C1C2;        /* 分隔线 */
+  --c-signal: #F4C20D;      /* 单模黄：主按钮、GPU 业务线 */
+  --c-aqua: #1FB8B2;        /* OM3 水蓝：机房业务线 */
+  --c-violet: #9A6BC6;      /* OM4 紫：工程运维业务线 */
+  --c-cloud: #DDE4E6;       /* 云与 API 业务线（浅灰白缆） */
+  --c-link: #0A615F;        /* 浅底上的链接与强调文字 */
+
+  --font-sans: "Archivo", "Noto Sans SC", "PingFang SC", "Hiragino Sans GB",
+    "Microsoft YaHei", system-ui, sans-serif;
+
+  --fs-h1: clamp(2.05rem, 1.1rem + 4.3vw, 4.1rem);
+  --fs-h2: clamp(1.6rem, 1.15rem + 1.9vw, 2.6rem);
+  --fs-h3: clamp(1.15rem, 1.05rem + 0.5vw, 1.4rem);
+  --fs-body: 1.0625rem;
+  --fs-small: 0.9375rem;
+
+  --gutter: clamp(20px, 5vw, 56px);
+  --page: 1180px;
+  --section: clamp(64px, 9vw, 128px);
+  --radius: 4px;
+}
