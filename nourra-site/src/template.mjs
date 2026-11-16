@@ -54,27 +54,29 @@ function modeDiagram(m, i) {
     `<rect x="${x}" y="${y}" width="${w}" height="34" rx="3" class="m-box ${cls}" />
      <text x="${x + w / 2}" y="${y + 22}" text-anchor="middle" class="m-text"${cls.includes('us') ? ' translate="no"' : ''}>${esc(label)}</text>`;
   if (i === 0) {
+    const sup = m.suppliers
+      .map((s, n) => `${box(256, 6 + n * 43, 76, s)}<path d="M220 66 C240 66 238 ${23 + n * 43} 256 ${23 + n * 43}" class="m-line" />`)
+      .join('');
     return `
     <svg class="mode-diagram" viewBox="0 0 340 132" role="img" aria-label="${esc(m.items[0].lead)}">
-      ${box(8, 10, 84, m.you)}
-      ${box(248, 10, 84, m.supplier)}
-      <path d="M92 27 H248" class="m-line" />
-      <text x="170" y="20" text-anchor="middle" class="m-small">${esc(m.contractWord)}</text>
-      ${box(118, 88, 104, 'NOURRA', 'm-box--us')}
-      <path d="M140 88 L60 44 M200 88 L280 44" class="m-line m-line--dash" />
-      <text x="170" y="70" text-anchor="middle" class="m-small">${esc(m.verifyWord)}</text>
-    </svg>`;
-  }
-  const sup = m.suppliers
-    .map((s, n) => `${box(256, 6 + n * 43, 76, s)}<path d="M220 66 C240 66 238 ${23 + n * 43} 256 ${23 + n * 43}" class="m-line" />`)
-    .join('');
-  return `
-    <svg class="mode-diagram" viewBox="0 0 340 132" role="img" aria-label="${esc(m.items[1].lead)}">
       ${box(8, 49, 56, m.you)}
       <path d="M64 66 H130" class="m-line" />
       <text x="97" y="58" text-anchor="middle" class="m-small">${esc(m.contractWord)}</text>
       ${box(130, 49, 90, 'NOURRA', 'm-box--us')}
       ${sup}
+    </svg>`;
+  }
+  return `
+    <svg class="mode-diagram" viewBox="0 0 340 132" role="img" aria-label="${esc(m.items[1].lead)}">
+      ${box(8, 10, 56, m.you)}
+      <path d="M64 27 H130" class="m-line" />
+      <text x="97" y="19" text-anchor="middle" class="m-small">${esc(m.contractWord)}</text>
+      ${box(130, 10, 90, 'NOURRA', 'm-box--us')}
+      <path d="M220 27 H240" class="m-line" />
+      ${box(240, 10, 92, m.scopeWord)}
+      ${box(206, 88, 126, m.supplier)}
+      <path d="M36 44 V105 H206" class="m-line m-line--dash" />
+      <text x="120" y="98" text-anchor="middle" class="m-small">${esc(m.verifyWord)}</text>
     </svg>`;
 }
 

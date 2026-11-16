@@ -1,35 +1,58 @@
 {
   "lang": "en",
   "meta": {
-    "title": "NOURRA.AI | GPU compute, data centre capacity and delivery in Southeast Asia",
-    "description": "NOURRA, based in Singapore, verifies and assembles GPU leasing and server procurement, AI data centre colocation in Southeast Asia, fit-out and operations, and enterprise cloud for AI teams and data centre projects."
+    "title": "NOURRA.AI | AI data centres, fit-out and operations in Southeast Asia",
+    "description": "NOURRA, based in Singapore, builds AI data centres in Southeast Asia, with its own fit-out and operations teams, and supplies verified GPU compute and enterprise cloud alongside."
   },
   "nav": {
     "skip": "Skip to content",
     "menu": "Menu",
     "items": [
-      { "href": "#services", "label": "Services" },
-      { "href": "#modes", "label": "How we work" },
-      { "href": "#process", "label": "Process" },
-      { "href": "#trust", "label": "Our rules" },
-      { "href": "#faq", "label": "FAQ" }
+      {
+        "href": "#services",
+        "label": "Services"
+      },
+      {
+        "href": "#modes",
+        "label": "How we work"
+      },
+      {
+        "href": "#process",
+        "label": "Process"
+      },
+      {
+        "href": "#trust",
+        "label": "Capabilities"
+      },
+      {
+        "href": "#faq",
+        "label": "FAQ"
+      }
     ],
     "cta": "Send your requirement",
     "langLabel": "中文",
     "langAria": "切换到中文"
   },
   "hero": {
-    "h1": ["GPUs, racks, fit-out and operations,", "assembled into compute that goes live."],
-    "lede": "NOURRA works from Singapore for AI teams and data centre projects that need compute outside mainland China. We verify what each supplier actually has, then assemble it into a plan you can sign and take delivery of.",
+    "h1": [
+      "We build the data centre,",
+      "fit it out and run it."
+    ],
+    "lede": "NOURRA works from Singapore on AI compute infrastructure in Southeast Asia. We build our own AI data centres and use our own engineering and operations teams to rack GPU clusters and keep them running. GPU supply and cloud are verified by us and delivered alongside.",
     "primary": "Send your requirement",
-    "secondary": "See the two ways we work",
-    "note": "We don’t own GPUs or data centres. A resource we haven’t re-checked in two weeks doesn’t get quoted.",
+    "secondary": "See what we do",
+    "note": "We share site location, power capacity and power-on dates in writing when we talk. External GPU supply we haven’t re-checked in two weeks doesn’t get quoted.",
     "diagram": {
-      "aria": "Diagram: GPU supply, sites and power, fit-out, and cloud and API are each verified, brought together by NOURRA into one deal, and delivered as a running cluster.",
-      "ports": ["GPU supply", "Sites, power", "Fit-out", "Cloud, API"],
-      "check": "Each one verified",
+      "aria": "Diagram: our own data centre, fit-out crews and operations team, plus verified GPU and cloud supply, delivered by NOURRA as a running cluster.",
+      "ports": [
+        "Our sites",
+        "Fit-out",
+        "Operations",
+        "GPU, cloud"
+      ],
+      "check": "Each in place",
       "hub": "NOURRA",
-      "hubSub": "Verify, assemble, deliver",
+      "hubSub": "Build, rack, operate",
       "rack": "Your cluster, online"
     }
   },
@@ -38,131 +61,178 @@
     "ourLabel": "What we do",
     "items": [
       {
-        "q": "Plenty of quotes, no way to tell which are real",
-        "d": "The same batch gets relayed through several people. Stock on hand, future allocations and units already sold all look alike.",
-        "a": "We grade every resource by how well it’s verified and only quote what we’ve checked recently."
-      },
-      {
         "q": "GPUs without a rack, racks without power",
         "d": "Servers, rack space, power and network sit with different parties. One missing piece keeps the cluster dark.",
-        "a": "We line up arrival dates, rack positions and power-on dates in one schedule before anyone signs."
+        "a": "Rack space and power are in our own data centre, and racking and operations are our own teams. One party owns the schedule."
       },
       {
-        "q": "Signed, then nothing ships",
-        "d": "A middleman takes the order without supply behind it, and you find out a month or two later.",
-        "a": "Our quote states the supply status, the delivery conditions, and what happens if delivery fails."
+        "q": "Work subcontracted until nobody is accountable",
+        "d": "The main contractor passes it down, the subcontractor hires day labour, and no one can vouch for quality or dates.",
+        "a": "Our own engineering team does the works and the racking. The plan names who is responsible for each item."
       },
       {
-        "q": "Compliance questions surface at the last step",
-        "d": "Nobody pinned down the end user or location, and the supplier or data centre stops the deal before delivery.",
-        "a": "We confirm end user, location and use in writing first. Requests that don’t pass, we don’t take."
+        "q": "Racked, then left alone",
+        "d": "Everything works on handover day. After that, inspections, faults and expansion are each someone else’s problem.",
+        "a": "The same team stays on for operations, with response times and inspections set in an SLA."
+      },
+      {
+        "q": "Plenty of GPU quotes, no way to tell which are real",
+        "d": "The same batch gets relayed through several people. Stock on hand, future allocations and units already sold all look alike.",
+        "a": "We grade external supply by how well it’s verified, quote only what we’ve checked recently, and confirm end user and use in writing first."
       }
     ]
   },
   "services": {
-    "title": "Four services, used alone or joined into one deal",
-    "labels": { "fit": "Who it’s for", "do": "What we do", "get": "What you get" },
+    "title": "Four things we do, alone or joined into one deal",
+    "labels": {
+      "fit": "Who it’s for",
+      "do": "What we do",
+      "get": "What you get"
+    },
     "items": [
       {
-        "key": "gpu",
-        "name": "GPU leasing and server procurement",
-        "fit": "AI companies, listed companies and research teams that need whole servers or clusters, deployed outside mainland China.",
-        "do": [
-          "Match lease or purchase supply to your model, quantity, term and delivery location",
-          "Verify whether supply is on hand or a future allocation, and the real lead time",
-          "Help settle term, prepayment and delivery conditions"
-        ],
-        "get": "A written quote stating supply status, commercial terms, delivery date and validity."
-      },
-      {
         "key": "dc",
-        "name": "AI data centre colocation and development",
-        "fit": "Teams with their own hardware looking for rack space, and developers or investors building AI data centres in Southeast Asia.",
+        "name": "Our AI data centres and colocation",
+        "fit": "AI companies and compute operators that need high-density rack space, and partners or investors in AI data centre projects in Southeast Asia.",
         "do": [
-          "Source rack space, power and liquid-cooling capacity around Singapore, currently mainly Malaysia and Batam, Indonesia",
-          "Check power capacity, permit status and power-on dates",
-          "Connect data centre projects with colocation customers, contractors and operators"
+          "Build high-density data centres for GPU clusters around Singapore",
+          "Provide rack space, power and cooling, including colocation for your own hardware",
+          "When our own capacity is booked, source partner sites whose power and permits we have checked"
         ],
-        "get": "A side-by-side sheet of rack and power options, with power-on dates and billing start."
+        "get": "Written rack and power details, with power-on dates and billing start."
       },
       {
         "key": "eng",
-        "name": "Fit-out and operations",
-        "fit": "Data centre owners, main contractors and hardware owners that need local crews and on-site staff.",
+        "name": "Data centre fit-out subcontracting",
+        "fit": "Data centre owners, main contractors and hardware owners that need a dependable local crew.",
         "do": [
           "Electrical, low-voltage and security works",
-          "Server racking and data centre relocation",
-          "Ongoing operations under an agreed SLA",
-          "For high-density liquid cooling and GPU cluster networking we bring in a specialist team per project and name who is responsible"
+          "Server racking, cabling and data centre relocation",
+          "Join a main contractor’s project as subcontractor and deliver to drawings and milestones",
+          "For high-density liquid cooling and GPU cluster networking we assign specialist engineers per project and name who is responsible"
         ],
-        "get": "An itemised scope, schedule and operations SLA, carried out by local engineering teams we work with long term."
+        "get": "An itemised scope, schedule and acceptance criteria."
       },
       {
-        "key": "cloud",
-        "name": "Enterprise cloud and model APIs",
-        "fit": "Companies with significant monthly cloud spend, and AI application teams calling large models through public cloud.",
+        "key": "ops",
+        "name": "On-site operations",
+        "fit": "Data centre owners and compute customers whose hardware is racked and needs long-term care.",
         "do": [
-          "Set up enterprise accounts, discounts and billing on major public clouds through authorised resellers",
-          "Help you enable model APIs properly on those cloud platforms",
-          "Only for a company’s own normal usage; model services are available only where their providers support them"
+          "On-site staffing, routine inspections and fault handling",
+          "Hardware replacement, expansion and migration",
+          "Reporting against an agreed SLA"
         ],
-        "get": "A discount proposal and a clear billing structure."
+        "get": "An operations SLA stating response times, inspection scope and reporting."
+      },
+      {
+        "key": "gpu",
+        "name": "GPU compute and enterprise cloud",
+        "fit": "Teams that need whole servers or clusters, and companies with significant monthly cloud spend, deployed outside mainland China.",
+        "do": [
+          "Match lease or purchase supply to your model, quantity and term, and verify whether it is on hand or a future allocation",
+          "Hardware goes straight into our data centre for racking, with no hand-offs in between",
+          "Enterprise accounts, discounts and model APIs on major public clouds through authorised resellers",
+          "Cloud and model services are for a company’s own normal usage, only where their providers support them"
+        ],
+        "get": "A written quote stating supply status, commercial terms, delivery date and validity."
       }
     ]
   },
   "modes": {
     "title": "Two ways to work with us, agreed before you sign",
-    "intro": "The difference is who your contract is with and who is responsible for delivery. Before each deal starts we state in writing which one applies and where our fee comes from.",
-    "rows": { "contract": "Contract", "duty": "NOURRA’s responsibility", "fit": "Best when", "fee": "Fees" },
+    "intro": "The difference is how much you hand to us. Before each deal starts we state the scope, who is responsible and how the fee is made up, in writing.",
+    "rows": {
+      "contract": "Contract",
+      "duty": "NOURRA’s responsibility",
+      "fit": "Best when",
+      "fee": "Fees"
+    },
     "you": "You",
-    "supplier": "Supplier",
-    "suppliers": ["Supply", "Site", "Works"],
+    "supplier": "GPU supplier",
+    "suppliers": [
+      "Site",
+      "Works",
+      "Ops"
+    ],
     "contractWord": "Contract",
-    "verifyWord": "Verify and introduce",
+    "verifyWord": "Supply introduction",
     "items": [
       {
-        "name": "Introduction",
-        "lead": "We verify and introduce the right supplier. You contract with the supplier directly.",
-        "contract": "Between you and the supplier",
-        "duty": "Scope the requirement, verify resources, coordinate terms",
-        "fit": "You need one kind of resource, or already have a procurement process",
-        "fee": "Who pays our service fee and how it’s calculated is stated in writing before the introduction"
+        "name": "Full delivery",
+        "lead": "You sign one contract with NOURRA. Rack space, fit-out, racking and operations are all ours.",
+        "contract": "Between you and NOURRA",
+        "duty": "Deliver and operate the scope and dates set in the contract",
+        "fit": "You are taking a cluster from nothing to live and want one accountable party",
+        "fee": "Contract price and payment milestones are set in the contract"
       },
       {
-        "name": "NOURRA as contracting party",
-        "lead": "You sign one contract with NOURRA. We organise supply, site, fit-out and operations.",
-        "contract": "Between you and NOURRA",
-        "duty": "Deliver the scope and dates set in the contract",
-        "fit": "Several resources must line up in time and you want one accountable party",
-        "fee": "Contract price and payment milestones are set in the contract"
+        "name": "Single scope",
+        "lead": "Hand us one piece: colocation, fit-out subcontracting, operations, or an introduction to GPU supply.",
+        "contract": "A single-scope contract with NOURRA. For supply introductions you contract with the supplier directly",
+        "duty": "Complete the agreed scope. For introductions, verify supply and coordinate terms",
+        "fit": "You already have a site or a main contractor and are missing one link",
+        "fee": "Quoted per scope. Any introduction fee is stated in writing beforehand"
       }
-    ]
+    ],
+    "scopeWord": "One scope"
   },
   "process": {
     "title": "From first conversation to a running cluster",
     "steps": [
-      { "t": "Describe the requirement", "d": "Model or compute size, quantity, location, target go-live date, lease or buy." },
-      { "t": "Confirm end user and use", "d": "Written confirmation of who will use it, where, and for what. If this step fails, we stop here." },
-      { "t": "Match and verify resources", "d": "We check supply, rack space, power and crew availability one by one and grade each." },
-      { "t": "Quote and way of working", "d": "A written quote with validity, delivery conditions and which of the two models applies." },
-      { "t": "Sign and deliver", "d": "Arrival, racking, commissioning and power-on, accepted against contract milestones." },
-      { "t": "Operate and renew", "d": "Operations under the SLA. Before the term ends we agree renewal, expansion or exit." }
+      {
+        "t": "Describe the requirement",
+        "d": "Model or compute size, quantity, location, target go-live date, lease or buy."
+      },
+      {
+        "t": "Confirm end user and use",
+        "d": "Written confirmation of who will use it, where, and for what. If this step fails, we stop here."
+      },
+      {
+        "t": "Plan and resources",
+        "d": "We settle rack space, power, works scope and operations. External supply is verified item by item before it goes into the plan."
+      },
+      {
+        "t": "Quote and way of working",
+        "d": "A written quote with validity, delivery conditions, and whether it is full delivery or a single scope."
+      },
+      {
+        "t": "Sign and deliver",
+        "d": "Arrival, racking, commissioning and power-on, accepted against contract milestones."
+      },
+      {
+        "t": "Operate and renew",
+        "d": "Operations under the SLA. Before the term ends we agree renewal, expansion or exit."
+      }
     ]
   },
   "trust": {
-    "title": "The rules we apply to every deal",
-    "intro": "We don’t yet have client work we can name publicly. These are the rules we follow on every deal, and you can check each one as we work together.",
+    "title": "Our own teams, and the rules we apply to every deal",
+    "intro": "We don’t yet have client work we can name publicly. This is how we work, and you can check each point as we go.",
     "ladder": {
-      "title": "Every resource gets one of four grades. Only the top two are quoted",
-      "steps": ["Hearsay", "Verbal", "Written quote", "Seen or confirmed"],
+      "title": "External supply gets one of four grades. Only the top two are quoted",
+      "steps": [
+        "Hearsay",
+        "Verbal",
+        "Written quote",
+        "Seen or confirmed"
+      ],
       "quoted": "Quoted to clients",
       "notQuoted": "Never quoted",
       "note": "Any resource not re-checked within two weeks drops out of our quotes."
     },
     "rules": [
-      { "t": "Compliance first", "d": "For GPU requests we confirm end user, location and use in writing before discussing supply." },
-      { "t": "A clear role", "d": "On every deal we state whether we are introducing or contracting, and where our fee comes from." },
-      { "t": "In writing", "d": "Supply status, delivery dates and what happens on non-delivery go into the quote and the contract." }
+      {
+        "t": "Our own teams",
+        "d": "Site, fit-out and operations are done by our own people. The plan names who is responsible for each item."
+      },
+      {
+        "t": "Compliance first",
+        "d": "For GPU requests we confirm end user, location and use in writing before discussing supply."
+      },
+      {
+        "t": "In writing",
+        "d": "Scope, delivery dates and what happens on non-delivery go into the quote and the contract."
+      }
     ],
     "wontTitle": "What we don’t do",
     "wont": [
@@ -180,25 +250,68 @@
   "faq": {
     "title": "Questions we hear often",
     "items": [
-      { "q": "Is there a minimum order?", "a": "There’s no fixed threshold. The smallest workable size depends on the specific supply and site, and suppliers usually prioritise whole batches and longer terms. Tell us the quantity and we’ll say plainly whether it can be done." },
-      { "q": "How long until we’re live?", "a": "It depends on whether supply is on hand or a future allocation, and when the site powers on. The quote gives a date for each stage. We don’t make blanket promises." },
-      { "q": "Why are there no prices on this site?", "a": "GPU lease and server prices move quickly with the market, term, prepayment and quantity. A published number is stale within days. We quote in writing against your conditions, with a validity date." },
-      { "q": "Does NOURRA own GPUs or data centres?", "a": "No. We assemble verified third-party resources. When NOURRA is the contracting party, NOURRA is responsible to you for delivery." },
-      { "q": "Can equipment be shipped to mainland China or other controlled destinations?", "a": "No. We only serve requirements used lawfully in permitted locations, and we confirm end user and location in writing." },
-      { "q": "How do you charge?", "a": "For introductions we charge a service fee. Who pays it and how it’s calculated is stated in writing beforehand. When NOURRA is the contracting party, our fee is part of the contract price." }
+      {
+        "q": "Are the data centres NOURRA’s own?",
+        "a": "We are building our own AI data centres and also source rack space at partner sites. We share location, power capacity and power-on dates in writing when we talk."
+      },
+      {
+        "q": "Do you do the fit-out and operations yourselves, or pass them on?",
+        "a": "Our own engineering and operations teams do the work. For specialist items such as high-density liquid cooling and GPU cluster networking we assign specialist engineers per project and name who is responsible."
+      },
+      {
+        "q": "Does NOURRA own the GPUs?",
+        "a": "GPU hardware comes from suppliers we have verified, or you bring your own. We verify supply, coordinate terms, and rack and operate the hardware in our data centre."
+      },
+      {
+        "q": "How long until we’re live?",
+        "a": "It depends on when the rack space powers on and whether supply is on hand or a future allocation. The quote gives a date for each stage. We don’t make blanket promises."
+      },
+      {
+        "q": "Why are there no prices on this site?",
+        "a": "Rack space, works and GPU prices all move with scale, term and the market. We quote in writing against your conditions, with a validity date."
+      },
+      {
+        "q": "Can equipment be shipped to mainland China or other controlled destinations?",
+        "a": "No. We only serve requirements used lawfully in permitted locations, and we confirm end user and location in writing."
+      }
     ]
   },
   "contact": {
-    "title": "Tell us what compute you need",
-    "intro": "Give us the model or size, quantity, location and target go-live date. That’s what lets us tell quickly whether we have a match.",
+    "title": "Tell us what you’re building or housing",
+    "intro": "Give us rack count or compute size, power needs, location and target go-live date. That’s what lets us say quickly whether and how we can do it.",
     "emailLabel": "Or email us directly",
     "fields": {
-      "name": { "label": "Your name", "placeholder": "e.g. Alex Tan…" },
-      "company": { "label": "Company", "placeholder": "Registered company name…" },
-      "email": { "label": "Work email", "placeholder": "name@company.com…" },
-      "type": { "label": "What you need", "options": ["GPU leasing", "GPU server purchase", "Colocation or a data centre project", "Fit-out and operations", "Enterprise cloud and model APIs", "Something else"] },
-      "region": { "label": "Where the equipment will be used (country or region)", "placeholder": "e.g. Johor, Malaysia…" },
-      "message": { "label": "Details", "placeholder": "Model, quantity, term or purchase, target go-live date…" }
+      "name": {
+        "label": "Your name",
+        "placeholder": "e.g. Alex Tan…"
+      },
+      "company": {
+        "label": "Company",
+        "placeholder": "Registered company name…"
+      },
+      "email": {
+        "label": "Work email",
+        "placeholder": "name@company.com…"
+      },
+      "type": {
+        "label": "What you need",
+        "options": [
+          "Colocation or a data centre project",
+          "Fit-out subcontracting",
+          "On-site operations",
+          "GPU leasing or server purchase",
+          "Enterprise cloud and model APIs",
+          "Something else"
+        ]
+      },
+      "region": {
+        "label": "Where the equipment will be used (country or region)",
+        "placeholder": "e.g. Johor, Malaysia…"
+      },
+      "message": {
+        "label": "Details",
+        "placeholder": "Model, quantity, term or purchase, target go-live date…"
+      }
     },
     "consent": "By sending this you agree that we use these details to reply to your enquiry. We don’t pass them to third parties unrelated to it.",
     "mailtoButton": "Create email",
@@ -210,11 +323,11 @@
     "failed": "That didn’t send. Try again shortly, or write to {email}.",
     "invalid": "Fill in {field}.",
     "invalidEmail": "Enter a valid work email, such as name@company.com.",
-    "mailSubject": "Compute requirement",
+    "mailSubject": "Project enquiry",
     "pendingEmail": "address to be confirmed"
   },
   "footer": {
-    "tagline": "GPU compute, data centre capacity and delivery outside mainland China.",
+    "tagline": "Our own AI data centres, fit-out and operations teams.",
     "disclaimer": "This site describes our services and is not an offer or a commitment to supply. Resources, prices and delivery terms are as set out in a written quote and contract. All business is subject to applicable export control and sanctions law.",
     "rights": "All rights reserved."
   }

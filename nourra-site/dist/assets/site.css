@@ -7,10 +7,10 @@
   --c-ink: #15202B;         /* 正文与深色面板 */
   --c-ink-soft: #45525D;    /* 次级文字 */
   --c-rule: #B7C1C2;        /* 分隔线 */
-  --c-signal: #F4C20D;      /* 单模黄：主按钮、GPU 业务线 */
-  --c-aqua: #1FB8B2;        /* OM3 水蓝：机房业务线 */
-  --c-violet: #9A6BC6;      /* OM4 紫：工程运维业务线 */
-  --c-cloud: #DDE4E6;       /* 云与 API 业务线（浅灰白缆） */
+  --c-signal: #F4C20D;      /* 单模黄：主按钮、自建机房 */
+  --c-aqua: #1FB8B2;        /* OM3 水蓝：工程分包 */
+  --c-violet: #9A6BC6;      /* OM4 紫：驻场运维 */
+  --c-cloud: #DDE4E6;       /* GPU 与云（浅灰白缆） */
   --c-link: #0A615F;        /* 浅底上的链接与强调文字 */
 
   --font-sans: "Archivo", "Noto Sans SC", "PingFang SC", "Hiragino Sans GB",
