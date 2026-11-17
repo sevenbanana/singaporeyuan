@@ -53,7 +53,9 @@ button,input{font-family:inherit}
 .sec-sub{font-size:13.5px;color:var(--muted);margin:-4px 0 14px 60px}
 
 /* ---------- 三个选项总览卡 ---------- */
-.opts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:34px}
+.opts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.sum-hd{display:flex;align-items:center;gap:8px;margin:26px 0 12px;font-family:var(--serif);font-size:18px;font-weight:700;color:var(--navy)}
+.sum-hd .ic{width:20px;height:20px}
 .opt{position:relative;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:20px 20px 16px;box-shadow:var(--shadow);overflow:hidden}
 .opt::before{content:"";position:absolute;left:0;right:0;top:0;height:4px;background:var(--pc)}
 .opt-hd{display:flex;align-items:center;gap:12px}
@@ -76,7 +78,7 @@ button,input{font-family:inherit}
 .opt .more b{color:var(--ink)}
 
 /* 三样东西 */
-.gains{margin-top:16px;display:grid;grid-template-columns:auto repeat(3,minmax(0,1fr));align-items:center;gap:14px;background:linear-gradient(135deg,var(--navy),var(--navy-2));border-radius:16px;padding:16px 22px;color:#fff;box-shadow:var(--shadow)}
+.gains{margin-top:34px;display:grid;grid-template-columns:auto repeat(3,minmax(0,1fr));align-items:center;gap:14px;background:linear-gradient(135deg,var(--navy),var(--navy-2));border-radius:16px;padding:16px 22px;color:#fff;box-shadow:var(--shadow)}
 .gains .gt{font-family:var(--serif);font-size:16px;font-weight:700;color:var(--gold-soft);line-height:1.35;padding-right:6px}
 .gains .g{display:flex;align-items:center;gap:10px;font-size:13.5px;line-height:1.45}
 .gains .g .gi{flex:0 0 36px;height:36px;border-radius:50%;display:grid;place-items:center;border:1px solid rgba(217,174,92,.55)}
@@ -180,14 +182,6 @@ button,input{font-family:inherit}
 .legend span{display:inline-flex;align-items:center;gap:6px}
 .legend i{display:inline-block;width:10px;height:10px;border-radius:3px}
 
-/* 差价框 */
-.diff{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px}
-.diff>div{display:flex;gap:14px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px 18px;box-shadow:var(--shadow)}
-.diff .di{flex:0 0 42px;height:42px;border-radius:12px;display:grid;place-items:center;background:var(--pc)}
-.diff .di .ic{width:20px;height:20px;color:#fff}
-.diff .lb{font-size:12.5px;color:var(--muted)}
-.diff b{display:block;font-size:22px;font-weight:800;color:var(--tc,var(--pc));line-height:1.3}
-.diff small{font-size:12px;color:var(--muted)}
 
 /* ---------- 怎么选 ---------- */
 .pick{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
@@ -268,7 +262,7 @@ body.locked #pwGate{display:flex}
   .hero .eyebrow{padding-right:90px}
   .hero h1{font-size:27px}
   .hero h1 span{font-size:20px}
-  .opts,.bills,.pick,.diff{grid-template-columns:1fr}
+  .opts,.bills,.pick{grid-template-columns:1fr}
   .opt .prod{min-height:0}
   .opt .amt{font-size:29px}
   .gains{grid-template-columns:1fr;gap:10px;padding:16px 18px}
@@ -392,7 +386,6 @@ body.locked #pwGate{display:flex}
   </header>
 
   <!-- ===== 总览 ===== -->
-  <div class="opts num" id="opts"></div>
   <div class="gains">
     <div class="gt">升级多交的钱，<br>买到这三样</div>
     <div class="g"><span class="gi"><svg class="ic"><use href="#i-steth"/></svg></span><span><b>选病房、选医生</b><br>单人房 / 私立专科</span></div>
@@ -535,7 +528,8 @@ body.locked #pwGate{display:flex}
   </div>
   <div class="tbox"><table class="pt num" id="premTbl"></table></div>
   <div class="legend"><span><i style="background:var(--blue-tint);border:1px solid #C9D5EE"></i>MediSave</span><span><i style="background:var(--gold-tint);border:1px solid #E3CFA4"></i>现金</span><span id="riderNote"></span></div>
-  <div class="diff num" id="diff"></div>
+  <div class="sum-hd"><svg class="ic"><use href="#i-coins"/></svg>全家保费总结</div>
+  <div class="opts num" id="opts"></div>
   <div class="tip" id="liteTip"><svg class="ic"><use href="#i-bulb"/></svg><span></span></div>
 
   <!-- ===== 04 梁老师以后的保费 ===== -->
@@ -634,7 +628,7 @@ body.locked #pwGate{display:flex}
 
 <script>
 (function(){
-  var HASH="5647cdb5254a24d3a184f9136af8416c1ffb1050fd57c67dc133e588b73fc706", KEY="sy_case_liang_family_auth";
+  var HASH="7d1be6f283466a6515c5f46ae3d466d7cae06cf8db01668f69c16aee5d17b7e0", KEY="sy_case_liang_family_auth_v2";
   function sha(s){return crypto.subtle.digest("SHA-256",new TextEncoder().encode(s)).then(function(b){
     return Array.prototype.map.call(new Uint8Array(b),function(x){return x.toString(16).padStart(2,"0")}).join("");})}
   try{ if(sessionStorage.getItem(KEY)===HASH) document.body.classList.remove("locked"); }catch(e){}
@@ -723,24 +717,24 @@ body.locked #pwGate{display:flex}
   }
   function th(op,sub){return '<th class="'+op.cls+'"><span class="th-in">'+ico(op.icon)+'<span>'+op.head+(sub?'<small>'+sub+'</small>':'')+'</span></span></th>';}
 
-  /* ===== 顶部三张总览卡 ===== */
-  (function(){
+  /* ===== 全家保费总结卡（放在全家明细表下面，跟着附加险切换） ===== */
+  function renderOpts(fs){
     var bullets={
       msl:[['x','多人病房，医院安排医生'],['x','每项定额赔，自付无上限'],['ok','全部 MediSave 付']],
       pub:[['ok','公立 A 级单人房，可选医生'],['ok','按实际赔，自付有封顶'],['ok','一半以上可用 MediSave']],
       pri:[['ok','私立医院，自选专科、少排队'],['ok','按实际赔，自付有封顶'],['ok','癌症药额度最高']]
     };
-    $('opts').innerHTML=OPT.map(function(op){
-      var f=family(op.id,true), up=op.id!=='msl';
+    $('opts').innerHTML=OPT.map(function(op,j){
+      var f=fs[j], up=op.id!=='msl';
       return '<div class="opt" style="--pc:'+op.pc+';--tc:'+op.tc+'">'+
         '<div class="opt-hd"><span class="oi">'+ico(op.icon)+'</span><div><span class="tag">'+(up?'每年多交':'现在已有')+'</span><h3>'+op.name+'</h3></div></div>'+
         '<div class="prod">'+op.sub+'</div>'+
         '<div class="amt">'+(up?'+':'')+money(f.total)+'<small>全家 / 年 · 月均 '+sgd(f.total/12)+'</small></div>'+
         '<div class="split"><span class="pchip cpf">MediSave '+money(f.cpf)+'</span>'+(f.cash>0?'<span class="pchip cash">现金 '+money(f.cash)+'</span>':'')+'</div>'+
         '<ul>'+bullets[op.id].map(function(b){return '<li>'+ico(b[0]==='ok'?'i-check':'i-x',b[0])+'<span>'+b[1]+'</span></li>';}).join('')+'</ul>'+
-        (up?'<div class="more">连 MSL 全家共 <b>'+money(f.full)+'</b> / 年</div>':'')+'</div>';
+        (up?'<div class="more">'+(op.id==='pri'?'比公立再多 <b>+'+money(f.total-fs[1].total)+'</b> · ':'')+'连 MSL 共 <b>'+money(f.full)+'</b> / 年</div>':'')+'</div>';
     }).join('');
-  })();
+  }
 
   /* ===== 保障表：关键项筛选 / 手机列切换 ===== */
   document.querySelectorAll('#keySeg button').forEach(function(b){
@@ -807,10 +801,7 @@ body.locked #pwGate{display:flex}
       return '<td class="'+op.cls+'"><b>'+(j?'+':'')+sgd(f.total/12)+'</b><span class="s">'+(f.cash>0?'现金 '+sgd(f.cash/12):'全部 MediSave')+'</span></td>';}).join('')+'</tr>';
     $('premTbl').innerHTML=head+'<tbody>'+body+tot+mo+'</tbody>';
 
-    var pu=fs[1], pr=fs[2];
-    $('diff').innerHTML=
-      '<div style="--pc:'+OPT[1].pc+';--tc:'+OPT[1].tc+'"><span class="di">'+ico('i-hospital')+'</span><div><span class="lb">升级到公立 · 全家每年</span><b>+'+money(pu.total)+'</b><small>现金 '+money(pu.cash)+' · 连 MSL 共 '+money(pu.full)+'</small></div></div>'+
-      '<div style="--pc:'+OPT[2].pc+';--tc:'+OPT[2].tc+'"><span class="di">'+ico('i-gem')+'</span><div><span class="lb">升级到私立 · 比公立再多</span><b>+'+money(pr.total-pu.total)+'</b><small>现金多 '+money(pr.cash-pu.cash)+' · 连 MSL 共 '+money(pr.full)+'</small></div></div>';
+    renderOpts(fs);
     $('riderNote').textContent=rider?'附加险：共付 10% → 5%，封顶 S$6,000':'只买主险：共付 10% 不封顶';
     var lite=family('lite',rider);
     $('liteTip').querySelector('span').innerHTML='<b>预算更紧：</b>公立 B Lite（B1 四人房，每年最高赔 S$30 万），全家升级费用约 <b>'+money(lite.total)+' / 年</b>。';
