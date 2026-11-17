@@ -140,6 +140,13 @@ button,input{font-family:inherit}
 .bill .row.self{border-top:1px dashed var(--line);margin-top:4px;padding-top:8px}
 .bill .row.self b{color:var(--red);font-size:21px}
 .bill .row.claim b{color:var(--green)}
+.bill .row.cut b,.bill .row.cut .k{color:var(--red)}
+.bill .row .k small{display:block;font-size:11px;color:var(--muted)}
+.bscen-h{display:flex;align-items:center;gap:10px;margin:18px 0 10px;font-family:var(--serif);font-size:17px;font-weight:700;color:var(--navy)}
+.bscen-h:first-child{margin-top:0}
+.bscen-h .ic{width:20px;height:20px;color:var(--gold-deep)}
+.bscen-h small{font-family:var(--font);font-size:12.5px;font-weight:500;color:var(--muted)}
+.bills+.bscen-h{margin-top:26px}
 .bar{display:flex;height:8px;border-radius:6px;overflow:hidden;background:var(--red-tint);margin-top:10px}
 .bar i{display:block;height:100%;transition:width .35s ease}
 .bar .c{background:var(--green)}.bar .s{background:var(--red)}
@@ -486,7 +493,7 @@ body.locked #pwGate{display:flex}
           <td class="p2 good">5%，每年封顶 S$6,000<small>看 AIA 合作医生、预授权或急诊；只买主险则 10% 不封顶</small></td></tr>
         <tr class="key"><td>一年最多自己付<span class="key-badge">关键</span></td>
           <td class="p0 bad">没有上限<small>超出每项限额的部分全部自付</small></td>
-          <td class="p1 good">约 S$9,500 / 人<small>S$3,500 + S$6,000</small></td>
+          <td class="p1 good">约 S$9,500 / 人<small>在公立医院：S$3,500 + S$6,000；去私立先按 70% 折算，折掉的部分另付</small></td>
           <td class="p2 good">约 S$9,500 / 人<small>S$3,500 + S$6,000</small></td></tr>
 
         <tr class="sec nokey"><td colspan="4"><span class="in"><svg class="ic"><use href="#i-doc"/></svg>其他</span></td></tr>
@@ -508,7 +515,7 @@ body.locked #pwGate{display:flex}
 
   <!-- ===== 02 账单示例 ===== -->
   <div class="sec-hd" id="bill"><span class="sbadge"><svg class="ic"><use href="#i-receipt"/></svg></span><div><div class="eyebrow">02 · Claim Example</div><h2>一张住院账单，自己付多少</h2></div><span class="line"></span></div>
-  <p class="sec-sub">费用合理、全部可赔，住方案对应病房，看 AIA 合作医生，本年还没用过免赔额。</p>
+  <p class="sec-sub">同一笔账单，分别在私立医院和公立医院 A 级病房住院。假设费用合理、全部可赔，看 AIA 合作医生，本年还没用过免赔额。</p>
   <div class="ctl-row">
     <span class="lb"><svg class="ic"><use href="#i-receipt"/></svg>账单</span>
     <div class="seg gold" id="billSeg">
@@ -519,7 +526,7 @@ body.locked #pwGate{display:flex}
       <button type="button" data-v="300000">S$30 万</button>
     </div>
   </div>
-  <div class="bills num" id="bills"></div>
+  <div class="num" id="bills"></div>
 
   <!-- ===== 03 全家保费 ===== -->
   <div class="sec-hd" id="prem"><span class="sbadge"><svg class="ic"><use href="#i-coins"/></svg></span><div><div class="eyebrow">03 · Premium</div><h2>全家保费：今年每人交多少</h2></div><span class="line"></span></div>
@@ -763,22 +770,40 @@ body.locked #pwGate{display:flex}
   var bill=50000, rider=true;
   function oop(x,rd){if(x<=DED)return x;return rd?DED+Math.min(.05*(x-DED),CAP):DED+.10*(x-DED);}
   function renderBills(){
-    var self=oop(bill,rider), claim=bill-self, pc=Math.max(0,Math.min(100,claim/bill*100));
-    function ipCard(op,scope){
+    /* 公立方案去私立医院：账单先按 70% 折算，折掉的 30% 自付，再扣免赔额和共付 */
+    function calc(x,pro){
+      var base=x*pro, cut=x-base, ded=Math.min(base,DED), rest=Math.max(base-DED,0);
+      var co=rider?Math.min(.05*rest,CAP):.10*rest, pay=rest-co;
+      return {cut:cut, ded:ded, co:co, pay:pay, self:x-pay};
+    }
+    function ipCard(op,scope,pro){
+      var r=calc(bill,pro), pc=Math.max(0,Math.min(100,r.pay/bill*100));
       return '<div class="bill" style="--pc:'+op.pc+';--tc:'+op.tc+'"><h4>'+ico(op.icon)+op.name+'</h4><div class="scope">'+scope+'</div>'+
         '<div class="row"><span class="k">账单</span><b>'+sgd(bill)+'</b></div>'+
-        '<div class="row"><span class="k">免赔额</span><b>'+sgd(Math.min(bill,DED))+'</b></div>'+
-        '<div class="row"><span class="k">共付 '+(rider?'5%（封顶 S$6,000）':'10%')+'</span><b>'+sgd(self-Math.min(bill,DED))+'</b></div>'+
-        '<div class="row claim"><span class="k">保险赔</span><b>'+sgd(claim)+'</b></div>'+
-        '<div class="row self"><span class="k">自己付</span><b>'+sgd(self)+'</b></div>'+
+        (pro<1?'<div class="row cut"><span class="k">先按 70% 折算<small>折掉的 30% 自己付</small></span><b>'+sgd(r.cut)+'</b></div>':'')+
+        '<div class="row"><span class="k">免赔额</span><b>'+sgd(r.ded)+'</b></div>'+
+        '<div class="row"><span class="k">共付 '+(rider?'5%（封顶 S$6,000）':'10%')+'</span><b>'+sgd(r.co)+'</b></div>'+
+        '<div class="row claim"><span class="k">保险赔</span><b>'+sgd(r.pay)+'</b></div>'+
+        '<div class="row self"><span class="k">自己付</span><b>'+sgd(r.self)+'</b></div>'+
         '<div class="bar"><i class="c" style="width:'+pc+'%"></i><i class="s" style="width:'+(100-pc)+'%"></i></div></div>';
     }
+    function mslCard(txt,eg){
+      return '<div class="bill" style="--pc:'+OPT[0].pc+';--tc:'+OPT[0].tc+'"><h4>'+ico(OPT[0].icon)+'只有 MediShield Life</h4><div class="scope">按每项限额赔</div>'+
+        '<p class="txt">'+txt+'</p>'+(eg?'<div class="eg">'+eg+'</div>':'')+'</div>';
+    }
     $('bills').innerHTML=
-      '<div class="bill" style="--pc:'+OPT[0].pc+';--tc:'+OPT[0].tc+'"><h4>'+ico(OPT[0].icon)+'只有 MediShield Life</h4><div class="scope">看在哪住、怎么构成</div>'+
-        '<p class="txt">B2 / C 级津贴账单：MSL 能赔大部分。<br>A 级或私立：先打折、再按每项限额赔，超出全自付，<b>没有封顶</b>。</p>'+
-        '<div class="eg">CPF 例：C 级账单 S$4,000 → MSL 赔 S$1,800，<b>自付 S$2,200</b></div></div>'+
-      ipCard(OPT[1],'公立 A 级单人房')+
-      ipCard(OPT[2],'私立医院标准房');
+      '<div class="bscen-h">'+ico('i-gem')+'在私立医院住院<small>账单 '+sgd(bill)+'</small></div>'+
+      '<div class="bills">'+
+        mslCard('私立账单先<b>大幅打折</b>，再按每天病房费、每次手术的限额赔，绝大部分要自己付，<b>没有封顶</b>。')+
+        ipCard(OPT[1],'公立保单去私立医院',.7)+
+        ipCard(OPT[2],'私立医院标准房',1)+
+      '</div>'+
+      '<div class="bscen-h">'+ico('i-hospital')+'在公立医院 A 级病房住院<small>账单 '+sgd(bill)+'</small></div>'+
+      '<div class="bills">'+
+        mslCard('A 级病房也要<b>先按比例打折</b>，再按限额赔，超出部分自付。只有住 B2 / C 津贴病房，MSL 才赔得多。','CPF 例：C 级账单 S$4,000 → MSL 赔 S$1,800，<b>自付 S$2,200</b>')+
+        ipCard(OPT[1],'公立 A 级单人房',1)+
+        ipCard(OPT[2],'私立保单住公立也按实际赔',1)+
+      '</div>';
   }
   document.querySelectorAll('#billSeg button').forEach(function(b){
     b.addEventListener('click',function(){
