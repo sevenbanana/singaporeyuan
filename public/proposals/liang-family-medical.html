@@ -274,7 +274,7 @@ body.locked #pwGate{display:flex}
   .pt thead th:first-child,.pt td:first-child{width:56px}
   .pt td:first-child{position:static;box-shadow:none}
   .pt td .v{font-size:14px;letter-spacing:0}
-  .pt tr.tot td .v{font-size:14px;letter-spacing:-.2px}
+  .pt tr.tot td .v{font-size:13px;letter-spacing:-.3px}
   .pt td .s{font-size:10.5px;letter-spacing:0}
   .pt td .s i.dot{display:none}
   .pt td .s .cs{display:block}
@@ -351,7 +351,7 @@ body.locked #pwGate{display:flex}
 
   <!-- ===== 三个选项总览 ===== -->
   <div class="opts num" id="opts"></div>
-  <div class="tip"><svg class="ic"><use href="#i-bulb"/></svg><span><b>一句话：</b>公立、私立方案里都<b>已经包含 MediShield Life</b>，不是另外再多一份。多出来的保费，买的是三件事——<b>病房和医生的选择</b>、<b>按实际费用赔（不再按每项小限额）</b>、<b>每人每年自付封顶约 S$9,500</b>。</span></div>
+  <div class="tip"><svg class="ic"><use href="#i-bulb"/></svg><span><b>一句话：</b>MediShield Life 现在已经在交；公立、私立的价格是<b>在它之上每年多交的升级费用</b>（AIA 报价单上的总保费会连 MSL 一起算）。多交的钱，买的是三件事——<b>病房和医生的选择</b>、<b>按实际费用赔（不再按每项小限额）</b>、<b>每人每年自付封顶约 S$9,500</b>。</span></div>
 
   <!-- ===== 1. 保障对比表 ===== -->
   <div class="sub-head" id="bene"><span class="no">1</span>保障对比表：各项额度一览</div>
@@ -480,7 +480,7 @@ body.locked #pwGate{display:flex}
 
   <!-- ===== 2. 保费表 ===== -->
   <div class="sub-head" id="prem"><span class="no">2</span>全家保费表：今年每人交多少</div>
-  <p class="sec-sub">按 AIA 现行费率表（含 9% GST），年龄按<b>下一生日年龄</b>折算。<b>蓝色</b>是可以用 MediSave 付的部分，<b>金色</b>是要付现金的部分；孩子的保费可以用父母的 MediSave 付。</p>
+  <p class="sec-sub">第一列是全家<b>现在已经在交</b>的 MediShield Life；公立、私立两列是<b>升级要多交的钱</b>（已扣除 MediShield Life）。按 AIA 现行费率表（含 9% GST），年龄按<b>下一生日年龄</b>折算。<b>蓝色</b>是可以用 MediSave 付的部分，<b>金色</b>是要付现金的部分；孩子的保费可以用父母的 MediSave 付。</p>
   <div class="ctl-row">
     <span class="lb">附加险</span>
     <div class="seg" id="riderSeg"><button type="button" class="on" data-r="1">主险 + 附加险（建议）</button><button type="button" data-r="0">只买主险</button></div>
@@ -493,7 +493,7 @@ body.locked #pwGate{display:flex}
 
   <!-- ===== 以后的保费 ===== -->
   <div class="sub-head" id="future"><span class="no">+</span>梁老师夫妇：以后的保费会怎样涨</div>
-  <p class="sec-sub">住院险保费按年龄段调整，50 岁以后涨得比较快。点下面的年龄看<b>每人每年</b>的保费；累计数是夫妻俩从现在交到 75 岁的总和（按现行费率，未计医疗通胀）。</p>
+  <p class="sec-sub">住院险保费按年龄段调整，50 岁以后涨得比较快。点下面的年龄看<b>每人每年</b>的 MediShield Life 保费和升级费用；累计数是夫妻俩从现在到 75 岁的总和（按现行费率，未计医疗通胀）。</p>
   <div class="ctl-row">
     <span class="lb">到几岁</span>
     <div class="seg gold" id="ageSeg"></div>
@@ -507,7 +507,7 @@ body.locked #pwGate{display:flex}
     <div class="pk a"><div class="hd"><div class="badge"><svg class="ic ic-md"><use href="#i-shield"/></svg></div>只留 MediShield Life</div>
       <ul><li><svg class="ic"><use href="#i-check"/></svg>能接受住多人病房、医院安排医生、排队等候</li><li><svg class="ic"><use href="#i-check"/></svg>手上有足够现金应付大病自付（没有封顶）</li><li><svg class="ic"><use href="#i-check"/></svg>或者身体已有状况、买不了综合健保</li></ul></div>
     <div class="pk b"><div class="hd"><div class="badge"><svg class="ic ic-md"><use href="#i-hospital"/></svg></div>公立方案</div>
-      <ul><li><svg class="ic"><use href="#i-check"/></svg>信任公立医院，想要单人房、自己选专科医生</li><li><svg class="ic"><use href="#i-check"/></svg>每人每年自付封顶约 S$9,500，大病不怕</li><li><svg class="ic"><use href="#i-check"/></svg>保费大部分可用 MediSave，现金压力小</li></ul></div>
+      <ul><li><svg class="ic"><use href="#i-check"/></svg>信任公立医院，想要单人房、自己选专科医生</li><li><svg class="ic"><use href="#i-check"/></svg>每人每年自付封顶约 S$9,500，大病不怕</li><li><svg class="ic"><use href="#i-check"/></svg>升级费用一半以上可用 MediSave，现金压力小</li></ul></div>
     <div class="pk c"><div class="hd"><div class="badge"><svg class="ic ic-md"><use href="#i-bulb"/></svg></div>私立方案 / 混搭</div>
       <ul><li><svg class="ic"><use href="#i-check"/></svg>想看私立专科、少排队，癌症新药额度更高</li><li><svg class="ic"><use href="#i-check"/></svg><span>也可以<b>父母私立、孩子公立</b>，按预算混搭</span></li><li><svg class="ic"><use href="#i-check"/></svg>孩子服兵役 / 出国读书期间的安排，可以一起聊</li></ul></div>
   </div>
@@ -535,7 +535,7 @@ body.locked #pwGate{display:flex}
   <div class="notes">
     <p>本页面由持牌顾问袁媛（RNF：YY-300823216）整理，仅供初步了解与预算参考，<b>不构成要约、保险建议或投保邀请</b>，也非 AIA 或政府官方渠道。实际保费与承保以 AIA 正式报价单、保单条款及<b>核保结果</b>为准。</p>
     <p><b>MediShield Life</b> 额度按 MOH 官网 MediShield Life Benefits 页公布、适用于 2026 年 6 月 1 日或之后入院 / 治疗的标准（年龄 80 岁及以下的免赔额）；在 A / B1 级病房、私立医院或非津贴治疗，账单会先按比例折算（PR 的折算比例比公民低）再按限额计算。MediShield Life 只保合理、必要的治疗，各项具体限额以 MOH 最新公布为准。</p>
-    <p><b>保费</b>按 AIA HealthShield Gold Max v8.7（2025 年 10 月）及 Max VitalHealth Pro 现行费率表估算，含 9% GST，含 MediShield Life；未计入政府 MediShield Life 保费津贴、回扣及 AIA Vitality 折扣。MediSave 可付额度：MediShield Life 全额，主险其余部分每人每年上限 S$300（下一生日 40 岁及以下）/ S$600（41–70 岁）/ S$900（71 岁以上）；附加险只能付现金。实际扣款受账户余额影响。住院险及 MediShield Life 保费都不保证，会随年龄、理赔经验和政策调整（MediShield Life 保费在 2025–2027 年分阶段调整中）。</p>
+    <p><b>保费</b>按 AIA HealthShield Gold Max v8.7（2025 年 10 月）及 Max VitalHealth Pro 现行费率表估算，含 9% GST。公立 / 私立价格为<b>升级费用</b>，即综合健保总保费减去 MediShield Life 保费；AIA 正式报价单上的总保费会连 MediShield Life 一起列出。未计入政府 MediShield Life 保费津贴、回扣及 AIA Vitality 折扣。MediSave 可付额度：MediShield Life 全额，主险其余部分每人每年上限 S$300（下一生日 40 岁及以下）/ S$600（41–70 岁）/ S$900（71 岁以上）；附加险只能付现金。实际扣款受账户余额影响。住院险及 MediShield Life 保费都不保证，会随年龄、理赔经验和政策调整（MediShield Life 保费在 2025–2027 年分阶段调整中）。</p>
     <p><b>公立 / 私立方案保障</b>摘自 AIA HealthShield Gold Max 产品资料：免赔额按 80 岁及以下；5% 共付每年 S$6,000 封顶须由 AIA 合作医生治疗、经预授权或急诊入院，否则按条款计算；附加险不报销免赔额。癌症门诊、住院前后等附加险额度按 AIA 2025 年 10 月及 2026 年 10 月公布资料整理；癌症药物金额按 MOH 现行清单限额（每月 S$200–S$12,800）乘以倍数换算，清单限额调整时跟着变。具体以最新产品摘要和保单条款为准。综合健保最后投保年龄为 75 岁（下一生日年龄）。不建议在未评估利弊前退旧买新。本保单受 SDIC 保单持有人保障计划保护。</p>
     <div class="srcs-h">资料来源</div>
     <ol class="srcs">
@@ -635,8 +635,8 @@ body.locked #pwGate{display:flex}
   var FAM=[{n:'梁老师',age:51},{n:'先生',age:52},{n:'老大',age:21},{n:'老二',age:19},{n:'老三',age:13}];
   var OPT=[
     {id:'msl',name:'只有 MediShield Life',short:'只有 MSL',sub:'政府基本医保',pc:'var(--grey)',cls:'p0'},
-    {id:'pub',name:'公立方案',short:'公立',sub:'HSG Max B + Max VitalHealth Pro B',pc:'var(--blue)',cls:'p1'},
-    {id:'pri',name:'私立方案',short:'私立',sub:'HSG Max A + Max VitalHealth Pro A + Cancer Care Pro',pc:'var(--navy)',cls:'p2'}
+    {id:'pub',name:'公立方案',up:'升级到公立',short:'公立',sub:'HSG Max B + Max VitalHealth Pro B',pc:'var(--blue)',cls:'p1'},
+    {id:'pri',name:'私立方案',up:'升级到私立',short:'私立',sub:'HSG Max A + Max VitalHealth Pro A + Cancer Care Pro',pc:'var(--navy)',cls:'p2'}
   ];
   var DED=3500, CAP=6000;
 
@@ -662,10 +662,17 @@ body.locked #pwGate{display:flex}
     o.total=r2(o.total); o.cpf=r2(o.cpf); o.cash=r2(o.cash);
     return o;
   }
+  /* 页面上的价格：MSL 列是 MediShield Life 保费；公立 / 私立列是「升级费用」= 综合健保总保费 − MediShield Life */
+  function cost(age,opt,rider){
+    var o=prem(age,opt,opt==='msl'?false:rider);
+    if(opt==='msl'){o.full=o.total;return o;}
+    var m=o.lines[0][1];
+    return {lines:o.lines.slice(1),total:r2(o.total-m),cpf:r2(o.cpf-m),cash:o.cash,full:o.total};
+  }
   function family(opt,rider){
-    var t={total:0,cpf:0,cash:0,rows:[]};
-    FAM.forEach(function(p){var o=prem(p.age,opt,rider);t.rows.push(o);t.total+=o.total;t.cpf+=o.cpf;t.cash+=o.cash;});
-    t.total=r2(t.total);t.cpf=r2(t.cpf);t.cash=r2(t.cash);
+    var t={total:0,cpf:0,cash:0,full:0,rows:[]};
+    FAM.forEach(function(p){var o=cost(p.age,opt,rider);t.rows.push(o);t.total+=o.total;t.cpf+=o.cpf;t.cash+=o.cash;t.full+=o.full;});
+    t.total=r2(t.total);t.cpf=r2(t.cpf);t.cash=r2(t.cash);t.full=r2(t.full);
     return t;
   }
   function splitChips(o){
@@ -676,17 +683,19 @@ body.locked #pwGate{display:flex}
   (function(){
     var bullets={
       msl:[['x','公立 B2 / C 级多人病房，医院安排医生'],['x','每项都有限额，大病自付没有上限'],['ok','既往症也保，全部 MediSave 付']],
-      pub:[['ok','公立 A 级单人病房，自己选专科医生'],['ok','按实际赔，每人每年自付封顶约 S$9,500'],['ok','保费大部分可用 MediSave']],
+      pub:[['ok','公立 A 级单人病房，自己选专科医生'],['ok','按实际赔，每人每年自付封顶约 S$9,500'],['ok','升级费用一半以上可用 MediSave']],
       pri:[['ok','私立医院标准房，私立专科随意挑'],['ok','按实际赔，每人每年自付封顶约 S$9,500'],['ok','癌症新药额度最高；全在 AIA 合作医院，每年最高赔 S$200 万']]
     };
     $('opts').innerHTML=OPT.map(function(op){
       var f=family(op.id,true);
-      return '<div class="opt" style="--pc:'+op.pc+'"><span class="tag">'+(op.id==='msl'?'现在已经有':op.id==='pub'?'选项 A':'选项 B')+'</span>'+
+      var up=op.id!=='msl';
+      return '<div class="opt" style="--pc:'+op.pc+'"><span class="tag">'+(up?op.up:'现在已经有')+'</span>'+
         '<h3>'+op.name+'<small>'+op.sub+'</small></h3>'+
-        '<div class="amt">'+money(f.total)+'<small>全家 / 年</small></div>'+
+        '<div class="amt">'+(up?'+':'')+money(f.total)+'<small>'+(up?'全家每年多交':'全家 / 年')+'</small></div>'+
         '<div class="split">'+splitChips(f)+'</div>'+
         '<ul>'+bullets[op.id].map(function(b){return '<li><svg class="ic '+b[0]+'"><use href="#i-'+(b[0]==='ok'?'check':'x')+'"/></svg><span>'+b[1]+'</span></li>';}).join('')+'</ul>'+
-        '<div class="more">月均约 <b>'+sgd(f.total/12)+'</b>'+(f.cash>0?'，其中现金月均约 <b>'+sgd(f.cash/12)+'</b>':'')+'</div></div>';
+        '<div class="more">月均约 <b>'+sgd(f.total/12)+'</b>'+(f.cash>0?'，其中现金月均约 <b>'+sgd(f.cash/12)+'</b>':'')+
+        (up?'<br>连同已有的 MediShield Life，全家共 '+money(f.full)+' / 年':'')+'</div></div>';
     }).join('');
   })();
 
@@ -742,28 +751,28 @@ body.locked #pwGate{display:flex}
   /* ===== 保费表 ===== */
   function renderPrem(){
     var fs=OPT.map(function(op){return family(op.id,op.id==='msl'?false:rider);});
-    var head='<thead><tr><th>家庭成员</th>'+OPT.map(function(op){return '<th class="'+op.cls+'">'+op.name+'<small>'+(op.id==='msl'?'政府基本医保':op.id==='pub'?(rider?'Max B + Pro B':'只买 Max B 主险'):(rider?'Max A + Pro A + Cancer Care Pro':'只买 Max A 主险'))+'</small></th>';}).join('')+'</tr></thead>';
+    var head='<thead><tr><th>家庭成员</th>'+OPT.map(function(op){return '<th class="'+op.cls+'">'+(op.id==='msl'?'MediShield Life':op.up)+'<small>'+(op.id==='msl'?'现在已经在交':op.id==='pub'?(rider?'每年多交 · Max B + Pro B':'每年多交 · 只买 Max B 主险'):(rider?'每年多交 · Max A + Pro A + Cancer Care Pro':'每年多交 · 只买 Max A 主险'))+'</small></th>';}).join('')+'</tr></thead>';
     var body=FAM.map(function(p,i){
       return '<tr><td>'+p.n+'<small>'+p.age+' 岁 · 按 '+(p.age+1)+' 岁计</small></td>'+OPT.map(function(op,j){
         var o=fs[j].rows[i];
-        return '<td class="'+op.cls+'"><span class="v">'+money(o.total)+'</span>'+
+        return '<td class="'+op.cls+'"><span class="v">'+(j?'+':'')+money(o.total)+'</span>'+
           '<span class="s">MediSave '+money(o.cpf)+(o.cash>0?'<i class="dot"> · </i><span class="cs">现金 '+money(o.cash)+'</span>':'')+'</span>'+
           '<div class="dl">'+o.lines.map(function(l){return '<div><span>'+l[0]+'</span><span>'+money(l[1])+'</span></div>';}).join('')+'</div></td>';
       }).join('')+'</tr>';
     }).join('');
     var tot='<tr class="tot"><td>全家合计 / 年</td>'+OPT.map(function(op,j){var f=fs[j];
-      return '<td class="'+op.cls+'"><span class="v">'+money(f.total)+'</span><span class="s">MediSave '+money(f.cpf)+(f.cash>0?'<i class="dot"> · </i><span class="cs">现金 '+money(f.cash)+'</span>':'')+'</span></td>';}).join('')+'</tr>';
+      return '<td class="'+op.cls+'"><span class="v">'+(j?'+':'')+money(f.total)+'</span><span class="s">MediSave '+money(f.cpf)+(f.cash>0?'<i class="dot"> · </i><span class="cs">现金 '+money(f.cash)+'</span>':'')+'</span></td>';}).join('')+'</tr>';
     var mo='<tr class="mo"><td>每月折算</td>'+OPT.map(function(op,j){var f=fs[j];
-      return '<td class="'+op.cls+'"><b>'+sgd(f.total/12)+'</b><span class="s">'+(f.cash>0?'现金约 '+sgd(f.cash/12):'全部 MediSave')+'</span></td>';}).join('')+'</tr>';
+      return '<td class="'+op.cls+'"><b>'+(j?'+':'')+sgd(f.total/12)+'</b><span class="s">'+(f.cash>0?'现金约 '+sgd(f.cash/12):'全部 MediSave')+'</span></td>';}).join('')+'</tr>';
     $('premTbl').innerHTML=head+'<tbody>'+body+tot+mo+'</tbody>';
 
     var m=fs[0], pu=fs[1], pr=fs[2];
     $('diff').innerHTML=
-      '<div style="--pc:var(--blue)"><span class="lb">公立方案比只有 MSL，全家每年多</span><b>'+money(pu.total-m.total)+'</b><small>其中现金 '+money(pu.cash)+'，其余用 MediSave</small></div>'+
-      '<div style="--pc:var(--navy)"><span class="lb">私立方案比公立方案，全家每年再多</span><b>'+money(pr.total-pu.total)+'</b><small>现金多 '+money(pr.cash-pu.cash)+'</small></div>';
+      '<div style="--pc:var(--blue)"><span class="lb">升级到公立，全家每年多交</span><b>'+money(pu.total)+'</b><small>其中现金 '+money(pu.cash)+'，其余 '+money(pu.cpf)+' 用 MediSave · 连 MSL 共 '+money(pu.full)+'</small></div>'+
+      '<div style="--pc:var(--navy)"><span class="lb">升级到私立，全家每年多交</span><b>'+money(pr.total)+'</b><small>比公立再多 '+money(pr.total-pu.total)+'（现金多 '+money(pr.cash-pu.cash)+'）· 连 MSL 共 '+money(pr.full)+'</small></div>';
     $('riderNote').textContent=rider?'附加险把共付从 10% 降到 5%，并给每年 S$6,000 封顶':'只买主险：保费全部可用 MediSave，但共付 10% 不封顶';
     var lite=family('lite',rider);
-    $('liteTip').querySelector('span').innerHTML='<b>预算更紧的折中：</b>公立 B Lite（公立 B1 级 4 人病房，每年最高赔 S$30 万，免赔额 S$2,500），全家约 <b>'+money(lite.total)+' / 年</b>（MediSave '+money(lite.cpf)+(lite.cash>0?' · 现金 '+money(lite.cash):'')+'）。也可以父母和孩子选不同档位。';
+    $('liteTip').querySelector('span').innerHTML='<b>预算更紧的折中：</b>公立 B Lite（公立 B1 级 4 人病房，每年最高赔 S$30 万，免赔额 S$2,500），升级费用全家约 <b>'+money(lite.total)+' / 年</b>（MediSave '+money(lite.cpf)+(lite.cash>0?' · 现金 '+money(lite.cash):'')+'）。也可以父母和孩子选不同档位。';
   }
   document.querySelectorAll('#riderSeg button').forEach(function(b){
     b.addEventListener('click',function(){
@@ -782,21 +791,21 @@ body.locked #pwGate{display:flex}
   $('ageSeg').innerHTML=AGES.map(function(a){return '<button type="button" data-a="'+a+'"'+(a===fAge?' class="on"':'')+'>'+(a===51?'现在':a+' 岁')+'</button>';}).join('');
   function cum(opt){
     var t={total:0,cash:0};
-    [51,52].forEach(function(a0){for(var a=a0;a<=75;a++){var o=prem(a,opt,opt==='msl'?false:rider);t.total+=o.total;t.cash+=o.cash;}});
+    [51,52].forEach(function(a0){for(var a=a0;a<=75;a++){var o=cost(a,opt,rider);t.total+=o.total;t.cash+=o.cash;}});
     return t;
   }
   function renderFuture(){
     $('fut').innerHTML=OPT.map(function(op){
-      var o=prem(fAge,op.id,op.id==='msl'?false:rider), c=cum(op.id);
-      return '<div class="fcard" style="--pc:'+op.pc+'"><div class="t">'+op.name+'</div>'+
-        '<div class="v">'+money(o.total)+'<small>/ 人 / 年</small></div>'+
+      var o=cost(fAge,op.id,rider), c=cum(op.id), up=op.id!=='msl';
+      return '<div class="fcard" style="--pc:'+op.pc+'"><div class="t">'+(up?op.up+'，每人每年多交':'MediShield Life 保费')+'</div>'+
+        '<div class="v">'+(up?'+':'')+money(o.total)+'<small>/ 人 / 年</small></div>'+
         '<div class="s">'+(o.cash>0?'其中现金 <b>'+money(o.cash)+'</b>':'全部可用 MediSave')+'</div>'+
-        '<div class="cum">夫妻俩交到 75 岁累计<b>'+sgd(c.total)+'</b>'+(c.cash>0?'其中现金约 '+sgd(c.cash):'全部 MediSave')+'</div></div>';
+        '<div class="cum">'+(up?'夫妻俩到 75 岁累计多交':'夫妻俩交到 75 岁累计')+'<b>'+sgd(c.total)+'</b>'+(c.cash>0?'其中现金约 '+sgd(c.cash):'全部 MediSave')+'</div></div>';
     }).join('');
-    var max=0, rows=AGES.map(function(a){var r=OPT.map(function(op){return prem(a,op.id,op.id==='msl'?false:rider).total;});max=Math.max(max,r[2]);return [a,r];});
-    $('fbars').innerHTML='<div class="h">每人每年保费，随年龄变化（点一行切换上面的卡片）</div>'+rows.map(function(r){
+    var max=0, rows=AGES.map(function(a){var r=OPT.map(function(op){return cost(a,op.id,rider).total;});max=Math.max(max,r[2]);return [a,r];});
+    $('fbars').innerHTML='<div class="h">每人每年：MediShield Life 保费，和升级到公立 / 私立要多交的钱（点一行切换上面的卡片）</div>'+rows.map(function(r){
       return '<div class="fb'+(r[0]===fAge?' on':'')+'" data-a="'+r[0]+'"><span class="a">'+(r[0]===51?'现在':r[0]+' 岁')+'</span><div class="ln">'+
-        OPT.map(function(op,j){return '<div><i style="width:'+Math.max(1,r[1][j]/max*78)+'%;background:'+op.pc+'"></i>'+sgd(r[1][j])+'</div>';}).join('')+'</div></div>';
+        OPT.map(function(op,j){return '<div><i style="width:'+Math.max(1,r[1][j]/max*78)+'%;background:'+op.pc+'"></i>'+(j?'+':'')+sgd(r[1][j])+'</div>';}).join('')+'</div></div>';
     }).join('');
     document.querySelectorAll('#fbars .fb').forEach(function(el){el.addEventListener('click',function(){setAge(+el.dataset.a);});});
   }
