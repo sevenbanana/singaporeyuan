@@ -32,7 +32,7 @@ button,input{font-family:inherit}
 
 /* ---------- 标题 ---------- */
 .hero{position:relative;z-index:1}
-.emblem{position:absolute;top:-30px;right:-18px;width:236px;height:236px;pointer-events:none}
+.emblem{position:absolute;top:-18px;right:-8px;width:190px;height:190px;pointer-events:none}
 .hero-txt{max-width:calc(100% - 250px)}
 .hero h1{margin-top:10px;font-family:var(--serif);font-size:38px;line-height:1.25;font-weight:700;color:var(--navy);letter-spacing:.5px}
 .hero h1 span{display:block;font-size:28px;color:var(--gold-deep);margin-top:4px}
@@ -257,7 +257,7 @@ body.locked #pwGate{display:flex}
 /* ---------- 手机 ---------- */
 @media (max-width:760px){
   .page{padding:30px 16px}
-  .emblem{top:-14px;right:-10px;width:104px;height:104px}
+  .emblem{top:-10px;right:-8px;width:84px;height:84px;opacity:.8}
   .hero-txt{max-width:none}
   .hero .eyebrow{padding-right:90px}
   .hero h1{font-size:27px}
@@ -354,22 +354,18 @@ body.locked #pwGate{display:flex}
   <header class="hero">
     <svg class="emblem" viewBox="0 0 240 240" aria-hidden="true">
       <defs>
-        <radialGradient id="egGlow" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#F5EAD2" stop-opacity=".95"/><stop offset="1" stop-color="#F5EAD2" stop-opacity="0"/></radialGradient>
-        <linearGradient id="egNavy" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#1C3A8F"/><stop offset="1" stop-color="#13286B"/></linearGradient>
-        <linearGradient id="egGold" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#E2BC6E"/><stop offset="1" stop-color="#B8862B"/></linearGradient>
+        <radialGradient id="egGlow" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#F5EAD2" stop-opacity=".55"/><stop offset="1" stop-color="#F5EAD2" stop-opacity="0"/></radialGradient>
       </defs>
       <circle cx="120" cy="120" r="118" fill="url(#egGlow)"/>
-      <circle cx="120" cy="120" r="104" fill="none" stroke="#B8862B" stroke-opacity=".4" stroke-width="1" stroke-dasharray="1.5 5"/>
-      <circle cx="120" cy="120" r="84" fill="none" stroke="#B8862B" stroke-opacity=".55" stroke-width="1"/>
-      <circle cx="120" cy="36" r="7" fill="#8C8577" stroke="#FBF7EE" stroke-width="2.5"/>
-      <circle cx="192.7" cy="162" r="7" fill="#2F55B8" stroke="#FBF7EE" stroke-width="2.5"/>
-      <circle cx="47.3" cy="162" r="7" fill="#B39058" stroke="#FBF7EE" stroke-width="2.5"/>
-      <circle cx="120" cy="120" r="60" fill="url(#egNavy)"/>
-      <circle cx="120" cy="120" r="53" fill="none" stroke="url(#egGold)" stroke-width="1" stroke-opacity=".75"/>
-      <path d="M120 92l22 9v16c0 14-9.5 25.5-22 31-12.5-5.5-22-17-22-31v-16z" fill="none" stroke="url(#egGold)" stroke-width="2.4" stroke-linejoin="round"/>
-      <path d="M120 108v20M110 118h20" stroke="url(#egGold)" stroke-width="2.6" stroke-linecap="round"/>
-      <path d="M206 50l2.5 6.5 6.5 2.5-6.5 2.5-2.5 6.5-2.5-6.5-6.5-2.5 6.5-2.5z" fill="#C9973A" opacity=".85"/>
-      <path d="M36 66l1.6 4.2 4.2 1.6-4.2 1.6-1.6 4.2-1.6-4.2-4.2-1.6 4.2-1.6z" fill="#C9973A" opacity=".6"/>
+      <circle cx="120" cy="120" r="104" fill="none" stroke="#B8862B" stroke-opacity=".22" stroke-width="1" stroke-dasharray="1.5 5"/>
+      <circle cx="120" cy="120" r="84" fill="none" stroke="#B8862B" stroke-opacity=".3" stroke-width="1"/>
+      <circle cx="120" cy="36" r="4" fill="#8C8577" fill-opacity=".55"/>
+      <circle cx="192.7" cy="162" r="4" fill="#2F55B8" fill-opacity=".45"/>
+      <circle cx="47.3" cy="162" r="4" fill="#B39058" fill-opacity=".6"/>
+      <circle cx="120" cy="120" r="56" fill="#FFFDF9" fill-opacity=".6" stroke="#B8862B" stroke-opacity=".35" stroke-width="1"/>
+      <path d="M120 94l20 8.2v14.6c0 12.8-8.6 23.3-20 28.2-11.4-4.9-20-15.4-20-28.2v-14.6z" fill="none" stroke="#B8862B" stroke-opacity=".55" stroke-width="1.6" stroke-linejoin="round"/>
+      <path d="M120 109v17M111.5 117.5h17" stroke="#B8862B" stroke-opacity=".55" stroke-width="1.6" stroke-linecap="round"/>
+      <path d="M206 50l2 5.2 5.2 2-5.2 2-2 5.2-2-5.2-5.2-2 5.2-2z" fill="#C9973A" opacity=".4"/>
     </svg>
     <div class="hero-txt">
       <div class="eyebrow">Medical Plan Review</div>
