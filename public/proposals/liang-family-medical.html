@@ -142,6 +142,8 @@ button,input{font-family:inherit}
 .bill .row.claim b{color:var(--green)}
 .bill .row.cut b,.bill .row.cut .k{color:var(--red)}
 .bill .row .k small{display:block;font-size:11px;color:var(--muted)}
+.case-note{font-size:12.5px;color:var(--muted);margin:-4px 0 14px}
+.case-note b{color:var(--ink)}
 .bscen-h{display:flex;align-items:center;gap:10px;margin:18px 0 10px;font-family:var(--serif);font-size:17px;font-weight:700;color:var(--navy)}
 .bscen-h:first-child{margin-top:0}
 .bscen-h .ic{width:20px;height:20px;color:var(--gold-deep)}
@@ -430,7 +432,7 @@ body.locked #pwGate{display:flex}
           <td class="p1">可以<small>在公立医院内选专科医生</small></td>
           <td class="p2 good">可以<small>私立专科医生自己挑，预约快</small></td></tr>
         <tr><td>住更好的病房 / 去私立</td>
-          <td class="p0 bad">可以住，但账单先按比例折算，再按每项限额赔<small>差额全部自己付</small></td>
+          <td class="p0 bad">可以住，但账单先按比例折算，再按每项限额赔<small>私立：住院费只算 16%、手术费只算 10%；公立 A 级病房：住院费 27%（PR 25%）、手术费 25%</small></td>
           <td class="p1">去私立医院：费用先按 70% 折算再赔</td>
           <td class="p2 good">本身就保私立，不用折算</td></tr>
 
@@ -525,7 +527,9 @@ body.locked #pwGate{display:flex}
       <button type="button" data-v="100000">S$10 万</button>
       <button type="button" data-v="300000">S$30 万</button>
     </div>
+    <div class="seg" id="caseSeg"><button type="button" class="on" data-c="med">无手术</button><button type="button" data-c="surg">有手术</button></div>
   </div>
+  <p class="case-note" id="caseNote"></p>
   <div class="num" id="bills"></div>
 
   <!-- ===== 03 全家保费 ===== -->
@@ -579,14 +583,14 @@ body.locked #pwGate{display:flex}
 
   <div class="notes">
     <p>本页由持牌顾问袁媛（RNF：YY-300823216）整理，仅供参考，<b>不构成要约、保险建议或投保邀请</b>；保费与承保以 AIA 正式报价单、条款及<b>核保结果</b>为准。</p>
-    <p><b>MediShield Life</b>：按 MOH 公布、2026 年 6 月 1 日起入院 / 治疗适用的额度；免赔额为 80 岁及以下；A / B1 级病房、私立医院或非津贴治疗先按比例折算（PR 折算比例较低）。</p>
+    <p><b>MediShield Life</b>：按 MOH 公布、2026 年 6 月 1 日起入院 / 治疗适用的额度；免赔额为 80 岁及以下；A / B1 级病房、私立医院或非津贴治疗先按比例折算：私立医院住院费按 16%、手术费按 10%；公立 A 级病房住院费公民 27% / PR 25%、手术费 25%（CPF，2026 年 6 月 1 日起）。账单示例的 MSL 赔付按这些比例和 MOH 限额估算，实际以 CPF / 医院结算为准。</p>
     <p><b>保费</b>：AIA HealthShield Gold Max v8.7（2025 年 10 月）及 Max VitalHealth Pro 现行费率，含 9% GST，按下一生日年龄。公立 / 私立为<b>升级费用</b>（总保费减 MediShield Life），AIA 报价单上的总保费含 MSL。未计政府津贴、回扣及 Vitality 折扣。主险可用 MediSave 每人每年 S$300（40 岁及以下）/ S$600（41–70 岁）/ S$900（71 岁以上），附加险付现金。保费不保证。</p>
     <p><b>公立 / 私立保障</b>：5% 共付封顶须 AIA 合作医生、预授权或急诊；附加险不赔免赔额。附加险额度按 AIA 2025 年 10 月及 2026 年 10 月资料；癌症药物金额 = MOH 清单限额 × 倍数。最后投保年龄 75 岁（下一生日）。不建议未评估就退旧买新。受 SDIC 保单持有人保障计划保护。</p>
     <div class="srcs-h">资料来源</div>
     <ol class="srcs">
       <li>MOH，<a href="https://www.moh.gov.sg/managing-expenses/schemes-and-subsidies/medishield-life/medishield-life-benefits/" target="_blank" rel="noopener noreferrer">MediShield Life Benefits</a>（2026 年 6 月 1 日起）</li>
       <li>MOH，<a href="https://www.moh.gov.sg/managing-expenses/schemes-and-subsidies/medishield-life/how-to-make-a-medishield-life-claim/" target="_blank" rel="noopener noreferrer">How to make a MediShield Life claim</a>（免赔额、共付）</li>
-      <li>CPF，<a href="https://www.cpf.gov.sg/member/healthcare-financing/medishield-life/medishieldlife-calculator-examples" target="_blank" rel="noopener noreferrer">MediShield Life calculator examples</a>（C 级账单示例）</li>
+      <li>CPF，<a href="https://www.cpf.gov.sg/member/annex/understand-medishield-life-payouts" target="_blank" rel="noopener noreferrer">Understand MediShield Life Payouts</a>（按比例折算、共付）</li>
       <li>MOH，<a href="https://www.moh.gov.sg/managing-expenses/schemes-and-subsidies/medishield-life/medishield-life-premium-and-subsidy-tables/" target="_blank" rel="noopener noreferrer">MediShield Life Premium and Subsidy Tables</a></li>
       <li>AIA Singapore，<a href="https://www.aia.com.sg/content/dam/sg-wise/en/docs/our-products/en/aia-healthshield-gold-max-english-brochure.pdf" target="_blank" rel="noopener noreferrer">AIA HealthShield Gold Max 产品手册</a></li>
       <li>AIA Singapore，<a href="https://www.aia.com.sg/content/dam/sg-wise/en/docs/help-support/healthshieldsupport/faqs-on-HSG-changes-effective-1oct2026.pdf" target="_blank" rel="noopener noreferrer">FAQs on HSG changes effective 1 Oct 2026</a></li>
@@ -769,42 +773,71 @@ body.locked #pwGate{display:flex}
   /* ===== 账单示例 ===== */
   var bill=50000, rider=true;
   function oop(x,rd){if(x<=DED)return x;return rd?DED+Math.min(.05*(x-DED),CAP):DED+.10*(x-DED);}
+  /* MediShield Life 估算：先按比例折算，再按 MOH 限额封顶，扣免赔额和共付（10% / 5% / 3%） */
+  var bcase='med';
+  var CASES={
+    med:{days:7, ward:1, surg:0, label:'无手术', note:'<b>无手术</b>：内科住院 7 天，账单全是住院费（病房 + 治疗）。'},
+    surg:{days:4, ward:.6, surg:.4, label:'有手术', note:'<b>有手术</b>：住院 4 天，账单 6 成住院费、4 成手术费；手术按最复杂的表 7 算（MSL 每次最多 S$3,900）。'}
+  };
+  var MSLF={pri:{ward:.16, surg:.10}, pubA:{ward:.27, surg:.25}};
+  function mslCalc(x,hosp){
+    var c=CASES[bcase], f=MSLF[hosp];
+    var wardLim=830*c.days+800*Math.min(c.days,2), surgLim=3900;
+    var wardB=x*c.ward, surgB=x*c.surg, wardP=wardB*f.ward, surgP=surgB*f.surg;
+    var claim=Math.min(wardP,wardLim)+Math.min(surgP,surgLim);
+    var ded=Math.min(claim,DED);
+    var co=.10*Math.max(0,Math.min(claim,5000)-DED)+.05*Math.max(0,Math.min(claim,10000)-5000)+.03*Math.max(0,claim-10000);
+    var pay=Math.max(0,claim-ded-co);
+    return {wardB:wardB, surgB:surgB, wardP:wardP, surgP:surgP, wardLim:wardLim, surgLim:surgLim, claim:claim, ded:ded, co:co, pay:pay, self:x-pay, f:f, days:c.days};
+  }
   function renderBills(){
+    $('caseNote').innerHTML=CASES[bcase].note+' MSL 在公立 A 级病房按公民的折算比例。';
     /* 公立方案去私立医院：账单先按 70% 折算，折掉的 30% 自付，再扣免赔额和共付 */
     function calc(x,pro){
       var base=x*pro, cut=x-base, ded=Math.min(base,DED), rest=Math.max(base-DED,0);
       var co=rider?Math.min(.05*rest,CAP):.10*rest, pay=rest-co;
       return {cut:cut, ded:ded, co:co, pay:pay, self:x-pay};
     }
+    function bar(pay){var pc=Math.max(0,Math.min(100,pay/bill*100));return '<div class="bar"><i class="c" style="width:'+pc+'%"></i><i class="s" style="width:'+(100-pc)+'%"></i></div>';}
     function ipCard(op,scope,pro){
-      var r=calc(bill,pro), pc=Math.max(0,Math.min(100,r.pay/bill*100));
+      var r=calc(bill,pro);
       return '<div class="bill" style="--pc:'+op.pc+';--tc:'+op.tc+'"><h4>'+ico(op.icon)+op.name+'</h4><div class="scope">'+scope+'</div>'+
         '<div class="row"><span class="k">账单</span><b>'+sgd(bill)+'</b></div>'+
         (pro<1?'<div class="row cut"><span class="k">先按 70% 折算<small>折掉的 30% 自己付</small></span><b>'+sgd(r.cut)+'</b></div>':'')+
         '<div class="row"><span class="k">免赔额</span><b>'+sgd(r.ded)+'</b></div>'+
         '<div class="row"><span class="k">共付 '+(rider?'5%（封顶 S$6,000）':'10%')+'</span><b>'+sgd(r.co)+'</b></div>'+
         '<div class="row claim"><span class="k">保险赔</span><b>'+sgd(r.pay)+'</b></div>'+
-        '<div class="row self"><span class="k">自己付</span><b>'+sgd(r.self)+'</b></div>'+
-        '<div class="bar"><i class="c" style="width:'+pc+'%"></i><i class="s" style="width:'+(100-pc)+'%"></i></div></div>';
+        '<div class="row self"><span class="k">自己付</span><b>'+sgd(r.self)+'</b></div>'+bar(r.pay)+'</div>';
     }
-    function mslCard(txt,eg){
-      return '<div class="bill" style="--pc:'+OPT[0].pc+';--tc:'+OPT[0].tc+'"><h4>'+ico(OPT[0].icon)+'只有 MediShield Life</h4><div class="scope">按每项限额赔</div>'+
-        '<p class="txt">'+txt+'</p>'+(eg?'<div class="eg">'+eg+'</div>':'')+'</div>';
+    function mslCard(hosp){
+      var m=mslCalc(bill,hosp), pct=function(v){return Math.round(v*100)+'%';};
+      var scope=hosp==='pri'?'私立：住院费按 16%、手术费按 10% 算':'A 级病房：住院费按 27%（PR 25%）、手术费按 25% 算';
+      var rows='<div class="row"><span class="k">账单</span><b>'+sgd(bill)+'</b></div>';
+      if(m.surgB>0){
+        rows+='<div class="row cut"><span class="k">打折后<small>住院费 '+sgd(m.wardB)+' × '+pct(m.f.ward)+' + 手术费 '+sgd(m.surgB)+' × '+pct(m.f.surg)+'</small></span><b>'+sgd(m.wardP+m.surgP)+'</b></div>'+
+          '<div class="row"><span class="k">再按限额封顶<small>住院 '+m.days+' 天最多 '+sgd(m.wardLim)+'；表 7 手术最多 '+sgd(m.surgLim)+'</small></span><b>'+sgd(m.claim)+'</b></div>';
+      }else{
+        rows+='<div class="row cut"><span class="k">打折后<small>住院费 × '+pct(m.f.ward)+'</small></span><b>'+sgd(m.wardP)+'</b></div>'+
+          '<div class="row"><span class="k">再按限额封顶<small>住院 '+m.days+' 天最多 '+sgd(m.wardLim)+'</small></span><b>'+sgd(m.claim)+'</b></div>';
+      }
+      rows+='<div class="row"><span class="k">免赔额</span><b>'+sgd(m.ded)+'</b></div>'+
+        '<div class="row"><span class="k">共付 10% / 5% / 3%</span><b>'+sgd(m.co)+'</b></div>'+
+        '<div class="row claim"><span class="k">MSL 赔</span><b>'+sgd(m.pay)+'</b></div>'+
+        '<div class="row self"><span class="k">自己付</span><b>'+sgd(m.self)+'</b></div>'+bar(m.pay);
+      return '<div class="bill" style="--pc:'+OPT[0].pc+';--tc:'+OPT[0].tc+'"><h4>'+ico(OPT[0].icon)+'只有 MediShield Life</h4><div class="scope">'+scope+'</div>'+rows+'</div>';
     }
     $('bills').innerHTML=
-      '<div class="bscen-h">'+ico('i-gem')+'在私立医院住院<small>账单 '+sgd(bill)+'</small></div>'+
-      '<div class="bills">'+
-        mslCard('私立账单先<b>大幅打折</b>，再按每天病房费、每次手术的限额赔，绝大部分要自己付，<b>没有封顶</b>。')+
-        ipCard(OPT[1],'公立保单去私立医院',.7)+
-        ipCard(OPT[2],'私立医院标准房',1)+
-      '</div>'+
-      '<div class="bscen-h">'+ico('i-hospital')+'在公立医院 A 级病房住院<small>账单 '+sgd(bill)+'</small></div>'+
-      '<div class="bills">'+
-        mslCard('A 级病房也要<b>先按比例打折</b>，再按限额赔，超出部分自付。只有住 B2 / C 津贴病房，MSL 才赔得多。','CPF 例：C 级账单 S$4,000 → MSL 赔 S$1,800，<b>自付 S$2,200</b>')+
-        ipCard(OPT[1],'公立 A 级单人房',1)+
-        ipCard(OPT[2],'私立保单住公立也按实际赔',1)+
-      '</div>';
+      '<div class="bscen-h">'+ico('i-gem')+'在私立医院住院<small>账单 '+sgd(bill)+' · '+CASES[bcase].label+'</small></div>'+
+      '<div class="bills">'+mslCard('pri')+ipCard(OPT[1],'公立保单去私立医院',.7)+ipCard(OPT[2],'私立医院标准房',1)+'</div>'+
+      '<div class="bscen-h">'+ico('i-hospital')+'在公立医院 A 级病房住院<small>账单 '+sgd(bill)+' · '+CASES[bcase].label+'</small></div>'+
+      '<div class="bills">'+mslCard('pubA')+ipCard(OPT[1],'公立 A 级单人房',1)+ipCard(OPT[2],'私立保单住公立也按实际赔',1)+'</div>';
   }
+  document.querySelectorAll('#caseSeg button').forEach(function(b){
+    b.addEventListener('click',function(){
+      document.querySelectorAll('#caseSeg button').forEach(function(x){x.classList.toggle('on',x===b);});
+      bcase=b.dataset.c; renderBills();
+    });
+  });
   document.querySelectorAll('#billSeg button').forEach(function(b){
     b.addEventListener('click',function(){
       document.querySelectorAll('#billSeg button').forEach(function(x){x.classList.toggle('on',x===b);});
