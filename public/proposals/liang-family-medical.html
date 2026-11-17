@@ -401,8 +401,8 @@ body.locked #pwGate{display:flex}
           <td class="p0">普通病房每天 S$830<small>住院头两天每天另加 S$800；ICU 每天 S$5,140</small></td>
           <td class="p1">按实际</td>
           <td class="p2">按实际</td></tr>
-        <tr><td>手术费</td>
-          <td class="p0">按手术等级定额<small>例：表 1 每次 S$240–490；表 4 每次 S$2,310–2,460；更复杂的手术额度更高</small></td>
+        <tr><td>手术费<small style="font-weight:500">含植入物</small></td>
+          <td class="p0">按手术等级定额<small>每次 S$240（表 1，简单手术）至 S$3,900（表 7，复杂手术）；植入物每次 S$7,000</small></td>
           <td class="p1">按实际</td>
           <td class="p2">按实际</td></tr>
         <tr><td>社区医院（出院后康复）</td>
@@ -412,13 +412,13 @@ body.locked #pwGate{display:flex}
         <tr><td>住院前后的门诊<small style="font-weight:500">检查、复诊、拿药</small></td>
           <td class="p0 bad">不保<small>部分可用 MediSave 付</small></td>
           <td class="p1">在公立医院治疗：前后最长各 12 个月<small>私立医院一般各 100 天</small></td>
-          <td class="p2 good">一般前后各 100 天<small>看 AIA 优选医生：住院前最长 13 个月、住院后最长 15 个月</small></td></tr>
+          <td class="p2 good">住院前最长 13 个月，住院后最长 15 个月<small>看 AIA 优选医生、在 AIA 合作医院住院（2026 年 10 月起住院后再延长 60 天）；其他情况一般各 100 天</small></td></tr>
 
         <tr class="sec"><td colspan="4"><span class="in"><svg class="ic"><use href="#i-ribbon"/></svg>门诊大病（不住院也很花钱）</span></td></tr>
         <tr class="key"><td>癌症药物<small style="font-weight:500">国家癌症药物清单内</small><span class="key-badge">关键</span></td>
-          <td class="p0">每月 S$200–S$12,800<small>按药物和适应症定额；另有癌症药物相关服务每年 S$4,500</small></td>
-          <td class="p1">每月最高约 16 倍 MSL 限额</td>
-          <td class="p2 good">每月最高约 21 倍 MSL 限额<small>含 Cancer Care Pro</small></td></tr>
+          <td class="p0">每月 S$200–S$12,800<small>按药物类别定额。例：限额 S$1,000 的药，每月最多赔 S$1,000；另有癌症药物相关服务每年 S$4,500</small></td>
+          <td class="p1">每月 S$3,200–S$204,800<small>MSL 限额的 16 倍。例：同一种药，每月最多赔 S$16,000</small></td>
+          <td class="p2 good">每月 S$4,200–S$268,800<small>MSL 限额的 21 倍（含 Cancer Care Pro）。例：同一种药，每月最多赔 S$21,000</small></td></tr>
         <tr class="key"><td>癌症药物<small style="font-weight:500">清单外（新药、自费药）</small><span class="key-badge">关键</span></td>
           <td class="p0 bad">不保</td>
           <td class="p1">每年最高 S$10 万</td>
@@ -534,9 +534,9 @@ body.locked #pwGate{display:flex}
 
   <div class="notes">
     <p>本页面由持牌顾问袁媛（RNF：YY-300823216）整理，仅供初步了解与预算参考，<b>不构成要约、保险建议或投保邀请</b>，也非 AIA 或政府官方渠道。实际保费与承保以 AIA 正式报价单、保单条款及<b>核保结果</b>为准。</p>
-    <p><b>MediShield Life</b> 额度按 MOH / CPF 公布、适用于 2026 年 6 月 1 日或之后入院 / 治疗的标准（年龄 80 岁及以下的免赔额）；在 A / B1 级病房、私立医院或非津贴治疗，账单会先按比例折算（PR 的折算比例比公民低）再按限额计算。MediShield Life 只保合理、必要的治疗，各项具体限额以 MOH 最新公布为准。</p>
+    <p><b>MediShield Life</b> 额度按 MOH 官网 MediShield Life Benefits 页公布、适用于 2026 年 6 月 1 日或之后入院 / 治疗的标准（年龄 80 岁及以下的免赔额）；在 A / B1 级病房、私立医院或非津贴治疗，账单会先按比例折算（PR 的折算比例比公民低）再按限额计算。MediShield Life 只保合理、必要的治疗，各项具体限额以 MOH 最新公布为准。</p>
     <p><b>保费</b>按 AIA HealthShield Gold Max v8.7（2025 年 10 月）及 Max VitalHealth Pro 现行费率表估算，含 9% GST，含 MediShield Life；未计入政府 MediShield Life 保费津贴、回扣及 AIA Vitality 折扣。MediSave 可付额度：MediShield Life 全额，主险其余部分每人每年上限 S$300（下一生日 40 岁及以下）/ S$600（41–70 岁）/ S$900（71 岁以上）；附加险只能付现金。实际扣款受账户余额影响。住院险及 MediShield Life 保费都不保证，会随年龄、理赔经验和政策调整（MediShield Life 保费在 2025–2027 年分阶段调整中）。</p>
-    <p><b>公立 / 私立方案保障</b>摘自 AIA HealthShield Gold Max 产品资料：免赔额按 80 岁及以下；5% 共付每年 S$6,000 封顶须由 AIA 合作医生治疗、经预授权或急诊入院，否则按条款计算；附加险不报销免赔额。癌症门诊、住院前后等附加险额度按 AIA 2025 年 10 月公布资料整理，具体以最新产品摘要和保单条款为准。综合健保最后投保年龄为 75 岁（下一生日年龄）。不建议在未评估利弊前退旧买新。本保单受 SDIC 保单持有人保障计划保护。</p>
+    <p><b>公立 / 私立方案保障</b>摘自 AIA HealthShield Gold Max 产品资料：免赔额按 80 岁及以下；5% 共付每年 S$6,000 封顶须由 AIA 合作医生治疗、经预授权或急诊入院，否则按条款计算；附加险不报销免赔额。癌症门诊、住院前后等附加险额度按 AIA 2025 年 10 月及 2026 年 10 月公布资料整理；癌症药物金额按 MOH 现行清单限额（每月 S$200–S$12,800）乘以倍数换算，清单限额调整时跟着变。具体以最新产品摘要和保单条款为准。综合健保最后投保年龄为 75 岁（下一生日年龄）。不建议在未评估利弊前退旧买新。本保单受 SDIC 保单持有人保障计划保护。</p>
     <div class="srcs-h">资料来源</div>
     <ol class="srcs">
       <li>MOH，<a href="https://www.moh.gov.sg/managing-expenses/schemes-and-subsidies/medishield-life/medishield-life-benefits/" target="_blank" rel="noopener noreferrer">MediShield Life Benefits</a>（适用于 2026 年 6 月 1 日或之后入院 / 治疗）</li>
