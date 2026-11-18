@@ -3,6 +3,8 @@
 const esc = (s) =>
   String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 
+const MARK = '<svg class="mark" viewBox="0 0 64 64" width="30" height="30" aria-hidden="true"><rect width="64" height="64" rx="8" fill="#15202B"/><path d="M16 48V16l32 32V16" fill="none" stroke="#F4C20D" stroke-width="7" stroke-linecap="square"/></svg>';
+
 const CABLES = ['signal', 'aqua', 'violet', 'cloud'];
 
 function heroDiagram(d) {
@@ -141,7 +143,7 @@ export function renderPage({ t, cfg, base, altHref, selfUrl, altUrl, altLang }) 
 
 <header class="site-header">
   <div class="wrap header-row">
-    <a class="wordmark" href="#top" translate="no" aria-label="${esc(cfg.brand)}">NOURRA<span>.AI</span></a>
+    <a class="wordmark" href="#top" translate="no" aria-label="${esc(cfg.brand)}">${MARK}<b>NOURRA<span>.AI</span></b></a>
     <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">${esc(t.nav.menu)}</button>
     <nav id="site-nav" class="site-nav" aria-label="${esc(t.nav.menu)}">
       <ul>
@@ -326,7 +328,7 @@ export function renderPage({ t, cfg, base, altHref, selfUrl, altUrl, altLang }) 
 <footer class="site-footer">
   <div class="wrap footer-grid">
     <div>
-      <p class="wordmark" translate="no">NOURRA<span>.AI</span></p>
+      <p class="wordmark" translate="no">${MARK}<b>NOURRA<span>.AI</span></b></p>
       <p>${esc(t.footer.tagline)}</p>
       <p>${esc(isZh ? cfg.location.zh : cfg.location.en)}</p>
     </div>

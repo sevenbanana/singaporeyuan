@@ -27,7 +27,7 @@ python3 -m http.server 4173 -d dist # 本地预览：http://localhost:4173
 | 版式与组件样式 | `src/styles.css` |
 | 页面结构、两张示意图 | `src/template.mjs` |
 | 导航与表单交互 | `src/main.js` |
-| 图标、分享图 | `assets/favicon.svg`、`assets/og.png` |
+| Logo、图标、分享图 | `assets/logo-mark.svg`（N 字标，页头页脚内嵌同一图形，改形状时同步改 `src/template.mjs` 顶部的 `MARK`）、`assets/favicon.svg`、`assets/og.png` |
 
 改完任何一个文件后重新运行 `node build.mjs`。两种语言的 JSON 结构必须保持一致。
 
@@ -60,7 +60,6 @@ python3 -m http.server 4173 -d dist # 本地预览：http://localhost:4173
 2. 确认并替换联系邮箱（现为占位的 `hello@nourra.ai`），把 `contactEmailConfirmed` 改为 `true`。
 3. 填入公司注册名称与注册号（页脚）。
 4. 接入并实测表单；补隐私政策。
-5. 换上正式 Logo 和分享图。
 6. 请法务过一遍“我们不做的事”、常见问题和页脚免责声明。这些是公开承诺，必须与实际业务一致。
 7. 请英文母语者通读英文版。
 
@@ -69,7 +68,7 @@ python3 -m http.server 4173 -d dist # 本地预览：http://localhost:4173
 - **自建机房的可公开信息**：地点、建设阶段、电力容量、上电时间、现场照片（现在页面只写“正在自建”，没有任何具体数字）
 - **自有工程与运维团队的可公开信息**：人数、资质证书、过往项目照片
 
-- 正式 Logo、中文品牌名、品牌色（现为文字标与暂定配色）
+- 中文品牌名；Logo 已定为 N 字标，如需印刷用的矢量全套（横版、反白、单色）另做
 - 公司注册主体与注册地址
 - 对外联系方式：邮箱、电话或微信、办公地址
 - 可公开的团队背景（`content/*.json` 里 `trust.team`，现为关闭状态）
