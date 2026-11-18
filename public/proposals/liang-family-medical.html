@@ -32,7 +32,7 @@ button,input{font-family:inherit}
 
 /* ---------- 标题 ---------- */
 .hero{position:relative;z-index:1}
-.emblem{position:absolute;top:-30px;right:-18px;width:236px;height:236px;pointer-events:none}
+.emblem{position:absolute;top:-14px;right:0;width:176px;height:176px;pointer-events:none}
 .hero-txt{max-width:calc(100% - 250px)}
 .hero h1{margin-top:10px;font-family:var(--serif);font-size:38px;line-height:1.25;font-weight:700;color:var(--navy);letter-spacing:.5px}
 .hero h1 span{display:block;font-size:28px;color:var(--gold-deep);margin-top:4px}
@@ -140,6 +140,31 @@ button,input{font-family:inherit}
 .bill .row.self{border-top:1px dashed var(--line);margin-top:4px;padding-top:8px}
 .bill .row.self b{color:var(--red);font-size:21px}
 .bill .row.claim b{color:var(--green)}
+.bill .row.cut b,.bill .row.cut .k{color:var(--red)}
+.bill .row .k small{display:block;font-size:11px;color:var(--muted)}
+.case-note{font-size:12.5px;color:var(--muted);margin:-4px 0 14px}
+.bref{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--grey);border-radius:14px;padding:13px 18px 14px;box-shadow:var(--shadow);margin-bottom:24px}
+.bref-h{display:flex;align-items:center;flex-wrap:wrap;gap:4px 10px;font-size:14.5px;font-weight:800;color:var(--navy)}
+.bref-h .ic{width:18px;height:18px;color:var(--grey)}
+.bref-h small{font-size:12.5px;font-weight:500;color:var(--muted)}
+.bref-flow{display:flex;flex-wrap:wrap;align-items:center;gap:5px;margin-top:10px;font-size:12.5px;color:var(--muted)}
+.bref-flow .st{display:inline-flex;align-items:baseline;gap:4px;background:var(--gold-tint-2);border-radius:9px;padding:4px 8px;white-space:nowrap}
+.bref-flow .st b{color:var(--ink);font-size:13.5px}
+.bref-flow .ar{color:var(--line2,#CBC5B8);font-weight:700}
+.bref-flow .st.claim{background:var(--green-tint)}.bref-flow .st.claim b{color:var(--green)}
+.bref-flow .st.self{background:var(--red-tint)}.bref-flow .st.self b{color:var(--red);font-size:15px}
+.bref-body{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px 16px;align-items:center;margin-top:10px}
+.bref-body .bref-flow{margin-top:0}
+.bref-res{display:flex;gap:6px;align-items:center}
+@media (max-width:760px){.bref-body{grid-template-columns:1fr}}
+.bref .bar{margin-top:10px}
+.bref .fn{margin-top:6px;font-size:11.5px;color:var(--muted)}
+.case-note b{color:var(--ink)}
+.bscen-h{display:flex;align-items:center;gap:10px;margin:18px 0 10px;font-family:var(--serif);font-size:17px;font-weight:700;color:var(--navy)}
+.bscen-h:first-child{margin-top:0}
+.bscen-h .ic{width:20px;height:20px;color:var(--gold-deep)}
+.bscen-h small{font-family:var(--font);font-size:12.5px;font-weight:500;color:var(--muted)}
+.bills+.bscen-h{margin-top:26px}
 .bar{display:flex;height:8px;border-radius:6px;overflow:hidden;background:var(--red-tint);margin-top:10px}
 .bar i{display:block;height:100%;transition:width .35s ease}
 .bar .c{background:var(--green)}.bar .s{background:var(--red)}
@@ -257,7 +282,7 @@ body.locked #pwGate{display:flex}
 /* ---------- 手机 ---------- */
 @media (max-width:760px){
   .page{padding:30px 16px}
-  .emblem{top:-14px;right:-10px;width:104px;height:104px}
+  .emblem{top:-6px;right:-4px;width:86px;height:86px}
   .hero-txt{max-width:none}
   .hero .eyebrow{padding-right:90px}
   .hero h1{font-size:27px}
@@ -354,22 +379,25 @@ body.locked #pwGate{display:flex}
   <header class="hero">
     <svg class="emblem" viewBox="0 0 240 240" aria-hidden="true">
       <defs>
-        <radialGradient id="egGlow" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#F5EAD2" stop-opacity=".95"/><stop offset="1" stop-color="#F5EAD2" stop-opacity="0"/></radialGradient>
-        <linearGradient id="egNavy" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#1C3A8F"/><stop offset="1" stop-color="#13286B"/></linearGradient>
-        <linearGradient id="egGold" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#E2BC6E"/><stop offset="1" stop-color="#B8862B"/></linearGradient>
+        <linearGradient id="emShield" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#3A62C8"/><stop offset=".5" stop-color="#2A4CA6"/><stop offset=".5" stop-color="#1F3D93"/><stop offset="1" stop-color="#1C3A8F"/></linearGradient>
+        <linearGradient id="emHeart" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#C9524B"/><stop offset=".5" stop-color="#C9524B"/><stop offset=".5" stop-color="#DE6B63"/><stop offset="1" stop-color="#DE6B63"/></linearGradient>
       </defs>
-      <circle cx="120" cy="120" r="118" fill="url(#egGlow)"/>
-      <circle cx="120" cy="120" r="104" fill="none" stroke="#B8862B" stroke-opacity=".4" stroke-width="1" stroke-dasharray="1.5 5"/>
-      <circle cx="120" cy="120" r="84" fill="none" stroke="#B8862B" stroke-opacity=".55" stroke-width="1"/>
-      <circle cx="120" cy="36" r="7" fill="#8C8577" stroke="#FBF7EE" stroke-width="2.5"/>
-      <circle cx="192.7" cy="162" r="7" fill="#2F55B8" stroke="#FBF7EE" stroke-width="2.5"/>
-      <circle cx="47.3" cy="162" r="7" fill="#B39058" stroke="#FBF7EE" stroke-width="2.5"/>
-      <circle cx="120" cy="120" r="60" fill="url(#egNavy)"/>
-      <circle cx="120" cy="120" r="53" fill="none" stroke="url(#egGold)" stroke-width="1" stroke-opacity=".75"/>
-      <path d="M120 92l22 9v16c0 14-9.5 25.5-22 31-12.5-5.5-22-17-22-31v-16z" fill="none" stroke="url(#egGold)" stroke-width="2.4" stroke-linejoin="round"/>
-      <path d="M120 108v20M110 118h20" stroke="url(#egGold)" stroke-width="2.6" stroke-linecap="round"/>
-      <path d="M206 50l2.5 6.5 6.5 2.5-6.5 2.5-2.5 6.5-2.5-6.5-6.5-2.5 6.5-2.5z" fill="#C9973A" opacity=".85"/>
-      <path d="M36 66l1.6 4.2 4.2 1.6-4.2 1.6-1.6 4.2-1.6-4.2-4.2-1.6 4.2-1.6z" fill="#C9973A" opacity=".6"/>
+      <!-- 圆底 -->
+      <circle cx="120" cy="126" r="104" fill="#E4ECF8"/>
+      <!-- 保单 -->
+      <rect x="98" y="28" width="106" height="138" rx="10" fill="#E9EFF9"/>
+      <rect x="112" y="28" width="92" height="138" rx="10" fill="#FBFCFF"/>
+      <path d="M144 47.5c-1.8-2.6-4.6-3.6-7.6-3.6-4.6 0-7.8 2.4-7.8 5.8 0 8.4 16.4 4.2 16.4 12.6 0 3.6-3.6 6.2-8.4 6.2-3.6 0-6.6-1.4-8.6-4M136.8 39v34" fill="none" stroke="#B39058" stroke-width="4.2" stroke-linecap="round"/>
+      <path d="M158 57h30" stroke="#C9A96E" stroke-width="5" stroke-linecap="round"/>
+      <path d="M126 88h62M126 100h62M126 112h62" stroke="#1C3A8F" stroke-opacity=".78" stroke-width="5" stroke-linecap="round"/>
+      <path d="M156 130h32M156 142h32M156 154h32" stroke="#C9A96E" stroke-width="5" stroke-linecap="round"/>
+      <!-- 盾牌 + 十字 = 医疗保障 -->
+      <path d="M84 92l40 14.5v31c0 29-18 49-40 58.5-22-9.5-40-29.5-40-58.5v-31z" fill="url(#emShield)"/>
+      <path d="M77 117h14v13h13v14H91v13H77v-13H64v-14h13z" fill="#C8D5F0" transform="translate(-2.5 2.5)"/>
+      <path d="M77 117h14v13h13v14H91v13H77v-13H64v-14h13z" fill="#FFFFFF"/>
+      <!-- 心 + 心电图 = 健康 -->
+      <path d="M152 202s-31-18-31-38c0-10 7.6-17.5 16.8-17.5 6.3 0 11 3.4 14.2 8.4 3.2-5 7.9-8.4 14.2-8.4 9.2 0 16.8 7.5 16.8 17.5 0 20-31 38-31 38z" fill="url(#emHeart)"/>
+      <path d="M108 174h32l6-12 9 23 7-13h36" fill="none" stroke="#FFFFFF" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
     </svg>
     <div class="hero-txt">
       <div class="eyebrow">Medical Plan Review</div>
@@ -420,7 +448,7 @@ body.locked #pwGate{display:flex}
           <td class="p1">可以<small>在公立医院内选专科医生</small></td>
           <td class="p2 good">可以<small>私立专科医生自己挑，预约快</small></td></tr>
         <tr><td>住更好的病房 / 去私立</td>
-          <td class="p0 bad">可以住，但账单先按比例折算，再按每项限额赔<small>差额全部自己付</small></td>
+          <td class="p0 bad">可以住，但账单先按比例折算，再按每项限额赔<small>私立：住院费只算 16%、手术费只算 10%；公立 A 级病房：住院费 27%（PR 25%）、手术费 25%</small></td>
           <td class="p1">去私立医院：费用先按 70% 折算再赔</td>
           <td class="p2 good">本身就保私立，不用折算</td></tr>
 
@@ -483,7 +511,7 @@ body.locked #pwGate{display:flex}
           <td class="p2 good">5%，每年封顶 S$6,000<small>看 AIA 合作医生、预授权或急诊；只买主险则 10% 不封顶</small></td></tr>
         <tr class="key"><td>一年最多自己付<span class="key-badge">关键</span></td>
           <td class="p0 bad">没有上限<small>超出每项限额的部分全部自付</small></td>
-          <td class="p1 good">约 S$9,500 / 人<small>S$3,500 + S$6,000</small></td>
+          <td class="p1 good">约 S$9,500 / 人<small>在公立医院：S$3,500 + S$6,000；去私立先按 70% 折算，折掉的部分另付</small></td>
           <td class="p2 good">约 S$9,500 / 人<small>S$3,500 + S$6,000</small></td></tr>
 
         <tr class="sec nokey"><td colspan="4"><span class="in"><svg class="ic"><use href="#i-doc"/></svg>其他</span></td></tr>
@@ -505,7 +533,7 @@ body.locked #pwGate{display:flex}
 
   <!-- ===== 02 账单示例 ===== -->
   <div class="sec-hd" id="bill"><span class="sbadge"><svg class="ic"><use href="#i-receipt"/></svg></span><div><div class="eyebrow">02 · Claim Example</div><h2>一张住院账单，自己付多少</h2></div><span class="line"></span></div>
-  <p class="sec-sub">费用合理、全部可赔，住方案对应病房，看 AIA 合作医生，本年还没用过免赔额。</p>
+  <p class="sec-sub">同一笔账单，分别在私立医院和公立医院 A 级病房住院。假设费用合理、全部可赔，看 AIA 合作医生，本年还没用过免赔额。</p>
   <div class="ctl-row">
     <span class="lb"><svg class="ic"><use href="#i-receipt"/></svg>账单</span>
     <div class="seg gold" id="billSeg">
@@ -515,8 +543,10 @@ body.locked #pwGate{display:flex}
       <button type="button" data-v="100000">S$10 万</button>
       <button type="button" data-v="300000">S$30 万</button>
     </div>
+    <div class="seg" id="caseSeg"><button type="button" class="on" data-c="med">无手术</button><button type="button" data-c="surg">有手术</button></div>
   </div>
-  <div class="bills num" id="bills"></div>
+  <p class="case-note" id="caseNote"></p>
+  <div class="num" id="bills"></div>
 
   <!-- ===== 03 全家保费 ===== -->
   <div class="sec-hd" id="prem"><span class="sbadge"><svg class="ic"><use href="#i-coins"/></svg></span><div><div class="eyebrow">03 · Premium</div><h2>全家保费：今年每人交多少</h2></div><span class="line"></span></div>
@@ -569,14 +599,14 @@ body.locked #pwGate{display:flex}
 
   <div class="notes">
     <p>本页由持牌顾问袁媛（RNF：YY-300823216）整理，仅供参考，<b>不构成要约、保险建议或投保邀请</b>；保费与承保以 AIA 正式报价单、条款及<b>核保结果</b>为准。</p>
-    <p><b>MediShield Life</b>：按 MOH 公布、2026 年 6 月 1 日起入院 / 治疗适用的额度；免赔额为 80 岁及以下；A / B1 级病房、私立医院或非津贴治疗先按比例折算（PR 折算比例较低）。</p>
+    <p><b>MediShield Life</b>：按 MOH 公布、2026 年 6 月 1 日起入院 / 治疗适用的额度；免赔额为 80 岁及以下；A / B1 级病房、私立医院或非津贴治疗先按比例折算：私立医院住院费按 16%、手术费按 10%；公立 A 级病房住院费公民 27% / PR 25%、手术费 25%（CPF，2026 年 6 月 1 日起）。账单示例的 MSL 赔付按这些比例和 MOH 限额估算，实际以 CPF / 医院结算为准。</p>
     <p><b>保费</b>：AIA HealthShield Gold Max v8.7（2025 年 10 月）及 Max VitalHealth Pro 现行费率，含 9% GST，按下一生日年龄。公立 / 私立为<b>升级费用</b>（总保费减 MediShield Life），AIA 报价单上的总保费含 MSL。未计政府津贴、回扣及 Vitality 折扣。主险可用 MediSave 每人每年 S$300（40 岁及以下）/ S$600（41–70 岁）/ S$900（71 岁以上），附加险付现金。保费不保证。</p>
     <p><b>公立 / 私立保障</b>：5% 共付封顶须 AIA 合作医生、预授权或急诊；附加险不赔免赔额。附加险额度按 AIA 2025 年 10 月及 2026 年 10 月资料；癌症药物金额 = MOH 清单限额 × 倍数。最后投保年龄 75 岁（下一生日）。不建议未评估就退旧买新。受 SDIC 保单持有人保障计划保护。</p>
     <div class="srcs-h">资料来源</div>
     <ol class="srcs">
       <li>MOH，<a href="https://www.moh.gov.sg/managing-expenses/schemes-and-subsidies/medishield-life/medishield-life-benefits/" target="_blank" rel="noopener noreferrer">MediShield Life Benefits</a>（2026 年 6 月 1 日起）</li>
       <li>MOH，<a href="https://www.moh.gov.sg/managing-expenses/schemes-and-subsidies/medishield-life/how-to-make-a-medishield-life-claim/" target="_blank" rel="noopener noreferrer">How to make a MediShield Life claim</a>（免赔额、共付）</li>
-      <li>CPF，<a href="https://www.cpf.gov.sg/member/healthcare-financing/medishield-life/medishieldlife-calculator-examples" target="_blank" rel="noopener noreferrer">MediShield Life calculator examples</a>（C 级账单示例）</li>
+      <li>CPF，<a href="https://www.cpf.gov.sg/member/annex/understand-medishield-life-payouts" target="_blank" rel="noopener noreferrer">Understand MediShield Life Payouts</a>（按比例折算、共付）</li>
       <li>MOH，<a href="https://www.moh.gov.sg/managing-expenses/schemes-and-subsidies/medishield-life/medishield-life-premium-and-subsidy-tables/" target="_blank" rel="noopener noreferrer">MediShield Life Premium and Subsidy Tables</a></li>
       <li>AIA Singapore，<a href="https://www.aia.com.sg/content/dam/sg-wise/en/docs/our-products/en/aia-healthshield-gold-max-english-brochure.pdf" target="_blank" rel="noopener noreferrer">AIA HealthShield Gold Max 产品手册</a></li>
       <li>AIA Singapore，<a href="https://www.aia.com.sg/content/dam/sg-wise/en/docs/help-support/healthshieldsupport/faqs-on-HSG-changes-effective-1oct2026.pdf" target="_blank" rel="noopener noreferrer">FAQs on HSG changes effective 1 Oct 2026</a></li>
@@ -759,24 +789,83 @@ body.locked #pwGate{display:flex}
   /* ===== 账单示例 ===== */
   var bill=50000, rider=true;
   function oop(x,rd){if(x<=DED)return x;return rd?DED+Math.min(.05*(x-DED),CAP):DED+.10*(x-DED);}
+  /* MediShield Life 估算：先按比例折算，再按 MOH 限额封顶，扣免赔额和共付（10% / 5% / 3%） */
+  var bcase='med';
+  var CASES={
+    med:{days:7, ward:1, surg:0, label:'无手术', note:'<b>无手术</b>：内科住院 7 天，账单全是住院费（病房 + 治疗）。'},
+    surg:{days:4, ward:.6, surg:.4, label:'有手术', note:'<b>有手术</b>：住院 4 天，账单 6 成住院费、4 成手术费；手术按最复杂的表 7 算（MSL 每次最多 S$3,900）。'}
+  };
+  var MSLF={pri:{ward:.16, surg:.10, ded:3500}, pubA:{ward:.27, surg:.25, ded:3500}, pubC:{ward:1, surg:1, ded:2500}};
+  function mslCalc(x,hosp){
+    var c=CASES[bcase], f=MSLF[hosp];
+    var wardLim=830*c.days+800*Math.min(c.days,2), surgLim=3900;
+    var wardB=x*c.ward, surgB=x*c.surg, wardP=wardB*f.ward, surgP=surgB*f.surg;
+    var claim=Math.min(wardP,wardLim)+Math.min(surgP,surgLim);
+    var D=f.ded, ded=Math.min(claim,D);
+    var co=.10*Math.max(0,Math.min(claim,5000)-D)+.05*Math.max(0,Math.min(claim,10000)-5000)+.03*Math.max(0,claim-10000);
+    var pay=Math.max(0,claim-ded-co);
+    return {wardB:wardB, surgB:surgB, wardP:wardP, surgP:surgP, wardLim:wardLim, surgLim:surgLim, claim:claim, ded:ded, co:co, pay:pay, self:x-pay, f:f, days:c.days};
+  }
   function renderBills(){
-    var self=oop(bill,rider), claim=bill-self, pc=Math.max(0,Math.min(100,claim/bill*100));
-    function ipCard(op,scope){
+    $('caseNote').innerHTML=CASES[bcase].note+' MSL 在公立 A 级病房按公民的折算比例。';
+    /* 公立方案去私立医院：账单先按 70% 折算，折掉的 30% 自付，再扣免赔额和共付 */
+    function calc(x,pro){
+      var base=x*pro, cut=x-base, ded=Math.min(base,DED), rest=Math.max(base-DED,0);
+      var co=rider?Math.min(.05*rest,CAP):.10*rest, pay=rest-co;
+      return {cut:cut, ded:ded, co:co, pay:pay, self:x-pay};
+    }
+    function bar(pay){var pc=Math.max(0,Math.min(100,pay/bill*100));return '<div class="bar"><i class="c" style="width:'+pc+'%"></i><i class="s" style="width:'+(100-pc)+'%"></i></div>';}
+    function ipCard(op,scope,pro){
+      var r=calc(bill,pro);
       return '<div class="bill" style="--pc:'+op.pc+';--tc:'+op.tc+'"><h4>'+ico(op.icon)+op.name+'</h4><div class="scope">'+scope+'</div>'+
         '<div class="row"><span class="k">账单</span><b>'+sgd(bill)+'</b></div>'+
-        '<div class="row"><span class="k">免赔额</span><b>'+sgd(Math.min(bill,DED))+'</b></div>'+
-        '<div class="row"><span class="k">共付 '+(rider?'5%（封顶 S$6,000）':'10%')+'</span><b>'+sgd(self-Math.min(bill,DED))+'</b></div>'+
-        '<div class="row claim"><span class="k">保险赔</span><b>'+sgd(claim)+'</b></div>'+
-        '<div class="row self"><span class="k">自己付</span><b>'+sgd(self)+'</b></div>'+
-        '<div class="bar"><i class="c" style="width:'+pc+'%"></i><i class="s" style="width:'+(100-pc)+'%"></i></div></div>';
+        (pro<1?'<div class="row cut"><span class="k">先按 70% 折算<small>折掉的 30% 自己付</small></span><b>'+sgd(r.cut)+'</b></div>':'')+
+        '<div class="row"><span class="k">免赔额</span><b>'+sgd(r.ded)+'</b></div>'+
+        '<div class="row"><span class="k">共付 '+(rider?'5%（封顶 S$6,000）':'10%')+'</span><b>'+sgd(r.co)+'</b></div>'+
+        '<div class="row claim"><span class="k">保险赔</span><b>'+sgd(r.pay)+'</b></div>'+
+        '<div class="row self"><span class="k">自己付</span><b>'+sgd(r.self)+'</b></div>'+bar(r.pay)+'</div>';
     }
-    $('bills').innerHTML=
-      '<div class="bill" style="--pc:'+OPT[0].pc+';--tc:'+OPT[0].tc+'"><h4>'+ico(OPT[0].icon)+'只有 MediShield Life</h4><div class="scope">看在哪住、怎么构成</div>'+
-        '<p class="txt">B2 / C 级津贴账单：MSL 能赔大部分。<br>A 级或私立：先打折、再按每项限额赔，超出全自付，<b>没有封顶</b>。</p>'+
-        '<div class="eg">CPF 例：C 级账单 S$4,000 → MSL 赔 S$1,800，<b>自付 S$2,200</b></div></div>'+
-      ipCard(OPT[1],'公立 A 级单人房')+
-      ipCard(OPT[2],'私立医院标准房');
+    function mslCard(hosp){
+      var m=mslCalc(bill,hosp), pct=function(v){return Math.round(v*100)+'%';};
+      var scope=hosp==='pri'?'私立：住院费按 16%、手术费按 10% 算':'A 级病房：住院费按 27%（PR 25%）、手术费按 25% 算';
+      var rows='<div class="row"><span class="k">账单</span><b>'+sgd(bill)+'</b></div>';
+      if(m.surgB>0){
+        rows+='<div class="row cut"><span class="k">打折后<small>住院费 '+sgd(m.wardB)+' × '+pct(m.f.ward)+' + 手术费 '+sgd(m.surgB)+' × '+pct(m.f.surg)+'</small></span><b>'+sgd(m.wardP+m.surgP)+'</b></div>'+
+          '<div class="row"><span class="k">再按限额封顶<small>住院 '+m.days+' 天最多 '+sgd(m.wardLim)+'；表 7 手术最多 '+sgd(m.surgLim)+'</small></span><b>'+sgd(m.claim)+'</b></div>';
+      }else{
+        rows+='<div class="row cut"><span class="k">打折后<small>住院费 × '+pct(m.f.ward)+'</small></span><b>'+sgd(m.wardP)+'</b></div>'+
+          '<div class="row"><span class="k">再按限额封顶<small>住院 '+m.days+' 天最多 '+sgd(m.wardLim)+'</small></span><b>'+sgd(m.claim)+'</b></div>';
+      }
+      rows+='<div class="row"><span class="k">免赔额</span><b>'+sgd(m.ded)+'</b></div>'+
+        '<div class="row"><span class="k">共付 10% / 5% / 3%</span><b>'+sgd(m.co)+'</b></div>'+
+        '<div class="row claim"><span class="k">MSL 赔</span><b>'+sgd(m.pay)+'</b></div>'+
+        '<div class="row self"><span class="k">自己付</span><b>'+sgd(m.self)+'</b></div>'+bar(m.pay);
+      return '<div class="bill" style="--pc:'+OPT[0].pc+';--tc:'+OPT[0].tc+'"><h4>'+ico(OPT[0].icon)+'只有 MediShield Life</h4><div class="scope">'+scope+'</div>'+rows+'</div>';
+    }
+    var REF=20000, rf=(function(){var keep=bill; bill=REF; var m=mslCalc(REF,'pubC'); bill=keep; return m;})();
+    var rpc=Math.max(0,Math.min(100,rf.pay/REF*100));
+    var refHtml='<div class="bref"><div class="bref-h">'+ico('i-shield')+'先看个参考：公民住公立 B2 / C 多人房，只有 MediShield Life<small>津贴后账单 '+sgd(REF)+' · '+CASES[bcase].label+'</small></div>'+
+      '<div class="bref-body"><div class="bref-flow"><span class="st">账单 <b>'+sgd(REF)+'</b></span><span class="ar">→</span>'+
+      '<span class="st">不打折 <b>100%</b></span><span class="ar">→</span>'+
+      '<span class="st">限额封顶 <b>'+sgd(rf.claim)+'</b></span><span class="ar">→</span>'+
+      '<span class="st">免赔额 <b>'+sgd(rf.ded)+'</b></span><span class="ar">→</span>'+
+      '<span class="st">共付 <b>'+sgd(rf.co)+'</b></span><span class="ar">→</span></div>'+
+      '<div class="bref-flow bref-res"><span class="st claim">MSL 赔 <b>'+sgd(rf.pay)+'</b></span>'+
+      '<span class="st self">自己付 <b>'+sgd(rf.self)+'</b></span></div></div>'+
+      '<div class="bar"><i class="c" style="width:'+rpc+'%"></i><i class="s" style="width:'+(100-rpc)+'%"></i></div>'+
+      '<div class="fn">'+(rf.surgB>0?'封顶 = 住院 '+rf.days+' 天最多 '+sgd(rf.wardLim)+' + 表 7 手术最多 '+sgd(rf.surgLim):'封顶 = 住院 '+rf.days+' 天最多 '+sgd(rf.wardLim))+'。B2 免赔额 S$2,500（C 级 S$2,000）；PR 住多人房要先打折（住院费 50%、手术费 60%）。</div></div>';
+    $('bills').innerHTML=refHtml+
+      '<div class="bscen-h">'+ico('i-gem')+'在私立医院住院<small>账单 '+sgd(bill)+' · '+CASES[bcase].label+'</small></div>'+
+      '<div class="bills">'+mslCard('pri')+ipCard(OPT[1],'公立保单去私立医院',.7)+ipCard(OPT[2],'私立医院标准房',1)+'</div>'+
+      '<div class="bscen-h">'+ico('i-hospital')+'在公立医院 A 级病房住院<small>账单 '+sgd(bill)+' · '+CASES[bcase].label+'</small></div>'+
+      '<div class="bills">'+mslCard('pubA')+ipCard(OPT[1],'公立 A 级单人房',1)+ipCard(OPT[2],'私立保单住公立也按实际赔',1)+'</div>';
   }
+  document.querySelectorAll('#caseSeg button').forEach(function(b){
+    b.addEventListener('click',function(){
+      document.querySelectorAll('#caseSeg button').forEach(function(x){x.classList.toggle('on',x===b);});
+      bcase=b.dataset.c; renderBills();
+    });
+  });
   document.querySelectorAll('#billSeg button').forEach(function(b){
     b.addEventListener('click',function(){
       document.querySelectorAll('#billSeg button').forEach(function(x){x.classList.toggle('on',x===b);});
