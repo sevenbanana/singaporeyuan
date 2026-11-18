@@ -3,7 +3,12 @@
 const esc = (s) =>
   String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 
-const MARK = '<svg class="mark" viewBox="0 0 64 64" width="30" height="30" aria-hidden="true"><rect width="64" height="64" rx="8" fill="#15202B"/><path d="M16 48V16l32 32V16" fill="none" stroke="#F4C20D" stroke-width="7" stroke-linecap="square"/></svg>';
+// Logo：取自「诺元控股 Nourra Holdings Logo」设计稿。颜色由 styles.css 的 .mark-bar / .mark-step 控制。
+const MARK =
+  '<svg class="mark" viewBox="14 14 92 92" width="36" height="36" aria-hidden="true">' +
+  '<rect class="mark-bar" x="18" y="18" width="18" height="84" rx="3"/><rect class="mark-bar" x="84" y="18" width="18" height="84" rx="3"/>' +
+  '<rect class="mark-step" x="37" y="82" width="16" height="16" rx="2" fill-opacity=".3"/><rect class="mark-step" x="47" y="62" width="16" height="16" rx="2" fill-opacity=".55"/>' +
+  '<rect class="mark-step" x="57" y="42" width="16" height="16" rx="2" fill-opacity=".8"/><rect class="mark-step" x="67" y="22" width="16" height="16" rx="2"/></svg>';
 
 const CABLES = ['signal', 'aqua', 'violet', 'cloud'];
 
@@ -54,7 +59,7 @@ function heroDiagram(d) {
 function modeDiagram(m, i) {
   const box = (x, y, w, label, cls = '') =>
     `<rect x="${x}" y="${y}" width="${w}" height="34" rx="3" class="m-box ${cls}" />
-     <text x="${x + w / 2}" y="${y + 22}" text-anchor="middle" class="m-text"${cls.includes('us') ? ' translate="no"' : ''}>${esc(label)}</text>`;
+     <text x="${x + w / 2}" y="${y + 22}" text-anchor="middle" class="m-text${cls.includes('us') ? ' m-text--us" translate="no"' : '"'}>${esc(label)}</text>`;
   if (i === 0) {
     const sup = m.suppliers
       .map((s, n) => `${box(256, 6 + n * 43, 76, s)}<path d="M220 66 C240 66 238 ${23 + n * 43} 256 ${23 + n * 43}" class="m-line" />`)

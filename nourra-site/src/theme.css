@@ -1,17 +1,22 @@
 /* 设计变量：颜色、字体、间距都在这里改。
-   三种线缆色取自机房里光纤跳线的护套颜色（单模黄、OM3 水蓝、OM4 紫），
-   在首页图示和服务列表里代表同一条业务线，请成对修改。 */
+   深海军蓝和蓝色取自 Logo（诺元控股 Nourra Holdings 设计稿）。
+   四种线缆色在首页图示和服务列表里代表同一条业务线，请成对修改。 */
 :root {
-  --c-ground: #E8ECEA;      /* 页面底色：机房地面的冷灰 */
-  --c-panel: #F6F8F7;       /* 浅色面板 */
-  --c-ink: #15202B;         /* 正文与深色面板 */
-  --c-ink-soft: #45525D;    /* 次级文字 */
-  --c-rule: #B7C1C2;        /* 分隔线 */
-  --c-signal: #F4C20D;      /* 单模黄：主按钮、自建机房 */
-  --c-aqua: #1FB8B2;        /* OM3 水蓝：工程分包 */
-  --c-violet: #9A6BC6;      /* OM4 紫：驻场运维 */
-  --c-cloud: #DDE4E6;       /* GPU 与云（浅灰白缆） */
-  --c-link: #0A615F;        /* 浅底上的链接与强调文字 */
+  --c-ground: #EEF1F5;      /* 页面底色 */
+  --c-panel: #F8F9FB;       /* 浅色面板 */
+  --c-ink: #0A1A33;         /* Logo 深海军蓝：正文与深色面板 */
+  --c-ink-soft: #3D4A5C;    /* 次级文字 */
+  --c-rule: #C3CBD6;        /* 分隔线 */
+  --c-signal: #2B6CFF;      /* Logo 蓝：主按钮与强调 */
+  --c-on-signal: #FFFFFF;   /* 蓝底上的文字 */
+  --c-aqua: #4CC9FF;        /* Logo 深底用的亮蓝：深色面板上的强调、焦点框 */
+  --c-link: #1A4FCC;        /* 浅底上的链接 */
+  --c-deep: #13264A;        /* 深色面板里的输入框、机柜单元 */
+
+  --c-cable-1: #4CC9FF;     /* 自建机房 */
+  --c-cable-2: #F4C20D;     /* 工程分包 */
+  --c-cable-3: #9A6BC6;     /* 驻场运维 */
+  --c-cable-4: #DDE4E6;     /* GPU 与云 */
 
   --font-sans: "Archivo", "Noto Sans SC", "PingFang SC", "Hiragino Sans GB",
     "Microsoft YaHei", system-ui, sans-serif;

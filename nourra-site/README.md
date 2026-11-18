@@ -27,13 +27,13 @@ python3 -m http.server 4173 -d dist # 本地预览：http://localhost:4173
 | 版式与组件样式 | `src/styles.css` |
 | 页面结构、两张示意图 | `src/template.mjs` |
 | 导航与表单交互 | `src/main.js` |
-| Logo、图标、分享图 | `assets/logo-mark.svg`（N 字标，页头页脚内嵌同一图形，改形状时同步改 `src/template.mjs` 顶部的 `MARK`）、`assets/favicon.svg`、`assets/og.png` |
+| Logo、图标、分享图 | `assets/logo-mark.svg`（浅底）、`assets/logo-mark-dark.svg`（深底）、`assets/favicon.svg`、`assets/og.png`；页头页脚内嵌的同一图形在 `src/template.mjs` 顶部的 `MARK` |
 
 改完任何一个文件后重新运行 `node build.mjs`。两种语言的 JSON 结构必须保持一致。
 
 ## 设计说明
 
-- 三种强调色取自机房光纤跳线的护套颜色：单模黄、OM3 水蓝、OM4 紫，加一条灰白缆。
+- 深海军蓝 `#0A1A33` 和蓝 `#2B6CFF` / 亮蓝 `#4CC9FF` 取自 Logo。
   首屏图示里的四根线缆与服务列表左侧的色条一一对应，改色时请成对修改。
 - 西文用 Archivo（可变字宽），中文用 Noto Sans SC，均从 Google Fonts 加载；
   加载失败时回退到系统字体。如果访客主要在中国大陆，建议改为自托管字体。
@@ -68,7 +68,7 @@ python3 -m http.server 4173 -d dist # 本地预览：http://localhost:4173
 - **自建机房的可公开信息**：地点、建设阶段、电力容量、上电时间、现场照片（现在页面只写“正在自建”，没有任何具体数字）
 - **自有工程与运维团队的可公开信息**：人数、资质证书、过往项目照片
 
-- 中文品牌名；Logo 已定为 N 字标，如需印刷用的矢量全套（横版、反白、单色）另做
+- Logo 取自「诺元控股 Nourra Holdings Logo」设计稿；网站字样目前写 NOURRA.AI，与 Logo 稿上的“诺元控股 / NOURRA HOLDINGS”是否统一待定
 - 公司注册主体与注册地址
 - 对外联系方式：邮箱、电话或微信、办公地址
 - 可公开的团队背景（`content/*.json` 里 `trust.team`，现为关闭状态）
