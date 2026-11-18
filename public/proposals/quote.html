@@ -865,72 +865,9 @@ body{padding-bottom:92px}
 @keyframes wfade{from{opacity:0;transform:translateY(6px)}}
 .wq{font-family:var(--x-serif);font-size:27px;font-weight:700;color:var(--navy);margin:30px 0 4px;line-height:1.3}
 .wq small{display:block;font-family:var(--font);font-size:14px;font-weight:500;color:var(--muted);margin-top:6px}
-.wh3{display:flex;align-items:center;gap:8px;margin:26px 0 10px;font-family:var(--x-serif);font-size:18px;color:var(--navy)}
-.wh3 .ic{width:20px;height:20px}
 /* 第 1 步 */
-.wm-list{display:flex;flex-direction:column;gap:10px;margin-top:18px}
-.wm{display:grid;grid-template-columns:40px minmax(0,1.3fr) 112px minmax(0,1.5fr) 36px;gap:10px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:10px 12px;box-shadow:var(--x-shadow)}
-.wm .av{width:38px;height:38px;border-radius:50%;background:var(--gold-tint);display:grid;place-items:center}
-.wm .av .ic{width:18px;height:18px}
-.wm input,.wm select{font:inherit;border:1px solid var(--line);border-radius:10px;padding:9px 11px;font-size:15px;background:#fff;color:var(--ink);width:100%;min-width:0}
-.wm input:focus,.wm select:focus{outline:none;border-color:var(--gold)}
-.wm .age{display:flex;align-items:center;gap:6px}
-.wm .age span{font-size:13px;color:var(--muted)}
-.wm .del{border:0;background:transparent;color:var(--muted);font-size:17px;cursor:pointer;width:32px;height:32px;border-radius:8px}
-.wm .del:hover{background:var(--red-tint);color:var(--red)}
-.wadd{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
-.wadd button{display:inline-flex;align-items:center;gap:6px;border:1.5px dashed #D9C59C;background:var(--card);border-radius:999px;padding:8px 16px;font:inherit;font-size:14px;font-weight:800;color:var(--gold-deep);cursor:pointer}
-.wadd button .ic{width:15px;height:15px}
-.wadd button:hover{background:var(--gold-tint-2)}
 /* 第 2 步：全家卡 */
-.wopts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
-.wopt{position:relative;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px 18px 16px;box-shadow:var(--x-shadow);overflow:hidden;display:flex;flex-direction:column}
-.wopt::before{content:"";position:absolute;left:0;right:0;top:0;height:4px;background:var(--pc)}
-.wopt.on{border-color:var(--tc);box-shadow:0 0 0 2px var(--tc),var(--x-shadow)}
-.wopt-hd{display:flex;align-items:center;gap:10px}
-.wopt .oi{flex:0 0 40px;height:40px;border-radius:12px;display:grid;place-items:center;background:var(--pc)}
-.wopt .oi .ic{width:20px;height:20px;color:#fff}
-.wopt h3{font-size:16.5px;color:var(--navy);line-height:1.3}
-.wopt h3 small{display:block;font-size:11.5px;font-weight:500;color:var(--muted)}
-.wopt .amt{margin-top:10px;font-size:27px;font-weight:800;color:var(--tc);line-height:1.15}
-.wopt .amt small{font-size:12.5px;font-weight:600;color:var(--muted);margin-left:4px}
-.wopt .sub{margin-top:4px;font-size:12.5px;color:var(--muted);line-height:1.55}
-.wopt .sub b{color:var(--ink)}
-.wopt ul{list-style:none;margin:10px 0 0;padding-top:10px;border-top:1px dashed var(--line);font-size:13px}
-.wopt li{display:flex;gap:7px;align-items:center;margin-bottom:5px}
-.wopt li .ic{width:15px;height:15px}
-.wopt li .ic.x{color:var(--red)}.wopt li .ic.ok{color:var(--green)}
-.wopt .apply{margin-top:auto;padding-top:12px}
-.wopt .apply button{width:100%;border:1.5px solid var(--line);background:var(--card);border-radius:12px;padding:9px;font:inherit;font-weight:800;font-size:14px;color:var(--navy);cursor:pointer}
-.wopt .apply button:hover{border-color:var(--tc)}
-.wopt.on .apply button{background:var(--tc);border-color:var(--tc);color:#fff}
 /* 每位家人 */
-.wmp-list{display:flex;flex-direction:column;gap:12px}
-.wmp{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px 16px;box-shadow:var(--x-shadow)}
-.wmp-hd{display:flex;align-items:center;gap:10px}
-.wmp-hd .av{flex:0 0 36px;height:36px;border-radius:50%;background:var(--gold-tint);display:grid;place-items:center}
-.wmp-hd .av .ic{width:17px;height:17px}
-.wmp-hd b{display:block;font-size:15.5px;color:var(--navy)}
-.wmp-hd .m2{font-size:12.5px;color:var(--muted)}
-.wmp-hd .price{margin-left:auto;text-align:right}
-.wmp-hd .price b{font-size:18px;color:var(--navy)}
-.wmp-hd .price b small{font-size:12px;color:var(--muted);font-weight:600}
-.wmp-hd .price span{display:block;font-size:11.5px;color:var(--muted)}
-.wtier{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
-.wtier button{display:inline-flex;align-items:center;gap:6px;border:1.5px solid var(--line);background:var(--card);border-radius:12px;padding:8px 12px;font:inherit;font-size:13.5px;font-weight:700;color:var(--ink);cursor:pointer}
-.wtier button .ic{width:15px;height:15px;color:var(--tc)}
-.wtier button.on{border-color:var(--tc);background:var(--tt);color:var(--tc)}
-.wtier .glink{margin-left:auto;align-self:center;font-size:12.5px;font-weight:800;color:var(--gold-deep);text-decoration:none}
-.wsw{display:flex;flex-wrap:wrap;gap:8px 18px;margin-top:10px;font-size:13.5px;color:var(--ink)}
-.wsw label{display:inline-flex;align-items:center;gap:6px;cursor:pointer}
-.wsw input{accent-color:var(--navy);width:16px;height:16px}
-.wsw select{font:inherit;font-size:13.5px;border:1px solid var(--line);border-radius:8px;padding:4px 8px;background:#fff}
-.wgo{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
-.wgo button{border:1.5px solid var(--line);background:var(--card);border-radius:10px;padding:6px 10px;font:inherit;font-size:12.5px;font-weight:700;color:var(--ink);cursor:pointer}
-.wgo button.on{border-color:var(--gold);background:var(--gold-tint-2);color:var(--gold-deep)}
-.wmp .mnote{margin-top:8px;font-size:12.5px;color:var(--muted);background:var(--gold-tint-2);border-radius:10px;padding:7px 10px;line-height:1.6}
-.wmp.off{opacity:.65}
-.wtg{margin-left:6px;display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:700;color:var(--muted)}
 /* 折叠 */
 .wdet{margin-top:14px;background:var(--card);border:1px solid var(--line);border-radius:16px;box-shadow:var(--x-shadow);overflow:hidden}
 .wdet>summary{list-style:none;display:flex;align-items:center;gap:12px;padding:14px 18px;cursor:pointer;font-weight:800;color:var(--navy);font-size:15.5px}
@@ -946,17 +883,60 @@ body{padding-bottom:92px}
 .wskip{margin:14px 0 4px}
 .wskip button{border:1px solid var(--line);background:var(--card);border-radius:999px;padding:8px 16px;font:inherit;font-size:13.5px;font-weight:800;color:var(--muted);cursor:pointer}
 .wskip button:hover{color:var(--navy);border-color:var(--navy)}
-.wpp{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
-.wpp button{border:1.5px solid var(--line);background:var(--card);border-radius:12px;padding:7px 12px;font:inherit;font-size:13.5px;font-weight:700;color:var(--ink);cursor:pointer}
-.wpp button.on{border-color:var(--navy);background:var(--navy);color:#fff}
-.wpp button em{font-style:normal;font-size:11px;font-weight:800;color:var(--gold-deep);margin-left:4px}
-.wpp button.on em{color:var(--x-gold-soft)}
-.wswitch{position:relative;display:inline-block;width:40px;height:24px;flex:0 0 auto}
-.wswitch input{opacity:0;width:0;height:0}
-.wswitch i{position:absolute;inset:0;border-radius:999px;background:#D9D2C4;transition:.2s;cursor:pointer}
-.wswitch i::after{content:"";position:absolute;left:3px;top:3px;width:18px;height:18px;border-radius:50%;background:#fff;transition:.2s;box-shadow:0 1px 3px rgba(0,0,0,.2)}
-.wswitch input:checked+i{background:var(--green)}
-.wswitch input:checked+i::after{transform:translateX(16px)}
+/* ---------- 填空句（前 3 步） ---------- */
+.ml{position:relative;margin-top:24px;background:var(--card);border:1px solid var(--line);border-radius:22px;box-shadow:var(--x-shadow);padding:36px 44px 30px;text-align:center;overflow:hidden}
+.ml::before{content:"";position:absolute;left:0;right:0;top:0;height:4px;background:linear-gradient(90deg,var(--navy),var(--navy-2) 55%,var(--gold))}
+.ml-t{font-family:var(--x-serif);font-size:30px;font-weight:700;color:var(--navy);letter-spacing:.08em;line-height:1.3}
+.ml-s{margin-top:18px;font-size:22px;line-height:2.2;color:var(--ink)}
+.ml-s p,.mr .snt{margin:0;word-break:keep-all;overflow-wrap:anywhere}
+.fl{font:inherit;font-weight:700;color:var(--navy);background:transparent;border:0;border-bottom:2px solid var(--gold);border-radius:0;padding:0 6px;margin:0 3px;line-height:1.45;text-align:center;vertical-align:baseline;max-width:100%}
+select.fl{-webkit-appearance:none;appearance:none;cursor:pointer;padding-right:26px;text-align-last:center;text-overflow:ellipsis;
+  background:transparent url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M2.5 4.5 6 8l3.5-3.5' fill='none' stroke='%23B8862B' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") no-repeat right 5px center/13px 13px}
+.fl:hover{border-bottom-color:var(--gold-deep)}
+.fl:focus{outline:none;border-bottom-color:var(--navy);background-color:var(--gold-tint-2)}
+input.fl::placeholder{color:#C7BBA1;font-weight:600}
+input.fl[type=number]{-moz-appearance:textfield}
+input.fl::-webkit-outer-spin-button,input.fl::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
+.mls .del{display:inline-grid;place-items:center;width:28px;height:28px;margin-left:6px;border:0;border-radius:50%;background:transparent;color:var(--muted);font-size:14px;cursor:pointer;vertical-align:middle}
+.mls .del:hover{background:var(--red-tint);color:var(--red)}
+.wadd{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:8px;margin-top:18px}
+.wadd>span{font-size:14px;font-weight:700;color:var(--muted);margin-right:2px}
+.wadd button{display:inline-flex;align-items:center;gap:6px;border:1.5px dashed #D9C59C;background:#fff;border-radius:999px;padding:7px 15px;font:inherit;font-size:14px;font-weight:800;color:var(--gold-deep);cursor:pointer}
+.wadd button .ic{width:15px;height:15px}
+.wadd button:hover{background:var(--gold-tint-2)}
+.ml-hint{margin-top:12px;text-align:center;font-size:13px;color:var(--muted)}
+.ml-pr{margin-top:6px}
+.ml-pr b{font-size:28px;font-weight:800;color:var(--navy)}
+.ml-pr b small{font-size:13px;color:var(--muted);font-weight:600}
+.ml-pr span{display:block;font-size:12.5px;color:var(--muted)}
+.ml .nt{max-width:640px;margin:8px auto 0;text-align:left;font-size:12.5px;line-height:1.65;color:var(--muted);background:var(--gold-tint-2);border-radius:10px;padding:7px 11px}
+.chips{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:6px;margin-top:6px;font-size:13px}
+.chips>span{font-weight:700;color:var(--muted)}
+.chips button{border:1.5px dashed #D9C59C;background:#fff;border-radius:999px;padding:3px 12px;font:inherit;font-size:13px;font-weight:700;color:var(--gold-deep);cursor:pointer}
+.chips button.on{border-style:solid;border-color:var(--navy);background:var(--navy);color:#fff}
+.wcmp{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:22px auto 0;max-width:720px}
+.wcmp .cap{grid-column:1/-1;font-size:13px;font-weight:800;color:var(--muted);letter-spacing:.06em}
+.wcmp button{display:flex;flex-direction:column;align-items:flex-start;gap:1px;border:1.5px solid var(--line);background:#fff;border-radius:14px;padding:10px 14px;font:inherit;text-align:left;cursor:pointer;min-width:0}
+.wcmp button:hover{border-color:var(--tc)}
+.wcmp button.on{border-color:var(--tc);background:var(--tt);box-shadow:0 0 0 1.5px var(--tc)}
+.wcmp .l{display:flex;align-items:center;gap:6px;font-size:13px;font-weight:800;color:var(--tc)}
+.wcmp .l .ic{width:15px;height:15px;color:var(--tc)}
+.wcmp .a{font-size:21px;font-weight:800;color:var(--navy);line-height:1.25}
+.wcmp .s{font-size:11.5px;color:var(--muted)}
+.ml-each{margin-top:24px;padding-top:4px;border-top:1px dashed var(--line);text-align:left}
+.ml-each .h{margin:12px 0 2px;text-align:center;font-size:13px;font-weight:800;color:var(--muted);letter-spacing:.06em}
+.mr{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:2px 18px;align-items:center;padding:10px 0;border-bottom:1px dashed var(--line)}
+.mr:last-child{border-bottom:0}
+.mr .snt{font-size:17px;line-height:2.1;color:var(--ink)}
+.mr .chips{justify-content:flex-start;margin-top:0}
+.mr .who{font-weight:800;color:var(--navy);margin-right:4px}
+.mr .who small{font-size:12.5px;font-weight:600;color:var(--muted);margin-left:5px}
+.mr .pr{text-align:right;white-space:nowrap}
+.mr .pr b{font-size:17px;color:var(--navy)}
+.mr .pr b small{font-size:11.5px;color:var(--muted);font-weight:600}
+.mr .pr span{display:block;font-size:11.5px;color:var(--muted)}
+.mr .nt{grid-column:1/-1;max-width:none;margin:2px 0 4px}
+.mr.off .pr{opacity:.55}
 /* 第 4 步：总结 */
 .wsum{width:100%;border-collapse:separate;border-spacing:0;min-width:640px}
 .wsum th,.wsum td{padding:12px 14px;border-top:1px solid var(--line);font-size:14px;vertical-align:top;text-align:right}
@@ -1001,15 +981,19 @@ body{padding-bottom:84px}
   .wsteps button{flex-direction:column;gap:3px;font-size:11.5px;padding:4px 2px;text-align:center}
   .wsteps .n{flex-basis:26px;height:26px;width:26px}
   .wq{font-size:22px}
-  .wm{grid-template-columns:34px minmax(0,1fr) 84px 30px;grid-template-areas:"av name age del" "res res res res"}
-  .wm .av{grid-area:av;width:32px;height:32px}
-  .wm input[data-k=name]{grid-area:name}
-  .wm .age{grid-area:age}
-  .wm select{grid-area:res}
-  .wm .del,.wm>span:last-child{grid-area:del}
-  .wopts{grid-template-columns:1fr}
-  .wmp-hd{flex-wrap:wrap}
-  .wtier .glink{margin-left:0}
+  .ml{padding:28px 16px 22px;border-radius:18px}
+  .ml-t{font-size:23px;letter-spacing:.04em}
+  .ml-s{font-size:18.5px;line-height:2.15}
+  .mr{grid-template-columns:1fr}
+  .mr .snt{font-size:16.5px}
+  .mr .pr{text-align:left;white-space:normal}
+  .mr .pr b,.mr .pr span{display:inline;margin-right:8px}
+  .mr .pr span{white-space:nowrap}
+  .wcmp{gap:6px}
+  .wcmp button{padding:8px 9px}
+  .wcmp .l{font-size:12px;gap:4px}
+  .wcmp .a{font-size:16.5px}
+  .wcmp .s{font-size:10.5px}
   .wedits{display:flex;flex-wrap:wrap;gap:6px;margin:12px 0 10px}
   .wedits button{border:1px solid var(--line);background:var(--card);border-radius:999px;padding:6px 12px;font:inherit;font-size:12.5px;font-weight:800;color:var(--gold-deep);cursor:pointer}
   .wsum{min-width:0}
@@ -1129,37 +1113,41 @@ body{padding-bottom:84px}
       <span><svg class="ic"><use href="#i-globe"/></svg>可选全球医疗险（美国除外）</span>
       <span><svg class="ic"><use href="#i-doc"/></svg>官方价格表 · 含 9% GST</span>
     </div>
-    <p class="wlead">4 步算清全家：<b>家人 → 住院险 → 意外险 → 方案总结</b>。可以全家一样，也可以每个人选不同的档。</p>
+    <p class="wlead"><b>4 步</b>算清全家保费：家人 → 住院 → 意外 → 总结</p>
   </header>
 
   <nav class="wnav" id="wNav" aria-label="测算步骤"><div class="wsteps" id="wSteps"></div></nav>
 
   <!-- ===== 第 1 步：家人 ===== -->
   <section class="wpanel" data-p="1">
-    <h2 class="wq">先告诉我，你家有哪些人？<small>只要称呼、年龄（周岁）和身份，保费会按 AIA 官方价格表自动算。</small></h2>
-    <div class="wm-list" id="w1list"></div>
-    <div class="wadd">
-      <button type="button" data-add="spouse"><svg class="ic"><use href="#i-plus"/></svg>配偶</button>
-      <button type="button" data-add="child"><svg class="ic"><use href="#i-plus"/></svg>孩子</button>
-      <button type="button" data-add="parent"><svg class="ic"><use href="#i-plus"/></svg>父母</button>
-      <button type="button" data-add="other"><svg class="ic"><use href="#i-plus"/></svg>其他家人</button>
+    <div class="ml">
+      <h2 class="ml-t">说说你的家庭</h2>
+      <div class="ml-s" id="w1list"></div>
+      <div class="wadd"><span>还要给谁算？</span>
+        <button type="button" data-add="spouse"><svg class="ic"><use href="#i-plus"/></svg>配偶</button>
+        <button type="button" data-add="child"><svg class="ic"><use href="#i-plus"/></svg>孩子</button>
+        <button type="button" data-add="parent"><svg class="ic"><use href="#i-plus"/></svg>父母</button>
+        <button type="button" data-add="other"><svg class="ic"><use href="#i-plus"/></svg>其他家人</button>
+      </div>
     </div>
-    <div class="xtip"><svg class="ic"><use href="#i-bulb"/></svg><span><b>身份怎么选：</b>公民和 PR 都有政府的 MediShield Life；SC / PR 的配偶、子女等直系家属选「外国人 · SC/PR 家属」，保费可用家人的 MediSave 付。</span></div>
+    <p class="ml-hint">SC / PR 的配偶、孩子如果是外国人，身份选「外国人 · SC/PR 家属」</p>
   </section>
 
   <!-- ===== 第 2 步：住院险 ===== -->
   <section class="wpanel" data-p="2">
-    <h2 class="wq">住院险：每个人选哪一档？<small>先看全家一起选的价格，再按人调整，比如父母私立、孩子公立。</small></h2>
-  <div class="xgains">
+    <div class="ml">
+      <h2 class="ml-t">住院时，想要怎样的照顾？</h2>
+      <div class="ml-s" id="w2fam"></div>
+      <div class="wcmp num" id="w2opts"></div>
+      <div class="ml-each" id="w2list"></div>
+    </div>
+    <details class="wdet" id="wDetCov"><summary><svg class="ic"><use href="#i-list"/></svg><span>保障对比：只有 MSL、升级公立、升级私立<small>病房、最高赔、自付上限、癌症药物等各项额度</small></span><svg class="ic arr"><use href="#i-down"/></svg></summary><div class="in">
+    <div class="xgains">
     <div class="gt">升级多交的钱，<br>买到这三样</div>
     <div class="g"><span class="gi"><svg class="ic"><use href="#i-steth"/></svg></span><span><b>选病房、选医生</b><br>单人房 / 私立专科</span></div>
     <div class="g"><span class="gi"><svg class="ic"><use href="#i-receipt"/></svg></span><span><b>按实际费用赔</b><br>不再按每项小限额</span></div>
     <div class="g"><span class="gi"><svg class="ic"><use href="#i-wallet"/></svg></span><span><b>自付有封顶</b><br>每人每年约 S$9,500</span></div>
   </div>
-    <div class="wopts num" id="w2opts"></div>
-    <h3 class="wh3"><svg class="ic"><use href="#i-family"/></svg>每位家人单独调整</h3>
-    <div class="wmp-list" id="w2list"></div>
-    <details class="wdet" id="wDetCov"><summary><svg class="ic"><use href="#i-list"/></svg><span>保障对比：只有 MSL、升级公立、升级私立<small>病房、最高赔、自付上限、癌症药物等各项额度</small></span><svg class="ic arr"><use href="#i-down"/></svg></summary><div class="in">
   <div class="xctl">
     <span class="lb"><svg class="ic"><use href="#i-filter"/></svg>显示</span>
     <div class="xseg" id="xKeySeg"><button type="button" class="on" data-k="all">全部</button><button type="button" data-k="key">只看关键</button></div>
@@ -1288,16 +1276,19 @@ body{padding-bottom:84px}
 
     </div></details>
     <a class="xglink" id="xGlobalLink" href="quote-global.html"><span class="gi"><svg class="ic"><use href="#i-globe"/></svg></span><div><b>常回国、在几个国家生活？</b><span>新加坡计划 vs 全球医疗险（美国除外）：价格、自付、续保条件放在单独的对比页</span></div><span class="go">打开对比页 →</span></a>
-    <div class="xtip"><svg class="ic"><use href="#i-alert"/></svg><span><b>小圆姐提醒：</b>住院险要核保，投保前已有的病一般不保或除外；按合理收费赔，不是账单全额都能赔。保障以核保结果和条款为准。</span></div>
+    <div class="xtip"><svg class="ic"><use href="#i-alert"/></svg><span><b>小圆姐提醒：</b>住院险要核保，投保前已有的病一般不保；保障以核保结果和条款为准。</span></div>
   </section>
 
   <!-- ===== 第 3 步：意外险 ===== -->
   <section class="wpanel" data-p="3">
-    <h2 class="wq">意外险：要不要加？<small>按年龄自动配好产品，默认 Plan 2（最多人选）。不需要可以直接跳过。</small></h2>
+    <div class="ml">
+      <h2 class="ml-t">要不要加一份意外险？</h2>
+      <div class="ml-s" id="w3fam"></div>
+      <div class="ml-each" id="w3list"></div>
+    </div>
     <div class="wskip"><button type="button" id="w3skip">不需要意外险，直接看总结 →</button></div>
-    <div class="wmp-list" id="w3list"></div>
     <details class="wdet"><summary><svg class="ic"><use href="#i-list"/></svg><span>意外险保障内容<small>金色行 = 最常用的理赔项目</small></span><svg class="ic arr"><use href="#i-down"/></svg></summary><div class="in"><div id="beneTables"></div></div></details>
-    <div class="xtip"><svg class="ic"><use href="#i-bulb"/></svg><span><b>小圆姐提醒：</b>医疗和中医报销最常用；Plan 2 医疗额度约够 1 次核磁共振（MRI），担心要做两次就选 Plan 3 以上。意外险按每次意外算，一般不受既往症影响，以条款和核保为准。</span></div>
+    <div class="xtip"><svg class="ic"><use href="#i-bulb"/></svg><span><b>小圆姐提醒：</b>门诊和中医报销最常用；Plan 2 的医疗额度大约够做一次 MRI。</span></div>
   </section>
 
   <!-- ===== 第 4 步：方案总结 ===== -->
@@ -1808,27 +1799,51 @@ function renderAll(){
   if(step===2)renderStep2();
   if(step===3)renderStep3();
   if(step===4)renderStep4();
-  document.querySelectorAll('#xGlobalLink').forEach(a=>{a.href='quote-global.html#q='+encodeState()+'&s='+step;});
+  const gl=$w('xGlobalLink'); if(gl)gl.href=globalHref(people[0])+'#q='+encodeState()+'&s='+step;
 }
 function changed(){saveHash();renderBar();}
 
+/* ---------- 填空句：下拉框、输入框按内容自动变宽 ---------- */
+const _cv=document.createElement('canvas').getContext('2d');
+function fit(el){
+  const cs=getComputedStyle(el); _cv.font=cs.fontWeight+' '+cs.fontSize+' '+cs.fontFamily;
+  const isSel=el.tagName==='SELECT', o=isSel?el.options[el.selectedIndex]:null;
+  const txt=isSel?(o?o.text:''):(el.value||el.placeholder||'');
+  el.style.width=Math.max(el.type==='number'?40:52,Math.ceil(_cv.measureText(txt).width+(isSel?36:18)))+'px';
+}
+function fitAll(box){(box||document).querySelectorAll(box?'.fl':'.wpanel.on .fl').forEach(fit);}
+window.addEventListener('resize',()=>fitAll());
+function sel(k,opts,cur,lbl){
+  return '<select class="fl" data-k="'+k+'"'+(lbl?' aria-label="'+lbl+'"':'')+'>'+
+    opts.map(o=>'<option value="'+o[0]+'"'+(o[0]===cur?' selected':'')+(o[2]?' disabled':'')+'>'+o[1]+'</option>').join('')+'</select>';
+}
+function who(ps){return '<span class="who">'+esc(ps.name)+'<small>'+ps.age+' 岁</small></span>';}
+function notesOf(o){return o&&o.notes&&o.notes.length?'<div class="nt">'+o.notes.join('<br>')+'</div>':'';}
+function redo(){renderAll();saveHash();}
+
 /* ---------- 第 1 步：家人 ---------- */
+const RES_S=[['local','新加坡公民 / PR'],['fdep','外国人 · SC/PR 家属'],['fnon','外国人']];
 function renderStep1(){
   const box=$w('w1list');
-  box.innerHTML=people.map((ps,i)=>'<div class="wm" data-i="'+i+'">'+
-    '<span class="av">'+icw('i-user')+'</span>'+
-    '<input type="text" value="'+esc(ps.name)+'" data-k="name" aria-label="称呼" placeholder="称呼" maxlength="20">'+
-    '<label class="age"><input type="number" min="0" max="105" inputmode="numeric" value="'+ps.age+'" data-k="age" aria-label="年龄"><span>岁</span></label>'+
-    '<select data-k="res" aria-label="身份">'+RES.map(([v,l])=>'<option value="'+v+'"'+(ps.res===v?' selected':'')+'>'+l+'</option>').join('')+'</select>'+
-    (people.length>1?'<button type="button" class="del" data-del aria-label="移除">✕</button>':'<span></span>')+'</div>').join('');
-  box.querySelectorAll('.wm').forEach(row=>{
-    const ps=people[+row.dataset.i];
-    row.querySelector('[data-k=name]').addEventListener('input',e=>{ps.name=e.target.value.slice(0,20)||'家人';changed();});
-    row.querySelector('[data-k=age]').addEventListener('change',e=>{ps.age=clamp(parseInt(e.target.value||0,10)||0,0,105);e.target.value=ps.age;
+  box.innerHTML=people.map((ps,i)=>{
+    const nm=i===0&&ps.name==='我'?'':ps.name;
+    return '<p class="mls" data-i="'+i+'">'+(i===0?'我叫':'还有')+
+      '<input class="fl" type="text" data-k="name" value="'+esc(nm)+'" placeholder="'+(i===0?'你的名字':'称呼')+'" maxlength="20" aria-label="称呼">，今年'+
+      '<input class="fl" type="number" min="0" max="105" inputmode="numeric" data-k="age" value="'+ps.age+'" aria-label="年龄">岁，是'+
+      sel('res',RES_S,ps.res,'身份')+'。'+
+      (i>0?'<button type="button" class="del" data-del aria-label="移除">✕</button>':'')+'</p>';
+  }).join('');
+  box.querySelectorAll('.mls').forEach(row=>{
+    const i=+row.dataset.i, ps=people[i];
+    const nm=row.querySelector('[data-k=name]'), ag=row.querySelector('[data-k=age]'), rs=row.querySelector('[data-k=res]');
+    nm.addEventListener('input',()=>{ps.name=nm.value.slice(0,20).trim()||(i===0?'我':'家人');fit(nm);changed();});
+    ag.addEventListener('input',()=>fit(ag));
+    ag.addEventListener('change',()=>{ps.age=clamp(parseInt(ag.value||0,10)||0,0,105);ag.value=ps.age;fit(ag);
       if(paProduct(ps.age)!=='adults'&&ps.p.plan>3)ps.p.plan=3; changed();});
-    row.querySelector('[data-k=res]').addEventListener('change',e=>{ps.res=e.target.value;if(ps.res!=='local'&&ps.h.plan==='BL')ps.h.plan='B';changed();});
-    const d=row.querySelector('[data-del]'); if(d)d.addEventListener('click',()=>{people.splice(+row.dataset.i,1);renderAll();saveHash();});
+    rs.addEventListener('change',()=>{ps.res=rs.value;if(ps.res!=='local'&&ps.h.plan==='BL')ps.h.plan='B';fit(rs);changed();});
+    const d=row.querySelector('[data-del]'); if(d)d.addEventListener('click',()=>{people.splice(i,1);redo();});
   });
+  fitAll(box);
 }
 document.querySelectorAll('.wadd [data-add]').forEach(b=>b.addEventListener('click',()=>{
   const k=b.dataset.add, base=people[0], n=people.length+1, p=newPerson(n);
@@ -1837,11 +1852,49 @@ document.querySelectorAll('.wadd [data-add]').forEach(b=>b.addEventListener('cli
   else if(k==='child'){p.name='孩子'+(people.filter(x=>/^孩子/.test(x.name)).length+1);p.age=8;}
   else if(k==='parent'){p.name=people.some(x=>x.name==='父亲')?'母亲':'父亲';p.age=65;p.p.plan=2;}
   else {p.name='家人'+n;p.age=30;}
-  people.push(p); renderAll(); saveHash();
-  const inp=$w('w1list').querySelector('.wm:last-child input[data-k=age]'); if(inp)inp.select();
+  people.push(p); redo();
+  const inp=$w('w1list').querySelector('.mls:last-child input[data-k=age]'); if(inp)inp.select();
 }));
 
 /* ---------- 第 2 步：住院险 ---------- */
+const TIER_S={M:'只用政府的 MediShield Life',MF:'先不买住院险',BL:'住公立 B1 病房（4 人房）',B:'住公立医院单人房（A 级病房）',A:'住私立医院，自己挑专科医生',G:'在全球都能看病（美国除外）'};
+function tierOpts(local){return (local?['M','BL','B','A','G']:['M','B','A','G']).map(x=>[x,x==='M'&&!local?TIER_S.MF:TIER_S[x]]);}
+function riderOf(ps){
+  const t=tierOf(ps);
+  if(t==='M')return '';
+  if(t==='G')return 'g'+ps.h.gp+ps.h.go;
+  if(!ps.h.vhp)return 'n';
+  return t==='A'?'v'+(ps.h.ccp?'c':'')+(ps.h.ecp?'e':''):'v';
+}
+function riderOpts(t,cur){
+  if(t==='M'||!t)return [];
+  if(t==='G')return GOPT.map(o=>['g'+o.gp+o.go,wan(GLIM[o.gp][0])+' · 免赔 '+sgd(GDED[o.go].ded)]);
+  if(t!=='A')return [['v','自付有封顶（加附加险）'],['n','保费省一点，不加附加险']];
+  const o=[['vc','自付封顶 + 癌症药加强'],['v','自付有封顶（加附加险）'],['vce','自付封顶 + 癌症药 + 急诊加强'],['n','保费省一点，不加附加险']];
+  if(cur==='ve')o.splice(3,0,['ve','自付封顶 + 急诊加强']);
+  return o;
+}
+function setRider(ps,r){
+  if(!r)return;
+  if(r[0]==='g'){ps.h.gp=+r[1];ps.h.go=+r[2];return;}
+  if(r==='n'){ps.h.vhp=false;return;}
+  ps.h.vhp=true; if(tierOf(ps)==='A'){ps.h.ccp=r.includes('c');ps.h.ecp=r.includes('e');}
+}
+function setTier(ps,x){if(x==='M'){ps.h.on=false;return;} ps.h.on=true; ps.h.plan=(x==='BL'&&ps.res!=='local')?'B':x;}
+function riderLead(t){return t==='G'?'，每年最高赔':'，';}
+function hospSnt(ps,lead){
+  const t=tierOf(ps), r=riderOf(ps), ro=riderOpts(t,r);
+  return lead+'想'+sel('t',tierOpts(ps.res==='local'),t,'住院')+(ro.length?riderLead(t)+sel('r',ro,r,'附加选项'):'')+'。';
+}
+function hospPr(ps){
+  const h=hospOf(ps);
+  return h?'<b>'+fmt(h.total)+'<small> / 年</small></b><span>MediSave '+sgd(h.cpf)+' · 现金 '+sgd(h.cash)+'</span>':'<b>—</b><span>不买</span>';
+}
+function bindHosp(box,ps){
+  const t=box.querySelector('[data-k=t]'), r=box.querySelector('[data-k=r]');
+  t.addEventListener('change',()=>{setTier(ps,t.value);redo();});
+  if(r)r.addEventListener('change',()=>{setRider(ps,r.value);redo();});
+}
 function famIf(tier){
   let tot=0,msl=0,cash=0,cpf=0;
   people.forEach(ps=>{
@@ -1851,89 +1904,110 @@ function famIf(tier){
   return {tot,msl,cash,cpf};
 }
 function applyAll(tier){
+  if(!tier)return;
   people.forEach(ps=>{
     if(tier==='M'){ps.h.on=false;return;}
-    ps.h.on=true; ps.h.plan=tier; ps.h.vhp=true; if(tier==='A')ps.h.ccp=true;
+    ps.h.on=true; ps.h.plan=(tier==='BL'&&ps.res!=='local')?'B':tier; ps.h.vhp=true; if(tier==='A')ps.h.ccp=true;
   });
-  renderAll(); saveHash();
+  redo();
+}
+function globalHref(ps){
+  if(!ps)return 'quote-global.html';
+  const t=tierOf(ps), local=ps.res==='local';
+  const sg=t==='G'||t==='M'?'A':(local||t!=='BL'?t:'B'), gi=t==='G'?GOPT.findIndex(o=>o.gp===ps.h.gp&&o.go===ps.h.go):3;
+  return 'quote-global.html?age='+clamp(ps.age,0,65)+'&res='+ps.res+'&sg='+sg+'&gi='+gi;
 }
 function renderStep2(){
-  const anyLocal=people.some(p=>p.res==='local'), anyF=people.some(p=>p.res!=='local');
-  const cards=[
-    {t:'M',name:anyLocal?'只有 MediShield Life':'不买住院险',sub:'政府基本医保 · 公民 / PR 已在交',pc:'var(--x-grey)',tc:'#77705F',icon:'i-shield',
-      b:[['x','多人病房，医院安排医生'],['x','每项定额赔，自付无上限'],['ok','全部 MediSave 付']]},
-    {t:'B',name:'全家升级公立',sub:'HSG Max B + VitalHealth Pro B',pc:'var(--x-blue)',tc:'var(--x-blue)',icon:'i-hospital',
-      b:[['ok','公立 A 级单人房，可选医生'],['ok','按实际赔，自付有封顶'],['ok','保费大部分可用 MediSave']]},
-    {t:'A',name:'全家升级私立',sub:'HSG Max A + VitalHealth Pro A + Cancer Care Pro',pc:'linear-gradient(135deg,var(--x-champ-l),var(--x-champ) 45%,var(--x-champ-d))',tc:'var(--x-champ-d)',icon:'i-gem',
-      b:[['ok','私立医院，自选专科、少排队'],['ok','按实际赔，自付有封顶'],['ok','癌症药额度最高']]}
-  ];
-  $w('w2opts').innerHTML=cards.map(c=>{
-    const f=famIf(c.t), all=people.every(ps=>tierOf(ps)===c.t);
-    const sub=c.t==='M'?(anyLocal?'全部 MediSave 付'+(anyF?'；外国人家人没有 MSL':''):'外国人没有 MediShield Life'):
-      (f.msl?'其中 MSL '+sgd(f.msl)+' 本来就要交 · <b>升级多交 '+sgd(f.tot-f.msl)+'</b>':'MediSave 约 '+sgd(f.cpf)+' · 现金约 '+sgd(f.cash));
-    return '<div class="wopt'+(all?' on':'')+'" style="--pc:'+c.pc+';--tc:'+c.tc+'"><div class="wopt-hd"><span class="oi">'+icw(c.icon)+'</span><h3>'+c.name+'<small>'+c.sub+'</small></h3></div>'+
-      '<div class="amt">'+sgd(f.tot)+'<small>全家 / 年</small></div><div class="sub">'+sub+'</div>'+
-      '<ul>'+c.b.map(x=>'<li>'+icw(x[0]==='ok'?'i-check':'i-x',x[0])+'<span>'+x[1]+'</span></li>').join('')+'</ul>'+
-      '<div class="apply"><button type="button" data-all="'+c.t+'">'+(all?'✓ 全家都选了这个':'全家都选这个')+'</button></div></div>';
+  const n=people.length, anyLocal=people.some(p=>p.res==='local'), allLocal=people.every(p=>p.res==='local');
+  const fam=$w('w2fam'), list=$w('w2list');
+  if(n===1){
+    const ps=people[0];
+    fam.innerHTML='<p>'+hospSnt(ps,'住院的时候，我')+'</p><div class="ml-pr num">'+hospPr(ps)+'</div>'+notesOf(hospOf(ps));
+    bindHosp(fam,ps);
+    list.innerHTML=''; list.hidden=true;
+  }else{
+    const ts=people.map(tierOf), same=ts.every(x=>x===ts[0]), t0=same?ts[0]:'';
+    const topts=[['M',allLocal?TIER_S.M:anyLocal?'只用 MediShield Life / 不买':TIER_S.MF]].concat((allLocal?['BL','B','A','G']:['B','A','G']).map(x=>[x,TIER_S[x]]));
+    if(!same)topts.unshift(['','每个人不一样',1]);
+    let snt='住院的时候，我们全家想'+sel('ft',topts,t0,'全家住院');
+    if(same){
+      const rs=people.map(riderOf), rsame=rs.every(x=>x===rs[0]), ro=riderOpts(t0,rsame?rs[0]:'');
+      if(ro.length){if(!rsame)ro.unshift(['','每个人不一样',1]); snt+=riderLead(t0)+sel('fr',ro,rsame?rs[0]:'','全家附加选项');}
+    }
+    fam.innerHTML='<p>'+snt+'。</p>';
+    fam.querySelector('[data-k=ft]').addEventListener('change',e=>applyAll(e.target.value));
+    const fr=fam.querySelector('[data-k=fr]'); if(fr)fr.addEventListener('change',()=>{people.forEach(ps=>setRider(ps,fr.value));redo();});
+    list.hidden=false;
+    list.innerHTML='<div class="h">每个人也可以不一样</div>'+people.map((ps,i)=>
+      '<div class="mr" data-i="'+i+'"><div class="snt">'+hospSnt(ps,who(ps))+'</div><div class="pr num">'+hospPr(ps)+'</div>'+notesOf(hospOf(ps))+'</div>').join('');
+    list.querySelectorAll('.mr').forEach(row=>bindHosp(row,people[+row.dataset.i]));
+  }
+  const tiles=[['M',anyLocal?'只有 MSL':'不买住院险'],['B',(n>1?'全家':'升级')+'公立'],['A',(n>1?'全家':'升级')+'私立']];
+  $w('w2opts').innerHTML='<div class="cap">'+(n>1?'全家':'')+'一年保费对比，点一下就换</div>'+tiles.map(([t,l])=>{
+    const f=famIf(t), on=people.every(ps=>tierOf(ps)===t);
+    const sub=t==='M'?(anyLocal?'政府基本医保':'没有住院保障'):(f.msl?'升级多交 '+sgd(f.tot-f.msl):'MediSave '+sgd(f.cpf));
+    return '<button type="button" data-all="'+t+'" class="'+(on?'on':'')+'" style="--tc:'+TIER[t].c+';--tt:'+TIER[t].t+'"><span class="l">'+icw(TIER[t].i)+l+'</span><span class="a">'+sgd(f.tot)+'</span><span class="s">'+sub+'</span></button>';
   }).join('');
   $w('w2opts').querySelectorAll('[data-all]').forEach(b=>b.addEventListener('click',()=>applyAll(b.dataset.all)));
-
-  $w('w2list').innerHTML=people.map((ps,i)=>{
-    const local=ps.res==='local', t=tierOf(ps), h=hospOf(ps);
-    const tiers=local?['M','B','BL','A','G']:['M','B','A','G'];
-    let price='<b>—</b><span>不买</span>';
-    if(h){price='<b>'+fmt(h.total)+'<small> / 年</small></b>'+
-      (local?(h.mslOnly?'<span>MSL，全部 MediSave</span>':'<span>MSL '+sgd(h.msl)+' + 升级 '+sgd(h.total-h.msl)+'</span>'):'')+
-      '<span>MediSave '+sgd(h.cpf)+' · 现金 '+sgd(h.cash)+'</span>';}
-    let opts='';
-    if(t==='B'||t==='BL'||t==='A'){
-      opts='<div class="wsw"><label><input type="checkbox" data-f="vhp"'+(ps.h.vhp?' checked':'')+'>附加 VitalHealth Pro（共付降到 5%，每年封顶 S$6,000）</label>'+
-        (t==='A'&&ps.h.vhp?'<label><input type="checkbox" data-f="ccp"'+(ps.h.ccp?' checked':'')+'>Cancer Care Pro（癌症药物加强）</label><label><input type="checkbox" data-f="ecp"'+(ps.h.ecp?' checked':'')+'>Emergency Care Pro</label>':'')+'</div>';
-    }else if(t==='G'){
-      opts='<div class="wgo">'+[1,2].map(gp=>'<button type="button" data-gp="'+gp+'" class="'+(ps.h.gp===gp?'on':'')+'">Plan '+gp+' · 每年最高赔 '+wan(GLIM[gp][0])+'</button>').join('')+
-        [1,2].map(go=>'<button type="button" data-go2="'+go+'" class="'+(ps.h.go===go?'on':'')+'">'+(go===1?'选项一':'选项二')+' · 免赔额 '+sgd(GDED[go].ded)+'</button>').join('')+'</div>';
-    }
-    const notes=h&&h.notes&&h.notes.length?h.notes.map(n=>'<div class="mnote">'+n+'</div>').join(''):'';
-    const sg=t==='G'||t==='M'?'A':(local||t!=='BL'?t:'B'), gi=t==='G'?GOPT.findIndex(o=>o.gp===ps.h.gp&&o.go===ps.h.go):3;
-    return '<div class="wmp" data-i="'+i+'"><div class="wmp-hd"><span class="av">'+icw('i-user')+'</span><div><b>'+esc(ps.name)+'</b><span class="m2">'+ps.age+' 岁 · '+RESL[ps.res]+'</span></div><div class="price num">'+price+'</div></div>'+
-      '<div class="wtier">'+tiers.map(x=>'<button type="button" data-t="'+x+'" class="'+(t===x?'on':'')+'" style="--tc:'+TIER[x].c+';--tt:'+TIER[x].t+'">'+icw(TIER[x].i)+(x==='M'&&!local?TIER.M.lf:TIER[x].l)+'</button>').join('')+
-      '<a class="glink" href="quote-global.html?age='+clamp(ps.age,0,65)+'&res='+ps.res+'&sg='+sg+'&gi='+gi+'" data-glink>新加坡 vs 全球 ↗</a></div>'+opts+notes+'</div>';
-  }).join('');
-  $w('w2list').querySelectorAll('.wmp').forEach(row=>{
-    const ps=people[+row.dataset.i];
-    row.querySelectorAll('[data-t]').forEach(b=>b.addEventListener('click',()=>{const x=b.dataset.t;
-      if(x==='M'){ps.h.on=false;}else{ps.h.on=true;ps.h.plan=x;}
-      renderAll();saveHash();}));
-    row.querySelectorAll('[data-f]').forEach(c=>c.addEventListener('change',()=>{ps.h[c.dataset.f]=c.checked;renderAll();saveHash();}));
-    row.querySelectorAll('[data-gp]').forEach(b=>b.addEventListener('click',()=>{ps.h.gp=+b.dataset.gp;renderAll();saveHash();}));
-    row.querySelectorAll('[data-go2]').forEach(b=>b.addEventListener('click',()=>{ps.h.go=+b.dataset.go2;renderAll();saveHash();}));
-    const gl=row.querySelector('[data-glink]'); if(gl)gl.addEventListener('click',e=>{e.preventDefault();saveHash();location.href=gl.getAttribute('href')+'#q='+encodeState()+'&s=2';});
-  });
+  fitAll(fam.closest('.ml'));
 }
 
 /* ---------- 第 3 步：意外险 ---------- */
+const PAS={kids:'少儿意外险',adults:'成人意外险',elderly:'乐龄意外险'};
+const PAMED={kids:[1500,3000,5000],adults:[2000,3000,4000,5000],elderly:[1000,2000,3000]};
+function paMax(ps){return paProduct(ps.age)==='adults'?4:3;}
+function paCur(ps){return Math.min(ps.p.plan,paMax(ps));}
+function paSnt(ps,lead){
+  const prod=paProduct(ps.age);
+  let snt=lead+sel('on',[['y','要'],['n','不要']],ps.p.on?'y':'n','要不要意外险')+PAS[prod];
+  if(ps.p.on){
+    snt+='，选'+sel('pp',PAMED[prod].map((m,k)=>[String(k+1),'Plan '+(k+1)+' · 医疗报销 '+sgd(m)]),String(paCur(ps)),'计划');
+    if(prod==='kids')snt+='，加儿童重疾'+sel('ci',[['0','不加'],['1','S$30,000'],['2','S$50,000'],['3','S$100,000']],String(ps.p.ci),'儿童重疾');
+  }
+  return snt+'。';
+}
+function paChips(ps){
+  if(!ps.p.on||paProduct(ps.age)!=='adults')return '';
+  return '<div class="chips"><span>加选</span>'+[['grpLife','生活维持组'],['grpHosp','意外住院组'],['grpDis','月度伤残护理']].map(([k,l])=>
+    '<button type="button" data-pf="'+k+'" class="'+(ps.p[k]?'on':'')+'" aria-pressed="'+(ps.p[k]?'true':'false')+'">'+(ps.p[k]?'✓ ':'+ ')+l+'</button>').join('')+'</div>';
+}
+function paPr(ps){
+  const pa=calcPA(ps);
+  return ps.p.on&&pa&&pa.total?'<b>'+fmt(pa.total)+'<small> / 年</small></b><span>现金</span>':'<b>—</b><span>不买</span>';
+}
+function bindPA(box,ps){
+  box.querySelector('[data-k=on]').addEventListener('change',e=>{ps.p.on=e.target.value==='y';redo();});
+  const pp=box.querySelector('[data-k=pp]'); if(pp)pp.addEventListener('change',()=>{ps.p.plan=+pp.value;redo();});
+  const ci=box.querySelector('[data-k=ci]'); if(ci)ci.addEventListener('change',()=>{ps.p.ci=+ci.value;redo();});
+  box.querySelectorAll('[data-pf]').forEach(b=>b.addEventListener('click',()=>{ps.p[b.dataset.pf]=!ps.p[b.dataset.pf];redo();}));
+}
 function renderStep3(){
-  $w('w3list').innerHTML=people.map((ps,i)=>{
-    const prod=paProduct(ps.age), pa=calcPA(ps), plans=prod==='adults'?[1,2,3,4]:[1,2,3], cur=prod==='elderly'?Math.min(ps.p.plan,3):ps.p.plan;
-    const price=ps.p.on&&pa&&pa.total?'<b>'+fmt(pa.total)+'<small> / 年</small></b><span>现金</span>':'<b>—</b><span>不买</span>';
-    let body='';
-    if(ps.p.on){
-      body='<div class="wpp">'+plans.map(n=>'<button type="button" data-pp="'+n+'" class="'+(cur===n?'on':'')+'">Plan '+n+(n===2?'<em>最多人选</em>':'')+'</button>').join('')+'</div>';
-      if(prod==='adults')body+='<div class="wsw"><label><input type="checkbox" data-pf="grpLife"'+(ps.p.grpLife?' checked':'')+'>生活维持组</label><label><input type="checkbox" data-pf="grpHosp"'+(ps.p.grpHosp?' checked':'')+'>意外住院组</label><label><input type="checkbox" data-pf="grpDis"'+(ps.p.grpDis?' checked':'')+'>月度伤残护理</label></div>';
-      if(prod==='kids')body+='<div class="wsw"><label>附加儿童重疾 <select data-ci>'+[['0','不附加'],['1','保额 S$30,000'],['2','保额 S$50,000'],['3','保额 S$100,000']].map(([v,l])=>'<option value="'+v+'"'+(ps.p.ci===+v?' selected':'')+'>'+l+'</option>').join('')+'</select></label></div>';
-      if(pa&&pa.notes.length)body+=pa.notes.map(n=>'<div class="mnote">'+n+'</div>').join('');
+  const n=people.length, fam=$w('w3fam'), list=$w('w3list');
+  if(n===1){
+    const ps=people[0];
+    fam.innerHTML='<p>'+paSnt(ps,'意外受伤时，我')+'</p>'+paChips(ps)+'<div class="ml-pr num">'+paPr(ps)+'</div>'+notesOf(calcPA(ps));
+    bindPA(fam,ps);
+    list.innerHTML=''; list.hidden=true;
+  }else{
+    const onP=people.filter(p=>p.p.on), allOn=onP.length===n, allOff=!onP.length;
+    const top=onP.length?Math.max.apply(null,onP.map(paCur)):2, psame=onP.every(p=>paCur(p)===Math.min(top,paMax(p)));
+    const maxP=people.some(p=>paProduct(p.age)==='adults')?4:3;
+    const oo=[['y','都要'],['n','都不要']]; if(!allOn&&!allOff)oo.unshift(['','有人要、有人不要',1]);
+    let snt='意外受伤时，我们全家'+sel('fon',oo,allOn?'y':allOff?'n':'','全家意外险')+'意外险';
+    if(!allOff){
+      const po=[1,2,3,4].slice(0,maxP).map(k=>[String(k),'Plan '+k+(k===2?'（最多人选）':'')]);
+      if(!psame)po.unshift(['','每个人不一样',1]);
+      snt+='，选'+sel('fpp',po,psame?String(top):'','全家计划');
     }
-    return '<div class="wmp'+(ps.p.on?'':' off')+'" data-i="'+i+'"><div class="wmp-hd"><span class="av">'+icw('i-user')+'</span><div><b>'+esc(ps.name)+'</b><span class="m2">'+ps.age+' 岁 · '+PRODNAME[prod]+'</span></div>'+
-      '<label class="wtg"><span class="wswitch"><input type="checkbox" data-pon'+(ps.p.on?' checked':'')+'><i></i></span>'+(ps.p.on?'要':'不要')+'</label>'+
-      '<div class="price num">'+price+'</div></div>'+body+'</div>';
-  }).join('');
-  $w('w3list').querySelectorAll('.wmp').forEach(row=>{
-    const ps=people[+row.dataset.i];
-    row.querySelector('[data-pon]').addEventListener('change',e=>{ps.p.on=e.target.checked;renderAll();saveHash();});
-    row.querySelectorAll('[data-pp]').forEach(b=>b.addEventListener('click',()=>{ps.p.plan=+b.dataset.pp;renderAll();saveHash();}));
-    row.querySelectorAll('[data-pf]').forEach(c=>c.addEventListener('change',()=>{ps.p[c.dataset.pf]=c.checked;renderAll();saveHash();}));
-    const ci=row.querySelector('[data-ci]'); if(ci)ci.addEventListener('change',()=>{ps.p.ci=+ci.value;renderAll();saveHash();});
-  });
+    fam.innerHTML='<p>'+snt+'。</p>';
+    fam.querySelector('[data-k=fon]').addEventListener('change',e=>{if(!e.target.value)return;people.forEach(p=>{p.p.on=e.target.value==='y';});redo();});
+    const fpp=fam.querySelector('[data-k=fpp]'); if(fpp)fpp.addEventListener('change',()=>{if(!fpp.value)return;people.forEach(p=>{p.p.plan=Math.min(+fpp.value,paMax(p));});redo();});
+    list.hidden=false;
+    list.innerHTML='<div class="h">每个人也可以不一样</div>'+people.map((ps,i)=>
+      '<div class="mr'+(ps.p.on?'':' off')+'" data-i="'+i+'"><div class="snt">'+paSnt(ps,who(ps))+paChips(ps)+'</div><div class="pr num">'+paPr(ps)+'</div>'+notesOf(calcPA(ps))+'</div>').join('');
+    list.querySelectorAll('.mr').forEach(row=>bindPA(row,people[+row.dataset.i]));
+  }
+  fitAll(fam.closest('.ml'));
 }
 $w('w3skip').addEventListener('click',()=>{people.forEach(ps=>{ps.p.on=false;});go(4);});
 document.querySelectorAll('.wedits [data-edit]').forEach(b=>b.addEventListener('click',()=>go(+b.dataset.edit)));
