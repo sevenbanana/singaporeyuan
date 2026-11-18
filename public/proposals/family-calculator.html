@@ -1269,6 +1269,9 @@ html{scroll-padding-bottom:84px}
   .qh h1{font-size:21px}
   .sec-h h2{font-size:18px}
 }
+.qd .r.msl{color:var(--muted)}
+.qd .r.msl b{color:var(--muted);font-weight:600}
+.qd .r.msl small{display:block;font-size:11px;color:var(--muted)}
 </style>
 </head>
 <body class="locked">
@@ -1992,6 +1995,9 @@ function tierOf(ps){return ps.h.on?ps.h.plan:'M';}
 function paOn(ps){const pa=calcPA(ps);return ps.p.on&&pa&&pa.total?pa:null;}
 function memTotal(ps){const h=hospOf(ps),pa=paOn(ps);return (h?h.total:0)+(pa?pa.total:0);}
 function memSplit(ps){const h=hospOf(ps),pa=paOn(ps);return {cpf:h?h.cpf:0,cash:(h?h.cash:0)+(pa?pa.total:0)};}
+/* 公民 / PR 本来就要交 MediShield Life（全部 MediSave 付）：页面主要显示 MSL 以外要多交的钱 */
+function mslPart(ps){const h=hospOf(ps);return h&&h.msl?h.msl:0;}
+function memUp(ps){return memTotal(ps)-mslPart(ps);}
 function famTotals(){
   const t={total:0,cash:0,cpf:0,msl:0,hosp:0,pa:0};
   people.forEach(ps=>{const h=hospOf(ps),pa=paOn(ps);
@@ -2123,7 +2129,7 @@ function hdInner(ps,i){
   return '<span class="av '+av+'" aria-hidden="true">'+icw('i-'+av)+'</span>'+
     '<span class="mc-t"><b>'+esc(ps.name)+'<span>'+ps.age+' 岁</span></b>'+
     '<span class="mc-p">'+RESS[ps.res]+' · '+(diff?'<em>'+tierPlain(ps)+'</em>':tierPlain(ps))+' · '+(pa?'意外 Plan '+paCur(ps):'无意外险')+'</span></span>'+
-    '<span class="mc-amt num"><b>'+fmt(memTotal(ps))+'</b><small>/ 年</small></span>'+icw('i-down','chev');
+    '<span class="mc-amt num"><b>'+fmt(memUp(ps))+'</b><small>'+(mslPart(ps)?'多交 / 年':'/ 年')+'</small></span>'+icw('i-down','chev');
 }
 function paKey(prod,plan){
   const rows=BENE.find(b=>b.id===prod).rows, v=(r)=>rows[r][plan];
@@ -2140,8 +2146,10 @@ function edRest(ps){
     '<p class="hint">'+RESHINT[ps.res]+'</p></div>';
   s+='<div class="ed-b"><div class="ed-l"><span id="lhosp">住院时</span>'+(diff?'<small class="diff">和全家选的不一样</small>':'<small>跟全家一样，也可以单独选</small>')+'</div>'+
     '<div class="qopts" role="radiogroup" aria-labelledby="lhosp">'+(local?['M','BL','B','A','G']:['M','B','A','G']).map(x=>{
-      const nm=x==='M'&&!local?TN.MF:TN[x], sub=x==='M'&&!local?TP.MF:TP[x], pr=tierPrice(ps,x);
-      return '<button type="button" class="qopt" role="radio" aria-checked="'+(t===x)+'" data-t="'+x+'"><span class="rd"></span><span class="ot">'+nm+'<small>'+sub+'</small></span><span class="op num">'+sgd(pr)+'<small> / 年</small></span></button>';}).join('')+'</div>';
+      const nm=x==='M'&&!local?TN.MF:TN[x], up=tierPrice(ps,x)-(local?mslOf(ps):0);
+      const sub=x==='M'?(local?'政府基本医保，本来就在交 '+sgd(mslOf(ps))+' / 年':TP.MF):TP[x];
+      const pr=x==='M'&&local?'不用多交':sgd(up)+'<small>'+(local?' 多交 / 年':' / 年')+'</small>';
+      return '<button type="button" class="qopt" role="radio" aria-checked="'+(t===x)+'" data-t="'+x+'"><span class="rd"></span><span class="ot">'+nm+'<small>'+sub+'</small></span><span class="op num">'+pr+'</span></button>';}).join('')+'</div>';
   if(ro.length)s+='<label class="ed-sub"><span>'+(t==='G'?'保额与免赔额':'附加险（付现金）')+'</span><select class="sel" data-k="r">'+ro.map(o=>'<option value="'+o[0]+'"'+(o[0]===r?' selected':'')+'>'+o[1]+'</option>').join('')+'</select></label>';
   if(h&&h.notes.length)s+=h.notes.filter(n=>n!==RESHINT.fdep).map(n=>noteHTML(n,/最后投保年龄/.test(n))).join('');
   s+='</div>';
@@ -2305,15 +2313,15 @@ function renderPlan(){
   const st=famState(), n=people.length, anyL=people.some(p=>p.res==='local'), allF=n>0&&!anyL;
   const pubT=st.g==='PUB'?st.t:(famPref.tier==='BL'&&(anyL||!n)?'BL':'B');
   const G=[
-    {k:'M',ic:'i-shield',t:allF?'不买住院险':'政府基本医保',s:allF?'外国人没有 MediShield Life':'只有 MediShield Life，保费最低'},
+    {k:'M',ic:'i-shield',t:allF?'不买住院险':'政府基本医保',s:allF?'外国人没有 MediShield Life':'只有 MediShield Life，本来就在交'},
     {k:'PUB',ic:'i-hospital',t:'公立医院',s:'单人房或四人房，可选专科医生'},
     {k:'A',ic:'i-gem',t:'私立医院',s:'自己挑专科医生，少排队'},
     {k:'G',ic:'i-globe',t:'全球医疗',s:'常回国、在几个地方生活（美国除外）'}];
   const t=famTotals();
   $w('planOpts').innerHTML=G.map(o=>{
     const tier=o.k==='PUB'?pubT:o.k, on=!st.mixed&&st.g===o.k;
-    const fp=on||!n?0:famPrice(tier).tot, d=fp-t.hosp;
-    const price=!n?'<small>添加家人后显示</small>':sgd(on?t.hosp:fp)+'<small>'+(n>1?'全家住院 / 年':'住院 / 年')+'</small>'+
+    const f=on||!n?null:famPrice(tier), fp=f?f.tot:0, d=fp-t.hosp, up=on?t.hosp-t.msl:(f?f.tot-f.msl:0);
+    const price=!n?'<small>添加家人后显示</small>':(up<.5&&anyL?'S$0':sgd(up))+'<small>'+(anyL?(up<.5?'不用多交':(n>1?'全家每年多交':'每年多交')):(n>1?'全家住院 / 年':'住院 / 年'))+'</small>'+
       (on?'':Math.abs(d)<.5?'<span class="pdl eq">和现在一样</span>':'<span class="pdl '+(d>0?'up':'down')+'">比现在'+(d>0?'多 ':'省 ')+sgd(Math.abs(d))+'</span>');
     return '<button type="button" class="pc" role="radio" aria-checked="'+on+'" data-g="'+tier+'"><span class="pc-top"><span class="pi">'+icw(o.ic)+'</span><span class="rd"></span></span>'+
       '<b>'+o.t+'</b><span class="ps">'+o.s+'</span><span class="pp num">'+price+'</span></button>';
@@ -2337,7 +2345,7 @@ function renderPlan(){
   let s='<div class="pd-h"><span class="k">'+pl.k+'</span><b>'+pl.b+'</b>'+(pl.s?'<small>'+pl.s+'</small>':'')+'</div>';
   const segBtn=(k,v,on,b,sm,dis)=>'<button type="button" role="radio" aria-checked="'+on+'" data-o="'+k+'" data-v="'+v+'"'+(dis?' disabled':'')+'>'+b+(sm?'<small>'+sm+'</small>':'')+'</button>';
   if(st.g==='PUB'){
-    const fb=n?famPrice('B').tot:0, fl=n?famPrice('BL').tot:0;
+    const pb=famPrice('B'), plb=famPrice('BL'), fb=n?pb.tot-pb.msl:0, fl=n?plb.tot-plb.msl:0;
     s+='<div class="pd-o"><div class="lb">病房<small>'+(st.pubMixed?'家人选的不一样':'')+'</small></div><div class="qseg" role="radiogroup" aria-label="公立医院病房">'+
       segBtn('tier','B',!st.pubMixed&&tt==='B','A 级单人房',n?'HSG Max B · '+sgd(fb):'HSG Max B')+
       segBtn('tier','BL',!st.pubMixed&&tt==='BL','B1 四人房',!anyL&&n?'只限公民 / PR':(n?'B Lite · '+sgd(fl):'HSG Max B Lite'),!anyL&&n)+'</div></div>';
@@ -2421,15 +2429,18 @@ function qRow(ps,i){
   let d='';
   if(open){
     d+='<p class="qplan">住院：'+(t==='M'?tierName(ps):tierPlain(ps)+' · '+tierName(ps))+'<br>意外：'+paName(ps)+'</p>';
-    d+=(h?h.rows:[['不买住院险（外国人没有 MediShield Life）',0]]).map(r=>'<div class="r"><span>'+r[0]+'</span><b>'+(r[1]?fmt(r[1]):'—')+'</b></div>').join('');
+    d+=(h?h.rows:[['不买住院险（外国人没有 MediShield Life）',0]]).map(r=>/^MediShield Life/.test(r[0])?
+      '<div class="r msl"><span>'+r[0]+'<small>本来就要交，不算在多交里</small></span><b>'+fmt(r[1])+'</b></div>':
+      '<div class="r"><span>'+r[0]+'</span><b>'+(r[1]?fmt(r[1]):'—')+'</b></div>').join('');
     if(po)d+=po.rows.map(r=>'<div class="r"><span>'+r[0]+'</span><b>'+fmt(r[1])+'</b></div>').join('');
-    d+='<div class="r sp num"><span>现金约 '+sgd(sp.cash)+' · MediSave 约 '+sgd(sp.cpf)+'</span></div>';
+    const ms=mslPart(ps);
+    d+='<div class="r sp num"><span>'+(ms?'多交 '+fmt(memUp(ps))+'：':'')+'现金约 '+sgd(sp.cash)+' · MediSave 约 '+sgd(sp.cpf-ms)+'</span></div>';
     const notes=(h?h.notes:[]).concat(ps.p.on&&pa?pa.notes:[]);
     d+=notes.map(n=>'<p class="nt">'+n+'</p>').join('')+'<button type="button" class="lnk" data-edit="'+i+'">回去修改 →</button>';
   }
   return '<div class="qr'+(open?' open':'')+'" data-i="'+i+'"><button type="button" class="qr-h" aria-expanded="'+open+'">'+
     '<span class="qn"><b>'+esc(ps.name)+'<span>'+ps.age+' 岁</span></b><small>'+tierPlain(ps)+(po?' · 意外 Plan '+paCur(ps):'')+'</small></span>'+
-    '<span class="qv num">'+fmt(memTotal(ps))+'</span>'+icw('i-down','chev')+'</button>'+(open?'<div class="qd">'+d+'</div>':'')+'</div>';
+    '<span class="qv num">'+fmt(memUp(ps))+'</span>'+icw('i-down','chev')+'</button>'+(open?'<div class="qd">'+d+'</div>':'')+'</div>';
 }
 /* 方案比较：全家都换成某一档时的年保费（复用 famPrice / calcHosp，意外险不变） */
 function cmpRows(t){
@@ -2439,31 +2450,32 @@ function cmpRows(t){
   if(anyL)L.push(['BL','公立 · B1 四人房']);
   L.push(['B','公立 · A 级单人房'],['A','私立医院'],['G','全球医疗']);
   return L.map(([k,l])=>{
-    if(k===cur)return {k,l,tot:t.total,cash:t.cash,cpf:t.cpf,cur:true};
-    const f=famPrice(k); return {k,l,tot:f.tot+t.pa,cash:f.cash+t.pa,cpf:f.cpf,cur:false};
+    if(k===cur)return {k,l,tot:t.total-t.msl,cash:t.cash,cpf:t.cpf-t.msl,cur:true};
+    const f=famPrice(k); return {k,l,tot:f.tot+t.pa-f.msl,cash:f.cash+t.pa,cpf:f.cpf-f.msl,cur:false};
   });
 }
 function renderCmp(t){
   const mixed=famState().mixed;
   $w('qCmpL').innerHTML='<div class="cmpl">'+
-    (mixed?'<div class="cr cur" aria-current="true"><span class="cn">现在（家人方案不同）<small>现金 '+sgd(t.cash)+' · MediSave '+sgd(t.cpf)+'</small></span><span class="cv num"><b>'+sgd(t.total)+'</b><small>当前</small></span></div>':'')+
+    (mixed?'<div class="cr cur" aria-current="true"><span class="cn">现在（家人方案不同）<small>现金 '+sgd(t.cash)+' · MediSave '+sgd(t.cpf-t.msl)+'</small></span><span class="cv num"><b>'+sgd(t.total-t.msl)+'</b><small>当前</small></span></div>':'')+
     cmpRows(t).map(r=>{
-      const d=r.tot-t.total, dt=r.cur?'<small>当前</small>':Math.abs(d)<.5?'<small class="eq">相同</small>':'<small class="'+(d>0?'up':'down')+'">'+(d>0?'多 ':'省 ')+sgd(Math.abs(d))+'</small>';
+      const d=r.tot-(t.total-t.msl), dt=r.cur?'<small>当前</small>':Math.abs(d)<.5?'<small class="eq">相同</small>':'<small class="'+(d>0?'up':'down')+'">'+(d>0?'多 ':'省 ')+sgd(Math.abs(d))+'</small>';
       return '<button type="button" class="cr'+(r.cur?' cur':'')+'" data-cg="'+r.k+'"'+(r.cur?' aria-current="true"':'')+'><span class="cn">'+r.l+'<small>现金 '+sgd(r.cash)+' · MediSave '+sgd(r.cpf)+'</small></span><span class="cv num"><b>'+sgd(r.tot)+'</b>'+dt+'</span></button>';
     }).join('')+
-    '<p class="cmpn">全家都换成这一档时的每年保费（含意外险，附加险按现在的全家设置），点一行就换成这一档。</p></div>';
+    '<p class="cmpn">全家都换成这一档时每年要交的保费（含意外险，附加险按现在的全家设置'+(t.msl?'；不含本来就要交的 MediShield Life':'')+'），点一行就换成这一档。</p></div>';
   $w('qCmpL').querySelectorAll('[data-cg]').forEach(b=>b.addEventListener('click',()=>{if(!b.classList.contains('cur'))applyFam(b.dataset.cg);}));
 }
 function renderQuote(){
   const n=people.length, t=famTotals();
   ['qAct','qList','qListH','qCmp'].forEach(id=>{$w(id).hidden=!n;});
   if(!n){$w('qTotal').innerHTML='<div class="top"><span class="l">全家每年的保障费用</span></div><div class="amt num">S$0</div><p class="qe">加上家人以后，这里会马上算出全家的保费。</p>';$w('qList').innerHTML='';$w('qCmpL').innerHTML='';return;}
-  $w('qTotal').innerHTML='<div class="top"><span class="l">'+(n>1?icw('i-heart2')+'守护全家 '+n+' 口人 · 每年':icw('i-heart2')+'每年的保障费用')+'</span><span class="tag">本站测算</span></div>'+
-    '<div class="amt num">'+fmt(t.total)+'</div>'+
-    '<div class="mo num">平均每月约 '+sgd(t.total/12)+' · 住院 '+sgd(t.hosp)+' · 意外 '+sgd(t.pa)+'</div>'+
+  const up=t.total-t.msl, cpfUp=t.cpf-t.msl, hasM=t.msl>0;
+  $w('qTotal').innerHTML='<div class="top"><span class="l">'+icw('i-heart2')+(n>1?'守护全家 '+n+' 口人 · ':'')+(hasM?'每年要多交':'每年保费')+'</span><span class="tag">本站测算</span></div>'+
+    '<div class="amt num">'+fmt(up)+'</div>'+
+    '<div class="mo num">平均每月约 '+sgd(up/12)+' · 住院'+(hasM?'升级 ':' ')+sgd(t.hosp-t.msl)+' · 意外 '+sgd(t.pa)+'</div>'+
     '<div class="tiles num"><div class="tile"><span class="k"><i class="dot c"></i>现金</span><b>'+sgd(t.cash)+'</b><small>需要现金付的部分</small></div>'+
-    '<div class="tile"><span class="k"><i class="dot m"></i>MediSave（约）</span><b>'+sgd(t.cpf)+'</b><small>'+(t.cpf?'可用 MediSave 付，有每年上限':'这份方案没有 MediSave 部分')+'</small></div></div>'+
-    (t.msl?'<p class="msl">其中 MediShield Life '+sgd(t.msl)+' 是公民 / PR 本来就要交的政府医保。MediSave 实际扣款看账户余额和每年上限。</p>':'');
+    '<div class="tile"><span class="k"><i class="dot m"></i>MediSave（约）</span><b>'+sgd(cpfUp)+'</b><small>'+(cpfUp>.5?'可用 MediSave 付，有每年上限':'这部分不用 MediSave')+'</small></div></div>'+
+    (hasM?'<p class="msl">不含 MediShield Life '+sgd(t.msl)+'：公民 / PR 本来就要交的政府医保，全部 MediSave 付。连同 MSL，全家每年共 '+fmt(t.total)+'。</p>':'');
   renderCmp(t);
   $w('qList').innerHTML=people.map(qRow).join('');
   $w('qList').querySelectorAll('.qr').forEach(r=>{
@@ -2482,10 +2494,12 @@ function planText(){
   const t=famTotals(), msg=($w('wMsg').value||'').trim();
   const lines=people.map(ps=>{const h=hospOf(ps),pa=paOn(ps),tt=tierOf(ps);
     return '· '+ps.rname+' · '+ps.age+' 岁 · '+RESL[ps.res]+
-      '\n  住院：'+(tt==='M'?tierName(ps):tierPlain(ps)+' · '+tierName(ps))+(h?'　'+fmt(h.total):'')+
+      '\n  住院：'+(h&&h.mslOnly?'只有 MediShield Life（本来就在交 '+sgd(h.msl)+'，不用多交）':
+        (tt==='M'?tierName(ps):tierPlain(ps)+' · '+tierName(ps))+(h?'　'+(h.msl?'多交 ':'')+fmt(h.total-(h.msl||0))+(h.msl?'（另有 MSL '+sgd(h.msl)+' 本来就交）':''):''))+
       '\n  意外：'+paName(ps)+(pa?'　'+fmt(pa.total):'');});
   return '你好小圆姐，我用「家庭保障计算器」算了全家方案，想请你帮我确认：\n'+lines.join('\n')+
-    '\n全家每年约 '+fmt(t.total)+'（现金约 '+sgd(t.cash)+'，MediSave 约 '+sgd(t.cpf)+'）'+
+    (t.msl?'\n全家每年要多交约 '+fmt(t.total-t.msl)+'（现金约 '+sgd(t.cash)+'，MediSave 约 '+sgd(t.cpf-t.msl)+'），不含本来就要交的 MediShield Life '+sgd(t.msl)+'；连同 MSL 共 '+fmt(t.total)+'。':
+      '\n全家每年约 '+fmt(t.total)+'（现金约 '+sgd(t.cash)+'，MediSave 约 '+sgd(t.cpf)+'）')+
     '\n以上按 AIA 官方价格表测算，不是正式报价。'+
     (msg?'\n我想问：'+msg:'')+'\n报价链接：'+shareUrl();
 }
@@ -2559,8 +2573,8 @@ let quoteSeen=false, typing=false;
 function updateBar(){
   const bar=$w('qbar'); if(!bar)return;
   const t=famTotals(), n=people.length;
-  $w('qbT').textContent=fmt(t.total);
-  $w('qbS').textContent=(n>1?'全家每年':'每年')+' · 现金 '+sgd(t.cash)+' · MediSave '+sgd(t.cpf);
+  $w('qbT').textContent=fmt(t.total-t.msl);
+  $w('qbS').textContent=(n>1?'全家':'')+(t.msl?'每年多交':'每年')+' · 现金 '+sgd(t.cash)+' · MediSave '+sgd(t.cpf-t.msl);
   const hide=!n||quoteSeen||typing||!!curSheet;
   bar.classList.toggle('hide',hide); bar.setAttribute('aria-hidden',hide?'true':'false');
 }
