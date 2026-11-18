@@ -1189,7 +1189,8 @@ function renderClaims(){
   var r=p.get('res'); if(['local','fdep','fnon'].indexOf(r)>=0) cmp.res=r;
   var s=p.get('sg'); if(['A','B','BL'].indexOf(s)>=0) cmp.sg=s;
   var g=parseInt(p.get('gi'),10); if(g>=0&&g<4) cmp.gi=g;
-  document.getElementById('backLink').href='quote.html'+(location.hash||'');
+  /* 从哪个报价页来就回哪个：家庭保障计算器（from=calc）或原来的分步报价 */
+  document.getElementById('backLink').href=(p.get('from')==='calc'?'family-calculator.html':'quote.html')+(location.hash||'');
 })();
 renderCmp();
 
