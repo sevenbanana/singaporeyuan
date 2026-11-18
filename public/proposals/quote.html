@@ -701,6 +701,324 @@ body{padding-bottom:92px}
   .res-cmp td small{font-size:11.5px}
 }
 #cmpWhy .ic{flex:0 0 auto;margin-top:3px}
+
+/* ===================== 新版模块（同梁老师案例）：MSL vs 公立 vs 私立 ===================== */
+:root{--x-grey:#8C8577;--x-blue:#2F55B8;--x-blue-d:#2A4CA6;--x-champ:#B39058;--x-champ-d:#93713D;--x-champ-l:#D4BA87;--x-champ-t:#FBF5EA;--x-gold-soft:#D9AE5C;
+  --x-serif:"Songti SC","Noto Serif SC","STSong",Georgia,serif;--x-shadow:0 1px 2px rgba(19,40,107,.04),0 14px 34px -22px rgba(19,40,107,.28)}
+.sub-head{font-family:var(--x-serif);font-size:22px;font-weight:700;margin:54px 0 16px;gap:12px}
+.sub-head>.ic{width:44px;height:44px;padding:11px;border-radius:50%;background:linear-gradient(145deg,var(--navy-2),var(--navy));color:var(--x-gold-soft);box-shadow:0 8px 18px -10px rgba(19,40,107,.6)}
+.hero h1{font-family:var(--x-serif)}
+.emblem{position:absolute;top:-14px;right:0;width:168px;height:168px;pointer-events:none}
+.hero{padding-right:180px}
+.x-grad-pri{background:linear-gradient(135deg,var(--x-champ-l),var(--x-champ) 45%,var(--x-champ-d))}
+/* 升级买到的三样 */
+.xgains{margin:6px 0 16px;display:grid;grid-template-columns:auto repeat(3,minmax(0,1fr));align-items:center;gap:14px;background:linear-gradient(135deg,var(--navy),var(--navy-2));border-radius:16px;padding:16px 22px;color:#fff;box-shadow:var(--x-shadow)}
+.xgains .gt{font-family:var(--x-serif);font-size:16px;font-weight:700;color:var(--x-gold-soft);line-height:1.35}
+.xgains .g{display:flex;align-items:center;gap:10px;font-size:13.5px;line-height:1.45}
+.xgains .gi{flex:0 0 36px;height:36px;border-radius:50%;display:grid;place-items:center;border:1px solid rgba(217,174,92,.55)}
+.xgains .gi .ic{width:18px;height:18px;color:var(--x-gold-soft)}
+/* 控件 */
+.xctl{display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px;margin:0 0 14px}
+.xctl .lb{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:700;color:var(--muted)}
+.xctl .lb .ic{width:15px;height:15px}
+.xseg{display:inline-flex;flex-wrap:wrap;gap:3px;background:var(--card);border:1px solid var(--line);border-radius:999px;padding:4px;box-shadow:0 8px 22px -16px rgba(19,40,107,.35)}
+.xseg button{border:0;background:transparent;border-radius:999px;padding:7px 14px;font-size:13.5px;font-weight:700;color:var(--navy);cursor:pointer;white-space:nowrap;font-family:inherit}
+.xseg button.on{background:var(--navy);color:#fff}
+.xseg.gold button.on{background:var(--gold)}
+.xmob{display:none!important}
+/* 表格 */
+.xtbox{background:var(--card);border:1px solid var(--line);border-radius:16px;overflow-x:auto;box-shadow:var(--x-shadow);-webkit-overflow-scrolling:touch}
+.xth{display:flex;align-items:center;gap:8px}
+.xth .ic{width:18px;height:18px;color:rgba(255,255,255,.9)}
+.xth small{display:block;font-size:11px;font-weight:500;opacity:.8;margin-top:1px}
+.xbt{width:100%;border-collapse:separate;border-spacing:0;min-width:820px}
+.xbt th,.xbt td{text-align:left;padding:11px 14px;border-top:1px solid var(--line);font-size:14px;vertical-align:top;line-height:1.5}
+.xbt thead th{border-top:0;color:#fff;font-size:14.5px;font-weight:800;vertical-align:middle;line-height:1.3;padding:13px 14px}
+.xbt thead th:first-child{background:var(--gold-tint-2);color:var(--navy);width:150px}
+.xbt th.p0{background:var(--x-grey)}.xbt th.p1{background:linear-gradient(135deg,#3A62C8,var(--x-blue-d))}.xbt th.p2{background:linear-gradient(135deg,var(--x-champ-l),var(--x-champ) 45%,var(--x-champ-d))}
+.xbt td:first-child{font-weight:700;color:var(--navy);background:var(--card);width:150px}
+.xbt td{color:var(--ink);font-weight:600}
+.xbt td.p0{background:#F8F6F1}.xbt td.p1{background:#F3F6FD}.xbt td.p2{background:var(--x-champ-t)}
+.xbt td small{display:block;font-size:12px;font-weight:500;color:var(--muted);margin-top:1px}
+.xbt td.bad{color:var(--red)}.xbt td.good{color:var(--green)}
+.xbt tr.sec td{background:var(--gold-tint)!important;color:var(--gold-deep);font-size:13px;font-weight:800;padding:7px 14px;letter-spacing:.04em}
+.xbt tr.sec td .in{display:flex;align-items:center;gap:7px;position:sticky;left:14px;width:max-content}
+.xbt tr.sec .ic{width:16px;height:16px;color:var(--gold-deep)}
+.xkey{display:inline-block;margin-left:6px;font-size:10.5px;font-weight:800;color:#fff;background:var(--gold);border-radius:999px;padding:0 7px;vertical-align:1px}
+.xbt.keyonly tbody tr:not(.key):not(.sec){display:none}
+.xbt.keyonly tr.sec.nokey{display:none}
+.xbt td:first-child,.xbt thead th:first-child{position:sticky;left:0;z-index:1}
+.xbt td:first-child{box-shadow:1px 0 0 var(--line)}
+.xtip{margin-top:12px;display:flex;align-items:flex-start;gap:9px;font-size:13.5px;color:var(--ink);background:var(--gold-tint-2);border:1px solid #EBDDBE;border-radius:12px;padding:10px 16px;line-height:1.6}
+.xtip .ic{width:18px;height:18px;margin-top:1px}
+.xtip b{color:var(--navy)}
+/* 账单 */
+.xnote{font-size:12.5px;color:var(--muted);margin:-4px 0 14px}
+.xnote b{color:var(--ink)}
+.xbref{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--x-grey);border-radius:14px;padding:13px 18px 14px;box-shadow:var(--x-shadow);margin-bottom:24px}
+.xbref-h{display:flex;align-items:center;flex-wrap:wrap;gap:4px 10px;font-size:14.5px;font-weight:800;color:var(--navy)}
+.xbref-h .ic{width:18px;height:18px;color:var(--x-grey)}
+.xbref-h small{font-size:12.5px;font-weight:500;color:var(--muted)}
+.xbref-body{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px 16px;align-items:center;margin-top:10px}
+.xflow{display:flex;flex-wrap:wrap;align-items:center;gap:5px;font-size:12.5px;color:var(--muted)}
+.xflow .st{display:inline-flex;align-items:baseline;gap:4px;background:var(--gold-tint-2);border-radius:9px;padding:4px 8px;white-space:nowrap}
+.xflow .st b{color:var(--ink);font-size:13.5px}
+.xflow .ar{color:#CBC5B8;font-weight:700}
+.xflow .st.claim{background:var(--green-tint)}.xflow .st.claim b{color:var(--green)}
+.xflow .st.self{background:var(--red-tint)}.xflow .st.self b{color:var(--red);font-size:15px}
+.xbref .fn{margin-top:6px;font-size:11.5px;color:var(--muted)}
+.xbscen{display:flex;align-items:center;gap:10px;margin:0 0 10px;font-family:var(--x-serif);font-size:17px;font-weight:700;color:var(--navy)}
+.xbscen .ic{width:20px;height:20px;color:var(--gold-deep)}
+.xbscen small{font-family:var(--font);font-size:12.5px;font-weight:500;color:var(--muted)}
+.xbills+.xbscen{margin-top:26px}
+.xbills{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.xbill{position:relative;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px 18px;box-shadow:var(--x-shadow);overflow:hidden}
+.xbill::before{content:"";position:absolute;left:0;right:0;top:0;height:3px;background:var(--pc)}
+.xbill h4{display:flex;align-items:center;gap:8px;font-size:15px;color:var(--navy)}
+.xbill h4 .ic{width:18px;height:18px;color:var(--tc,var(--navy))}
+.xbill .scope{font-size:12px;color:var(--muted);margin:2px 0 8px 26px}
+.xbill .row{display:flex;justify-content:space-between;gap:10px;font-size:13.5px;padding:4px 0}
+.xbill .row .k{color:var(--muted)}
+.xbill .row .k small{display:block;font-size:11px;color:var(--muted)}
+.xbill .row b{font-weight:800}
+.xbill .row.self{border-top:1px dashed var(--line);margin-top:4px;padding-top:8px}
+.xbill .row.self b{color:var(--red);font-size:21px}
+.xbill .row.claim b{color:var(--green)}
+.xbill .row.cut b,.xbill .row.cut .k{color:var(--red)}
+.xbar{display:flex;height:8px;border-radius:6px;overflow:hidden;background:var(--red-tint);margin-top:10px}
+.xbar i{display:block;height:100%;transition:width .35s ease}
+.xbar .c{background:var(--green)}.xbar .s{background:var(--red)}
+/* 以后的保费 */
+.xpt{width:100%;border-collapse:separate;border-spacing:0;min-width:640px}
+.xpt th,.xpt td{padding:11px 14px;border-top:1px solid var(--line);font-size:14px;vertical-align:top;text-align:right}
+.xpt thead th{border-top:0;color:#fff;font-weight:800;font-size:14px;line-height:1.3;vertical-align:middle;padding:13px 14px}
+.xpt thead th .xth{justify-content:flex-end}
+.xpt th:first-child,.xpt td:first-child{text-align:left}
+.xpt thead th:first-child{background:var(--gold-tint-2);color:var(--navy)}
+.xpt th.p0{background:var(--x-grey)}.xpt th.p1{background:linear-gradient(135deg,#3A62C8,var(--x-blue-d))}.xpt th.p2{background:linear-gradient(135deg,var(--x-champ-l),var(--x-champ) 45%,var(--x-champ-d))}
+.xpt td:first-child{font-weight:700;color:var(--navy);background:var(--card)}
+.xpt td:first-child small{display:block;font-weight:500;font-size:12px;color:var(--muted)}
+.xpt td.p0{background:#F8F6F1}.xpt td.p1{background:#F3F6FD}.xpt td.p2{background:var(--x-champ-t)}
+.xpt td .v{font-size:17px;font-weight:800;color:var(--navy)}
+.xpt td .s{display:block;font-size:12px;color:var(--muted);margin-top:1px}
+.xpt td .s .cs{color:var(--gold-deep);font-weight:700}
+.xpt td .s i.dot{font-style:normal}
+.xpt tr.now td:first-child{color:var(--gold-deep)}
+.xmb{height:4px;border-radius:2px;margin:6px 0 0 auto;opacity:.85}
+/* 全球对比入口 */
+.xglink{margin-top:16px;display:flex;align-items:center;gap:14px;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px 18px;box-shadow:var(--x-shadow);text-decoration:none;color:inherit}
+.xglink .gi{flex:0 0 42px;height:42px;border-radius:12px;display:grid;place-items:center;background:linear-gradient(135deg,var(--gold-light),var(--gold-deep))}
+.xglink .gi .ic{width:21px;height:21px;color:#fff}
+.xglink b{display:block;font-size:15px;color:var(--navy)}
+.xglink span{font-size:13px;color:var(--muted)}
+.xglink .go{margin-left:auto;flex:0 0 auto;font-size:13.5px;font-weight:800;color:var(--gold-deep);white-space:nowrap}
+.xglink:hover{background:var(--gold-tint-2)}
+.hplans{grid-template-columns:repeat(3,minmax(0,1fr))}
+.pres .row.up{font-size:12.5px;color:var(--muted)}
+@media (max-width:760px){
+  .sub-head{font-size:19px;margin-top:46px}
+  .sub-head>.ic{width:38px;height:38px;padding:9px}
+  .hero{padding-right:0}
+  .hero h1{padding-right:74px}
+  .emblem{top:-10px;right:-6px;width:78px;height:78px}
+  .xgains{grid-template-columns:1fr;gap:10px;padding:16px 18px}
+  .xmob{display:inline-flex!important}
+  .xseg button{padding:6px 10px;font-size:13px}
+  .xbt{min-width:0;table-layout:fixed}
+  .xbt th,.xbt td{padding:9px 8px;font-size:13px}
+  .xbt thead th{font-size:13px;padding:11px 8px}
+  .xbt thead th:first-child,.xbt td:first-child{width:82px;min-width:0}
+  .xbt.show-p1 .p2,.xbt.show-p2 .p1{display:none}
+  .xbt td small{font-size:11.5px}
+  .xkey{display:block;width:max-content;margin:3px 0 0}
+  .xbt tr.sec td .in{position:static}
+  .xth .ic,.xth small{display:none}
+  .xbref-body{grid-template-columns:1fr}
+  .xbills{grid-template-columns:1fr}
+  .xpt{min-width:0;table-layout:fixed}
+  .xpt th,.xpt td{padding:9px 6px;font-size:12.5px}
+  .xpt thead th{font-size:12.5px;padding:11px 6px}
+  .xpt thead th:first-child,.xpt td:first-child{width:62px}
+  .xpt td .v{font-size:14px;letter-spacing:0}
+  .xpt td .s{font-size:10.5px;letter-spacing:0}
+  .xpt td .s i.dot{display:none}
+  .xpt td .s .cs{display:block}
+  .hplans{grid-template-columns:1fr}
+  .xglink{flex-wrap:wrap}
+  .xglink .go{margin-left:56px}
+}
+
+/* ===================== 分步骤向导 ===================== */
+.wlead{margin-top:14px;font-size:15px;color:var(--ink)}
+.wlead b{color:var(--navy)}
+.wnav{position:sticky;top:0;z-index:30;background:rgba(251,246,234,.95);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);margin:22px -32px 0;padding:10px 32px;border-bottom:1px solid var(--line)}
+.wsteps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
+.wsteps button{display:flex;align-items:center;gap:8px;border:0;background:transparent;padding:6px 4px;font:inherit;font-size:14px;font-weight:700;color:var(--muted);cursor:pointer;text-align:left;border-radius:10px;min-width:0}
+.wsteps button span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.wsteps .n{flex:0 0 28px;height:28px;border-radius:50%;display:grid;place-items:center;background:#E6DCC6;color:var(--muted);font-size:13px;font-weight:800}
+.wsteps button.on{color:var(--navy)}
+.wsteps button.on .n{background:var(--navy);color:#fff;box-shadow:0 0 0 4px rgba(19,40,107,.12)}
+.wsteps button.done .n{background:var(--green);color:#fff}
+.wsteps button:disabled{cursor:default;opacity:.5}
+.wpanel{display:none}
+.wpanel.on{display:block;animation:wfade .25s ease}
+@keyframes wfade{from{opacity:0;transform:translateY(6px)}}
+.wq{font-family:var(--x-serif);font-size:27px;font-weight:700;color:var(--navy);margin:30px 0 4px;line-height:1.3}
+.wq small{display:block;font-family:var(--font);font-size:14px;font-weight:500;color:var(--muted);margin-top:6px}
+/* 第 1 步 */
+/* 第 2 步：全家卡 */
+/* 每位家人 */
+/* 折叠 */
+.wdet{margin-top:14px;background:var(--card);border:1px solid var(--line);border-radius:16px;box-shadow:var(--x-shadow);overflow:hidden}
+.wdet>summary{list-style:none;display:flex;align-items:center;gap:12px;padding:14px 18px;cursor:pointer;font-weight:800;color:var(--navy);font-size:15.5px}
+.wdet>summary::-webkit-details-marker{display:none}
+.wdet>summary>.ic{width:20px;height:20px;flex:0 0 auto}
+.wdet>summary small{display:block;font-weight:500;color:var(--muted);font-size:12.5px;margin-top:1px}
+.wdet>summary .arr{margin-left:auto;color:var(--gold-deep);transition:transform .2s}
+.wdet[open]>summary .arr{transform:rotate(180deg)}
+.wdet>.in{padding:14px 16px 18px;border-top:1px solid var(--line);background:var(--paper)}
+.wdet .xgains{margin-top:0}
+.wnotes{margin-top:40px}
+.wnotes .notes{margin-top:0;padding-top:0;border-top:0}
+.wskip{margin:14px 0 4px}
+.wskip button{border:1px solid var(--line);background:var(--card);border-radius:999px;padding:8px 16px;font:inherit;font-size:13.5px;font-weight:800;color:var(--muted);cursor:pointer}
+.wskip button:hover{color:var(--navy);border-color:var(--navy)}
+/* ---------- 填空句（前 3 步） ---------- */
+.ml{position:relative;margin-top:24px;background:var(--card);border:1px solid var(--line);border-radius:22px;box-shadow:var(--x-shadow);padding:36px 44px 30px;text-align:center;overflow:hidden}
+.ml::before{content:"";position:absolute;left:0;right:0;top:0;height:4px;background:linear-gradient(90deg,var(--navy),var(--navy-2) 55%,var(--gold))}
+.ml-t{font-family:var(--x-serif);font-size:30px;font-weight:700;color:var(--navy);letter-spacing:.08em;line-height:1.3}
+.ml-s{margin-top:18px;font-size:22px;line-height:2.2;color:var(--ink)}
+.ml-s p,.mr .snt{margin:0;word-break:keep-all;overflow-wrap:anywhere}
+.fl{font:inherit;font-weight:700;color:var(--navy);background:transparent;border:0;border-bottom:2px solid var(--gold);border-radius:0;padding:0 6px;margin:0 3px;line-height:1.45;text-align:center;vertical-align:baseline;max-width:100%}
+select.fl{-webkit-appearance:none;appearance:none;cursor:pointer;padding-right:26px;text-align-last:center;text-overflow:ellipsis;
+  background:transparent url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M2.5 4.5 6 8l3.5-3.5' fill='none' stroke='%23B8862B' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") no-repeat right 5px center/13px 13px}
+.fl:hover{border-bottom-color:var(--gold-deep)}
+.fl:focus{outline:none;border-bottom-color:var(--navy);background-color:var(--gold-tint-2)}
+input.fl::placeholder{color:#C7BBA1;font-weight:600}
+input.fl[type=number]{-moz-appearance:textfield}
+input.fl::-webkit-outer-spin-button,input.fl::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
+.mls .del{display:inline-grid;place-items:center;width:28px;height:28px;margin-left:6px;border:0;border-radius:50%;background:transparent;color:var(--muted);font-size:14px;cursor:pointer;vertical-align:middle}
+.mls .del:hover{background:var(--red-tint);color:var(--red)}
+.wadd{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:8px;margin-top:18px}
+.wadd>span{font-size:14px;font-weight:700;color:var(--muted);margin-right:2px}
+.wadd button{display:inline-flex;align-items:center;gap:6px;border:1.5px dashed #D9C59C;background:#fff;border-radius:999px;padding:7px 15px;font:inherit;font-size:14px;font-weight:800;color:var(--gold-deep);cursor:pointer}
+.wadd button .ic{width:15px;height:15px}
+.wadd button:hover{background:var(--gold-tint-2)}
+.ml-hint{margin-top:12px;text-align:center;font-size:13px;color:var(--muted)}
+.ml-pr{margin-top:6px}
+.ml-pr b{font-size:28px;font-weight:800;color:var(--navy)}
+.ml-pr b small{font-size:13px;color:var(--muted);font-weight:600}
+.ml-pr span{display:block;font-size:12.5px;color:var(--muted)}
+.ml .nt{max-width:640px;margin:8px auto 0;text-align:left;font-size:12.5px;line-height:1.65;color:var(--muted);background:var(--gold-tint-2);border-radius:10px;padding:7px 11px}
+.chips{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:6px;margin-top:6px;font-size:13px}
+.chips>span{font-weight:700;color:var(--muted)}
+.chips button{border:1.5px dashed #D9C59C;background:#fff;border-radius:999px;padding:3px 12px;font:inherit;font-size:13px;font-weight:700;color:var(--gold-deep);cursor:pointer}
+.chips button.on{border-style:solid;border-color:var(--navy);background:var(--navy);color:#fff}
+.wcmp{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:22px auto 0;max-width:720px}
+.wcmp .cap{grid-column:1/-1;font-size:13px;font-weight:800;color:var(--muted);letter-spacing:.06em}
+.wcmp button{display:flex;flex-direction:column;align-items:flex-start;gap:1px;border:1.5px solid var(--line);background:#fff;border-radius:14px;padding:10px 14px;font:inherit;text-align:left;cursor:pointer;min-width:0}
+.wcmp button:hover{border-color:var(--tc)}
+.wcmp button.on{border-color:var(--tc);background:var(--tt);box-shadow:0 0 0 1.5px var(--tc)}
+.wcmp .l{display:flex;align-items:center;gap:6px;font-size:13px;font-weight:800;color:var(--tc)}
+.wcmp .l .ic{width:15px;height:15px;color:var(--tc)}
+.wcmp .a{font-size:21px;font-weight:800;color:var(--navy);line-height:1.25}
+.wcmp .s{font-size:11.5px;color:var(--muted)}
+.ml-each{margin-top:24px;padding-top:4px;border-top:1px dashed var(--line);text-align:left}
+.ml-each .h{margin:12px 0 2px;text-align:center;font-size:13px;font-weight:800;color:var(--muted);letter-spacing:.06em}
+.mr{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:2px 18px;align-items:center;padding:10px 0;border-bottom:1px dashed var(--line)}
+.mr:last-child{border-bottom:0}
+.mr .snt{font-size:17px;line-height:2.1;color:var(--ink)}
+.mr .chips{justify-content:flex-start;margin-top:0}
+.mr .who{font-weight:800;color:var(--navy);margin-right:4px}
+.mr .who small{font-size:12.5px;font-weight:600;color:var(--muted);margin-left:5px}
+.mr .pr{text-align:right;white-space:nowrap}
+.mr .pr b{font-size:17px;color:var(--navy)}
+.mr .pr b small{font-size:11.5px;color:var(--muted);font-weight:600}
+.mr .pr span{display:block;font-size:11.5px;color:var(--muted)}
+.mr .nt{grid-column:1/-1;max-width:none;margin:2px 0 4px}
+.mr.off .pr{opacity:.55}
+/* 第 4 步：总结 */
+.wsum{width:100%;border-collapse:separate;border-spacing:0;min-width:640px}
+.wsum th,.wsum td{padding:12px 14px;border-top:1px solid var(--line);font-size:14px;vertical-align:top;text-align:right}
+.wsum thead th{border-top:0;background:var(--navy);color:#fff;font-weight:800;vertical-align:middle}
+.wsum th:first-child,.wsum td:first-child{text-align:left}
+.wsum td:first-child b{display:block;color:var(--navy);font-size:15px}
+.wsum td:first-child small{font-size:12px;color:var(--muted)}
+.wsum td .v{display:block;font-size:16px;font-weight:800;color:var(--navy)}
+.wedits{display:none}
+.wsum td .c{display:block;font-size:12.5px;font-weight:700;color:var(--ink)}
+.wsum td .s{display:block;font-size:11.5px;color:var(--muted);margin-top:1px}
+.wsum td .s .cs{color:var(--gold-deep);font-weight:700}
+.wsum .edit{display:inline-flex;align-items:center;gap:4px;margin-left:6px;border:0;background:transparent;color:var(--gold-light);font:inherit;font-size:12px;font-weight:800;cursor:pointer}
+.wsum thead .edit{color:#F3E4C4}
+.wsum tr.tot td{background:var(--gold-tint);border-top:2px solid #E3CFA4}
+.wsum tr.tot td .v{font-size:19px}
+.wsum tr.mo td{background:var(--gold-tint-2);font-size:13px;color:var(--muted)}
+.wsend{margin-top:20px;display:grid;grid-template-columns:minmax(0,1fr) 260px;gap:18px;background:linear-gradient(135deg,var(--navy),var(--navy-2));border-radius:18px;padding:20px 22px;color:#fff;box-shadow:var(--x-shadow)}
+.wsend h3{font-family:var(--x-serif);font-size:20px;color:#fff}
+.wsend p{margin-top:4px;font-size:13px;color:rgba(255,255,255,.8)}
+.wsend textarea{margin-top:10px;width:100%;min-height:78px;border-radius:12px;border:0;padding:10px 12px;font:inherit;font-size:14px;color:var(--ink);resize:vertical}
+.wsend-acts{display:flex;flex-direction:column;gap:8px;justify-content:center}
+.wbtn{display:flex;align-items:center;justify-content:center;gap:8px;border-radius:999px;padding:11px 16px;font:inherit;font-size:14.5px;font-weight:800;cursor:pointer;text-decoration:none;border:1px solid rgba(255,255,255,.45);background:transparent;color:#fff}
+.wbtn .ic{width:17px;height:17px;color:currentColor}
+.wbtn.gold{background:var(--gold);border-color:var(--gold)}
+.wbtn.ghost{border-color:rgba(255,255,255,.25);color:rgba(255,255,255,.85)}
+/* 底部导航条 */
+#wbar{position:fixed;left:0;right:0;bottom:0;z-index:50;background:var(--navy);color:#fff;box-shadow:0 -6px 24px rgba(19,40,107,.28)}
+#wbar .in{max-width:1040px;margin:0 auto;padding:10px 20px;display:flex;align-items:center;gap:14px}
+#wbar .back{display:inline-flex;align-items:center;gap:6px;border:1px solid rgba(255,255,255,.4);background:transparent;color:#fff;border-radius:999px;padding:9px 14px;font:inherit;font-size:13.5px;font-weight:800;cursor:pointer}
+#wbar .back .ic{width:15px;height:15px;color:#fff;transform:scaleX(-1)}
+#wbar .back[hidden]{display:none}
+#wbar .lbl{font-size:12px;color:rgba(255,255,255,.7)}
+#wbar .amt{font-size:21px;font-weight:800;line-height:1.2;letter-spacing:.03em}
+#wbar .sub{font-size:11.5px;color:rgba(255,255,255,.78)}
+#wbar .next{margin-left:auto;background:var(--gold);color:#fff;border:0;border-radius:999px;padding:12px 22px;font:inherit;font-weight:800;font-size:15px;cursor:pointer;white-space:nowrap}
+#wbar .next:disabled{opacity:.5;cursor:default}
+body{padding-bottom:84px}
+@media (max-width:760px){
+  .wnav{margin:18px -16px 0;padding:8px 12px}
+  .wsteps{gap:2px}
+  .wsteps button{flex-direction:column;gap:3px;font-size:11.5px;padding:4px 2px;text-align:center}
+  .wsteps .n{flex-basis:26px;height:26px;width:26px}
+  .wq{font-size:22px}
+  .ml{padding:28px 16px 22px;border-radius:18px}
+  .ml-t{font-size:23px;letter-spacing:.04em}
+  .ml-s{font-size:18.5px;line-height:2.15}
+  .mr{grid-template-columns:1fr}
+  .mr .snt{font-size:16.5px}
+  .mr .pr{text-align:left;white-space:normal}
+  .mr .pr b,.mr .pr span{display:inline;margin-right:8px}
+  .mr .pr span{white-space:nowrap}
+  .wcmp{gap:6px}
+  .wcmp button{padding:8px 9px}
+  .wcmp .l{font-size:12px;gap:4px}
+  .wcmp .a{font-size:16.5px}
+  .wcmp .s{font-size:10.5px}
+  .wedits{display:flex;flex-wrap:wrap;gap:6px;margin:12px 0 10px}
+  .wedits button{border:1px solid var(--line);background:var(--card);border-radius:999px;padding:6px 12px;font:inherit;font-size:12.5px;font-weight:800;color:var(--gold-deep);cursor:pointer}
+  .wsum{min-width:0}
+  .wsum thead{display:none}
+  .wsum,.wsum tbody,.wsum tr,.wsum td{display:block;width:100%}
+  .wsum tr{padding:10px 14px;border-top:1px solid var(--line)}
+  .wsum tr:first-child{border-top:0}
+  .wsum td{border-top:0;padding:4px 0;text-align:left;display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
+  .wsum td::before{content:attr(data-l);flex:0 0 auto;font-size:12.5px;font-weight:700;color:var(--muted);padding-top:2px}
+  .wsum td:first-child{display:block;padding-bottom:6px}
+  .wsum td:first-child::before{content:none}
+  .wsum td .cv{text-align:right;min-width:0}
+  .wsum td .v{font-size:15px}
+  .wsum td .c{font-size:11.5px}
+  .wsum tr.tot td,.wsum tr.mo td{background:transparent}
+  .wsum tr.tot{background:var(--gold-tint)}
+  .wsum tr.mo{background:var(--gold-tint-2)}
+  #wbar .sub .msl{display:none}
+  .wsend{grid-template-columns:1fr;padding:18px}
+  #wbar .in{padding:8px 12px;gap:8px}
+  #wbar .back span{display:none}
+  #wbar .amt{font-size:17px}
+  #wbar .next{padding:11px 16px;font-size:14px}
+  body{padding-bottom:76px}
+}
 </style>
 </head>
 <body class="locked">
@@ -755,23 +1073,248 @@ body{padding-bottom:92px}
     <symbol id="i-steth" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3v5a4 4 0 0 0 8 0V3"/><path d="M9 12v2.5a5 5 0 0 0 10 0V12"/><circle cx="19" cy="10" r="2"/></symbol>
     <symbol id="i-bed" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 19V6M3 15h18v4M21 15v-3a3 3 0 0 0-3-3h-7v6"/><circle cx="7" cy="11" r="2"/></symbol>
     <symbol id="i-plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></symbol>
+    <symbol id="i-gem" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 4h11l3.5 5-9 11L3 9z"/><path d="M3 9h18M9.5 4 8 9l4 11 4-11-1.5-5"/></symbol>
+    <symbol id="i-receipt" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h12v18l-3-2-3 2-3-2-3 2z"/><path d="M9 8h6M9 12h6M9 16h3"/></symbol>
+    <symbol id="i-list" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6h11M9 12h11M9 18h11"/><path d="M4 6h.01M4 12h.01M4 18h.01"/></symbol>
+    <symbol id="i-filter" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 5h18l-7 8v6l-4 2v-8z"/></symbol>
+    <symbol id="i-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></symbol>
   </defs>
 </svg>
 
 <div class="page">
-  <svg class="deco" viewBox="0 0 220 160" aria-hidden="true">
-    <polygon points="60,0 220,0 220,150" fill="#EFE3C8" opacity=".7"/>
-    <polygon points="130,0 220,0 220,90" fill="#E4D3AE" opacity=".6"/>
-  </svg>
+
   <header class="hero">
+    <svg class="emblem" viewBox="0 0 240 240" aria-hidden="true">
+      <defs>
+        <linearGradient id="qxShield" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#3A62C8"/><stop offset=".5" stop-color="#2A4CA6"/><stop offset=".5" stop-color="#1F3D93"/><stop offset="1" stop-color="#1C3A8F"/></linearGradient>
+        <linearGradient id="qxHeart" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#C9524B"/><stop offset=".5" stop-color="#C9524B"/><stop offset=".5" stop-color="#DE6B63"/><stop offset="1" stop-color="#DE6B63"/></linearGradient>
+      </defs>
+      <!-- 圆底 -->
+      <circle cx="120" cy="126" r="104" fill="#E4ECF8"/>
+      <!-- 保单 -->
+      <rect x="98" y="28" width="106" height="138" rx="10" fill="#E9EFF9"/>
+      <rect x="112" y="28" width="92" height="138" rx="10" fill="#FBFCFF"/>
+      <path d="M144 47.5c-1.8-2.6-4.6-3.6-7.6-3.6-4.6 0-7.8 2.4-7.8 5.8 0 8.4 16.4 4.2 16.4 12.6 0 3.6-3.6 6.2-8.4 6.2-3.6 0-6.6-1.4-8.6-4M136.8 39v34" fill="none" stroke="#B39058" stroke-width="4.2" stroke-linecap="round"/>
+      <path d="M158 57h30" stroke="#C9A96E" stroke-width="5" stroke-linecap="round"/>
+      <path d="M126 88h62M126 100h62M126 112h62" stroke="#1C3A8F" stroke-opacity=".78" stroke-width="5" stroke-linecap="round"/>
+      <path d="M156 130h32M156 142h32M156 154h32" stroke="#C9A96E" stroke-width="5" stroke-linecap="round"/>
+      <!-- 盾牌 + 十字 = 医疗保障 -->
+      <path d="M84 92l40 14.5v31c0 29-18 49-40 58.5-22-9.5-40-29.5-40-58.5v-31z" fill="url(#qxShield)"/>
+      <path d="M77 117h14v13h13v14H91v13H77v-13H64v-14h13z" fill="#C8D5F0" transform="translate(-2.5 2.5)"/>
+      <path d="M77 117h14v13h13v14H91v13H77v-13H64v-14h13z" fill="#FFFFFF"/>
+      <!-- 心 + 心电图 = 健康 -->
+      <path d="M152 202s-31-18-31-38c0-10 7.6-17.5 16.8-17.5 6.3 0 11 3.4 14.2 8.4 3.2-5 7.9-8.4 14.2-8.4 9.2 0 16.8 7.5 16.8 17.5 0 20-31 38-31 38z" fill="url(#qxHeart)"/>
+      <path d="M108 174h32l6-12 9 23 7-13h36" fill="none" stroke="#FFFFFF" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
     <h1><span style="white-space:nowrap">家庭保障方案测算</span><span class="l2">住院险 + 意外险，一次算清全家</span></h1>
     <div class="meta">
       <span class="who"><svg class="ic" style="color:#fff"><use href="#i-family"/></svg>支持多位家庭成员</span>
       <span><svg class="ic"><use href="#i-shield"/></svg>AIA Singapore</span>
-      <span><svg class="ic"><use href="#i-globe"/></svg>新增全球医疗险（美国除外）</span>
+      <span><svg class="ic"><use href="#i-globe"/></svg>可选全球医疗险（美国除外）</span>
       <span><svg class="ic"><use href="#i-doc"/></svg>官方价格表 · 含 9% GST</span>
     </div>
+    <p class="wlead"><b>4 步</b>算清全家保费：家人 → 住院 → 意外 → 总结</p>
   </header>
+
+  <nav class="wnav" id="wNav" aria-label="测算步骤"><div class="wsteps" id="wSteps"></div></nav>
+
+  <!-- ===== 第 1 步：家人 ===== -->
+  <section class="wpanel" data-p="1">
+    <div class="ml">
+      <h2 class="ml-t">说说你的家庭</h2>
+      <div class="ml-s" id="w1list"></div>
+      <div class="wadd"><span>还要给谁算？</span>
+        <button type="button" data-add="spouse"><svg class="ic"><use href="#i-plus"/></svg>配偶</button>
+        <button type="button" data-add="child"><svg class="ic"><use href="#i-plus"/></svg>孩子</button>
+        <button type="button" data-add="parent"><svg class="ic"><use href="#i-plus"/></svg>父母</button>
+        <button type="button" data-add="other"><svg class="ic"><use href="#i-plus"/></svg>其他家人</button>
+      </div>
+    </div>
+    <p class="ml-hint">SC / PR 的配偶、孩子如果是外国人，身份选「外国人 · SC/PR 家属」</p>
+  </section>
+
+  <!-- ===== 第 2 步：住院险 ===== -->
+  <section class="wpanel" data-p="2">
+    <div class="ml">
+      <h2 class="ml-t">住院时，想要怎样的照顾？</h2>
+      <div class="ml-s" id="w2fam"></div>
+      <div class="wcmp num" id="w2opts"></div>
+      <div class="ml-each" id="w2list"></div>
+    </div>
+    <details class="wdet" id="wDetCov"><summary><svg class="ic"><use href="#i-list"/></svg><span>保障对比：只有 MSL、升级公立、升级私立<small>病房、最高赔、自付上限、癌症药物等各项额度</small></span><svg class="ic arr"><use href="#i-down"/></svg></summary><div class="in">
+    <div class="xgains">
+    <div class="gt">升级多交的钱，<br>买到这三样</div>
+    <div class="g"><span class="gi"><svg class="ic"><use href="#i-steth"/></svg></span><span><b>选病房、选医生</b><br>单人房 / 私立专科</span></div>
+    <div class="g"><span class="gi"><svg class="ic"><use href="#i-receipt"/></svg></span><span><b>按实际费用赔</b><br>不再按每项小限额</span></div>
+    <div class="g"><span class="gi"><svg class="ic"><use href="#i-wallet"/></svg></span><span><b>自付有封顶</b><br>每人每年约 S$9,500</span></div>
+  </div>
+  <div class="xctl">
+    <span class="lb"><svg class="ic"><use href="#i-filter"/></svg>显示</span>
+    <div class="xseg" id="xKeySeg"><button type="button" class="on" data-k="all">全部</button><button type="button" data-k="key">只看关键</button></div>
+    <div class="xseg gold xmob" id="xColSeg"><button type="button" class="on" data-c="p1">对比公立</button><button type="button" data-c="p2">对比私立</button></div>
+  </div>
+  <div class="xtbox">
+    <table class="xbt show-p1" id="xBene">
+      <thead><tr>
+        <th>保障项目</th>
+        <th class="p0"><span class="xth"><svg class="ic"><use href="#i-shield"/></svg><span>只有 MSL<small>政府基本医保</small></span></span></th>
+        <th class="p1"><span class="xth"><svg class="ic"><use href="#i-hospital"/></svg><span>升级到公立<small>HSG Max B + Pro B</small></span></span></th>
+        <th class="p2"><span class="xth"><svg class="ic"><use href="#i-gem"/></svg><span>升级到私立<small>HSG Max A + Pro A + Cancer Care Pro</small></span></span></th>
+      </tr></thead>
+      <tbody>
+        <tr class="sec"><td colspan="4"><span class="in"><svg class="ic"><use href="#i-bed"/></svg>住哪里、谁来看</span></td></tr>
+        <tr class="key"><td>病房<span class="xkey">关键</span></td>
+          <td class="p0">公立医院 B2 / C 级多人病房<small>按政府津贴后的账单设计</small></td>
+          <td class="p1">公立医院 A 级病房（单人房）及以下</td>
+          <td class="p2 good">私立医院标准房<small>也可以去公立医院任何病房</small></td></tr>
+        <tr class="key"><td>能不能自己选医生<span class="xkey">关键</span></td>
+          <td class="p0 bad">不能<small>由医院安排，专科门诊排队较久</small></td>
+          <td class="p1">可以<small>在公立医院内选专科医生</small></td>
+          <td class="p2 good">可以<small>私立专科医生自己挑，预约快</small></td></tr>
+        <tr><td>住更好的病房 / 去私立</td>
+          <td class="p0 bad">可以住，但账单先按比例折算，再按每项限额赔<small>私立：住院费只算 16%、手术费只算 10%；公立 A 级病房：住院费 27%（PR 25%）、手术费 25%</small></td>
+          <td class="p1">去私立医院：费用先按 70% 折算再赔</td>
+          <td class="p2 good">本身就保私立，不用折算</td></tr>
+
+        <tr class="sec"><td colspan="4"><span class="in"><svg class="ic"><use href="#i-shield"/></svg>最多赔多少、怎么赔</span></td></tr>
+        <tr class="key"><td>每年最高赔<span class="xkey">关键</span></td>
+          <td class="p0">S$200,000</td>
+          <td class="p1">S$100 万<small>全在 AIA 合作医院治疗：S$120 万</small></td>
+          <td class="p2 good">S$100 万<small>全在 AIA 合作医院治疗：S$200 万</small></td></tr>
+        <tr><td>终身上限</td>
+          <td class="p0">不设上限</td>
+          <td class="p1">不设上限</td>
+          <td class="p2">不设上限</td></tr>
+        <tr class="key"><td>赔付方式<span class="xkey">关键</span></td>
+          <td class="p0 bad">每一项都有限额<small>每天病房费、每次手术各有上限，超出部分自付</small></td>
+          <td class="p1 good">按实际合理费用赔<small>只要是保障范围内的合理收费</small></td>
+          <td class="p2 good">按实际合理费用赔<small>只要是保障范围内的合理收费</small></td></tr>
+        <tr><td>病房 + 治疗费</td>
+          <td class="p0">普通病房每天 S$830<small>住院头两天每天另加 S$800；ICU 每天 S$5,140</small></td>
+          <td class="p1">按实际</td>
+          <td class="p2">按实际</td></tr>
+        <tr><td>手术费<small style="font-weight:500">含植入物</small></td>
+          <td class="p0">按手术等级定额<small>每次 S$240（表 1，简单手术）至 S$3,900（表 7，复杂手术）；植入物每次 S$7,000</small></td>
+          <td class="p1">按实际</td>
+          <td class="p2">按实际</td></tr>
+        <tr><td>社区医院（出院后康复）</td>
+          <td class="p0">康复每天 S$370<small>亚急性护理每天 S$570</small></td>
+          <td class="p1">按实际</td>
+          <td class="p2">按实际</td></tr>
+        <tr><td>住院前后的门诊<small style="font-weight:500">检查、复诊、拿药</small></td>
+          <td class="p0 bad">不保<small>部分可用 MediSave 付</small></td>
+          <td class="p1">在公立医院治疗：前后最长各 12 个月<small>私立医院一般各 100 天</small></td>
+          <td class="p2 good">住院前最长 13 个月，住院后最长 15 个月<small>看 AIA 优选医生、在 AIA 合作医院住院（2026 年 10 月起住院后再延长 60 天）；其他情况一般各 100 天</small></td></tr>
+
+        <tr class="sec"><td colspan="4"><span class="in"><svg class="ic"><use href="#i-ribbon"/></svg>门诊大病（不住院也很花钱）</span></td></tr>
+        <tr class="key"><td>癌症药物<small style="font-weight:500">国家癌症药物清单内</small><span class="xkey">关键</span></td>
+          <td class="p0">每月 S$200–S$12,800<small>按药物类别定额。例：限额 S$1,000 的药，每月最多赔 S$1,000；另有癌症药物相关服务每年 S$4,500</small></td>
+          <td class="p1">每月 S$3,200–S$204,800<small>MSL 限额的 16 倍。例：同一种药，每月最多赔 S$16,000</small></td>
+          <td class="p2 good">每月 S$4,200–S$268,800<small>MSL 限额的 21 倍（含 Cancer Care Pro）。例：同一种药，每月最多赔 S$21,000</small></td></tr>
+        <tr class="key"><td>癌症药物<small style="font-weight:500">清单外（新药、自费药）</small><span class="xkey">关键</span></td>
+          <td class="p0 bad">不保</td>
+          <td class="p1">每年最高 S$10 万</td>
+          <td class="p2 good">每年最高 S$20 万</td></tr>
+        <tr><td>放疗</td>
+          <td class="p0">外照射每次 S$400<small>立体定向每次 S$460</small></td>
+          <td class="p1">按实际</td>
+          <td class="p2">按实际</td></tr>
+        <tr><td>洗肾</td>
+          <td class="p0">每月 S$1,750</td>
+          <td class="p1">按实际合理费用</td>
+          <td class="p2">按实际合理费用</td></tr>
+
+        <tr class="sec"><td colspan="4"><span class="in"><svg class="ic"><use href="#i-wallet"/></svg>生病时自己要付多少（每个保单年度）</span></td></tr>
+        <tr class="key"><td>免赔额<small style="font-weight:500">每年先自己付</small><span class="xkey">关键</span></td>
+          <td class="p0">C 级 S$2,000 · B2 / B1 级 S$2,500<small>A 级 / 私立 S$3,500 · 日间手术 S$1,500 · 门诊治疗 S$500（80 岁及以下）</small></td>
+          <td class="p1">S$3,500<small>公立 A 级病房；附加险不报销免赔额</small></td>
+          <td class="p2">S$3,500<small>私立 / 公立 A 级病房；附加险不报销免赔额</small></td></tr>
+        <tr class="key"><td>共付比例<span class="xkey">关键</span></td>
+          <td class="p0 bad">10% → 5% → 3%，不封顶<small>前 S$5,000 付 10%，下一个 S$5,000 付 5%，再往上 3%（只算可赔部分）</small></td>
+          <td class="p1 good">5%，每年封顶 S$6,000<small>看 AIA 合作医生、预授权或急诊；只买主险则 10% 不封顶</small></td>
+          <td class="p2 good">5%，每年封顶 S$6,000<small>看 AIA 合作医生、预授权或急诊；只买主险则 10% 不封顶</small></td></tr>
+        <tr class="key"><td>一年最多自己付<span class="xkey">关键</span></td>
+          <td class="p0 bad">没有上限<small>超出每项限额的部分全部自付</small></td>
+          <td class="p1 good">约 S$9,500 / 人<small>在公立医院：S$3,500 + S$6,000；去私立先按 70% 折算，折掉的部分另付</small></td>
+          <td class="p2 good">约 S$9,500 / 人<small>S$3,500 + S$6,000</small></td></tr>
+
+        <tr class="sec nokey"><td colspan="4"><span class="in"><svg class="ic"><use href="#i-doc"/></svg>其他</span></td></tr>
+        <tr><td>既往病症</td>
+          <td class="p0 good">也保<small>严重既往症保费加 30%，加 10 年</small></td>
+          <td class="p1">一般不保或除外<small>投保要核保，越早买越好</small></td>
+          <td class="p2">一般不保或除外<small>投保要核保，越早买越好</small></td></tr>
+        <tr><td>续保</td>
+          <td class="p0">终身，强制参加</td>
+          <td class="p1">保证终身续保</td>
+          <td class="p2">保证终身续保</td></tr>
+        <tr><td>保费怎么付</td>
+          <td class="p0 good">全部可用 MediSave</td>
+          <td class="p1">主险可用 MediSave（每人每年有上限）<small>附加险付现金</small></td>
+          <td class="p2">主险可用 MediSave（每人每年有上限）<small>附加险付现金，现金部分较多</small></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="xtip"><svg class="ic"><use href="#i-bulb"/></svg><span><b>预算更紧：</b>公立 B Lite（公立 B1 四人房，每年最高赔 S$30 万，免赔额 S$2,500，只限公民 / PR），保费更低，在上面每位家人的选项里可以直接选。</span></div>
+
+    </div></details>
+    <details class="wdet" id="wDetBill"><summary><svg class="ic"><use href="#i-receipt"/></svg><span>看一张住院账单：自己付多少<small>私立医院、公立 A 级病房、多人房分别能报多少</small></span><svg class="ic arr"><use href="#i-down"/></svg></summary><div class="in">
+    <p class="sec-sub">同一笔账单，分别在私立医院和公立医院 A 级病房住院。假设费用合理、全部可赔，看 AIA 合作医生，本年还没用过免赔额。</p>
+  <div class="xctl">
+    <span class="lb"><svg class="ic"><use href="#i-receipt"/></svg>账单</span>
+    <div class="xseg gold" id="xBillSeg">
+      <button type="button" data-v="10000">S$1 万</button>
+      <button type="button" data-v="30000">S$3 万</button>
+      <button type="button" data-v="50000" class="on">S$5 万</button>
+      <button type="button" data-v="100000">S$10 万</button>
+      <button type="button" data-v="300000">S$30 万</button>
+    </div>
+    <div class="xseg" id="xCaseSeg"><button type="button" class="on" data-c="med">无手术</button><button type="button" data-c="surg">有手术</button></div>
+    <div class="xseg" id="xRiderSeg"><button type="button" class="on" data-r="1">含附加险</button><button type="button" data-r="0">只买主险</button></div>
+  </div>
+  <p class="xnote" id="xCaseNote"></p>
+  <div class="num" id="xBills"></div>
+
+    </div></details>
+    <a class="xglink" id="xGlobalLink" href="quote-global.html"><span class="gi"><svg class="ic"><use href="#i-globe"/></svg></span><div><b>常回国、在几个国家生活？</b><span>新加坡计划 vs 全球医疗险（美国除外）：价格、自付、续保条件放在单独的对比页</span></div><span class="go">打开对比页 →</span></a>
+    <div class="xtip"><svg class="ic"><use href="#i-alert"/></svg><span><b>小圆姐提醒：</b>住院险要核保，投保前已有的病一般不保；保障以核保结果和条款为准。</span></div>
+  </section>
+
+  <!-- ===== 第 3 步：意外险 ===== -->
+  <section class="wpanel" data-p="3">
+    <div class="ml">
+      <h2 class="ml-t">要不要加一份意外险？</h2>
+      <div class="ml-s" id="w3fam"></div>
+      <div class="ml-each" id="w3list"></div>
+    </div>
+    <div class="wskip"><button type="button" id="w3skip">不需要意外险，直接看总结 →</button></div>
+    <details class="wdet"><summary><svg class="ic"><use href="#i-list"/></svg><span>意外险保障内容<small>金色行 = 最常用的理赔项目</small></span><svg class="ic arr"><use href="#i-down"/></svg></summary><div class="in"><div id="beneTables"></div></div></details>
+    <div class="xtip"><svg class="ic"><use href="#i-bulb"/></svg><span><b>小圆姐提醒：</b>门诊和中医报销最常用；Plan 2 的医疗额度大约够做一次 MRI。</span></div>
+  </section>
+
+  <!-- ===== 第 4 步：方案总结 ===== -->
+  <section class="wpanel" data-p="4">
+    <h2 class="wq">全家方案总结<small>每一项旁边都可以「修改」，改完回到这里。</small></h2>
+    <div class="wedits"><button type="button" data-edit="1">修改家人</button><button type="button" data-edit="2">修改住院险</button><button type="button" data-edit="3">修改意外险</button></div>
+    <div class="xtbox"><table class="wsum num" id="w4sum"></table></div>
+    <p class="xnote" id="w4note" style="margin-top:10px"></p>
+    <div class="wsend">
+      <div>
+        <h3>发给小圆姐，帮你再看一遍</h3>
+        <p>会带上每位家人的称呼、年龄、身份、选择和保费，还有这份方案的链接。</p>
+        <textarea id="wMsg" placeholder="想问小圆姐的话（选填），比如：想了解父母能不能买、预算大概多少……"></textarea>
+      </div>
+      <div class="wsend-acts">
+        <a class="wbtn gold" id="wWa" href="#" target="_blank" rel="noopener noreferrer"><svg class="ic"><use href="#i-phone"/></svg>WhatsApp 发给小圆姐</a>
+        <button type="button" class="wbtn" id="wWx"><svg class="ic"><use href="#i-chat"/></svg><span>复制方案，去微信发</span></button>
+        <button type="button" class="wbtn ghost" id="wLink"><svg class="ic"><use href="#i-doc"/></svg><span>复制方案链接</span></button>
+      </div>
+    </div>
+    <div class="sub-head" id="future"><svg class="ic ic-md"><use href="#i-chart"/></svg>以后每年交多少</div>
+    <p class="sec-sub">住院险保费按年龄段上调。选一位家人，看到 75 岁每个年龄段的住院险保费（按 Ta 选的附加险；现行费率，未计医疗通胀，取整到元）。</p>
+  <div class="xctl"><span class="lb"><svg class="ic"><use href="#i-user"/></svg>成员</span><div class="xseg gold" id="xFutSeg"></div></div>
+  <div class="xtbox"><table class="xpt num" id="xFut"></table></div>
+  <p class="xnote" id="xFutNote" style="margin-top:10px"></p>
+
 
   <!-- ===== 为什么 ===== -->
   <div class="sub-head"><svg class="ic ic-md"><use href="#i-bulb"/></svg>报价之前，先了解：为什么选 AIA，为什么找小圆姐</div>
@@ -832,105 +1375,12 @@ body{padding-bottom:92px}
     </div>
   </div>
 
-  <!-- ===== 报价 ===== -->
-  <div class="sub-head" id="calc"><svg class="ic ic-md"><use href="#i-coins"/></svg>第 1 步 · 添加家庭成员，自动报价</div>
-  <p class="sec-sub">年龄填<b>实际年龄</b>（周岁）就好，系统自动按官方价格表折算。住院险可以选<b>新加坡计划</b>或<b>全球医疗险（美国除外）</b>，旁边的「对比」按钮能一键看两者差别。意外险默认按职业类别 1/2 报价。</p>
-  <div id="members"></div>
-  <button class="addbtn" id="addbtn" type="button"><svg class="ic"><use href="#i-plus"/></svg>添加家庭成员</button>
-
-  <!-- ===== 对比 ===== -->
-  <div class="sub-head" id="compare"><svg class="ic ic-md"><use href="#i-scale"/></svg>新加坡计划 vs 全球医疗险（美国除外），对比一下</div>
-  <p class="sec-sub">选年龄和身份，价格自动换算。<b>新加坡计划</b>按 HealthShield Gold Max + VitalHealth Pro 报价；<b>全球医疗险</b>是 AIA Platinum International Health。</p>
-  <div class="cmp-ctl">
-    <div class="k"><svg class="ic"><use href="#i-user"/></svg>年龄</div>
-    <div class="age"><input type="range" id="cAgeR" min="0" max="65" value="35" aria-label="年龄"><input type="number" id="cAge" min="0" max="65" value="35" aria-label="年龄"><small>周岁</small></div>
-    <div class="k"><svg class="ic"><use href="#i-id"/></svg>身份</div>
-    <div class="chipsel" id="cRes"></div>
-    <div class="k"><svg class="ic"><use href="#i-hospital"/></svg>新加坡计划</div>
-    <div class="chipsel" id="cSg"></div>
-    <div class="k"><svg class="ic"><use href="#i-globe"/></svg>全球 · 保额</div>
-    <div class="chipsel g" id="cGp"></div>
-    <div class="k"><svg class="ic"><use href="#i-globe"/></svg>全球 · 自付</div>
-    <div class="chipsel g" id="cGo"></div>
-  </div>
-  <div class="cmp-price num">
-    <div class="a"><div class="t"><svg class="ic"><use href="#i-hospital"/></svg><span id="cpAt"></span></div><b id="cpA"></b><div class="s" id="cpAs"></div></div>
-    <div class="b"><div class="t"><svg class="ic"><use href="#i-globe"/></svg><span id="cpBt"></span></div><b id="cpB"></b><div class="s" id="cpBs"></div></div>
-  </div>
-  <div class="ctable res-cmp"><table class="num" id="cmpRes"></table></div>
-  <div class="tip" id="cmpWhy"><svg class="ic"><use href="#i-bulb"/></svg><span></span></div>
-  <div class="sumgrid num" id="cmpGrid"></div>
-  <div class="ctable cmp-future"><table class="num" id="cmpFuture"></table></div>
-  <div class="sum-line">
-    <div class="a"><svg class="ic"><use href="#i-hospital"/></svg><span><b>选新加坡计划：</b>主要在新加坡看病，想把每年自付压在 1 万以内，要保证续保</span></div>
-    <div class="b"><svg class="ic"><use href="#i-globe"/></svg><span><b>选全球医疗险：</b>常回国或在几个国家生活，想在国外也按实际赔，能接受自付更高、续保不保证</span></div>
-  </div>
-
-  <!-- ===== 小圆姐提醒 ===== -->
-  <div class="sub-head"><svg class="ic ic-md"><use href="#i-alert"/></svg>第 2 步 · 小圆姐提醒：报价之外，这些要想清楚</div>
-  <div class="pick">
-    <div class="pk a"><div class="hd"><div class="badge"><svg class="ic ic-md"><use href="#i-hospital"/></svg></div>新加坡住院险</div>
-      <ul><li><svg class="ic"><use href="#i-check"/></svg><span><b>公立还是私立</b>：私立预约快、可选医生；公立性价比高，但等待和病房不同</span></li>
-      <li><svg class="ic"><use href="#i-check"/></svg><span><b>按合理收费赔</b>：各项有合理惯常收费和单项上限，不是账单全额都能赔</span></li>
-      <li><svg class="ic"><use href="#i-check"/></svg><span><b>既往症</b>：投保前已有的病一般不保或除外承保</span></li>
-      <li><svg class="ic"><use href="#i-check"/></svg><span><b>如实申报</b>：保障范围以最终核保结果为准</span></li></ul></div>
-    <div class="pk b"><div class="hd"><div class="badge"><svg class="ic ic-md"><use href="#i-globe"/></svg></div>全球医疗险</div>
-      <ul><li><svg class="ic"><use href="#i-check"/></svg><span><b>续保不保证</b>：保险公司有权不续保，这点和新加坡计划不同</span></li>
-      <li><svg class="ic"><use href="#i-check"/></svg><span><b>自付更高</b>：每年最多自付 S$16,500 或 S$23,000，看选哪个选项</span></li>
-      <li><svg class="ic"><use href="#i-check"/></svg><span><b>美国不保</b>；65 岁前才能投保</span></li>
-      <li><svg class="ic"><use href="#i-check"/></svg><span><b>公民 / PR</b>：MediShield Life 仍要保留</span></li></ul></div>
-    <div class="pk c"><div class="hd"><div class="badge"><svg class="ic ic-md"><use href="#i-shield"/></svg></div>意外险</div>
-      <ul><li><svg class="ic"><use href="#i-check"/></svg><span><b>Plan 2 最多人选</b>：医疗额度约够 1 次核磁共振（MRI），担心要做两次就选 Plan 3 以上</span></li>
-      <li><svg class="ic"><use href="#i-check"/></svg><span><b>医疗和中医报销最常用</b>：保障表里金色那两行</span></li>
-      <li><svg class="ic"><use href="#i-check"/></svg><span><b>按每次意外算</b>：意外险一般不受既往症影响，以条款和核保为准</span></li></ul></div>
-  </div>
-
-  <!-- ===== 保障内容 ===== -->
-  <div class="sub-head"><svg class="ic ic-md"><use href="#i-doc"/></svg>第 3 步 · 保障内容速查</div>
-  <p class="sec-sub">金色行 = 最常用的理赔项目。完整条款以保单合同为准。</p>
-  <div class="hplans">
-    <div class="hplan" style="--pc:var(--navy)">
-      <h4>私立 A · 私立医院标准房<small>HealthShield Gold Max A + VitalHealth Pro A（可加 Cancer Care Pro）</small></h4>
-      <div class="hfeat"><b class="k">病房</b>私立医院标准房及以下，也可去公立医院</div>
-      <div class="hfeat"><b class="k">每年最高赔</b>一般 S$100 万；全在 AIA 合作医院 <b>S$200 万</b></div>
-      <div class="hfeat"><b class="k">自付</b>免赔额 S$3,500；之后 5%，符合 AIA 合作医生 / 预授权 / 急诊条件每年封顶 S$6,000</div>
-      <div class="hfeat"><b class="k">住院前后</b>一般各 100 天；AIA 优选医生最长 13 个月，住院后最长 15 个月<sup class="ref"><a href="#src6">6</a>,<a href="#src7">7</a></sup></div>
-    </div>
-    <div class="hplan" style="--pc:#3355B5">
-      <h4>公立 B · 公立医院 A 级病房<small>HealthShield Gold Max B + VitalHealth Pro B</small></h4>
-      <div class="hfeat"><b class="k">病房</b>公立医院 A 级病房及以下</div>
-      <div class="hfeat"><b class="k">每年最高赔</b>一般 S$100 万；全在 AIA 合作医院 <b>S$120 万</b></div>
-      <div class="hfeat"><b class="k">自付</b>免赔额 S$3,500（A 级病房）；之后 5%，符合条件每年封顶 S$6,000</div>
-      <div class="hfeat"><b class="k">提醒</b>去私立医院住院，费用先按 70% 折算再赔</div>
-    </div>
-    <div class="hplan" style="--pc:#9A9384">
-      <h4>公立 B Lite · 公立医院 B1 病房<small>HealthShield Gold Max B Lite（只限公民 / PR，预算之选）</small></h4>
-      <div class="hfeat"><b class="k">病房</b>公立医院 B1 病房及以下</div>
-      <div class="hfeat"><b class="k">每年最高赔</b>S$30 万</div>
-      <div class="hfeat"><b class="k">自付</b>免赔额 S$2,500（B1 病房）；之后 5%，符合条件每年封顶 S$6,000</div>
-      <div class="hfeat"><b class="k">提醒</b>私立医院按 50%、公立 A 级病房按 80% 折算再赔</div>
-    </div>
-    <div class="hplan" style="--pc:var(--gold)">
-      <h4>全球医疗险 · 全球（美国除外）标准房<small>AIA Platinum International Health（SG Resident）· 新增</small></h4>
-      <div class="hfeat"><b class="k">病房</b>全球（美国除外）标准房，按实际赔</div>
-      <div class="hfeat"><b class="k">每年最高赔</b>Plan 1 <b>S$75 万</b>（终身 S$500 万）；Plan 2 <b>S$150 万</b>（终身 S$1,000 万）</div>
-      <div class="hfeat"><b class="k">自付</b>选项一：免赔额 S$1,500 + 10%（封顶 S$15,000）；选项二：免赔额 S$3,000 + 15%（封顶 S$20,000）</div>
-      <div class="hfeat"><b class="k">提醒</b>续保不保证；住院前后各 90 天；癌症门诊每年 S$50 万；最后投保年龄 65 岁</div>
-    </div>
-  </div>
-  <div id="beneTables"></div>
-
-  <!-- ===== 理赔示例 ===== -->
-  <div class="sub-head"><svg class="ic ic-md"><use href="#i-wallet"/></svg>住院账单报销示例</div>
-  <p class="sec-sub">假设账单全部属于可赔的合理医疗费用，在对应医院和病房治疗；新加坡计划已附加 VitalHealth Pro，并符合 AIA 合作医生、预授权或急诊条件；本保单年度还没用过免赔额。</p>
-  <div class="claims num" id="claims"></div>
-
   <!-- ===== 行动区块 ===== -->
   <div class="cta">
     <div style="position:relative;z-index:1">
       <div class="who-row"><img src="/avatar-round.png" alt="小圆姐">
         <div><h3>算好了？<br><span>发给小圆姐，帮你再看一遍</span></h3></div></div>
-      <p class="sub">点底部「发给小圆姐」，报价会一起带过来；也可以微信聊。</p>
+      <p class="sub">上面「发给小圆姐」会把方案一起带过来；也可以微信聊。</p>
       <div class="perks">
         <span><svg class="ic"><use href="#i-steth"/></svg>绿色通道约专科</span>
         <span><svg class="ic"><use href="#i-renew"/></svg>理赔进度同步</span>
@@ -944,11 +1394,15 @@ body{padding-bottom:92px}
     <div class="qr"><img src="/wechat-qr.png" alt="小圆姐微信二维码"><span>扫码加微信</span></div>
   </div>
 
+  </section>
+
+  <details class="wdet wnotes" id="wNotes"><summary><svg class="ic"><use href="#i-doc"/></svg><span>说明与资料来源<small>价格依据、MediShield Life 计算方法、免责声明</small></span><svg class="ic arr"><use href="#i-down"/></svg></summary><div class="in">
   <div class="notes">
     <p>本页面由持牌顾问袁媛（RNF：YY-300823216）整理，仅供初步了解与预算参考，<b>不构成要约、保险建议或投保邀请</b>，也非 AIA 官方渠道。</p>
     <p>报价依据 AIA 官方产品资料：HealthShield Gold Max v8.7（2025年10月）、HealthShield Gold Max for Foreigners v6.8、Max VitalHealth Pro（外籍版 v1.1，2026年10月）、Platinum International Health（SG Resident）v1.0（2024年11月）、Star Protector Plus v2.8、Solitaire PA (II) v1.3、Centurion PA v1.2。所有价格含 9% GST，价格表如有更新以 AIA 最新版本为准。</p>
     <p>实际保费与承保以 AIA 正式报价单、保单条款及<b>核保结果</b>为准。住院险及意外险保费都不保证，会随年龄和理赔经验调整。新加坡计划最后投保年龄 75 岁（下一生日年龄），全球医疗险最后投保年龄 65 岁（上一生日年龄），更高年龄只供续保参考。</p>
-    <p><b>全球医疗险</b>：续保由 AIA 决定，可拒绝续保；在美国连续逗留超过 90 天停保（期间只保紧急）；准证、居留身份或常住国家变化要通知 AIA。价格不分身份；公民 / PR 仍须保留 MediShield Life，本页对比已把它算进去。首年 Vitality 特别折扣以正式报价单为准，本页按原价。</p>
+    <p><b>MediShield Life</b>：额度按 MOH 公布、2026 年 6 月 1 日起入院 / 治疗适用的标准<sup class="ref"><a href="#src13">13</a></sup>；免赔额为 80 岁及以下<sup class="ref"><a href="#src14">14</a></sup>。A / B1 级病房、私立医院或非津贴治疗先按比例折算：私立医院住院费按 16%、手术费按 10%；公立 A 级病房住院费公民 27% / PR 25%、手术费 25%；公民住 B2 / C 不打折<sup class="ref"><a href="#src15">15</a></sup>。账单示例的 MSL 赔付按这些比例和 MOH 限额估算，实际以 CPF / 医院结算为准。</p>
+    <p><b>公立 / 私立保障</b>：5% 共付每年 S$6,000 封顶须由 AIA 合作医生治疗、经预授权或急诊入院；附加险不赔免赔额。公立保单去私立医院先按 70% 折算再赔（以条款为准）。癌症药物金额 = MOH 清单限额 × 倍数，附加险额度按 AIA 2025 年 10 月及 2026 年 10 月资料整理。全球医疗险的条款与对比见单独的对比页。</p>
     <p>MediSave 实际扣款受可扣额度、账户余额、补贴及 MediShield Life 保费调整影响；附加险（VitalHealth Pro 系列）和全球医疗险不可用 MediSave。外国人投保需持有效准证（EP / PEP / EntrePass / S Pass / DP / Student Pass / 部分 LTVP 及 WP）。意外险默认按职业类别 1/2，类别 3/4 请联系顾问。</p>
     <p>"为什么选 AIA"的数据摘自页面最下方"资料来源"列出的 AIA 官网、新闻稿及媒体报道，以原文为准；公司及集团数据可能随时间更新。"跟小圆姐买"中的服务以实际情况为准；预授权与保证函须经 AIA 审批，紧急入院、公立医院及海外治疗不适用预授权。不建议在未评估利弊前退旧买新，转保可能带来保费上升或保障减少。本保单受 SDIC 保单持有人保障计划保护。</p>
   </div>
@@ -967,19 +1421,20 @@ body{padding-bottom:92px}
       <li id="src10">The Straits Times（Singapore Law Watch 转载），<a href="https://www.singaporelawwatch.sg/Headlines/what-is-pre-authorisation-and-can-insurers-refuse-to-give-it-askst" target="_blank" rel="noopener noreferrer">What is pre-authorisation and can insurers refuse to give it?</a></li>
       <li id="src11">AIA Singapore，<a href="https://www.aia.com.sg/en/about-aia/our-awards" target="_blank" rel="noopener noreferrer">Our Awards</a></li>
       <li id="src12">Asia Insurance Review，<a href="https://www.asiainsurancereview.com/Awards/Roll-Of-Honour" target="_blank" rel="noopener noreferrer">Asia Insurance Industry Awards Roll of Honour</a></li>
+      <li id="src13">MOH，<a href="https://www.moh.gov.sg/managing-expenses/schemes-and-subsidies/medishield-life/medishield-life-benefits/" target="_blank" rel="noopener noreferrer">MediShield Life Benefits</a>（2026 年 6 月 1 日起）</li>
+      <li id="src14">MOH，<a href="https://www.moh.gov.sg/managing-expenses/schemes-and-subsidies/medishield-life/how-to-make-a-medishield-life-claim/" target="_blank" rel="noopener noreferrer">How to make a MediShield Life claim</a>（免赔额、共付）</li>
+      <li id="src15">CPF，<a href="https://www.cpf.gov.sg/member/annex/understand-medishield-life-payouts" target="_blank" rel="noopener noreferrer">Understand MediShield Life Payouts</a>（按比例折算）</li>
     </ol>
   </div>
 
+  </div></details>
 </div>
 
-<div id="totbar">
+<div id="wbar">
   <div class="in">
-    <div><div class="lbl">全家合计年保费</div><div class="amt num" id="tb-total">S$0</div></div>
-    <div><div class="sub num" id="tb-cash">现金 S$0</div><div class="sub num" id="tb-cpf">MediSave S$0</div></div>
-    <div class="btns">
-      <button id="share-btn" type="button">复制报价链接</button>
-      <a id="wa-btn" href="#" target="_blank" rel="noopener noreferrer">发给小圆姐</a>
-    </div>
+    <button type="button" class="back" id="wBack"><svg class="ic"><use href="#i-door"/></svg><span>上一步</span></button>
+    <div class="tot"><div class="lbl" id="wTotL">全家合计年保费</div><div class="amt num" id="wTot">S$0</div><div class="sub num" id="wTotS"></div></div>
+    <button type="button" class="next" id="wNext">下一步</button>
   </div>
 </div>
 <div id="wm" aria-hidden="true"></div>
@@ -1180,7 +1635,7 @@ function calcHosp(ps){
     const gp=ps.h.gp||2, go=ps.h.go||2, price=band(PIH,ps.age)[(gp-1)*2+go];
     out.rows.push(['全球医疗险 · '+gName(gp,go),price]); out.cash+=price; out.total+=price;
     if(local){const msl=band(HSGM_LOCAL,anb)[1];
-      out.rows.push(['MediShield Life（公民 / PR 必须保留）',msl]); out.cpf+=msl; out.total+=msl;}
+      out.rows.push(['MediShield Life（公民 / PR 必须保留）',msl]); out.cpf+=msl; out.total+=msl; out.msl=msl;}
     out.notes.push('全球医疗险（美国除外）：'+gDesc(go)+'；每年最高赔 '+wan(GLIM[gp][0])+'。续保不保证。');
     if(local)out.notes.push('全球险保费不分国籍，住在新加坡的人都是同一个价；公民 / PR 另外要交政府强制的 MediShield Life（MediSave 付）。');
     if(ps.age>65)out.notes.push('全球医疗险最后投保年龄为 65 岁，此价格仅供已有保单续保参考。');
@@ -1191,7 +1646,7 @@ function calcHosp(ps){
     const b=band(HSGM_LOCAL,anb), msl=b[1], awl=b[2];
     const add=plan==='A'?b[3]:plan==='B'?b[4]:b[5];
     const baseTotal=msl+add;
-    out.rows.push(['基础住院险（含 MediShield Life）',baseTotal]);
+    out.rows.push(['MediShield Life（政府基本医保）',msl]); out.rows.push(['HealthShield Gold Max '+(plan==='BL'?'B Lite':plan)+' 主险（MSL 以外）',add]); out.msl=msl;
     out.cpf+=msl+Math.min(add,awl); out.cash+=Math.max(add-awl,0); out.total+=baseTotal;
     if(ps.h.vhp){
       const v=band(VHP_LOCAL,anb), vp=plan==='A'?v[1]:plan==='B'?v[4]:v[5];
@@ -1245,251 +1700,499 @@ function calcPA(ps){
   return out;
 }
 
-/* ============ 成员报价 ============ */
+/* ============ 分步骤向导：家人 → 住院险 → 意外险 → 方案总结 ============ */
 const PRODNAME={kids:'少儿意外险 Star Protector Plus（0–15 岁）',adults:'成人意外险 Solitaire PA (II)（16–65 岁）',elderly:'乐龄意外险 Centurion PA（66 岁以上）'};
+const PASHORT={kids:'少儿 Star Protector Plus',adults:'成人 Solitaire PA (II)',elderly:'乐龄 Centurion PA'};
 function esc(s){return String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));}
-function hospLabel(ps){return ps.h.plan==='G'?'全球医疗险 '+gName(ps.h.gp,ps.h.go):'新加坡 '+SGNAME[ps.h.plan];}
-function render(){
-  const box=document.getElementById('members'); box.innerHTML='';
-  let famTotal=0,famCash=0,famCpf=0;
-  people.forEach((ps,idx)=>{
-    const hosp=calcHosp(ps), pa=calcPA(ps);
-    let subtotal=0,cash=0,cpf=0;
-    if(hosp){subtotal+=hosp.total;cash+=hosp.cash;cpf+=hosp.cpf;}
-    if(pa){subtotal+=pa.total;cash+=pa.total;}
-    famTotal+=subtotal;famCash+=cash;famCpf+=cpf;
-    const prod=paProduct(ps.age), isLocal=ps.res==='local', glb=ps.h.plan==='G';
-    const planOpts=[['A','私立 A','i-hospital'],['B','公立 B','i-hospital']].concat(isLocal?[['BL','公立 B Lite','i-hospital']]:[]);
-    const paPlans=prod==='adults'?[1,2,3,4]:[1,2,3];
-    const el=document.createElement('div'); el.className='member';
-    el.innerHTML=`
-    <div class="m-head">
-      <span class="mi"><svg class="ic"><use href="#i-user"/></svg></span>
-      <input type="text" value="${esc(ps.name)}" data-f="name" aria-label="称呼">
-      <label>年龄 <input type="number" min="0" max="105" value="${ps.age}" data-f="age"></label>
-      <select data-f="res" aria-label="身份">${RES.map(([v,l])=>`<option value="${v}"${ps.res===v?' selected':''}>${l}</option>`).join('')}</select>
-      ${people.length>1?'<button class="m-del" type="button" data-act="del">✕ 移除</button>':''}
-    </div>
-    <div class="m-body">
-      <div class="prod">
-        <div class="prod-head">
-          <label class="tgl"><input type="checkbox" data-f="h.on"${ps.h.on?' checked':''} aria-label="住院险"><i></i></label>
-          <div><div class="pname">住院险</div>
-          <div class="psub">${glb?'Platinum International Health · 按实际年龄 '+ps.age+' 岁报价':'HealthShield Gold Max'+(isLocal?'':' for Foreigners')+' · 按下一生日年龄 '+(ps.age+1)+' 岁报价'}</div></div>
-          <button type="button" class="cmp-link" data-act="cmp"><svg class="ic"><use href="#i-scale"/></svg>新加坡 vs 全球 对比</button>
-        </div>
-        ${ps.h.on?`<div class="prod-body">
-          <div class="grp-lb">新加坡计划</div>
-          <div class="plansel">${planOpts.map(([v,l,ic])=>`<button type="button" class="plan-pill${ps.h.plan===v?' on':''}" data-hplan="${v}"><svg class="ic"><use href="#${ic}"/></svg>${l}</button>`).join('')}</div>
-          ${glb?'':`<div class="cfg"><div class="cfg-row">
-            <div class="cfg-lb">${SGNAME[ps.h.plan]} · 附加保障</div>
-            <div class="opt-row">
-              <label><input type="checkbox" data-f="h.vhp"${ps.h.vhp?' checked':''}>附加 VitalHealth Pro（自付降到 5%）</label>
-              ${ps.h.plan==='A'&&ps.h.vhp?`<label><input type="checkbox" data-f="h.ccp"${ps.h.ccp?' checked':''}>Cancer Care Pro</label>
-              <label><input type="checkbox" data-f="h.ecp"${ps.h.ecp?' checked':''}>Emergency Care Pro</label>`:''}
-            </div>
-          </div></div>`}
-          <div class="grp-lb">或者全球</div>
-          <div class="plansel"><button type="button" class="plan-pill glb${glb?' on':''}" data-hplan="G"><svg class="ic"><use href="#i-globe"/></svg>全球（美国除外）<span class="new">新</span></button></div>
-          ${glb?`<div class="cfg glb">
-            <div class="cfg-row">
-              <div class="cfg-lb">保额档次<small>每年最高赔多少</small></div>
-              <div class="seg">${[1,2].map(gp=>`<button type="button" data-gp="${gp}" class="${ps.h.gp===gp?'on':''}" aria-pressed="${ps.h.gp===gp}"><b>Plan ${gp}</b><small><span class="nw">每年最高赔</span> <span class="nw">${wan(GLIM[gp][0])}</span></small><small class="nw">终身 ${wan(GLIM[gp][1])}</small></button>`).join('')}</div>
-            </div>
-            <div class="cfg-row">
-              <div class="cfg-lb">自付方式<small>免赔额 + 之后自付比例</small></div>
-              <div class="seg">${[1,2].map(go=>{const d=GDED[go];return `<button type="button" data-go="${go}" class="${ps.h.go===go?'on':''}" aria-pressed="${ps.h.go===go}"><b>${go===1?'选项一':'选项二'}</b><small class="nw">免赔额 ${sgd(d.ded)}</small><small><span class="nw">之后 ${Math.round(d.co*100)}%</span><span class="nw">（封顶 ${sgd(d.cap)}）</span></small></button>`;}).join('')}</div>
-            </div>
-          </div>`:''}
-          ${hosp?`<div class="pres num">
-            ${hosp.rows.map(r=>`<div class="row"><span class="k">${r[0]}</span><span>${fmt(r[1])}</span></div>`).join('')}
-            <div class="row tot"><span>住院险小计 / 年</span><span>${fmt(hosp.total)}</span></div>
-            <div class="pchips"><span class="pchip cash">现金约 ${fmt(hosp.cash)}</span>
-              ${hosp.cpf>0?`<span class="pchip cpf">MediSave 约 ${fmt(hosp.cpf)}</span>`:''}</div>
-          </div>`:''}
-          ${hosp&&hosp.notes.length?hosp.notes.map(n=>`<div class="mnote">${n}</div>`).join(''):''}
-        </div>`:''}
-      </div>
+const RESL={local:'公民 / PR',fdep:'外国人 · SC/PR 家属',fnon:'外国人'};
+const STEPS=['家人','住院险','意外险','方案总结'];
+const NEXTL=['','下一步：住院险 →','下一步：意外险 →','看方案总结 →','WhatsApp 发给小圆姐'];
+const TIER={
+  M:{l:'只有 MSL',lf:'不买住院险',c:'#77705F',t:'#F1EEE8',i:'i-shield'},
+  B:{l:'公立 B',c:'var(--x-blue)',t:'#EEF2FC',i:'i-hospital'},
+  BL:{l:'公立 B Lite',c:'#4E6FBF',t:'#F1F4FB',i:'i-hospital'},
+  A:{l:'私立 A',c:'var(--x-champ-d)',t:'var(--x-champ-t)',i:'i-gem'},
+  G:{l:'全球',c:'var(--gold-deep)',t:'var(--gold-tint-2)',i:'i-globe'}
+};
+let step=1;
+const $w=id=>document.getElementById(id);
+const icw=(id,cls)=>'<svg class="ic'+(cls?' '+cls:'')+'"><use href="#'+id+'"/></svg>';
 
-      <div class="prod">
-        <div class="prod-head">
-          <label class="tgl"><input type="checkbox" data-f="p.on"${ps.p.on?' checked':''} aria-label="意外险"><i></i></label>
-          <div><div class="pname">意外险（按年龄自动匹配）</div><div class="psub">${PRODNAME[prod]}</div></div>
-        </div>
-        ${ps.p.on?`<div class="prod-body">
-          <div class="plansel">${paPlans.map(n=>`<button type="button" class="plan-pill${ps.p.plan===n?' on':''}" data-pplan="${n}">Plan ${n}${n===2?'<span class="pop-badge">最多人选择</span>':''}</button>`).join('')}</div>
-          ${prod==='adults'?`<div class="opt-row">
-            <label><input type="checkbox" data-f="p.grpLife"${ps.p.grpLife?' checked':''}>生活维持组</label>
-            <label><input type="checkbox" data-f="p.grpHosp"${ps.p.grpHosp?' checked':''}>意外住院组</label>
-            <label><input type="checkbox" data-f="p.grpDis"${ps.p.grpDis?' checked':''}>月度伤残护理</label>
-          </div>`:''}
-          ${prod==='kids'?`<div class="opt-row"><label>附加儿童重疾
-            <select data-f="p.ci">${[['0','不附加'],['1','保额 S$30,000'],['2','保额 S$50,000'],['3','保额 S$100,000']].map(([v,l])=>`<option value="${v}"${ps.p.ci===+v?' selected':''}>${l}</option>`).join('')}</select></label></div>`:''}
-          ${pa&&pa.rows.length?`<div class="pres num">
-            ${pa.rows.map(r=>`<div class="row"><span class="k">${r[0]}</span><span>${fmt(r[1])}</span></div>`).join('')}
-            <div class="row tot"><span>意外险小计 / 年</span><span>${fmt(pa.total)}</span></div>
-          </div>`:''}
-          ${ps.p.plan===2&&pa&&pa.rows.length?`<div class="mnote">Plan 2 医疗额度大约够 1 次核磁共振（MRI）。担心一次意外要做多次核磁（检查 + 复诊），建议选 Plan 3 或以上。</div>`:''}
-          ${pa&&pa.notes.length?pa.notes.map(n=>`<div class="mnote${n.includes('联系')&&!pa.rows.length?' warn':''}">${n}</div>`).join(''):''}
-        </div>`:''}
-      </div>
-
-      <div class="m-total num"><span>${esc(ps.name)} 年保费合计</span><b>${fmt(subtotal)}</b></div>
-    </div>`;
-    el.querySelectorAll('[data-f]').forEach(inp=>{
-      inp.addEventListener('change',()=>{
-        const path=inp.dataset.f.split('.');
-        let val=inp.type==='checkbox'?inp.checked:inp.value;
-        if(inp.dataset.f==='age'){val=Math.max(0,Math.min(105,parseInt(val||0,10)));}
-        if(inp.dataset.f==='p.ci'){val=parseInt(val,10);}
-        if(path.length===1)ps[path[0]]=val;else ps[path[0]][path[1]]=val;
-        if(inp.dataset.f==='res'&&ps.res!=='local'&&ps.h.plan==='BL')ps.h.plan='B';
-        if(inp.dataset.f==='age'){const np=paProduct(ps.age);if(np!=='adults'&&ps.p.plan>3)ps.p.plan=3;}
-        render();saveHash();
-      });
-    });
-    el.querySelectorAll('[data-hplan]').forEach(b=>b.addEventListener('click',()=>{ps.h.plan=b.dataset.hplan;render();saveHash();}));
-    el.querySelectorAll('[data-gp]').forEach(b=>b.addEventListener('click',()=>{ps.h.gp=+b.dataset.gp;render();saveHash();}));
-    el.querySelectorAll('[data-go]').forEach(b=>b.addEventListener('click',()=>{ps.h.go=+b.dataset.go;render();saveHash();}));
-    el.querySelectorAll('[data-pplan]').forEach(b=>b.addEventListener('click',()=>{ps.p.plan=parseInt(b.dataset.pplan,10);render();saveHash();}));
-    el.querySelector('[data-act=cmp]').addEventListener('click',()=>{
-      cmp.age=Math.max(0,Math.min(65,ps.age)); cmp.res=ps.res;
-      cmp.sg=ps.h.plan==='G'?'A':(ps.res!=='local'&&ps.h.plan==='BL'?'B':ps.h.plan);
-      if(ps.h.plan==='G')cmp.gi=GOPT.findIndex(o=>o.gp===ps.h.gp&&o.go===ps.h.go);
-      renderCmp(); document.getElementById('compare').scrollIntoView({behavior:'smooth'});
-    });
-    const del=el.querySelector('[data-act=del]');
-    if(del)del.addEventListener('click',()=>{people.splice(idx,1);render();saveHash();});
-    box.appendChild(el);
-  });
-  document.getElementById('tb-total').textContent=fmt(famTotal);
-  document.getElementById('tb-cash').textContent='现金约 '+fmt(famCash);
-  document.getElementById('tb-cpf').textContent=famCpf>0?'MediSave 约 '+fmt(famCpf):'月均折算约 '+fmt(famTotal/12);
-  const lines=people.map(ps=>{
-    const hosp=calcHosp(ps),pa=calcPA(ps);const seg=[];
-    if(hosp)seg.push('住院险（'+hospLabel(ps)+'）'+fmt(hosp.total));
-    if(pa&&pa.total)seg.push('意外险 '+fmt(pa.total));
-    return ps.name+'（'+ps.age+'岁）：'+(seg.join(' + ')||'-');
-  });
-  const waText='你好小圆姐，我用保障方案测算工具算了全家方案：\n'+lines.join('\n')+'\n全家合计约 '+fmt(famTotal)+' / 年\n'+shareUrl()+'\n想进一步了解，麻烦你了！';
-  document.getElementById('wa-btn').href='https://wa.me/6583750190?text='+encodeURIComponent(waText);
+function mslOf(ps){return ps.res==='local'?band(HSGM_LOCAL,ps.age+1)[1]:0;}
+/* 住院险：选了就照常算；公民 / PR 不买时仍有政府的 MediShield Life */
+function hospOf(ps){
+  if(ps.h.on)return calcHosp(ps);
+  if(ps.res==='local'){const m=mslOf(ps);return {rows:[['MediShield Life（政府基本医保）',m]],cash:0,cpf:m,total:m,msl:m,notes:[],mslOnly:true};}
+  return null;
 }
+function tierOf(ps){return ps.h.on?ps.h.plan:'M';}
+function tierName(ps){
+  const t=tierOf(ps);
+  if(t==='M')return ps.res==='local'?'只有 MediShield Life':'不买住院险';
+  if(t==='G')return '全球医疗险 '+gName(ps.h.gp,ps.h.go);
+  return '新加坡 '+SGNAME[t]+(ps.h.vhp?' + VitalHealth Pro':'')+(t==='A'&&ps.h.vhp&&ps.h.ccp?' + Cancer Care Pro':'');
+}
+function paName(ps){
+  const pa=calcPA(ps);
+  if(!ps.p.on||!pa||!pa.total)return '不买';
+  return PASHORT[paProduct(ps.age)]+' Plan '+(paProduct(ps.age)==='elderly'?Math.min(ps.p.plan,3):ps.p.plan);
+}
+function famTotals(){
+  const t={total:0,cash:0,cpf:0,msl:0,hosp:0,pa:0};
+  people.forEach(ps=>{const h=hospOf(ps),pa=calcPA(ps);
+    if(h){t.total+=h.total;t.cash+=h.cash;t.cpf+=h.cpf;t.hosp+=h.total;t.msl+=(h.msl||0);}
+    if(pa&&pa.total){t.total+=pa.total;t.cash+=pa.total;t.pa+=pa.total;}});
+  return t;
+}
+function clamp(v,a,b){return Math.max(a,Math.min(b,v));}
 
-/* ============ 分享链接 ============ */
+/* ---------- 分享链接：#q=家人和选择&s=第几步 ---------- */
 function encodeState(){
   const state=people.map(ps=>[ps.name,ps.age,ps.res,ps.h.on?1:0,ps.h.plan,ps.h.vhp?1:0,ps.h.ccp?1:0,ps.h.ecp?1:0,ps.p.on?1:0,ps.p.plan,ps.p.grpLife?1:0,ps.p.grpHosp?1:0,ps.p.grpDis?1:0,ps.p.ci,ps.h.gp,ps.h.go]);
   return encodeURIComponent(btoa(unescape(encodeURIComponent(JSON.stringify(state)))));
 }
-function shareUrl(){return location.origin+location.pathname+'#q='+encodeState();}
-function saveHash(){history.replaceState(null,'','#q='+encodeState());}
+function shareUrl(s){return location.origin+location.pathname+'#q='+encodeState()+'&s='+(s||4);}
+function saveHash(){history.replaceState(null,'','#q='+encodeState()+'&s='+step);}
 function loadHash(){
   try{
-    const m=location.hash.match(/#q=(.+)/); if(!m)return false;
+    const m=location.hash.match(/#q=([^&]+)/); if(!m)return false;
     const arr=JSON.parse(decodeURIComponent(escape(atob(decodeURIComponent(m[1])))));
-    people=arr.map(r=>({name:String(r[0]).slice(0,20),age:Math.max(0,Math.min(105,+r[1]||0)),res:['local','fdep','fnon'].includes(r[2])?r[2]:'local',
+    people=arr.map(r=>({name:String(r[0]).slice(0,20),age:clamp(+r[1]||0,0,105),res:['local','fdep','fnon'].includes(r[2])?r[2]:'local',
       h:{on:!!r[3],plan:['A','B','BL','G'].includes(r[4])?r[4]:'A',vhp:!!r[5],ccp:!!r[6],ecp:!!r[7],gp:r[14]===1?1:2,go:r[15]===1?1:2},
-      p:{on:!!r[8],plan:Math.min(4,Math.max(1,+r[9]||2)),grpLife:!!r[10],grpHosp:!!r[11],grpDis:!!r[12],ci:Math.min(3,Math.max(0,+r[13]||0))}}));
+      p:{on:!!r[8],plan:clamp(+r[9]||2,1,4),grpLife:!!r[10],grpHosp:!!r[11],grpDis:!!r[12],ci:clamp(+r[13]||0,0,3)}}));
+    people.forEach(ps=>{if(ps.res!=='local'&&ps.h.plan==='BL')ps.h.plan='B';});
+    const sm=location.hash.match(/[&#]s=([1-4])/);
+    step=sm?+sm[1]:4;   /* 分享出去的旧链接没有 s，直接看总结 */
     return people.length>0;
   }catch(e){return false;}
 }
-document.getElementById('share-btn').addEventListener('click',function(){
-  const u=shareUrl();
-  (navigator.clipboard?navigator.clipboard.writeText(u):Promise.reject()).then(()=>{
-    this.textContent='已复制 ✓';setTimeout(()=>this.textContent='复制报价链接',1600);
-  }).catch(()=>{prompt('复制此链接：',u);});
-});
-document.getElementById('addbtn').addEventListener('click',()=>{people.push(newPerson());render();saveHash();});
 
-/* ============ 新加坡 vs 全球 对比 ============ */
-const cmp={age:35,res:'local',sg:'A',gi:3};
-function sgPrice(age,res,plan){return calcHosp({age,res,h:{on:true,plan,vhp:true,ccp:false,ecp:false}});}
-function glPrice(age,res,gi){const o=GOPT[gi];return calcHosp({age,res,h:{on:true,plan:'G',gp:o.gp,go:o.go}});}
-function chips(id,list,cur,cb){
-  const box=document.getElementById(id);
-  box.innerHTML=list.map(([v,l])=>`<button type="button" data-v="${v}" class="${String(v)===String(cur)?'on':''}">${l}</button>`).join('');
-  box.querySelectorAll('button').forEach(b=>b.addEventListener('click',()=>{cb(b.dataset.v);renderCmp();}));
+/* ---------- 步骤导航 ---------- */
+function go(n){
+  if(n>1&&!people.length)return;
+  step=n; renderAll(); saveHash();
+  const nav=$w('wNav'); if(nav)window.scrollTo({top:Math.max(0,nav.getBoundingClientRect().top+window.scrollY-6),behavior:'smooth'});
 }
-function split(o){return o.cpf>0?'MediSave 约 '+sgd(o.cpf)+' · 现金约 '+sgd(o.cash):'全部现金';}
-function renderCmp(){
-  if(cmp.res!=='local'&&cmp.sg==='BL')cmp.sg='B';
-  const local=cmp.res==='local', o=GOPT[cmp.gi];
-  chips('cRes',RES,cmp.res,v=>{cmp.res=v;});
-  chips('cSg',[['A','私立 A'],['B','公立 B']].concat(local?[['BL','公立 B Lite']]:[]),cmp.sg,v=>{cmp.sg=v;});
-  const gIdx=(gp,go)=>GOPT.findIndex(x=>x.gp===gp&&x.go===go);
-  chips('cGp',[1,2].map(gp=>[gp,'Plan '+gp+' · 每年 '+wan(GLIM[gp][0])]),o.gp,v=>{cmp.gi=gIdx(+v,o.go);});
-  chips('cGo',[1,2].map(go=>[go,(go===1?'选项一':'选项二')+' · 免赔额 '+sgd(GDED[go].ded)]),o.go,v=>{cmp.gi=gIdx(o.gp,+v);});
-  document.getElementById('cAge').value=cmp.age; document.getElementById('cAgeR').value=cmp.age;
-  const A=sgPrice(cmp.age,cmp.res,cmp.sg), B=glPrice(cmp.age,cmp.res,cmp.gi);
-  const $=id=>document.getElementById(id);
-  $('cpAt').textContent='新加坡 · '+SGNAME[cmp.sg]+'（含 VitalHealth Pro）';
-  $('cpA').innerHTML=sgd(A.total)+'<small>/ 年</small>'; $('cpAs').textContent=split(A);
-  $('cpBt').textContent='全球（美国除外）· '+gName(o.gp,o.go);
-  $('cpB').innerHTML=sgd(B.total)+'<small>/ 年</small>';
-  $('cpBs').textContent=local?'全球险 '+sgd(B.cash)+'（现金）+ MediShield Life '+sgd(B.cpf)+'（MediSave）':'全部现金';
-  renderResCmp();
-  const d=GDED[o.go], maxB=d.ded+d.cap, maxA=SGDED[cmp.sg]+6000, limB=GLIM[o.gp][0], limA=SGLIM[cmp.sg][0];
-  const win=t=>`<span class="win"><svg class="ic"><use href="#i-check"/></svg>${t}</span>`;
-  const where={A:['新加坡私立医院标准房','按实际赔；海外按新加坡收费赔'],B:['新加坡公立医院 A 级病房','去私立医院按 70% 折算再赔'],BL:['新加坡公立医院 B1 病房','私立按 50%、公立 A 级按 80% 折算']}[cmp.sg];
-  const cheap=Math.abs(A.total-B.total)>=50?(A.total<B.total?'a':'b'):'';
-  const rows=[
-    ['i-hospital','在哪看病能赔',`<b>${where[0]}</b><small>${where[1]}</small>`,`<b>全球（美国除外）标准房</b><small>按实际赔</small>${win('范围更广')}`],
-    ['i-coins','今年保费',`<b>${sgd(A.total)}</b><small>${split(A)}</small>${cheap==='a'?win('便宜 '+sgd(B.total-A.total)):''}`,`<b>${sgd(B.total)}</b><small>${local?'全球险 '+sgd(B.cash)+' + MediShield Life '+sgd(B.cpf):'全部现金'}</small>${cheap==='b'?win('便宜 '+sgd(A.total-B.total)):''}`],
-    ['i-wallet','每年自己最多付',`<b>约 ${sgd(maxA)}</b><small>免赔额 ${sgd(SGDED[cmp.sg])} + 5%（封顶 S$6,000）</small>${win('少付 '+sgd(maxB-maxA))}`,`<b>${sgd(maxB)}</b><small>${gDesc(o.go)}</small>`],
-    ['i-shield','每年最高赔',`<b>${wan(limA)}</b><small>${SGLIM[cmp.sg][1]||'终身不设上限'}</small>${limA>limB?win('更高'):''}`,`<b>${wan(limB)}</b><small>终身 ${wan(GLIM[o.gp][1])}</small>${limB>limA?win('更高'):''}`],
-    ['i-ribbon','癌症门诊',`<b>按国家癌症药物清单</b><small>私立 A 可加 Cancer Care Pro，额度更高</small>`,`<b>每年 S$50 万</b><small>化疗、免疫、放疗都算</small>${win('更宽松')}`],
-    ['i-renew','能不能一直续保',`<b>保证续保终身</b><small>交保费就续，不看身体状况</small>${win('更稳')}`,`<b style="color:var(--red)">不保证</b><small>保险公司有权不续保</small>`],
-    ['i-id','身份相关',local?`<b>含 MediShield Life</b><small>一部分可用 MediSave 付</small>${win('可用 MediSave')}`:`<b>拿 PR 后自动转本地健保</b><small>准证失效 60 天内没续，保单终止</small>`,
-      local?`<b>MediShield Life 仍要保留</b><small>全球险部分只能现金付</small>`:`<b>身份变化要通知 AIA</b><small>公司可调整或终止</small>`],
-    ['i-cal','最后投保年龄',`<b>75 岁</b><small>按下一生日年龄</small>`,`<b>65 岁</b><small>按上一生日年龄</small>`]
-  ];
-  $('cmpGrid').innerHTML=`<div class="sg-row hd"><div class="sg-k"></div><div class="sg-v a"><svg class="ic"><use href="#i-hospital"/></svg>新加坡 · ${SGNAME[cmp.sg]}</div><div class="sg-v b"><svg class="ic"><use href="#i-globe"/></svg>全球 · ${gName(o.gp,o.go)}</div></div>`+
-    rows.map(r=>`<div class="sg-row"><div class="sg-k"><span class="sg-ic"><svg class="ic"><use href="#${r[0]}"/></svg></span>${r[1]}</div><div class="sg-v a">${r[2]}</div><div class="sg-v b">${r[3]}</div></div>`).join('');
-  const ages=[cmp.age,cmp.age+5,cmp.age+10,cmp.age+20].filter(a=>a<=100);
-  const pa=ages.map(a=>sgPrice(a,cmp.res,cmp.sg).total), pb=ages.map(a=>glPrice(a,cmp.res,cmp.gi).total);
-  $('cmpFuture').innerHTML=`<thead><tr><th>以后每年保费</th>${ages.map(a=>`<th class="p1">${a} 岁</th>`).join('')}</tr></thead><tbody>`+
-    `<tr><td>新加坡 · ${SGNAME[cmp.sg]}</td>${pa.map((v,i)=>`<td class="p1${v<pb[i]?' green':''}">${sgd(v)}</td>`).join('')}</tr>`+
-    `<tr><td>全球 · ${gName(o.gp,o.go)}</td>${pb.map((v,i)=>`<td class="p2${v<pa[i]?' green':''}">${sgd(v)}</td>`).join('')}</tr></tbody>`;
-  renderClaims();
+function renderSteps(){
+  $w('wSteps').innerHTML=STEPS.map((l,i)=>{const n=i+1;
+    return '<button type="button" data-go="'+n+'" class="'+(n===step?'on':(n<step?'done':''))+'"'+(n>1&&!people.length?' disabled':'')+'><span class="n">'+(n<step?'✓':n)+'</span><span>'+l+'</span></button>';}).join('');
+  $w('wSteps').querySelectorAll('[data-go]').forEach(b=>b.addEventListener('click',()=>go(+b.dataset.go)));
+  document.querySelectorAll('.wpanel').forEach(p=>p.classList.toggle('on',+p.dataset.p===step));
 }
-/* 同一年龄、三种身份的价格对照 */
-function renderResCmp(){
-  const $=id=>document.getElementById(id), ids=RES.map(r=>r[0]), o=GOPT[cmp.gi];
-  const sgAll=ids.map(r=>r!=='local'&&cmp.sg==='BL'?null:sgPrice(cmp.age,r,cmp.sg));
-  const glAll=ids.map(r=>glPrice(cmp.age,r,cmp.gi));
-  const td=(i,v,sm,k)=>`<td class="${k}">${v}<small>${sm}</small></td>`;
-  const sgCell=(x,i)=>!x?td(i,'—','外国人没有 B Lite','p1'):
-    td(i,sgd(x.total),ids[i]==='local'?'含 MediShield Life '+sgd(band(HSGM_LOCAL,cmp.age+1)[1]):ids[i]==='fdep'?'家人 MediSave 可付 '+sgd(x.cpf):'全部现金','p1');
-  const glCell=(x,i)=>td(i,sgd(x.total),ids[i]==='local'?'全球险 '+sgd(x.cash)+' + MediShield Life '+sgd(x.cpf):'全球险，全部现金','p2');
-  $('cmpRes').innerHTML=`<thead><tr><th>同样 ${cmp.age} 岁</th><th class="p1">新加坡 · ${SGNAME[cmp.sg]}</th><th class="p2">全球 · ${gName(o.gp,o.go)}</th></tr></thead><tbody>`+
-    RES.map((r,i)=>`<tr class="${r[0]===cmp.res?'cur':''}"><td>${r[1]}</td>${sgCell(sgAll[i],i)}${glCell(glAll[i],i)}</tr>`).join('')+'</tbody>';
-  const sgLine=sgAll[2]?`新加坡计划这边，外国人反而比公民 / PR 贵（${sgd(sgAll[2].total)} 对 ${sgd(sgAll[0].total)}）。`:'';
-  $('cmpWhy').querySelector('span').innerHTML=`<b>为什么全球险外国人看起来更便宜？</b>全球险本身不分国籍，住在新加坡的人都是 ${sgd(glAll[2].total)}。公民 / PR 多出来的 ${sgd(glAll[0].cpf)} 是政府强制的 MediShield Life，用 MediSave 付，等于多一层保障。${sgLine}`;
+function renderBar(){
+  const t=famTotals();
+  $w('wBack').hidden=step===1;
+  if(step===1){
+    $w('wTotL').textContent='已添加';
+    $w('wTot').textContent=people.length+' 位家人';
+    $w('wTotS').textContent='下一步按 Ta 们的年龄和身份报价';
+  }else{
+    $w('wTotL').textContent='全家合计年保费';
+    $w('wTot').textContent=fmt(t.total);
+    $w('wTotS').innerHTML='MediSave 约 '+sgd(t.cpf)+' · 现金约 '+sgd(t.cash)+(t.msl?'<span class="msl"> · 其中 MSL '+sgd(t.msl)+' 本来就要交</span>':'');
+  }
+  const nx=$w('wNext'); nx.textContent=NEXTL[step]; nx.disabled=!people.length;
 }
+function renderAll(){
+  renderSteps(); renderBar();
+  if(step===1)renderStep1();
+  if(step===2)renderStep2();
+  if(step===3)renderStep3();
+  if(step===4)renderStep4();
+  const gl=$w('xGlobalLink'); if(gl)gl.href=globalHref(people[0])+'#q='+encodeState()+'&s='+step;
+}
+function changed(){saveHash();renderBar();}
+
+/* ---------- 填空句：下拉框、输入框按内容自动变宽 ---------- */
+const _cv=document.createElement('canvas').getContext('2d');
+function fit(el){
+  const cs=getComputedStyle(el); _cv.font=cs.fontWeight+' '+cs.fontSize+' '+cs.fontFamily;
+  const isSel=el.tagName==='SELECT', o=isSel?el.options[el.selectedIndex]:null;
+  const txt=isSel?(o?o.text:''):(el.value||el.placeholder||'');
+  el.style.width=Math.max(el.type==='number'?40:52,Math.ceil(_cv.measureText(txt).width+(isSel?36:18)))+'px';
+}
+function fitAll(box){(box||document).querySelectorAll(box?'.fl':'.wpanel.on .fl').forEach(fit);}
+window.addEventListener('resize',()=>fitAll());
+function sel(k,opts,cur,lbl){
+  return '<select class="fl" data-k="'+k+'"'+(lbl?' aria-label="'+lbl+'"':'')+'>'+
+    opts.map(o=>'<option value="'+o[0]+'"'+(o[0]===cur?' selected':'')+(o[2]?' disabled':'')+'>'+o[1]+'</option>').join('')+'</select>';
+}
+function who(ps){return '<span class="who">'+esc(ps.name)+'<small>'+ps.age+' 岁</small></span>';}
+function notesOf(o){return o&&o.notes&&o.notes.length?'<div class="nt">'+o.notes.join('<br>')+'</div>':'';}
+function redo(){renderAll();saveHash();}
+
+/* ---------- 第 1 步：家人 ---------- */
+const RES_S=[['local','新加坡公民 / PR'],['fdep','外国人 · SC/PR 家属'],['fnon','外国人']];
+function renderStep1(){
+  const box=$w('w1list');
+  box.innerHTML=people.map((ps,i)=>{
+    const nm=i===0&&ps.name==='我'?'':ps.name;
+    return '<p class="mls" data-i="'+i+'">'+(i===0?'我叫':'还有')+
+      '<input class="fl" type="text" data-k="name" value="'+esc(nm)+'" placeholder="'+(i===0?'你的名字':'称呼')+'" maxlength="20" aria-label="称呼">，今年'+
+      '<input class="fl" type="number" min="0" max="105" inputmode="numeric" data-k="age" value="'+ps.age+'" aria-label="年龄">岁，是'+
+      sel('res',RES_S,ps.res,'身份')+'。'+
+      (i>0?'<button type="button" class="del" data-del aria-label="移除">✕</button>':'')+'</p>';
+  }).join('');
+  box.querySelectorAll('.mls').forEach(row=>{
+    const i=+row.dataset.i, ps=people[i];
+    const nm=row.querySelector('[data-k=name]'), ag=row.querySelector('[data-k=age]'), rs=row.querySelector('[data-k=res]');
+    nm.addEventListener('input',()=>{ps.name=nm.value.slice(0,20).trim()||(i===0?'我':'家人');fit(nm);changed();});
+    ag.addEventListener('input',()=>fit(ag));
+    ag.addEventListener('change',()=>{ps.age=clamp(parseInt(ag.value||0,10)||0,0,105);ag.value=ps.age;fit(ag);
+      if(paProduct(ps.age)!=='adults'&&ps.p.plan>3)ps.p.plan=3; changed();});
+    rs.addEventListener('change',()=>{ps.res=rs.value;if(ps.res!=='local'&&ps.h.plan==='BL')ps.h.plan='B';fit(rs);changed();});
+    const d=row.querySelector('[data-del]'); if(d)d.addEventListener('click',()=>{people.splice(i,1);redo();});
+  });
+  fitAll(box);
+}
+document.querySelectorAll('.wadd [data-add]').forEach(b=>b.addEventListener('click',()=>{
+  const k=b.dataset.add, base=people[0], n=people.length+1, p=newPerson(n);
+  p.res=base?base.res:'local';
+  if(k==='spouse'){p.name='配偶';p.age=base?base.age:35;}
+  else if(k==='child'){p.name='孩子'+(people.filter(x=>/^孩子/.test(x.name)).length+1);p.age=8;}
+  else if(k==='parent'){p.name=people.some(x=>x.name==='父亲')?'母亲':'父亲';p.age=65;p.p.plan=2;}
+  else {p.name='家人'+n;p.age=30;}
+  people.push(p); redo();
+  const inp=$w('w1list').querySelector('.mls:last-child input[data-k=age]'); if(inp)inp.select();
+}));
+
+/* ---------- 第 2 步：住院险 ---------- */
+const TIER_S={M:'只用政府的 MediShield Life',MF:'先不买住院险',BL:'住公立 B1 病房（4 人房）',B:'住公立医院单人房（A 级病房）',A:'住私立医院，自己挑专科医生',G:'在全球都能看病（美国除外）'};
+function tierOpts(local){return (local?['M','BL','B','A','G']:['M','B','A','G']).map(x=>[x,x==='M'&&!local?TIER_S.MF:TIER_S[x]]);}
+function riderOf(ps){
+  const t=tierOf(ps);
+  if(t==='M')return '';
+  if(t==='G')return 'g'+ps.h.gp+ps.h.go;
+  if(!ps.h.vhp)return 'n';
+  return t==='A'?'v'+(ps.h.ccp?'c':'')+(ps.h.ecp?'e':''):'v';
+}
+function riderOpts(t,cur){
+  if(t==='M'||!t)return [];
+  if(t==='G')return GOPT.map(o=>['g'+o.gp+o.go,wan(GLIM[o.gp][0])+' · 免赔 '+sgd(GDED[o.go].ded)]);
+  if(t!=='A')return [['v','自付有封顶（加附加险）'],['n','保费省一点，不加附加险']];
+  const o=[['vc','自付封顶 + 癌症药加强'],['v','自付有封顶（加附加险）'],['vce','自付封顶 + 癌症药 + 急诊加强'],['n','保费省一点，不加附加险']];
+  if(cur==='ve')o.splice(3,0,['ve','自付封顶 + 急诊加强']);
+  return o;
+}
+function setRider(ps,r){
+  if(!r)return;
+  if(r[0]==='g'){ps.h.gp=+r[1];ps.h.go=+r[2];return;}
+  if(r==='n'){ps.h.vhp=false;return;}
+  ps.h.vhp=true; if(tierOf(ps)==='A'){ps.h.ccp=r.includes('c');ps.h.ecp=r.includes('e');}
+}
+function setTier(ps,x){if(x==='M'){ps.h.on=false;return;} ps.h.on=true; ps.h.plan=(x==='BL'&&ps.res!=='local')?'B':x;}
+function riderLead(t){return t==='G'?'，每年最高赔':'，';}
+function hospSnt(ps,lead){
+  const t=tierOf(ps), r=riderOf(ps), ro=riderOpts(t,r);
+  return lead+'想'+sel('t',tierOpts(ps.res==='local'),t,'住院')+(ro.length?riderLead(t)+sel('r',ro,r,'附加选项'):'')+'。';
+}
+function hospPr(ps){
+  const h=hospOf(ps);
+  return h?'<b>'+fmt(h.total)+'<small> / 年</small></b><span>MediSave '+sgd(h.cpf)+' · 现金 '+sgd(h.cash)+'</span>':'<b>—</b><span>不买</span>';
+}
+function bindHosp(box,ps){
+  const t=box.querySelector('[data-k=t]'), r=box.querySelector('[data-k=r]');
+  t.addEventListener('change',()=>{setTier(ps,t.value);redo();});
+  if(r)r.addEventListener('change',()=>{setRider(ps,r.value);redo();});
+}
+function famIf(tier){
+  let tot=0,msl=0,cash=0,cpf=0;
+  people.forEach(ps=>{
+    const q={age:ps.age,res:ps.res,h:{on:tier!=='M',plan:tier==='M'?'A':tier,vhp:true,ccp:tier==='A',ecp:false,gp:2,go:2},p:ps.p};
+    const h=hospOf(q); if(h){tot+=h.total;msl+=(h.msl||0);cash+=h.cash;cpf+=h.cpf;}
+  });
+  return {tot,msl,cash,cpf};
+}
+function applyAll(tier){
+  if(!tier)return;
+  people.forEach(ps=>{
+    if(tier==='M'){ps.h.on=false;return;}
+    ps.h.on=true; ps.h.plan=(tier==='BL'&&ps.res!=='local')?'B':tier; ps.h.vhp=true; if(tier==='A')ps.h.ccp=true;
+  });
+  redo();
+}
+function globalHref(ps){
+  if(!ps)return 'quote-global.html';
+  const t=tierOf(ps), local=ps.res==='local';
+  const sg=t==='G'||t==='M'?'A':(local||t!=='BL'?t:'B'), gi=t==='G'?GOPT.findIndex(o=>o.gp===ps.h.gp&&o.go===ps.h.go):3;
+  return 'quote-global.html?age='+clamp(ps.age,0,65)+'&res='+ps.res+'&sg='+sg+'&gi='+gi;
+}
+function renderStep2(){
+  const n=people.length, anyLocal=people.some(p=>p.res==='local'), allLocal=people.every(p=>p.res==='local');
+  const fam=$w('w2fam'), list=$w('w2list');
+  if(n===1){
+    const ps=people[0];
+    fam.innerHTML='<p>'+hospSnt(ps,'住院的时候，我')+'</p><div class="ml-pr num">'+hospPr(ps)+'</div>'+notesOf(hospOf(ps));
+    bindHosp(fam,ps);
+    list.innerHTML=''; list.hidden=true;
+  }else{
+    const ts=people.map(tierOf), same=ts.every(x=>x===ts[0]), t0=same?ts[0]:'';
+    const topts=[['M',allLocal?TIER_S.M:anyLocal?'只用 MediShield Life / 不买':TIER_S.MF]].concat((allLocal?['BL','B','A','G']:['B','A','G']).map(x=>[x,TIER_S[x]]));
+    if(!same)topts.unshift(['','每个人不一样',1]);
+    let snt='住院的时候，我们全家想'+sel('ft',topts,t0,'全家住院');
+    if(same){
+      const rs=people.map(riderOf), rsame=rs.every(x=>x===rs[0]), ro=riderOpts(t0,rsame?rs[0]:'');
+      if(ro.length){if(!rsame)ro.unshift(['','每个人不一样',1]); snt+=riderLead(t0)+sel('fr',ro,rsame?rs[0]:'','全家附加选项');}
+    }
+    fam.innerHTML='<p>'+snt+'。</p>';
+    fam.querySelector('[data-k=ft]').addEventListener('change',e=>applyAll(e.target.value));
+    const fr=fam.querySelector('[data-k=fr]'); if(fr)fr.addEventListener('change',()=>{people.forEach(ps=>setRider(ps,fr.value));redo();});
+    list.hidden=false;
+    list.innerHTML='<div class="h">每个人也可以不一样</div>'+people.map((ps,i)=>
+      '<div class="mr" data-i="'+i+'"><div class="snt">'+hospSnt(ps,who(ps))+'</div><div class="pr num">'+hospPr(ps)+'</div>'+notesOf(hospOf(ps))+'</div>').join('');
+    list.querySelectorAll('.mr').forEach(row=>bindHosp(row,people[+row.dataset.i]));
+  }
+  const tiles=[['M',anyLocal?'只有 MSL':'不买住院险'],['B',(n>1?'全家':'升级')+'公立'],['A',(n>1?'全家':'升级')+'私立']];
+  $w('w2opts').innerHTML='<div class="cap">'+(n>1?'全家':'')+'一年保费对比，点一下就换</div>'+tiles.map(([t,l])=>{
+    const f=famIf(t), on=people.every(ps=>tierOf(ps)===t);
+    const sub=t==='M'?(anyLocal?'政府基本医保':'没有住院保障'):(f.msl?'升级多交 '+sgd(f.tot-f.msl):'MediSave '+sgd(f.cpf));
+    return '<button type="button" data-all="'+t+'" class="'+(on?'on':'')+'" style="--tc:'+TIER[t].c+';--tt:'+TIER[t].t+'"><span class="l">'+icw(TIER[t].i)+l+'</span><span class="a">'+sgd(f.tot)+'</span><span class="s">'+sub+'</span></button>';
+  }).join('');
+  $w('w2opts').querySelectorAll('[data-all]').forEach(b=>b.addEventListener('click',()=>applyAll(b.dataset.all)));
+  fitAll(fam.closest('.ml'));
+}
+
+/* ---------- 第 3 步：意外险 ---------- */
+const PAS={kids:'少儿意外险',adults:'成人意外险',elderly:'乐龄意外险'};
+const PAMED={kids:[1500,3000,5000],adults:[2000,3000,4000,5000],elderly:[1000,2000,3000]};
+function paMax(ps){return paProduct(ps.age)==='adults'?4:3;}
+function paCur(ps){return Math.min(ps.p.plan,paMax(ps));}
+function paSnt(ps,lead){
+  const prod=paProduct(ps.age);
+  let snt=lead+sel('on',[['y','要'],['n','不要']],ps.p.on?'y':'n','要不要意外险')+PAS[prod];
+  if(ps.p.on){
+    snt+='，选'+sel('pp',PAMED[prod].map((m,k)=>[String(k+1),'Plan '+(k+1)+' · 医疗报销 '+sgd(m)]),String(paCur(ps)),'计划');
+    if(prod==='kids')snt+='，加儿童重疾'+sel('ci',[['0','不加'],['1','S$30,000'],['2','S$50,000'],['3','S$100,000']],String(ps.p.ci),'儿童重疾');
+  }
+  return snt+'。';
+}
+function paChips(ps){
+  if(!ps.p.on||paProduct(ps.age)!=='adults')return '';
+  return '<div class="chips"><span>加选</span>'+[['grpLife','生活维持组'],['grpHosp','意外住院组'],['grpDis','月度伤残护理']].map(([k,l])=>
+    '<button type="button" data-pf="'+k+'" class="'+(ps.p[k]?'on':'')+'" aria-pressed="'+(ps.p[k]?'true':'false')+'">'+(ps.p[k]?'✓ ':'+ ')+l+'</button>').join('')+'</div>';
+}
+function paPr(ps){
+  const pa=calcPA(ps);
+  return ps.p.on&&pa&&pa.total?'<b>'+fmt(pa.total)+'<small> / 年</small></b><span>现金</span>':'<b>—</b><span>不买</span>';
+}
+function bindPA(box,ps){
+  box.querySelector('[data-k=on]').addEventListener('change',e=>{ps.p.on=e.target.value==='y';redo();});
+  const pp=box.querySelector('[data-k=pp]'); if(pp)pp.addEventListener('change',()=>{ps.p.plan=+pp.value;redo();});
+  const ci=box.querySelector('[data-k=ci]'); if(ci)ci.addEventListener('change',()=>{ps.p.ci=+ci.value;redo();});
+  box.querySelectorAll('[data-pf]').forEach(b=>b.addEventListener('click',()=>{ps.p[b.dataset.pf]=!ps.p[b.dataset.pf];redo();}));
+}
+function renderStep3(){
+  const n=people.length, fam=$w('w3fam'), list=$w('w3list');
+  if(n===1){
+    const ps=people[0];
+    fam.innerHTML='<p>'+paSnt(ps,'意外受伤时，我')+'</p>'+paChips(ps)+'<div class="ml-pr num">'+paPr(ps)+'</div>'+notesOf(calcPA(ps));
+    bindPA(fam,ps);
+    list.innerHTML=''; list.hidden=true;
+  }else{
+    const onP=people.filter(p=>p.p.on), allOn=onP.length===n, allOff=!onP.length;
+    const top=onP.length?Math.max.apply(null,onP.map(paCur)):2, psame=onP.every(p=>paCur(p)===Math.min(top,paMax(p)));
+    const maxP=people.some(p=>paProduct(p.age)==='adults')?4:3;
+    const oo=[['y','都要'],['n','都不要']]; if(!allOn&&!allOff)oo.unshift(['','有人要、有人不要',1]);
+    let snt='意外受伤时，我们全家'+sel('fon',oo,allOn?'y':allOff?'n':'','全家意外险')+'意外险';
+    if(!allOff){
+      const po=[1,2,3,4].slice(0,maxP).map(k=>[String(k),'Plan '+k+(k===2?'（最多人选）':'')]);
+      if(!psame)po.unshift(['','每个人不一样',1]);
+      snt+='，选'+sel('fpp',po,psame?String(top):'','全家计划');
+    }
+    fam.innerHTML='<p>'+snt+'。</p>';
+    fam.querySelector('[data-k=fon]').addEventListener('change',e=>{if(!e.target.value)return;people.forEach(p=>{p.p.on=e.target.value==='y';});redo();});
+    const fpp=fam.querySelector('[data-k=fpp]'); if(fpp)fpp.addEventListener('change',()=>{if(!fpp.value)return;people.forEach(p=>{p.p.plan=Math.min(+fpp.value,paMax(p));});redo();});
+    list.hidden=false;
+    list.innerHTML='<div class="h">每个人也可以不一样</div>'+people.map((ps,i)=>
+      '<div class="mr'+(ps.p.on?'':' off')+'" data-i="'+i+'"><div class="snt">'+paSnt(ps,who(ps))+paChips(ps)+'</div><div class="pr num">'+paPr(ps)+'</div>'+notesOf(calcPA(ps))+'</div>').join('');
+    list.querySelectorAll('.mr').forEach(row=>bindPA(row,people[+row.dataset.i]));
+  }
+  fitAll(fam.closest('.ml'));
+}
+$w('w3skip').addEventListener('click',()=>{people.forEach(ps=>{ps.p.on=false;});go(4);});
+document.querySelectorAll('.wedits [data-edit]').forEach(b=>b.addEventListener('click',()=>go(+b.dataset.edit)));
+
+/* ---------- 第 4 步：方案总结 ---------- */
+function planText(){
+  const lines=people.map(ps=>{const h=hospOf(ps),pa=calcPA(ps);
+    return '· '+ps.name+'（'+ps.age+' 岁，'+RESL[ps.res]+'）\n  住院：'+tierName(ps)+(h?' '+fmt(h.total):'')+'\n  意外：'+paName(ps)+(ps.p.on&&pa&&pa.total?' '+fmt(pa.total):'');});
+  const t=famTotals(), msg=($w('wMsg').value||'').trim();
+  return '你好小圆姐，我用保障方案测算工具算了全家方案：\n'+lines.join('\n')+
+    '\n全家合计约 '+fmt(t.total)+' / 年（MediSave 约 '+sgd(t.cpf)+'，现金约 '+sgd(t.cash)+'）'+
+    (msg?'\n我想问：'+msg:'')+'\n方案链接：'+shareUrl(4)+'\n麻烦你帮我看看，谢谢！';
+}
+function cellW(main,o,extra){
+  return '<div class="cv"><span class="v">'+main+'</span>'+(extra?'<span class="c">'+extra+'</span>':'')+
+    (o?'<span class="s">'+(o.cpf>0?'MediSave '+sgd(o.cpf):'')+(o.cash>0?(o.cpf>0?' · ':'')+'<span class="cs">现金 '+sgd(o.cash)+'</span>':'')+'</span>':'')+'</div>';
+}
+function renderStep4(){
+  const t=famTotals();
+  const head='<thead><tr><th>家人<button type="button" class="edit" data-edit="1">修改</button></th><th>住院险<button type="button" class="edit" data-edit="2">修改</button></th><th>意外险<button type="button" class="edit" data-edit="3">修改</button></th><th>合计 / 年</th></tr></thead>';
+  const body=people.map(ps=>{const h=hospOf(ps),pa=calcPA(ps),pt=ps.p.on&&pa&&pa.total?pa.total:0,sum=(h?h.total:0)+pt;
+    const hc=h?cellW(fmt(h.total),h,tierName(ps)+(h.msl&&!h.mslOnly?' · 其中 MSL '+sgd(h.msl):'')):cellW('—',null,'不买住院险');
+    const pc=pt?cellW(fmt(pt),{cpf:0,cash:pt},paName(ps)):cellW('—',null,'不买');
+    return '<tr><td><b>'+esc(ps.name)+'</b><small>'+ps.age+' 岁 · '+RESL[ps.res]+'</small></td><td data-l="住院险">'+hc+'</td><td data-l="意外险">'+pc+'</td><td data-l="合计 / 年"><div class="cv"><span class="v">'+fmt(sum)+'</span></div></td></tr>';}).join('');
+  const tot='<tr class="tot"><td><b>全家 / 年</b></td><td data-l="住院险">'+cellW(fmt(t.hosp),null,'')+'</td><td data-l="意外险">'+cellW(fmt(t.pa),null,'')+'</td><td data-l="合计">'+cellW(fmt(t.total),t,'')+'</td></tr>'+
+    '<tr class="mo"><td>每月折算</td><td data-l="住院险">'+sgd(t.hosp/12)+'</td><td data-l="意外险">'+sgd(t.pa/12)+'</td><td data-l="合计"><b>'+sgd(t.total/12)+'</b> / 月</td></tr>';
+  $w('w4sum').innerHTML=head+'<tbody>'+body+tot+'</tbody>';
+  $w('w4sum').querySelectorAll('[data-edit]').forEach(b=>b.addEventListener('click',()=>go(+b.dataset.edit)));
+  $w('w4note').innerHTML=(t.msl?'公民 / PR 的住院险已含 MediShield Life（共 '+sgd(t.msl)+'，本来就要交，全部可用 MediSave）。':'')+
+    '保费按 AIA 官方价格表、含 9% GST；以正式报价单和核保结果为准。';
+  $w('wWa').href='https://wa.me/6583750190?text='+encodeURIComponent(planText());
+  if(window.qxFuture)window.qxFuture();
+}
+$w('wMsg').addEventListener('input',()=>{$w('wWa').href='https://wa.me/6583750190?text='+encodeURIComponent(planText());});
+function copyTo(btn,text,ok){
+  const sp=btn.querySelector('span'), orig=sp.textContent;
+  const done=()=>{sp.textContent=ok;setTimeout(()=>{sp.textContent=orig;},1800);};
+  if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(text).then(done,()=>prompt('复制下面的内容：',text));
+  else prompt('复制下面的内容：',text);
+}
+$w('wWx').addEventListener('click',function(){copyTo(this,planText(),'已复制，打开微信粘贴给小圆姐');});
+$w('wLink').addEventListener('click',function(){copyTo(this,shareUrl(4),'已复制方案链接');});
+$w('wBack').addEventListener('click',()=>{if(step>1)go(step-1);});
+$w('wNext').addEventListener('click',()=>{
+  if(step<4){go(step+1);return;}
+  window.open('https://wa.me/6583750190?text='+encodeURIComponent(planText()),'_blank','noopener');
+});
+
+/* ============ 保障对比表 / 账单示例 / 以后的保费（同梁老师案例） ============ */
 (function(){
-  const r=document.getElementById('cAgeR'), n=document.getElementById('cAge');
-  r.addEventListener('input',()=>{cmp.age=+r.value;renderCmp();});
-  n.addEventListener('change',()=>{cmp.age=Math.max(0,Math.min(65,parseInt(n.value||0,10)));renderCmp();});
+  const $=id=>document.getElementById(id);
+  const DED=3500, CAP=6000;
+  const OPX=[
+    {id:'msl',name:'只有 MediShield Life',head:'MediShield Life',icon:'i-shield',pc:'var(--x-grey)',tc:'#77705F',cls:'p0'},
+    {id:'pub',name:'升级到公立',head:'升级到公立',icon:'i-hospital',pc:'var(--x-blue)',tc:'var(--x-blue)',cls:'p1'},
+    {id:'pri',name:'升级到私立',head:'升级到私立',icon:'i-gem',pc:'linear-gradient(135deg,var(--x-champ-l),var(--x-champ) 45%,var(--x-champ-d))',tc:'var(--x-champ-d)',cls:'p2'}
+  ];
+  const ico=icw;
+  const segs=(id,cb)=>document.querySelectorAll('#'+id+' button').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('#'+id+' button').forEach(x=>x.classList.toggle('on',x===b));cb(b);}));
+
+  segs('xKeySeg',b=>$('xBene').classList.toggle('keyonly',b.dataset.k==='key'));
+  segs('xColSeg',b=>{$('xBene').classList.toggle('show-p1',b.dataset.c==='p1');$('xBene').classList.toggle('show-p2',b.dataset.c==='p2');});
+  const mq=window.matchMedia('(max-width:760px)');
+  const syncCols=()=>{const n=mq.matches?3:4;document.querySelectorAll('#xBene tr.sec td').forEach(td=>{td.colSpan=n;});};
+  syncCols(); if(mq.addEventListener)mq.addEventListener('change',syncCols);else if(mq.addListener)mq.addListener(syncCols);
+
+  let bill=50000, bcase='med', rider=true;
+  const CASES={
+    med:{days:7, ward:1, surg:0, label:'无手术', note:'<b>无手术</b>：内科住院 7 天，账单全是住院费（病房 + 治疗）。'},
+    surg:{days:4, ward:.6, surg:.4, label:'有手术', note:'<b>有手术</b>：住院 4 天，账单 6 成住院费、4 成手术费；手术按最复杂的表 7 算（MSL 每次最多 S$3,900）。'}
+  };
+  const MSLF={pri:{ward:.16,surg:.10,ded:3500}, pubA:{ward:.27,surg:.25,ded:3500}, pubC:{ward:1,surg:1,ded:2500}};
+  function mslCalc(x,hosp){
+    const c=CASES[bcase], f=MSLF[hosp];
+    const wardLim=830*c.days+800*Math.min(c.days,2), surgLim=3900;
+    const wardB=x*c.ward, surgB=x*c.surg, wardP=wardB*f.ward, surgP=surgB*f.surg;
+    const claim=Math.min(wardP,wardLim)+Math.min(surgP,surgLim);
+    const D=f.ded, ded=Math.min(claim,D);
+    const co=.10*Math.max(0,Math.min(claim,5000)-D)+.05*Math.max(0,Math.min(claim,10000)-5000)+.03*Math.max(0,claim-10000);
+    const pay=Math.max(0,claim-ded-co);
+    return {wardB,surgB,wardP,surgP,wardLim,surgLim,claim,ded,co,pay,self:x-pay,f,days:c.days};
+  }
+  function ipCalc(x,pro){
+    const base=x*pro, cut=x-base, ded=Math.min(base,DED), rest=Math.max(base-DED,0);
+    const co=rider?Math.min(.05*rest,CAP):.10*rest, pay=rest-co;
+    return {cut,ded,co,pay,self:x-pay};
+  }
+  const bar=(pay,x)=>{const pc=Math.max(0,Math.min(100,pay/x*100));return '<div class="xbar"><i class="c" style="width:'+pc+'%"></i><i class="s" style="width:'+(100-pc)+'%"></i></div>';};
+  function ipCard(op,scope,pro){
+    const r=ipCalc(bill,pro);
+    return '<div class="xbill" style="--pc:'+op.pc+';--tc:'+op.tc+'"><h4>'+ico(op.icon)+op.name+'</h4><div class="scope">'+scope+'</div>'+
+      '<div class="row"><span class="k">账单</span><b>'+sgd(bill)+'</b></div>'+
+      (pro<1?'<div class="row cut"><span class="k">先按 70% 折算<small>折掉的 30% 自己付</small></span><b>'+sgd(r.cut)+'</b></div>':'')+
+      '<div class="row"><span class="k">免赔额</span><b>'+sgd(r.ded)+'</b></div>'+
+      '<div class="row"><span class="k">共付 '+(rider?'5%（封顶 S$6,000）':'10%')+'</span><b>'+sgd(r.co)+'</b></div>'+
+      '<div class="row claim"><span class="k">保险赔</span><b>'+sgd(r.pay)+'</b></div>'+
+      '<div class="row self"><span class="k">自己付</span><b>'+sgd(r.self)+'</b></div>'+bar(r.pay,bill)+'</div>';
+  }
+  function mslCard(hosp){
+    const m=mslCalc(bill,hosp), pct=v=>Math.round(v*100)+'%', op=OPX[0];
+    const scope=hosp==='pri'?'私立：住院费按 16%、手术费按 10% 算':'A 级病房：住院费按 27%（PR 25%）、手术费按 25% 算';
+    let rows='<div class="row"><span class="k">账单</span><b>'+sgd(bill)+'</b></div>';
+    if(m.surgB>0){
+      rows+='<div class="row cut"><span class="k">打折后<small>住院费 '+sgd(m.wardB)+' × '+pct(m.f.ward)+' + 手术费 '+sgd(m.surgB)+' × '+pct(m.f.surg)+'</small></span><b>'+sgd(m.wardP+m.surgP)+'</b></div>'+
+        '<div class="row"><span class="k">再按限额封顶<small>住院 '+m.days+' 天最多 '+sgd(m.wardLim)+'；表 7 手术最多 '+sgd(m.surgLim)+'</small></span><b>'+sgd(m.claim)+'</b></div>';
+    }else{
+      rows+='<div class="row cut"><span class="k">打折后<small>住院费 × '+pct(m.f.ward)+'</small></span><b>'+sgd(m.wardP)+'</b></div>'+
+        '<div class="row"><span class="k">再按限额封顶<small>住院 '+m.days+' 天最多 '+sgd(m.wardLim)+'</small></span><b>'+sgd(m.claim)+'</b></div>';
+    }
+    rows+='<div class="row"><span class="k">免赔额</span><b>'+sgd(m.ded)+'</b></div>'+
+      '<div class="row"><span class="k">共付 10% / 5% / 3%</span><b>'+sgd(m.co)+'</b></div>'+
+      '<div class="row claim"><span class="k">MSL 赔</span><b>'+sgd(m.pay)+'</b></div>'+
+      '<div class="row self"><span class="k">自己付</span><b>'+sgd(m.self)+'</b></div>'+bar(m.pay,bill);
+    return '<div class="xbill" style="--pc:'+op.pc+';--tc:'+op.tc+'"><h4>'+ico(op.icon)+op.name+'</h4><div class="scope">'+scope+'</div>'+rows+'</div>';
+  }
+  function renderBills(){
+    $('xCaseNote').innerHTML=CASES[bcase].note+' MSL 在公立 A 级病房按公民的折算比例；外国人没有 MSL。';
+    const REF=20000, keep=bill; bill=REF; const rf=mslCalc(REF,'pubC'); bill=keep;
+    const rpc=Math.max(0,Math.min(100,rf.pay/REF*100));
+    const ref='<div class="xbref"><div class="xbref-h">'+ico('i-shield')+'先看个参考：公民住公立 B2 / C 多人房，只有 MediShield Life<small>津贴后账单 '+sgd(REF)+' · '+CASES[bcase].label+'</small></div>'+
+      '<div class="xbref-body"><div class="xflow"><span class="st">账单 <b>'+sgd(REF)+'</b></span><span class="ar">→</span>'+
+      '<span class="st">不打折 <b>100%</b></span><span class="ar">→</span>'+
+      '<span class="st">限额封顶 <b>'+sgd(rf.claim)+'</b></span><span class="ar">→</span>'+
+      '<span class="st">免赔额 <b>'+sgd(rf.ded)+'</b></span><span class="ar">→</span>'+
+      '<span class="st">共付 <b>'+sgd(rf.co)+'</b></span></div>'+
+      '<div class="xflow"><span class="st claim">MSL 赔 <b>'+sgd(rf.pay)+'</b></span><span class="st self">自己付 <b>'+sgd(rf.self)+'</b></span></div></div>'+
+      '<div class="xbar"><i class="c" style="width:'+rpc+'%"></i><i class="s" style="width:'+(100-rpc)+'%"></i></div>'+
+      '<div class="fn">'+(rf.surgB>0?'封顶 = 住院 '+rf.days+' 天最多 '+sgd(rf.wardLim)+' + 表 7 手术最多 '+sgd(rf.surgLim):'封顶 = 住院 '+rf.days+' 天最多 '+sgd(rf.wardLim))+'。B2 免赔额 S$2,500（C 级 S$2,000）；PR 住多人房要先打折（住院费 50%、手术费 60%）。</div></div>';
+    $('xBills').innerHTML=ref+
+      '<div class="xbscen">'+ico('i-gem')+'在私立医院住院<small>账单 '+sgd(bill)+' · '+CASES[bcase].label+'</small></div>'+
+      '<div class="xbills">'+mslCard('pri')+ipCard(OPX[1],'公立保单去私立医院',.7)+ipCard(OPX[2],'私立医院标准房',1)+'</div>'+
+      '<div class="xbscen">'+ico('i-hospital')+'在公立医院 A 级病房住院<small>账单 '+sgd(bill)+' · '+CASES[bcase].label+'</small></div>'+
+      '<div class="xbills">'+mslCard('pubA')+ipCard(OPX[1],'公立 A 级单人房',1)+ipCard(OPX[2],'私立保单住公立也按实际赔',1)+'</div>';
+  }
+  segs('xBillSeg',b=>{bill=+b.dataset.v;renderBills();});
+  segs('xCaseSeg',b=>{bcase=b.dataset.c;renderBills();});
+  segs('xRiderSeg',b=>{rider=b.dataset.r==='1';renderBills();});
+  renderBills();
+
+  /* 以后的保费：按成员 */
+  let fi=0;
+  function hospAt(ps,age,plan){
+    return calcHosp({age:age,res:ps.res,h:{on:true,plan:plan,vhp:ps.h.vhp!==false,ccp:plan==='A'&&!!ps.h.ccp,ecp:false}});
+  }
+  function cell(o,up){
+    return '<span class="v">'+(up?'+':'')+sgd(o.total)+'</span><span class="s">'+
+      (o.cpf>0?'MediSave '+sgd(o.cpf):'')+(o.cash>0?(o.cpf>0?'<i class="dot"> · </i>':'')+'<span class="cs">现金 '+sgd(o.cash)+'</span>':'')+'</span>';
+  }
+  function th(op,sub){return '<th class="'+op.cls+'"><span class="xth">'+ico(op.icon)+'<span>'+op.head+(sub?'<small>'+sub+'</small>':'')+'</span></span></th>';}
+  window.qxFuture=function(){
+    if(!people.length)return;
+    if(fi>=people.length)fi=0;
+    $('xFutSeg').innerHTML=people.map((p,i)=>'<button type="button" data-i="'+i+'" class="'+(i===fi?'on':'')+'">'+esc(p.name)+' · '+p.age+' 岁</button>').join('');
+    $('xFutSeg').querySelectorAll('button').forEach(b=>b.addEventListener('click',()=>{fi=+b.dataset.i;window.qxFuture();}));
+    const ps=people[fi], local=ps.res==='local', A0=ps.age, A1=Math.max(ps.age,75);
+    const cols=local?OPX:[OPX[1],OPX[2]];
+    const val=(age,op)=>{
+      if(op.id==='msl'){const m=band(HSGM_LOCAL,age+1)[1];return {total:m,cpf:m,cash:0};}
+      const r=hospAt(ps,age,op.id==='pub'?'B':'A');
+      if(!local)return {total:r.total,cpf:r.cpf,cash:r.cash};
+      const m=band(HSGM_LOCAL,age+1)[1];
+      return {total:r.total-m,cpf:r.cpf-m,cash:r.cash};
+    };
+    const groups=[];
+    for(let a=A0;a<=A1;a++){
+      const vals=cols.map(op=>val(a,op)), key=vals.map(v=>Math.round(v.total)).join('|'), g=groups[groups.length-1];
+      if(g&&g.key===key)g.to=a; else groups.push({from:a,to:a,key,vals});
+    }
+    const max=Math.max(...groups.map(g=>g.vals[g.vals.length-1].total));
+    const subUp=local?'每年多交':'每年';
+    const head='<thead><tr><th>'+esc(ps.name)+'的年龄</th>'+cols.map(op=>th(op,op.id==='msl'?'每年':subUp)).join('')+'</tr></thead>';
+    const body=groups.map((g,i)=>{const n=g.to-g.from+1;
+      return '<tr'+(i===0?' class="now"':'')+'><td>'+(n>1?g.from+'–'+g.to:g.from)+'<small>岁 · '+(i===0?'现在':n+' 年')+'</small></td>'+
+        cols.map((op,j)=>{const o=g.vals[j];return '<td class="'+op.cls+'">'+cell(o,local&&op.id!=='msl')+'<div class="xmb" style="width:'+Math.max(4,o.total/max*100)+'%;background:'+op.pc+'"></div></td>';}).join('')+'</tr>';}).join('');
+    $('xFut').innerHTML=head+'<tbody>'+body+'</tbody>';
+    $('xFutNote').innerHTML=(local?'公民 / PR：MediShield Life 本来就要交；公立、私立两列是升级多交的钱。':'外国人没有 MediShield Life，两列是住院险全部保费。')+
+      ' 附加险按 Ta 的选择（'+(ps.h.vhp!==false?'含 VitalHealth Pro':'不含附加险')+(ps.h.ccp?'，私立含 Cancer Care Pro':'')+'）。'+
+      (tierOf(ps)==='G'?' Ta 选的是全球医疗险，这里列的是新加坡计划，全球险的以后保费看 <a href="quote-global.html" style="color:var(--gold-deep);font-weight:700">对比页</a>。':'')+
+      (A0>75?' 新加坡计划最后投保年龄 75 岁，这里只供续保参考。':'');
+  };
 })();
 
-/* ============ 理赔示例 ============ */
-function renderClaims(){
-  const o=GOPT[cmp.gi], d=GDED[o.go];
-  const cards=[
-    {t:'私立住院险',s:'私立医院标准房 · Gold Max A + VitalHealth Pro A',pc:'var(--navy)',ded:3500,co:.05,cap:6000,pct:'5%'},
-    {t:'公立住院险',s:'公立医院 A 级病房 · Gold Max B + VitalHealth Pro B',pc:'#3355B5',ded:3500,co:.05,cap:6000,pct:'5%'},
-    {t:'全球医疗险',s:'全球（美国除外）标准房 · '+gName(o.gp,o.go),pc:'var(--gold)',ded:d.ded,co:d.co,cap:d.cap,pct:Math.round(d.co*100)+'%'}
-  ];
-  document.getElementById('claims').innerHTML=cards.map(c=>`<article class="clm" style="--pc:${c.pc}"><h3>${c.t}</h3><div class="scope">${c.s}</div>`+
-    [200000,20000].map(x=>{
-      const after=x-c.ded, part=c.co*after, capd=Math.min(part,c.cap), self=c.ded+capd, pay=x-self;
-      return `<div class="bill"><div class="bill-title"><span>${x>=100000?'大':'小'}账单</span><span>${sgd(x)}</span></div><div class="calc">
-        <div class="k">年度免赔额</div><div>${sgd(c.ded)}</div>
-        <div class="k">${c.pct} 自付</div><div>${sgd(part)}</div>
-        ${part>c.cap?`<div class="k">每年封顶</div><div>${sgd(c.cap)}</div>`:''}
-        <div class="self">自己付</div><div>${sgd(self)}</div>
-        <div class="claim">保险赔</div><div>${sgd(pay)}</div></div>
-        <div class="split-bar"><i class="s-claim" style="width:${(pay/x*100).toFixed(1)}%"></i><i class="s-self" style="width:${(self/x*100).toFixed(1)}%"></i></div></div>`;
-    }).join('')+`</article>`).join('');
+function wizStart(){
+  if(!loadHash()){people=[newPerson(1)];people[0].name='我';step=1;}
+  renderAll(); saveHash();
 }
 
 /* ============ 意外险保障表 ============ */
@@ -1521,14 +2224,13 @@ document.addEventListener('click',e=>{
   const a=e.target.closest('.ref a'); if(!a)return;
   const li=document.querySelector(a.getAttribute('href')); if(!li)return;
   e.preventDefault();
+  const dt=li.closest('details'); if(dt)dt.open=true;
   li.scrollIntoView({behavior:'smooth',block:'center'});
   li.classList.remove('hit'); void li.offsetWidth; li.classList.add('hit');
 });
 
 /* ============ 启动 ============ */
-if(!loadHash()){people=[newPerson(1)];}
-render();
-renderCmp();
+wizStart();
 
 (function(){
   var b=document.getElementById('wxCopy'), t=document.getElementById('wxTxt');
