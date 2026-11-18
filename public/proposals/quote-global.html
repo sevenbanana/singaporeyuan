@@ -1118,7 +1118,7 @@ function renderCmp(){
   const rows=[
     ['i-hospital','在哪看病能赔',`<b>${where[0]}</b><small>${where[1]}</small>`,`<b>全球（美国除外）标准房</b><small>按实际赔</small>${win('范围更广')}`],
     ['i-coins','今年保费',`<b>${sgd(A.total)}</b><small>${split(A)}</small>${cheap==='a'?win('便宜 '+sgd(B.total-A.total)):''}`,`<b>${sgd(B.total)}</b><small>${local?'全球险 '+sgd(B.cash)+' + MediShield Life '+sgd(B.cpf):'全部现金'}</small>${cheap==='b'?win('便宜 '+sgd(A.total-B.total)):''}`],
-    ['i-wallet','每年自己最多付',`<b>约 ${sgd(maxA)}</b><small>免赔额 ${sgd(SGDED[cmp.sg])} + 5%（封顶 S$6,000）</small>${win('少付 '+sgd(maxB-maxA))}`,`<b>${sgd(maxB)}</b><small>${gDesc(o.go)}</small>`],
+    ['i-wallet','一年自付上限',`<b>符合条件时约 ${sgd(maxA)}</b><small>免赔额 ${sgd(SGDED[cmp.sg])} + 5%（封顶 S$6,000）；须附加 VitalHealth Pro，并由 AIA 合作医生治疗、经预授权或急诊入院</small>${win('少付 '+sgd(maxB-maxA))}`,`<b>${sgd(maxB)}</b><small>${gDesc(o.go)}；只算保障范围内的费用</small>`],
     ['i-shield','每年最高赔',`<b>${wan(limA)}</b><small>${SGLIM[cmp.sg][1]||'终身不设上限'}</small>${limA>limB?win('更高'):''}`,`<b>${wan(limB)}</b><small>终身 ${wan(GLIM[o.gp][1])}</small>${limB>limA?win('更高'):''}`],
     ['i-ribbon','癌症门诊',`<b>按国家癌症药物清单</b><small>私立 A 可加 Cancer Care Pro，额度更高</small>`,`<b>每年 S$50 万</b><small>化疗、免疫、放疗都算</small>${win('更宽松')}`],
     ['i-renew','能不能一直续保',`<b>保证续保终身</b><small>交保费就续，不看身体状况</small>${win('更稳')}`,`<b style="color:var(--red)">不保证</b><small>保险公司有权不续保</small>`],
