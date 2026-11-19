@@ -27,6 +27,7 @@ out('en/index.html', renderPage({
   t: en, cfg, base: '../', altHref: '../', selfUrl: `${site}/en/`, altUrl: `${site}/`, altLang: zh.lang,
 }));
 
+out('assets/main.js', read('src/main.js'));
 out('assets/site.css', read('src/theme.css') + '\n' + read('src/styles.css'));
 for (const f of readdirSync(join(root, 'assets'))) {
   copyFileSync(join(root, 'assets', f), join(root, 'dist', 'assets', f));

@@ -33,9 +33,10 @@
       <a class="lockup" href="#top" translate="no" aria-label="诺元控股 NOURRA HOLDINGS"><svg class="mark" viewBox="14 14 92 92" width="38" height="38" aria-hidden="true"><rect class="mark-bar" x="18" y="18" width="18" height="84" rx="3"/><rect class="mark-bar" x="84" y="18" width="18" height="84" rx="3"/><rect class="mark-step" x="37" y="82" width="16" height="16" rx="2" fill-opacity=".3"/><rect class="mark-step" x="47" y="62" width="16" height="16" rx="2" fill-opacity=".55"/><rect class="mark-step" x="57" y="42" width="16" height="16" rx="2" fill-opacity=".8"/><rect class="mark-step" x="67" y="22" width="16" height="16" rx="2"/></svg><span class="lockup-text"><b>诺元控股</b><small>NOURRA HOLDINGS</small></span></a>
       <nav class="site-nav" aria-label="主导航">
         <ul>
+          <li><a href="#chain">产业链</a></li>
+          <li><a href="#inside">机房</a></li>
           <li><a href="#business">业务</a></li>
           <li><a href="#footprint">布局</a></li>
-          <li><a href="#principles">原则</a></li>
           <li><a href="#contact">联系</a></li>
         </ul>
         <a class="lang" href="en/" hreflang="en" lang="en" aria-label="Switch to English">EN</a>
@@ -58,33 +59,157 @@
     </div>
   </section>
 
-  <section class="section section--rule" id="business" aria-labelledby="h-business">
-    <div class="wrap split">
-      <h2 class="label" id="h-business">业务</h2>
-      <ul class="rows">
-        <li><h3>智算机房<span class="en" lang="en">Data centres</span></h3><p>在新加坡及周边建设高功率密度机房，为 GPU 集群提供机位、电力与制冷。</p></li>
-        <li><h3>工程建设<span class="en" lang="en">Engineering</span></h3><p>自有工程团队承担强弱电、布线、设备上架与机房改造，并以专业分包身份参与大型项目。</p></li>
-        <li><h3>运维服务<span class="en" lang="en">Operations</span></h3><p>驻场团队负责日常运行、巡检与故障处理，按服务等级协议交付。</p></li>
-        <li><h3>算力资源<span class="en" lang="en">Compute</span></h3><p>为合作伙伴配置经核实的 GPU 算力与企业云资源，在自有机房内完成部署。</p></li>
-      </ul>
-    </div>
-  </section>
-
-  <section class="section section--dark" id="footprint" aria-labelledby="h-footprint">
-    <div class="wrap split">
-      <h2 class="label" id="h-footprint">布局</h2>
-      <div>
-        <p class="statement">立足新加坡，面向东南亚。</p>
-        <ul class="places">
-          <li><h3>新加坡<span class="en" lang="en">Singapore</span></h3><p>总部，工程与运维团队所在地。</p></li>
-          <li><h3>马来西亚<span class="en" lang="en">Malaysia</span></h3><p>重点发展区域，机房项目推进中。</p></li>
-          <li><h3>印度尼西亚<span class="en" lang="en">Indonesia</span></h3><p>重点发展区域，机房项目推进中。</p></li>
-        </ul>
+  <section class="section section--rule" id="chain" aria-labelledby="h-chain" data-reveal>
+    <div class="wrap">
+      <div class="split">
+        <h2 class="label" id="h-chain">产业链</h2>
+        <div><p class="statement">从一度电到一次模型调用，中间隔着九层。</p><p class="hint">点开每一层，看它是什么，以及诺元在哪里。</p></div>
+      </div>
+      
+      <div class="chain" data-tabs="deploy">
+        <div class="chain-list">
+          <button type="button" class="layer layer--none" data-tab="app"><span class="layer-name">模型与应用</span><span class="layer-tag">上下游</span></button>
+          <button type="button" class="layer layer--assist" data-tab="cloud"><span class="layer-name">算力服务与云</span><span class="layer-tag">诺元协同配置</span></button>
+          <button type="button" class="layer layer--core" data-tab="ops"><span class="layer-name">运行与维护</span><span class="layer-tag">诺元自有能力</span></button>
+          <button type="button" class="layer layer--core" data-tab="deploy"><span class="layer-name">集群部署</span><span class="layer-tag">诺元自有能力</span></button>
+          <button type="button" class="layer layer--assist" data-tab="net"><span class="layer-name">网络与存储</span><span class="layer-tag">诺元协同配置</span></button>
+          <button type="button" class="layer layer--assist" data-tab="server"><span class="layer-name">芯片与服务器</span><span class="layer-tag">诺元协同配置</span></button>
+          <button type="button" class="layer layer--core" data-tab="cool"><span class="layer-name">制冷与液冷</span><span class="layer-tag">诺元自有能力</span></button>
+          <button type="button" class="layer layer--core" data-tab="mep"><span class="layer-name">机房建筑与机电</span><span class="layer-tag">诺元自有能力</span></button>
+          <button type="button" class="layer layer--assist" data-tab="power"><span class="layer-name">电力与土地</span><span class="layer-tag">诺元协同配置</span></button>
+        </div>
+        <div class="chain-panels" aria-live="polite">
+          <div class="chain-panel" data-panel="app" hidden><h3>模型与应用</h3><p>大模型训练、推理服务和企业 AI 应用。它们决定了需要多少算力、放在哪里、什么时候要。</p><p class="role role--none"><b>诺元的位置</b>我们的客户与合作伙伴所在的一层。</p></div>
+          <div class="chain-panel" data-panel="cloud" hidden><h3>算力服务与云</h3><p>把硬件变成可以租用的算力：裸金属、GPU 云、按调用计费的模型接口。</p><p class="role role--assist"><b>诺元的位置</b>为合作伙伴配置经核实的 GPU 算力与企业云资源。</p></div>
+          <div class="chain-panel" data-panel="ops" hidden><h3>运行与维护</h3><p>集群上线之后的日常：值守、巡检、故障处理、硬件更换和扩容。可用率是在这一层守住的。</p><p class="role role--core"><b>诺元的位置</b>自有驻场团队，按服务等级协议交付。</p></div>
+          <div class="chain-panel" data-panel="deploy" hidden><h3>集群部署</h3><p>设备到货后的上架、布线、加电和联调。一个 GPU 集群有成千上万根线缆，装错一根就要返工。</p><p class="role role--core"><b>诺元的位置</b>自有工程团队完成上架、布线与联调。</p></div>
+          <div class="chain-panel" data-panel="net" hidden><h3>网络与存储</h3><p>把成百上千台服务器连成一台机器的高速网络，以及训练数据所在的存储系统。</p><p class="role role--assist"><b>诺元的位置</b>按项目配置专项工程师，方案中写明负责人。</p></div>
+          <div class="chain-panel" data-panel="server" hidden><h3>芯片与服务器</h3><p>GPU、整机服务器和整柜系统。供给紧、交期长，是整条链上最稀缺的一环。</p><p class="role role--assist"><b>诺元的位置</b>核实货源与交付周期，货到后直接进入自有机房。</p></div>
+          <div class="chain-panel" data-panel="cool" hidden><h3>制冷与液冷</h3><p>把机柜里的热量带走。新一代 GPU 整柜的发热量已超出风冷的能力，需要液体直接流经芯片。</p><p class="role role--core"><b>诺元的位置</b>在自建机房中按高密度标准设计与施工。</p></div>
+          <div class="chain-panel" data-panel="mep" hidden><h3>机房建筑与机电</h3><p>厂房结构、楼板承重、变配电、不间断电源和消防。机房的上限在这一层定下来。</p><p class="role role--core"><b>诺元的位置</b>自建智算机房；工程团队承担强弱电与机房改造。</p></div>
+          <div class="chain-panel" data-panel="power" hidden><h3>电力与土地</h3><p>变电容量、购电安排和并网时间。电有多少、多久能通，决定了一座机房能建多大、多快上线。</p><p class="role role--assist"><b>诺元的位置</b>选址阶段核对电力容量、批文与上电时间。</p></div>
+        </div>
       </div>
     </div>
   </section>
 
-  <section class="section" id="principles" aria-labelledby="h-principles">
+  <section class="section section--dark" id="inside" aria-labelledby="h-inside" data-reveal>
+    <div class="wrap">
+      <div class="split">
+        <h2 class="label" id="h-inside">机房内部</h2>
+        <div><p class="statement">一座智算机房只做两件事：把电送进机柜，把热带出去。</p><p class="hint">点击各个部件查看说明。</p></div>
+      </div>
+      
+      <div class="facility" data-tabs="rack">
+        <div class="facility-fig"><svg class="facility-art" viewBox="0 0 1000 380" role="img" aria-label="一座智算机房只做两件事：把电送进机柜，把热带出去。">
+    <path class="flow flow--power" d="M150 85H200M330 85H380M510 85H560M690 85H760"/>
+    <path class="flow flow--supply" d="M330 280H560M690 280H760"/>
+    <path class="flow flow--return" d="M760 310H690M560 310H330"/>
+    <g class="part" data-hl="grid"><rect x="20" y="50" width="130" height="70" rx="4"/><text x="85" y="91" text-anchor="middle">市电</text></g><g class="part" data-hl="tx"><rect x="200" y="50" width="130" height="70" rx="4"/><text x="265" y="91" text-anchor="middle">变压器</text></g><g class="part" data-hl="ups"><rect x="380" y="50" width="130" height="70" rx="4"/><text x="445" y="91" text-anchor="middle">UPS</text></g><g class="part" data-hl="pdu"><rect x="560" y="50" width="130" height="70" rx="4"/><text x="625" y="91" text-anchor="middle">配电</text></g>
+    <g class="part" data-hl="cooler"><rect x="200" y="260" width="130" height="70" rx="4"/><text x="265" y="301" text-anchor="middle">室外散热</text></g><g class="part" data-hl="cdu"><rect x="560" y="260" width="130" height="70" rx="4"/><text x="625" y="301" text-anchor="middle">CDU</text></g>
+    <g class="part part--rack" data-hl="rack"><rect x="768" y="50" width="44" height="290" rx="3"/><path class="u" d="M775 72h30"/><path class="u" d="M775 96h30"/><path class="u" d="M775 120h30"/><path class="u" d="M775 144h30"/><path class="u" d="M775 168h30"/><path class="u" d="M775 192h30"/><path class="u" d="M775 216h30"/><path class="u" d="M775 240h30"/><path class="u" d="M775 264h30"/><path class="u" d="M775 288h30"/><path class="u" d="M775 312h30"/><rect x="824" y="50" width="44" height="290" rx="3"/><path class="u" d="M831 72h30"/><path class="u" d="M831 96h30"/><path class="u" d="M831 120h30"/><path class="u" d="M831 144h30"/><path class="u" d="M831 168h30"/><path class="u" d="M831 192h30"/><path class="u" d="M831 216h30"/><path class="u" d="M831 240h30"/><path class="u" d="M831 264h30"/><path class="u" d="M831 288h30"/><path class="u" d="M831 312h30"/><rect x="880" y="50" width="44" height="290" rx="3"/><path class="u" d="M887 72h30"/><path class="u" d="M887 96h30"/><path class="u" d="M887 120h30"/><path class="u" d="M887 144h30"/><path class="u" d="M887 168h30"/><path class="u" d="M887 192h30"/><path class="u" d="M887 216h30"/><path class="u" d="M887 240h30"/><path class="u" d="M887 264h30"/><path class="u" d="M887 288h30"/><path class="u" d="M887 312h30"/><rect x="936" y="50" width="44" height="290" rx="3"/><path class="u" d="M943 72h30"/><path class="u" d="M943 96h30"/><path class="u" d="M943 120h30"/><path class="u" d="M943 144h30"/><path class="u" d="M943 168h30"/><path class="u" d="M943 192h30"/><path class="u" d="M943 216h30"/><path class="u" d="M943 240h30"/><path class="u" d="M943 264h30"/><path class="u" d="M943 288h30"/><path class="u" d="M943 312h30"/><text x="874" y="368" text-anchor="middle">机柜</text></g>
+  </svg>
+          <ul class="legend"><li class="lg lg--power">电力</li><li class="lg lg--supply">冷却液供液</li><li class="lg lg--return">冷却液回液</li></ul>
+        </div>
+        <div class="facility-side">
+          <div class="chips"><button type="button" class="chip" data-tab="grid">市电接入</button><button type="button" class="chip" data-tab="tx">变压器</button><button type="button" class="chip" data-tab="ups">不间断电源</button><button type="button" class="chip" data-tab="pdu">配电</button><button type="button" class="chip" data-tab="rack">机柜与 GPU 服务器</button><button type="button" class="chip" data-tab="cdu">冷却分配单元</button><button type="button" class="chip" data-tab="cooler">室外散热</button></div>
+          <div aria-live="polite"><div data-panel="grid" hidden><h3>市电接入</h3><p>机房从电网取得高压电。能拿到多少容量、是否有两路独立进线，是选址时最先要确认的事。</p></div><div data-panel="tx" hidden><h3>变压器</h3><p>把高压电降到设备可用的电压。变压器的总容量基本就是这座机房的上限。</p></div><div data-panel="ups" hidden><h3>不间断电源</h3><p>市电中断的瞬间由电池顶上，直到备用发电机启动。GPU 训练任务一旦断电，损失的是数天的计算。</p></div><div data-panel="pdu" hidden><h3>配电</h3><p>把电分到每一排、每一个机柜。高密度机柜需要更粗的母线和更高的配电规格。</p></div><div data-panel="rack" hidden><h3>机柜与 GPU 服务器</h3><p>算力所在的地方。一个新一代 GPU 整柜的功率，相当于过去十几个普通机柜。</p></div><div data-panel="cdu" hidden><h3>冷却分配单元</h3><p>液冷系统的心脏。它把冷却液送进每台服务器的冷板，再把带着热量的液体收回来。</p></div><div data-panel="cooler" hidden><h3>室外散热</h3><p>把热量最终排到室外。在新加坡这样的热带气候里，这一环的设计直接影响电费。</p></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section " id="density" aria-labelledby="h-density" data-reveal>
+    <div class="wrap">
+      <div class="split">
+        <h2 class="label" id="h-density">密度</h2>
+        <div><p class="statement">AI 机房和传统机房的差别，在单个机柜的功率。</p><p class="hint">拖动滑块，看同样 1 兆瓦电力下，机柜数量和制冷方式怎么变。</p></div>
+      </div>
+      
+      <div class="density" data-density="[{&quot;max&quot;:15,&quot;kind&quot;:&quot;传统企业机房&quot;,&quot;cooling&quot;:&quot;风冷&quot;},{&quot;max&quot;:40,&quot;kind&quot;:&quot;高密度机房&quot;,&quot;cooling&quot;:&quot;强化风冷或背板换热&quot;},{&quot;max&quot;:999,&quot;kind&quot;:&quot;GPU 整柜机房&quot;,&quot;cooling&quot;:&quot;冷板式液冷&quot;}]">
+        <div class="density-ctrl">
+          <label for="kw">单机柜功率<output for="kw"><b data-out="kw">40</b> 千瓦</output></label>
+          <input id="kw" type="range" min="5" max="130" step="1" value="40">
+          <dl>
+            <div><dt>1 兆瓦可供电的机柜数</dt><dd class="big" data-out="racks">25</dd></div>
+            <div><dt>机房类型</dt><dd data-out="kind">高密度机房</dd></div>
+            <div><dt>制冷方式</dt><dd data-out="cooling">强化风冷或背板换热</dd></div>
+          </dl>
+          <p class="note">区间为行业常见取值，仅作示意；具体项目以设计文件为准。</p>
+        </div>
+        <div class="rack-grid" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--rule" id="business" aria-labelledby="h-business">
+    <div class="wrap split">
+      <h2 class="label" id="h-business">业务</h2>
+      <ul class="rows">
+        <li><h3>智算机房<span class="en" lang="en">Data centres</span></h3><div><p>在新加坡及周边建设高功率密度机房，为 GPU 集群提供机位、电力与制冷。</p><ul class="scope"><li>高功率密度机位</li><li>电力与制冷</li><li>设备托管</li></ul></div></li>
+        <li><h3>工程建设<span class="en" lang="en">Engineering</span></h3><div><p>自有工程团队承担强弱电、布线、设备上架与机房改造，并以专业分包身份参与大型项目。</p><ul class="scope"><li>强电与弱电</li><li>布线与上架</li><li>机房改造</li><li>专业分包</li></ul></div></li>
+        <li><h3>运维服务<span class="en" lang="en">Operations</span></h3><div><p>驻场团队负责日常运行、巡检与故障处理，按服务等级协议交付。</p><ul class="scope"><li>驻场值守</li><li>巡检与故障处理</li><li>扩容与迁移</li></ul></div></li>
+        <li><h3>算力资源<span class="en" lang="en">Compute</span></h3><div><p>为合作伙伴配置经核实的 GPU 算力与企业云资源，在自有机房内完成部署。</p><ul class="scope"><li>GPU 算力</li><li>整机采购</li><li>企业云</li></ul></div></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section section--dark" id="footprint" aria-labelledby="h-footprint" data-reveal>
+    <div class="wrap">
+      <div class="split">
+        <h2 class="label" id="h-footprint">布局</h2>
+        <div><p class="statement">立足新加坡，连接亚太、北美与欧洲。</p></div>
+      </div>
+      
+      <div class="world" data-tabs="sg" data-hover>
+        <div class="map">
+          <img src="assets/world-dots.svg" alt="" width="1080" height="384" loading="lazy">
+          <button type="button" class="pin pin--hq" data-tab="sg" style="left:78.84%;top:55.20%" aria-label="新加坡"><span>新加坡</span></button>
+          <button type="button" class="pin pin--site" data-tab="my" style="left:78.25%;top:53.80%" aria-label="马来西亚"><span>马来西亚</span></button>
+          <button type="button" class="pin pin--site" data-tab="id" style="left:79.68%;top:61.09%" aria-label="印度尼西亚"><span>印度尼西亚</span></button>
+          <button type="button" class="pin pin--net" data-tab="jp" style="left:88.80%;top:28.38%" aria-label="日本"><span>日本</span></button>
+          <button type="button" class="pin pin--net" data-tab="us" style="left:22.68%;top:25.39%" aria-label="美国"><span>美国</span></button>
+          <button type="button" class="pin pin--net" data-tab="nl" style="left:51.36%;top:15.34%" aria-label="荷兰"><span>荷兰</span></button>
+          <button type="button" class="pin pin--net" data-tab="au" style="left:92.00%;top:82.71%" aria-label="澳大利亚"><span>澳大利亚</span></button>
+        </div>
+        <div class="world-list">
+          <div><h3 class="group">总部</h3><ul><li><button type="button" class="place" data-tab="sg"><b>新加坡<span class="en" lang="en">Singapore</span></b><span>总部，工程与运维团队所在地。</span></button></li></ul></div>
+          <div><h3 class="group">机房项目</h3><ul><li><button type="button" class="place" data-tab="my"><b>马来西亚<span class="en" lang="en">Malaysia</span></b><span>重点发展区域，机房项目推进中。</span></button></li><li><button type="button" class="place" data-tab="id"><b>印度尼西亚<span class="en" lang="en">Indonesia</span></b><span>重点发展区域，机房项目推进中。</span></button></li></ul></div>
+          <div><h3 class="group">合作网络</h3><ul><li><button type="button" class="place" data-tab="jp"><b>日本<span class="en" lang="en">Japan</span></b><span>算力资源与机房工程的合作网络。</span></button></li><li><button type="button" class="place" data-tab="us"><b>美国<span class="en" lang="en">United States</span></b><span>算力资源与上游供应链的合作网络。</span></button></li><li><button type="button" class="place" data-tab="nl"><b>荷兰<span class="en" lang="en">Netherlands</span></b><span>欧洲市场的合作节点。</span></button></li><li><button type="button" class="place" data-tab="au"><b>澳大利亚<span class="en" lang="en">Australia</span></b><span>大洋洲市场的合作节点。</span></button></li></ul></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section " id="delivery" aria-labelledby="h-delivery" data-reveal>
+    <div class="wrap">
+      <div class="split">
+        <h2 class="label" id="h-delivery">交付</h2>
+        <div><p class="statement">一个集群从选址到上线，要过六道关。</p></div>
+      </div>
+      
+      <div class="delivery" data-tabs="s0">
+        <ol class="steps" data-progress>
+          <li><button type="button" data-tab="s0"><i>1</i><span>选址与电力</span></button></li>
+          <li><button type="button" data-tab="s1"><i>2</i><span>设计与报批</span></button></li>
+          <li><button type="button" data-tab="s2"><i>3</i><span>土建与机电</span></button></li>
+          <li><button type="button" data-tab="s3"><i>4</i><span>到货与上架</span></button></li>
+          <li><button type="button" data-tab="s4"><i>5</i><span>联调与压测</span></button></li>
+          <li><button type="button" data-tab="s5"><i>6</i><span>交付与运维</span></button></li>
+        </ol>
+        <div class="delivery-panels" aria-live="polite">
+          <div data-panel="s0" hidden><h3>选址与电力</h3><p>确认用地性质、楼板承重、层高和可用电力容量。电力不落实，后面的一切都不成立。</p><p class="role role--core"><b>诺元负责</b>现场踏勘，核对电力容量、批文与上电时间。</p></div>
+          <div data-panel="s1" hidden><h3>设计与报批</h3><p>确定机柜密度、配电架构和制冷方案，完成图纸和相关审批。</p><p class="role role--core"><b>诺元负责</b>组织设计，协调报批。</p></div>
+          <div data-panel="s2" hidden><h3>土建与机电</h3><p>结构加固、变配电、不间断电源、制冷管路和消防施工。</p><p class="role role--core"><b>诺元负责</b>自有工程团队施工，按节点验收。</p></div>
+          <div data-panel="s3" hidden><h3>到货与上架</h3><p>服务器、网络设备和整柜系统到场，开箱、上架、布线、加电。</p><p class="role role--core"><b>诺元负责</b>核实货源与到货时间，自有团队完成上架与布线。</p></div>
+          <div data-panel="s4" hidden><h3>联调与压测</h3><p>网络连通、满负荷运行和散热验证。问题在这一步暴露，比上线后暴露便宜得多。</p><p class="role role--core"><b>诺元负责</b>配合专项工程师完成联调，出具测试记录。</p></div>
+          <div data-panel="s5" hidden><h3>交付与运维</h3><p>集群移交使用方，进入长期运行。</p><p class="role role--core"><b>诺元负责</b>驻场团队按服务等级协议运维。</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--rule" id="principles" aria-labelledby="h-principles">
     <div class="wrap split">
       <h2 class="label" id="h-principles">原则</h2>
       <ul class="rows">
@@ -110,5 +235,6 @@
     <p class="legal">© 2026 诺元控股（Nourra Holdings）【待补：注册全称与注册号】 保留所有权利。 本站内容仅为公司介绍，不构成要约或任何形式的承诺。</p>
   </div>
 </footer>
+<script src="assets/main.js" defer></script>
 </body>
 </html>

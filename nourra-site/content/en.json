@@ -13,16 +13,20 @@
     "label": "Main",
     "items": [
       {
+        "href": "#chain",
+        "label": "Value chain"
+      },
+      {
+        "href": "#inside",
+        "label": "Facility"
+      },
+      {
         "href": "#business",
         "label": "Business"
       },
       {
         "href": "#footprint",
         "label": "Footprint"
-      },
-      {
-        "href": "#principles",
-        "label": "Principles"
       },
       {
         "href": "#contact",
@@ -50,43 +54,117 @@
       {
         "name": "Data centres",
         "en": "",
-        "text": "High-density facilities in and around Singapore, providing space, power and cooling for GPU clusters."
+        "text": "High-density facilities in and around Singapore, providing space, power and cooling for GPU clusters.",
+        "scope": [
+          "High-density space",
+          "Power and cooling",
+          "Colocation"
+        ]
       },
       {
         "name": "Engineering",
         "en": "",
-        "text": "Our own crews deliver electrical and low-voltage works, cabling, racking and facility conversion, and join larger projects as a specialist subcontractor."
+        "text": "Our own crews deliver electrical and low-voltage works, cabling, racking and facility conversion, and join larger projects as a specialist subcontractor.",
+        "scope": [
+          "Electrical and low-voltage",
+          "Cabling and racking",
+          "Facility conversion",
+          "Specialist subcontracting"
+        ]
       },
       {
         "name": "Operations",
         "en": "",
-        "text": "On-site teams run day-to-day operations, inspections and fault response, delivered against a service level agreement."
+        "text": "On-site teams run day-to-day operations, inspections and fault response, delivered against a service level agreement.",
+        "scope": [
+          "On-site staffing",
+          "Inspection and fault response",
+          "Expansion and migration"
+        ]
       },
       {
         "name": "Compute",
         "en": "",
-        "text": "Verified GPU capacity and enterprise cloud for our partners, deployed in our own facilities."
+        "text": "Verified GPU capacity and enterprise cloud for our partners, deployed in our own facilities.",
+        "scope": [
+          "GPU capacity",
+          "Server procurement",
+          "Enterprise cloud"
+        ]
       }
     ]
   },
   "footprint": {
     "title": "Footprint",
-    "lead": "Based in Singapore, working across Southeast Asia.",
+    "lead": "Based in Singapore, connected across Asia-Pacific, North America and Europe.",
+    "groups": {
+      "hq": "Headquarters",
+      "site": "Data centre projects",
+      "net": "Partner network"
+    },
     "items": [
       {
+        "k": "sg",
         "place": "Singapore",
         "en": "",
+        "g": "hq",
+        "lat": 1.35,
+        "lon": 103.82,
         "text": "Headquarters, and home to our engineering and operations teams."
       },
       {
+        "k": "my",
         "place": "Malaysia",
         "en": "",
+        "g": "site",
+        "lat": 3.14,
+        "lon": 101.69,
         "text": "A priority market, with data centre projects under way."
       },
       {
+        "k": "id",
         "place": "Indonesia",
         "en": "",
+        "g": "site",
+        "lat": -6.2,
+        "lon": 106.85,
         "text": "A priority market, with data centre projects under way."
+      },
+      {
+        "k": "jp",
+        "place": "Japan",
+        "en": "",
+        "g": "net",
+        "lat": 35.68,
+        "lon": 139.69,
+        "text": "Partner network for compute supply and data centre engineering."
+      },
+      {
+        "k": "us",
+        "place": "United States",
+        "en": "",
+        "g": "net",
+        "lat": 39.5,
+        "lon": -98.35,
+        "text": "Partner network for compute supply and the upstream supply chain."
+      },
+      {
+        "k": "nl",
+        "place": "Netherlands",
+        "en": "",
+        "g": "net",
+        "lat": 52.37,
+        "lon": 4.9,
+        "text": "Our partner node for the European market."
+      },
+      {
+        "k": "au",
+        "place": "Australia",
+        "en": "",
+        "g": "net",
+        "lat": -33.87,
+        "lon": 151.21,
+        "text": "Our partner node for Oceania."
       }
     ]
   },
@@ -115,5 +193,193 @@
   "footer": {
     "disclaimer": "This site is a company introduction and is not an offer or commitment of any kind.",
     "rights": "All rights reserved."
+  },
+  "chain": {
+    "title": "Value chain",
+    "lead": "Nine layers sit between a unit of electricity and a single model call.",
+    "hint": "Open each layer to see what it is and where Nourra sits.",
+    "legend": {
+      "core": "Nourra’s own capability",
+      "assist": "Arranged by Nourra",
+      "none": "Upstream and downstream"
+    },
+    "roleLabel": "Where Nourra sits",
+    "layers": [
+      {
+        "k": "app",
+        "name": "Models and applications",
+        "role": "none",
+        "d": "Model training, inference services and enterprise AI applications. They decide how much compute is needed, where, and when.",
+        "r": "The layer our clients and partners work in."
+      },
+      {
+        "k": "cloud",
+        "name": "Compute services and cloud",
+        "role": "assist",
+        "d": "Hardware turned into something you can rent: bare metal, GPU cloud, and model APIs billed by usage.",
+        "r": "We arrange verified GPU capacity and enterprise cloud for partners."
+      },
+      {
+        "k": "ops",
+        "name": "Operations",
+        "role": "core",
+        "d": "Life after go-live: staffing, inspections, fault response, hardware replacement and expansion. Availability is defended at this layer.",
+        "r": "Our own on-site teams, delivered against a service level agreement."
+      },
+      {
+        "k": "deploy",
+        "name": "Cluster deployment",
+        "role": "core",
+        "d": "Racking, cabling, power-up and commissioning once hardware arrives. A GPU cluster has thousands of cables, and one wrong run means rework.",
+        "r": "Our own engineering crews rack, cable and commission."
+      },
+      {
+        "k": "net",
+        "name": "Networking and storage",
+        "role": "assist",
+        "d": "The high-speed fabric that makes hundreds of servers behave as one machine, and the storage that holds training data.",
+        "r": "Specialist engineers are assigned per project and named in the plan."
+      },
+      {
+        "k": "server",
+        "name": "Chips and servers",
+        "role": "assist",
+        "d": "GPUs, servers and full-rack systems. Supply is tight and lead times are long. This is the scarcest link in the chain.",
+        "r": "We verify supply and lead times. Hardware goes straight into our own facilities."
+      },
+      {
+        "k": "cool",
+        "name": "Cooling",
+        "role": "core",
+        "d": "Carrying heat out of the rack. The newest full-rack GPU systems produce more heat than air can remove, so liquid runs directly across the chips.",
+        "r": "Designed and built to high-density standards in our own facilities."
+      },
+      {
+        "k": "mep",
+        "name": "Building, mechanical and electrical",
+        "role": "core",
+        "d": "Structure, floor loading, transformers and switchgear, uninterruptible power and fire protection. A facility’s ceiling is set here.",
+        "r": "We build our own data centres. Our crews handle electrical works and conversions."
+      },
+      {
+        "k": "power",
+        "name": "Power and land",
+        "role": "assist",
+        "d": "Substation capacity, power purchase and grid connection dates. How much power, and how soon, decides how large a facility can be and how fast it goes live.",
+        "r": "We check power capacity, permits and power-on dates during site selection."
+      }
+    ]
+  },
+  "inside": {
+    "title": "Inside the facility",
+    "lead": "An AI data centre does two things: it gets power into the rack and takes heat out.",
+    "hint": "Select a component to read about it.",
+    "legend": {
+      "power": "Power",
+      "supply": "Coolant supply",
+      "ret": "Coolant return"
+    },
+    "parts": [
+      {
+        "k": "grid",
+        "name": "Grid connection",
+        "d": "The facility draws high-voltage power from the grid. How much capacity is available, and whether there are two independent feeds, is the first thing to confirm when choosing a site."
+      },
+      {
+        "k": "tx",
+        "name": "Transformers",
+        "d": "They step high voltage down to what equipment can use. Total transformer capacity is, in practice, the ceiling of the facility."
+      },
+      {
+        "k": "ups",
+        "name": "Uninterruptible power",
+        "d": "Batteries carry the load the instant the grid drops, until backup generators start. A GPU training run that loses power loses days of computation."
+      },
+      {
+        "k": "pdu",
+        "name": "Power distribution",
+        "d": "Power is split to every row and every rack. High-density racks need heavier busbars and a higher distribution rating."
+      },
+      {
+        "k": "rack",
+        "name": "Racks and GPU servers",
+        "d": "Where the compute is. One current full-rack GPU system draws as much as a dozen or more conventional racks used to."
+      },
+      {
+        "k": "cdu",
+        "name": "Coolant distribution unit",
+        "d": "The heart of a liquid-cooled hall. It sends coolant to the cold plates in every server and brings the heated liquid back."
+      },
+      {
+        "k": "cooler",
+        "name": "Heat rejection",
+        "d": "Where the heat finally leaves the building. In a tropical climate like Singapore’s, this stage has a direct effect on the power bill."
+      }
+    ]
+  },
+  "density": {
+    "title": "Density",
+    "lead": "What sets an AI data centre apart is the power in a single rack.",
+    "hint": "Drag the slider to see how rack count and cooling change for the same 1 MW of power.",
+    "slider": "Power per rack",
+    "unit": "kW",
+    "racks": "Racks powered by 1 MW",
+    "cooling": "Cooling",
+    "kind": "Type of facility",
+    "bands": [
+      {
+        "max": 15,
+        "kind": "Conventional enterprise hall",
+        "cooling": "Air"
+      },
+      {
+        "max": 40,
+        "kind": "High-density hall",
+        "cooling": "Enhanced air or rear-door heat exchange"
+      },
+      {
+        "max": 999,
+        "kind": "Full-rack GPU hall",
+        "cooling": "Direct-to-chip liquid"
+      }
+    ],
+    "note": "Ranges are typical industry values, shown for illustration. Project figures follow the design documents."
+  },
+  "delivery": {
+    "title": "Delivery",
+    "lead": "A cluster passes six gates between site selection and go-live.",
+    "dutyLabel": "Nourra’s part",
+    "steps": [
+      {
+        "t": "Site and power",
+        "d": "Confirm land use, floor loading, ceiling height and available power. Until power is secured, nothing after it stands.",
+        "r": "Site survey, and checks on power capacity, permits and power-on dates."
+      },
+      {
+        "t": "Design and approvals",
+        "d": "Fix rack density, the power architecture and the cooling scheme, then complete drawings and approvals.",
+        "r": "We organise design and coordinate approvals."
+      },
+      {
+        "t": "Building and M&E",
+        "d": "Structural strengthening, transformers and switchgear, uninterruptible power, cooling pipework and fire protection.",
+        "r": "Built by our own engineering crews and accepted at milestones."
+      },
+      {
+        "t": "Arrival and racking",
+        "d": "Servers, network equipment and full-rack systems arrive on site to be unpacked, racked, cabled and powered.",
+        "r": "We verify supply and arrival dates. Our own crews rack and cable."
+      },
+      {
+        "t": "Commissioning",
+        "d": "Network connectivity, full-load running and thermal validation. Problems found here cost far less than problems found after go-live.",
+        "r": "We commission alongside specialist engineers and issue test records."
+      },
+      {
+        "t": "Handover and operations",
+        "d": "The cluster is handed to its user and enters long-term operation.",
+        "r": "Our on-site team operates it against a service level agreement."
+      }
+    ]
   }
 }

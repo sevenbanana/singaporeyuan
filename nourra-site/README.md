@@ -25,26 +25,41 @@ python3 -m http.server 4173 -d dist # 本地预览：http://localhost:4173
 | 域名、公司名、邮箱、字体链接 | `site.config.json` |
 | 颜色、字体、字号、间距 | `src/theme.css` |
 | 版式与组件样式 | `src/styles.css` |
-| 页面结构、首屏图形 | `src/template.mjs` |
+| 页面结构、首屏图形、机房示意图 | `src/template.mjs` |
+| 交互脚本 | `src/main.js` |
 | Logo、图标、分享图 | `assets/logo-mark.svg`（浅底）、`assets/logo-mark-dark.svg`（深底）、`assets/favicon.svg`、`assets/og.png`；页头页脚内嵌的同一图形在 `src/template.mjs` 顶部的 `MARK` |
 
 改完任何一个文件后重新运行 `node build.mjs`。两种语言的 JSON 结构必须保持一致。
 
 ## 设计说明
 
-- 定位是公司门面，不是获客页：全站只有公司、业务、布局、原则、联系五段，没有表单、按钮和常见问题。
+- 定位是公司门面，不是获客页：没有表单和询价按钮，联系方式只有一个邮箱。
 - 深海军蓝 `#0A1A33`、蓝 `#2B6CFF`、亮蓝 `#4CC9FF` 取自 Logo。
 - 标题用衬线字体（西文 Newsreader，中文思源宋体），正文用 IBM Plex Sans 和思源黑体，均从 Google Fonts 加载；
   加载失败时回退到系统字体。如果访客主要在中国大陆，建议改为自托管字体。
-- 首屏底部的图形是把 Logo 的“立柱加上升方块”放大成一排机柜立面，只在加载时播放一次，
-  系统开启“减少动态效果”时不播放。
-- 页面不含任何脚本。
+- 系统开启“减少动态效果”时，所有动画停用。
+
+## 页面板块（文案都在 `content/*.json` 的同名字段里）
+
+| 板块 | 字段 | 交互 |
+| --- | --- | --- |
+| 首屏 | `hero` | 机柜立面图形加载时播放一次 |
+| 公司 | `about` | 无 |
+| 产业链 | `chain` | 九层，点开看说明和诺元的位置；`role` 取 `core` / `assist` / `none` |
+| 机房内部 | `inside` | 电力与液冷示意图，点击部件看说明 |
+| 密度 | `density` | 滑块，按 1 兆瓦计算机柜数；`bands` 里改区间 |
+| 业务 | `business` | 无 |
+| 布局 | `footprint` | 点阵世界地图；每个地点填 `lat` / `lon`，`g` 取 `hq` / `site` / `net` |
+| 交付 | `delivery` | 六步，点击切换 |
+| 原则、联系 | `principles`、`contact` | 无 |
+
+地图底图 `assets/world-dots.svg` 是用公开的 Natural Earth 陆地数据一次性生成的，平时不需要重新生成。
 
 ## 已实现
 
 - 中英文两个页面，互相切换，带 `hreflang`、canonical、Open Graph、结构化数据、`robots.txt`、`sitemap.xml`
 - 电脑与手机版式（手机上隐藏段落导航，只留语言切换）
-- 键盘可操作、可见焦点、跳到正文链接
+- 所有交互都是真正的按钮，键盘可操作；不开脚本时内容仍可阅读第一项
 
 ## 未做
 

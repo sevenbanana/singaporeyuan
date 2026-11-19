@@ -29,6 +29,40 @@ function heroArt(aria) {
     <g class="art-bars">${bars}</g><g class="art-steps">${steps}</g></svg>`;
 }
 
+
+// 机房内部示意图：上排是电力链路，下排是液冷回路。
+const SHORT = {
+  zh: { grid: '市电', tx: '变压器', ups: 'UPS', pdu: '配电', rack: '机柜', cdu: 'CDU', cooler: '室外散热' },
+  en: { grid: 'Grid', tx: 'Transformer', ups: 'UPS', pdu: 'Distribution', rack: 'Racks', cdu: 'CDU', cooler: 'Heat rejection' },
+};
+function facilityArt(inside, isZh) {
+  const L = SHORT[isZh ? 'zh' : 'en'];
+  const box = (k, x, y) => `<g class="part" data-hl="${k}"><rect x="${x}" y="${y}" width="130" height="70" rx="4"/><text x="${x + 65}" y="${y + 41}" text-anchor="middle">${esc(L[k])}</text></g>`;
+  const racks = [768, 824, 880, 936]
+    .map((x) => `<rect x="${x}" y="50" width="44" height="290" rx="3"/>` +
+      Array.from({ length: 11 }, (_, i) => `<path class="u" d="M${x + 7} ${72 + i * 24}h30"/>`).join(''))
+    .join('');
+  return `<svg class="facility-art" viewBox="0 0 1000 380" role="img" aria-label="${esc(inside.lead)}">
+    <path class="flow flow--power" d="M150 85H200M330 85H380M510 85H560M690 85H760"/>
+    <path class="flow flow--supply" d="M330 280H560M690 280H760"/>
+    <path class="flow flow--return" d="M760 310H690M560 310H330"/>
+    ${box('grid', 20, 50)}${box('tx', 200, 50)}${box('ups', 380, 50)}${box('pdu', 560, 50)}
+    ${box('cooler', 200, 260)}${box('cdu', 560, 260)}
+    <g class="part part--rack" data-hl="rack">${racks}<text x="874" y="368" text-anchor="middle">${esc(L.rack)}</text></g>
+  </svg>`;
+}
+
+const stack = (id, sec, body, cls = '') => `
+  <section class="section ${cls}" id="${id}" aria-labelledby="h-${id}" data-reveal>
+    <div class="wrap">
+      <div class="split">
+        <h2 class="label" id="h-${id}">${esc(sec.title)}</h2>
+        <div><p class="statement">${esc(sec.lead)}</p>${sec.hint ? `<p class="hint">${esc(sec.hint)}</p>` : ''}</div>
+      </div>
+      ${body}
+    </div>
+  </section>`;
+
 export function renderPage({ t, cfg, base, altHref, selfUrl, altUrl, altLang }) {
   const email = cfg.contactEmail;
   const year = new Date().getFullYear();
@@ -101,33 +135,71 @@ export function renderPage({ t, cfg, base, altHref, selfUrl, altUrl, altLang }) 
       <p class="statement">${esc(t.about.text)}</p>
     </div>
   </section>
+${stack('chain', t.chain, `
+      <div class="chain" data-tabs="deploy">
+        <div class="chain-list">
+          ${t.chain.layers.map((l) => `<button type="button" class="layer layer--${l.role}" data-tab="${l.k}"><span class="layer-name">${esc(l.name)}</span><span class="layer-tag">${esc(t.chain.legend[l.role])}</span></button>`).join('\n          ')}
+        </div>
+        <div class="chain-panels" aria-live="polite">
+          ${t.chain.layers.map((l) => `<div class="chain-panel" data-panel="${l.k}" hidden><h3>${esc(l.name)}</h3><p>${esc(l.d)}</p><p class="role role--${l.role}"><b>${esc(t.chain.roleLabel)}</b>${esc(l.r)}</p></div>`).join('\n          ')}
+        </div>
+      </div>`, 'section--rule')}
+${stack('inside', t.inside, `
+      <div class="facility" data-tabs="rack">
+        <div class="facility-fig">${facilityArt(t.inside, isZh)}
+          <ul class="legend"><li class="lg lg--power">${esc(t.inside.legend.power)}</li><li class="lg lg--supply">${esc(t.inside.legend.supply)}</li><li class="lg lg--return">${esc(t.inside.legend.ret)}</li></ul>
+        </div>
+        <div class="facility-side">
+          <div class="chips">${t.inside.parts.map((p) => `<button type="button" class="chip" data-tab="${p.k}">${esc(p.name)}</button>`).join('')}</div>
+          <div aria-live="polite">${t.inside.parts.map((p) => `<div data-panel="${p.k}" hidden><h3>${esc(p.name)}</h3><p>${esc(p.d)}</p></div>`).join('')}</div>
+        </div>
+      </div>`, 'section--dark')}
+${stack('density', t.density, `
+      <div class="density" data-density="${esc(JSON.stringify(t.density.bands))}">
+        <div class="density-ctrl">
+          <label for="kw">${esc(t.density.slider)}<output for="kw"><b data-out="kw">40</b> ${esc(t.density.unit)}</output></label>
+          <input id="kw" type="range" min="5" max="130" step="1" value="40">
+          <dl>
+            <div><dt>${esc(t.density.racks)}</dt><dd class="big" data-out="racks">25</dd></div>
+            <div><dt>${esc(t.density.kind)}</dt><dd data-out="kind">${esc(t.density.bands[1].kind)}</dd></div>
+            <div><dt>${esc(t.density.cooling)}</dt><dd data-out="cooling">${esc(t.density.bands[1].cooling)}</dd></div>
+          </dl>
+          <p class="note">${esc(t.density.note)}</p>
+        </div>
+        <div class="rack-grid" aria-hidden="true">${'<i></i>'.repeat(25)}</div>
+      </div>`)}
 
   <section class="section section--rule" id="business" aria-labelledby="h-business">
     <div class="wrap split">
       <h2 class="label" id="h-business">${esc(t.business.title)}</h2>
       <ul class="rows">
         ${t.business.items
-          .map((b) => `<li><h3>${esc(b.name)}${sub(b.en)}</h3><p>${esc(b.text)}</p></li>`)
+          .map((b) => `<li><h3>${esc(b.name)}${sub(b.en)}</h3><div><p>${esc(b.text)}</p><ul class="scope">${b.scope.map((x) => `<li>${esc(x)}</li>`).join('')}</ul></div></li>`)
           .join('\n        ')}
       </ul>
     </div>
   </section>
+${stack('footprint', t.footprint, `
+      <div class="world" data-tabs="sg" data-hover>
+        <div class="map">
+          <img src="${base}assets/world-dots.svg" alt="" width="1080" height="384" loading="lazy">
+          ${t.footprint.items.map((p) => `<button type="button" class="pin pin--${p.g}" data-tab="${p.k}" style="left:${(((p.lon + 180) / 360) * 100).toFixed(2)}%;top:${(((72 - p.lat) / 128) * 100).toFixed(2)}%" aria-label="${esc(p.place)}"><span>${esc(p.place)}</span></button>`).join('\n          ')}
+        </div>
+        <div class="world-list">
+          ${['hq', 'site', 'net'].map((g) => `<div><h3 class="group">${esc(t.footprint.groups[g])}</h3><ul>${t.footprint.items.filter((p) => p.g === g).map((p) => `<li><button type="button" class="place" data-tab="${p.k}"><b>${esc(p.place)}${sub(p.en)}</b><span>${esc(p.text)}</span></button></li>`).join('')}</ul></div>`).join('\n          ')}
+        </div>
+      </div>`, 'section--dark')}
+${stack('delivery', t.delivery, `
+      <div class="delivery" data-tabs="s0">
+        <ol class="steps" data-progress>
+          ${t.delivery.steps.map((x, i) => `<li><button type="button" data-tab="s${i}"><i>${i + 1}</i><span>${esc(x.t)}</span></button></li>`).join('\n          ')}
+        </ol>
+        <div class="delivery-panels" aria-live="polite">
+          ${t.delivery.steps.map((x, i) => `<div data-panel="s${i}" hidden><h3>${esc(x.t)}</h3><p>${esc(x.d)}</p><p class="role role--core"><b>${esc(t.delivery.dutyLabel)}</b>${esc(x.r)}</p></div>`).join('\n          ')}
+        </div>
+      </div>`)}
 
-  <section class="section section--dark" id="footprint" aria-labelledby="h-footprint">
-    <div class="wrap split">
-      <h2 class="label" id="h-footprint">${esc(t.footprint.title)}</h2>
-      <div>
-        <p class="statement">${esc(t.footprint.lead)}</p>
-        <ul class="places">
-          ${t.footprint.items
-            .map((p) => `<li><h3>${esc(p.place)}${sub(p.en)}</h3><p>${esc(p.text)}</p></li>`)
-            .join('\n          ')}
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <section class="section" id="principles" aria-labelledby="h-principles">
+  <section class="section section--rule" id="principles" aria-labelledby="h-principles">
     <div class="wrap split">
       <h2 class="label" id="h-principles">${esc(t.principles.title)}</h2>
       <ul class="rows">
@@ -151,6 +223,7 @@ export function renderPage({ t, cfg, base, altHref, selfUrl, altUrl, altLang }) 
     <p class="legal">© ${year} ${esc(legal)} ${esc(t.footer.rights)} ${esc(t.footer.disclaimer)}</p>
   </div>
 </footer>
+<script src="${base}assets/main.js" defer></script>
 </body>
 </html>
 `;
