@@ -536,7 +536,7 @@ html:lang(en) .group { text-transform: uppercase; letter-spacing: .12em; }
 .timeline::before, .timeline::after { content: ""; position: absolute; left: 31px; top: 32px; bottom: 32px; width: 2px; border-radius: 1px; background: var(--line-strong); }
 .timeline::after { background: linear-gradient(var(--blue), var(--sky)); transform-origin: top; transform: scaleY(var(--tp, 1)); }
 .tl-item { position: relative; }
-.tl-node { position: absolute; left: -84px; top: 0; display: grid; place-items: center; width: 64px; height: 64px; border-radius: 16px; background: var(--white); border: 1px solid var(--line); color: var(--muted); transition: background-color .45s, color .45s, border-color .45s, box-shadow .45s; }
+.tl-node { position: absolute; z-index: 1; left: -84px; top: 0; display: grid; place-items: center; width: 64px; height: 64px; border-radius: 16px; background: var(--white); border: 1px solid var(--line); color: var(--muted); transition: background-color .45s, color .45s, border-color .45s, box-shadow .45s; }
 .tl-node > .ico { width: 28px; height: 28px; stroke-width: 1.4; }
 .tl-check { position: absolute; top: -7px; right: -7px; display: grid; place-items: center; width: 22px; height: 22px; border-radius: 50%; background: var(--blue); color: #fff; box-shadow: 0 0 0 3px var(--paper); transform: scale(0); transition: transform .5s var(--ease-out); }
 .tl-check .ico { width: 12px; height: 12px; stroke-width: 2.6; }
