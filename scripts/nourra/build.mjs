@@ -63,10 +63,10 @@ const ico = (name, cls = 'ico') => `<svg class="${cls}" viewBox="0 0 24 24" aria
 // 内联图标：每段路径带 pathLength="1"，供滚动时“描线”动画使用
 const icoInline = (name, cls = 'ico ico--draw') => `<svg class="${cls}" viewBox="0 0 24 24" aria-hidden="true" focusable="false">${ICONS[name].replace(/<(path|circle|rect)\b/g, '<$1 pathLength="1"')}</svg>`;
 
-// 标志：两根竖条 + 四个逐级上升的方块。四块的中心用一条线串起，光点沿线自下而上流过，依次点亮方块
+// 标志：两根竖条 + 四个逐级上升的方块。四块自下而上依次点亮，带一圈柔光；LINK 只用于页脚的大号方块图形
 const STEPS = [[37, 82, '.3'], [47, 62, '.55'], [57, 42, '.8'], [67, 22, '1']];
 const LINK = 'M45 90 55 70 65 50 75 30';
-const MARK = (uid) => `<svg class="mark" viewBox="14 14 92 92" width="38" height="38" aria-hidden="true"><defs><filter id="${uid}" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur stdDeviation="3.4"/></filter></defs><rect class="mark-bar" x="18" y="18" width="18" height="84" rx="3"/><rect class="mark-bar" x="84" y="18" width="18" height="84" rx="3"/><g class="mark-glow" filter="url(#${uid})">${STEPS.map(([x, y], k) => `<rect class="mark-halo" x="${x}" y="${y}" width="16" height="16" rx="2" style="--k:${k}"/>`).join('')}</g>${STEPS.map(([x, y, o], k) => `<rect class="mark-step" x="${x}" y="${y}" width="16" height="16" rx="2" fill-opacity="${o}" style="--o:${o};--k:${k}"/>`).join('')}<path class="mark-link" d="${LINK}"/><path class="mark-pulse" pathLength="1" d="${LINK}"/></svg>`;
+const MARK = (uid) => `<svg class="mark" viewBox="14 14 92 92" width="38" height="38" aria-hidden="true"><defs><filter id="${uid}" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur stdDeviation="3.4"/></filter></defs><rect class="mark-bar" x="18" y="18" width="18" height="84" rx="3"/><rect class="mark-bar" x="84" y="18" width="18" height="84" rx="3"/><g class="mark-glow" filter="url(#${uid})">${STEPS.map(([x, y], k) => `<rect class="mark-halo" x="${x}" y="${y}" width="16" height="16" rx="2" style="--k:${k}"/>`).join('')}</g>${STEPS.map(([x, y, o], k) => `<rect class="mark-step" x="${x}" y="${y}" width="16" height="16" rx="2" fill-opacity="${o}" style="--o:${o};--k:${k}"/>`).join('')}</svg>`;
 
 // 中文大标题按分句成组：优先在逗号、冒号后换行，单句过长时组内照常折行
 const phrase = (html) => html.split('<br>').map((part) => part
