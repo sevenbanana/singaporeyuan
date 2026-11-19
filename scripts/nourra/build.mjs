@@ -343,7 +343,7 @@ function page(lang) {
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;500;600&family=Noto+Sans+SC:wght@300;400;500;700${zh ? '' : '&family=Nunito+Sans:wght@300;400;500;600'}&display=swap">
 <link rel="stylesheet" href="${base}assets/site.css">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"Nourra Holdings","alternateName":"诺元控股","url":"${SITE}","description":"${desc}","address":{"@type":"PostalAddress","addressCountry":"SG"}}</script>`;
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"Nourra Holdings","legalName":"NOURRA HOLDINGS PTE. LTD.","alternateName":"诺元控股","url":"${SITE}","description":"${desc}","address":{"@type":"PostalAddress","addressCountry":"SG"}}</script>`;
 
   const heroTitle = zh
     ? `<span class="line"><span>智算中心，</span></span><span class="line"><span>从一块地、一路电</span></span><span class="line"><span class="grad">到长期运营。</span></span>`
@@ -650,7 +650,7 @@ function page(lang) {
   <div class="wrap footer-base">
     <div class="lockup" translate="no">${MARK('mark-glow-f')}<span class="lockup-text">${lockupText}</span></div>
     <ul class="footer-nav">${navList}</ul>
-    <p class="legal">${T('© 2026 诺元控股（Nourra Holdings）【待补：注册全称与注册号】 保留所有权利。 本站内容仅为公司介绍，不构成要约或任何形式的承诺。', '© 2026 Nourra Holdings [to add: full registered name and number] All rights reserved. This site is a company introduction and is not an offer or commitment of any kind.')}</p>
+    <p class="legal">${T('© 2026 诺元控股 NOURRA HOLDINGS PTE. LTD.（UEN&nbsp;202628168R）保留所有权利。本站内容仅为公司介绍，不构成要约或任何形式的承诺。', '© 2026 NOURRA HOLDINGS PTE. LTD. (UEN&nbsp;202628168R). All rights reserved. This site is a company introduction and is not an offer or commitment of any kind.')}</p>
     <a class="to-top" href="#top" aria-label="${T('回到顶部', 'Back to top')}">${ico('arrow-up', 'ico ico--sm')}</a>
   </div>
 </footer>
