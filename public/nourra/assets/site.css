@@ -95,9 +95,20 @@ html:lang(en) .lockup b { font-family: var(--font-sans); font-weight: 500; font-
 .mark { flex: none; width: 34px; height: 34px; }
 .mark-bar { fill: var(--on-dark); }
 .mark-step { fill: var(--sky); }
-.lockup:hover .mark-step { animation: stepUp .7s var(--ease-out) both; }
-.lockup:hover .mark-step:nth-of-type(4) { animation-delay: .06s; } .lockup:hover .mark-step:nth-of-type(5) { animation-delay: .12s; } .lockup:hover .mark-step:nth-of-type(6) { animation-delay: .18s; }
-@keyframes stepUp { 0% { transform: translateY(0); } 40% { transform: translateY(-5px); } 100% { transform: none; } }
+.mark-halo { fill: var(--sky); opacity: 0; }
+.mark-link { fill: none; stroke: #fff; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; stroke-opacity: .32; }
+.mark-pulse { fill: none; stroke: #fff; stroke-width: 2.8; stroke-linecap: round; stroke-dasharray: .2 1; stroke-dashoffset: .2; opacity: 0; }
+/* 流光一轮 6 秒：光点约 1 秒走完连线，每经过一块就点亮它，四块全亮后依次回落 */
+@media (prefers-reduced-motion: no-preference) {
+  .mark-pulse { animation: markPulse 6s linear 1.4s infinite; }
+  .mark-step { animation: markStep 6s var(--ease-out) calc(1.4s + var(--k) * .3s) infinite; }
+  .mark-halo { animation: markHalo 6s var(--ease-out) calc(1.4s + var(--k) * .3s) infinite; }
+  .mark-link { animation: markLink 6s ease 1.4s infinite; }
+}
+@keyframes markPulse { 0% { stroke-dashoffset: .2; opacity: 1; } 18% { stroke-dashoffset: -1; opacity: 1; } 18.5%, 100% { stroke-dashoffset: -1; opacity: 0; } }
+@keyframes markStep { 0% { fill-opacity: var(--o); } 3% { fill-opacity: 1; } 26% { fill-opacity: 1; } 42%, 100% { fill-opacity: var(--o); } }
+@keyframes markHalo { 0% { opacity: 0; } 3% { opacity: .95; } 14% { opacity: .4; } 32%, 100% { opacity: 0; } }
+@keyframes markLink { 0% { stroke-opacity: .32; } 6% { stroke-opacity: .85; } 34% { stroke-opacity: .85; } 52%, 100% { stroke-opacity: .32; } }
 
 /* ---------- 顶栏 ---------- */
 .site-header { position: fixed; top: 0; left: 0; right: 0; z-index: 50; padding-top: env(safe-area-inset-top, 0px); color: var(--on-dark); border-bottom: 1px solid transparent; transition: transform .55s var(--ease-out), background-color .35s, border-color .35s; }
@@ -553,6 +564,13 @@ html:lang(en) .tl-role b { text-transform: uppercase; }
 .site-footer::before { content: ""; position: absolute; inset: 0; z-index: -2; background: radial-gradient(55% 60% at 12% 0%, rgba(43, 108, 255, .16), transparent 70%), radial-gradient(40% 50% at 100% 30%, rgba(76, 201, 255, .06), transparent 70%); }
 .footer-art { position: absolute; z-index: -1; right: max(-4vw, -60px); top: 6%; width: min(30vw, 360px); aspect-ratio: 60 / 92; pointer-events: none; }
 .footer-art rect { fill: rgba(76, 201, 255, .035); stroke: rgba(76, 201, 255, .3); stroke-width: .35; }
+.fa-link { fill: none; stroke: rgba(76, 201, 255, .22); stroke-width: .35; stroke-dasharray: 1.2 1.6; }
+.fa-pulse { fill: none; stroke: var(--sky); stroke-width: .9; stroke-linecap: round; stroke-dasharray: .16 1; stroke-dashoffset: .16; opacity: 0; }
+@media (prefers-reduced-motion: no-preference) {
+  .fa-pulse { animation: markPulse 7s var(--ease-io) 2s infinite; }
+  .footer-art rect { animation: faStep 7s var(--ease-out) calc(2s + var(--k) * .33s) infinite; }
+}
+@keyframes faStep { 0% { fill: rgba(76, 201, 255, .035); stroke: rgba(76, 201, 255, .3); } 3% { fill: rgba(76, 201, 255, .16); stroke: rgba(76, 201, 255, .9); } 24% { fill: rgba(76, 201, 255, .1); stroke: rgba(76, 201, 255, .7); } 44%, 100% { fill: rgba(76, 201, 255, .035); stroke: rgba(76, 201, 255, .3); } }
 .footer-art svg { width: 100%; height: 100%; display: block; }
 .contact { display: grid; gap: 24px; justify-items: start; }
 .contact-title { max-width: 21em; font-size: clamp(1.75rem, 1.05rem + 2.6vw, 3.4rem); font-weight: 300; line-height: 1.32; text-wrap: balance; }

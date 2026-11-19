@@ -63,7 +63,10 @@ const ico = (name, cls = 'ico') => `<svg class="${cls}" viewBox="0 0 24 24" aria
 // 内联图标：每段路径带 pathLength="1"，供滚动时“描线”动画使用
 const icoInline = (name, cls = 'ico ico--draw') => `<svg class="${cls}" viewBox="0 0 24 24" aria-hidden="true" focusable="false">${ICONS[name].replace(/<(path|circle|rect)\b/g, '<$1 pathLength="1"')}</svg>`;
 
-const MARK = `<svg class="mark" viewBox="14 14 92 92" width="38" height="38" aria-hidden="true"><rect class="mark-bar" x="18" y="18" width="18" height="84" rx="3"/><rect class="mark-bar" x="84" y="18" width="18" height="84" rx="3"/><rect class="mark-step" x="37" y="82" width="16" height="16" rx="2" fill-opacity=".3"/><rect class="mark-step" x="47" y="62" width="16" height="16" rx="2" fill-opacity=".55"/><rect class="mark-step" x="57" y="42" width="16" height="16" rx="2" fill-opacity=".8"/><rect class="mark-step" x="67" y="22" width="16" height="16" rx="2"/></svg>`;
+// 标志：两根竖条 + 四个逐级上升的方块。四块的中心用一条线串起，光点沿线自下而上流过，依次点亮方块
+const STEPS = [[37, 82, '.3'], [47, 62, '.55'], [57, 42, '.8'], [67, 22, '1']];
+const LINK = 'M45 90 55 70 65 50 75 30';
+const MARK = (uid) => `<svg class="mark" viewBox="14 14 92 92" width="38" height="38" aria-hidden="true"><defs><filter id="${uid}" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur stdDeviation="3.4"/></filter></defs><rect class="mark-bar" x="18" y="18" width="18" height="84" rx="3"/><rect class="mark-bar" x="84" y="18" width="18" height="84" rx="3"/><g class="mark-glow" filter="url(#${uid})">${STEPS.map(([x, y], k) => `<rect class="mark-halo" x="${x}" y="${y}" width="16" height="16" rx="2" style="--k:${k}"/>`).join('')}</g>${STEPS.map(([x, y, o], k) => `<rect class="mark-step" x="${x}" y="${y}" width="16" height="16" rx="2" fill-opacity="${o}" style="--o:${o};--k:${k}"/>`).join('')}<path class="mark-link" d="${LINK}"/><path class="mark-pulse" pathLength="1" d="${LINK}"/></svg>`;
 
 // 中文大标题按分句成组：优先在逗号、冒号后换行，单句过长时组内照常折行
 const phrase = (html) => html.split('<br>').map((part) => part
@@ -353,7 +356,7 @@ function page(lang) {
 
 <header class="site-header" data-header>
   <div class="wrap header-row">
-    <a class="lockup" href="#top" translate="no" aria-label="${T('诺元控股 NOURRA HOLDINGS', 'NOURRA HOLDINGS')}">${MARK}<span class="lockup-text">${lockupText}</span></a>
+    <a class="lockup" href="#top" translate="no" aria-label="${T('诺元控股 NOURRA HOLDINGS', 'NOURRA HOLDINGS')}">${MARK('mark-glow-h')}<span class="lockup-text">${lockupText}</span></a>
     <nav class="site-nav" aria-label="${T('主导航', 'Main')}"><ul>${navList}</ul></nav>
     <div class="header-actions">
       <a class="lang" href="${zh ? 'en/' : '../'}" hreflang="${zh ? 'en' : 'zh-Hans'}" lang="${zh ? 'en' : 'zh-Hans'}" aria-label="${zh ? 'Switch to English' : '切换到中文'}">${zh ? 'EN' : '中文'}</a>
@@ -635,7 +638,7 @@ function page(lang) {
 </main>
 
 <footer class="site-footer" id="contact" aria-labelledby="h-contact">
-  <div class="footer-art" aria-hidden="true"><svg viewBox="30 14 60 92"><rect x="37" y="82" width="16" height="16" rx="2" fill-opacity=".3"/><rect x="47" y="62" width="16" height="16" rx="2" fill-opacity=".55"/><rect x="57" y="42" width="16" height="16" rx="2" fill-opacity=".8"/><rect x="67" y="22" width="16" height="16" rx="2"/></svg></div>
+  <div class="footer-art" aria-hidden="true"><svg viewBox="30 14 60 92">${STEPS.map(([x, y], k) => `<rect x="${x}" y="${y}" width="16" height="16" rx="2" style="--k:${k}"/>`).join('')}<path class="fa-link" d="${LINK}"/><path class="fa-pulse" pathLength="1" d="${LINK}"/></svg></div>
   <div class="wrap contact">
     ${eyebrow('h-contact', T('联系', 'Contact'), 'Contact', 'mail')}
     <p class="contact-title">${T('我们主要通过既有的合作网络开展业务。<br>机构合作与项目洽谈，请来信。', 'We work mainly through established relationships.<br>For institutional partnerships and project discussions, write to us.')}</p>
@@ -646,7 +649,7 @@ function page(lang) {
     </div>
   </div>
   <div class="wrap footer-base">
-    <div class="lockup" translate="no">${MARK}<span class="lockup-text">${lockupText}</span></div>
+    <div class="lockup" translate="no">${MARK('mark-glow-f')}<span class="lockup-text">${lockupText}</span></div>
     <ul class="footer-nav">${navList}</ul>
     <p class="legal">${T('© 2026 诺元控股（Nourra Holdings）【待补：注册全称与注册号】 保留所有权利。 本站内容仅为公司介绍，不构成要约或任何形式的承诺。', '© 2026 Nourra Holdings [to add: full registered name and number] All rights reserved. This site is a company introduction and is not an offer or commitment of any kind.')}</p>
     <a class="to-top" href="#top" aria-label="${T('回到顶部', 'Back to top')}">${ico('arrow-up', 'ico ico--sm')}</a>
