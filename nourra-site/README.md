@@ -45,9 +45,10 @@ python3 -m http.server 4173 -d dist # 本地预览：http://localhost:4173
 | --- | --- | --- |
 | 首屏 | `hero` | 机柜立面图形加载时播放一次 |
 | 公司 | `about` | 无 |
-| 产业链 | `chain` | 九层，点开看说明和诺元的位置；`role` 取 `core` / `assist` / `none` |
+| 产业链 | `chain` | 十层，点开看说明和诺元的位置；`role` 取 `core` / `assist` / `none` |
 | 机房内部 | `inside` | 电力与液冷示意图，点击部件看说明 |
 | 密度 | `density` | 滑块，按 1 兆瓦计算机柜数；`bands` 里改区间 |
+| 供应链 | `supply` | 五步，点击切换 |
 | 业务 | `business` | 无 |
 | 布局 | `footprint` | 点阵世界地图；每个地点填 `lat` / `lon`，`g` 取 `hq` / `site` / `net` |
 | 交付 | `delivery` | 六步，点击切换 |

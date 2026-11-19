@@ -63,6 +63,16 @@ const stack = (id, sec, body, cls = '') => `
     </div>
   </section>`;
 
+const stepper = (id, sec, cls = '') => stack(id, sec, `
+      <div class="delivery" data-tabs="s0">
+        <ol class="steps" style="--n:${sec.steps.length}" data-progress>
+          ${sec.steps.map((x, i) => `<li><button type="button" data-tab="s${i}"><i>${i + 1}</i><span>${esc(x.t)}</span></button></li>`).join('\n          ')}
+        </ol>
+        <div class="delivery-panels" aria-live="polite">
+          ${sec.steps.map((x, i) => `<div data-panel="s${i}" hidden><h3>${esc(x.t)}</h3><p>${esc(x.d)}</p><p class="role role--core"><b>${esc(sec.dutyLabel)}</b>${esc(x.r)}</p></div>`).join('\n          ')}
+        </div>
+      </div>`, cls);
+
 export function renderPage({ t, cfg, base, altHref, selfUrl, altUrl, altLang }) {
   const email = cfg.contactEmail;
   const year = new Date().getFullYear();
@@ -169,6 +179,8 @@ ${stack('density', t.density, `
         <div class="rack-grid" aria-hidden="true">${'<i></i>'.repeat(25)}</div>
       </div>`)}
 
+${stepper('supply', t.supply, 'section--rule')}
+
   <section class="section section--rule" id="business" aria-labelledby="h-business">
     <div class="wrap split">
       <h2 class="label" id="h-business">${esc(t.business.title)}</h2>
@@ -189,15 +201,7 @@ ${stack('footprint', t.footprint, `
           ${['hq', 'site', 'net'].map((g) => `<div><h3 class="group">${esc(t.footprint.groups[g])}</h3><ul>${t.footprint.items.filter((p) => p.g === g).map((p) => `<li><button type="button" class="place" data-tab="${p.k}"><b>${esc(p.place)}${sub(p.en)}</b><span>${esc(p.text)}</span></button></li>`).join('')}</ul></div>`).join('\n          ')}
         </div>
       </div>`, 'section--dark')}
-${stack('delivery', t.delivery, `
-      <div class="delivery" data-tabs="s0">
-        <ol class="steps" data-progress>
-          ${t.delivery.steps.map((x, i) => `<li><button type="button" data-tab="s${i}"><i>${i + 1}</i><span>${esc(x.t)}</span></button></li>`).join('\n          ')}
-        </ol>
-        <div class="delivery-panels" aria-live="polite">
-          ${t.delivery.steps.map((x, i) => `<div data-panel="s${i}" hidden><h3>${esc(x.t)}</h3><p>${esc(x.d)}</p><p class="role role--core"><b>${esc(t.delivery.dutyLabel)}</b>${esc(x.r)}</p></div>`).join('\n          ')}
-        </div>
-      </div>`)}
+${stepper('delivery', t.delivery)}
 
   <section class="section section--rule" id="principles" aria-labelledby="h-principles">
     <div class="wrap split">

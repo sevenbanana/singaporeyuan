@@ -89,9 +89,9 @@ html:lang(en) .label { text-transform: uppercase; letter-spacing: .22em; }
 .statement { font-family: var(--font-display); font-weight: 500; font-size: var(--fs-statement); line-height: 1.6; max-width: 26em; text-wrap: pretty; }
 html:lang(en) .statement { font-weight: 400; line-height: 1.35; max-width: 30em; }
 
-.rows li { display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 7fr); gap: 10px clamp(24px, 4vw, 64px); padding-block: clamp(26px, 3.2vw, 40px); border-top: 1px solid var(--c-rule); align-items: baseline; }
-.rows li:first-child { border-top: 0; padding-top: 0; }
-.rows li:last-child { padding-bottom: 0; }
+.rows > li { display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 7fr); gap: 10px clamp(24px, 4vw, 64px); padding-block: clamp(26px, 3.2vw, 40px); border-top: 1px solid var(--c-rule); align-items: baseline; }
+.rows > li:first-child { border-top: 0; padding-top: 0; }
+.rows > li:last-child { padding-bottom: 0; }
 h3 { font-family: var(--font-display); font-weight: 600; font-size: var(--fs-h3); line-height: 1.3; }
 html:lang(en) h3 { font-weight: 500; }
 h3 .en { display: block; margin-top: 8px; font-family: var(--font-text); font-size: .75rem; font-weight: 400; letter-spacing: .2em; text-transform: uppercase; color: var(--c-muted); }
@@ -118,7 +118,7 @@ html:lang(zh-Hans) .email a { font-family: "Newsreader", Georgia, serif; }
 @media (max-width: 860px) {
   .site-nav ul { display: none; }
   .split, .footer-base { grid-template-columns: minmax(0, 1fr); }
-  .rows li { grid-template-columns: minmax(0, 1fr); }
+  .rows > li { grid-template-columns: minmax(0, 1fr); }
   .places { grid-template-columns: minmax(0, 1fr); }
   .hero { min-height: min(88vh, 720px); }
   .lockup b { font-size: 1.1rem; }
@@ -229,8 +229,8 @@ html:lang(en) .place b { font-weight: 500; }
 .place.is-active b { color: var(--c-sky); }
 
 /* 交付 */
-.steps { position: relative; display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); list-style: none; padding: 0; margin: 0; }
-.steps::before, .steps::after { content: ""; position: absolute; top: 17px; left: 18px; right: calc(100% / 6 - 18px); height: 2px; background: var(--c-rule); }
+.steps { position: relative; display: grid; grid-template-columns: repeat(var(--n, 6), minmax(0, 1fr)); list-style: none; padding: 0; margin: 0; }
+.steps::before, .steps::after { content: ""; position: absolute; top: 17px; left: 18px; right: calc(100% / var(--n, 6) - 18px); height: 2px; background: var(--c-rule); }
 .steps::after { background: var(--c-blue); transform-origin: left; transform: scaleX(var(--p, 0)); transition: transform .45s ease; }
 .steps button { position: relative; z-index: 1; display: block; width: 100%; padding-right: 12px; }
 .steps i { display: grid; place-items: center; width: 36px; height: 36px; background: var(--c-paper); border: 2px solid var(--c-rule); font-style: normal; font-size: .875rem; font-variant-numeric: tabular-nums; transition: background-color .2s ease, border-color .2s ease, color .2s ease; }

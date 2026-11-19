@@ -1,8 +1,8 @@
 {
   "lang": "en",
   "meta": {
-    "title": "Nourra Holdings | AI compute infrastructure in Southeast Asia",
-    "description": "Nourra Holdings is headquartered in Singapore. We build and operate data centres for GPU clusters, with our own engineering and operations teams."
+    "title": "Nourra Holdings | AI data centre operator",
+    "description": "Nourra Holdings, headquartered in Singapore, operates AI data centres end to end: land and power, the mechanical and electrical supply chain, construction, and long-term operations and maintenance."
   },
   "brand": {
     "name": "NOURRA",
@@ -21,6 +21,10 @@
         "label": "Facility"
       },
       {
+        "href": "#supply",
+        "label": "Supply chain"
+      },
+      {
         "href": "#business",
         "label": "Business"
       },
@@ -37,28 +41,50 @@
     "langAria": "切换到中文"
   },
   "hero": {
-    "kicker": "AI compute infrastructure, Southeast Asia",
+    "kicker": "AI data centre operator",
     "h1": [
-      "We build and operate",
-      "the infrastructure AI runs on."
+      "AI data centres, from land",
+      "and power to long-term operation."
     ],
     "aria": "Abstract graphic: a row of rack elevations with blue squares rising from left to right, drawn from the company mark."
   },
   "about": {
     "title": "The firm",
-    "text": "Nourra Holdings is an AI compute infrastructure company headquartered in Singapore. We build and operate data centres designed for GPU clusters, with engineering and operations carried out by our own teams."
+    "text": "Nourra Holdings is an AI data centre operator headquartered in Singapore. We take a facility through its whole life: securing land and power, integrating the mechanical and electrical supply chain, building it, and running and maintaining it over the long term."
   },
   "business": {
     "title": "Business",
     "items": [
       {
-        "name": "Data centres",
+        "name": "Site and power",
         "en": "",
-        "text": "High-density facilities in and around Singapore, providing space, power and cooling for GPU clusters.",
+        "text": "We source powered buildings and developable land, and check zoning, floor loading, power capacity, permits and power-on dates.",
         "scope": [
-          "High-density space",
-          "Power and cooling",
-          "Colocation"
+          "Powered buildings",
+          "Land assessment",
+          "Grid connection"
+        ]
+      },
+      {
+        "name": "Development",
+        "en": "",
+        "text": "Mainly small and mid-sized AI data centres of a few megawatts, expandable in phases and handed over ready for hardware to be racked.",
+        "scope": [
+          "Building conversion",
+          "Modular data halls",
+          "High density",
+          "Phased expansion"
+        ]
+      },
+      {
+        "name": "Supply chain",
+        "en": "",
+        "text": "Power distribution, liquid cooling and prefabricated modules procured, integrated and delivered as one package, combining manufacturing in China with local production.",
+        "scope": [
+          "Power equipment",
+          "Liquid cooling",
+          "Prefabricated modules",
+          "Spare parts"
         ]
       },
       {
@@ -68,18 +94,18 @@
         "scope": [
           "Electrical and low-voltage",
           "Cabling and racking",
-          "Facility conversion",
           "Specialist subcontracting"
         ]
       },
       {
-        "name": "Operations",
+        "name": "Operations and maintenance",
         "en": "",
-        "text": "On-site teams run day-to-day operations, inspections and fault response, delivered against a service level agreement.",
+        "text": "On-site teams run day-to-day operations, inspections and fault response, and handle scheduled servicing, repair and spare parts for facility and IT equipment.",
         "scope": [
           "On-site staffing",
           "Inspection and fault response",
-          "Expansion and migration"
+          "Scheduled servicing",
+          "Repair and spares"
         ]
       },
       {
@@ -146,7 +172,7 @@
         "g": "net",
         "lat": 39.5,
         "lon": -98.35,
-        "text": "Partner network for compute supply and the upstream supply chain."
+        "text": "A long-term market, where we are developing data centre projects and supply chain partnerships."
       },
       {
         "k": "nl",
@@ -172,8 +198,8 @@
     "title": "Principles",
     "items": [
       {
-        "t": "Our own teams",
-        "d": "The critical work is done by our own people. Responsibility stays in one place."
+        "t": "End to end",
+        "d": "From site selection to maintenance, the critical work is done by our own people. Responsibility stays in one place."
       },
       {
         "t": "Compliance",
@@ -196,7 +222,7 @@
   },
   "chain": {
     "title": "Value chain",
-    "lead": "Nine layers sit between a unit of electricity and a single model call.",
+    "lead": "Ten layers sit between a unit of electricity and a single model call.",
     "hint": "Open each layer to see what it is and where Nourra sits.",
     "legend": {
       "core": "Nourra’s own capability",
@@ -223,8 +249,8 @@
         "k": "ops",
         "name": "Operations",
         "role": "core",
-        "d": "Life after go-live: staffing, inspections, fault response, hardware replacement and expansion. Availability is defended at this layer.",
-        "r": "Our own on-site teams, delivered against a service level agreement."
+        "d": "Life after go-live: staffing, inspections and fault response, plus scheduled servicing, repair and spare parts for both facility and IT equipment. Availability is defended at this layer.",
+        "r": "Our own on-site teams run operations and maintenance against a service level agreement."
       },
       {
         "k": "deploy",
@@ -255,6 +281,13 @@
         "r": "Designed and built to high-density standards in our own facilities."
       },
       {
+        "k": "equip",
+        "name": "M&E equipment and prefabricated modules",
+        "role": "core",
+        "d": "Transformers, switchgear, uninterruptible power, liquid-cooling equipment and prefabricated data hall modules. Their lead times and quality decide how soon a facility is built and how long it lasts.",
+        "r": "We integrate manufacturers and local production, then procure, assemble and deliver to site as one package."
+      },
+      {
         "k": "mep",
         "name": "Building, mechanical and electrical",
         "role": "core",
@@ -264,9 +297,9 @@
       {
         "k": "power",
         "name": "Power and land",
-        "role": "assist",
+        "role": "core",
         "d": "Substation capacity, power purchase and grid connection dates. How much power, and how soon, decides how large a facility can be and how fast it goes live.",
-        "r": "We check power capacity, permits and power-on dates during site selection."
+        "r": "We source powered buildings and land, and check power capacity, permits and power-on dates."
       }
     ]
   },
@@ -379,6 +412,39 @@
         "t": "Handover and operations",
         "d": "The cluster is handed to its user and enters long-term operation.",
         "r": "Our on-site team operates it against a service level agreement."
+      }
+    ]
+  },
+  "supply": {
+    "title": "Supply chain",
+    "lead": "How fast a facility gets built depends, as much as anything, on when the equipment arrives.",
+    "hint": "We procure and deliver power distribution, liquid cooling and prefabricated modules as one package.",
+    "dutyLabel": "Nourra’s part",
+    "steps": [
+      {
+        "t": "Specification",
+        "d": "Rack density and site conditions set the power architecture, cooling method and module specification. The equipment list is fixed alongside the engineering drawings.",
+        "r": "We turn site conditions and client requirements into one complete equipment list."
+      },
+      {
+        "t": "Manufacture and prefabrication",
+        "d": "Switchgear, liquid-cooling equipment and data hall modules are built, pre-assembled and factory-tested, which cuts the work left for site.",
+        "r": "We integrate manufacturers in China with local production in Southeast Asia, and manage schedule and quality as one."
+      },
+      {
+        "t": "Logistics and customs",
+        "d": "Cross-border transport, customs clearance and arrival dates for heavy equipment have to line up with construction progress on site.",
+        "r": "We coordinate shipping and arrival sequence, under applicable trade and export control rules."
+      },
+      {
+        "t": "Installation and commissioning",
+        "d": "Modules are set in place, connected to power and pipework, and commissioned with the rest of the facility.",
+        "r": "Installed by our own engineering crews and commissioned together with the manufacturer."
+      },
+      {
+        "t": "Maintenance and spares",
+        "d": "Scheduled servicing, repair and spare parts once the equipment is in operation.",
+        "r": "We set up spares stock and a maintenance plan, carried out by the on-site team."
       }
     ]
   }
