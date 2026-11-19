@@ -150,7 +150,8 @@ html.menu-open { overflow: hidden; }
 .kicker-dot::after { content: ""; position: absolute; inset: -4px; border-radius: 4px; border: 1px solid var(--sky); opacity: 0; }
 .kicker-rule { width: 1px; height: 12px; background: var(--line-dark-strong); }
 .hero-title { margin-top: clamp(22px, 3.4vh, 36px); max-width: 15em; font-size: var(--fs-hero); font-weight: 300; line-height: 1.12; letter-spacing: .01em; }
-html:lang(en) .hero-title { max-width: 13em; font-weight: 300; line-height: 1.02; letter-spacing: -.028em; }
+/* 英文首屏标题比中文小 20%（像素向下取整）：桌面 71px，手机 32px */
+html:lang(en) .hero-title { max-width: 13em; font-size: clamp(32px, 13px + 4.48vw, 71px); font-weight: 300; line-height: 1.02; letter-spacing: -.028em; }
 .hero-title .line { display: block; overflow: hidden; padding-bottom: .08em; margin-bottom: -.08em; }
 .hero-title .line > span { display: inline-block; }
 .grad { background: linear-gradient(92deg, #FFFFFF 0%, #CDEEFF 40%, var(--sky) 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
@@ -245,7 +246,8 @@ html:lang(en) .role b { text-transform: uppercase; letter-spacing: .1em; }
 .about-head { display: grid; grid-template-columns: minmax(0, 3fr) minmax(0, 9fr); gap: 28px clamp(28px, 5vw, 80px); align-items: start; }
 .about-head .eyebrow { margin-top: .5em; }
 .about-statement { max-width: 24em; font-size: clamp(1.45rem, .98rem + 1.95vw, 2.6rem); font-weight: 300; line-height: 1.6; letter-spacing: .005em; color: var(--text); text-wrap: pretty; }
-html:lang(en) .about-statement { max-width: 25em; line-height: 1.3; letter-spacing: -.018em; }
+/* 英文第二屏大字比中文小 20%（像素向下取整）：桌面 33px，手机 18px */
+html:lang(en) .about-statement { max-width: 25em; font-size: clamp(18px, 12px + 1.56vw, 33px); line-height: 1.3; letter-spacing: -.018em; }
 .about-statement em { font-style: normal; color: var(--blue-ink); }
 .lifecycle { position: relative; margin-top: clamp(56px, 7vw, 104px); display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px; }
 .lifecycle::before, .lifecycle::after { content: ""; position: absolute; top: 31px; left: 32px; right: calc(25% - 50px); height: 1px; }
