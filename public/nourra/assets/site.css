@@ -580,7 +580,6 @@ html:lang(en) .contact-title { line-height: 1.14; letter-spacing: -.012em; max-w
 .email { padding-bottom: 4px; font-family: var(--font-mono); font-size: clamp(1.25rem, 1rem + 1.3vw, 2rem); color: #fff; text-decoration: none; background: linear-gradient(var(--sky), var(--sky)) left bottom / 0 1px no-repeat; transition: background-size .55s var(--ease-out), color .25s; user-select: all; }
 .email:hover { color: var(--sky); background-size: 100% 1px; }
 .copy.is-done { border-color: var(--sky); color: var(--sky); }
-.pending { padding: 3px 8px; border-radius: 6px; border: 1px dashed var(--line-dark-strong); font-size: .75rem; color: var(--on-dark-muted); }
 .footer-base { position: relative; margin-top: clamp(72px, 9vw, 128px); padding-top: 28px; display: grid; grid-template-columns: auto minmax(0, 1fr) auto; grid-template-areas: "logo nav top" "legal legal legal"; gap: 24px 40px; align-items: center; font-size: .8125rem; color: var(--on-dark-muted); }
 .footer-base::before { content: ""; position: absolute; top: 0; left: max(var(--gutter), env(safe-area-inset-left, 0px)); right: max(var(--gutter), env(safe-area-inset-right, 0px)); height: 1px; background: var(--line-dark); }
 .footer-base .lockup { grid-area: logo; }
