@@ -9,6 +9,13 @@ export async function middleware(request: NextRequest) {
     return NextResponse.next();
   }
 
+  // nourra.singaporeyuan.com:诺元控股的公司官网,对外公开,不叠站点密码
+  // (页面在 public/nourra/,由 next.config.mjs 按域名分流)
+  const host = (request.headers.get('host') || '').split(':')[0].toLowerCase();
+  if (host === 'nourra.singaporeyuan.com') {
+    return NextResponse.next();
+  }
+
   const cookie = request.cookies.get(AUTH_COOKIE)?.value;
   if (cookie && cookie === (await sha256(sitePassword))) {
     return NextResponse.next();

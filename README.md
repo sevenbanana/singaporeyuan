@@ -39,6 +39,15 @@ npm run dev
 3. 登录你买域名的注册商后台,把这些 DNS 记录填进去(或把 nameserver 改成 Vercel 提供的)。
 4. 等几分钟到几小时生效,HTTPS 会自动配置。
 
+## 诺元控股官网 nourra.singaporeyuan.com
+
+- 页面是静态文件,放在 `public/nourra/`(中文 `index.html`、英文 `en/index.html`、样式和交互在 `assets/`)。
+  `next.config.mjs` 按域名把 `nourra.singaporeyuan.com` 的所有请求指到这个目录;`middleware.ts` 让这个域名跳过站点密码,对外公开。
+- 改文案:编辑 `scripts/nourra/build.mjs`,然后运行 `node scripts/nourra/build.mjs public/nourra --site` 重新生成两个页面。
+  改样式或动效:直接改 `public/nourra/assets/site.css`、`main.js`。
+- 首次绑定域名:Vercel 项目 → Settings → Domains → 添加 `nourra.singaporeyuan.com`。
+  如果域名的 DNS 不在 Vercel,再到注册商后台按 Vercel 的提示加一条 CNAME(主机名 `nourra`)。
+
 ---
 
 ## 表单说明
