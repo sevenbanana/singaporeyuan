@@ -5,90 +5,31 @@ const esc = (s) =>
 
 // Logo：取自「诺元控股 Nourra Holdings Logo」设计稿。颜色由 styles.css 的 .mark-bar / .mark-step 控制。
 const MARK =
-  '<svg class="mark" viewBox="14 14 92 92" width="36" height="36" aria-hidden="true">' +
+  '<svg class="mark" viewBox="14 14 92 92" width="38" height="38" aria-hidden="true">' +
   '<rect class="mark-bar" x="18" y="18" width="18" height="84" rx="3"/><rect class="mark-bar" x="84" y="18" width="18" height="84" rx="3"/>' +
   '<rect class="mark-step" x="37" y="82" width="16" height="16" rx="2" fill-opacity=".3"/><rect class="mark-step" x="47" y="62" width="16" height="16" rx="2" fill-opacity=".55"/>' +
   '<rect class="mark-step" x="57" y="42" width="16" height="16" rx="2" fill-opacity=".8"/><rect class="mark-step" x="67" y="22" width="16" height="16" rx="2"/></svg>';
 
-const CABLES = ['signal', 'aqua', 'violet', 'cloud'];
-
-function heroDiagram(d) {
-  const xs = [55, 165, 275, 385];
-  const tx = [187, 209, 231, 253];
-  const cables = xs
-    .map(
-      (x, i) => `
-      <path class="cable cable--${CABLES[i]}" style="--i:${i}" pathLength="1"
-        d="M${x} 66 V128 C${x} 182 ${tx[i]} 160 ${tx[i]} 214" />
-      <g class="gate" style="--i:${i}">
-        <circle cx="${x}" cy="104" r="10" />
-        <path d="M${x - 4.5} 104 l3.2 3.4 l6 -6.8" />
-      </g>`
-    )
-    .join('');
-  const ports = xs
-    .map(
-      (x, i) => `
-      <text x="${x}" y="26" text-anchor="middle" class="d-label">${esc(d.ports[i])}</text>
-      <rect x="${x - 15}" y="40" width="30" height="26" rx="3" class="port port--${CABLES[i]}" />`
-    )
-    .join('');
-  const units = [0, 1, 2, 3, 4]
-    .map(
-      (n) => `
-      <rect x="146" y="${364 + n * 22}" width="148" height="16" rx="2" class="unit" />
-      <circle cx="158" cy="${372 + n * 22}" r="2.6" class="led" style="--n:${n}" />
-      <path d="M176 ${372 + n * 22} h104" class="vent" />`
-    )
-    .join('');
-  return `
-  <svg class="hero-diagram" viewBox="0 0 440 510" role="img" aria-label="${esc(d.aria)}">
-    ${ports}
-    ${cables}
-    <text x="8" y="198" class="d-note">${esc(d.check)}</text>
-    <rect x="120" y="214" width="200" height="72" rx="4" class="hub" />
-    <text x="220" y="246" text-anchor="middle" class="d-hub" translate="no">${esc(d.hub)}</text>
-    <text x="220" y="270" text-anchor="middle" class="d-hubsub">${esc(d.hubSub)}</text>
-    <path class="trunk" pathLength="1" d="M220 286 V352" />
-    <rect x="134" y="352" width="172" height="124" rx="4" class="rack" />
-    ${units}
-    <text x="220" y="500" text-anchor="middle" class="d-label">${esc(d.rack)}</text>
-  </svg>`;
-}
-
-function modeDiagram(m, i) {
-  const box = (x, y, w, label, cls = '') =>
-    `<rect x="${x}" y="${y}" width="${w}" height="34" rx="3" class="m-box ${cls}" />
-     <text x="${x + w / 2}" y="${y + 22}" text-anchor="middle" class="m-text${cls.includes('us') ? ' m-text--us" translate="no"' : '"'}>${esc(label)}</text>`;
-  if (i === 0) {
-    const sup = m.suppliers
-      .map((s, n) => `${box(256, 6 + n * 43, 76, s)}<path d="M220 66 C240 66 238 ${23 + n * 43} 256 ${23 + n * 43}" class="m-line" />`)
-      .join('');
-    return `
-    <svg class="mode-diagram" viewBox="0 0 340 132" role="img" aria-label="${esc(m.items[0].lead)}">
-      ${box(8, 49, 56, m.you)}
-      <path d="M64 66 H130" class="m-line" />
-      <text x="97" y="58" text-anchor="middle" class="m-small">${esc(m.contractWord)}</text>
-      ${box(130, 49, 90, 'NOURRA', 'm-box--us')}
-      ${sup}
-    </svg>`;
+// 首屏图形：把 Logo 的“两根立柱 + 上升方块”放大成一排机柜立面。
+function heroArt(aria) {
+  const W = 1440, H = 300, pitch = 48, barW = 5, top = 40, barH = 220, sq = 13;
+  const levels = [0.28, 0.5, 0.75, 1];
+  let bars = '', steps = '';
+  const n = Math.ceil(W / pitch);
+  for (let i = 0; i <= n; i++) {
+    const x = i * pitch;
+    bars += `<rect x="${x}" y="${top}" width="${barW}" height="${barH}" rx="1.5"/>`;
+    const lv = i % 4;
+    const y = top + barH - 24 - lv * 56;
+    const fade = Math.min(1, Math.max(0, (i - 4) / (n - 8)));
+    const o = (levels[lv] * (0.12 + 0.88 * fade)).toFixed(3);
+    steps += `<rect x="${x + (pitch + barW - sq) / 2}" y="${y}" width="${sq}" height="${sq}" rx="2" fill-opacity="${o}" style="--i:${i}"/>`;
   }
-  return `
-    <svg class="mode-diagram" viewBox="0 0 340 132" role="img" aria-label="${esc(m.items[1].lead)}">
-      ${box(8, 10, 56, m.you)}
-      <path d="M64 27 H130" class="m-line" />
-      <text x="97" y="19" text-anchor="middle" class="m-small">${esc(m.contractWord)}</text>
-      ${box(130, 10, 90, 'NOURRA', 'm-box--us')}
-      <path d="M220 27 H240" class="m-line" />
-      ${box(240, 10, 92, m.scopeWord)}
-      ${box(206, 88, 126, m.supplier)}
-      <path d="M36 44 V105 H206" class="m-line m-line--dash" />
-      <text x="120" y="98" text-anchor="middle" class="m-small">${esc(m.verifyWord)}</text>
-    </svg>`;
+  return `<svg class="hero-art" viewBox="0 0 ${W} ${H}" preserveAspectRatio="xMidYMax slice" role="img" aria-label="${esc(aria)}">
+    <g class="art-bars">${bars}</g><g class="art-steps">${steps}</g></svg>`;
 }
 
 export function renderPage({ t, cfg, base, altHref, selfUrl, altUrl, altLang }) {
-  const c = t.contact;
   const email = cfg.contactEmail;
   const year = new Date().getFullYear();
   const isZh = t.lang.startsWith('zh');
@@ -96,26 +37,14 @@ export function renderPage({ t, cfg, base, altHref, selfUrl, altUrl, altLang }) 
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'Organization',
-    name: cfg.brand,
+    name: 'Nourra Holdings',
+    alternateName: '诺元控股',
     url: cfg.siteUrl,
     description: t.meta.description,
     address: { '@type': 'PostalAddress', addressCountry: 'SG' },
   };
-  const clientCfg = {
-    endpoint: cfg.form.endpoint,
-    email,
-    text: {
-      mailtoDone: c.mailtoDone, sending: c.sending, sent: c.sent, failed: c.failed,
-      invalid: c.invalid, invalidEmail: c.invalidEmail, mailSubject: c.mailSubject,
-      submitButton: c.submitButton, mailtoButton: c.mailtoButton,
-    },
-  };
-  const field = (name, f, attrs) => `
-        <div class="field">
-          <label for="f-${name}">${esc(f.label)}</label>
-          <input id="f-${name}" name="${name}" placeholder="${esc(f.placeholder)}" required ${attrs} aria-describedby="e-${name}">
-          <p class="field-error" id="e-${name}" hidden></p>
-        </div>`;
+  const lockup = `${MARK}<span class="lockup-text"><b>${esc(t.brand.name)}</b><small>${esc(t.brand.sub)}</small></span>`;
+  const sub = (s) => (s ? `<span class="en" lang="en">${esc(s)}</span>` : '');
 
   return `<!doctype html>
 <html lang="${t.lang}">
@@ -130,7 +59,7 @@ export function renderPage({ t, cfg, base, altHref, selfUrl, altUrl, altLang }) 
 <link rel="alternate" hreflang="x-default" href="${cfg.siteUrl}/">
 <meta name="theme-color" content="${cfg.themeColor}">
 <meta property="og:type" content="website">
-<meta property="og:site_name" content="${esc(cfg.brand)}">
+<meta property="og:site_name" content="Nourra Holdings">
 <meta property="og:title" content="${esc(t.meta.title)}">
 <meta property="og:description" content="${esc(t.meta.description)}">
 <meta property="og:url" content="${selfUrl}">
@@ -146,206 +75,82 @@ export function renderPage({ t, cfg, base, altHref, selfUrl, altUrl, altLang }) 
 <body>
 <a class="skip" href="#main">${esc(t.nav.skip)}</a>
 
-<header class="site-header">
-  <div class="wrap header-row">
-    <a class="wordmark" href="#top" translate="no" aria-label="${esc(cfg.brand)}">${MARK}<b>NOURRA<span>.AI</span></b></a>
-    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">${esc(t.nav.menu)}</button>
-    <nav id="site-nav" class="site-nav" aria-label="${esc(t.nav.menu)}">
-      <ul>
-        ${t.nav.items.map((n) => `<li><a href="${n.href}">${esc(n.label)}</a></li>`).join('\n        ')}
-      </ul>
-      <a class="lang" href="${altHref}" hreflang="${altLang}" lang="${altLang}" aria-label="${esc(t.nav.langAria)}">${esc(t.nav.langLabel)}</a>
-      <a class="btn btn--small" href="#contact">${esc(t.nav.cta)}</a>
-    </nav>
+<div class="hero" id="top">
+  <header class="site-header">
+    <div class="wrap header-row">
+      <a class="lockup" href="#top" translate="no" aria-label="${esc(t.brand.name)} ${esc(t.brand.sub)}">${lockup}</a>
+      <nav class="site-nav" aria-label="${esc(t.nav.label)}">
+        <ul>
+          ${t.nav.items.map((n) => `<li><a href="${n.href}">${esc(n.label)}</a></li>`).join('\n          ')}
+        </ul>
+        <a class="lang" href="${altHref}" hreflang="${altLang}" lang="${altLang}" aria-label="${esc(t.nav.langAria)}">${esc(t.nav.langLabel)}</a>
+      </nav>
+    </div>
+  </header>
+  <div class="wrap hero-copy">
+    <p class="kicker">${esc(t.hero.kicker)}</p>
+    <h1>${t.hero.h1.map((l) => `<span>${esc(l)}</span>`).join(' ')}</h1>
   </div>
-</header>
+  ${heroArt(t.hero.aria)}
+</div>
 
 <main id="main">
-  <section class="hero" id="top">
-    <div class="wrap hero-grid">
-      <div class="hero-copy">
-        <h1>${t.hero.h1.map((l) => `<span>${esc(l)}</span>`).join(' ')}</h1>
-        <p class="lede">${esc(t.hero.lede)}</p>
-        <div class="actions">
-          <a class="btn" href="#contact">${esc(t.hero.primary)}</a>
-          <a class="text-link" href="#modes">${esc(t.hero.secondary)}</a>
-        </div>
-        <p class="hero-note">${esc(t.hero.note)}</p>
-      </div>
-      <div class="hero-figure">${heroDiagram(t.hero.diagram)}</div>
+  <section class="section" id="about" aria-labelledby="h-about">
+    <div class="wrap split">
+      <h2 class="label" id="h-about">${esc(t.about.title)}</h2>
+      <p class="statement">${esc(t.about.text)}</p>
     </div>
   </section>
 
-  <section class="section" id="problems" aria-labelledby="h-problems">
-    <div class="wrap">
-      <h2 id="h-problems">${esc(t.problems.title)}</h2>
-      <ul class="problems">
-        ${t.problems.items
-          .map(
-            (p) => `<li>
-          <h3>${esc(p.q)}</h3>
-          <p>${esc(p.d)}</p>
-          <p class="answer"><span>${esc(t.problems.ourLabel)}</span>${esc(p.a)}</p>
-        </li>`
-          )
+  <section class="section section--rule" id="business" aria-labelledby="h-business">
+    <div class="wrap split">
+      <h2 class="label" id="h-business">${esc(t.business.title)}</h2>
+      <ul class="rows">
+        ${t.business.items
+          .map((b) => `<li><h3>${esc(b.name)}${sub(b.en)}</h3><p>${esc(b.text)}</p></li>`)
           .join('\n        ')}
       </ul>
     </div>
   </section>
 
-  <section class="section section--panel" id="services" aria-labelledby="h-services">
-    <div class="wrap">
-      <h2 id="h-services">${esc(t.services.title)}</h2>
-      <div class="services">
-        ${t.services.items
-          .map(
-            (s, i) => `<article class="service service--${CABLES[i]}" id="service-${s.key}">
-          <div class="service-head">
-            <h3>${esc(s.name)}</h3>
-            <p><b>${esc(t.services.labels.fit)}</b>${esc(s.fit)}</p>
-          </div>
-          <div>
-            <h4>${esc(t.services.labels.do)}</h4>
-            <ul>${s.do.map((d) => `<li>${esc(d)}</li>`).join('')}</ul>
-          </div>
-          <div>
-            <h4>${esc(t.services.labels.get)}</h4>
-            <p>${esc(s.get)}</p>
-          </div>
-        </article>`
-          )
-          .join('\n        ')}
-      </div>
-    </div>
-  </section>
-
-  <section class="section" id="modes" aria-labelledby="h-modes">
-    <div class="wrap">
-      <div class="section-head">
-        <h2 id="h-modes">${esc(t.modes.title)}</h2>
-        <p>${esc(t.modes.intro)}</p>
-      </div>
-      <div class="modes">
-        ${t.modes.items
-          .map(
-            (m, i) => `<article class="mode">
-          <h3>${esc(m.name)}</h3>
-          <p class="mode-lead">${esc(m.lead)}</p>
-          ${modeDiagram(t.modes, i)}
-          <dl>
-            <div><dt>${esc(t.modes.rows.contract)}</dt><dd>${esc(m.contract)}</dd></div>
-            <div><dt>${esc(t.modes.rows.duty)}</dt><dd>${esc(m.duty)}</dd></div>
-            <div><dt>${esc(t.modes.rows.fit)}</dt><dd>${esc(m.fit)}</dd></div>
-            <div><dt>${esc(t.modes.rows.fee)}</dt><dd>${esc(m.fee)}</dd></div>
-          </dl>
-        </article>`
-          )
-          .join('\n        ')}
-      </div>
-    </div>
-  </section>
-
-  <section class="section section--panel" id="process" aria-labelledby="h-process">
-    <div class="wrap">
-      <h2 id="h-process">${esc(t.process.title)}</h2>
-      <ol class="process">
-        ${t.process.steps.map((s) => `<li><h3>${esc(s.t)}</h3><p>${esc(s.d)}</p></li>`).join('\n        ')}
-      </ol>
-    </div>
-  </section>
-
-  <section class="section" id="trust" aria-labelledby="h-trust">
-    <div class="wrap">
-      <div class="section-head">
-        <h2 id="h-trust">${esc(t.trust.title)}</h2>
-        <p>${esc(t.trust.intro)}</p>
-      </div>
-      <div class="ladder">
-        <h3>${esc(t.trust.ladder.title)}</h3>
-        <ol>
-          ${t.trust.ladder.steps
-            .map(
-              (s, i) =>
-                `<li class="${i > 1 ? 'is-quoted' : ''}"><strong>${esc(s)}</strong><span>${esc(i > 1 ? t.trust.ladder.quoted : t.trust.ladder.notQuoted)}</span></li>`
-            )
-            .join('\n          ')}
-        </ol>
-        <p>${esc(t.trust.ladder.note)}</p>
-      </div>
-      <div class="trust-grid">
-        <ul class="rules">
-          ${t.trust.rules.map((r) => `<li><h3>${esc(r.t)}</h3><p>${esc(r.d)}</p></li>`).join('\n          ')}
-        </ul>
-        <div class="wont">
-          <h3>${esc(t.trust.wontTitle)}</h3>
-          <ul>${t.trust.wont.map((w) => `<li>${esc(w)}</li>`).join('')}</ul>
-        </div>
-      </div>
-      ${t.trust.team.enabled ? `<div class="team"><h3>${esc(t.trust.team.title)}</h3><p>${esc(t.trust.team.text)}</p></div>` : ''}
-    </div>
-  </section>
-
-  <section class="section section--panel" id="faq" aria-labelledby="h-faq">
-    <div class="wrap faq-grid">
-      <h2 id="h-faq">${esc(t.faq.title)}</h2>
-      <div class="faq">
-        ${t.faq.items.map((f) => `<details><summary>${esc(f.q)}</summary><p>${esc(f.a)}</p></details>`).join('\n        ')}
-      </div>
-    </div>
-  </section>
-
-  <section class="section contact" id="contact" aria-labelledby="h-contact">
-    <div class="wrap contact-grid">
+  <section class="section section--dark" id="footprint" aria-labelledby="h-footprint">
+    <div class="wrap split">
+      <h2 class="label" id="h-footprint">${esc(t.footprint.title)}</h2>
       <div>
-        <h2 id="h-contact">${esc(c.title)}</h2>
-        <p>${esc(c.intro)}</p>
-        <p class="contact-email">${esc(c.emailLabel)}<br>
-          <a href="mailto:${email}" translate="no">${email}</a>${cfg.contactEmailConfirmed ? '' : ` <small>(${esc(c.pendingEmail)})</small>`}
-        </p>
+        <p class="statement">${esc(t.footprint.lead)}</p>
+        <ul class="places">
+          ${t.footprint.items
+            .map((p) => `<li><h3>${esc(p.place)}${sub(p.en)}</h3><p>${esc(p.text)}</p></li>`)
+            .join('\n          ')}
+        </ul>
       </div>
-      <form id="enquiry" novalidate data-mode="${cfg.form.endpoint ? 'post' : 'mailto'}">
-        ${field('name', c.fields.name, 'type="text" autocomplete="name"')}
-        ${field('company', c.fields.company, 'type="text" autocomplete="organization"')}
-        ${field('email', c.fields.email, 'type="email" autocomplete="email" inputmode="email" spellcheck="false"')}
-        <div class="field">
-          <label for="f-type">${esc(c.fields.type.label)}</label>
-          <select id="f-type" name="type">
-            ${c.fields.type.options.map((o) => `<option>${esc(o)}</option>`).join('')}
-          </select>
-        </div>
-        ${field('region', c.fields.region, 'type="text" autocomplete="off"')}
-        <div class="field field--wide">
-          <label for="f-message">${esc(c.fields.message.label)}</label>
-          <textarea id="f-message" name="message" rows="5" placeholder="${esc(c.fields.message.placeholder)}" required aria-describedby="e-message"></textarea>
-          <p class="field-error" id="e-message" hidden></p>
-        </div>
-        <div class="field--wide form-foot">
-          <button class="btn" type="submit">${esc(cfg.form.endpoint ? c.submitButton : c.mailtoButton)}</button>
-          ${cfg.form.endpoint ? '' : `<p class="form-hint">${esc(c.mailtoHint)}</p>`}
-          <p class="form-status" role="status" aria-live="polite"></p>
-          <p class="form-consent">${esc(c.consent)}</p>
-        </div>
-      </form>
+    </div>
+  </section>
+
+  <section class="section" id="principles" aria-labelledby="h-principles">
+    <div class="wrap split">
+      <h2 class="label" id="h-principles">${esc(t.principles.title)}</h2>
+      <ul class="rows">
+        ${t.principles.items.map((r) => `<li><h3>${esc(r.t)}</h3><p>${esc(r.d)}</p></li>`).join('\n        ')}
+      </ul>
     </div>
   </section>
 </main>
 
-<footer class="site-footer">
-  <div class="wrap footer-grid">
+<footer class="site-footer" id="contact" aria-labelledby="h-contact">
+  <div class="wrap split">
+    <h2 class="label" id="h-contact">${esc(t.contact.title)}</h2>
     <div>
-      <p class="wordmark" translate="no">${MARK}<b>NOURRA<span>.AI</span></b></p>
-      <p>${esc(t.footer.tagline)}</p>
-      <p>${esc(isZh ? cfg.location.zh : cfg.location.en)}</p>
-    </div>
-    <div>
-      <p class="disclaimer">${esc(t.footer.disclaimer)}</p>
-      <p class="legal">© ${year} ${esc(legal)} ${esc(t.footer.rights)}</p>
+      <p class="statement">${esc(t.contact.text)}</p>
+      <p class="email"><a href="mailto:${email}" translate="no">${email}</a>${cfg.contactEmailConfirmed ? '' : ` <small>(${esc(t.contact.pendingEmail)})</small>`}</p>
     </div>
   </div>
+  <div class="wrap footer-base">
+    <div class="lockup" translate="no">${lockup}</div>
+    <p>${esc(isZh ? cfg.location.zh : cfg.location.en)}</p>
+    <p class="legal">© ${year} ${esc(legal)} ${esc(t.footer.rights)} ${esc(t.footer.disclaimer)}</p>
+  </div>
 </footer>
-
-<script>window.NOURRA=${JSON.stringify(clientCfg).replace(/</g, '\\u003c')};</script>
-<script src="${base}assets/main.js" defer></script>
 </body>
 </html>
 `;

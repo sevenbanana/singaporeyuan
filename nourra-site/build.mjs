@@ -28,7 +28,6 @@ out('en/index.html', renderPage({
 }));
 
 out('assets/site.css', read('src/theme.css') + '\n' + read('src/styles.css'));
-out('assets/main.js', read('src/main.js'));
 for (const f of readdirSync(join(root, 'assets'))) {
   copyFileSync(join(root, 'assets', f), join(root, 'dist', 'assets', f));
 }

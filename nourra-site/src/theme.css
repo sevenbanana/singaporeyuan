@@ -1,34 +1,28 @@
 /* 设计变量：颜色、字体、间距都在这里改。
-   深海军蓝和蓝色取自 Logo（诺元控股 Nourra Holdings 设计稿）。
-   四种线缆色在首页图示和服务列表里代表同一条业务线，请成对修改。 */
+   深海军蓝和两种蓝取自 Logo（诺元控股 Nourra Holdings 设计稿）。 */
 :root {
-  --c-ground: #EEF1F5;      /* 页面底色 */
-  --c-panel: #F8F9FB;       /* 浅色面板 */
-  --c-ink: #0A1A33;         /* Logo 深海军蓝：正文与深色面板 */
-  --c-ink-soft: #3D4A5C;    /* 次级文字 */
-  --c-rule: #C3CBD6;        /* 分隔线 */
-  --c-signal: #2B6CFF;      /* Logo 蓝：主按钮与强调 */
-  --c-on-signal: #FFFFFF;   /* 蓝底上的文字 */
-  --c-aqua: #4CC9FF;        /* Logo 深底用的亮蓝：深色面板上的强调、焦点框 */
-  --c-link: #1A4FCC;        /* 浅底上的链接 */
-  --c-deep: #13264A;        /* 深色面板里的输入框、机柜单元 */
+  --c-navy: #0A1A33;        /* Logo 深海军蓝：首屏、深色段落、正文 */
+  --c-navy-2: #10244A;      /* 深色面上的细线 */
+  --c-paper: #F7F8FA;       /* 浅色段落底色（Logo 稿的底色） */
+  --c-text: #0A1A33;
+  --c-muted: #56627A;       /* 次级文字 */
+  --c-rule: #D5DAE3;        /* 浅底细线 */
+  --c-blue: #2B6CFF;        /* Logo 蓝：浅底上的强调 */
+  --c-sky: #4CC9FF;         /* Logo 亮蓝：深底上的强调 */
+  --c-on-dark: #FFFFFF;
+  --c-on-dark-muted: #A9B6CA;
 
-  --c-cable-1: #4CC9FF;     /* 自建机房 */
-  --c-cable-2: #F4C20D;     /* 工程分包 */
-  --c-cable-3: #9A6BC6;     /* 驻场运维 */
-  --c-cable-4: #DDE4E6;     /* GPU 与云 */
+  /* 标题用衬线（西文 Newsreader，中文思源宋体），正文用无衬线 */
+  --font-display: "Newsreader", "Noto Serif SC", "Songti SC", "SimSun", Georgia, serif;
+  --font-text: "IBM Plex Sans", "Noto Sans SC", "PingFang SC", "Microsoft YaHei", system-ui, sans-serif;
 
-  --font-sans: "Archivo", "Noto Sans SC", "PingFang SC", "Hiragino Sans GB",
-    "Microsoft YaHei", system-ui, sans-serif;
-
-  --fs-h1: clamp(2.05rem, 1.1rem + 4.3vw, 4.1rem);
-  --fs-h2: clamp(1.6rem, 1.15rem + 1.9vw, 2.6rem);
-  --fs-h3: clamp(1.15rem, 1.05rem + 0.5vw, 1.4rem);
+  --fs-h1: clamp(2.1rem, 1rem + 4.6vw, 4.5rem);
+  --fs-statement: clamp(1.35rem, 1rem + 1.5vw, 2.15rem);
+  --fs-h3: clamp(1.2rem, 1.05rem + .6vw, 1.5rem);
   --fs-body: 1.0625rem;
-  --fs-small: 0.9375rem;
+  --fs-label: .8125rem;
 
-  --gutter: clamp(20px, 5vw, 56px);
-  --page: 1180px;
-  --section: clamp(64px, 9vw, 128px);
-  --radius: 4px;
+  --gutter: clamp(22px, 5vw, 64px);
+  --page: 1240px;
+  --section: clamp(80px, 11vw, 168px);
 }

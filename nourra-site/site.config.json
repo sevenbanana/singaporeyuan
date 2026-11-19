@@ -10,10 +10,6 @@
     "zh": "新加坡",
     "en": "Singapore"
   },
-  "form": {
-    "_说明": "endpoint 留空时，表单会打开访客的邮件客户端（mailto），不会显示“提交成功”。填入 Formspree / 自建接口等可接收 JSON POST 的地址后，表单改为在线提交，只有接口返回 2xx 才显示成功。",
-    "endpoint": ""
-  },
-  "fontsHref": "https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Noto+Sans+SC:wght@400;500;900&display=swap",
+  "fontsHref": "https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500&family=Newsreader:opsz,wght@6..72,400;6..72,500&family=Noto+Sans+SC:wght@400;500;700&family=Noto+Serif+SC:wght@500;600&display=swap",
   "themeColor": "#0A1A33"
 }
