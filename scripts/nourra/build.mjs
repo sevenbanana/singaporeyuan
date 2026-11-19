@@ -643,9 +643,8 @@ function page(lang) {
     ${eyebrow('h-contact', T('联系', 'Contact'), 'Contact', 'mail')}
     <p class="contact-title">${T('我们主要通过既有的合作网络开展业务。<br>机构合作与项目洽谈，请来信。', 'We work mainly through established relationships.<br>For institutional partnerships and project discussions, write to us.')}</p>
     <div class="email-row">
-      <a class="email" id="email" href="mailto:hello@nourra.ai" translate="no">hello@nourra.ai</a>
-      <button type="button" class="btn btn--ghost btn--sm copy" data-copy="hello@nourra.ai" data-target="#email" data-done="${T('已复制', 'Copied')}">${ico('copy', 'ico ico--sm')}<span class="copy-label">${T('复制邮箱', 'Copy address')}</span></button>
-      <small class="pending">${T('邮箱待确认', 'Address to be confirmed')}</small>
+      <a class="email" id="email" href="mailto:Sandy.goh@nourra.ai" translate="no">Sandy.goh@nourra.ai</a>
+      <button type="button" class="btn btn--ghost btn--sm copy" data-copy="Sandy.goh@nourra.ai" data-target="#email" data-done="${T('已复制', 'Copied')}">${ico('copy', 'ico ico--sm')}<span class="copy-label">${T('复制邮箱', 'Copy address')}</span></button>
     </div>
   </div>
   <div class="wrap footer-base">
