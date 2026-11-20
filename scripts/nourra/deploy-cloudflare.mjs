@@ -34,11 +34,46 @@ for (const f of walk(ROOT)) {
 const worker = `// 由 scripts/nourra/deploy-cloudflare.mjs 生成，请勿手改
 const FILES = ${JSON.stringify(files)};
 const CANONICAL = 'nourra.ai';
+const LANG_COOKIE = 'nourra_lang';
+
+// 访客在页面上手动选过语言（中文/EN 切换）就以它为准；否则看浏览器的首选语言
+function preferredLang(request) {
+  const cookie = request.headers.get('cookie') || '';
+  const m = cookie.match(new RegExp('(?:^|;\\\\s*)' + LANG_COOKIE + '=(zh|en)'));
+  if (m) return m[1];
+  const header = request.headers.get('accept-language');
+  if (!header) return null; // 搜索引擎爬虫通常不带这个头：保持中文默认页，不跳转
+  let best = null, bestQ = -1;
+  for (const part of header.split(',')) {
+    const [tag, ...params] = part.trim().split(';');
+    if (!tag || tag === '*') continue;
+    const qp = params.find((x) => x.trim().startsWith('q='));
+    const q = qp ? parseFloat(qp.trim().slice(2)) : 1;
+    if (q > bestQ) { best = tag.toLowerCase(); bestQ = q; }
+  }
+  if (!best) return null;
+  return best.startsWith('zh') ? 'zh' : 'en';
+}
+
 export default {
   async fetch(request) {
     const url = new URL(request.url);
     if (url.hostname === 'www.' + CANONICAL) { url.hostname = CANONICAL; return Response.redirect(url.toString(), 301); }
+    // 语言切换链接带 ?lang=zh / ?lang=en：记住选择，再回到不带参数的干净地址
+    const chosen = url.searchParams.get('lang');
+    if (chosen === 'zh' || chosen === 'en') {
+      url.searchParams.delete('lang');
+      return new Response(null, { status: 302, headers: {
+        location: url.pathname + url.search,
+        'set-cookie': LANG_COOKIE + '=' + chosen + '; Path=/; Max-Age=31536000; SameSite=Lax; Secure',
+        'cache-control': 'no-store',
+      } });
+    }
     let p = decodeURIComponent(url.pathname);
+    // 首页按语言偏好分流：偏好英文就去 /en/；中文或无法判断时留在中文首页
+    if (p === '/' && preferredLang(request) === 'en') {
+      return new Response(null, { status: 302, headers: { location: '/en/' + url.search, vary: 'Accept-Language, Cookie', 'cache-control': 'no-store' } });
+    }
     if (p === '/en' || p === '/index.html' || p === '/en/index.html') return Response.redirect(url.origin + (p.startsWith('/en') ? '/en/' : '/'), 301);
     if (p.endsWith('/')) p += 'index.html';
     const f = FILES[p];
@@ -50,6 +85,7 @@ export default {
       headers: {
         'content-type': f.t,
         'cache-control': html ? 'public, max-age=0, must-revalidate' : 'public, max-age=3600',
+        ...(p === '/index.html' ? { vary: 'Accept-Language, Cookie' } : {}),
         'x-content-type-options': 'nosniff',
         'referrer-policy': 'strict-origin-when-cross-origin',
       },
