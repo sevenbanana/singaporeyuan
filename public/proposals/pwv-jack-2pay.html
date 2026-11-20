@@ -331,9 +331,9 @@ body.locked #pwGate{display:flex}
 <div class="toast" id="toast"></div>
 
 <script>
-/* 密码门（与 PWV 方案生成器同一密码） */
+/* 密码门（Jack 专属密码） */
 (function(){
-  var HASH="5647cdb5254a24d3a184f9136af8416c1ffb1050fd57c67dc133e588b73fc706", KEY="sy_pwv_plan_auth";
+  var HASH="3ca9177ec2b9dda84d8e4ac6ce9e5445e8e4f37ed789b1e7b73a1b96a58d36d8", KEY="sy_pwv_jack_auth";
   function sha(s){return crypto.subtle.digest("SHA-256",new TextEncoder().encode(s)).then(function(b){
     return Array.prototype.map.call(new Uint8Array(b),function(x){return x.toString(16).padStart(2,"0")}).join("");})}
   try{ if(sessionStorage.getItem(KEY)===HASH) document.body.classList.remove("locked"); }catch(e){}
