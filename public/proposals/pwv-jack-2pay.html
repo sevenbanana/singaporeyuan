@@ -61,7 +61,7 @@ body.locked #pwGate{display:flex}
 .s-intro{margin-top:22px;font-size:19px;font-weight:600}
 .s-intro p+p{margin-top:2px;font-size:16px;font-weight:500}
 .s-intro b{color:var(--navy)}
-.strip{margin-top:18px;display:grid;grid-template-columns:1.1fr 1fr;background:var(--gold-tint);border:1px solid var(--line);border-radius:12px;padding:16px 24px}
+.strip{margin-top:18px;display:grid;grid-template-columns:1fr 1.25fr;background:var(--gold-tint);border:1px solid var(--line);border-radius:12px;padding:16px 24px}
 .strip>div{font-size:14.5px;line-height:1.85}
 .strip>div+div{border-left:1px solid #DCC9A2;padding-left:24px;margin-left:24px}
 .strip .g{color:var(--gold-deep);font-weight:800}
@@ -71,7 +71,7 @@ body.locked #pwGate{display:flex}
 
 .tl{position:relative;margin-top:30px}
 .tl .axis{position:absolute;left:0;top:47px;height:2px;background:linear-gradient(90deg,#E2D3B3,#D9C59C)}
-.cols{position:relative;display:grid;grid-template-columns:2.75fr repeat(4,1fr);gap:14px}
+.cols{position:relative;display:grid;grid-template-columns:2.3fr repeat(4,1fr);gap:14px}
 .col{display:flex;flex-direction:column;align-items:center;text-align:center}
 .topv{height:36px;font-size:20px;font-weight:800;color:var(--gold-deep);white-space:nowrap;display:flex;align-items:flex-end}
 .dotrow{height:24px;display:flex;align-items:center;justify-content:center}
@@ -87,6 +87,15 @@ body.locked #pwGate{display:flex}
 .box.line{border:1.5px solid #D9C59C;background:var(--card)}
 .box.fill{background:var(--gold-tint);border:1px solid #E3CFA4}
 .box.fill b{color:var(--gold-deep)}
+.dotrow .heart{width:26px;height:26px;background:var(--paper);border-radius:50%;padding:1px}
+.box.death{border:1.5px dashed #D9C59C;background:transparent;padding:9px 4px}
+.box.death b{font-size:15px;line-height:1.45}
+.box.death .nw{display:inline;white-space:nowrap;font-size:13.5px;color:var(--navy)}
+.divbox .yrs{display:flex;justify-content:space-around;margin-top:6px;gap:6px}
+.divbox .yrs div{text-align:center}
+.divbox .yrs span{display:block;font-size:12.5px;color:var(--muted)}
+.divbox .yrs b{display:block;font-size:15px;font-weight:800;color:var(--navy)}
+.divbox .yrs .last b{color:var(--gold-deep)}
 .box.end{border:1.5px dashed #E2B3A8;background:#FDF3EF}
 .box.end b{font-size:15px;line-height:1.45;color:var(--red)}
 .cap{margin-top:6px;font-size:12.5px;color:var(--muted)}
@@ -96,10 +105,10 @@ body.locked #pwGate{display:flex}
 .tick{position:absolute;top:0;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center}
 .tick .tv{height:36px;display:flex;align-items:flex-end;font-size:15px;font-weight:800;color:var(--gold-deep)}
 .coin{width:26px;height:26px;border-radius:50%;background:linear-gradient(180deg,#D8AC52,#A9781F);color:#fff;font-size:14px;font-weight:800;display:grid;place-items:center;box-shadow:0 0 0 3px var(--paper)}
-.assume{position:absolute;right:0;top:66px;font-size:13px;font-weight:700;text-align:right;line-height:1.5}
+.assume{position:absolute;right:0;top:122px;font-size:13px;font-weight:700;text-align:right;line-height:1.5}
 .assume b{color:var(--gold-deep)}
 .divbox{margin-top:auto;background:var(--gold-tint);border:1px solid #E3CFA4;border-radius:12px;padding:12px 12px 10px}
-.divbox h4{font-size:15px;font-weight:800;color:var(--navy);text-align:center}
+.divbox h4{font-size:16px;font-weight:800;color:var(--navy);text-align:center}
 .y7{width:100%;border-collapse:collapse;margin-top:6px;font-size:12.5px;font-variant-numeric:tabular-nums}
 .y7 th,.y7 td{padding:3px 2px;text-align:right;white-space:nowrap}
 .y7 th{font-weight:600;color:var(--muted)}
@@ -116,7 +125,7 @@ body.locked #pwGate{display:flex}
 .rates h4{font-size:13.5px;font-weight:800;color:var(--navy)}
 .rates h4 small{font-size:12px;font-weight:500;color:var(--muted);margin-left:6px}
 .rt{width:100%;border-collapse:collapse;margin-top:6px;font-size:12.5px;font-variant-numeric:tabular-nums}
-.rt th,.rt td{padding:5px 8px;text-align:right;border-bottom:1px solid var(--line);white-space:nowrap}
+.rt th,.rt td{padding:5px 14px;text-align:right;border-bottom:1px solid var(--line);white-space:nowrap}
 .rt th{font-size:11.5px;font-weight:700;color:var(--muted);vertical-align:bottom;line-height:1.35}
 .rt th:first-child,.rt td:first-child{text-align:left}
 .rt tbody tr:last-child td{border-bottom:0}
@@ -131,7 +140,7 @@ body.locked #pwGate{display:flex}
 .rt td.end span{color:var(--muted);font-weight:500}
 .rates .ref{margin-top:6px;font-size:11.5px;color:var(--muted)}
 
-.s-foot{display:grid;grid-template-columns:2.75fr 4fr;gap:14px;align-items:end;margin-top:18px}
+.s-foot{display:grid;grid-template-columns:2.3fr 4fr;gap:14px;align-items:end;margin-top:18px}
 .maker{display:flex;gap:12px;align-items:center}
 .maker img{width:84px;height:84px;border-radius:8px;background:#fff;padding:4px;border:1px solid var(--line)}
 .maker p{font-size:13px;line-height:1.7}
@@ -182,28 +191,29 @@ body.locked #pwGate{display:flex}
       <div class="tag"><i>#</i>基金<br>定投</div>
       <div class="s-title">
         <h2>Global Adventurous Income Fund <span>For Jack<svg viewBox="0 0 24 24" fill="#C0392B"><path d="M12 21s-7.5-4.6-9.6-9.2C.9 8.4 3 4.5 6.7 4.5c2.2 0 3.6 1.2 4.3 2.4.7-1.2 2.1-2.4 4.3-2.4 3.7 0 5.8 3.9 4.3 7.3C19.5 16.4 12 21 12 21z"/></svg></span></h2>
-        <p class="prod">AIA Platinum Wealth Venture 3.0 · 2 Pay（缴费 2 年）· 39 岁投保 · 现金分红按季度领取</p>
+        <p class="prod">AIA Platinum Wealth Venture 3.0 · 2 Pay（缴费 2 年）</p>
       </div>
     </div>
 
     <div class="s-intro num">
       <p>年保费 <b>S$100,000</b> × 2年 = <b>S$200,000</b></p>
-      <p>身故赔偿：已缴保费 S$200,000 与保单价值取高者（保单有效期间）*</p>
+      <p>Capital is protected upon death benefits* 身故赔偿本金*</p>
     </div>
 
     <div class="strip num">
       <div>
-        <span class="g">2%</span> Welcome Bonus 迎新红利：<span class="g">S$2,000</span>（第 1 年）<br>
-        GAIF 目标派息约 <span class="g">7%</span> / 年，按季度领取，<small>非保证</small><br>
-        保单生效即开始领取季度分红<br>
-        第 1 至 7 年 补充费 Supplementary Charge：每年保单价值的 <span class="c">2.9%</span>
+        <span class="g">2%</span> Welcome Bonus 迎新红利：<span class="g">S$2,000</span><br>
+        <span class="g">7-8%</span> 目标分红，按季度领取<br>
+        保单生效立刻开始领取季度分红<br>
+        从第2年起，每年分红达到 <span class="g">S$14,000</span>（S$1,167/月）<br>
+        第1至7年 补充费 Supplementary Charge：每年保单价值的 <span class="c">2.9%</span>
       </div>
       <div>
         <span class="h">第8年起：</span><br>
         4% 投资红利 Investment Bonus：Y8 至 Y11 每年 1% of AP<br>
         S$1,000 × 4 = <span class="g">S$4,000</span><br>
-        0.4% p.a. Performance Bonus：每年保单价值的 <span class="g">0.4%</span><br>
-        补充费、退保费不再收取
+        0.4% p.a. guaranteed bonus of Policy Value 每年保证基金红利：<span class="g">S$800</span><br>
+        补充费不再收取
       </div>
     </div>
 
@@ -216,7 +226,7 @@ body.locked #pwGate{display:flex}
               <div class="tv">+2%</div>
               <div class="dotrow"><div class="coin">$</div></div>
               <div class="age num">39</div>
-              <div class="agesub">投保</div>
+              <div class="agesub"></div>
             </div>
             <div class="tick" style="left:26%">
               <div class="tv"></div>
@@ -225,86 +235,58 @@ body.locked #pwGate{display:flex}
               <div class="agesub">交完</div>
             </div>
           </div>
-          <div class="assume">按 <b>8%</b> 投资回报演示<br>每年领取保单价值约 7%</div>
+          <div class="assume">假设<br>基金 0 增长</div>
           <div class="divbox">
-            <h4>前 7 年：到手分红与补充费（按 8% 演示）</h4>
-            <table class="y7">
-              <tr><th></th><th>第1年</th><th>第2年</th><th>第3年</th><th>第4年</th><th>第5年</th><th>第6年</th><th>第7年</th></tr>
-              <tr class="dv"><td>分红</td><td>+7,000</td><td>+13,700</td><td>+13,200</td><td>+12,700</td><td>+12,300</td><td>+11,800</td><td>+11,400</td></tr>
-              <tr class="sc"><td>补充费</td><td>−2,900</td><td>−5,700</td><td>−5,500</td><td>−5,300</td><td>−5,100</td><td>−4,900</td><td>−4,700</td></tr>
-            </table>
-            <p class="tot num">7 年合计：分红 <b>S$82,200</b>　·　补充费 <b class="c">S$34,100</b>（从保单价值中扣除）</p>
+            <h4>按照每年分红 7%</h4>
+            <div class="yrs num"><div><span>第1年</span><b>S$7,000</b></div><div class="last"><span>第2年起</span><b>S$14,000</b></div></div>
           </div>
         </div>
-
         <div class="col">
-          <div class="topv num">S$253,200</div>
+          <div class="topv num">S$305,000</div>
           <div class="dotrow"><div class="dot on"></div></div>
           <div class="age num">47</div>
           <div class="agesub">第8年末</div>
-          <div class="box line"><span>保单价值</span><b class="num">S$159,700</b></div>
-          <div class="box fill"><span>累计到手分红</span><b class="num">S$93,500</b></div>
-          <div class="cap num">当年分红约 S$11,200</div>
+          <div class="box line"><span>保单价值</span><b class="num">S$200,000</b></div>
+          <div class="box fill"><span>到手分红</span><b class="num">S$105,000</b></div>
+          <div class="cap">（8年，第1至8年）</div>
         </div>
         <div class="col">
-          <div class="topv num">S$437,600</div>
+          <div class="topv num">S$557,000</div>
           <div class="dotrow"><div class="dot on"></div></div>
           <div class="age num">65</div>
           <div class="agesub">第26年末</div>
-          <div class="box line"><span>保单价值</span><b class="num">S$147,200</b></div>
-          <div class="box fill"><span>累计到手分红</span><b class="num">S$290,400</b></div>
-          <div class="cap num">当年分红约 S$10,400</div>
+          <div class="box line"><span>保单价值</span><b class="num">S$200,000</b></div>
+          <div class="box fill"><span>到手分红</span><b class="num">S$357,000</b></div>
+          <div class="cap">（26年，第1至26年）</div>
         </div>
         <div class="col">
-          <div class="topv num">S$505,100</div>
+          <div class="topv num">S$837,000</div>
           <div class="dotrow"><div class="dot on"></div></div>
           <div class="age num">85</div>
           <div class="agesub">第46年末</div>
-          <div class="box line"><span>保单价值</span><b class="num">S$50,400</b></div>
-          <div class="box fill"><span>累计到手分红</span><b class="num">S$454,700</b></div>
-          <div class="cap num">当年分红约 S$4,000</div>
+          <div class="box line"><span>保单价值</span><b class="num">S$200,000</b></div>
+          <div class="box fill"><span>到手分红</span><b class="num">S$637,000</b></div>
+          <div class="cap">（46年，第1至46年）</div>
         </div>
         <div class="col" id="lastCol">
-          <div class="topv num">S$459,600</div>
-          <div class="dotrow"><div class="dot end"></div></div>
-          <div class="age num"><small>约</small>88</div>
-          <div class="agesub">第49年</div>
-          <div class="box end"><b>保单价值降至 0<br>保单终止</b></div>
-          <div class="box fill"><span>累计到手分红</span><b class="num">S$459,600</b></div>
-          <div class="cap">（第1至49年）</div>
+          <div class="topv num">S$1,047,000</div>
+          <div class="dotrow"><svg class="heart" viewBox="0 0 24 24" fill="#C0392B"><path d="M12 21s-7.5-4.6-9.6-9.2C.9 8.4 3 4.5 6.7 4.5c2.2 0 3.6 1.2 4.3 2.4.7-1.2 2.1-2.4 4.3-2.4 3.7 0 5.8 3.9 4.3 7.3C19.5 16.4 12 21 12 21z"/></svg></div>
+          <div class="age num">100</div>
+          <div class="agesub">第61年末</div>
+          <div class="box death"><b>身故利益<br><span class="nw">家人收到100%本金*</span></b></div>
+          <div class="box fill"><span>累计分红</span><b class="num">S$847,000</b></div>
+          <div class="cap">（61年，第1至61年）</div>
         </div>
       </div>
     </div>
 
     <div class="rates">
-      <h4>三档投资回报对比<small>AIA 计划书（PI）规定的演示回报率 8% / 4% / 0%，同样每年领取保单价值约 7% 分红；单位 S$，非保证</small></h4>
+      <h4>按 4% 投资回报<small>AIA 计划书（PI）演示，分红再投资、不领取；单位 S$，非保证</small></h4>
       <table class="rt">
-        <thead><tr>
-          <th>投资回报</th><th>第 2 年分红</th><th>前 7 年补充费合计</th>
-          <th>第 8 年末 · 47 岁<br>保单价值 / 累计分红</th>
-          <th>65 岁<br>保单价值 / 累计分红</th>
-          <th>85 岁<br>保单价值 / 累计分红</th>
-          <th>保单价值降至 0、保单终止</th>
-        </tr></thead>
-        <tbody class="num">
-          <tr class="top"><td>8% <small>上图</small></td><td>13,700</td><td>34,100</td>
-            <td><span class="pv">159,700</span><span class="sl">/</span><span class="cu">93,500</span></td>
-            <td><span class="pv">147,200</span><span class="sl">/</span><span class="cu">290,400</span></td>
-            <td><span class="pv">50,400</span><span class="sl">/</span><span class="cu">454,700</span></td>
-            <td class="end">约 88 岁 <span>· 累计分红 459,600</span></td></tr>
-          <tr><td>4%</td><td>13,200</td><td>30,300</td>
-            <td><span class="pv">119,700</span><span class="sl">/</span><span class="cu">81,500</span></td>
-            <td><span class="pv">43,700</span><span class="sl">/</span><span class="cu">184,400</span></td>
-            <td><span class="zero">0</span><span class="sl">/</span><span class="mu">已终止</span></td>
-            <td class="end">约 73 岁 <span>· 累计分红 197,400</span></td></tr>
-          <tr><td>0%</td><td>12,600</td><td>26,900</td>
-            <td><span class="pv">88,800</span><span class="sl">/</span><span class="cu">71,300</span></td>
-            <td><span class="pv">5,600</span><span class="sl">/</span><span class="cu">124,900</span></td>
-            <td><span class="zero">0</span><span class="sl">/</span><span class="mu">已终止</span></td>
-            <td class="end">约 67 岁 <span>· 累计分红 125,100</span></td></tr>
-        </tbody>
+        <thead><tr><th></th><th>第 8 年末 · 47 岁</th><th>65 岁</th><th>85 岁</th><th>100 岁</th></tr></thead>
+        <tbody class="num"><tr><td>保单价值</td><td>203,100</td><td>345,200</td><td>612,700</td><td>942,200</td></tr></tbody>
       </table>
-      <p class="ref num">对照 PI 原数（分红再投资、不领取）：第 8 年末保单价值 8% 270,500 · 4% 203,100 · 0% 150,600；65 岁 8% 912,100 · 4% 345,200 · 0% 116,600。</p>
+      <p class="ref num">按 0% 投资回报（同为 PI 演示，分红再投资、不领取）：保单价值第 8 年末 150,600，65 岁 116,600，约 83 岁降至 0、保单终止；如每年领取分红，保单价值会更低。</p>
     </div>
 
     <div class="s-foot">
@@ -313,13 +295,11 @@ body.locked #pwGate{display:flex}
         <p><b>@新加坡小圆姐 制作</b><br>微信：singaporeyuan<br>电话：8375 0190<br>RNF：YY-300823216</p>
       </div>
       <div>
-        <div class="flex">第8年起不再收补充费和退保费，随时可以提取现金价值<span>（保单100岁到期）</span></div>
+        <div class="flex">第8年起自由灵活，随时都可以提取现金价值<span>（保单100岁到期）</span></div>
         <ul class="notes">
-          <li>按 AIA 计划书（PI，2026 年 11 月 20 日）的三档投资回报率 8% / 4% / 0% 演示，回报率为扣除基金管理费（1.5% / 年）之前，均非保证，也不代表投资表现的上下限。</li>
-          <li>PI 按"分红再投资、不领取"演示；本页按"每年领取保单价值约 7% 的现金分红、按季度派发"推算，已计入补充费、基金管理费、Welcome / Investment / Performance Bonus 及身故保障收费（Benefit Charge）。推算方法已与 PI 三档（不领取）逐年核对：8% 和 4% 两档差异在 0.1% 以内，0% 一档在 2% 以内，保单终止年份一致。</li>
-          <li>分红非保证；AIA 可从本金中派发分红，会减少保单价值和日后回报。领取分红后保单价值低于已缴保费的部分，会按年龄收取身故保障费用，年龄越大费用越高。</li>
-          <li>保单价值降至 0 时保单终止，身故保障随之结束（表中以"0"表示）。实际是否及何时终止，取决于实际投资表现及提取、保费假期等变动；可追加保费（Top-up）或减少领取，避免保单终止。</li>
-          <li>第 1 至 7 年退保会扣退保费（保单价值的 60% 逐年降至 10%），部分提取亦有提取费；第 8 年起为 0。具体以 AIA 正式 PI 及产品资料为准。</li>
+          <li>假设除了分红，没有其他现金价值提取。以上为简化演示：假设基金 0 增长、每年分红 7% 不变，未反映补充费等收费对保单价值的影响；分红非保证。</li>
+          <li>4% / 0% 数字摘自 AIA 计划书（PI，2026 年 11 月 20 日），回报率为扣除基金管理费（1.5% / 年）之前，均非保证。保单价值降至 0 时保单终止，可追加保费（Top-up）避免。</li>
+          <li>具体以 AIA 正式计划书（PI）及产品资料为准。</li>
         </ul>
       </div>
     </div>
