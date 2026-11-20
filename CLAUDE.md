@@ -18,3 +18,12 @@
   需要密码的页面要单独处理。
 - 新指南在资源中心 `app/[locale]/resources/page.tsx` 加卡片(中英文案),
   封面插画加在 `ResourceArt.tsx`。
+
+## 客户保单总结页 (`public/proposals/policy-summary-*.html`)
+
+- 这类页面自带访问密码,客户资料(姓名、保单号、保费)用密码加密后放在页面里的
+  `<script id="enc">`,仓库里没有明文。加解密见 `scripts/policy-summary-crypt.mjs`。
+- **访问密码一律不写进仓库**(仓库是公开的)。密码统一放在小圆姐 Google Drive 里、
+  名为「客户保单页访问密码」的表格(按页面文件名一行一条)。
+  要改某页资料时,先从那张表读对应密码,再 decrypt → 改 → encrypt。
+- 新建同类页面时,密码也只填进那张表,不要出现在代码、提交信息或 PR 里。
