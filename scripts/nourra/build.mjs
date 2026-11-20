@@ -10,7 +10,7 @@ import path from 'node:path';
 const ARGS = process.argv.slice(2);
 const SITE_MODE = ARGS.includes('--site');
 const OUT = ARGS.find((a) => !a.startsWith('--')) || path.resolve('out');
-const SITE = 'https://nourra.singaporeyuan.com';
+const SITE = 'https://nourra.ai';
 
 /* ---------- 线性图标：24×24，1.5 描边，圆角端点 ---------- */
 const ICONS = {
