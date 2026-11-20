@@ -12,3 +12,6 @@ public/portrait-crop.png
 
 # 本地工具配置
 .claude/
+
+# 诺元官网发布到 Cloudflare 时生成的 Worker 代码
+scripts/nourra/.worker-build/

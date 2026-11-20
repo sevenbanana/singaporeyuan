@@ -7,6 +7,13 @@ const NOURRA_HOST = [{ type: 'host', value: 'nourra.singaporeyuan.com' }];
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  // 诺元官网已迁到正式域名 nourra.ai(托管在 Cloudflare,见 scripts/nourra/deploy-cloudflare.mjs),
+  // 旧地址 nourra.singaporeyuan.com 一律跳转过去;跳转先于下面的 rewrites 生效
+  async redirects() {
+    return [
+      { source: '/:path*', has: NOURRA_HOST, destination: 'https://nourra.ai/:path*', permanent: true },
+    ];
+  },
   async rewrites() {
     return {
       // 按域名分流必须在 beforeFiles 里做,否则子域名的 / 和 /en 会先命中本站的页面

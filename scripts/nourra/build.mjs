@@ -10,7 +10,7 @@ import path from 'node:path';
 const ARGS = process.argv.slice(2);
 const SITE_MODE = ARGS.includes('--site');
 const OUT = ARGS.find((a) => !a.startsWith('--')) || path.resolve('out');
-const SITE = 'https://nourra.singaporeyuan.com';
+const SITE = 'https://nourra.ai';
 
 /* ---------- 线性图标：24×24，1.5 描边，圆角端点 ---------- */
 const ICONS = {
@@ -374,7 +374,7 @@ function page(lang) {
     <a class="lockup" href="#top" translate="no" aria-label="${T('诺元控股 NOURRA HOLDINGS', 'NOURRA HOLDINGS')}">${MARK('mark-glow-h')}<span class="lockup-text">${lockupText}</span></a>
     <nav class="site-nav" aria-label="${T('主导航', 'Main')}"><ul>${navList}</ul></nav>
     <div class="header-actions">
-      <a class="lang" href="${zh ? 'en/' : '../'}" hreflang="${zh ? 'en' : 'zh-Hans'}" lang="${zh ? 'en' : 'zh-Hans'}" aria-label="${zh ? 'Switch to English' : '切换到中文'}">${zh ? 'EN' : '中文'}</a>
+      <a class="lang" href="${zh ? 'en/?lang=en' : '../?lang=zh'}" hreflang="${zh ? 'en' : 'zh-Hans'}" lang="${zh ? 'en' : 'zh-Hans'}" aria-label="${zh ? 'Switch to English' : '切换到中文'}">${zh ? 'EN' : '中文'}</a>
       <a class="btn btn--sm btn--glass" href="#contact">${T('合作洽谈', 'Talk to us')}</a>
       <button class="menu-btn" type="button" aria-expanded="false" aria-controls="menu" aria-label="${T('打开菜单', 'Open menu')}" data-label-open="${T('打开菜单', 'Open menu')}" data-label-close="${T('关闭菜单', 'Close menu')}"><span></span><span></span></button>
     </div>
