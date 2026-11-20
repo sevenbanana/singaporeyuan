@@ -224,7 +224,7 @@ function page(lang) {
   /* ---------- 全球布局：真实经纬度 ---------- */
   const places = {
     sg: { lat: 1.3521, lon: 103.8198, name: T('新加坡', 'Singapore'), en: 'Singapore', d: T('总部，工程与运维团队所在地。', 'Headquarters, and home to our engineering and operations teams.') },
-    my: { lat: 3.1390, lon: 101.6869, name: T('马来西亚', 'Malaysia'), en: 'Malaysia', d: T('重点发展区域，机房项目推进中。', 'A priority market, with data centre projects under way.') },
+    my: { lat: 3.1390, lon: 101.6869, name: T('马来西亚', 'Malaysia'), en: 'Malaysia', d: T('重点发展区域，机房项目推进中；在吉隆坡和槟城设有办公室。', 'A priority market, with data centre projects under way and offices in Kuala Lumpur and Penang.') },
     id: { lat: -6.2088, lon: 106.8456, name: T('印度尼西亚', 'Indonesia'), en: 'Indonesia', d: T('重点发展区域，机房项目推进中。', 'A priority market, with data centre projects under way.') },
     jp: { lat: 35.6762, lon: 139.6503, name: T('日本', 'Japan'), en: 'Japan', d: T('算力资源与机房工程的合作网络。', 'Partner network for compute supply and data centre engineering.') },
     us: { lat: 39.50, lon: -98.35, name: T('美国', 'United States'), en: 'United States', d: T('长期布局的市场，推进机房项目与供应链合作。', 'A long-term market, where we are developing data centre projects and supply chain partnerships.') },
@@ -261,6 +261,21 @@ function page(lang) {
     return `<li><button type="button" class="place" data-tab="${k}"><b>${p.name}${zh ? `<span class="en">${p.en}</span>` : ''}</b><span class="place-desc">${p.d}</span></button></li>`;
   };
   const coord = (p) => `${Math.abs(p.lat).toFixed(2)}°${p.lat >= 0 ? 'N' : 'S'} ${Math.abs(p.lon).toFixed(2)}°${p.lon >= 0 ? 'E' : 'W'}`;
+
+  /* ---------- 办公室 ---------- */
+  const offices = [
+    { tag: T('总部', 'Headquarters'), city: T('新加坡', 'Singapore'), hq: true,
+      lines: ['101 Thomson Road, #28-03A', 'United Square', 'Singapore 307591'],
+      q: '101 Thomson Road, #28-03A, United Square, Singapore 307591' },
+    { tag: T('马来西亚', 'Malaysia'), city: T('吉隆坡', 'Kuala Lumpur'),
+      lines: ['VO3-08-12, Sunway Velocity Designer Office', 'Lingkaran SV, Jalan Cochrane', '55100 Kuala Lumpur, Malaysia'],
+      q: 'VO3-08-12, Sunway Velocity Designer Office, Lingkaran SV, Jalan Cochrane, 55100 Kuala Lumpur, Malaysia' },
+    { tag: T('马来西亚', 'Malaysia'), city: T('槟城', 'Penang'),
+      lines: ['Level 11, Wisma MTT', '26 Pengkalan Weld, 10300 George Town', 'Pulau Pinang, Malaysia'],
+      q: 'Wisma MTT, 26 Pengkalan Weld, 10300 George Town, Pulau Pinang, Malaysia' },
+  ];
+  const officeCards = offices.map((o) =>
+    `<li class="office${o.hq ? ' office--hq' : ''}"><span class="office-tag mono">${o.tag}</span><h4 class="office-city">${o.city}</h4><address translate="no">${o.lines.join('<br>')}</address><a class="office-map" href="https://www.google.com/maps/search/?api=1&amp;query=${encodeURIComponent(o.q)}" target="_blank" rel="noopener">${T('在 Google 地图中查看', 'View on Google Maps')}${ico('arrow-right', 'ico ico--sm')}</a></li>`).join('\n        ');
 
   /* ---------- 交付六关 ---------- */
   const gates = [
@@ -343,7 +358,7 @@ function page(lang) {
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;500;600&family=Noto+Sans+SC:wght@300;400;500;700${zh ? '' : '&family=Nunito+Sans:wght@300;400;500;600'}&display=swap">
 <link rel="stylesheet" href="${base}assets/site.css">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"Nourra Holdings","legalName":"NOURRA HOLDINGS PTE. LTD.","alternateName":"诺元控股","url":"${SITE}","description":"${desc}","address":{"@type":"PostalAddress","addressCountry":"SG"}}</script>`;
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"Nourra Holdings","legalName":"NOURRA HOLDINGS PTE. LTD.","alternateName":"诺元控股","url":"${SITE}","description":"${desc}","address":{"@type":"PostalAddress","streetAddress":"101 Thomson Road, #28-03A, United Square","postalCode":"307591","addressLocality":"Singapore","addressCountry":"SG"},"location":[{"@type":"Place","name":"Kuala Lumpur office","address":{"@type":"PostalAddress","streetAddress":"VO3-08-12, Sunway Velocity Designer Office, Lingkaran SV, Jalan Cochrane","postalCode":"55100","addressLocality":"Kuala Lumpur","addressCountry":"MY"}},{"@type":"Place","name":"Penang office","address":{"@type":"PostalAddress","streetAddress":"Level 11, Wisma MTT, 26 Pengkalan Weld","postalCode":"10300","addressLocality":"George Town","addressRegion":"Pulau Pinang","addressCountry":"MY"}}]}</script>`;
 
   const heroTitle = zh
     ? `<span class="line"><span>智算中心，</span></span><span class="line"><span>从一块地、一路电</span></span><span class="line"><span class="grad">到长期运营。</span></span>`
@@ -645,6 +660,12 @@ function page(lang) {
     <div class="email-row">
       <a class="email" id="email" href="mailto:Sandy.goh@nourra.ai" translate="no">Sandy.goh@nourra.ai</a>
       <button type="button" class="btn btn--ghost btn--sm copy" data-copy="Sandy.goh@nourra.ai" data-target="#email" data-done="${T('已复制', 'Copied')}">${ico('copy', 'ico ico--sm')}<span class="copy-label">${T('复制邮箱', 'Copy address')}</span></button>
+    </div>
+    <div class="offices">
+      <h3 class="group offices-title">${ico('site', 'ico ico--sm')}${T('办公室', 'Offices')}</h3>
+      <ul class="office-list">
+        ${officeCards}
+      </ul>
     </div>
   </div>
   <div class="wrap footer-base">
