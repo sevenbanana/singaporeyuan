@@ -98,7 +98,6 @@ details.adv summary{cursor:pointer;font-size:13px;font-weight:700;color:var(--go
 .s-title{padding-bottom:6px;position:relative;z-index:1}
 .s-title h2{font-size:34px;line-height:1.15;font-weight:800;color:var(--navy);letter-spacing:-.3px}
 .s-title h2 span{color:var(--gold)}
-.s-title h2 svg{width:28px;height:28px;vertical-align:-3px;margin-left:6px}
 .s-title .prod{margin-top:4px;font-size:13px;color:var(--muted)}
 .s-intro{margin-top:22px;font-size:19px;font-weight:600;color:var(--ink)}
 .s-intro p+p{margin-top:2px;font-size:16px;font-weight:500}
@@ -930,7 +929,7 @@ function render(d){
     <div class="s-head">
       <div class="tag"><i>#</i>${GR ? L("先增值<br>× 后分红","Grow first<br>× income") : L("基金<br>定投","Fund<br>Plan")}</div>
       <div class="s-title">
-        <h2>${GR ? esc(GR.gshort) + " × " + esc(GR.ishort) : esc(d.fund)} <span>For ${esc(name)}<svg viewBox="0 0 24 24" fill="#C0392B"><path d="M12 21s-7.5-4.6-9.6-9.2C.9 8.4 3 4.5 6.7 4.5c2.2 0 3.6 1.2 4.3 2.4.7-1.2 2.1-2.4 4.3-2.4 3.7 0 5.8 3.9 4.3 7.3C19.5 16.4 12 21 12 21z"/></svg></span></h2>
+        <h2>${GR ? esc(GR.gshort) + " × " + esc(GR.ishort) : esc(d.fund)} <span>For ${esc(name)}</span></h2>
         <p class="prod">AIA Platinum Wealth Venture · ${t} Pay${L(`（缴费 ${t} 年）`,` (${t}-year premium term)`)}${GR ? `<br>${esc(GR.gshort)} = ${esc(GR.gname)}${GR.ishort !== GR.iname ? ` · ${esc(GR.ishort)} = ${esc(GR.iname)}` : ""}` : ""}</p>
       </div>
     </div>
