@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Mr Sheng &amp; Mrs Yin · 家庭保障方案 | 新加坡小圆姐</title>
+<meta name="robots" content="noindex">
+<style>
+/* singaporeyuan.com 报价版式：象牙纸色 + 海军蓝 + 金 */
+:root{
+  --paper:#FBF6EA; --card:#FFFDF8;
+  --navy:#13286B; --navy-2:#1C3A8F;
+  --gold:#B8862B; --gold-deep:#9A6B17; --gold-light:#C9973A;
+  --gold-tint:#F5EAD2; --gold-tint-2:#FAF2E1; --blue-tint:#EEF3FB;
+  --green:#1E4D3B; --green-tint:#E7F0EA;
+  --red:#B4433A; --red-tint:#FBEAE6;
+  --line:#EADFC8; --ink:#2B2B2B; --muted:#6B6458; --ex:#CFC5B2;
+  --promo:#D96C0F; --promo-deep:#B4560A; --promo-tint:#FFF3E4; --promo-line:#F5CFA2;
+  --shadow:0 1px 6px rgba(120,90,30,.06);
+  --font:"Helvetica Neue","Avenir Next",Arial,"Hiragino Sans GB","PingFang SC","Microsoft YaHei",sans-serif;
+  color-scheme:light;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{background:var(--paper);color:var(--ink);font-family:var(--font);font-size:14px;line-height:1.6;-webkit-font-smoothing:antialiased;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+button{font-family:inherit}
+.num{font-variant-numeric:tabular-nums;letter-spacing:.02em}
+.page{position:relative;max-width:1000px;margin:0 auto;padding-block:36px 36px;padding-left:max(28px,env(safe-area-inset-left,0px));padding-right:max(28px,env(safe-area-inset-right,0px));overflow:hidden}
+.deco{position:absolute;top:0;right:0;width:170px;height:124px;pointer-events:none}
+.ic{width:16px;height:16px;color:var(--gold);flex:0 0 auto}
+[hidden]{display:none!important}
+
+/* 标题 */
+.hero{position:relative;z-index:1}
+.eyebrow{font-size:11.5px;font-weight:800;letter-spacing:.14em;color:var(--gold-deep);margin-bottom:6px}
+.hero h1{font-size:30px;line-height:1.25;font-weight:800;letter-spacing:-.2px;color:var(--navy);text-wrap:balance}
+.hero h1 .l2{display:block;color:var(--gold);font-size:.78em;margin-top:2px}
+.meta{margin-top:14px;display:flex;flex-wrap:wrap;gap:7px}
+.meta span{display:inline-flex;align-items:center;gap:6px;background:var(--card);border:1px solid var(--line);border-radius:999px;padding:4px 12px;font-size:12.5px;color:var(--ink)}
+.meta span.who{background:var(--navy);border-color:var(--navy);color:#fff;font-weight:700}
+.meta span.who.g{background:var(--gold);border-color:var(--gold)}
+.meta .ic{width:14px;height:14px}
+
+/* 小节 */
+.sub-head{display:flex;align-items:center;gap:9px;margin:36px 0 12px;font-size:17px;font-weight:800;color:var(--navy)}
+.sub-head::after{content:"";flex:1;height:1px;background:var(--gold);opacity:.4}
+.sub-head .no{display:inline-grid;place-items:center;width:24px;height:24px;border-radius:50%;background:var(--navy);color:#fff;font-size:12px;font-weight:800;flex:0 0 auto}
+.sec-sub{margin:-4px 0 12px;font-size:12.5px;color:var(--muted)}
+.sec-sub b{color:var(--navy)}
+
+/* 首年优惠 */
+.promo-tag{display:inline-flex;align-items:center;background:var(--promo-tint);color:var(--promo-deep);border:1px solid var(--promo-line);font-size:11px;font-weight:800;border-radius:999px;padding:0 8px;line-height:1.6;white-space:nowrap}
+.promo-bar{margin-top:18px;display:flex;flex-wrap:wrap;align-items:center;gap:6px 12px;background:var(--promo-tint);border:1px solid var(--promo-line);border-radius:14px;padding:11px 16px}
+.promo-bar .promo-tag{font-size:12.5px;padding:2px 11px;background:var(--promo);border-color:var(--promo);color:#fff}
+.promo-bar b{font-size:18px;font-weight:800;color:var(--promo-deep)}
+.promo-bar span.d{font-size:12.5px;color:var(--ink)}
+.promo-bar span.d em{font-style:normal;font-weight:800;color:var(--navy)}
+
+/* 切换 */
+.ctrl{display:flex;flex-wrap:wrap;align-items:center;gap:8px 10px;margin-bottom:12px}
+.seg{display:inline-flex;flex-wrap:wrap;gap:2px;background:var(--gold-tint-2);border:1px solid var(--line);border-radius:999px;padding:3px}
+.seg button{border:0;background:transparent;border-radius:999px;padding:6px 14px;font-size:12.5px;font-weight:700;color:var(--navy);cursor:pointer;white-space:nowrap}
+.seg button.on{background:var(--navy);color:#fff}
+.seg.g button.on{background:var(--gold)}
+.seg button:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+.seg.sm button{padding:5px 11px;font-size:12px}
+
+/* 方案卡 */
+.pol{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 16px;box-shadow:var(--shadow);border-left:5px solid var(--navy);display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 16px;align-items:center}
+.pol.g{border-left-color:var(--gold)}
+.pol .tag{grid-column:1/-1;justify-self:start;font-size:11px;font-weight:800;color:#fff;background:var(--navy);border-radius:999px;padding:1px 10px}
+.pol.g .tag{background:var(--gold)}
+.pol .nm{font-size:13px;font-weight:800;color:var(--navy);line-height:1.45}
+.pol .nm small{display:block;font-size:12px;font-weight:600;color:var(--muted)}
+.pol .sa{text-align:right}
+.pol .sa b{display:block;font-size:24px;font-weight:800;color:var(--navy);line-height:1.2}
+.pol.g .sa b{color:var(--gold-deep)}
+.pol .sa span{font-size:11.5px;color:var(--muted);font-weight:600}
+.pol ul{grid-column:1/-1;list-style:none;display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+.pol li{font-size:12px;font-weight:700;color:var(--navy);background:var(--blue-tint);border-radius:999px;padding:2px 10px}
+.pol.g li{background:var(--gold-tint-2);color:var(--gold-deep)}
+
+.pol .pp{grid-column:1/-1;display:grid;grid-template-columns:1fr 1fr;margin-top:8px;background:var(--gold-tint-2);border-radius:10px;overflow:hidden}
+.pol .pp>div{padding:7px 12px;display:flex;flex-direction:column}
+.pol .pp>div+div{border-left:1px solid var(--line)}
+.pol .pp span{font-size:11px;color:var(--muted);font-weight:700;display:flex;align-items:center;gap:5px;flex-wrap:wrap}
+.pol .pp b{font-size:17px;font-weight:800;color:var(--navy);line-height:1.35}
+.pol .pp .fy b{color:var(--promo-deep)}
+.pol .pp small{font-size:10.5px;color:var(--muted)}
+/* 保障配置：已有 + 新增 */
+.cfg{margin-top:10px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px 16px;box-shadow:var(--shadow)}
+.cfg-h{display:flex;justify-content:space-between;align-items:baseline;gap:8px;flex-wrap:wrap;margin-bottom:8px}
+.cfg-h b{font-size:13px;font-weight:800;color:var(--navy)}
+.cfg-h small{font-size:11.5px;color:var(--muted)}
+.cfg-row{display:grid;grid-template-columns:76px minmax(0,1fr) 104px;gap:10px;align-items:center;margin-bottom:8px}
+.cfg-row .k{font-size:12.5px;font-weight:800;color:var(--ink)}
+.cfg-row .trk{display:flex;height:14px;background:#F1EADB;border-radius:999px;overflow:hidden}
+.cfg-row .trk i{display:block;height:100%;transition:width .25s}
+.cfg-row .trk i.ex{background:var(--ex)}
+.cfg-row .trk i.nw{background:var(--navy)}
+.cfg.w .cfg-row .trk i.nw,.cfg-row.ci .trk i.nw{background:var(--gold)}
+.cfg-row .v{text-align:right;font-size:14px;font-weight:800;color:var(--navy);white-space:nowrap}
+.cfg-row .v small{display:block;font-size:10.5px;font-weight:600;color:var(--muted);line-height:1.3;white-space:normal}
+.cfg-row .nt{grid-column:2/-1;margin-top:-5px;font-size:11px;color:var(--muted);line-height:1.4}
+.cfg-lg{display:flex;flex-wrap:wrap;gap:4px 14px;font-size:11.5px;color:var(--muted);border-top:1px dashed var(--line);padding-top:7px}
+.cfg-lg i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:5px;vertical-align:-1px}
+
+/* 对比表 */
+.sumgrid{background:var(--card);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);overflow:hidden}
+.sg-row{display:grid;grid-template-columns:110px minmax(0,1fr) minmax(0,1fr);border-top:1px solid var(--line)}
+.sg-row.hd{border-top:0}
+.sg-row.hd>div{padding:8px 14px;color:#fff;font-size:12.5px;font-weight:800}
+.sg-row.hd .a{background:var(--navy)}.sg-row.hd .b{background:var(--gold)}
+.sg-k{padding:9px 14px;background:var(--gold-tint-2);font-size:12.5px;font-weight:800;color:var(--navy)}
+.sg-v{padding:9px 14px;font-size:13px;font-weight:700;color:var(--navy);line-height:1.45}
+.sg-v.a{background:#F7F9FD}.sg-v.b{background:#FDF8EE}
+.sg-v.bad{color:var(--red)}
+.sg-v.good{color:var(--green)}
+
+/* 举例时间轴 */
+.vwrap{margin-top:12px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 16px 10px;box-shadow:var(--shadow)}
+.vwrap .cap{font-size:12.5px;font-weight:800;color:var(--muted);margin-bottom:10px}
+.vtl-head,.vrow{display:grid;grid-template-columns:minmax(0,1fr) 92px minmax(0,1fr);gap:12px;align-items:center}
+.vtl-head{margin-bottom:8px}
+.vh{display:inline-flex;align-items:center;justify-content:center;border-radius:999px;padding:6px 10px;font-size:12.5px;font-weight:800;color:#fff}
+.vh.a{background:var(--navy)}.vh.b{background:var(--gold)}
+.vh.mid{background:none;color:var(--muted);font-size:12px}
+.vtl{position:relative}
+.vtl::before{content:"";position:absolute;left:50%;top:8px;bottom:8px;width:2px;transform:translateX(-50%);background:linear-gradient(180deg,#E2D3B3,#D9C59C)}
+.vrow{position:relative;margin-bottom:9px}
+.vmid{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;text-align:center;background:var(--card);padding:4px 0}
+.vmid .dot{width:14px;height:14px;border-radius:50%;background:var(--gold-tint);border:3px solid var(--card);box-shadow:0 0 0 1px #D9C59C;margin-bottom:3px}
+.vrow.ms .vmid .dot{background:var(--gold);width:16px;height:16px}
+.vmid b{font-size:13.5px;font-weight:800;color:var(--navy);line-height:1.3}
+.vmid small{font-size:11.5px;color:var(--muted);font-weight:600;line-height:1.35}
+.vcard{position:relative;z-index:1;background:var(--card);border:1.5px solid var(--line);border-radius:12px;padding:8px 12px;display:flex;flex-direction:column;gap:1px;box-shadow:var(--shadow)}
+.vcard.a{align-items:flex-end;text-align:right}
+.vcard.b{align-items:flex-start;text-align:left}
+.vcard b{font-size:15px;font-weight:800;color:var(--navy);line-height:1.3}
+.vcard small{font-size:11.5px;color:var(--muted)}
+.vcard .ms{display:inline-block;margin-top:2px;font-size:11px;font-weight:800;border-radius:999px;padding:1px 9px;color:#fff}
+.vcard .ms.end{background:var(--red)}
+.vcard .ms.same{background:var(--green)}
+.vcard .ms.wv{background:var(--promo)}
+.vcard.hit{border-color:#D9C59C;background:var(--gold-tint-2)}
+.vcard.low b{color:var(--red)}
+.vcard.both{background:transparent;border-style:dashed;box-shadow:none}
+.vtl-note{margin-top:2px;text-align:center;font-size:11.5px;color:var(--muted)}
+
+/* 意外险（手册 · 银档） */
+.pill-head{display:flex;flex-wrap:wrap;align-items:center;gap:6px 12px;margin-bottom:10px}
+.pill{padding:6px 18px;border-radius:999px;color:#fff;font-size:14.5px;font-weight:700;background:var(--navy)}
+.pill-head .en{font-size:12.5px;color:var(--muted);font-weight:600}
+.tbl{background:var(--card);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);overflow:hidden}
+.tr{display:grid;grid-template-columns:minmax(0,1fr) 110px;gap:12px;align-items:center;padding:9px 16px;border-top:1px solid var(--line)}
+.tr:first-child{border-top:0}
+.tr.hd{background:var(--navy);color:#fff;font-size:12px;font-weight:800;padding-block:7px}
+.tr.hd .v{color:#fff}
+.tr b{display:block;font-size:13px;color:var(--navy);font-weight:800;line-height:1.45}
+.tr small{display:block;font-size:12px;color:var(--muted);line-height:1.55}
+.tr .v{text-align:right;font-size:15px;font-weight:800;color:var(--navy);white-space:nowrap}
+.prem{margin-top:10px;display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.prem>div{background:var(--gold-tint);border:1px solid #E3CFA4;border-radius:12px;padding:10px 14px}
+.prem>div.c2{background:var(--card);border-color:var(--line)}
+.prem .lb{font-size:12px;font-weight:800;color:var(--gold-deep)}
+.prem>div.c2 .lb{color:var(--muted)}
+.prem .row{display:flex;justify-content:space-between;gap:8px;font-size:12.5px;margin-top:3px}
+.prem .row b{font-size:14px;color:var(--navy);font-weight:800}
+.pt{display:grid;grid-template-columns:minmax(0,1fr) 84px 72px 64px;gap:8px;align-items:center;padding:8px 16px;border-top:1px solid var(--line);font-size:12.5px}
+.pt.hd{border-top:0;background:var(--gold-tint-2);font-size:11.5px;font-weight:800;color:var(--muted)}
+.pt>*:not(:first-child){text-align:right}
+.pt b{font-size:14px;font-weight:800;color:var(--navy)}
+.pt.on{background:var(--gold-tint)}
+.pt.on span{font-weight:800;color:var(--gold-deep)}
+.fine{margin-top:8px;font-size:11.5px;color:var(--muted);line-height:1.7}
+details.comp{margin-top:10px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:9px 14px}
+details.comp summary{cursor:pointer;font-size:12.5px;font-weight:800;color:var(--navy-2);list-style:none;display:flex;align-items:center;gap:6px}
+details.comp summary::-webkit-details-marker{display:none}
+details.comp summary::before{content:"+";display:inline-grid;place-items:center;width:16px;height:16px;border-radius:50%;border:1px solid var(--navy-2);font-size:11px;line-height:1}
+details.comp[open] summary::before{content:"−"}
+.comp-list{margin-top:8px;display:grid;grid-template-columns:1fr 1fr;gap:0 18px;font-size:12px}
+.comp-list div{display:flex;justify-content:space-between;gap:10px;padding:4px 0;border-bottom:1px dashed var(--line)}
+.comp-list b{color:var(--navy);white-space:nowrap}
+
+/* MAS 指南 */
+.rule{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.rule>div{display:flex;align-items:center;gap:14px;background:var(--navy);color:#fff;border-radius:14px;padding:12px 18px}
+.rule>div.g{background:var(--gold)}
+.rule .x{font-size:30px;font-weight:800;line-height:1;flex:0 0 auto}
+.rule .x small{font-size:15px;margin-left:1px}
+.rule span{font-size:13px;line-height:1.5}
+.rule span b{display:block;font-size:15px}
+
+/* 费用合计 */
+.cost-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.cost{background:var(--card);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);overflow:hidden;display:flex;flex-direction:column}
+.cost .h{background:var(--navy);color:#fff;padding:10px 16px;font-size:14px;font-weight:800;display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+.cost.w .h{background:var(--gold)}
+.cost .h small{font-size:11.5px;font-weight:600;opacity:.85}
+.cost .sw{padding:10px 14px 0;display:flex;flex-wrap:wrap;gap:6px}
+.cost .rows{padding:6px 16px 4px}
+.cost .r{display:grid;grid-template-columns:minmax(0,1fr) 88px 88px;gap:8px;align-items:center;padding:7px 0;border-top:1px solid var(--line);font-size:12.5px}
+.cost .r.hd{border-top:0;font-size:11px;font-weight:800;color:var(--muted);padding-bottom:3px}
+.cost .r b{display:block;font-size:12.5px;color:var(--navy);font-weight:800;line-height:1.4}
+.cost .r small{display:block;font-size:11px;color:var(--muted);line-height:1.4}
+.cost .r .v{text-align:right;font-weight:800;color:var(--navy);white-space:nowrap}
+.cost .r .v.fy{color:var(--promo-deep)}
+.cost .tot{margin-top:auto;display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--line)}
+.cost .tot>div{padding:10px 16px;display:flex;flex-direction:column}
+.cost .tot>div+div{border-left:1px solid var(--line)}
+.cost .tot span{font-size:11.5px;color:var(--muted);font-weight:700}
+.cost .tot b{font-size:21px;font-weight:800;color:var(--navy);line-height:1.3}
+.cost .tot .fy b{color:var(--promo-deep)}
+.cost .tot small{font-size:11px;color:var(--muted)}
+
+/* 病况清单 */
+.cond-stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
+.cstat{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:9px 12px;display:flex;flex-direction:column}
+.cstat span{font-size:12px;color:var(--muted)}
+.cstat b{font-size:20px;font-weight:800;color:var(--navy);line-height:1.3}
+.cstat b i{font-style:normal;color:var(--gold-deep)}
+.cstat.tot{background:var(--navy);border-color:var(--navy)}
+.cstat.tot span{color:rgba(255,255,255,.75)}
+.cstat.tot b{color:#fff}.cstat.tot b i{color:var(--gold-light)}
+.cl-bar{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px 14px;margin:14px 0 10px}
+.legend{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:12px;color:var(--ink)}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.chip{display:inline-block;font-size:11px;font-weight:700;border-radius:6px;padding:0 7px;border:1px solid var(--line)}
+.chip.both{background:#fff}
+.chip.only{background:#F6E6C2;border-color:#E3CFA4;color:var(--gold-deep)}
+.clist{background:var(--card);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);overflow:hidden}
+.cl-head,.cr{display:grid;grid-template-columns:200px repeat(3,minmax(0,1fr))}
+.cl-head{background:var(--navy);color:#fff;font-size:12px;font-weight:800}
+.cl-head>div{padding:8px 12px}
+.cr{border-top:1px solid var(--line);font-size:12.5px;line-height:1.55}
+.cr>div{padding:8px 12px;min-width:0}
+.cr .fam b{display:block;font-size:13px;color:var(--navy);font-weight:800}
+.cr .fam em{display:block;font-style:normal;font-size:11px;color:var(--muted);line-height:1.4}
+.cr .st{display:none}
+.tier{display:inline-block;font-size:10.5px;font-weight:800;border-radius:999px;padding:0 7px;margin:2px 0 1px;line-height:1.6}
+.tier.t1{background:var(--red-tint);color:var(--red)}
+.tier.t2{background:var(--gold-tint);color:var(--gold-deep)}
+.tier.t3{background:#EEF1F6;color:#5A6683}
+.tier.t4{background:#F1EEE8;color:#8A8274}
+.gx{background:#F6E6C2;color:#7A520C;border-radius:4px;padding:0 4px;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+.na{color:#C3B8A2}
+.note-inline{display:block;font-size:11px;color:var(--muted);margin-top:2px}
+
+/* 顾问 */
+.cta{margin-top:36px;background:var(--navy);border-radius:18px;padding:22px 24px;color:#fff;position:relative;overflow:hidden}
+.cta::after{content:"";position:absolute;right:-60px;top:-60px;width:220px;height:220px;border-radius:50%;border:1px solid rgba(201,151,58,.35);pointer-events:none}
+.cta h3{position:relative;z-index:1;font-size:20px;font-weight:800;line-height:1.35}
+.cta h3 span{color:var(--gold-light)}
+.advs{position:relative;z-index:1;display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px}
+.adv{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.16);border-radius:14px;padding:14px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:12px;align-items:start}
+.adv .top{display:flex;align-items:center;gap:11px}
+.adv .top img{width:56px;height:56px;border-radius:50%;object-fit:cover;border:2px solid var(--gold-light);background:#fff;flex:0 0 auto}
+.adv .top b{display:block;font-size:16px;font-weight:800;line-height:1.3}
+.adv .top b span{font-size:13px;font-weight:600;color:rgba(255,255,255,.75);margin-left:4px}
+.adv .top small{display:block;font-size:12px;color:var(--gold-light);font-weight:700}
+.adv .rn{margin-top:6px;font-size:11.5px;color:rgba(255,255,255,.7)}
+.adv .badges{margin-top:6px;display:flex;flex-wrap:wrap;gap:4px}
+.adv .badges span{font-size:10.5px;font-weight:700;color:var(--gold-light);border:1px solid rgba(201,151,58,.5);border-radius:999px;padding:0 7px}
+.adv .lines{margin-top:8px;display:grid;gap:5px}
+.adv .lines>*{display:flex;align-items:center;gap:7px;font-size:12.5px;color:#fff;text-decoration:none;background:none;border:0;padding:0;text-align:left;min-width:0}
+.adv .lines .ic{width:15px;height:15px;color:var(--gold-light)}
+.adv .lines .cp{cursor:pointer;background:var(--gold);border-radius:999px;padding:5px 12px;font-weight:700;width:max-content;max-width:100%}
+.adv .lines .cp .ic{color:#fff}
+.adv .lines .cp:hover{background:var(--gold-deep)}
+.adv .lines .cp:focus-visible,.adv .lines a:focus-visible{outline:2px solid var(--gold-light);outline-offset:2px}
+.adv .lines .t{overflow-wrap:anywhere}
+.adv .qr{background:#fff;border-radius:12px;padding:7px 7px 5px;text-align:center}
+.adv .qr img{display:block;width:96px;height:96px;object-fit:contain}
+.adv .qr span{display:block;margin-top:2px;font-size:11px;font-weight:700;color:var(--navy)}
+
+/* 页尾 */
+.notes{margin-top:28px;padding-top:14px;border-top:1px solid var(--line);font-size:11.5px;color:var(--muted);line-height:1.75}
+.notes p{margin-bottom:4px;padding-left:12px;position:relative}
+.notes p::before{content:"";position:absolute;left:0;top:9px;width:4px;height:4px;border-radius:50%;background:var(--gold)}
+.notes b{color:var(--ink)}
+
+@media (max-width:760px){
+  .page{padding-block:26px 28px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+  .hero h1{font-size:24px}
+  .seg button{padding:6px 11px;font-size:12px}
+  .pol{grid-template-columns:1fr;padding:12px 14px}
+  .pol .sa{text-align:left;display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
+  .pol .sa b{font-size:22px;display:inline}
+  .cfg{padding:11px 12px}
+  .cfg-row{grid-template-columns:64px minmax(0,1fr) 92px;gap:8px}
+  .cfg-row .k{font-size:12px}
+  .cfg-row .v{font-size:13px}
+  .sg-row{grid-template-columns:76px minmax(0,1fr) minmax(0,1fr)}
+  .sg-k,.sg-v{padding:8px 10px;font-size:12px}
+  .sg-row.hd>div{padding:7px 10px;font-size:12px}
+  .vwrap{padding:12px 10px 8px}
+  .vtl-head,.vrow{grid-template-columns:minmax(0,1fr) 64px minmax(0,1fr);gap:7px}
+  .vh{font-size:12px;padding:6px 7px}
+  .vcard{padding:7px 9px}
+  .vcard b{font-size:13.5px}
+  .vmid b{font-size:12.5px}
+  .vmid small{font-size:10.5px}
+  .vcard .ms{font-size:10.5px;padding:1px 7px}
+  .tr{grid-template-columns:minmax(0,1fr) 84px;padding:9px 12px}
+  .tr .v{font-size:14px}
+  .rule,.cost-grid,.advs{grid-template-columns:1fr}
+  .pt{grid-template-columns:minmax(0,1fr) 64px 56px 48px;gap:6px;padding:8px 12px}
+  .pt b{font-size:12.5px}
+  .pt.hd span:first-child{font-size:10.5px}
+  .comp-list{grid-template-columns:1fr}
+  .rule .x{font-size:26px}
+  .cost .r{grid-template-columns:minmax(0,1fr) 80px 80px}
+  .cond-stats{grid-template-columns:1fr 1fr}
+  .cl-head{display:none}
+  .cr{grid-template-columns:1fr;padding:8px 0}
+  .cr>div{padding:2px 12px}
+  .cr .cell{display:grid;grid-template-columns:38px minmax(0,1fr);gap:6px}
+  .cr .st{display:block;font-size:11px;font-weight:800;color:var(--muted);padding-top:1px}
+  .cr .fam{display:flex;flex-wrap:wrap;align-items:baseline;gap:0 8px;padding-bottom:4px}
+  .cr .fam b{display:inline}
+  .cr .fam em{flex-basis:100%}
+  .cta{padding:20px 14px}
+  .cta h3{font-size:18px}
+  .adv{padding:12px}
+  .adv .qr img{width:84px;height:84px}
+}
+@media (max-width:400px){
+  .adv{grid-template-columns:1fr}
+  .adv .qr{justify-self:start;display:flex;align-items:center;gap:10px;padding:6px 10px 6px 6px}
+  .adv .qr span{margin:0}
+}
+@media (prefers-reduced-motion:reduce){.cfg-row .trk i{transition:none}}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="i-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v5c0 4.5-3 8.3-7 10-4-1.7-7-5.5-7-10V6z"/><path d="M9 12l2 2 4-4"/></symbol>
+    <symbol id="i-heart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7-4.4-9-8.8C1.6 8 3.6 4.5 7 4.5c2 0 3.3 1.1 5 3 1.7-1.9 3-3 5-3 3.4 0 5.4 3.5 4 6.7-2 4.4-9 8.8-9 8.8z"/></symbol>
+    <symbol id="i-user" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></symbol>
+    <symbol id="i-users" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><circle cx="17" cy="9" r="2.8"/><path d="M16.5 14.2A5.5 5.5 0 0 1 21.5 20"/></symbol>
+    <symbol id="i-doc" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h9l4 4v14H6z"/><path d="M15 3v4h4M9 11h7M9 14h7M9 17h5"/></symbol>
+    <symbol id="i-coins" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="9" cy="6" rx="6" ry="2.5"/><path d="M3 6v4c0 1.4 2.7 2.5 6 2.5s6-1.1 6-2.5V6"/><ellipse cx="15" cy="14" rx="6" ry="2.5"/><path d="M9 14v4c0 1.4 2.7 2.5 6 2.5s6-1.1 6-2.5v-4"/></symbol>
+    <symbol id="i-gift" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M5 12v9h14v-9M12 8v13"/><path d="M12 8c-2-4-6-4-6-1.5S9 8 12 8zM12 8c2-4 6-4 6-1.5S15 8 12 8z"/></symbol>
+    <symbol id="i-cal" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></symbol>
+    <symbol id="i-bulb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9c.6.5 1 1.2 1 2.1h5c0-.9.4-1.6 1-2.1A6 6 0 0 0 12 3z"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8 12.5l2.6 2.6L16 9.6"/></symbol>
+    <symbol id="i-swap" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 4 3 8l4 4M3 8h14M17 20l4-4-4-4M21 16H7"/></symbol>
+    <symbol id="i-scale" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18M6 21h12M5 7h14"/><path d="M5 7l-3 6a3 3 0 0 0 6 0zM19 7l-3 6a3 3 0 0 0 6 0z"/></symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></symbol>
+    <symbol id="i-chat" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20.5l1.4-4.8A8 8 0 1 1 21 12z"/><path d="M8.5 12h.01M12 12h.01M15.5 12h.01"/></symbol>
+    <symbol id="i-phone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5.5 4H9l1.6 4.3L8.5 10a12.5 12.5 0 0 0 5.5 5.5l1.7-2.1L20 15v3.6A1.6 1.6 0 0 1 18.2 20C10.8 19.2 4.8 13.2 4 5.8A1.6 1.6 0 0 1 5.5 4z"/></symbol>
+    <symbol id="i-mail" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3.5 6.5 12 13l8.5-6.5"/></symbol>
+    <symbol id="i-plane" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10.5 13.5 3 11l1.5-1.5 8 1 4-4.5c1-1 2.6-1.3 3.3-.6.7.7.4 2.3-.6 3.3l-4.5 4 1 8L14 22l-2.5-7.5"/><path d="M6.5 17.5 4 20"/></symbol>
+    <symbol id="i-hospital" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 21V8l8-5 8 5v13"/><path d="M2.5 21h19"/><path d="M12 8.5v6M9 11.5h6"/><path d="M10 21v-3.5h4V21"/></symbol>
+    <symbol id="i-globe" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.6 2.6 3.8 5.6 3.8 9s-1.2 6.4-3.8 9c-2.6-2.6-3.8-5.6-3.8-9S9.4 5.6 12 3z"/></symbol>
+    <symbol id="i-bolt" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></symbol>
+    <symbol id="i-wallet" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 7V5.5A1.5 1.5 0 0 0 16.5 4H5.5a2.5 2.5 0 0 0 0 5H19a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2H5.5A2.5 2.5 0 0 1 3 17.5V6.5"/><path d="M16.5 14.5h.01"/></symbol>
+    <symbol id="i-steth" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3v5a4 4 0 0 0 8 0V3"/><path d="M9 12v2.5a5 5 0 0 0 10 0V12"/><circle cx="19" cy="10" r="2"/></symbol>
+    <symbol id="i-lock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4.5" y="10.5" width="15" height="10.5" rx="2.5"/><path d="M8 10.5V7.8a4 4 0 0 1 8 0v2.7M12 15v2.2"/></symbol>
+  </defs>
+</svg>
+
+<div class="page">
+  <svg class="deco" viewBox="0 0 220 160" aria-hidden="true">
+    <polygon points="60,0 220,0 220,150" fill="#EFE3C8" opacity=".7"/>
+    <polygon points="130,0 220,0 220,90" fill="#E4D3AE" opacity=".6"/>
+  </svg>
+
+  <header class="hero">
+    <div class="eyebrow">PROTECTION PROPOSAL · AIA SINGAPORE</div>
+    <h1>Mr Sheng &amp; Mrs Yin<span class="l2">家庭保障方案</span></h1>
+    <div class="meta">
+      <span class="who"><svg class="ic" style="color:#fff"><use href="#i-user"/></svg>先生 · 47 岁 · <span data-smk-label style="all:unset">吸烟</span></span>
+      <span class="who g"><svg class="ic" style="color:#fff"><use href="#i-user"/></svg>太太 · 43 岁 · 不吸烟</span>
+      <span><svg class="ic"><use href="#i-doc"/></svg>报价 · 2026.11.22</span>
+    </div>
+  </header>
+
+  <div class="promo-bar"><span class="promo-tag">🏷️ Promo</span><b>首年保费 8 折</b><span class="d"><em>2026 年 11 月 30 日</em>前投保 · 寿险 / 重疾险适用</span></div>
+
+  <!-- 1 先生 -->
+  <div class="sub-head"><span class="no">1</span>Mr Sheng · 先生<span style="font-size:12.5px;color:var(--muted);font-weight:700">二选一</span></div>
+  <div class="ctrl">
+    <div class="seg" role="group" aria-label="先生方案"><button type="button" data-g="h" data-v="a" class="on" aria-pressed="true">A · 寿险 100 万</button><button type="button" data-g="h" data-v="b" aria-pressed="false">B · 重疾 35 万</button></div>
+    <div class="seg sm" role="group" aria-label="先生吸烟状态"><button type="button" data-g="smk" data-v="1" class="on" aria-pressed="true">吸烟</button><button type="button" data-g="smk" data-v="0" aria-pressed="false">不吸烟</button></div>
+  </div>
+  <div class="pol" data-show="h:a">
+    <span class="tag">方案 A · 寿险</span>
+    <div class="nm">AIA Secure Flexi Term + 全残<small>保障至 65 岁</small></div>
+    <div class="sa num"><b>S$1,000,000</b><span>身故 · 末期疾病 · 全残</span></div>
+    <ul><li>保费至 65 岁不变</li><li>全残提前赔付</li></ul>
+    <div class="pp num"><div class="fy"><span>首年 <i class="promo-tag" style="font-style:normal">8 折</i></span><b data-hp="a-f"></b><small>2026.11.30 前投保 · <span data-smk-label style="all:unset">吸烟</span></small></div><div><span>第 2 年起 / 年</span><b data-hp="a-y"></b><small>缴至 65 岁</small></div></div>
+  </div>
+  <div class="pol g" data-show="h:b" hidden>
+    <span class="tag">方案 B · 重疾 + 寿险</span>
+    <div class="nm">AIA Secure Flexi Term 20 年 (R&amp;C) + 重疾 + 早期重疾 + 全残<small>保障 20 年 · 至 67 岁</small></div>
+    <div class="sa num"><b>S$350,000</b><span>早中晚期重疾 · 身故 · 全残</span></div>
+    <ul><li>104 种病况</li><li>早期确诊即赔全额</li><li>单次赔付</li></ul>
+    <div class="pp num"><div class="fy"><span>首年 <i class="promo-tag" style="font-style:normal">8 折</i></span><b data-hp="b-f"></b><small>2026.11.30 前投保 · <span data-smk-label style="all:unset">吸烟</span></small></div><div><span>第 2 年起 / 年</span><b data-hp="b-y"></b><small>缴 20 年</small></div></div>
+  </div>
+  <div class="cfg num" data-cfg="h">
+    <div class="cfg-h"><b>保障配置 · 已有 + 本方案</b><small>已有：30 万晚期重疾 / 全残 / 寿险 · 100 万全残 / 寿险</small></div>
+    <div class="cfg-row"><span class="k">身故 / 全残</span><div class="trk"><i class="ex"></i><i class="nw"></i></div><b class="v" data-v="dt"></b><small class="nt"></small></div>
+    <div class="cfg-row ci"><span class="k">重疾</span><div class="trk"><i class="ex"></i><i class="nw"></i></div><b class="v" data-v="ci"></b><small class="nt"></small></div>
+    <div class="cfg-lg"><span><i style="background:var(--ex)"></i>已有保单</span><span><i style="background:var(--navy)"></i>本方案 · 寿险</span><span><i style="background:var(--gold)"></i>本方案 · 重疾</span></div>
+  </div>
+
+  <!-- 2 太太 -->
+  <div class="sub-head"><span class="no">2</span>Mrs Yin · 太太<span style="font-size:12.5px;color:var(--muted);font-weight:700">二选一</span></div>
+  <div class="ctrl">
+    <div class="seg g" role="group" aria-label="太太方案"><button type="button" data-g="w" data-v="a" class="on" aria-pressed="true">A · 单次赔付</button><button type="button" data-g="w" data-v="b" aria-pressed="false">B · 多次赔付</button></div>
+  </div>
+  <div class="pol g" data-show="w:a">
+    <span class="tag">方案 A · 定期重疾寿险 · 单次赔付</span>
+    <div class="nm">AIA Secure Flexi Term 20 年 (R&amp;C) + 重疾 + 早期重疾 + 全残<small>保障 20 年 · 至 63 岁</small></div>
+    <div class="sa num"><b>S$350,000</b><span>早中晚期重疾 · 身故 · 全残</span></div>
+    <ul><li>104 种病况</li><li>早期确诊即赔全额</li><li>赔一次后保单结束</li></ul>
+    <div class="pp num"><div class="fy"><span>首年 <i class="promo-tag" style="font-style:normal">8 折</i></span><b>S$3,368.40</b><small>2026.11.30 前投保</small></div><div><span>第 2 年起 / 年</span><b>S$4,210.50</b><small>缴 20 年</small></div></div>
+  </div>
+  <div class="pol g" data-show="w:b" hidden>
+    <span class="tag">方案 B · 多次赔付重疾</span>
+    <div class="nm">AIA Ultimate Critical Cover (UCC)<small>保障至 65 岁</small></div>
+    <div class="sa num"><b>S$350,000</b><span>早中晚期重疾 · 可多次赔</span></div>
+    <ul><li>150 种病况</li><li>满 12 个月保额恢复</li><li>理赔后免交保费 ¹</li></ul>
+    <div class="pp num"><div class="fy"><span>首年 <i class="promo-tag" style="font-style:normal">8 折</i></span><b>S$4,550.38</b><small>2026.11.30 前投保</small></div><div><span>第 2 年起 / 年</span><b>S$5,687.98</b><small>缴至 65 岁</small></div></div>
+  </div>
+  <div class="cfg w num" data-cfg="w">
+    <div class="cfg-h"><b>保障配置 · 已有 + 本方案</b><small>已有：50 万晚期重疾 / 全残 / 寿险</small></div>
+    <div class="cfg-row"><span class="k">身故 / 全残</span><div class="trk"><i class="ex"></i><i class="nw"></i></div><b class="v" data-v="dt"></b><small class="nt"></small></div>
+    <div class="cfg-row ci"><span class="k">重疾</span><div class="trk"><i class="ex"></i><i class="nw"></i></div><b class="v" data-v="ci"></b><small class="nt"></small></div>
+    <div class="cfg-lg"><span><i style="background:var(--ex)"></i>已有保单</span><span><i style="background:var(--gold)"></i>本方案新增</span></div>
+  </div>
+
+  <!-- 3 单次 vs 多次 -->
+  <div class="sub-head"><span class="no">3</span>单次赔付 vs 多次赔付</div>
+  <div class="sumgrid">
+    <div class="sg-row hd"><div class="sg-k" style="background:var(--gold-tint-2)"></div><div class="a">单次 · 定期重疾寿险</div><div class="b">多次 · UCC</div></div>
+    <div class="sg-row"><div class="sg-k">赔几次</div><div class="sg-v a">1 次</div><div class="sg-v b good">多次 · 满 12 个月保额恢复</div></div>
+    <div class="sg-row"><div class="sg-k">理赔之后</div><div class="sg-v a bad">保单结束</div><div class="sg-v b good">免交后续保费，保障继续 ¹</div></div>
+    <div class="sg-row"><div class="sg-k">病况</div><div class="sg-v a">104 种</div><div class="sg-v b">150 种</div></div>
+    <div class="sg-row"><div class="sg-k">身故 / 全残</div><div class="sg-v a">有</div><div class="sg-v b">身故赔 5%，意外身故 100%；不含全残</div></div>
+  </div>
+  <div class="vwrap num">
+    <div class="cap">示例 · 一位 40 岁女士投保 35 万</div>
+    <div class="vtl-head"><span class="vh a">单次赔付</span><span class="vh mid">年龄</span><span class="vh b">多次赔付</span></div>
+    <div class="vtl">
+      <div class="vrow"><div class="vcard a both"><b>S$35 万</b></div><div class="vmid"><span class="dot"></span><b>40 岁</b><small>投保</small></div><div class="vcard b both"><b>S$35 万</b></div></div>
+      <div class="vrow ms"><div class="vcard a hit"><b>赔 S$350,000</b><span class="ms end">保单结束</span></div><div class="vmid"><span class="dot"></span><b>45 岁</b><small>早期癌症</small></div><div class="vcard b hit"><b>赔 S$350,000</b><span class="ms wv">此后免交保费</span></div></div>
+      <div class="vrow"><div class="vcard a low"><b>—</b><small>已无保障</small></div><div class="vmid"><span class="dot"></span><b>46 岁</b><small>满 12 个月</small></div><div class="vcard b"><b>S$35 万</b><span class="ms same">保额恢复</span></div></div>
+      <div class="vrow ms"><div class="vcard a low"><b>S$0</b></div><div class="vmid"><span class="dot"></span><b>52 岁</b><small>中风</small></div><div class="vcard b hit"><b>赔 S$350,000</b><small>不同疾病，再赔</small></div></div>
+      <div class="vrow"><div class="vcard a"><b>S$350,000</b></div><div class="vmid"><span class="dot"></span><b>合计</b></div><div class="vcard b"><b>S$700,000</b><small>45 岁起不用交保费</small></div></div>
+    </div>
+    <p class="vtl-note">示例仅说明赔付规则，以保单条款定义为准</p>
+  </div>
+
+  <!-- 4 意外险 -->
+  <div class="sub-head"><span class="no">4</span>高端意外险 · 两人各一份</div>
+  <div class="pill-head"><span class="pill">友邦百惠意外护保 · 银</span><span class="en">AIA Platinum AccidentCare</span></div>
+  <div class="tbl num">
+    <div class="tr hd"><span>基本利益</span><span class="v">保额 (S$)</span></div>
+    <div class="tr"><div><b>意外身故、意外断肢及烧伤利益</b><small>按赔偿表赔付，最高达保额 150%</small></div><span class="v">1,000,000</span></div>
+    <div class="tr"><div><b>航空意外利益</b><small>以乘客身份乘坐付款飞机遇意外身故，在上项之外额外支付</small></div><span class="v">1,000,000</span></div>
+    <div class="tr"><div><b>意外医疗补偿利益</b><small>住院 · 注册医生治疗 · 持牌护士 · 救护车（每次意外最高 1,000）</small></div><span class="v">15,000</span></div>
+    <div class="tr"><div><b>额外医疗补偿利益</b><small>中医及整脊医疗费用</small></div><span class="v">3,000</span></div>
+    <div class="tr"><div><b>助行器及住家设施改建补偿利益</b><small>助行器 · 因严重残疾需改建住家设施 ²</small></div><span class="v">5,000</span></div>
+    <div class="tr"><div><b>康复支持利益</b><small>严重残疾 ² 需看精神科医生、物理 / 职业 / 言语治疗师</small></div><span class="v">3,000</span></div>
+    <div class="tr"><div><b>探病体恤利益</b><small>海外住院连续 7 天无人陪伴：亲友来回经济舱机票（或车 / 船票）+ 标准酒店客房</small></div><span class="v">10,000</span></div>
+    <div class="tr"><div><b>紧急医疗救援及遣送利益</b><small>海外旅行时紧急医疗救援 · 遗体遣送</small></div><span class="v">无限</span></div>
+  </div>
+  <div class="tbl num" style="margin-top:10px">
+    <div class="pt hd"><span>保费 (S$，含 9% GST，至 74 岁)</span><span>每年</span><span>半年</span><span>每月</span></div>
+    <div class="pt on"><span>职业等级 1</span><b>1,149.20</b><b>597.58</b><b>99.97</b></div>
+    <div class="pt"><span>职业等级 2</span><b>1,428.87</b><b>743.02</b><b>124.30</b></div>
+  </div>
+  <details class="comp num"><summary>赔偿表（保额的 %）</summary>
+    <div class="comp-list">
+      <div><span>人身伤亡</span><b>100</b></div>
+      <div><span>永久完全残疾</span><b>150</b></div>
+      <div><span>永久及完全丧失双眼视力</span><b>150</b></div>
+      <div><span>永久及完全丧失单眼视力</span><b>100</b></div>
+      <div><span>丧失双肢或其功能</span><b>150</b></div>
+      <div><span>丧失单肢或其功能</span><b>125</b></div>
+      <div><span>丧失单肢（或其功能）及单眼视力</span><b>150</b></div>
+      <div><span>永久失语及失聪</span><b>150</b></div>
+      <div><span>永久及无法治愈之精神错乱</span><b>100</b></div>
+      <div><span>完全及永久失聪 · 双耳 / 单耳</span><b>75 / 25</b></div>
+      <div><span>永久失语</span><b>50</b></div>
+      <div><span>永久及完全丧失单眼晶状体</span><b>50</b></div>
+      <div><span>丧失单手四指及拇指（或其功能）</span><b>70</b></div>
+      <div><span>丧失单手四指（或其功能）</span><b>40</b></div>
+      <div><span>丧失单拇指 · 两节 / 一节</span><b>30 / 15</b></div>
+      <div><span>丧失单指 · 三节 / 两节 / 一节</span><b>10 / 7.5 / 5</b></div>
+      <div><span>单脚所有脚趾</span><b>15</b></div>
+      <div><span>脚拇趾 · 两节 / 一节</span><b>5 / 3</b></div>
+      <div><span>脚拇趾之外的脚趾 · 每只</span><b>1</b></div>
+      <div><span>折断腿部或膝盖而无法联合</span><b>10</b></div>
+      <div><span>任何一腿畸短 5 公分</span><b>7.5</b></div>
+      <div><span>三度烧伤 · 头部 ≥2% / ≥5% / ≥8%</span><b>50 / 75 / 100</b></div>
+      <div><span>三度烧伤 · 身体 ≥10% / ≥15% / ≥20%</span><b>50 / 75 / 100</b></div>
+    </div>
+  </details>
+  <p class="fine">另保骨痛热症、食物中毒；AIA Vitality 会员可享免费基本体检。² 严重残疾：同一意外的断肢及烧伤赔付（身故除外）合计达保额 50% 或以上。永久残疾利益于残疾发生后六个月开始偿付。75 岁起，意外身故 / 断肢及烧伤、航空意外、意外医疗保额减 50%。</p>
+
+  <!-- 5 MAS -->
+  <div class="sub-head"><span class="no">5</span>保额参考 · MAS 指南</div>
+  <div class="rule">
+    <div><span class="x">9<small>×</small></span><span><b>身故 / 全残</b>年收入的 9 倍</span></div>
+    <div class="g"><span class="x">4<small>×</small></span><span><b>重疾</b>年收入的 4 倍</span></div>
+  </div>
+  <p class="fine">MAS 与 LIA 等行业协会《基础理财规划指南》（2023 年 10 月）</p>
+
+  <!-- 6 费用 -->
+  <div class="sub-head"><span class="no">6</span>费用合计</div>
+  <div class="cost-grid num">
+    <div class="cost">
+      <div class="h">Mr Sheng · 先生<small data-smk-label>吸烟</small></div>
+      <div class="sw">
+        <div class="seg sm" role="group" aria-label="先生方案"><button type="button" data-g="h" data-v="a" class="on" aria-pressed="true">A · 寿险 100 万</button><button type="button" data-g="h" data-v="b" aria-pressed="false">B · 重疾 35 万</button></div>
+        <div class="seg sm" role="group" aria-label="先生吸烟状态"><button type="button" data-g="smk" data-v="1" class="on" aria-pressed="true">吸烟</button><button type="button" data-g="smk" data-v="0" aria-pressed="false">不吸烟</button></div>
+      </div>
+      <div class="rows">
+        <div class="r hd"><span>保单</span><span class="v" style="color:var(--muted)">首年</span><span class="v" style="color:var(--muted)">第 2 年起</span></div>
+        <div class="r"><div><b id="cHn"></b><small id="cHs"></small></div><span class="v fy" id="cHf"></span><span class="v" id="cHy"></span></div>
+        <div class="r"><div><b>高端意外险 · 银</b><small>职业等级 1 · 每年续保</small></div><span class="v">S$1,149.20</span><span class="v">S$1,149.20</span></div>
+      </div>
+      <div class="tot"><div class="fy"><span>首年合计 · 8 折后</span><b id="cHtf"></b><small id="cHsave"></small></div><div><span>第 2 年起 / 年</span><b id="cHty"></b><small id="cHmo"></small></div></div>
+    </div>
+    <div class="cost w">
+      <div class="h">Mrs Yin · 太太<small>不吸烟</small></div>
+      <div class="sw">
+        <div class="seg sm g" role="group" aria-label="太太方案"><button type="button" data-g="w" data-v="a" class="on" aria-pressed="true">A · 单次赔付</button><button type="button" data-g="w" data-v="b" aria-pressed="false">B · 多次赔付</button></div>
+      </div>
+      <div class="rows">
+        <div class="r hd"><span>保单</span><span class="v" style="color:var(--muted)">首年</span><span class="v" style="color:var(--muted)">第 2 年起</span></div>
+        <div class="r"><div><b id="cWn"></b><small id="cWs"></small></div><span class="v fy" id="cWf"></span><span class="v" id="cWy"></span></div>
+        <div class="r"><div><b>高端意外险 · 银</b><small>职业等级 1 · 每年续保</small></div><span class="v">S$1,149.20</span><span class="v">S$1,149.20</span></div>
+      </div>
+      <div class="tot"><div class="fy"><span>首年合计 · 8 折后</span><b id="cWtf"></b><small id="cWsave"></small></div><div><span>第 2 年起 / 年</span><b id="cWty"></b><small id="cWmo"></small></div></div>
+    </div>
+  </div>
+
+  <!-- 7 病况清单 -->
+  <div class="sub-head"><span class="no">7</span>重疾保障清单 · 定期重疾寿险（单次 VS 多次）</div>
+  <p class="sec-sub">任何阶段确诊均赔 100% 保额。常见大病两边都保，多次赔付多出的重度病况都属少见或罕见病。</p>
+  <div class="cond-stats num">
+    <div class="cstat"><span>重度</span><b>43 <i>vs 73</i></b></div>
+    <div class="cstat"><span>早期</span><b>32 <i>vs 42</i></b></div>
+    <div class="cstat"><span>中期</span><b>29 <i>vs 35</i></b></div>
+    <div class="cstat tot"><span>合计 · 单次 vs 多次</span><b>104 <i>vs 150</i></b></div>
+  </div>
+  <div class="cl-bar">
+    <div class="seg" role="group" aria-label="病况筛选">
+      <button type="button" data-f="common" class="on" aria-pressed="true">常见 15</button>
+      <button type="button" data-f="gold" aria-pressed="false">多次赔付多保的 39</button>
+      <button type="button" data-f="all" aria-pressed="false">全部 73</button>
+    </div>
+    <div class="legend"><span><span class="chip both">白底</span>两边都保</span><span><span class="chip only">金底</span>仅多次赔付保</span></div>
+  </div>
+  <div class="clist" id="clist">
+    <div class="cl-head"><div>病况家族</div><div>早期</div><div>中期</div><div>重度</div></div>
+    <div class="cr" data-n="1" data-tier="t4" data-gold="1"><div class="fam"><b>1. 后天性脑损伤</b><span class="tier t4">罕见</span><em>Acquired Brain Damage</em></div><div class="cell"><span class="st">早期</span><div><span class="na">—</span></div></div><div class="cell"><span class="st">中期</span><div><span class="na">—</span></div></div><div class="cell"><span class="st">重度</span><div><span class="gx">后天性脑损伤</span></div></div></div>
+    <div class="cr" data-n="2" data-tier="t3" data-gold="1"><div class="fam"><b>2. 溃疡性结肠炎</b><span class="tier t3">少见</span><em>Ulcerative Colitis</em></div><div class="cell"><span class="st">早期</span><div><span class="gx">急性溃疡性结肠炎</span></div></div><div class="cell"><span class="st">中期</span><div><span class="na">—</span></div></div><div class="cell"><span class="st">重度</span><div><span class="gx">急性重度溃疡性结肠炎</span></div></div></div>
+    <div class="cr" data-n="3" data-tier="t4" data-gold="1"><div class="fam"><b>3. 艾迪生病</b><span class="tier t4">罕见</span><em>Addison Disease / Autoimmune Adrenalitis</em></div><div class="cell"><span class="st">早期</span><div><span class="na">—</span></div></div><div class="cell"><span class="st">中期</span><div><span class="na">—</span></div></div><div class="cell"><span class="st">重度</span><div><span class="gx">艾迪生病 / 自身免疫性肾上腺炎</span></div></div></div>
+    <div class="cr" data-n="4" data-tier="t4" data-gold="1"><div class="fam"><b>4. 肾上腺腺瘤</b><span class="tier t4">罕见</span><em>Adrenal Adenoma</em></div><div class="cell"><span class="st">早期</span><div><span class="na">—</span></div></div><div class="cell"><span class="st">中期</span><div><span class="na">—</span></div></div><div class="cell"><span class="st">重度</span><div><span class="gx">肾上腺腺瘤切除术</span></div></div></div>
+    <div class="cr" data-n="5" data-tier="t2" data-gold="0"><div class="fam"><b>5. 阿尔茨海默病 / 失智</b><span class="tier t2">较常见</span><em>Alzheimer's Disease / Severe Dementia</em></div><div class="cell"><span class="st">早期</span><div>失智症（含阿尔茨海默病）确诊</div></div><div class="cell"><span class="st">中期</span><div>中度阿尔茨海默病</div></div><div class="cell"><span class="st">重度</span><div>阿尔茨海默病 / 重度失智</div></div></div>
+    <div class="cr" data-n="6" data-tier="t2" data-gold="0"><div class="fam"><b>6. 冠状动脉血管成形术</b><span class="tier t2">较常见</span><em>Angioplasty &amp; Other Invasive Treatment</em></div><div class="cell"><span class="st">早期</span><div><span class="na">—</span></div></div><div class="cell"><span class="st">中期</span><div><span class="na">—</span></div></div><div class="cell"><span class="st">重度</span><div>冠状动脉血管成形术及其他侵入性治疗 *</div></div></div>
+    <div class="cr" data-n="7" data-tier="t2" data-gold="0"><div class="fam"><b>7. 良性脑肿瘤</b><span class="tier t2">较常见</span><em>Benign Brain Tumour</em></div><div class="cell"><span class="st">早期</span><div>垂体瘤切除术</div></div><div class="cell"><span class="st">中期</span><div>垂体瘤切除术（开颅 / 经蝶窦・经鼻入路）</div></div><div class="cell"><span class="st">重度</span><div>良性脑肿瘤</div></div></div>
+    <div class="cr" data-n="8" data-tier="t4" data-gold="1"><div class="fam"><b>8. 胆道闭锁</b><span class="tier t4">罕见</span><em>Biliary Atresia</em></div><div class="cell"><span class="st">早期</span><div><span class="gx">胆道闭锁（确诊即赔）</span></div></div><div class="cell"><span class="st">中期</span><div><span class="na">—</span></div></div><div class="cell"><span class="st">重度</span><div><span class="gx">胆道闭锁接受肝移植</span></div></div></div>
+    <div class="cr" data-n="9" data-tier="t3" data-gold="0"><div class="fam"><b>9. 失明</b><span class="tier t3">少见</span><em>Blindness</em></div><div class="cell"><span class="st">早期</span><div>单眼不可逆失明</div></div><div class="cell"><span class="st">中期</span><div>视神经萎缩伴低视力</div></div><div class="cell"><span class="st">重度</span><div>失明（不可逆视力丧失）</div></div></div>
+    <div class="cr" data-n="10" data-tier="t3" data-gold="1"><div class="fam"><b>10. 脑部手术</b><span class="tier t3">少见</span><em>Brain Surgery</em></div><div class="cell"><span class="st">早期</span><div><span class="na">—</span></div></div><div class="cell"><span class="st">中期</span><div><span class="na">—</span></div></div><div class="cell"><span class="st">重度</span><div><span class="gx">脑部手术</span></div></div></div>
+    <div class="cr" data-n="11" data-tier="t3" data-gold="1"><div class="fam"><b>11. 慢性自身免疫性肝炎</b><span class="tier t3">少见</span><em>Chronic Auto-Immune Hepatitis</em></div><div class="cell"><span class="st">早期</span><div><span class="na">—</span></div></div><div class="cell"><span class="st">中期</span><div><span class="na">—</span></div></div><div class="cell"><span class="st">重度</span><div><span class="gx">慢性自身免疫性肝炎</span></div></div></div>
+    <div class="cr" data-n="12" data-tier="t3" data-gold="1"><div class="fam"><b>12. 胰腺炎</b><span class="tier t3">少见</span><em>Pancreatitis</em></div><div class="cell"><span class="st">早期</span><div><span class="gx">急性坏死出血性胰腺炎</span><span class="note-inline">单次赔付列于重度阶段 †</span></div></div><div class="cell"><span class="st">中期</span><div><span class="gx">急性坏死出血性胰腺炎伴胰腺切除</span></div></div><div class="cell"><span class="st">重度</span><div><span class="gx">慢性复发性胰腺炎</span><span class="note-inline">单次赔付重度对应：急性坏死出血性胰腺炎 †</span></div></div></div>
+    <div class="cr" data-n="13" data-tier="t3" data-gold="0"><div class="fam"><b>13. 昏迷</b><span class="tier t3">少见</span><em>Coma</em></div><div class="cell"><span class="st">早期</span><div>昏迷 48 小时</div></div><div class="cell"><span class="st">中期</span><div>昏迷 72 小时 ・ 重度癫痫</div></div><div class="cell"><span class="st">重度</span><div>昏迷</div></div></div>
+    <div class="cr" data-n="14" data-tier="t2" data-gold="0"><div class="fam"><b>14. 冠状动脉搭桥</b><span class="tier t2">较常见</span><em>Coronary Artery By-pass Surgery</em></div><div class="cell"><span class="st">早期</span><div>微创搭桥 / 冠状动脉斑块切除 / 心肌激光血运重建 / 体外反搏</div></div><div class="cell"><span class="st">中期</span><div><span class="na">—</span></div></div><div class="cell"><span class="st">重度</span><div>冠状动脉搭桥手术</div></div></div>
+    <div class="cr" data-n="15" data-tier="t4" data-gold="1"><div class="fam"><b>15. 克雅二氏病</b><span class="tier t4">罕见</span><em>Creutzfeldt-Jakob Disease</em></div><div class="cell"><span class="st">早期</span><div><span class="gx">较轻度克雅二氏病</span></div></div><div class="cell"><span class="st">中期</span><div><span class="gx">中度克雅二氏病</span></div></div><div class="cell"><span class="st">重度</span><div>克雅二氏病</div></div></div>
+    <div class="cr" data-n="16" data-tier="t3" data-gold="0"><div class="fam"><b>16. 失聪</b><span class="tier t3">少见</span><em>Deafness</em></div><div class="cell"><span class="st">早期</span><div>部分听力丧失 ・ 海绵窦血栓手术</div></div><div class="cell"><span class="st">中期</span><div>人工耳蜗植入手术</div></div><div class="cell"><span class="st">重度</span><div>失聪（不可逆听力丧失）</div></div></div>
+    <div class="cr" data-n="17" data-tier="t4" data-gold="1"><div class="fam"><b>17. 埃博拉</b><span class="tier t4">罕见</span><em>Ebola</em></div><div class="cell"><span class="st">早期</span><div><span class="na">—</span></div></div><div class="cell"><span class="st">中期</span><div><span class="na">—</span></div></div><div class="cell"><span class="st">重度</span><div><span class="gx">埃博拉病毒感染</span></div></div></div>
+    <div class="cr" data-n="18" data-tier="t4" data-gold="0"><div class="fam"><b>18. 象皮病</b><span class="tier t4">罕见</span><em>Elephantiasis</em></div><div class="cell"><span class="st">早期</span><div><span class="na">—</span></div></div><div class="cell"><span class="st">中期</span><div><span class="na">—</span></div></div><div class="cell"><span class="st">重度</span><div>象皮病</div></div></div>
+    <div class="cr" data-n="19" data-tier="t2" data-gold="0"><div class="fam"><b>19. 肾衰竭</b><span class="tier t2">较常见</span><em>Kidney Failure</em></div><div class="cell"><span class="st">早期</span><div>单肾切除术</div></div><div class="cell"><span class="st">中期</span><div>慢性肾病</div></div><div class="cell"><span class="st">重度</span><div>末期肾衰竭</div></div></div>
+    <div class="cr" data-n="20" data-tier="t2" data-gold="0"><div class="fam"><b>20. 肝衰竭</b><span class="tier t2">较常见</span><em>Liver Failure</em></div><div class="cell"><span class="st">早期</span><div>肝脏手术</div></div><div class="cell"><span class="st">中期</span><div>肝硬化</div></div><div class="cell"><span class="st">重度</span><div>末期肝衰竭</div></div></div>
+    <div class="cr" data-n="21" data-tier="t2" data-gold="0"><div class="fam"><b>21. 末期肺病</b><span class="tier t2">较常见</span><em>End Stage Lung Disease</em></div><div class="cell"><span class="st">早期</span><div>严重哮喘 ・ 腔静脉滤器植入</div></div><div class="cell"><span class="st">中期</span><div>单肺切除术</div></div><div class="cell"><span class="st">重度</span><div>末期肺病</div></div></div>
+    <div class="cr" data-n="22" data-tier="t3" data-gold="0"><div class="fam"><b>22. 暴发性肝炎</b><span class="tier t3">少见</span><em>Fulminant Hepatitis</em></div><div class="cell"><span class="st">早期</span><div>胆道重建手术 ・ 肝炎伴肝硬化</div></div><div class="cell"><span class="st">中期</span><div>慢性原发性硬化性胆管炎</div></div><div class="cell"><span class="st">重度</span><div>暴发性肝炎</div></div></div>
+    <div class="cr" data-n="23" data-tier="t4" data-gold="1"><div class="fam"><b>23. 全身性破伤风</b><span class="tier t4">罕见</span><em>Generalized Tetanus</em></div><div class="cell"><span class="st">早期</span><div><span class="na">—</span></div></div><div class="cell"><span class="st">中期</span><div><span class="na">—</span></div></div><div class="cell"><span class="st">重度</span><div><span class="gx">全身性破伤风</span></div></div></div>
+    <div class="cr" data-n="24" data-tier="t1" data-gold="0"><div class="fam"><b>24. 心肌梗塞</b><span class="tier t1">极常见</span><em>Heart Attack of Specified Severity</em></div><div class="cell"><span class="st">早期</span><div>心脏起搏器植入 ・ 心包切除术</div></div><div class="cell"><span class="st">中期</span><div>心脏除颤器植入 ・ 早期心肌病</div></div><div class="cell"><span class="st">重度</span><div>特定严重程度的心肌梗塞</div></div></div>
+    <div class="cr" data-n="25" data-tier="t3" data-gold="0"><div class="fam"><b>25. HIV 感染（输血 / 职业）</b><span class="tier t3">少见</span><em>HIV</em></div><div class="cell"><span class="st">早期</span><div>遇袭或职业感染 HIV</div></div><div class="cell"><span class="st">中期</span><div>器官移植感染 HIV</div></div><div class="cell"><span class="st">重度</span><div>因输血或职业感染的 HIV</div></div></div>
+    <div class="cr" data-n="26" data-tier="t2" data-gold="0"><div class="fam"><b>26. 帕金森病</b><span class="tier t2">较常见</span><em>Idiopathic Parkinson's Disease</em></div><div class="cell"><span class="st">早期</span><div>早期帕金森病</div></div><div class="cell"><span class="st">中期</span><div>中度帕金森病</div></div><div class="cell"><span class="st">重度</span><div>原发性帕金森病</div></div></div>
+    <div class="cr" data-n="27" data-tier="t3" data-gold="1"><div class="fam"><b>27. 感染性心内膜炎</b><span class="tier t3">少见</span><em>Infective Endocarditis</em></div><div class="cell"><span class="st">早期</span><div><span class="gx">较轻度感染性心内膜炎</span></div></div><div class="cell"><span class="st">中期</span><div><span class="na">—</span></div></div><div class="cell"><span class="st">重度</span><div><span class="gx">感染性心内膜炎</span></div></div></div>
+    <div class="cr" data-n="28" data-tier="t3" data-gold="1"><div class="fam"><b>28. 胰岛素依赖型糖尿病</b><span class="tier t3">少见</span><em>Insulin Dependent Diabetes Mellitus</em></div><div class="cell"><span class="st">早期</span><div><span class="na">—</span></div></div><div class="cell"><span class="st">中期</span><div><span class="na">—</span></div></div><div class="cell"><span class="st">重度</span><div><span class="gx">胰岛素依赖型糖尿病</span></div></div></div>
+    <div class="cr" data-n="29" data-tier="t3" data-gold="0"><div class="fam"><b>29. 再生障碍性贫血</b><span class="tier t3">少见</span><em>Aplastic Anaemia</em></div><div class="cell"><span class="st">早期</span><div>可逆性再生障碍性贫血</div></div><div class="cell"><span class="st">中期</span><div>骨髓增生异常综合征 / 骨髓纤维化</div></div><div class="cell"><span class="st">重度</span><div>不可逆再生障碍性贫血</div></div></div>
+    <div class="cr" data-n="30" data-tier="t3" data-gold="0"><div class="fam"><b>30. 语言能力丧失</b><span class="tier t3">少见</span><em>Loss of Speech</em></div><div class="cell"><span class="st">早期</span><div>永久（或临时）气管造口</div></div><div class="cell"><span class="st">中期</span><div>语言能力丧失（非声带损伤所致）</div></div><div class="cell"><span class="st">重度</span><div>不可逆语言能力丧失</div></div></div>
+    <div class="cr" data-n="31" data-tier="t4" data-gold="1"><div class="fam"><b>31. 青少年亨廷顿病</b><span class="tier t4">罕见</span><em>Juvenile Huntington Disease</em></div><div class="cell"><span class="st">早期</span><div><span class="na">—</span></div></div><div class="cell"><span class="st">中期</span><div><span class="na">—</span></div></div><div class="cell"><span class="st">重度</span><div><span class="gx">青少年亨廷顿病</span></div></div></div>
+    <div class="cr" data-n="32" data-tier="t3" data-gold="1"><div class="fam"><b>32. 丧失独立生活能力</b><span class="tier t3">少见</span><em>Loss of Independent Existence</em></div><div class="cell"><span class="st">早期</span><div><span class="gx">丧失独立生活能力（早期）</span></div></div><div class="cell"><span class="st">中期</span><div><span class="na">—</span></div></div><div class="cell"><span class="st">重度</span><div>丧失独立生活能力</div></div></div>
+    <div class="cr" data-n="33" data-tier="t3" data-gold="0"><div class="fam"><b>33. 严重烧伤</b><span class="tier t3">少见</span><em>Major Burns</em></div><div class="cell"><span class="st">早期</span><div>轻度严重烧伤</div></div><div class="cell"><span class="st">中期</span><div>中度严重烧伤</div></div><div class="cell"><span class="st">重度</span><div>严重烧伤</div></div></div>
+    <div class="cr" data-n="34" data-tier="t1" data-gold="1"><div class="fam"><b>34. 重大癌症</b><span class="tier t1">极常见</span><em>Major Cancer</em></div><div class="cell"><span class="st">早期</span><div>特定器官原位癌 ・ 早期前列腺癌 ・ 早期甲状腺癌 ・ 早期神经内分泌肿瘤 ・ 早期膀胱癌 ・ 早期慢性淋巴细胞白血病 ・ 骨髓恶性肿瘤 ・ <span class="gx">早期黑色素瘤</span> ・ <span class="gx">胃肠道间质瘤</span></div></div><div class="cell"><span class="st">中期</span><div>原位癌经根治性手术治疗</div></div><div class="cell"><span class="st">重度</span><div>重大癌症</div></div></div>
+    <div class="cr" data-n="35" data-tier="t3" data-gold="0"><div class="fam"><b>35. 严重头部创伤</b><span class="tier t3">少见</span><em>Major Head Trauma</em></div><div class="cell"><span class="st">早期</span><div>硬膜下血肿手术 ・ 面部重建手术</div></div><div class="cell"><span class="st">中期</span><div>中期严重头部创伤</div></div><div class="cell"><span class="st">重度</span><div>严重头部创伤</div></div></div>
+    <div class="cr" data-n="36" data-tier="t2" data-gold="0"><div class="fam"><b>36. 器官 / 骨髓移植</b><span class="tier t2">较常见</span><em>Major Organ / Bone Marrow Transplantation</em></div><div class="cell"><span class="st">早期</span><div>小肠移植 ・ 角膜移植</div></div><div class="cell"><span class="st">中期</span><div>主要器官 / 骨髓移植（候补名单）</div></div><div class="cell"><span class="st">重度</span><div>主要器官 / 骨髓移植</div></div></div>
+    <div class="cr" data-n="37" data-tier="t4" data-gold="1"><div class="fam"><b>37. 医疗过程感染 HIV</b><span class="tier t4">罕见</span><em>Medically Acquired HIV Infection</em></div><div class="cell"><span class="st">早期</span><div><span class="na">—</span></div></div><div class="cell"><span class="st">中期</span><div><span class="na">—</span></div></div><div class="cell"><span class="st">重度</span><div><span class="gx">医疗过程感染 HIV</span></div></div></div>
+    <div class="cr" data-n="38" data-tier="t4" data-gold="0"><div class="fam"><b>38. 髓质囊性病</b><span class="tier t4">罕见</span><em>Medullary Cystic Disease</em></div><div class="cell"><span class="st">早期</span><div><span class="na">—</span></div></div><div class="cell"><span class="st">中期</span><div><span class="na">—</span></div></div><div class="cell"><span class="st">重度</span><div>髓质囊性病</div></div></div>
+    <div class="cr" data-n="39" data-tier="t3" data-gold="0"><div class="fam"><b>39. 运动神经元病</b><span class="tier t3">少见</span><em>Motor Neurone Disease</em></div><div class="cell"><span class="st">早期</span><div>周围神经病变</div></div><div class="cell"><span class="st">中期</span><div>早期运动神经元病</div></div><div class="cell"><span class="st">重度</span><div>运动神经元病</div></div></div>
+    <div class="cr" data-n="40" data-tier="t4" data-gold="1"><div class="fam"><b>40. 臂丛神经多根损伤</b><span class="tier t4">罕见</span><em>Multiple Root of Brachial Plexus Injury</em></div><div class="cell"><span class="st">早期</span><div><span class="na">—</span></div></div><div class="cell"><span class="st">中期</span><div><span class="na">—</span></div></div><div class="cell"><span class="st">重度</span><div><span class="gx">臂丛神经多根损伤</span></div></div></div>
+    <div class="cr" data-n="41" data-tier="t3" data-gold="0"><div class="fam"><b>41. 多发性硬化症</b><span class="tier t3">少见</span><em>Multiple Sclerosis</em></div><div class="cell"><span class="st">早期</span><div>早期多发性硬化</div></div><div class="cell"><span class="st">中期</span><div>轻度多发性硬化</div></div><div class="cell"><span class="st">重度</span><div>多发性硬化症</div></div></div>
+    <div class="cr" data-n="42" data-tier="t3" data-gold="0"><div class="fam"><b>42. 肌营养不良症</b><span class="tier t3">少见</span><em>Muscular Dystrophy</em></div><div class="cell"><span class="st">早期</span><div>脊髓病变或损伤致大小便功能障碍</div></div><div class="cell"><span class="st">中期</span><div>中度肌营养不良</div></div><div class="cell"><span class="st">重度</span><div>肌营养不良症</div></div></div>
+    <div class="cr" data-n="43" data-tier="t3" data-gold="0"><div class="fam"><b>43. 坏死性筋膜炎</b><span class="tier t3">少见</span><em>Necrotising Fasciitis</em></div><div class="cell"><span class="st">早期</span><div><span class="na">—</span></div></div><div class="cell"><span class="st">中期</span><div><span class="na">—</span></div></div><div class="cell"><span class="st">重度</span><div>坏死性筋膜炎</div></div></div>
+    <div class="cr" data-n="44" data-tier="t4" data-gold="1"><div class="fam"><b>44. 职业感染乙 / 丙型肝炎</b><span class="tier t4">罕见</span><em>Occupationally Acquired Hepatitis B or C</em></div><div class="cell"><span class="st">早期</span><div><span class="na">—</span></div></div><div class="cell"><span class="st">中期</span><div><span class="na">—</span></div></div><div class="cell"><span class="st">重度</span><div><span class="gx">职业感染乙型 / 丙型肝炎</span></div></div></div>
+    <div class="cr" data-n="45" data-tier="t2" data-gold="0"><div class="fam"><b>45. 心脏瓣膜手术</b><span class="tier t2">较常见</span><em>Heart Valve Surgery</em></div><div class="cell"><span class="st">早期</span><div>经皮瓣膜成形术或瓣膜切开术</div></div><div class="cell"><span class="st">中期</span><div>经皮瓣膜置换或装置修复</div></div><div class="cell"><span class="st">重度</span><div>开心式心脏瓣膜手术</div></div></div>
+    <div class="cr" data-n="46" data-tier="t4" data-gold="1"><div class="fam"><b>46. 成骨不全症</b><span class="tier t4">罕见</span><em>Osteogenesis Imperfecta</em></div><div class="cell"><span class="st">早期</span><div><span class="na">—</span></div></div><div class="cell"><span class="st">中期</span><div><span class="na">—</span></div></div><div class="cell"><span class="st">重度</span><div><span class="gx">成骨不全症（脆骨病）</span></div></div></div>
+    <div class="cr" data-n="47" data-tier="t2" data-gold="0"><div class="fam"><b>47. 其他严重冠状动脉疾病</b><span class="tier t2">较常见</span><em>Other Serious Coronary Artery Disease</em></div><div class="cell"><span class="st">早期</span><div>早期其他严重冠状动脉疾病</div></div><div class="cell"><span class="st">中期</span><div>中期其他严重冠状动脉疾病</div></div><div class="cell"><span class="st">重度</span><div>其他严重冠状动脉疾病</div></div></div>
+    <div class="cr" data-n="48" data-tier="t3" data-gold="0"><div class="fam"><b>48. 瘫痪</b><span class="tier t3">少见</span><em>Paralysis</em></div><div class="cell"><span class="st">早期</span><div>单肢功能丧失</div></div><div class="cell"><span class="st">中期</span><div>单肢功能丧失需使用假肢</div></div><div class="cell"><span class="st">重度</span><div>瘫痪（不可逆肢体功能丧失）</div></div></div>
+    <div class="cr" data-n="49" data-tier="t4" data-gold="1"><div class="fam"><b>49. 幼年类风湿关节炎</b><span class="tier t4">罕见</span><em>Juvenile Rheumatoid Arthritis</em></div><div class="cell"><span class="st">早期</span><div><span class="gx">重度幼年类风湿关节炎</span></div></div><div class="cell"><span class="st">中期</span><div><span class="na">—</span></div></div><div class="cell"><span class="st">重度</span><div><span class="gx">持续性重度幼年类风湿关节炎</span></div></div></div>
+    <div class="cr" data-n="50" data-tier="t3" data-gold="1"><div class="fam"><b>50. 植物人状态</b><span class="tier t3">少见</span><em>Persistent Vegetative State</em></div><div class="cell"><span class="st">早期</span><div><span class="gx">闭锁综合征</span></div></div><div class="cell"><span class="st">中期</span><div><span class="na">—</span></div></div><div class="cell"><span class="st">重度</span><div>持续性植物人状态</div></div></div>
+    <div class="cr" data-n="51" data-tier="t4" data-gold="1"><div class="fam"><b>51. 嗜铬细胞瘤</b><span class="tier t4">罕见</span><em>Pheochromocytoma</em></div><div class="cell"><span class="st">早期</span><div><span class="na">—</span></div></div><div class="cell"><span class="st">中期</span><div><span class="na">—</span></div></div><div class="cell"><span class="st">重度</span><div><span class="gx">嗜铬细胞瘤</span></div></div></div>
+    <div class="cr" data-n="52" data-tier="t4" data-gold="1"><div class="fam"><b>52. 脊髓灰质炎</b><span class="tier t4">罕见</span><em>Poliomyelitis</em></div><div class="cell"><span class="st">早期</span><div><span class="na">—</span></div></div><div class="cell"><span class="st">中期</span><div><span class="gx">中度脊髓灰质炎</span></div></div><div class="cell"><span class="st">重度</span><div>脊髓灰质炎（小儿麻痹症）</div></div></div>
+    <div class="cr" data-n="53" data-tier="t3" data-gold="0"><div class="fam"><b>53. 原发性肺动脉高压</b><span class="tier t3">少见</span><em>Primary Pulmonary Hypertension</em></div><div class="cell"><span class="st">早期</span><div>早期肺动脉高压</div></div><div class="cell"><span class="st">中期</span><div>继发性肺动脉高压</div></div><div class="cell"><span class="st">重度</span><div>原发性肺动脉高压</div></div></div>
+    <div class="cr" data-n="54" data-tier="t3" data-gold="0"><div class="fam"><b>54. 进行性硬皮病</b><span class="tier t3">少见</span><em>Progressive Scleroderma</em></div><div class="cell"><span class="st">早期</span><div>早期进行性硬皮病</div></div><div class="cell"><span class="st">中期</span><div>进行性硬皮病伴 CREST 综合征</div></div><div class="cell"><span class="st">重度</span><div>进行性硬皮病</div></div></div>
+    <div class="cr" data-n="55" data-tier="t4" data-gold="1"><div class="fam"><b>55. 进行性核上性麻痹</b><span class="tier t4">罕见</span><em>Progressive Supranuclear Palsy</em></div><div class="cell"><span class="st">早期</span><div><span class="gx">较轻度进行性核上性麻痹</span></div></div><div class="cell"><span class="st">中期</span><div><span class="na">—</span></div></div><div class="cell"><span class="st">重度</span><div>进行性核上性麻痹</div></div></div>
+    <div class="cr" data-n="56" data-tier="t4" data-gold="1"><div class="fam"><b>56. 狂犬病</b><span class="tier t4">罕见</span><em>Rabies</em></div><div class="cell"><span class="st">早期</span><div><span class="na">—</span></div></div><div class="cell"><span class="st">中期</span><div><span class="na">—</span></div></div><div class="cell"><span class="st">重度</span><div><span class="gx">狂犬病</span></div></div></div>
+    <div class="cr" data-n="57" data-tier="t4" data-gold="1"><div class="fam"><b>57. 全小肠切除</b><span class="tier t4">罕见</span><em>Resection of the Whole Small Intestine</em></div><div class="cell"><span class="st">早期</span><div><span class="na">—</span></div></div><div class="cell"><span class="st">中期</span><div><span class="na">—</span></div></div><div class="cell"><span class="st">重度</span><div><span class="gx">全小肠切除术（十二指肠、空肠及回肠）</span></div></div></div>
+    <div class="cr" data-n="58" data-tier="t3" data-gold="1"><div class="fam"><b>58. 细菌性脑膜炎</b><span class="tier t3">少见</span><em>Bacterial Meningitis</em></div><div class="cell"><span class="st">早期</span><div>细菌性脑膜炎（完全康复）</div></div><div class="cell"><span class="st">中期</span><div><span class="gx">轻度细菌性脑膜炎</span></div></div><div class="cell"><span class="st">重度</span><div>严重细菌性脑膜炎</div></div></div>
+    <div class="cr" data-n="59" data-tier="t3" data-gold="1"><div class="fam"><b>59. 重度心肌病</b><span class="tier t3">少见</span><em>Severe Cardiomyopathy</em></div><div class="cell"><span class="st">早期</span><div><span class="na">—</span></div></div><div class="cell"><span class="st">中期</span><div><span class="na">—</span></div></div><div class="cell"><span class="st">重度</span><div><span class="gx">重度心肌病</span></div></div></div>
+    <div class="cr" data-n="60" data-tier="t3" data-gold="1"><div class="fam"><b>60. 克罗恩病</b><span class="tier t3">少见</span><em>Crohn's Disease</em></div><div class="cell"><span class="st">早期</span><div><span class="gx">较轻度克罗恩病</span></div></div><div class="cell"><span class="st">中期</span><div><span class="na">—</span></div></div><div class="cell"><span class="st">重度</span><div><span class="gx">重度克罗恩病</span></div></div></div>
+    <div class="cr" data-n="61" data-tier="t3" data-gold="1"><div class="fam"><b>61. 艾森曼格综合征</b><span class="tier t3">少见</span><em>Eisenmenger's Syndrome</em></div><div class="cell"><span class="st">早期</span><div><span class="na">—</span></div></div><div class="cell"><span class="st">中期</span><div><span class="gx">重度艾森曼格综合征（中期）</span></div></div><div class="cell"><span class="st">重度</span><div><span class="gx">重度艾森曼格综合征</span></div></div></div>
+    <div class="cr" data-n="62" data-tier="t3" data-gold="0"><div class="fam"><b>62. 严重脑炎</b><span class="tier t3">少见</span><em>Severe Encephalitis</em></div><div class="cell"><span class="st">早期</span><div>病毒性脑炎（完全康复）</div></div><div class="cell"><span class="st">中期</span><div>轻度病毒性脑炎</div></div><div class="cell"><span class="st">重度</span><div>严重脑炎</div></div></div>
+    <div class="cr" data-n="63" data-tier="t3" data-gold="1"><div class="fam"><b>63. 重度血友病</b><span class="tier t3">少见</span><em>Severe Haemophilia</em></div><div class="cell"><span class="st">早期</span><div><span class="na">—</span></div></div><div class="cell"><span class="st">中期</span><div><span class="na">—</span></div></div><div class="cell"><span class="st">重度</span><div><span class="gx">重度血友病</span></div></div></div>
+    <div class="cr" data-n="64" data-tier="t3" data-gold="0"><div class="fam"><b>64. 重度重症肌无力</b><span class="tier t3">少见</span><em>Severe Myasthenia Gravis</em></div><div class="cell"><span class="st">早期</span><div><span class="na">—</span></div></div><div class="cell"><span class="st">中期</span><div><span class="na">—</span></div></div><div class="cell"><span class="st">重度</span><div>重度重症肌无力</div></div></div>
+    <div class="cr" data-n="65" data-tier="t3" data-gold="1"><div class="fam"><b>65. 重度肺纤维化</b><span class="tier t3">少见</span><em>Severe Pulmonary Fibrosis</em></div><div class="cell"><span class="st">早期</span><div><span class="na">—</span></div></div><div class="cell"><span class="st">中期</span><div><span class="na">—</span></div></div><div class="cell"><span class="st">重度</span><div><span class="gx">重度肺纤维化</span></div></div></div>
+    <div class="cr" data-n="66" data-tier="t1" data-gold="0"><div class="fam"><b>66. 中风</b><span class="tier t1">极常见</span><em>Stroke</em></div><div class="cell"><span class="st">早期</span><div>脑动脉瘤手术（血管内 / 开颅） ・ 脑分流器植入</div></div><div class="cell"><span class="st">中期</span><div>颈动脉手术</div></div><div class="cell"><span class="st">重度</span><div>中风伴永久性神经功能障碍</div></div></div>
+    <div class="cr" data-n="67" data-tier="t4" data-gold="1"><div class="fam"><b>67. 特发性脊柱侧弯</b><span class="tier t4">罕见</span><em>Idiopathic Scoliosis</em></div><div class="cell"><span class="st">早期</span><div><span class="na">—</span></div></div><div class="cell"><span class="st">中期</span><div><span class="na">—</span></div></div><div class="cell"><span class="st">重度</span><div><span class="gx">特发性脊柱侧弯手术</span></div></div></div>
+    <div class="cr" data-n="68" data-tier="t2" data-gold="0"><div class="fam"><b>68. 主动脉手术</b><span class="tier t2">较常见</span><em>Surgery to Aorta</em></div><div class="cell"><span class="st">早期</span><div>大型无症状主动脉瘤</div></div><div class="cell"><span class="st">中期</span><div>微创主动脉手术</div></div><div class="cell"><span class="st">重度</span><div>主动脉手术</div></div></div>
+    <div class="cr" data-n="69" data-tier="t3" data-gold="1"><div class="fam"><b>69. 系统性红斑狼疮</b><span class="tier t3">少见</span><em>Systemic Lupus Erythematosus</em></div><div class="cell"><span class="st">早期</span><div>轻度系统性红斑狼疮</div></div><div class="cell"><span class="st">中期</span><div><span class="gx">中重度系统性红斑狼疮伴狼疮性肾炎</span></div></div><div class="cell"><span class="st">重度</span><div>系统性红斑狼疮伴狼疮性肾炎</div></div></div>
+    <div class="cr" data-n="70" data-tier="t3" data-gold="1"><div class="fam"><b>70. 末期疾病</b><span class="tier t3">少见</span><em>Terminal Illness</em></div><div class="cell"><span class="st">早期</span><div><span class="na">—</span></div></div><div class="cell"><span class="st">中期</span><div><span class="na">—</span></div></div><div class="cell"><span class="st">重度</span><div><span class="gx">末期疾病</span><span class="note-inline">单次赔付由基本计划承保 ‡</span></div></div></div>
+    <div class="cr" data-n="71" data-tier="t4" data-gold="1"><div class="fam"><b>71. 结核性脑膜炎</b><span class="tier t4">罕见</span><em>Tuberculosis Meningitis</em></div><div class="cell"><span class="st">早期</span><div><span class="na">—</span></div></div><div class="cell"><span class="st">中期</span><div><span class="na">—</span></div></div><div class="cell"><span class="st">重度</span><div><span class="gx">结核性脑膜炎</span></div></div></div>
+    <div class="cr" data-n="72" data-tier="t4" data-gold="1"><div class="fam"><b>72. 1 型青少年脊髓性肌萎缩</b><span class="tier t4">罕见</span><em>Type 1 Juvenile Spinal Muscular Atrophy</em></div><div class="cell"><span class="st">早期</span><div><span class="na">—</span></div></div><div class="cell"><span class="st">中期</span><div><span class="na">—</span></div></div><div class="cell"><span class="st">重度</span><div><span class="gx">1 型青少年脊髓性肌萎缩</span></div></div></div>
+    <div class="cr" data-n="73" data-tier="t4" data-gold="1"><div class="fam"><b>73. 威尔逊病</b><span class="tier t4">罕见</span><em>Wilson's Disease</em></div><div class="cell"><span class="st">早期</span><div><span class="na">—</span></div></div><div class="cell"><span class="st">中期</span><div><span class="na">—</span></div></div><div class="cell"><span class="st">重度</span><div><span class="gx">威尔逊病（肝豆状核变性）</span></div></div></div>
+  </div>
+  <p class="fine">* 冠状动脉血管成形术：两者均赔保额 10%（上限 S$25,000），限一次。† 胰腺炎：单次赔付在重度阶段承保急性坏死出血性胰腺炎，多次赔付提前至早期。‡ 末期疾病：单次赔付由基本计划的身故保障承保。投保 90 天内确诊癌症、心脏病等不赔，两者相同。常见程度为定性分级，仅供参考。</p>
+
+  <!-- 顾问 -->
+  <div class="cta">
+    <h3>有疑问？<span>找我们再聊聊</span></h3>
+    <div class="advs">
+      <div class="adv">
+        <div>
+          <div class="top"><img src="/avatar-round.png" alt="袁媛"><div><b>袁媛<span>Yuan Yuan</span></b><small>新加坡小圆姐 · AIA 资产管理顾问</small></div></div>
+          <div class="rn">RNF：YY-300823216</div>
+          <div class="lines">
+            <button type="button" class="cp" data-copy="singaporeyuan"><svg class="ic"><use href="#i-chat"/></svg><span class="t">微信 singaporeyuan · 点击复制</span></button>
+            <a href="https://wa.me/6583750190" target="_blank" rel="noopener noreferrer"><svg class="ic"><use href="#i-phone"/></svg><span class="t">WhatsApp +65 8375 0190</span></a>
+            <div><svg class="ic"><use href="#i-mail"/></svg><span class="t">yuanyuan@aia.com.sg</span></div>
+          </div>
+        </div>
+        <div class="qr"><img src="/wechat-qr.png" alt="袁媛微信二维码"><span>扫码加微信</span></div>
+      </div>
+      <div class="adv">
+        <div>
+          <div class="top"><img src="/proposals/img/hanlu-avatar.webp" alt="韩璐"><div><b>韩璐<span>Han Lu</span></b><small>AIA 财务顾问</small></div></div>
+          <div class="rn">Rep. No.：HL-300910451</div>
+          <div class="badges"><span>AIA 高净值财富管理精英团队</span><span>2025 AIA 新锐冠军团队</span></div>
+          <div class="lines">
+            <button type="button" class="cp" data-copy="Handalu266"><svg class="ic"><use href="#i-chat"/></svg><span class="t">微信 Handalu266 · 点击复制</span></button>
+            <a href="tel:+6593848519"><svg class="ic"><use href="#i-phone"/></svg><span class="t">电话 +65 9384 8519</span></a>
+            <div><svg class="ic"><use href="#i-mail"/></svg><span class="t">handalu@aia.com.sg</span></div>
+          </div>
+        </div>
+        <div class="qr"><img src="/proposals/img/hanlu-wechat-qr.png" alt="韩璐微信二维码"><span>扫码加微信</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="notes">
+    <p>本页由持牌顾问袁媛（RNF：YY-300823216）与韩璐（Rep. No.：HL-300910451）整理，两位均为 AIA Singapore Private Limited（Reg. No. 201106386R）授权代表。仅供参考，<b>不构成要约或保险建议</b>，以 AIA 正式报价、保单条款及核保结果为准。</p>
+    <p><b>保费：</b>首年 8 折适用于 2026 年 11 月 30 日前投保，须符合 AIA 推广条款；第 2 年起按原价列示。定期寿险基本计划及全残保费保证不变；重疾附加险、UCC 及意外险保费不保证。吸烟状态以投保申报为准。</p>
+    <p><b>¹ UCC：</b>保额恢复须距上次理赔满 12 个月；早期 + 中期合计最多赔 500% 保额。理赔后免交保费由 Early Critical Protector Waiver of Premium (II) 附约提供，以报价单所含附约为准。同一疾病复发再赔属 UCC Enhancer，未含在内。</p>
+    <p>病况清单整理自 AIA 产品摘要（2025 年 7 月），中文名称仅便于理解，理赔以保单英文定义为准。意外险内容摘自 AIA 中文产品手册（2026 年 2 月 23 日版）。收到保单后有 14 天冷静期；保单受 SDIC 保单持有人保障计划保护，达指定限额。</p>
+  </div>
+</div>
+
+<script>
+(function(){
+  var DISC=0.8, PA=1149.2;
+  var st={h:'a', smk:'1', w:'a'};
+  var H={a:{s:5159,n:2331,name:'寿险 S$100 万',sub:'缴至 65 岁'}, b:{s:11707.5,n:6289.5,name:'重疾 + 寿险 S$35 万',sub:'缴 20 年'}};
+  var W={a:{p:4210.5,name:'单次赔付重疾 S$35 万',sub:'缴 20 年'}, b:{p:5687.98,name:'多次赔付重疾 S$35 万',sub:'UCC · 缴至 65 岁'}};
+  // 已有 + 新增（身故/全残 dt，重疾 ci）
+  var CFG={
+    h:{max:2300000, a:{dt:[1300000,1000000],ci:[300000,0],ciNote:'仅晚期'}, b:{dt:[1300000,350000],ci:[300000,350000],ciNote:'晚期 30 万 + 早中晚期 35 万'}},
+    w:{max:850000,  a:{dt:[500000,350000],ci:[500000,350000],ciNote:'晚期 50 万 + 早中晚期 35 万'}, b:{dt:[500000,17500],dtNote:'UCC 身故 5% S$17,500（意外身故 S$35 万）；不含全残',ci:[500000,350000],ciNote:'晚期 50 万 + 早中晚期 35 万（多次）'}}
+  };
+  function r2(v){return Math.round(v*100)/100;}
+  function fm(v,dec){return 'S$'+v.toLocaleString('en-US',{minimumFractionDigits:dec?2:0,maximumFractionDigits:dec?2:0});}
+  function $(id){return document.getElementById(id);}
+  function set(id,t){$(id).textContent=t;}
+
+  function cfg(who){
+    var c=CFG[who], o=c[st[who]], box=document.querySelector('[data-cfg="'+who+'"]');
+    ['dt','ci'].forEach(function(k,i){
+      var row=box.querySelectorAll('.cfg-row')[i], is=row.querySelectorAll('.trk i'), v=o[k];
+      is[0].style.width=(v[0]/c.max*100)+'%'; is[1].style.width=(v[1]/c.max*100)+'%';
+      var note=o[k+'Note'];
+      row.querySelector('.v').textContent=fm(v[0]+v[1]);
+      var nt=row.querySelector('.nt'); nt.textContent=note||''; nt.hidden=!note;
+    });
+    // 先生方案 A 是寿险，新增段用海军蓝；方案 B 新增段用金色
+    if(who==='h'){box.querySelector('.cfg-row .trk i.nw').style.background= st.h==='a'?'var(--navy)':'var(--gold)';}
+  }
+
+  function render(){
+    document.querySelectorAll('[data-g]').forEach(function(b){var on=st[b.dataset.g]===b.dataset.v; b.classList.toggle('on',on); b.setAttribute('aria-pressed',on);});
+    document.querySelectorAll('[data-show]').forEach(function(el){var p=el.dataset.show.split(':'); el.hidden=st[p[0]]!==p[1];});
+    document.querySelectorAll('[data-smk-label]').forEach(function(el){el.textContent=st.smk==='1'?'吸烟':'不吸烟';});
+    cfg('h'); cfg('w');
+    ['a','b'].forEach(function(k){var pr=st.smk==='1'?H[k].s:H[k].n; document.querySelector('[data-hp="'+k+'-f"]').textContent=fm(r2(pr*DISC),1); document.querySelector('[data-hp="'+k+'-y"]').textContent=fm(pr,1);});
+    // 先生费用
+    var h=H[st.h], hp=st.smk==='1'?h.s:h.n, hf=r2(hp*DISC);
+    set('cHn',h.name); set('cHs',h.sub);
+    set('cHf',fm(hf,1)); set('cHy',fm(hp,1));
+    set('cHtf',fm(r2(hf+PA),1)); set('cHty',fm(r2(hp+PA),1));
+    set('cHsave','省 '+fm(r2(hp-hf),1)); set('cHmo','折合每月约 '+fm(Math.round((hp+PA)/12)));
+    // 太太费用
+    var w=W[st.w], wf=r2(w.p*DISC);
+    set('cWn',w.name); set('cWs',w.sub);
+    set('cWf',fm(wf,1)); set('cWy',fm(w.p,1));
+    set('cWtf',fm(r2(wf+PA),1)); set('cWty',fm(r2(w.p+PA),1));
+    set('cWsave','省 '+fm(r2(w.p-wf),1)); set('cWmo','折合每月约 '+fm(Math.round((w.p+PA)/12)));
+  }
+  document.querySelectorAll('[data-g]').forEach(function(b){b.addEventListener('click',function(){st[b.dataset.g]=b.dataset.v; render();});});
+
+  // 病况筛选
+  var rows=[].slice.call(document.querySelectorAll('#clist .cr'));
+  function filt(f){
+    var rank={t1:1,t2:2,t3:3,t4:4}, list=$('clist');
+    rows.slice().sort(function(a,b){
+      if(f==='common'){var d=rank[a.dataset.tier]-rank[b.dataset.tier]; if(d) return d;}
+      return a.dataset.n-b.dataset.n;
+    }).forEach(function(r){
+      r.hidden=!(f==='all'||(f==='gold'&&r.dataset.gold==='1')||(f==='common'&&(r.dataset.tier==='t1'||r.dataset.tier==='t2')));
+      list.appendChild(r);
+    });
+  }
+  document.querySelectorAll('[data-f]').forEach(function(b){b.addEventListener('click',function(){
+    document.querySelectorAll('[data-f]').forEach(function(x){var on=x===b; x.classList.toggle('on',on); x.setAttribute('aria-pressed',on);});
+    filt(b.dataset.f);
+  });});
+  filt('common');
+
+  // 复制微信
+  document.querySelectorAll('[data-copy]').forEach(function(btn){
+    var t=btn.querySelector('.t'), orig=t.textContent, id=btn.dataset.copy;
+    btn.addEventListener('click',function(){
+      function done(m){t.textContent=m; setTimeout(function(){t.textContent=orig;},1800);}
+      try{navigator.clipboard.writeText(id).then(function(){done('已复制微信号 '+id);},function(){done('微信号：'+id);});}catch(e){done('微信号：'+id);}
+    });
+  });
+
+  render();
+})();
+</script>
+</body>
+</html>
